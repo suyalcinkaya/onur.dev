@@ -9,8 +9,6 @@ class MyDocument extends Document {
       <html>
         <Head>
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta charSet="utf-8" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"

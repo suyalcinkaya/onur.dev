@@ -1,6 +1,9 @@
+import { MDXProvider } from '@mdx-js/react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { DefaultSeo } from 'next-seo'
 
-import { Header } from 'components'
+import SEO from '../../next-seo.config'
+import { Header, MDXComponents } from 'components'
 import theme from 'utils/theme'
 
 const GlobalStyle = createGlobalStyle`
@@ -138,9 +141,12 @@ const GlobalStyle = createGlobalStyle`
 function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <Component {...pageProps} />
-      <GlobalStyle />
+      <MDXProvider components={MDXComponents}>
+        <DefaultSeo {...SEO} />
+        <Header />
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </MDXProvider>
     </ThemeProvider>
   )
 }
