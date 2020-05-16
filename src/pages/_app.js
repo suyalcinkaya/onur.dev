@@ -4,9 +4,12 @@ import { DefaultSeo } from 'next-seo'
 
 import SEO from '../../next-seo.config'
 import { Header, MDXComponents } from 'components'
+import prismTheme from 'utils/prism'
 import theme from 'utils/theme'
 
 const GlobalStyle = createGlobalStyle`
+  ${prismTheme}
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -32,8 +35,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${theme.colors.yemek500};
-    text-decoration: none;
+    color: inherit;
+    text-decoration: inherit;
+    cursor: pointer;
   }
 
   article {
@@ -75,60 +79,8 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
     }
 
-    ul {
-      padding-top: 0.5rem;
-      padding-left: 1rem;
-      margin-left: 0.5rem;
-      margin-bottom: 2rem;
-      overflow: scroll;
-      word-break: break-all;
-
-      li {
-        padding-bottom: 0.25rem;
-      } 
-    }
-
     strong {
       font-weight: 600;
-    }
-  }
-
-  pre {
-    background: rgb(247, 250, 252) !important;
-    border: 1px solid rgb(226, 232, 240);
-    border-radius: 6px;
-    border-image: initial;
-
-    padding: 1rem !important;
-    min-width: 100%;
-    font-size: 0.9rem;
-    margin: 1.5rem 0px;
-    overflow: auto;
-  }
-
-  :not(pre) > code, :not(blockquote) > code {
-    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    font-size: 14px;
-    background-color: #edf2f7;
-    padding: 0.125rem 0.5rem;
-    border-radius: 6px;
-  }
-
-  pre, blockquote {
-    code {
-      color: rgb(26, 32, 44);
-      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      text-align: left;
-      white-space: pre;
-      word-spacing: normal;
-      word-break: normal;
-      overflow-wrap: normal;
-      tab-size: 4;
-      hyphens: none;
-      width: 100%;
-      background: none;
-      font-size: 12px;
-      padding: 0;
     }
   }
 `

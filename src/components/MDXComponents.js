@@ -5,20 +5,10 @@ import Text from 'components/Text'
 
 const Table = (props) => <Box as="table" textAlign="left" mt={32} width="100%" {...props} />
 
-const THead = (props) => (
-  <Box as="th" bg="gray500" fontWeight="semibold" p={2} fontSize="sm" {...props} />
-)
+const THead = (props) => <Box as="th" bg="gray500" fontWeight={500} p={2} fontSize={14} {...props} />
 
 const TData = (props) => (
-  <Box
-    as="td"
-    p={2}
-    borderTopWidth={1}
-    borderColor="inherit"
-    fontSize="sm"
-    whiteSpace="normal"
-    {...props}
-  />
+  <Box as="td" p={2} borderTopWidth={1} borderColor="inherit" fontSize="sm" whiteSpace="normal" {...props} />
 )
 
 const CustomLink = (props) => {
@@ -33,7 +23,50 @@ const CustomLink = (props) => {
     )
   }
 
-  return <a {...props} />
+  return (
+    <Text
+      as="a"
+      target="_blank"
+      rel="noopener noreferrer"
+      color="hsl(208,99%,44%)"
+      css={{
+        textDecoration: 'none',
+        transition: 'all 0.15s ease-out',
+        borderBottom: '1px solid transparent',
+        '&:hover': {
+          borderBottom: '1px solid hsl(208,99%,44%)'
+        }
+      }}
+      {...props}
+    />
+  )
+}
+
+const Quote = (props) => {
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      position="relative"
+      overflow="hidden"
+      pl={12}
+      pr={16}
+      py={12}
+      mt={16}
+      mb={32}
+      borderLeft="4px solid #3182ce"
+      width="98%"
+      bg="#ebf8ff"
+      css={{
+        '> *:first-of-type': {
+          marginTop: 0,
+          marginBottom: 0,
+          marginLeft: 8
+        }
+      }}
+      {...props}
+    />
+  )
 }
 
 const DocsHeading = (props) => (
@@ -81,14 +114,24 @@ const DocsHeading = (props) => (
   </Box>
 )
 
-const Hr = () => <Box bg="gray500" height={1} my={12} w="100%" />
+const Hr = () => <Box bg="gray300" height={1} my={12} width="100%" />
 
 const MDXComponents = {
-  h1: (props) => <Text as="h1" size="xl" my={4} {...props} />,
-  h2: (props) => <DocsHeading as="h2" fontWeight="bold" size="lg" {...props} />,
-  h3: (props) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
+  h1: (props) => <Text as="h1" fontSize={{ _: 32, md: 48 }} fontWeight={500} my={4} {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 20, md: 24 }} fontWeight={500} mt="2em" mb="1em" {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 16, md: 20 }} fontWeight={500} mt="1em" mb="0.5em" {...props} />,
   inlineCode: (props) => (
-    <Text as="code" fontSize="0.84em" bg="rgb(254, 252, 191)" color="rgb(116, 66, 16)" {...props} />
+    <Text
+      as="code"
+      display="inline-block"
+      fontFamily={`SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`}
+      fontSize="0.84em"
+      bg="rgb(254, 252, 191)"
+      color="rgb(116, 66, 16)"
+      px={3}
+      borderRadius={2}
+      {...props}
+    />
   ),
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
@@ -96,11 +139,11 @@ const MDXComponents = {
   th: THead,
   td: TData,
   a: CustomLink,
-  p: (props) => <Text as="p" mt={4} lineHeight="tall" {...props} />,
-  ul: (props) => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
-  ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
-  li: (props) => <Box as="li" pb={1} {...props} />
-  // blockquote: Quote
+  p: (props) => <Text as="p" mt="1rem" mb="2rem" lineHeight="1.625" {...props} />,
+  ul: (props) => <Box as="ul" pt={8} pl={16} ml={8} mb={32} {...props} />,
+  ol: (props) => <Box as="ol" pt={8} pl={16} ml={8} mb={32} {...props} />,
+  li: (props) => <Box as="li" pb={4} {...props} />,
+  blockquote: Quote
 }
 
 export default MDXComponents

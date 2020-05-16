@@ -1,19 +1,16 @@
 import { NextSeo } from 'next-seo'
 
-import { frontMatter as blogPosts } from './blog/**/*.mdx'
-import { Box, BlogPost, Text } from 'components'
+import { frontMatter as blogPosts } from './blog/**/*.mdx' // Thanks to babel-plugin-import-glob-array
+import { Box, BlogPost, Layout, Text } from 'components'
 
 const url = 'https://onur.dev/blog'
 const title = 'Blog – Onur Şuyalçınkaya'
-const description =
-  'Thoughts on the software industry, programming, tech, music, and my personal life.'
+const description = 'Thoughts on the software industry, programming, tech, music, and my personal life.'
 
 const Blog = () => {
   if (!blogPosts) return null
 
-  const sortedBlogPosts = blogPosts.sort(
-    (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
-  )
+  const sortedBlogPosts = blogPosts.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
 
   return (
     <>
@@ -27,15 +24,8 @@ const Blog = () => {
           description
         }}
       />
-      <Box>
-        <Box
-          as="main"
-          spacing={8}
-          justifyContent="center"
-          alignItems="flex-start"
-          m="0 auto 4rem auto"
-          maxWidth={700}
-        >
+      <Layout>
+        <Box as="main" spacing={8} justifyContent="center" alignItems="flex-start" m="0 auto 4rem auto" maxWidth={700}>
           <Box
             display="flex"
             flexDirection="column"
@@ -68,7 +58,7 @@ const Blog = () => {
             ))}
           </Box>
         </Box>
-      </Box>
+      </Layout>
     </>
   )
 }

@@ -1,18 +1,16 @@
 import dayjs from 'dayjs'
 
-import { BlogSeo, Box, Text } from 'components'
+import { BlogSeo, Box, Layout as Container, Text } from 'components'
 
-const editUrl = (slug) =>
-  `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
-const discussUrl = (slug) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
+const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
+const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
 
-export default (frontMatter) => {
+export default function Layout(frontMatter) {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
 
   return ({ children }) => {
     return (
-      <Box>
+      <Container>
         <BlogSeo url={`https://onur.dev/blog/${slug}`} {...frontMatter} />
         <Box
           as="article"
@@ -23,7 +21,7 @@ export default (frontMatter) => {
           alignItems="flex-start"
           m="0 auto 4rem auto"
           maxWidth={700}
-          w="100%"
+          width="100%"
         >
           <Box
             display="flex"
@@ -31,34 +29,37 @@ export default (frontMatter) => {
             justifyContent="flex-start"
             alignItems="flex-start"
             maxWidth="700px"
-            w="100%"
+            width="100%"
+            mb={16}
           >
-            <Text letterSpacing="tight" mb={2} as="h1" size="2xl">
+            <Text
+              letterSpacing="tight"
+              mb={10}
+              as="h1"
+              fontSize={{ _: 32, md: 48 }}
+              fontWeight={400}
+              letterSpacing="-0.025em"
+              color="#000"
+            >
               {frontMatter.title}
             </Text>
             <Box
               display="flex"
-              justify="space-between"
-              align={{ _: 'initial', md_: 'center' }}
-              direction={{ _: 'column', md: 'row' }}
+              flexDirection={{ _: 'column', md: 'row' }}
+              justifyContent="space-between"
               mt={2}
-              w="100%"
+              width="100%"
               mb={4}
             >
               <Box display="flex" alignItems="center">
-                <img
-                  src="/static/me.jpg"
-                  alt="Onur Şuyalçınkaya"
-                  height={24}
-                  width={24}
-                  loading="lazy"
-                />
-                <Text fontSize="sm">
-                  {'Onur Şuyalçınkaya / '}
-                  {dayjs(new Date(frontMatter.publishedAt)).format('MMMM dd, yyyy')}
+                <img src="/static/me.jpg" alt="Onur Şuyalçınkaya" height={24} width={24} loading="lazy" />
+                <Text color="gray800" ml={8}>
+                  Onur Şuyalçınkaya
                 </Text>
               </Box>
-              <Text fontSize="sm" color="gray500" minWidth={100} mt={[2, 0]}>
+              <Text fontSize={14} color="gray600" mt={{ _: 8, md: 0 }}>
+                {dayjs(new Date(frontMatter.publishedAt)).format('MMMM DD, YYYY')}
+                {' • '}
                 {frontMatter.readingTime.text}
               </Text>
             </Box>
@@ -74,7 +75,7 @@ export default (frontMatter) => {
             </a>
           </Box>
         </Box>
-      </Box>
+      </Container>
     )
   }
 }
