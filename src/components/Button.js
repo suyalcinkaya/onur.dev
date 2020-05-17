@@ -42,12 +42,14 @@ Button.defaultProps = {
   justifyContent: 'center',
   alignItems: 'center',
   borderRadius: 6,
-  p: '0 1.125rem',
+  py: 0,
+  px: { _: '0.875rem', md: '1.125rem' },
   background: 'transparent',
   color: 'inherit',
   height: '2.875rem',
   minWidth: '3rem',
-  border: 'none'
+  border: 'none',
+  backgroundColor: 'transparent'
 }
 
 export default Button
