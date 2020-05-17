@@ -1,0 +1,410 @@
+---
+title: 'useFetch() React Hook'
+summary: 'One of the most common React Hooks that I’ve found myself using is one to handle API calls.'
+publishedAt: '2020-05-17'
+image: '/static/images/html5-video.webp'
+categories: 'React, Hooks, JavaScript'
+---
+
+One of the most common React Hooks that I’ve found myself using is one to handle API calls.
+
+For this blog post we’re going to use [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for our HTTP calls. It will include error handling, both usage for calling when component _didMount_ or later and parameters.
+
+Without using a custom hook, you would probably do something similar to this:
+
+```jsx:components/foo.js
+const url = 'some url'
+
+const [data, setData] = useState(false)
+
+useEffect(() => {
+  const fetchData = async () => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result)
+      })
+  }
+  fetchData()
+}, [])
+```
+
+## This custom hook will support/include these features:
+
+- [Loading Indicator](#loading-indicator)
+- [Error Handling](#error-handling)
+- [Using On didMount or Some After](#using-on-didmount-or-some-after)
+- [Dynamic Url](#dynamic-url)
+- [Dynamic Parameters](#dynamic-parameters)
+- [Refetch](#refetch)
+
+Let's start.
+
+To convert this example to a custom hook, it would look like this:
+
+```jsx:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (url) => {
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+          setData(result)
+        })
+    }
+    fetchData()
+  }, [])
+
+  return { data }
+}
+
+export default useFetch
+```
+
+This is a very basic example that has many issues; not including handling errors, loading indicator, etc. It’s already quite a bit a few lines of code, and is obviously not reusable.
+
+Our component could then call it like this:
+
+```jsx:component/foo.js
+const url = 'some url'
+const { data } = useFetch(url)
+```
+
+## Loading Indicator
+
+Loading indicator is a must in my opinition. Because, knowing the fetch process still goes on, we can show a loading component or an icon or something else for a nice user experience.
+
+Let's define a state to achieve that.
+
+```jsx{5,9,14,20}:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (url) => {
+  const [data, setData] = useState()
+  const [isLoading, setIsLoading] = useState(false) // Here is our state for loading indicator
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true) // We will set it to true when the fetching process starts
+      fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+          setData(result)
+          setIsLoading(false) // We will set it to false when we are done with setting data
+        })
+    }
+    fetchData()
+  }, [])
+
+  return { data, isLoading } // And here, we will return our loading indicator state to use it on our component
+}
+
+export default useFetch
+```
+
+Our component could use it like this:
+
+```jsx{2,3,4}:components/foo.js
+const url = 'some url'
+const { data, isLoading } = useFetch(url)
+
+if (isLoading) return <LoadingComponent />
+```
+
+## Error Handling
+
+Here is an another must feature for our custom hook. We will define 2 states, one is a boolean value that indicates whether has an error or not and another one is a string value that includes error message.
+
+We will be also using the `try/catch` syntax to set and handle error boundaries. It would look like this:
+
+```jsx{6,7,12,13,14,15,16,17,18,19,20,21,22,23,24,29}:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (url) => {
+  const [data, setData] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(url)
+        const result = await response.json()
+        if (response.ok) {
+          setData(result)
+        } else {
+          setHasError(true)
+          setErrorMessage(result)
+        }
+      } catch (err) {
+        setError(true)
+        setErrorMessage(err.message)
+      }
+    }
+    fetchData()
+  }, [])
+
+  return { data, isLoading, hasError, errorMessage }
+}
+
+export default useFetch
+```
+
+Our component could use it like this:
+
+```jsx{2,3,4}:components/foo.js
+const url = 'some url'
+const { data, isLoading, hasError, errorMessage } = useFetch(url)
+
+if (hasError) return <ErrorComponent message={errorMessage} />
+```
+
+## Using On didMount or Some After
+
+What if we would like to use this hook some after the component render rather than _didMount_ stage. To achieve this, we can use a prop (let's say: **skip**) to skip the data fetching function.
+
+> We will define it `false` by default to use fetching on _didMount_ stage.
+
+```jsx{3,11}:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (url, skip = false) => {
+  const [data, setData] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (skip) return
+      setIsLoading(true)
+      try {
+        const response = await fetch(url)
+        const result = await response.json()
+        if (response.ok) {
+          setData(result)
+        } else {
+          setHasError(true)
+          setErrorMessage(result)
+        }
+      } catch (err) {
+        setError(true)
+        setErrorMessage(err.message)
+      }
+    }
+    fetchData()
+  }, [])
+
+  return { data, isLoading, hasError, errorMessage }
+}
+
+export default useFetch
+```
+
+Our component could use it like this:
+
+```jsx{2}:components/foo.js
+const url = 'some url'
+const { data, isLoading, hasError, errorMessage } = useFetch(url, (skip = true))
+```
+
+## Dynamic Url
+
+What if we would like to change the url dynamically to trigger fetching process again? Why not? Let's implement it.
+
+We will change `url` prop name to `initialUrl` to use it as a state. The `initialUrl` prop will be default value of the `url` state.
+
+We will add `url` state to dependency of the `useEffect` hook to trigger it again. Then we will export its `setState` function which is `updateUrl` to use it from our component.
+
+```jsx{3,4,29,31}:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (initialUrl, skip = false) => {
+  const [url, updateUrl] = useState(initialUrl)
+  const [data, setData] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (skip) return
+      setIsLoading(true)
+      try {
+        const response = await fetch(url)
+        const result = await response.json()
+        if (response.ok) {
+          setData(result)
+        } else {
+          setHasError(true)
+          setErrorMessage(result)
+        }
+      } catch (err) {
+        setError(true)
+        setErrorMessage(err.message)
+      }
+    }
+    fetchData()
+  }, [url])
+
+  return { data, isLoading, hasError, errorMessage, updateUrl }
+}
+
+export default useFetch
+```
+
+Our component could use it like this:
+
+```jsx{2,3,4,5,6}:components/foo.js
+const url = 'some url'
+const { data, isLoading, hasError, errorMessage, updateUrl } = useFetch(url)
+
+if(...) {
+  updateUrl('some another url')
+}
+```
+
+## Dynamic Parameters
+
+What about parameters? And what about changing it dynamically to use it like filtering or something else? Sounds great. Let's implement this too.
+
+We will take parameters as a prop which will be an object. And then, we will transpile them with `encodeURIComponent` to use properly. It would look like this:
+
+```jsx{3,5,11,12,13,20,34,36}:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (initialUrl, initialParams = {}, skip = false) => {
+  const [url, updateUrl] = useState(initialUrl)
+  const [params, updateParams] = useState(initialParams)
+  const [data, setData] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const queryString = Object.keys(params)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+    .join('&')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (skip) return
+      setIsLoading(true)
+      try {
+        const response = await fetch(`${url}${queryString}`)
+        const result = await response.json()
+        if (response.ok) {
+          setData(result)
+        } else {
+          setHasError(true)
+          setErrorMessage(result)
+        }
+      } catch (err) {
+        setError(true)
+        setErrorMessage(err.message)
+      }
+    }
+    fetchData()
+  }, [url, params])
+
+  return { data, isLoading, hasError, errorMessage, updateUrl, updateParams }
+}
+
+export default useFetch
+```
+
+Our component could use it like this:
+
+```jsx{2,4,5,6,7,11,12,13,14}:components/foo.js
+const url = 'some url'
+const { data, isLoading, hasError, errorMessage, updateUrl, updateParams } = useFetch(
+  url,
+  (initialParams = {
+    id: 123456789,
+    query: 'Lorem Ipsum'
+  }) // will be transpiled as 'id=123456789&query=Lorem%20Ipsum'
+)
+
+if(...) {
+  updateParams({
+    id: 4815162342,
+    query: 'Dharma Initiative'
+  }) // will be transpiled as 'id=4815162342&query=Dharma%20Initiative'
+}
+```
+
+## Refetch
+
+Another common thing I’ve needed is the ability to manually trigger the API call again. A good example would be a page with a list of resources, and wanting to refresh the list from a callback after creating a new resource.
+
+To do this we’ll simply keep a number in state that’s a dependency to the useEffect, that we increment every time we want to force a refresh.
+
+Finally, it would look like this:
+
+```jsx{10,16,39,41}:hooks/useFetch.js
+import { useState, useEffect } from 'react'
+
+const useFetch = (initialUrl, initialParams = {}, skip = false) => {
+  const [url, updateUrl] = useState(initialUrl)
+  const [params, updateParams] = useState(initialParams)
+  const [data, setData] = useState(undefined)
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [refetchIndex, setRefetchIndex] = useState(0)
+
+  const queryString = Object.keys(params)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+    .join('&')
+
+  const refetch = () => setRefetchIndex((prevRefetchIndex) => prevRefetchIndex + 1)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (skip) return
+      setIsLoading(true)
+      try {
+        const response = await fetch(`${url}${queryString}`)
+        const result = await response.json()
+        if (response.ok) {
+          setData(result)
+        } else {
+          setHasError(true)
+          setErrorMessage(result)
+        }
+      } catch (err) {
+        setError(true)
+        setErrorMessage(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchData()
+  }, [url, params, refetchIndex])
+
+  return { data, isLoading, hasError, errorMessage, updateUrl, updateParams, refetch }
+}
+
+export default useFetch
+```
+
+It could be then used in a way similar to this:
+
+```jsx{2,4}:components/foo.js
+const url = 'some url'
+const { data, isLoading, hasError, errorMessage, updateUrl, updateParams, refetch } = useFetch(url)
+
+return <button onClick={refetch} />
+```
+
+## Conclusion
+
+In this post, I have explained and made a small demo to show how we can declaratively fetch data and render it on screen by using the `useFetch` hook with the native `fetch()` API.
+
+> This example doesn’t handle authentication. One way to handle that would be to add parameters to the hook for additional options, or to update the hook to add the authentication header from some global state.
+> And if you are using Next.js, I highly recommend you to use [SWR](https://swr.now.sh/) by Vercel instead of this custom hook.

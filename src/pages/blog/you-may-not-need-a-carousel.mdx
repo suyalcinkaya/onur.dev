@@ -1,13 +1,13 @@
 ---
-title: 'You May Not Need a Slider — At Least For Mobile Browsers'
-summary: 'Still, using a slider library? Well, you may not need any...'
+title: 'You May Not Need a Carousel — At Least For Mobile Browsers'
+summary: 'Carousels can be painful because building it requires architectural thinking, management of data and elements, DOM manipulation, and consideration for user interaction. Well, you may not need it anymore.'
 publishedAt: '2019-12-27'
-image: '/static/images/you-may-not-need-a-slider.webp'
+image: '/static/images/you-may-not-need-a-carousel.webp'
 categories: 'JavaScript'
 ---
 
 Approximately more than 85% of our visitors access [yemek.com](https://yemek.com) from mobile browsers.
-Most of us have used a slider at least once in the components or somewhere in projects. In yemek.com, we were using react-slick which works well on desktop but causes some performance and memory leak problems on mobile browsers.
+Most of us have used a carousel at least once in the components or somewhere in projects. In yemek.com, we were using react-slick which works well on desktop but causes some performance and memory leak problems on mobile browsers.
 
 See here:
 
@@ -18,9 +18,9 @@ It was causing a freezing bug while scrolling and tapping the hamburger menu tha
 
 <img src="https://miro.medium.com/max/3160/1*2TqyxvHKrM_-8sGAuV2aZg.png" />
 
-However, we’ve decided not to use any third-party sliders for mobile browsers to increase performance and user experience.
+However, we’ve decided not to use any third-party carousels for mobile browsers to increase performance and user experience.
 
-Let’s start by creating a component called Slider.js. (We’re using emotion for CSS-in-JS but you can use styled-components of course.)
+Let’s start by creating a component called Carosel.js. (We’re using emotion for CSS-in-JS but you can use styled-components of course.)
 
 We’ll have a Container and children of it. So the Container should be scrolled horizontally and shouldn’t be scrolled vertically.
 Container div will look like this:
@@ -44,8 +44,8 @@ const Container = styled.div`
 
 and the children will get a width as a prop to size it correctly. It will look like this:
 
-```jsx:Slider
-const Slider = (props) => {
+```jsx:Carousel
+const Carousel = (props) => {
   const { children, childWidth, ...rest } = props
   const Container = styled.div`
     white-space: nowrap;
@@ -75,14 +75,14 @@ const Slider = (props) => {
 }
 ```
 
-The overall of Slider.js component will look this as well:
+The overall of Carousel.js component will look this as well:
 
-```jsx:Slider.js
+```jsx:Carousel.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-const Slider = props => {
+const Carousel = props => {
   const { children, childWidth, ...rest } = props;
   const Container = styled.div`
     white-space: nowrap;
@@ -115,16 +115,16 @@ const Slider = props => {
   );
 };
 
-Slider.propTypes = {
+Carousel.propTypes = {
   children: PropTypes.any,
   childWidth: PropTypes.string,
 };
 
-Slider.defaultProps = {
+Carousel.defaultProps = {
   childWidth: ‘80%’,
 };
 
-export default Slider;
+export default Carousel;
 ```
 
 ## The result:

@@ -2,8 +2,11 @@ import { MDXProvider } from '@mdx-js/react'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { DefaultSeo } from 'next-seo'
 
-import SEO from '../../next-seo.config'
+// --- Components
 import { Header, MDXComponents } from 'components'
+
+// --- Others
+import SEO from '../../next-seo.config'
 import prismTheme from 'utils/prism'
 import theme from 'utils/theme'
 

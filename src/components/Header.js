@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import styled from 'styled-components'
 
 // --- Components
 import Box from 'components/Box'
 import Button from 'components/Button'
+import Flex from 'components/Flex'
 import Text from 'components/Text'
 
 const Header = () => {
@@ -35,15 +35,7 @@ const Header = () => {
         width="100%"
         bg="white"
       >
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          height="100%"
-          maxWidth={800}
-          m="0 auto"
-          px="1.5rem"
-        >
+        <Flex justifyContent="space-between" alignItems="center" height="100%" maxWidth={800} m="0 auto" px="1.5rem">
           <Box>
             <Text fontSize={20} fontWeight={500} color="#000" letterSpacing="-0.02em">
               Onur
@@ -60,7 +52,7 @@ const Header = () => {
               </React.Fragment>
             ))}
           </Box>
-        </Box>
+        </Flex>
       </Box>
       <Box height={70} />
     </>

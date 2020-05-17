@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import dayjs from 'dayjs'
 
+// --- Components
 import Box from 'components/Box'
+import Flex from 'components/Flex'
 import Text from 'components/Text'
 
+// --- Others
 import theme from 'utils/theme'
 
 const BlogPost = (frontMatter) => {
@@ -24,7 +27,7 @@ const BlogPost = (frontMatter) => {
   return (
     <Link href={`blog/${slug}`} passHref>
       <Box as="a" type="button" mb="3rem" display="block" width="100%">
-        <Box display="flex" flexDirection={{ _: 'column', md: 'row' }}>
+        <Flex flexDirection={{ _: 'column', md: 'row' }}>
           <Box
             as="img"
             src={image}
@@ -38,8 +41,8 @@ const BlogPost = (frontMatter) => {
               object-fit: cover;
             `}
           />
-          <Box display="flex" width="100%" flexDirection="column" pl={{ _: 0, md: 20 }} pt={{ _: 20, md: 0 }}>
-            <Box display="flex" mb={8}>
+          <Flex width="100%" flexDirection="column" pl={{ _: 0, md: 20 }} pt={{ _: 20, md: 0 }}>
+            <Flex mb={8}>
               {cat.length &&
                 cat.map((item, itemIndex) => (
                   <Box
@@ -56,8 +59,8 @@ const BlogPost = (frontMatter) => {
                     </Text>
                   </Box>
                 ))}
-            </Box>
-            <Text as="h3" fontSize={{ _: 20, md: 18 }} fontWeight={500} m={0} mb={6} color="#000">
+            </Flex>
+            <Text as="h3" fontSize={{ _: 20, md: 18 }} fontWeight={500} lineHeight={1.43} m={0} mb={6} color="#000">
               {title}
             </Text>
             <Text fontSize={14} color="gray600" mb={12}>
@@ -68,8 +71,8 @@ const BlogPost = (frontMatter) => {
             <Text color="gray700" lineHeight={1.5}>
               {summary}
             </Text>
-          </Box>
-        </Box>
+          </Flex>
+        </Flex>
       </Box>
     </Link>
   )

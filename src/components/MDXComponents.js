@@ -1,8 +1,11 @@
 import Link from 'next/link'
 
+// --- Components
 import Box from 'components/Box'
+import Flex from 'components/Flex'
 import Text from 'components/Text'
 
+// --- Others
 import theme from 'utils/theme'
 
 const Table = (props) => (
@@ -68,8 +71,7 @@ const CustomLink = (props) => {
 
 const Quote = (props) => {
   return (
-    <Box
-      display="flex"
+    <Flex
       alignItems="center"
       position="relative"
       overflow="hidden"
@@ -167,7 +169,7 @@ const Li = (props) => (
         content: '';
         position: absolute;
         left: 0.125rem;
-        top: 0.625rem;
+        top: 0.45rem;
         display: block;
         height: 0.375rem;
         width: 0.375rem;
