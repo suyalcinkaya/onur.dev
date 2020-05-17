@@ -1,16 +1,23 @@
+import { useState } from 'react'
 import { NextSeo } from 'next-seo'
+import styled from 'styled-components'
 
 import { frontMatter as blogPosts } from './blog/**/*.mdx' // Thanks to babel-plugin-import-glob-array
 import { Box, BlogPost, Layout, Text } from 'components'
+import { Search } from 'components/icons'
+
+import theme from 'utils/theme'
 
 const url = 'https://onur.dev/blog'
 const title = 'Blog – Onur Şuyalçınkaya'
 const description = 'Thoughts on the software industry, programming, tech, music, and my personal life.'
 
 const Blog = () => {
-  if (!blogPosts) return null
+  const [searchValue, setSearchValue] = useState('')
 
-  const sortedBlogPosts = blogPosts.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+  const sortedBlogPosts = blogPosts
+    .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+    .filter((frontMatter) => frontMatter.title.toLowerCase().includes(searchValue.toLowerCase()))
 
   return (
     <>
@@ -25,7 +32,7 @@ const Blog = () => {
         }}
       />
       <Layout>
-        <Box as="main" spacing={8} justifyContent="center" alignItems="flex-start" m="0 auto 4rem auto" maxWidth={700}>
+        <Box m="0 auto 4rem auto">
           <Box
             display="flex"
             flexDirection="column"
@@ -33,14 +40,26 @@ const Blog = () => {
             alignItems="flex-start"
             maxWidth="700px"
           >
-            <Text letterSpacing="tight" mb={2} as="h1" size="2xl">
+            <Text as="h1" fontWeight={500} color="#000" letterSpacing="-0.02em" mb={10}>
               Blog
             </Text>
-            <Text color="gray500">
-              {`I've been writing online since 2014, mostly about web development and tech careers.
+            <Text lineHeight={1.5} color="gray600">
+              {`I've been writing online since 2018, mostly about web development and tech careers.
                 In total, I've written ${blogPosts.length} articles on this site.
                 Use the search below to filter by title.`}
             </Text>
+          </Box>
+          <Box position="relative" mt={40} mb={30} boxShadow="0 1px 2px 0 rgba(0,0,0,.05)">
+            <Input
+              aria-label="Search articles"
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search articles"
+            />
+            <Box position="absolute" top={0} right={0} height="100%">
+              <Box display="flex" alignItems="center" height="100%" pr={10} color="gray500">
+                <Search />
+              </Box>
+            </Box>
           </Box>
           <Box
             display="flex"
@@ -50,9 +69,7 @@ const Blog = () => {
             maxWidth={700}
             mt={8}
           >
-            <Text as="h2" letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
-              All Posts
-            </Text>
+            {!sortedBlogPosts.length && <Text>No post found</Text>}
             {sortedBlogPosts.map((frontMatter) => (
               <BlogPost key={frontMatter.title} {...frontMatter} />
             ))}
@@ -62,5 +79,47 @@ const Blog = () => {
     </>
   )
 }
+
+const Input = styled.input`
+  display: block;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  width: 100%;
+  padding-right: 3rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin: 0;
+  background-color: #fff;
+  border: 1px solid #d2d6dc;
+  border-radius: 0.375rem;
+  appearance: none;
+
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  ::placeholder {
+    color: ${theme.colors.gray500};
+    opacity: 1; /* Firefox */
+  }
+
+  /* Internet Explorer 10-11 */
+  :-ms-input-placeholder {
+    color: ${theme.colors.gray500};
+  }
+
+  /* Microsoft Edge */
+  ::-ms-input-placeholder {
+    color: ${theme.colors.gray500};
+  }
+
+  &:hover {
+    border-color: #cbd5e0;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
+    border-color: #a4cafe;
+  }
+`
 
 export default Blog

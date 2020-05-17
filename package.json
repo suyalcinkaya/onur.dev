@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev-purge": "rm -r .mdx-data .next && next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs,yml}\"",

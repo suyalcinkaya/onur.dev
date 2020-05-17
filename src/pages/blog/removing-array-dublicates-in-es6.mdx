@@ -2,6 +2,7 @@
 title: 'Removing Array Dublicates In ES6'
 summary: 'Here are 4 ways to filter out duplicates from an array and return only the unique values.'
 publishedAt: '2019-01-25'
+image: '/static/images/removing-array-dublicates.webp'
 ---
 
 Here are 4 ways to filter out duplicates from an array and return only the unique values.
@@ -48,6 +49,14 @@ In order to understand this option, let's understand what these two methods are 
 
 The `reduce()` method executes a reducer function (that you provide) on each member of the array resulting in a single output value.
 
+```jsx:.reduce()
+const array = ['🦄', 1, 2, '🦄', '🦄', 3, 2]
+
+array.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
+
+// ['🦄', 1, 2, 3];
+```
+
 ### .includes()
 
 The `includes()` method determines whether an array includes a certain value among its entries, returning true or false as appropriate.
@@ -60,17 +69,7 @@ array.includes('3') // true
 array.includes('23') // false
 ```
 
-```jsx:Reduce
-const array = ['🦄', 1, 2, '🦄', '🦄', 3, 2]
-
-array.reduce((unique, item) => (unique.includes(item) ? unique : [...unique, item]), [])
-
-// ['🦄', 1, 2, 3];
-```
-
 ## 4. lodash
-
-> Do not forget: The bundle size for lodash@4.17.11 is 24.2kB (minified + gzipped). [See here](https://bundlephobia.com/result?p=lodash@4.17.11)
 
 ```jsx:lodash
 const array = ['🦄', 1, 2, '🦄', '🦄', 3, 2]
@@ -79,3 +78,5 @@ _.uniq(array)
 
 // ['🦄', 1, 2, 3];
 ```
+
+> Do not forget: The bundle size for lodash@4.17.11 is 24.2kB (minified + gzipped). [See here](https://bundlephobia.com/result?p=lodash@4.17.11)

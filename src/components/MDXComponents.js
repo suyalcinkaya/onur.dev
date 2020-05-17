@@ -3,12 +3,36 @@ import Link from 'next/link'
 import Box from 'components/Box'
 import Text from 'components/Text'
 
-const Table = (props) => <Box as="table" textAlign="left" mt={32} width="100%" {...props} />
+import theme from 'utils/theme'
 
-const THead = (props) => <Box as="th" bg="gray500" fontWeight={500} p={2} fontSize={14} {...props} />
+const Table = (props) => (
+  <Box
+    as="table"
+    textAlign="left"
+    mt={32}
+    width="100%"
+    css={`
+      tbody > tr:nth-child(even) {
+        background-color: ${theme.colors.gray200};
+      }
+    `}
+    {...props}
+  />
+)
+
+const THead = (props) => <Box as="th" bg="gray500" color="white" fontWeight={500} p={8} {...props} />
 
 const TData = (props) => (
-  <Box as="td" p={2} borderTopWidth={1} borderColor="inherit" fontSize="sm" whiteSpace="normal" {...props} />
+  <Box
+    as="td"
+    p="8px 0"
+    pl="0.5rem"
+    fontSize={14}
+    css={`
+      white-space: normal;
+    `}
+    {...props}
+  />
 )
 
 const CustomLink = (props) => {
@@ -91,8 +115,8 @@ const DocsHeading = (props) => (
       }
     `}
     {...props}
-    mb="1em"
-    mt="2em"
+    mb="1rem"
+    mt="2rem"
   >
     <Box pointerEvents="auto">
       {props.children}
@@ -114,6 +138,52 @@ const DocsHeading = (props) => (
   </Box>
 )
 
+const Ul = (props) => (
+  <Box
+    as="ul"
+    p={0}
+    m={0}
+    mt="1rem"
+    mb="2rem"
+    css={`
+      list-style: none;
+
+      * + li {
+        margin-top: 0.75rem;
+      }
+    `}
+  >
+    {props.children}
+  </Box>
+)
+
+const Li = (props) => (
+  <Box
+    as="li"
+    position="relative"
+    pl="1.25rem"
+    css={`
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0.125rem;
+        top: 0.625rem;
+        display: block;
+        height: 0.375rem;
+        width: 0.375rem;
+        border-radius: 9999px;
+        background-color: rgba(210, 214, 220, 1);
+      }
+
+      > p {
+        margin: 0;
+      }
+    `}
+  >
+    {props.children}
+  </Box>
+)
+
 const Hr = () => <Box bg="gray300" height={1} my={12} width="100%" />
 
 const MDXComponents = {
@@ -121,15 +191,15 @@ const MDXComponents = {
   h2: (props) => <DocsHeading as="h2" fontSize={{ _: 20, md: 24 }} fontWeight={500} mt="2em" mb="1em" {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ _: 16, md: 20 }} fontWeight={500} mt="1em" mb="0.5em" {...props} />,
   inlineCode: (props) => (
-    <Text
+    <Box
       as="code"
       display="inline-block"
       fontFamily={`SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`}
       fontSize="0.84em"
       bg="rgb(254, 252, 191)"
       color="rgb(116, 66, 16)"
-      px={3}
-      borderRadius={2}
+      px={6}
+      borderRadius={4}
       {...props}
     />
   ),
@@ -139,10 +209,11 @@ const MDXComponents = {
   th: THead,
   td: TData,
   a: CustomLink,
-  p: (props) => <Text as="p" mt="1rem" mb="2rem" lineHeight="1.625" {...props} />,
-  ul: (props) => <Box as="ul" pt={8} pl={16} ml={8} mb={32} {...props} />,
+  p: (props) => <Text as="p" mt="1rem" mb="1rem" lineHeight="1.625" {...props} />,
+  strong: (props) => <Text as="strong" fontWeight={600} {...props} />,
+  ul: (props) => <Ul {...props} />,
   ol: (props) => <Box as="ol" pt={8} pl={16} ml={8} mb={32} {...props} />,
-  li: (props) => <Box as="li" pb={4} {...props} />,
+  li: (props) => <Li {...props} />,
   blockquote: Quote
 }
 

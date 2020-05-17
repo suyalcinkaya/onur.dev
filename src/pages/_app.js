@@ -10,6 +10,33 @@ import theme from 'utils/theme'
 const GlobalStyle = createGlobalStyle`
   ${prismTheme}
 
+  @font-face {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
+      url('/static/fonts/Inter-Regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
+      url('/static/fonts/Inter-Medium.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
+      url('/static/fonts/Inter-SemiBold.woff') format('woff');
+  }
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -40,47 +67,16 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
+  button, [role="button"] {
+    cursor: pointer;
+  }
+
   article {
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin-bottom: 1em;
-      margin-top: 2em;
-      scroll-margin-top: 100px;
-    }
-
-    p {
-      line-height: 1.625;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    figure {
-      padding: 0;
-      margin: 0;
-      position: absolute;
-      left: 0;
-      right: 0;
-
-      img {
-        max-height: 600px;
-      }
-    }
-
     img, video {
       max-width: 100%;
       height: auto;
       object-fit: cover;
       border-radius: 6px;
-    }
-
-    ol, ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    strong {
-      font-weight: 600;
     }
   }
 `

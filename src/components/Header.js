@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 // --- Components
 import Box from 'components/Box'
+import Button from 'components/Button'
 import Text from 'components/Text'
 
 const Header = () => {
@@ -22,7 +23,7 @@ const Header = () => {
   ]
 
   return (
-    <React.Fragment>
+    <>
       <Box
         as="nav"
         position="fixed"
@@ -43,14 +44,18 @@ const Header = () => {
           m="0 auto"
           px="1.5rem"
         >
-          <Box></Box>
+          <Box>
+            <Text fontSize={20} fontWeight={500} color="#000" letterSpacing="-0.02em">
+              Onur
+            </Text>
+          </Box>
           <Box>
             {navigation.map((nav, navIndex) => (
               <React.Fragment key={`nav_${navIndex}`}>
                 <Link href={nav.url} passHref>
-                  <Text as="a" type="button" color="black" p={16}>
+                  <Button as="a" type="button">
                     {nav.name}
-                  </Text>
+                  </Button>
                 </Link>
               </React.Fragment>
             ))}
@@ -58,7 +63,7 @@ const Header = () => {
         </Box>
       </Box>
       <Box height={70} />
-    </React.Fragment>
+    </>
   )
 }
 

@@ -1,0 +1,53 @@
+import styled from 'styled-components'
+import {
+  border,
+  borderRadius,
+  color,
+  compose,
+  flexbox,
+  layout,
+  size,
+  shadow,
+  space,
+  position,
+  typography
+} from 'styled-system'
+
+import theme from 'utils/theme'
+
+const StyledButton = styled.button`
+  appearance: none;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+  transition: all 250ms;
+
+  &:hover {
+    background-color: ${theme.colors.gray200};
+  }
+
+  &:active {
+    background-color: ${theme.colors.gray300};
+  }
+`
+
+const Button = styled(StyledButton)(
+  compose(border, borderRadius, color, flexbox, size, space, layout, position, shadow, typography)
+)
+
+Button.defaultProps = {
+  display: 'inline-flex',
+  position: 'relative',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 6,
+  p: '0 1.125rem',
+  background: 'transparent',
+  color: 'inherit',
+  height: '2.875rem',
+  minWidth: '3rem',
+  border: 'none'
+}
+
+export default Button

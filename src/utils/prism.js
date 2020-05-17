@@ -3,15 +3,15 @@ import { css } from 'styled-components'
 const prismTheme = css`
   @font-face {
     font-family: 'Jetbrains Mono';
-    src: url('/static/JetBrainsMono-Regular.woff2') format('woff2'),
-      url('/static/JetBrainsMono-Regular.woff') format('woff');
+    src: url('/static/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+      url('/static/fonts/JetBrainsMono-Regular.woff') format('woff');
   }
 
   code[class*='language-'],
   pre[class*='language-'] {
     color: rgb(26, 32, 44);
     background: none;
-    font-family: Jetbrains Mono, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     font-size: 0.875rem;
     line-height: 1.5;
     text-align: left;
@@ -33,7 +33,6 @@ const prismTheme = css`
     margin: 1.5rem 0;
     overflow: auto;
     min-width: 100%;
-    font-size: 0.9rem;
   }
 
   :not(pre) > code[class*='language-'],
@@ -135,7 +134,7 @@ const prismTheme = css`
 
   .remark-code-title {
     padding: 0.5rem 1rem;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     background: rgb(226, 232, 240);
     color: rgb(26, 32, 44);
     border: 1px solid rgb(226, 232, 240);
@@ -144,6 +143,7 @@ const prismTheme = css`
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 0;
+    margin-top: 1rem;
     width: 100%;
 
     + pre {

@@ -1,8 +1,8 @@
 ---
-title: 'What I have Learned From Working With HTML5 Video Over A Month'
+title: 'What I Have Learned From Working With HTML5 Video Over A Month'
 summary: 'I had a chance to work with HTML5 Video in a project over a month and here is what I have learned from it.'
 publishedAt: '2020-01-07'
-image: '/static/html5-video.webp'
+image: '/static/images/html5-video.webp'
 ---
 
 I had a chance to work with HTML5 Video in a project over a month and am going to tell you my experiences and knowledge on it.
@@ -152,8 +152,6 @@ See <a href="https://caniuse.com/#feat=ogv" target="_blank">here</a> for more de
   </tbody>
 </table>
 
-\*From 25+.
-
 ## 5. Codecs
 
 You can think of a video file as a container (like a ZIP file), that contains the encoded video stream and an audio stream. There are many different types of container formats and unfortunately, there isn't a single 'one-ring' format that will work in all browsers.
@@ -180,8 +178,10 @@ Here is an example:
 
 ```js
 const video = document.createElement('video')
+
 console.log(video.canPlayType('video/mp4'))
 // "probably"
+
 console.log(video.canPlayType('video/webm'))
 // "maybe"
 ```
@@ -724,6 +724,7 @@ If you are planning the control fullscreen mode on your own, you should not forg
 
 ```js
 const docElm = document.documentElement
+
 if (docElm.requestFullscreen) {
   docElm.requestFullscreen()
 } else if (docElm.mozRequestFullScreen) {
@@ -739,14 +740,15 @@ if (docElm.requestFullscreen) {
 
 ```js
 const docElm = document.documentElement
-if (document.exitFullscreen) {
-  document.exitFullscreen()
-} else if (document.mozCancelFullScreen) {
-  document.mozCancelFullScreen() /* Firefox */
-} else if (document.webkitExitFullscreen) {
-  document.webkitExitFullscreen() /* Chrome, Safari and Opera */
-} else if (document.msExitFullscreen) {
-  document.msExitFullscreen() /* IE/Edge */
+
+if (docElm.exitFullscreen) {
+  docElm.exitFullscreen()
+} else if (docElm.mozCancelFullScreen) {
+  docElm.mozCancelFullScreen() /* Firefox */
+} else if (docElm.webkitExitFullscreen) {
+  docElm.webkitExitFullscreen() /* Chrome, Safari and Opera */
+} else if (docElm.msExitFullscreen) {
+  docElm.msExitFullscreen() /* IE/Edge */
 }
 ```
 
