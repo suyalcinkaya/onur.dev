@@ -189,7 +189,7 @@ const Hr = () => <Box bg="gray300" height={1} my={12} width="100%" />
 const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
   h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2em" mb="1em" {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 24 }} mt="1em" mb="0.5em" {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1em" mb="0.5em" {...props} />,
   inlineCode: (props) => (
     <Box
       as="code"

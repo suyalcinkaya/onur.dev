@@ -69,6 +69,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-feature-settings: 'ss01' 1, 'cv05' 1;
+    text-rendering: optimizeLegibility;
     margin: 0;
     padding: 0;
     font-size: 16px;
