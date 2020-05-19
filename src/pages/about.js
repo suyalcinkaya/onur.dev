@@ -21,34 +21,52 @@ const About = () => (
       <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
         <Text
           as="h1"
-          fontSize={{ _: '2.25rem', md: '2.5rem' }}
+          fontFamily="Gilroy"
+          fontSize={{ _: 32, md: 48 }}
           fontWeight={500}
-          lineHeight={1.25}
+          letterSpacing="-0.025em"
           color="#000"
-          letterSpacing="-0.02em"
           mt={0}
           mb={10}
         >
           About Me
         </Text>
         <Text as="p" lineHeight={1.5}>
-          {`I'm Onur, a Frontend Developer residing in Istanbul, Turkey where currently a member of Yemeksepeti and
-          working on Yemek.com`}
+          Hey, I'm Onur. I'm a Frontend Engineer living in Istanbul, Turkey where currently a member of Yemeksepeti
+          which is the first and biggest online food order company in Turkey.
         </Text>
         <Text as="p" lineHeight={1.5}>
-          I am a software developer who dabbles in UI design with a strong sense of aesthetics and a passion for Java
-          and modern JavaScript — client and server-side — including React, Redux, React Native, AngularJS, Vue, Next.js
-          and Node.js.
+          I'm developing things for{' '}
+          <Text
+            as="a"
+            href="https://yemek.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="hsl(208,99%,44%)"
+            css={{
+              textDecoration: 'none',
+              transition: 'all 0.15s ease-out',
+              borderBottom: '1px solid transparent',
+              '&:hover': {
+                borderBottom: '1px solid hsl(208,99%,44%)'
+              }
+            }}
+          >
+            yemek.com
+          </Text>
+          , which is a sub-brand within Yemeksepeti and a platform that is visited by 15M~ unique people monthly and it
+          contains recipes, videos, and contents such as fun and instructional subjects related on everything about
+          food.
         </Text>
         <Text as="p" lineHeight={1.5}>
-          I share everything I know about making awesome software through my{' '}
-          <Link href="/blog">
-            <a>blog</a>
-          </Link>
-          .
+          Previously, I worked as a Full Stack Developer at Sistaş, React Native Developer at Tanbula and Specialist at
+          Apple. :-)
         </Text>
         <Text as="p" lineHeight={1.5}>
-          {`I love user experience design that helps people to live better.`}
+          I grew up in Ankara — the capital city of Turkey — and went to Doğuş University, graduating with a degree in
+          Computer Engineering. I spend my free time contributing to open source, DJing, doing bodybuilding, playing
+          Football Manager (since 2000), watching my favorite team Beşiktaş's football matches and enjoying time with
+          friends and family.
         </Text>
       </Flex>
     </Layout>

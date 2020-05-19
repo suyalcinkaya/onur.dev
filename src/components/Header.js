@@ -37,8 +37,14 @@ const Header = () => {
       >
         <Flex justifyContent="space-between" alignItems="center" height="100%" maxWidth={800} m="0 auto" px="1.5rem">
           <Box>
-            <Text fontSize={20} fontWeight={500} color="#000" letterSpacing="-0.02em">
-              Onur
+            <Text
+              fontFamily="Gilroy"
+              fontSize={{ _: 24, md: 26 }}
+              fontWeight={600}
+              color="#000"
+              letterSpacing="-0.025em"
+            >
+              {'onur.dev'}
             </Text>
           </Box>
           <Box>

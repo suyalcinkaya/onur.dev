@@ -44,7 +44,7 @@ Button.defaultProps = {
   alignItems: 'center',
   borderRadius: 6,
   py: 0,
-  px: { _: '0.875rem', md: '1.125rem' },
+  px: { _: '0.475rem', md: '1.125rem' },
   background: 'transparent',
   color: 'inherit',
   height: '2.875rem',

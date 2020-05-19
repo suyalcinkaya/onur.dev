@@ -10,17 +10,17 @@ const Home = () => (
     <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
       <Text
         as="h1"
-        fontSize={{ _: '2.25rem', md: '2.5rem' }}
+        fontFamily="Gilroy"
+        fontSize={{ _: 32, md: 48 }}
         fontWeight={500}
-        lineHeight={1.25}
+        letterSpacing="-0.025em"
         color="#000"
-        letterSpacing="-0.02em"
         mt={0}
         mb={10}
       >
-        Hey, I’m Onur Şuyalçınkaya
+        {'Hey, I’m Onur Şuyalçınkaya'}
       </Text>
-      <Text lineHeight={1.5} color="gray600">
+      <Text as="p" lineHeight={1.5}>
         {`I’m a developer, writer, and creator living in Istanbul, TR. You’ve found my personal slice of the internet – everything you want to know and more is here.`}
       </Text>
     </Flex>

@@ -37,30 +37,30 @@ const Blog = () => {
         <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
           <Text
             as="h1"
-            fontSize={{ _: '2.25rem', md: '2.5rem' }}
+            fontFamily="Gilroy"
+            fontSize={{ _: 32, md: 48 }}
             fontWeight={500}
-            lineHeight={1.25}
+            letterSpacing="-0.025em"
             color="#000"
-            letterSpacing="-0.02em"
             mt={0}
             mb={10}
           >
             Blog
           </Text>
-          <Text lineHeight={1.5} color="gray600">
-            {`I've been writing online since 2018, mostly about web development and tech careers.
+          <Text as="p" lineHeight={1.5}>
+            {`I've been writing online since 2018, mostly about web development, tips and tricks.
                 In total, I've written ${blogPosts.length} articles on this site.
                 Use the search below to filter by title.`}
           </Text>
         </Flex>
-        <Box position="relative" mt={40} mb={30} boxShadow="0 1px 2px 0 rgba(0,0,0,.05)">
+        <Box position="relative" mt="1rem" mb="2rem" boxShadow="0 1px 2px 0 rgba(0,0,0,.05)">
           <Input
             aria-label="Search articles"
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search articles"
           />
-          <Box position="absolute" top={0} right={0} height="100%">
-            <Flex alignItems="center" height="100%" pr={10} color="gray500">
+          <Box position="absolute" top={0} right="1rem" height="100%">
+            <Flex alignItems="center" height="100%" color="gray500">
               <Search />
             </Flex>
           </Box>
@@ -81,6 +81,7 @@ const Input = styled.input`
   font-size: 1rem;
   line-height: 1.25rem;
   width: 100%;
+  height: 3rem;
   padding-right: 3rem;
   padding-left: 1rem;
   padding-top: 0.5rem;
@@ -113,7 +114,8 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
+    // box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
+    box-shadow: 0 0 0 1px rgba(50, 151, 211, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 0 0 4px rgba(50, 151, 211, 0.3);
     border-color: #a4cafe;
   }
 `

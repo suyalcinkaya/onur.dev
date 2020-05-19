@@ -1,11 +1,13 @@
-import { MDXProvider } from '@mdx-js/react'
+import Router from 'next/router'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 
 // --- Components
 import { Header, MDXComponents } from 'components'
 
 // --- Others
+import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
 import prismTheme from 'utils/prism'
 import theme from 'utils/theme'
@@ -38,6 +40,24 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
     src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
       url('/static/fonts/Inter-SemiBold.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
+      url('/static/fonts/Gilroy-Medium.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
+      url('/static/fonts/Gilroy-Bold.woff') format('woff');
   }
 
   html {
@@ -88,6 +108,13 @@ const GlobalStyle = createGlobalStyle`
   // These metrics can be sent to any analytics service
   console.log(metric)
 } */
+
+// Track pageview when route is changed
+Router.events.on('routeChangeComplete', (url) => {
+  if (process.env.NODE_ENV === 'production') {
+    trackPageview(url)
+  }
+})
 
 function App({ Component, pageProps }) {
   return (

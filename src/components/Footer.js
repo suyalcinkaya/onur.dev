@@ -30,11 +30,6 @@ const Footer = () => (
         <Soundcloud />
       </Button>
     </a>
-    <a href="mailto:onur.suyalcinkaya@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
-      <Button type="button" aria-label="Email" color="#718096">
-        <Email />
-      </Button>
-    </a>
   </Flex>
 )
 

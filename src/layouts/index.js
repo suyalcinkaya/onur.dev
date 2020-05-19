@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 // --- Components
-import { BlogSeo, Box, Flex, Layout as Container, Text } from 'components'
+import { BlogSeo, Box, Button, Flex, Layout as Container, Share, Text } from 'components'
 
 const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
@@ -18,7 +18,6 @@ export default function Layout(frontMatter) {
           flexDirection="column"
           justifyContent="center"
           alignItems="flex-start"
-          p={8}
           m="0 auto 4rem auto"
           maxWidth={700}
           width="100%"
@@ -35,8 +34,9 @@ export default function Layout(frontMatter) {
               mb={10}
               mt={0}
               as="h1"
+              fontFamily="Gilroy"
               fontSize={{ _: 32, md: 48 }}
-              fontWeight={400}
+              fontWeight={500}
               letterSpacing="-0.025em"
               color="#000"
             >
@@ -45,6 +45,7 @@ export default function Layout(frontMatter) {
             <Flex
               flexDirection={{ _: 'column', md: 'row' }}
               justifyContent="space-between"
+              alignItems="flex-start"
               width="100%"
               mt={2}
               mb={4}
@@ -56,23 +57,19 @@ export default function Layout(frontMatter) {
                   Onur Şuyalçınkaya
                 </Text>
               </Flex>
-              <Text color="gray600" mt={{ _: 8, md: 0 }}>
-                {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
-                {' • '}
-                {frontMatter.readingTime.text}
-              </Text>
+              <Flex flexDirection="column">
+                <Text color="gray600" mt={{ _: '0.5rem', md: 0 }}>
+                  {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
+                  {' • '}
+                  {frontMatter.readingTime.text}
+                </Text>
+                <Share title={frontMatter.title} url={`https://onur.dev/blog/${slug}`} />
+              </Flex>
             </Flex>
           </Flex>
           {frontMatter.image && (
-            <Box>
-              <Box
-                as="img"
-                src={frontMatter.image}
-                loading="lazy"
-                maxHeight={{ _: 240, md: 400 }}
-                width="100%"
-                my={{ _: '1rem', md: '2rem' }}
-              />
+            <Box my={{ _: '1rem', md: '2rem' }}>
+              <Box as="img" src={frontMatter.image} loading="lazy" maxHeight={{ _: 240, md: 400 }} width="100%" />
             </Box>
           )}
           {children}

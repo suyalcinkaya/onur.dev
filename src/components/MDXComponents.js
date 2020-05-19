@@ -97,37 +97,35 @@ const Quote = (props) => {
 
 const DocsHeading = (props) => (
   <Box
-    css={`
-      scroll-margin-top: 100px;
-      scroll-snap-margin: 100px;
-      &[id]: {
-        pointerevents: 'none';
-      }
-      &[id]:before: {
-        display: block;
-        height: 6rem;
-        margintop: -6rem;
-        visibility: hidden;
-        content: '';
-      }
-      &[id]:hover {
-        a {
-          opacity: 1;
-        }
-      }
-    `}
+    css={{
+      fontFamily: 'Gilroy',
+      fontWeight: 600,
+      scrollMarginTop: '120px',
+      scrollSnapMargin: '120px', // Safari
+      '&[id]': {
+        pointerEvents: 'none'
+      },
+      '&[id]:before': {
+        display: 'block',
+        height: ' 6rem',
+        marginTop: '-6rem',
+        visibility: 'hidden',
+        content: `""`
+      },
+      '&[id]:hover a': { opacity: 1 }
+    }}
     {...props}
     mb="1rem"
     mt="2rem"
   >
-    <Box pointerEvents="auto">
+    <Box css={{ pointerEvents: 'auto' }}>
       {props.children}
       {props.id && (
         <Box
           aria-label="anchor"
           as="a"
           href={`#${props.id}`}
-          color="blue500"
+          color="#3182ce"
           fontWeight="normal"
           outline="none"
           opacity="0"
@@ -189,9 +187,9 @@ const Li = (props) => (
 const Hr = () => <Box bg="gray300" height={1} my={12} width="100%" />
 
 const MDXComponents = {
-  h1: (props) => <Text as="h1" fontSize={{ _: 32, md: 48 }} fontWeight={500} my={4} {...props} />,
-  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 20, md: 24 }} fontWeight={500} mt="2em" mb="1em" {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 16, md: 20 }} fontWeight={500} mt="1em" mb="0.5em" {...props} />,
+  // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2em" mb="1em" {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 24 }} mt="1em" mb="0.5em" {...props} />,
   inlineCode: (props) => (
     <Box
       as="code"
