@@ -13,11 +13,11 @@ const Table = (props) => (
     textAlign="left"
     mt={32}
     width="100%"
-    css={`
-      tbody > tr:nth-child(even) {
-        background-color: ${theme.colors.gray200};
+    css={{
+      'tbody > tr:nth-child(even)': {
+        backgroundColor: theme.colors.gray200
       }
-    `}
+    }}
     {...props}
   />
 )
@@ -30,9 +30,9 @@ const TData = (props) => (
     p="8px 0"
     pl="0.5rem"
     fontSize={14}
-    css={`
-      white-space: normal;
-    `}
+    css={{
+      whiteSpace: 'normal'
+    }}
     {...props}
   />
 )
@@ -113,13 +113,12 @@ const Ul = (props) => (
     m={0}
     mt="1rem"
     mb="2rem"
-    css={`
-      list-style: none;
-
-      * + li {
-        margin-top: 0.75rem;
+    css={{
+      listStyle: 'none',
+      '* + li': {
+        marginTop: '0.75rem'
       }
-    `}
+    }}
   >
     {props.children}
   </Box>
@@ -143,7 +142,6 @@ const Li = (props) => (
         borderRadius: 9999,
         backgroundColor: 'rgba(210, 214, 220, 1)'
       },
-
       '> p': {
         margin: 0
       }

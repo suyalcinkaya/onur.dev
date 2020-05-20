@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 
@@ -37,9 +39,7 @@ const BlogPost = (frontMatter) => {
             loading="lazy"
             height={{ _: 200, md: 120 }}
             border={`1px solid ${theme.colors.gray300}`}
-            css={`
-              object-fit: cover;
-            `}
+            css={{ objectFit: 'cover' }}
           />
           <Flex width="100%" flexDirection="column" pl={{ _: 0, md: 20 }} pt={{ _: 20, md: 0 }}>
             <Flex mb="0.5rem">
