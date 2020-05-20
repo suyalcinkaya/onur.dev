@@ -4,13 +4,19 @@ import { ServerStyleSheet } from 'styled-components'
 import { GA_TRACKING_ID } from 'lib/gtag'
 
 class MyDocument extends Document {
-  render() {
-    const { styleTags, isProduction } = this.props
+  static getInitialProps({ renderPage }) {
+    const isProduction = process.env.NODE_ENV === 'production'
+    const sheet = new ServerStyleSheet()
+    const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
+    const styleTags = sheet.getStyleElement()
+    return { ...page, styleTags, isProduction }
+  }
 
+  render() {
     return (
       <html>
         <Head>
-          {isProduction && (
+          {this.props.isProduction && (
             <>
               <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}></script>
               <script
@@ -25,7 +31,7 @@ class MyDocument extends Document {
               />
             </>
           )}
-          {styleTags}
+          {this.props.styleTags}
         </Head>
         <body>
           <Main />
@@ -36,16 +42,16 @@ class MyDocument extends Document {
   }
 }
 
-export async function getServerSideProps(context) {
+/* export async function getServerSideProps(context) {
   const sheet = new ServerStyleSheet()
   const page = context.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
   const styleTags = sheet.getStyleElement()
 
-  const isProduction = process.env.NODE_ENV === 'production'
+
 
   return {
     props: { ...page, styleTags, isProduction }
   }
-}
+} */
 
 export default MyDocument
