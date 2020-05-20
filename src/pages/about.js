@@ -1,41 +1,76 @@
-import Layout from 'components/Layout'
+import { NextSeo } from 'next-seo'
+import Link from 'next/link'
 
-const About = ({ title, description, ...props }) => {
-  return (
-    <>
-      <Layout title={`About Me – ${title}`} description={description}>
-        <h1 className="title">Welcome to this demo blog!</h1>
+// --- Components
+import { Flex, Layout, Text } from 'components'
 
-        <p className="description">
-          This is a simple blog built with Next, easily deployable on{' '}
-          <a href="https://url.netlify.com/r1j6ybSYU">Netlify</a>.
-        </p>
+const url = 'https://leerob.io/about'
+const title = 'About Me – Lee Robinson'
 
-        <p>
-          You can check out the{' '}
-          <a href="https://github.com/cassidoo/next-netlify-blog-starter">repo here.</a> If you'd
-          like to build it yourself,{' '}
-          <a href="https://url.netlify.com/ByVW0bCF8">here is a tutorial on how to do so</a>!
-        </p>
-
-        <p>
-          This project includes a basic layout and header, base styles, dynamic routing with
-          getStaticPaths, and posts saved as Markdown.
-        </p>
-      </Layout>
-    </>
-  )
-}
-
-export async function getStaticProps() {
-  const configData = await import('../../siteconfig.json')
-
-  return {
-    props: {
-      title: configData.default.title,
-      description: configData.default.description
-    }
-  }
-}
+const About = () => (
+  <>
+    <NextSeo
+      title={title}
+      canonical={url}
+      openGraph={{
+        url,
+        title
+      }}
+    />
+    <Layout>
+      <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
+        <Text
+          as="h1"
+          fontFamily="Gilroy"
+          fontSize={{ _: 32, md: 48 }}
+          fontWeight={500}
+          letterSpacing="-0.025em"
+          color="#000"
+          mt={0}
+          mb={10}
+        >
+          About Me
+        </Text>
+        <Text as="p" lineHeight={1.5}>
+          Hey, I'm Onur. I'm a Frontend Engineer living in Istanbul, Turkey where currently a member of Yemeksepeti
+          which is the first and biggest online food order company in Turkey.
+        </Text>
+        <Text as="p" lineHeight={1.5}>
+          I'm developing things for{' '}
+          <Text
+            as="a"
+            href="https://yemek.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="hsl(208,99%,44%)"
+            css={{
+              textDecoration: 'none',
+              transition: 'all 0.15s ease-out',
+              borderBottom: '1px solid transparent',
+              '&:hover': {
+                borderBottom: '1px solid hsl(208,99%,44%)'
+              }
+            }}
+          >
+            yemek.com
+          </Text>
+          , which is a sub-brand within Yemeksepeti and a platform that is visited by 15M~ unique people monthly and it
+          contains recipes, videos, and contents such as fun and instructional subjects related on everything about
+          food.
+        </Text>
+        <Text as="p" lineHeight={1.5}>
+          Previously, I worked as a Full Stack Developer at Sistaş, React Native Developer at Tanbula and Specialist at
+          Apple. :-)
+        </Text>
+        <Text as="p" lineHeight={1.5}>
+          I grew up in Ankara — the capital city of Turkey — and went to Doğuş University, graduating with a degree in
+          Computer Engineering. I spend my free time contributing to open source, DJing, doing bodybuilding, playing
+          Football Manager (since 2000), watching my favorite team Beşiktaş's football matches and enjoying time with
+          friends and family.
+        </Text>
+      </Flex>
+    </Layout>
+  </>
+)
 
 export default About

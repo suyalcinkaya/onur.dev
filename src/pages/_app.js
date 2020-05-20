@@ -1,9 +1,65 @@
+import Router from 'next/router'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { MDXProvider } from '@mdx-js/react'
+import { DefaultSeo } from 'next-seo'
 
-import { Header } from 'components'
+// --- Components
+import { Header, MDXComponents } from 'components'
+
+// --- Others
+import { trackPageview } from 'lib/gtag'
+import SEO from '../../next-seo.config'
+import prismTheme from 'utils/prism'
 import theme from 'utils/theme'
 
 const GlobalStyle = createGlobalStyle`
+  ${prismTheme}
+
+  @font-face {
+    font-family: 'Inter';
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
+      url('/static/fonts/Inter-Regular.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
+      url('/static/fonts/Inter-Medium.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
+      url('/static/fonts/Inter-SemiBold.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
+      url('/static/fonts/Gilroy-Medium.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
+      url('/static/fonts/Gilroy-Bold.woff') format('woff');
+  }
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -13,6 +69,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-feature-settings: 'ss01' 1, 'cv05' 1;
+    text-rendering: optimizeLegibility;
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -29,103 +86,21 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${theme.colors.yemek500};
-    text-decoration: none;
+    color: inherit;
+    text-decoration: inherit;
+    cursor: pointer;
+  }
+
+  button, [role="button"] {
+    cursor: pointer;
   }
 
   article {
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin-bottom: 1em;
-      margin-top: 2em;
-      scroll-margin-top: 100px;
-    }
-
-    p {
-      line-height: 1.625;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    figure {
-      padding: 0;
-      margin: 0;
-      position: absolute;
-      left: 0;
-      right: 0;
-
-      img {
-        max-height: 600px;
-      }
-    }
-
     img, video {
       max-width: 100%;
       height: auto;
       object-fit: cover;
       border-radius: 6px;
-    }
-
-    ol, ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    ul {
-      padding-top: 0.5rem;
-      padding-left: 1rem;
-      margin-left: 0.5rem;
-      margin-bottom: 2rem;
-      overflow: scroll;
-      word-break: break-all;
-
-      li {
-        padding-bottom: 0.25rem;
-      } 
-    }
-
-    strong {
-      font-weight: 600;
-    }
-  }
-
-  pre {
-    background: rgb(247, 250, 252) !important;
-    border: 1px solid rgb(226, 232, 240);
-    border-radius: 6px;
-    border-image: initial;
-
-    padding: 1rem !important;
-    min-width: 100%;
-    font-size: 0.9rem;
-    margin: 1.5rem 0px;
-    overflow: auto;
-  }
-
-  :not(pre) > code, :not(blockquote) > code {
-    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    font-size: 14px;
-    background-color: #edf2f7;
-    padding: 0.125rem 0.5rem;
-    border-radius: 6px;
-  }
-
-  pre, blockquote {
-    code {
-      color: rgb(26, 32, 44);
-      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      text-align: left;
-      white-space: pre;
-      word-spacing: normal;
-      word-break: normal;
-      overflow-wrap: normal;
-      tab-size: 4;
-      hyphens: none;
-      width: 100%;
-      background: none;
-      font-size: 12px;
-      padding: 0;
     }
   }
 `
@@ -135,12 +110,22 @@ const GlobalStyle = createGlobalStyle`
   console.log(metric)
 } */
 
+// Track pageview when route is changed
+Router.events.on('routeChangeComplete', (url) => {
+  if (process.env.NODE_ENV === 'production') {
+    trackPageview(url)
+  }
+})
+
 function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <Component {...pageProps} />
-      <GlobalStyle />
+      <MDXProvider components={MDXComponents}>
+        <DefaultSeo {...SEO} />
+        <Header />
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </MDXProvider>
     </ThemeProvider>
   )
 }

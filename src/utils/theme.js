@@ -3,22 +3,9 @@ const space = []
 const colors = {
   // scheme colors
   white: '#FFFFFF',
-  black: '#484848',
+  // black: '#484848',
+  black: '#161e2e',
   inherit: 'inherit',
-
-  // ColorHexValue colors
-  greenLight: '#1DB954',
-  orange: '#ff8c5f',
-
-  yemek100: '#F9E9EE',
-  yemek200: '#EFC7D4',
-  yemek300: '#E6A5BB',
-  yemek400: '#D36287',
-  yemek500: '#C01F54',
-  yemek600: '#AD1C4C',
-  yemek700: '#731332',
-  yemek800: '#560E26',
-  yemek900: '#3A0919',
 
   gray100: '#f7fafc',
   gray200: '#edf2f7',

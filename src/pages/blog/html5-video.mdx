@@ -1,10 +1,9 @@
 ---
-title: What I've Learned From Working With HTML5 Video Over A Month
-description: I had a chance to work with HTML5 Video in a project over a month and here is what I've learned from it.
-date: '2020-01-07'
-imageUrl: ../static/html5-video.webp
-imageAlt: 'yukaidu'
-imageSource: 'https://www.yukaidu.com/'
+title: 'What I Have Learned From Working With HTML5 Video Over A Month'
+summary: 'I had a chance to work with HTML5 Video in a project over a month and here is what I have learned from it.'
+publishedAt: '2020-01-07'
+image: '/static/images/html5-video.webp'
+categories: 'HTML5, Video, JavaScript, CSS'
 ---
 
 I had a chance to work with HTML5 Video in a project over a month and am going to tell you my experiences and knowledge on it.
@@ -15,7 +14,7 @@ This article will be an introduction to HTML5 Video. Let's get started.
 
 ---
 
-# 1. What is it, really?
+## 1. What is it, really?
 
 A `<video>` element is used for playing videos or movies and specifying a video on an HTML document. For example, you could embed a music video on your web page for your visitors to listen to and watch. It is now widely implemented in the major browsers and it has support from major websites such as YouTube and Netflix.
 
@@ -37,34 +36,34 @@ document.body.appendChild(video)
 
 That's it! Piece of cake, right? 👏🏼
 
-# 2. Browser Support
+## 2. Browser Support
 
 The numbers in the table specify the first browser version that fully supports the `<video>` element. See below for a full list of supported browsers.
 
 <table>
   <thead>
-  <tr>
-    <th>Chrome</th>
-    <th>IE</th>
-    <th>Firefox</th>
-    <th>Safari</th>
-    <th>Opera</th>
-  </tr> 
+    <tr>
+      <th>Chrome</th>
+      <th>IE</th>
+      <th>Firefox</th>
+      <th>Safari</th>
+      <th>Opera</th>
+    </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>4.0</td>
-    <td>9.0</td>
-    <td>3.5</td>
-    <td>4.0</td>
-    <td>10.5</td>
-  </tr>
+    <tr>
+      <td>4.0</td>
+      <td>9.0</td>
+      <td>3.5</td>
+      <td>4.0</td>
+      <td>10.5</td>
+    </tr>
   </tbody>
 </table>
 
 See <a href="https://caniuse.com/#feat=video" target="_blank">here</a> for more detailed browser support.
 
-# 3. Sources
+## 3. Sources
 
 You can define multiple sources by using the `<source>` element as a fallback in case the user's browser does not support one of them. For example:
 
@@ -91,21 +90,21 @@ When the browser parses the `<source>` tag, it uses the optional type attribute 
 
 > If you're using the `<source>` element, I recommend you to add the type attribute to it. This way, the browser can immediately skip a format it doesn't support without trying to play it and wasting resources.
 
-# 4. Formats and Browser Supports
+## 4. Formats and Browser Supports
 
-## 4.1. MP4
+### 4.1. MP4
 
 The MP4 container format with the H.264 video codec and the AAC audio codec is natively supported by desktop/mobile Internet Explorer, Safari and Chrome, but Chromium and Opera do not support the format. IE and Chrome also support the MP3 audio codec in the MP4 container, but Safari does not. Firefox/Firefox for Android/Firefox OS supports the format in some cases, but only when a third-party decoder is available, and the device hardware can handle the profile used to encode the MP4.
 
 See <a href="https://caniuse.com/#feat=mpeg4" target="_blank">here</a> for more detailed browser support.
 
-## 4.2. WebM
+### 4.2. WebM
 
 The <a href="https://www.webmproject.org/" target="_blank">WebM</a> format is based on a restricted version of the Matroska container format. It always uses the VP8 or VP9 video codec and the Vorbis or Opus audio codec. WebM is natively supported in desktop and mobile Gecko (Firefox), Chrome and Opera, and support for the format can be added to Internet Explorer and Safari (but not on iOS) by installing an add-on.
 
 See <a href="https://caniuse.com/#feat=webm" target="_blank">here</a> for more detailed browser support.
 
-## 4.3. Ogg
+### 4.3. Ogg
 
 The Ogg container format with the Theora video codec and the Vorbis audio codec is supported in desktop/mobile Gecko (Firefox), Chrome, and Opera, and support for the format can be added to Safari (but not on iOS) by installing an add-on. The format is not supported in Internet Explorer in any way.
 
@@ -113,50 +112,48 @@ See <a href="https://caniuse.com/#feat=ogv" target="_blank">here</a> for more de
 
 <table>
   <thead>
-  <tr>
-    <th>Browser</th>
-    <th>MP4</th>
-    <th>WebM</th>
-    <th>Ogg</th>
-  </tr> 
+    <tr>
+      <th>Browser</th>
+      <th>MP4</th>
+      <th>WebM</th>
+      <th>Ogg</th>
+    </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>IE</td>
-    <td>+</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>Chrome</td>
-    <td>+</td>
-    <td>-</td>
-    <td>+</td>
-  </tr>
-  <tr>
-    <td>Firefox</td>
-    <td>+</td>
-    <td>+</td>
-    <td>+</td>
-  </tr>
-  <tr>
-    <td>Safari</td>
-    <td>+</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-  <tr>
-    <td>Opera</td>
-    <td>+</td>
-    <td>+</td>
-    <td>+</td>
-  </tr>
+    <tr>
+      <td>IE</td>
+      <td>+</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Chrome</td>
+      <td>+</td>
+      <td>-</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>Firefox</td>
+      <td>+</td>
+      <td>+</td>
+      <td>+</td>
+    </tr>
+    <tr>
+      <td>Safari</td>
+      <td>+</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Opera</td>
+      <td>+</td>
+      <td>+</td>
+      <td>+</td>
+    </tr>
   </tbody>
 </table>
 
-\*From 25+.
-
-# 5. Codecs
+## 5. Codecs
 
 You can think of a video file as a container (like a ZIP file), that contains the encoded video stream and an audio stream. There are many different types of container formats and unfortunately, there isn't a single 'one-ring' format that will work in all browsers.
 Thankfully, we can get coverage for all modern (and mobile) browsers using only two formats:
@@ -164,13 +161,13 @@ WebM typically packages Vorbis or Opus audio with VP8/VP9 video. This is support
 MP4 often packages AAC or MP3 audio with H.264 video. This is supported also supported in all modern browsers, as well as Internet Explorer.
 Ogg tends to use Vorbis audio and Theora video. This is best supported in Firefox and Chrome but has been superseded by the better quality WebM format.
 
-## 5.1. Common values with codecs:
+### 5.1. Common values with codecs:
 
 - **video/ogg:** codecs="theora, vorbis"
 - **video/mp4:** codecs="avc1.4D401E, mp4a.40.2"
 - **video/webm:** codecs="vp8.0, vorbis"
 
-# 6. Detecting Support
+## 6. Detecting Support
 
 The canPlayType()method checks and returns a string whether the browser can play the specified video type or not.
 It can return one of the following values:
@@ -182,13 +179,15 @@ Here is an example:
 
 ```js
 const video = document.createElement('video')
+
 console.log(video.canPlayType('video/mp4'))
 // "probably"
+
 console.log(video.canPlayType('video/webm'))
 // "maybe"
 ```
 
-# 7. Media Fragments
+## 7. Media Fragments
 
 Adding a media fragment to the media URL, you can specify the exact portion you want to play. To add a media fragment, you simply add #t=[start_time],[end_time] to the media URL. For example, to play the video between seconds 8 through 15, you would specify:
 
@@ -208,15 +207,15 @@ Or, to only play the fourth minute of the video, you would specify #t=,00:04:00.
 <video src="foo.mp4#t=,00:04:00" />
 ```
 
-# 8. Methods
+## 8. Methods
 
 Methods that can be used with the `<video>` element are listed below:
 
-## 8.1. canPlayType(format)
+### 8.1. canPlayType(format)
 
 You already know that I've covered it up in the section: "6. Detecting Support".
 
-## 8.2. load()
+### 8.2. load()
 
 It plays the video from its current position.
 
@@ -226,7 +225,7 @@ video.src = 'foo.mp4'
 video.load()
 ```
 
-## 8.3. play()
+### 8.3. play()
 
 It re-loads the video element and reset the play head to the beginning of the video.
 
@@ -237,7 +236,7 @@ video.play();
 ...
 ```
 
-## 8.4. pause()
+### 8.4. pause()
 
 It pauses the video at its current position.
 
@@ -249,11 +248,11 @@ video.play().then(() => {
 })
 ```
 
-# 9. Attributes
+## 9. Attributes
 
 You can find the attributes that can be used with the `<video>` element below:
 
-## 9.1. autoplay
+### 9.1. autoplay
 
 Tells the browser to whether a video should start playing as soon as it is ready. If you do not specify, it takes false as default.
 
@@ -263,7 +262,7 @@ Tells the browser to whether a video should start playing as soon as it is ready
 
 Be aware: Chrome's autoplay policies are changed in April of 2018. It is simple: If you would like to start the video immediately (using autoplay attribute), then you should include the muted attribute as well or the user has to get interacted with the video first (click, tap, etc.). It's very rational when you think from the user's perspective. Because, you know, nobody wants to get puzzled with the loud sound on entering a website.
 
-## 9.2. controls
+### 9.2. controls
 
 Tells the browser to include its built-in video controls like play/pause, volume, etc. If you do not specify, it takes false as default which means no controls will be shown.
 
@@ -280,7 +279,7 @@ or
 <video src="foo.mp4" controls />
 ```
 
-## 9.3. controlsList
+### 9.3. controlsList
 
 Using the controlsList, you can customize(hide) Chrome's native media controls such as the download, fullscreen and remoteplayback buttons (Chrome 58+ only). It can include nodownload, nofullscreen, and noremoteplayback attributes.
 
@@ -288,7 +287,7 @@ Using the controlsList, you can customize(hide) Chrome's native media controls s
 <video src="foo.mp4" controls controlsList="nodownload nofullscreen noremoteplayback" />
 ```
 
-## 9.4. crossorigin
+### 9.4. crossorigin
 
 It indicates whether to use CORS to fetch the related content or not.
 
@@ -296,7 +295,7 @@ It indicates whether to use CORS to fetch the related content or not.
 <video src="foo.mp4" crossorigin />
 ```
 
-## 9.5. height
+### 9.5. height
 
 Sets or gets the value of the height attribute of a video in CSS pixels to control the amount of height the video will occupy on the page.
 
@@ -313,7 +312,7 @@ or
 <video src="foo.mp4" height="1080" />
 ```
 
-## 9.6. loop
+### 9.6. loop
 
 It tells the browser to whether the video should be playing over again, every time it has finished. If you do not specify, it takes false as default.
 
@@ -330,7 +329,7 @@ or
 <video src="foo.mp4" loop />
 ```
 
-## 9.7. muted
+### 9.7. muted
 
 Sets or gets whether the sound of a video should be turned off. If you do not specify, it takes false as default.
 
@@ -347,7 +346,7 @@ or
 <video src="foo.mp4" muted />
 ```
 
-## 9.8. playsinline  -  webkit-playsinline
+### 9.8. playsinline  -  webkit-playsinline
 
 A boolean attribute indicating that the video is to be played "inline", that is within the element's playback area. See <a href="https://webkit.org/blog/6784/new-video-policies-for-ios/" target="_blank">here</a> for detailed information.
 
@@ -355,7 +354,7 @@ A boolean attribute indicating that the video is to be played "inline", that is 
 <video src="foo.mp4" playsinline webkit-playsinline />
 ```
 
-## 9.9. poster
+### 9.9. poster
 
 Sets or gets the value of the poster attribute of a video. You can think of the poster attribute as a savior of your `<video>` element. If the video stops playing or crashes, the poster image will be shown. Or if the file of the video element does not support in the browser, the poster image will be shown again. Or, if you want to show the video is loading/buffering, then using a loading gif in the poster attribute will be rational.
 
@@ -370,7 +369,7 @@ video.play().then(() => {
 })
 ```
 
-## 9.10. preload
+### 9.10. preload
 
 It intends to provide a hint to the browser about what the UA thinks will lead to the best user experience. Sets or gets the value of the preload attribute of a video. If you do not specify, it's value depends on the browser default.
 
@@ -393,7 +392,7 @@ or
 
 > `<video src="foo.mp4" preload="auto" />` is the same as `<video src="foo.mp4" preload />`.
 
-## 9.11. src
+### 9.11. src
 
 It tells the browser which/what source the video will play from. It can be a local resource within your website or something exposed through a public URL.
 
@@ -409,7 +408,7 @@ or
 <video src="foo.mp4" />
 ```
 
-## 9.12. volume
+### 9.12. volume
 
 Sets or gets the audio volume of a video. If you do not specify, it takes 1 as default.
 
@@ -426,7 +425,7 @@ or
 <video src="foo.mp4" volume="0.4" />
 ```
 
-## 9.13. width
+### 9.13. width
 
 Sets or gets the value of the width attribute of a video in CSS pixels to control the amount of width the video will occupy on the page.
 
@@ -443,11 +442,11 @@ or
 <video src="foo.mp4" width="1920" />
 ```
 
-# 10. Properties
+## 10. Properties
 
 Properties that used mainly with the `<video>` element are listed below:
 
-## 10.1. currentSrc
+### 10.1. currentSrc
 
 Returns the URL of the current video.
 
@@ -460,7 +459,7 @@ console.log(video.currentSrc);
 // "foo.mp4"
 ```
 
-## 10.2. currentTime
+### 10.2. currentTime
 
 Sets or gets the current playback position in a video (in seconds).
 
@@ -473,7 +472,7 @@ console.log(video.currentTime)
 // "4.0815"
 ```
 
-## 10.3. duration
+### 10.3. duration
 
 Returns a number, representing the length of the video, in seconds. If no video is set, "NaN" is returned. If the video is streamed and has no predefined length, "Inf" is returned.
 
@@ -487,7 +486,7 @@ console.log(video.duration);
 // "15.1623"
 ```
 
-## 10.4. ended
+### 10.4. ended
 
 Returns whether the playback of the video has ended or not.
 
@@ -500,7 +499,7 @@ console.log(video.ended)
 // false
 ```
 
-## 10.5. error
+### 10.5. error
 
 Returns an error state of the video.
 
@@ -518,7 +517,7 @@ console.log(video.error)
 // 4
 ```
 
-## 10.6. paused
+### 10.6. paused
 
 Returns whether a video is paused or not.
 
@@ -531,7 +530,7 @@ video.play().then(() => {
 })
 ```
 
-## 10.7. playbackRate
+### 10.7. playbackRate
 
 Sets or gets the speed of the video playback. If you do not specify, it takes 1 as default.
 
@@ -548,7 +547,7 @@ or
 <video src="foo.mp4" playbackRate="1.516" />
 ```
 
-## 10.8. played
+### 10.8. played
 
 Returns a TimeRanges object representing the played parts of the video.
 
@@ -561,7 +560,7 @@ console.log(video.played)
 // TimeRanges {length: 1}
 ```
 
-## 10.9. readyState
+### 10.9. readyState
 
 Returns the current ready state of a video.
 
@@ -580,9 +579,9 @@ console.log(video.readyState)
 // 4
 ```
 
-# 11. Events
+## 11. Events
 
-## 11.1. canplay
+### 11.1. canplay
 
 Fires when the browser can start playing the video.
 
@@ -601,7 +600,7 @@ video.oncanplay = (event) => {
 }
 ```
 
-## 11.2. canplaythrough
+### 11.2. canplaythrough
 
 Fires when the browser can play through the video up to its end without stopping for content buffering.
 
@@ -620,7 +619,7 @@ video.oncanplaythrough = (event) => {
 }
 ```
 
-## 11.3. ended
+### 11.3. ended
 
 Fires when the video ends because the end of the media was reached.
 
@@ -639,7 +638,7 @@ video.onended = (event) => {
 }
 ```
 
-## 11.6. timeupdate
+### 11.6. timeupdate
 
 Fires when the current time of the video is changed.
 
@@ -660,7 +659,7 @@ video.ontimeupdate = (event) => {
 }
 ```
 
-# 12. Best Practices
+## 12. Best Practices
 
 Adding videos to your website can sometimes cause pain. Users love high-resolution videos, but if your website isn't optimized to handle them, such content can cause performance problems.
 
@@ -680,7 +679,7 @@ Here are a few tips:
 
 - **Specify the video size:** In your HTML or CSS, be sure to define the width and height of videos so that the browser can allocate the necessary bandwidth with no extra work.
 
-# 13. Centering Video
+## 13. Centering Video
 
 Centering the `<video>` can be quiet annoying if you are trying to make it responsive for both desktop, mobile, or tablet, etc. Don't worry, you can find a demo below using just CSS.
 
@@ -718,14 +717,15 @@ Then use the classes in your view.
 </div>
 ```
 
-# 14. Controlling Fullscreen
+## 14. Controlling Fullscreen
 
 If you are planning the control fullscreen mode on your own, you should not forget the behavior of all browsers, because the native functions in every one of them are different. Here are the two quick snippets for getting in to and out from fullscreen mode.
 
-## Entering the fullscreen:
+### Entering the fullscreen:
 
 ```js
 const docElm = document.documentElement
+
 if (docElm.requestFullscreen) {
   docElm.requestFullscreen()
 } else if (docElm.mozRequestFullScreen) {
@@ -737,22 +737,23 @@ if (docElm.requestFullscreen) {
 }
 ```
 
-## Exiting from the fullscreen:
+### Exiting from the fullscreen:
 
 ```js
 const docElm = document.documentElement
-if (document.exitFullscreen) {
-  document.exitFullscreen()
-} else if (document.mozCancelFullScreen) {
-  document.mozCancelFullScreen() /* Firefox */
-} else if (document.webkitExitFullscreen) {
-  document.webkitExitFullscreen() /* Chrome, Safari and Opera */
-} else if (document.msExitFullscreen) {
-  document.msExitFullscreen() /* IE/Edge */
+
+if (docElm.exitFullscreen) {
+  docElm.exitFullscreen()
+} else if (docElm.mozCancelFullScreen) {
+  docElm.mozCancelFullScreen() /* Firefox */
+} else if (docElm.webkitExitFullscreen) {
+  docElm.webkitExitFullscreen() /* Chrome, Safari and Opera */
+} else if (docElm.msExitFullscreen) {
+  docElm.msExitFullscreen() /* IE/Edge */
 }
 ```
 
-# 15. Bonus: HandBreak - Open Source Video Transcoder
+## 15. Bonus: HandBreak - Open Source Video Transcoder
 
 HandBrake is a tool for converting video from nearly any format to a selection of modern, widely supported codecs. You can download directly from <a href="https://handbrake.fr/downloads.php" target="_blank">here</a>.
 
@@ -761,17 +762,20 @@ Here are a few great features:
 - You can transcode multiple videos with batch scanning and queueing of encodes.
 - Supports many presets.
 - Constant Quality or Average Bitrate Video Encoding.
-- <a href="https://github.com/HandBrake/HandBrake/commits/master" target="blank">It's also maintaining actively on GitHub</a>.
+- <a href="https://github.com/HandBrake/HandBrake/commits/master" target="blank">
+    It's also maintaining actively on GitHub
+  </a>
+  .
 - Check out the all features <a href="https://handbrake.fr/features.php" target="_blank">here</a>.
 
 Also, I would like to thank my manager Erdem Bıyık for suggesting this free tool to optimize videos. That worked great on optimizing videos (reducing size while keeping the quality, transcoding for mobile devices, etc) for user experience.
 
-# Conclusion
+## Conclusion
 
 HTML5 Video players started simple but have grown quite advanced (think YouTube and Netflix), and since it's all just HTML, CSS, and JavaScript, any developer can create impressive players. Including video on the modern web is easier than ever before and opens some amazing new possibilities.
 
 What will you do now and next? 🙌🏼
 
-# Don't stop learning!
+## Don't stop learning!
 
 There will be an advanced version of this article with many examples for sure. I hope, it helps you to understand and get started with HTML5 Video. If you know anyone that would benefit from this guide I would love if you recommended it to them. Thank you for following this guide and reading through to the end, see you on another one…

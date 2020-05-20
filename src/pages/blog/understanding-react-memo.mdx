@@ -1,7 +1,9 @@
 ---
-title: Upon React.memo() Usage
-description: React.memo() increases the performance of functional components by preventing useless renderings. But such performance tweaks must be applied wisely.
-date: '2020-01-20'
+title: 'Understanding “React.memo”'
+summary: 'React.memo() increases the performance of functional components by preventing useless renderings. But such performance tweaks must be applied wisely.'
+publishedAt: '2020-01-20'
+image: '/static/images/react-memo.webp'
+categories: 'React'
 ---
 
 Many new features are released in React v16.6.0. `React.memo` is one of the cool features in it. `memo` means memorizing. This is a performance optimization feature for the function components. `React.memo()` is similar to `PureComponent` that it will help us control when our components rerender.
@@ -14,18 +16,14 @@ I'll try to explain it with a simple example.
 
 Let's consider it in a simple way. We have a parent component called `Parent` the main logic in it and a child component called `Child` simply console logging and renders some text.
 
-<div class="filename">Child.js</div>
-
-```jsx
+```jsx:Child.js
 const Child = () => {
   console.log('Log from Child component.')
   return <div>This is Child component.</div>
 }
 ```
 
-<div class="filename">Parent.js</div>
-
-```jsx
+```jsx:Parent.js
 const Parent = () => {
   const [text, setText] = useState('')
 
@@ -43,13 +41,11 @@ In `Parent.js`, the console will log "_Log from Child component._" **every time 
 
 To prevent this, we needed to use the `shouldComponentUpdate()` method. Now we can overcome this problem with `memo`.
 
-### Here are 2 ways:
+## Here are 2 ways:
 
-##### 1) If you'd like to memoize the `Child` component from components to components, just import it and use React.memo() inside _that_ component:
+If you'd like to memoize the `Child` component from components to components, just import it and use React.memo() inside _that_ component:
 
-<div class="filename">Method1.js</div>
-
-```jsx
+```jsx:Method1.js
 import Child from '...'
 const MemoizedChild = React.memo(Child) // Memoize the Child component
 
@@ -69,11 +65,9 @@ const Parent = () => {
 export default Parent
 ```
 
-##### 2) If you'd like to globally memoize the `Child` component, go with the following:
+If you'd like to globally memoize the `Child` component, go with the following:
 
-<div class="filename">Method2.js</div>
-
-```jsx
+```jsx:Method2.js
 import React from 'react'
 
 const Child = () => {

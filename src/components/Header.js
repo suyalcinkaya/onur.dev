@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import styled from 'styled-components'
 
 // --- Components
 import Box from 'components/Box'
+import Button from 'components/Button'
+import Flex from 'components/Flex'
 import Text from 'components/Text'
 
 const Header = () => {
@@ -22,7 +23,7 @@ const Header = () => {
   ]
 
   return (
-    <React.Fragment>
+    <>
       <Box
         as="nav"
         position="fixed"
@@ -34,31 +35,33 @@ const Header = () => {
         width="100%"
         bg="white"
       >
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          height="100%"
-          maxWidth={800}
-          m="0 auto"
-          px="1.5rem"
-        >
-          <Box></Box>
+        <Flex justifyContent="space-between" alignItems="center" height="100%" maxWidth={800} m="0 auto" px="1.5rem">
+          <Box>
+            <Text
+              fontFamily="Gilroy"
+              fontSize={{ _: 24, md: 26 }}
+              fontWeight={600}
+              color="#000"
+              letterSpacing="-0.025em"
+            >
+              {'onur.dev'}
+            </Text>
+          </Box>
           <Box>
             {navigation.map((nav, navIndex) => (
               <React.Fragment key={`nav_${navIndex}`}>
                 <Link href={nav.url} passHref>
-                  <Text as="a" type="button" color="black" p={16}>
+                  <Button as="a" type="button">
                     {nav.name}
-                  </Text>
+                  </Button>
                 </Link>
               </React.Fragment>
             ))}
           </Box>
-        </Box>
+        </Flex>
       </Box>
       <Box height={70} />
-    </React.Fragment>
+    </>
   )
 }
 
