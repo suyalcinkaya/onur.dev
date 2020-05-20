@@ -122,9 +122,9 @@ function App({ Component, pageProps }) {
     <ThemeProvider theme={theme}>
       <MDXProvider components={MDXComponents}>
         <DefaultSeo {...SEO} />
+        <GlobalStyle />
         <Header />
         <Component {...pageProps} />
-        <GlobalStyle />
       </MDXProvider>
     </ThemeProvider>
   )

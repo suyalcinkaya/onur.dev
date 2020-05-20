@@ -47,7 +47,7 @@ class MyDocument extends Document {
   const page = context.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
   const styleTags = sheet.getStyleElement()
 
-
+  const isProduction = process.env.NODE_ENV === 'production'
 
   return {
     props: { ...page, styleTags, isProduction }
