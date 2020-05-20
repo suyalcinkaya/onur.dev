@@ -42,19 +42,7 @@ class MyDocument extends Document {
   }
 }
 
-/* export async function getServerSideProps(context) {
-  const sheet = new ServerStyleSheet()
-  const page = context.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
-  const styleTags = sheet.getStyleElement()
-
-  const isProduction = process.env.NODE_ENV === 'production'
-
-  return {
-    props: { ...page, styleTags, isProduction }
-  }
-} */
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const sheet = new ServerStyleSheet()
   const page = context.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
   const styleTags = sheet.getStyleElement()
@@ -65,5 +53,17 @@ export async function getStaticProps(context) {
     props: { ...page, styleTags, isProduction }
   }
 }
+
+/* export async function getStaticProps(context) {
+  const sheet = new ServerStyleSheet()
+  const page = context.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
+  const styleTags = sheet.getStyleElement()
+
+  const isProduction = process.env.NODE_ENV === 'production'
+
+  return {
+    props: { ...page, styleTags, isProduction }
+  }
+} */
 
 export default MyDocument
