@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import {
   border,
   borderRadius,
@@ -15,19 +15,7 @@ import {
 } from 'styled-system'
 
 const Box = styled.div(
-  compose(
-    border,
-    borderRadius,
-    color,
-    flexbox,
-    grid,
-    size,
-    space,
-    layout,
-    position,
-    shadow,
-    typography
-  )
+  compose(border, borderRadius, color, flexbox, grid, size, space, layout, position, shadow, typography)
 )
 
 export default Box

@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from '@emotion/core'
 
 const prismTheme = css`
   @font-face {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NextSeo } from 'next-seo'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 // --- Components
 import { Box, BlogPost, Flex, Layout, Text } from 'components'
