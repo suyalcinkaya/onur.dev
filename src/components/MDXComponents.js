@@ -1,6 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core'
-
 // --- Components
 import Box from 'components/Box'
 import Flex from 'components/Flex'

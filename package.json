@@ -21,6 +21,7 @@
     "svgr-new": "svgr ./src/icons -d ./src/components/icons --ignore-existing --svg-props 'className=' --svgo-config .svgorc.json"
   },
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.27",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@mdx-js/loader": "^1.6.1",
