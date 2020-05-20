@@ -45,7 +45,7 @@ const CustomLink = (props) => {
   if (isInternalLink) {
     return (
       <Link href={href} passHref>
-        <a {...props} />
+        <Box as="a" borderBottom="1px dotted" {...props} />
       </Link>
     )
   }
@@ -162,23 +162,24 @@ const Li = (props) => (
     as="li"
     position="relative"
     pl="1.25rem"
-    css={`
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0.125rem;
-        top: 0.45rem;
-        display: block;
-        height: 0.375rem;
-        width: 0.375rem;
-        border-radius: 9999px;
-        background-color: rgba(210, 214, 220, 1);
-      }
+    lineHeight={1.5}
+    css={{
+      '&::before': {
+        content: `''`,
+        position: 'absolute',
+        left: '0.125rem',
+        top: '0.45rem',
+        display: 'block',
+        height: '0.375rem',
+        width: '0.375rem',
+        borderRadius: 9999,
+        backgroundColor: 'rgba(210, 214, 220, 1)'
+      },
 
-      > p {
-        margin: 0;
+      '> p': {
+        margin: 0
       }
-    `}
+    }}
   >
     {props.children}
   </Box>
