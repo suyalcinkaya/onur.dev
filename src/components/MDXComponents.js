@@ -1,8 +1,7 @@
-import Link from 'next/link'
-
 // --- Components
 import Box from 'components/Box'
 import Flex from 'components/Flex'
+import Link from 'components/Link'
 import Text from 'components/Text'
 
 // --- Others
@@ -37,37 +36,6 @@ const TData = (props) => (
     {...props}
   />
 )
-
-const CustomLink = (props) => {
-  const href = props.href
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
-
-  if (isInternalLink) {
-    return (
-      <Link href={href} passHref>
-        <Box as="a" borderBottom="1px dotted" {...props} />
-      </Link>
-    )
-  }
-
-  return (
-    <Text
-      as="a"
-      target="_blank"
-      rel="noopener noreferrer"
-      color="hsl(208,99%,44%)"
-      css={{
-        textDecoration: 'none',
-        transition: 'all 0.15s ease-out',
-        borderBottom: '1px solid transparent',
-        '&:hover': {
-          borderBottom: '1px solid hsl(208,99%,44%)'
-        }
-      }}
-      {...props}
-    />
-  )
-}
 
 const Quote = (props) => {
   return (
@@ -209,7 +177,7 @@ const MDXComponents = {
   table: Table,
   th: THead,
   td: TData,
-  a: CustomLink,
+  a: Link,
   p: (props) => <Text as="p" mt="1rem" mb="1rem" lineHeight="1.625" {...props} />,
   strong: (props) => <Text as="strong" fontWeight={600} {...props} />,
   ul: (props) => <Ul {...props} />,

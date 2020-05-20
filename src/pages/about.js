@@ -1,8 +1,7 @@
 import { NextSeo } from 'next-seo'
-import Link from 'next/link'
 
 // --- Components
-import { Flex, Layout, Text } from 'components'
+import { Flex, Layout, Link, Text } from 'components'
 
 const url = 'https://leerob.io/about'
 const title = 'About Me – Lee Robinson'
@@ -36,26 +35,9 @@ const About = () => (
           which is the first and biggest online food order company in Turkey.
         </Text>
         <Text as="p" lineHeight={1.5}>
-          I'm developing things for{' '}
-          <Text
-            as="a"
-            href="https://yemek.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            color="hsl(208,99%,44%)"
-            css={{
-              textDecoration: 'none',
-              transition: 'all 0.15s ease-out',
-              borderBottom: '1px solid transparent',
-              '&:hover': {
-                borderBottom: '1px solid hsl(208,99%,44%)'
-              }
-            }}
-          >
-            yemek.com
-          </Text>
-          , which is a sub-brand within Yemeksepeti and a platform that is visited by 15M~ unique people monthly and it
-          contains recipes, videos, and contents such as fun and instructional subjects related on everything about
+          I'm developing things for <Link href="https://yemek.com">yemek.com</Link> -means <strong>food</strong> in
+          English-, which is a sub-brand within Yemeksepeti and a platform that is visited by 15M~ unique people monthly
+          and contains recipes, videos, and contents such as fun and instructional stuff related on everything about
           food.
         </Text>
         <Text as="p" lineHeight={1.5}>
@@ -63,10 +45,11 @@ const About = () => (
           Apple. :-)
         </Text>
         <Text as="p" lineHeight={1.5}>
-          I grew up in Ankara — the capital city of Turkey — and went to Doğuş University, graduating with a degree in
-          Computer Engineering. I spend my free time contributing to open source, DJing, doing bodybuilding, playing
-          Football Manager (since 2000), watching my favorite team Beşiktaş's football matches and enjoying time with
-          friends and family.
+          I grew up in Ankara -the capital city of Turkey- and went to Doğuş University, graduating with a degree in
+          Computer Engineering. I spend my free time contributing to open source, sharing everything I know through my{' '}
+          <Link href="/blog">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>, DJing, doing
+          bodybuilding, playing Football Manager (since 2000), watching my favorite team's -Beşiktaş 🦅- football
+          matches and enjoying time with friends and family.
         </Text>
       </Flex>
     </Layout>

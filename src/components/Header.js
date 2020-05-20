@@ -44,7 +44,7 @@ const Header = () => {
               color="#000"
               letterSpacing="-0.025em"
             >
-              {'onur.dev'}
+              {'O'}
             </Text>
           </Box>
           <Box>

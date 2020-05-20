@@ -4,13 +4,13 @@ import { ServerStyleSheet } from 'styled-components'
 import { GA_TRACKING_ID } from 'lib/gtag'
 
 class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  /* static getInitialProps({ renderPage }) {
     const isProduction = process.env.NODE_ENV === 'production'
     const sheet = new ServerStyleSheet()
     const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
     const styleTags = sheet.getStyleElement()
     return { ...page, styleTags, isProduction }
-  }
+  } */
 
   render() {
     return (
@@ -53,5 +53,17 @@ class MyDocument extends Document {
     props: { ...page, styleTags, isProduction }
   }
 } */
+
+export async function getStaticProps(context) {
+  const sheet = new ServerStyleSheet()
+  const page = context.renderPage((App) => (props) => sheet.collectStyles(<App {...props} />))
+  const styleTags = sheet.getStyleElement()
+
+  const isProduction = process.env.NODE_ENV === 'production'
+
+  return {
+    props: { ...page, styleTags, isProduction }
+  }
+}
 
 export default MyDocument
