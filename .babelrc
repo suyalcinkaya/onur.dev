@@ -3,11 +3,10 @@
   "plugins": [
     "import-glob-array",
     [
-      "babel-plugin-styled-components",
+      "styled-components",
       {
         "ssr": true,
-        "displayName": true,
-        "pure": true
+        "displayName": true
       }
     ]
   ]
