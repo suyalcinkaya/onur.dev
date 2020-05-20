@@ -33,13 +33,13 @@ const BlogPost = (frontMatter) => {
           <Box
             as="img"
             src={image}
-            width="100%"
+            width={300}
+            height={{ _: 200, md: 120 }}
             maxWidth={{ _: '100%', md: 180 }}
             borderRadius={6}
-            loading="lazy"
-            height={{ _: 200, md: 120 }}
             border={`1px solid ${theme.colors.gray300}`}
-            css={{ objectFit: 'cover' }}
+            loading="lazy"
+            css={{ objectFit: 'cover', width: '100%' }}
           />
           <Flex width="100%" flexDirection="column" pl={{ _: 0, md: 20 }} pt={{ _: 20, md: 0 }}>
             <Flex mb="0.5rem">

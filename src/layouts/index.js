@@ -69,7 +69,15 @@ export default function Layout(frontMatter) {
           </Flex>
           {frontMatter.image && (
             <Box my={{ _: '1rem', md: '2rem' }}>
-              <Box as="img" src={frontMatter.image} loading="lazy" maxHeight={{ _: 240, md: 400 }} width="100%" />
+              <Box
+                as="img"
+                src={frontMatter.image}
+                loading="lazy"
+                width={600}
+                height={400}
+                maxHeight={{ _: 240, md: 400 }}
+                width="100%"
+              />
             </Box>
           )}
           {children}

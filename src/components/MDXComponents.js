@@ -1,3 +1,6 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
+
 // --- Components
 import Box from 'components/Box'
 import Flex from 'components/Flex'
@@ -14,7 +17,7 @@ const Table = (props) => (
     mt={32}
     width="100%"
     css={{
-      'tbody > tr:nth-child(even)': {
+      'tbody > tr:nth-of-type(even)': {
         backgroundColor: theme.colors.gray200
       }
     }}

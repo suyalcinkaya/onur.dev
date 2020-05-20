@@ -24,7 +24,7 @@ const GlobalStyle = ({ children }) => (
           font-family: 'Inter';
           font-weight: 400;
           font-style: normal;
-          font-display: swap;
+          font-display: fallback;
           src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
             url('/static/fonts/Inter-Regular.woff') format('woff');
         }
@@ -33,7 +33,7 @@ const GlobalStyle = ({ children }) => (
           font-family: 'Inter';
           font-weight: 500;
           font-style: normal;
-          font-display: swap;
+          font-display: fallback;
           src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
             url('/static/fonts/Inter-Medium.woff') format('woff');
         }
@@ -42,7 +42,7 @@ const GlobalStyle = ({ children }) => (
           font-family: 'Inter';
           font-weight: 600;
           font-style: normal;
-          font-display: swap;
+          font-display: fallback;
           src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
             url('/static/fonts/Inter-SemiBold.woff') format('woff');
         }
@@ -51,7 +51,7 @@ const GlobalStyle = ({ children }) => (
           font-family: 'Gilroy';
           font-weight: 500;
           font-style: normal;
-          font-display: swap;
+          font-display: fallback;
           src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
             url('/static/fonts/Gilroy-Medium.woff') format('woff');
         }
@@ -60,7 +60,7 @@ const GlobalStyle = ({ children }) => (
           font-family: 'Gilroy';
           font-weight: 600;
           font-style: normal;
-          font-display: swap;
+          font-display: fallback;
           src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
             url('/static/fonts/Gilroy-Bold.woff') format('woff');
         }
