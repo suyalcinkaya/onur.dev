@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-function SvgFacebookFill(props) {
+function SvgFacebook(props) {
   return (
     <svg viewBox="0 0 24 24" width={24} height={24} fill="currentColor" className="" {...props}>
       <path fill="none" d="M0 0h24v24H0z" />
@@ -9,4 +9,4 @@ function SvgFacebookFill(props) {
   )
 }
 
-export default SvgFacebookFill
+export default SvgFacebook

@@ -21,7 +21,7 @@ const Home = () => (
         {'Hey, I’m Onur Şuyalçınkaya'}
       </Text>
       <Text as="p" lineHeight={1.5}>
-        {`I’m a developer, writer, and creator living in Istanbul, TR. You’ve found my personal slice of the internet – everything you want to know and more is here.`}
+        {`I’m an engineer, writer, and DJ living in Istanbul, Turkey.`}
       </Text>
     </Flex>
     <Flex flexDirection="column" mt="3rem">

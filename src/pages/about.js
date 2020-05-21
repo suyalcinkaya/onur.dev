@@ -31,14 +31,15 @@ const About = () => (
           About Me
         </Text>
         <Text as="p" lineHeight={1.5}>
-          Hey, I'm Onur. I'm a Frontend Engineer living in Istanbul, Turkey where currently a member of Yemeksepeti
-          which is the first and biggest online food order company in Turkey.
+          Hey, I'm Onur. I'm a Frontend Engineer who dabbles in design with a strong sense of aesthetics, living in
+          Istanbul, Turkey where currently a member of <Link href="https://yemek.com">Yemeksepeti</Link> which is the
+          first and biggest online food order company in Turkey.
         </Text>
         <Text as="p" lineHeight={1.5}>
           I'm developing things for <Link href="https://yemek.com">yemek.com</Link> -means <strong>food</strong> in
-          English-, which is a sub-brand within Yemeksepeti and a platform that is visited by 15M~ unique people monthly
-          and contains recipes, videos, and contents such as fun and instructional stuff related on everything about
-          food.
+          English-, which is a sub-brand within <Link href="https://yemek.com">Yemeksepeti</Link> and a platform that is
+          visited by 15M~ unique people monthly and contains recipes, videos, and contents such as fun and instructional
+          stuff related on everything about food.
         </Text>
         <Text as="p" lineHeight={1.5}>
           Previously, I worked as a Full Stack Developer at Sistaş, React Native Developer at Tanbula and Specialist at

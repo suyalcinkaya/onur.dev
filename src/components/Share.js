@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import Box from 'components/Box'
 import Flex from 'components/Flex'
-import { CopyLink, FacebookFill, LinkedinFill, TwitterFill } from 'components/icons'
+import { Facebook, LinkedinBox, Twitter } from 'components/icons'
 
 const Button = styled.button({
   display: 'inline-flex',
@@ -39,17 +39,14 @@ const Share = ({ title, url }) => {
 
   return (
     <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} alignItems="center" mt={8}>
-      <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0} mr={6}>
-        <TwitterFill />
+      <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0}>
+        <Twitter />
       </Box>
-      <Box as={Button} type="button" title="Share on LinkedIn" onClick={shareOnLinkedIn} m={0} mr={6}>
-        <LinkedinFill />
+      <Box as={Button} type="button" title="Share on LinkedIn" onClick={shareOnLinkedIn} m={0} mx={6}>
+        <LinkedinBox />
       </Box>
-      <Box as={Button} type="button" title="Share on Facebook" onClick={shareOnFacebook} m={0} mr={6}>
-        <FacebookFill />
-      </Box>
-      <Box as={Button} type="button" m={0}>
-        <CopyLink />
+      <Box as={Button} type="button" title="Share on Facebook" onClick={shareOnFacebook} m={0}>
+        <Facebook />
       </Box>
     </Flex>
   )
