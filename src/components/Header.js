@@ -31,7 +31,7 @@ const Header = () => {
         left={0}
         zIndex={9}
         boxShadow="rgba(0, 0, 0, 0.18) 0px 1px 2px"
-        height={70}
+        height={80}
         width="100%"
         bg="white"
       >
@@ -60,7 +60,7 @@ const Header = () => {
           </Box>
         </Flex>
       </Box>
-      <Box height={70} />
+      <Box height={80} />
     </>
   )
 }

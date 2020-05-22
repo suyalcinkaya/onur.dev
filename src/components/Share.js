@@ -38,7 +38,7 @@ const Share = ({ title, url }) => {
   }
 
   return (
-    <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} alignItems="center" mt={8}>
+    <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} alignItems="center">
       <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0}>
         <Twitter />
       </Box>
