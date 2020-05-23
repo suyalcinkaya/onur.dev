@@ -1,9 +1,7 @@
 import dayjs from 'dayjs'
-const relativeTime = require('dayjs/plugin/relativeTime')
-dayjs.extend(relativeTime)
 
 // --- Components
-import { BlogSeo, Box, Flex, Layout as Container, Share, Text, ViewCounter } from 'components'
+import { BlogSeo, Box, Flex, Layout as Container, Share, Text } from 'components'
 
 const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
@@ -64,15 +62,13 @@ export default function Layout(frontMatter) {
                 />
                 <Text color="gray800" lineHeight={1.5} ml={8}>
                   {'Onur Şuyalçınkaya'}
-                  {' • '}
-                  {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
-                  {' / '}({dayjs(frontMatter.publishedAt).fromNow()})
                 </Text>
               </Flex>
               <Text color="gray600" mt={{ _: '0.5rem', md: 0 }}>
                 {frontMatter.readingTime.text}
                 {' • '}
-                <ViewCounter id={slug} />
+                {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
+                {/* {' / '}({dayjs(frontMatter.publishedAt).fromNow()}) */}
               </Text>
             </Flex>
             <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} width="100%">

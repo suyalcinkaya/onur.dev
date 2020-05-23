@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import dayjs from 'dayjs'
-import useSWR from 'swr'
 
 // --- Components
 import Box from 'components/Box'
@@ -23,8 +22,6 @@ const BlogPost = (frontMatter) => {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('blog/', '').replace('.mdx', '')
   const date = dayjs(publishedAt).format('MMM DD, YYYY')
   const cat = categories.split(',')
-  const { data } = useSWR(`/api/page-views?id=${slug}`, (url) => fetch(url).then((res) => res.json()))
-  const views = data?.total
 
   return (
     <Link href={`blog/${slug}`} passHref>
@@ -75,13 +72,6 @@ const BlogPost = (frontMatter) => {
               {date}
               {' • '}
               {readingDuration}
-              {views && (
-                <>
-                  {' • '}
-                  {views}
-                  {' views'}
-                </>
-              )}
             </Text>
             <Text color="gray700" lineHeight={1.5}>
               {summary}

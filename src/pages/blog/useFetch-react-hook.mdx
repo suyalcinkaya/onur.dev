@@ -6,7 +6,7 @@ image: '/static/images/html5-video.webp'
 categories: 'React, Hooks, JavaScript'
 ---
 
-One of the most common React Hooks that I’ve found myself using is one to handle API calls. Often we see ourselves writing almost the same exact codes in more than one different components. Ideally what we could do in such cases would be to extract that recurrent logic into a reusable piece of code (hook) and reuse it where the need be.
+One of the most common React Hooks that I’ve found myself using is one to handle API calls. Often we see ourselves writing almost the same exact codes in more than one different component. Ideally what we could do in such cases would be to extract that recurrent logic into a reusable piece of code (hook) and reuse it where the need be.
 
 I am going to use [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for the HTTP calls. You can use [axios](https://github.com/axios/axios) as well, it's up to you.
 
@@ -93,9 +93,9 @@ Let's start to add the features I mentioned above.
 
 ## Loading Indicator
 
-Loading indicator is a must in my opinition. Because, knowing the fetch process still goes on, we can show a loading component or an icon or something else for a nice user experience.
+The loading indicator is a must in my opinion. Because knowing the fetch process still goes on, we can show a loading component or an icon or something else for nice user experience.
 
-Let's define a state to achieve that.
+Let's define a state for loading to achieve that.
 
 ```jsx{5,9,14,20}:hooks/useFetch.js
 import { useState, useEffect } from 'react'
@@ -134,7 +134,7 @@ if (isLoading) return <LoadingComponent />
 
 ## Error Handling
 
-Here is an another must feature for our custom hook. We’ll define 2 states, one is a boolean value that indicates whether has an error or not and another one is a string value that includes error message.
+Here is another must feature for our custom hook. We’ll define 2 states, one is a boolean value that indicates whether has an error or not and another one is a string value that includes the error message.
 
 We’ll be also using the `try/catch` syntax to set and handle error boundaries. It would look like this:
 
@@ -186,7 +186,7 @@ if (hasError) return <ErrorComponent message={errorMessage} />
 
 ## Using On didMount or Some After
 
-What if we would like to use this hook some after the component render rather than _didMount_ stage. To achieve this, we can use a prop (let's say: **skip**) to skip the data fetching function.
+What if we would like to use this hook some after the component renders rather than _didMount_ stage. To achieve this, we can use a prop (let's say: **skip**) to skip the data fetching function.
 
 > We’ll define it `false` by default to use fetching on _didMount_ stage.
 
@@ -237,11 +237,11 @@ const { data, isLoading, hasError, errorMessage } = useFetch(url, (skip = true))
 
 ## Dynamic Url
 
-What if we would like to change the url dynamically to trigger fetching process again? Why not? Let's implement it.
+What if we would like to change the url dynamically to trigger the fetching process again? Why not? Let's implement it.
 
-We’ll change `url` prop name to `initialUrl` to use it as a state. The `initialUrl` prop will be default value of the `url` state.
+We’ll change `url` prop name to `initialUrl` to use it as a state. The `initialUrl` prop will be the default value of the `url` state.
 
-We’ll add `url` state to dependency of the `useEffect` hook to trigger it again. Then we’ll export its `setState` function which is `updateUrl` to use it from our component.
+We’ll add `url` state to the dependency of the `useEffect` hook to trigger it again. Then we’ll export its `setState` function which is `updateUrl` to use it from our component.
 
 ```jsx{3,4,31,33}:hooks/useFetch.js
 import { useState, useEffect } from 'react'
@@ -288,16 +288,14 @@ Our component could use it like this:
 const url = 'some url'
 const { data, isLoading, hasError, errorMessage, updateUrl } = useFetch(url)
 
-if(...) {
-  updateUrl('some another url')
-}
+if(...) updateUrl('some another url')
 ```
 
 ## Dynamic Parameters
 
 What about parameters? And what about changing it dynamically to use it like filtering or something else? Sounds great. Let's implement this too.
 
-We’ll take parameters as a prop which will be an object. And then, we’ll transpile them with `encodeURIComponent` to use properly. Following from that, we’ll add `params` state to dependency of the `useEffect` hook to trigger it again. It would look like this:
+We’ll take parameters as a prop which will be an object. And then, we’ll transpile them with `encodeURIComponent` to use properly. Following that, we’ll add `params` state to the dependency of the `useEffect` hook to trigger it again. It would look like this:
 
 ```jsx{3,5,11,12,13,20,36,38}:hooks/useFetch.js
 import { useState, useEffect } from 'react'
@@ -365,9 +363,9 @@ if(...) {
 
 ## Manual Refetch
 
-Another common thing I’ve needed is the ability to manually trigger the API call again. A good example would be a page with a list of resources, and wanting to refresh the list from a callback after creating a new resource.
+Another common thing I’ve needed is the ability to manually trigger the API call again. A good example would be a page with a list of resources and want to refresh the list from a callback after creating a new resource.
 
-To do this we’ll simply keep a number in state that’s a dependency to the `useEffect`, that we increment every time we want to force a refresh.
+To do this we’ll simply keep a number in the state that’s a dependency one the `useEffect`, that we increment every time we want to force a refresh.
 
 Finally, it would look like this:
 
@@ -480,7 +478,7 @@ export default useFetch
 
 ## Conclusion
 
-In this post, I have explained and made a small demo to show how we can declaratively fetch data and render it on screen by using the `useFetch` hook with the native `fetch()` API.
+In this post, I have explained and made a small demo to show how we can declaratively fetch data and render it on screen by using the `useFetch` hook with the native Fetch API.
 
 > This example doesn’t handle authentication. One way to handle that would be to add parameters to the hook for additional options, or to update the hook to add the authentication header from some global state.
 > And if you are using Next.js, I highly recommend you to use [SWR](https://swr.now.sh/) by Vercel instead of this custom hook.

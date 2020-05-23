@@ -7,3 +7,5 @@ yarn-debug.log*
 yarn-error.log*
 .mdx-data
 .vscode
+
+.vercel
