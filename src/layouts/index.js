@@ -76,7 +76,7 @@ export default function Layout(frontMatter) {
             </Flex>
           </Flex>
           {frontMatter.image && (
-            <Box my={{ _: '1rem', md: '2rem' }}>
+            <Box my="2rem">
               <Box
                 as="img"
                 src={frontMatter.image}
