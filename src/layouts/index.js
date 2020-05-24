@@ -65,10 +65,10 @@ export default function Layout(frontMatter) {
                 </Text>
               </Flex>
               <Text color="gray600" mt={{ _: '0.5rem', md: 0 }}>
-                {frontMatter.readingTime.text}
-                {' • '}
                 {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
                 {/* {' / '}({dayjs(frontMatter.publishedAt).fromNow()}) */}
+                {' • '}
+                {frontMatter.readingTime.text}
               </Text>
             </Flex>
             <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} width="100%">
@@ -82,8 +82,8 @@ export default function Layout(frontMatter) {
                 src={frontMatter.image}
                 loading="lazy"
                 width={600}
-                height={400}
-                maxHeight={{ _: 240, md: 400 }}
+                height="fit-content"
+                maxHeight={{ _: 200, md: 400 }}
                 width="100%"
               />
             </Box>

@@ -3,8 +3,8 @@ import { NextSeo } from 'next-seo'
 // --- Components
 import { Flex, Layout, Link, Text } from 'components'
 
-const url = 'https://leerob.io/about'
-const title = 'About Me – Lee Robinson'
+const url = 'https://onur.dev/about'
+const title = 'About Me – Onur Şuyalçınkaya'
 
 const About = () => (
   <>
@@ -38,14 +38,14 @@ const About = () => (
         </Text>
         <Text as="p" lineHeight={1.5}>
           Previously, I worked as a Full Stack Developer at Sistaş, React Native Developer at Tanbula and Specialist at
-          Apple. :-)
+          Apple.
         </Text>
         <Text as="p" lineHeight={1.5}>
-          I grew up in Ankara -the capital city of Turkey- and went to Doğuş University, graduating with a degree in
+          I grew up in Ankara—the capital city of Turkey—and went to Doğuş University, graduating with a degree in
           Computer Engineering. I spend my free time contributing to open source, sharing everything I know through my{' '}
           <Link href="/blog">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>, DJing, doing
-          bodybuilding, playing Football Manager (since 2000), watching my favorite team's -Beşiktaş 🦅- football
-          matches and enjoying time with friends and family.
+          bodybuilding, playing Football Manager (since 2000), watching my favorite team's—Beşiktaş 🦅— football matches
+          and enjoying time with friends and family.
         </Text>
       </Flex>
     </Layout>

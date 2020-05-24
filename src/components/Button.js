@@ -24,12 +24,14 @@ const StyledButton = styled.button`
   outline: none;
   transition: all 250ms;
 
-  &:hover {
-    background-color: ${theme.colors.gray200};
-  }
+  @media not all and (hover: none) {
+    &:hover {
+      background-color: #edeef0;
+    }
 
-  &:active {
-    background-color: ${theme.colors.gray300};
+    &:active {
+      background-color: ${theme.colors.gray300};
+    }
   }
 `
 

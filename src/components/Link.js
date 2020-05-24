@@ -10,7 +10,7 @@ const Link = (props) => {
   if (isInternalLink) {
     return (
       <NextLink href={href} passHref>
-        <Box as="a" borderBottom="1px dotted" {...props} />
+        <Box as="a" pb={2} borderBottom="1px dotted" {...props} />
       </NextLink>
     )
   }
