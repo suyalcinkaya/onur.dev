@@ -106,7 +106,7 @@ export default function Layout(frontMatter) {
             >
               {'Discuss on Twitter'}
             </Text>
-            <Text color="gray400">{` • `}</Text>
+            {/* <Text color="gray400">{` • `}</Text>
             <Text
               as="a"
               href={editUrl(slug)}
@@ -122,7 +122,7 @@ export default function Layout(frontMatter) {
               }}
             >
               {'Edit on GitHub'}
-            </Text>
+            </Text> */}
           </Box>
         </Flex>
       </Container>
