@@ -1,7 +1,7 @@
 ---
 title: 'useFetch — A Custom React Hook'
 summary: 'Often we see ourselves writing almost the same exact codes in more than one different component. What about extracting that recurrent logic into a reusable piece of code (hook) and reuse it where the need be?'
-publishedAt: '2020-05-17'
+publishedAt: '2020-05-24'
 image: '/static/images/usefetch.png'
 ---
 
@@ -238,7 +238,7 @@ const { data, isLoading, hasError, errorMessage } = useFetch(url, (skip = true))
 
 What if we would like to change the url dynamically to trigger the fetching process again? Why not? Let's implement it.
 
-We’ll change `url` prop name to `initialUrl` to use it as a state. The `initialUrl` prop will be the default value of the `url` state.
+We’ll change the `url` prop name to `initialUrl` to use it as a state. The `initialUrl` prop will be the default value of the `url` state.
 
 We’ll add `url` state to the dependency of the `useEffect` hook to trigger it again. Then we’ll export its `setState` function which is `updateUrl` to use it from our component.
 
@@ -479,5 +479,4 @@ export default useFetch
 
 In this post, I have explained and made a small demo to show how we can declaratively fetch data and render it on screen by using the `useFetch` hook with the native Fetch API.
 
-> This example doesn’t handle authentication. One way to handle that would be to add parameters to the hook for additional options, or to update the hook to add the authentication header from some global state.
-> And if you are using Next.js, I highly recommend you to use [SWR](https://swr.now.sh/) by Vercel instead of this custom hook.
+> If you are using Next.js, I highly recommend you to use [SWR](https://swr.now.sh/) by Vercel instead of this custom hook.
