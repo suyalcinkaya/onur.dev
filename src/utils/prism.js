@@ -127,6 +127,7 @@ const prismTheme = css`
     margin-right: -1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 0.875rem;
     background-color: #e9f1fe;
     box-shadow: inset 3px 0px 0 0px blue;
     min-width: fit-content;
