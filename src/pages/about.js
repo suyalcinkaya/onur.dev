@@ -24,7 +24,7 @@ const About = () => (
           fontSize={{ _: 32, md: 48 }}
           fontWeight={500}
           letterSpacing="-0.025em"
-          color="#000"
+          // color="#000"
           mt={0}
           mb={10}
         >

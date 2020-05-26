@@ -9,137 +9,144 @@ import { DefaultSeo } from 'next-seo'
 import { Header, MDXComponents } from 'components'
 
 // --- Others
+import { ColorProvider } from 'contexts/ColorProvider'
+import useColorMode from 'hooks/useColorMode'
 import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
-import prismTheme from 'utils/prism'
+import { baseTheme, lightTheme, darkTheme } from 'utils/prism'
 import theme from 'utils/theme'
 
-const GlobalStyle = ({ children }) => (
-  <>
-    <Global
-      styles={css`
-        ${prismTheme}
+const GlobalStyle = ({ children }) => {
+  const { colorMode } = useColorMode()
 
-        @font-face {
-          font-family: 'Inter';
-          font-weight: 400;
-          font-style: normal;
-          font-display: fallback;
-          src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
-            url('/static/fonts/Inter-Regular.woff') format('woff');
-        }
+  return (
+    <>
+      <Global
+        styles={css`
+          ${baseTheme}
+          ${colorMode === 'light' ? lightTheme : darkTheme}
 
-        @font-face {
-          font-family: 'Inter';
-          font-weight: 500;
-          font-style: normal;
-          font-display: fallback;
-          src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
-            url('/static/fonts/Inter-Medium.woff') format('woff');
-        }
+          @font-face {
+            font-family: 'Inter';
+            font-weight: 400;
+            font-style: normal;
+            font-display: fallback;
+            src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
+              url('/static/fonts/Inter-Regular.woff') format('woff');
+          }
 
-        @font-face {
-          font-family: 'Inter';
-          font-weight: 600;
-          font-style: normal;
-          font-display: fallback;
-          src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
-            url('/static/fonts/Inter-SemiBold.woff') format('woff');
-        }
-
-        @font-face {
-          font-family: 'Gilroy';
-          font-weight: 500;
-          font-style: normal;
-          font-display: fallback;
-          src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
-            url('/static/fonts/Gilroy-Medium.woff') format('woff');
-        }
-
-        @font-face {
-          font-family: 'Gilroy';
-          font-weight: 600;
-          font-style: normal;
-          font-display: fallback;
-          src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
-            url('/static/fonts/Gilroy-Bold.woff') format('woff');
-        }
-
-        html {
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-        }
-
-        body {
-          font-family: ${theme.fonts.sans};
-          font-feature-settings: 'ss01' 1, 'cv05' 1;
-          text-rendering: optimizeLegibility;
-          margin: 0;
-          padding: 0;
-          font-size: 16px;
-          line-height: 1.25;
-          color: ${theme.colors.black};
-          background-color: ${theme.colors.white};
-        }
-
-        *,
-        :after,
-        :before {
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          -ms-flex: 0 1 auto;
-        }
-
-        p::-moz-selection {
-          background: #444444;
-          color: #fff;
-        }
-
-        p::selection {
-          background: #444444;
-          color: #fff;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: inherit;
-          cursor: pointer;
-        }
-
-        button,
-        [role='button'] {
-          cursor: pointer;
-        }
-
-        figure {
-          margin: 0;
-          padding: 0;
-
-          figcaption {
-            font-size: 0.75rem;
+          @font-face {
+            font-family: 'Inter';
             font-weight: 500;
-            color: ${theme.colors.gray600};
-            margin-top: 0.25rem;
+            font-style: normal;
+            font-display: fallback;
+            src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
+              url('/static/fonts/Inter-Medium.woff') format('woff');
           }
-        }
 
-        article {
-          img,
-          video {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 6px;
+          @font-face {
+            font-family: 'Inter';
+            font-weight: 600;
+            font-style: normal;
+            font-display: fallback;
+            src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
+              url('/static/fonts/Inter-SemiBold.woff') format('woff');
           }
-        }
-      `}
-    />
-    {children}
-  </>
-)
+
+          @font-face {
+            font-family: 'Gilroy';
+            font-weight: 500;
+            font-style: normal;
+            font-display: fallback;
+            src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
+              url('/static/fonts/Gilroy-Medium.woff') format('woff');
+          }
+
+          @font-face {
+            font-family: 'Gilroy';
+            font-weight: 600;
+            font-style: normal;
+            font-display: fallback;
+            src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
+              url('/static/fonts/Gilroy-Bold.woff') format('woff');
+          }
+
+          html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          body {
+            font-family: ${theme.fonts.sans};
+            font-feature-settings: 'ss01' 1, 'cv05' 1;
+            text-rendering: optimizeLegibility;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            line-height: 1.25;
+            color: ${colorMode === 'light' ? theme.colors.black : theme.colors.white};
+            background-color: ${colorMode === 'light' ? theme.colors.white : '#171923'};
+          }
+
+          *,
+          :after,
+          :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -ms-flex: 0 1 auto;
+          }
+
+          p::-moz-selection {
+            background: #444444;
+            color: #fff;
+          }
+
+          p::selection {
+            background: #444444;
+            color: #fff;
+          }
+
+          a {
+            color: inherit;
+            text-decoration: inherit;
+            cursor: pointer;
+          }
+
+          button,
+          [role='button'] {
+            cursor: pointer;
+          }
+
+          figure {
+            margin: 0;
+            padding: 0;
+
+            figcaption {
+              font-size: 0.75rem;
+              font-weight: 500;
+              color: ${theme.colors.gray600};
+              margin-top: 0.25rem;
+            }
+          }
+
+          article {
+            img,
+            video {
+              max-width: 100%;
+              height: auto;
+              object-fit: cover;
+              border-radius: 6px;
+            }
+          }
+        `}
+      />
+      {children}
+    </>
+  )
+}
 
 function App({ Component, pageProps }) {
   useEffect(() => {
@@ -153,15 +160,17 @@ function App({ Component, pageProps }) {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <MDXProvider components={MDXComponents}>
-        <GlobalStyle>
-          <DefaultSeo {...SEO} />
-          <Header />
-          <Component {...pageProps} />
-        </GlobalStyle>
-      </MDXProvider>
-    </ThemeProvider>
+    <ColorProvider>
+      <ThemeProvider theme={theme}>
+        <MDXProvider components={MDXComponents}>
+          <GlobalStyle>
+            <DefaultSeo {...SEO} />
+            <Header />
+            <Component {...pageProps} />
+          </GlobalStyle>
+        </MDXProvider>
+      </ThemeProvider>
+    </ColorProvider>
   )
 }
 

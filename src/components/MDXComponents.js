@@ -6,6 +6,7 @@ import Text from 'components/Text'
 
 // --- Others
 import theme from 'utils/theme'
+import useColorMode from 'hooks/useColorMode'
 
 const Table = (props) => (
   <Box
@@ -145,19 +146,23 @@ const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
   h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2rem" mb="1rem" {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1rem" mb="0.5rem" {...props} />,
-  inlineCode: (props) => (
-    <Box
-      as="code"
-      display="inline-block"
-      fontFamily="mono"
-      fontSize="0.84em"
-      bg="rgb(254, 252, 191)"
-      color="rgb(116, 66, 16)"
-      px="0.5rem"
-      borderRadius={6}
-      {...props}
-    />
-  ),
+  inlineCode: (props) => {
+    const { colorMode } = useColorMode()
+
+    return (
+      <Box
+        as="code"
+        display="inline-block"
+        fontFamily="mono"
+        fontSize="0.84em"
+        bg={colorMode === 'light' ? 'rgb(254, 252, 191)' : 'rgba(250, 240, 137, 0.16)'}
+        color={colorMode === 'light' ? 'rgb(116, 66, 16)' : 'rgb(250, 240, 137)'}
+        px="0.5rem"
+        borderRadius={6}
+        {...props}
+      />
+    )
+  },
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
   table: Table,

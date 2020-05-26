@@ -3,6 +3,10 @@ import dayjs from 'dayjs'
 // --- Components
 import { BlogSeo, Box, Flex, Layout as Container, Share, Text } from 'components'
 
+// --- Others
+import useColorMode from 'hooks/useColorMode'
+import theme from 'utils/theme'
+
 // const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
 
@@ -10,6 +14,8 @@ const Layout = (frontMatter) => {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
 
   return ({ children }) => {
+    const { colorMode } = useColorMode()
+
     return (
       <Container>
         <BlogSeo url={`https://onur.dev/blog/${slug}`} {...frontMatter} />
@@ -38,7 +44,7 @@ const Layout = (frontMatter) => {
               fontSize={{ _: 32, md: 48 }}
               fontWeight={500}
               letterSpacing="-0.025em"
-              color="#000"
+              // color="#000"
             >
               {frontMatter.title}
             </Text>
@@ -60,11 +66,11 @@ const Layout = (frontMatter) => {
                   width={24}
                   loading="lazy"
                 />
-                <Text color="gray800" lineHeight={1.5} ml="0.5rem">
+                <Text color={colorMode === 'light' ? 'gray800' : 'gray300'} lineHeight={1.5} ml="0.5rem">
                   {'Onur Şuyalçınkaya'}
                 </Text>
               </Flex>
-              <Text color="gray600" mt={{ _: '0.5rem', md: 0 }}>
+              <Text color={colorMode === 'light' ? 'gray600' : 'gray500'} mt={{ _: '0.5rem', md: 0 }}>
                 {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
                 {/* {' / '}({dayjs(frontMatter.publishedAt).fromNow()}) */}
                 {' • '}
@@ -94,13 +100,13 @@ const Layout = (frontMatter) => {
               as="a"
               href={discussUrl(slug)}
               target="_blank"
-              color="hsl(208,99%,44%)"
+              color={colorMode === 'light' ? 'hsl(208,99%,44%)' : theme.colors.white}
               css={{
                 textDecoration: 'none',
                 transition: 'all 0.15s ease-out',
                 borderBottom: '1px solid transparent',
                 '&:hover': {
-                  borderBottom: '1px solid hsl(208,99%,44%)'
+                  borderBottom: `1px solid ${colorMode === 'light' ? 'hsl(208,99%,44%)' : theme.colors.white}`
                 }
               }}
             >

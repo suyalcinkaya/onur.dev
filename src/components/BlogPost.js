@@ -7,6 +7,7 @@ import Flex from 'components/Flex'
 import Text from 'components/Text'
 
 // --- Others
+import useColorMode from 'hooks/useColorMode'
 import theme from 'utils/theme'
 
 const BlogPost = (frontMatter) => {
@@ -17,6 +18,8 @@ const BlogPost = (frontMatter) => {
     summary,
     title
   } = frontMatter
+
+  const { colorMode } = useColorMode()
 
   const slug = frontMatter.__resourcePath.split('/').pop().replace('blog/', '').replace('.mdx', '')
   const date = dayjs(publishedAt).format('MMM DD, YYYY')
@@ -32,7 +35,7 @@ const BlogPost = (frontMatter) => {
             height={{ _: 200, md: 100 }}
             maxWidth={{ _: '100%', md: 160 }}
             borderRadius={6}
-            border={`1px solid ${theme.colors.gray300}`}
+            border={`1px solid ${colorMode === 'light' ? theme.colors.gray300 : theme.colors.gray800}`}
             loading="lazy"
             css={{ objectFit: 'cover', width: '100%' }}
           />
@@ -49,11 +52,11 @@ const BlogPost = (frontMatter) => {
               lineHeight={1.43}
               m={0}
               my="0.5rem"
-              color="#000"
+              // color="#000"
             >
               {title}
             </Text>
-            <Text color="gray700" lineHeight={1.5}>
+            <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} lineHeight={1.5}>
               {summary}
             </Text>
           </Flex>
