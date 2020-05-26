@@ -5,6 +5,7 @@ import Box from 'components/Box'
 import Button from 'components/Button'
 import Flex from 'components/Flex'
 import Text from 'components/Text'
+// import { Moon, Sun } from 'components/icons'
 
 const Header = () => {
   const navigation = [
@@ -38,7 +39,7 @@ const Header = () => {
         <Flex justifyContent="space-between" alignItems="center" height="100%" maxWidth={800} m="0 auto" px="1.5rem">
           <Box>
             <Text
-              fontFamily="Gilroy"
+              fontFamily="display"
               fontSize={{ _: 24, md: 26 }}
               fontWeight={600}
               color="#000"

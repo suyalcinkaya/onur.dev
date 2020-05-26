@@ -3,10 +3,10 @@ import dayjs from 'dayjs'
 // --- Components
 import { BlogSeo, Box, Flex, Layout as Container, Share, Text } from 'components'
 
-const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
+// const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
 
-export default function Layout(frontMatter) {
+const Layout = (frontMatter) => {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
 
   return ({ children }) => {
@@ -34,7 +34,7 @@ export default function Layout(frontMatter) {
               mb={10}
               mt={0}
               as="h1"
-              fontFamily="Gilroy"
+              fontFamily="display"
               fontSize={{ _: 32, md: 48 }}
               fontWeight={500}
               letterSpacing="-0.025em"
@@ -60,7 +60,7 @@ export default function Layout(frontMatter) {
                   width={24}
                   loading="lazy"
                 />
-                <Text color="gray800" lineHeight={1.5} ml={8}>
+                <Text color="gray800" lineHeight={1.5} ml="0.5rem">
                   {'Onur Şuyalçınkaya'}
                 </Text>
               </Flex>
@@ -129,3 +129,5 @@ export default function Layout(frontMatter) {
     )
   }
 }
+
+export default Layout

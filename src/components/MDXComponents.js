@@ -22,7 +22,7 @@ const Table = (props) => (
   />
 )
 
-const THead = (props) => <Box as="th" bg="gray500" color="white" fontWeight={500} p={8} {...props} />
+const THead = (props) => <Box as="th" bg="gray500" color="white" fontWeight={500} p="0.5rem" {...props} />
 
 const TData = (props) => (
   <Box
@@ -65,8 +65,8 @@ const Quote = (props) => {
 
 const DocsHeading = (props) => (
   <Box
+    fontFamily="display"
     css={{
-      fontFamily: 'Gilroy',
       fontWeight: 600,
       scrollMarginTop: '120px',
       scrollSnapMargin: '120px', // Safari
@@ -83,8 +83,6 @@ const DocsHeading = (props) => (
       '&[id]:hover a': { opacity: 1 }
     }}
     {...props}
-    mb="1rem"
-    mt="2rem"
   >
     <Box css={{ pointerEvents: 'auto' }}>
       {props.children}
@@ -114,9 +112,10 @@ const Ul = (props) => (
     mt="1rem"
     mb="2rem"
     css={{
-      listStyle: 'none',
+      listStyleType: 'circle',
+      listStylePosition: 'inside',
       '* + li': {
-        marginTop: '0.75rem'
+        marginTop: '0.5rem'
       }
     }}
   >
@@ -128,20 +127,9 @@ const Li = (props) => (
   <Box
     as="li"
     position="relative"
-    pl="1.25rem"
+    pl={1}
     lineHeight={1.5}
     css={{
-      '&::before': {
-        content: `''`,
-        position: 'absolute',
-        left: '0.125rem',
-        top: '0.45rem',
-        display: 'block',
-        height: '0.375rem',
-        width: '0.375rem',
-        borderRadius: 9999,
-        backgroundColor: 'rgba(210, 214, 220, 1)'
-      },
       '> p': {
         margin: 0
       }
@@ -155,18 +143,18 @@ const Hr = () => <Box bg="gray300" height={1} my={12} width="100%" />
 
 const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
-  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2em" mb="1em" {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1em" mb="0.5em" {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2rem" mb="1rem" {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1rem" mb="0.5rem" {...props} />,
   inlineCode: (props) => (
     <Box
       as="code"
       display="inline-block"
-      fontFamily={`SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`}
+      fontFamily="mono"
       fontSize="0.84em"
       bg="rgb(254, 252, 191)"
       color="rgb(116, 66, 16)"
-      px={6}
-      borderRadius={4}
+      px="0.5rem"
+      borderRadius={6}
       {...props}
     />
   ),
@@ -179,7 +167,7 @@ const MDXComponents = {
   p: (props) => <Text as="p" mt="1rem" mb="1rem" lineHeight="1.625" {...props} />,
   strong: (props) => <Text as="strong" fontWeight={600} {...props} />,
   ul: (props) => <Ul {...props} />,
-  ol: (props) => <Box as="ol" pt={8} pl={16} ml={8} mb={32} {...props} />,
+  ol: (props) => <Box as="ol" pt="0.5rem" pl="1rem" ml="0.5rem" mb="2rem" {...props} />,
   li: (props) => <Li {...props} />,
   blockquote: Quote
 }

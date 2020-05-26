@@ -13,7 +13,7 @@ const Home = () => (
     <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
       <Text
         as="h1"
-        fontFamily="Gilroy"
+        fontFamily="display"
         fontSize={{ _: 32, md: 48 }}
         fontWeight={500}
         letterSpacing="-0.025em"
@@ -27,7 +27,7 @@ const Home = () => (
         {`I’m a developer, writer, and DJ living in Istanbul, Turkey.`}
       </Text>
     </Flex>
-    <Text as="h2" fontFamily="Gilroy" fontWeight={500}>
+    <Text as="h2" fontFamily="display" fontWeight={500}>
       Latest Posts
     </Text>
     <Flex flexDirection="column">
@@ -35,7 +35,7 @@ const Home = () => (
       <BlogPost {...reactMemo} />
       <BlogPost {...html5Video} />
     </Flex>
-    <Text as="h2" fontFamily="Gilroy" fontWeight={500}>
+    <Text as="h2" fontFamily="display" fontWeight={500}>
       Popular Mixtapes
     </Text>
     <Flex flexDirection="column">

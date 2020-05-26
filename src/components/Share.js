@@ -42,7 +42,7 @@ const Share = ({ title, url }) => {
       <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0}>
         <Twitter />
       </Box>
-      <Box as={Button} type="button" title="Share on LinkedIn" onClick={shareOnLinkedIn} m={0} mx={6}>
+      <Box as={Button} type="button" title="Share on LinkedIn" onClick={shareOnLinkedIn} m={0} mx="0.375rem">
         <LinkedinBox />
       </Box>
       <Box as={Button} type="button" title="Share on Facebook" onClick={shareOnFacebook} m={0}>

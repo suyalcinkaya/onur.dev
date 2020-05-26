@@ -37,7 +37,7 @@ const Blog = () => {
         <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
           <Text
             as="h1"
-            fontFamily="Gilroy"
+            fontFamily="display"
             fontSize={{ _: 32, md: 48 }}
             fontWeight={500}
             letterSpacing="-0.025em"
@@ -65,7 +65,7 @@ const Blog = () => {
             </Flex>
           </Box>
         </Box>
-        <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start" maxWidth={700} mt={8}>
+        <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start" maxWidth={700} mt="0.5rem">
           {!sortedBlogPosts.length && <Text>No post found</Text>}
           {sortedBlogPosts.map((frontMatter) => (
             <BlogPost key={frontMatter.title} {...frontMatter} />

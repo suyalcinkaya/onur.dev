@@ -69,11 +69,11 @@ const GlobalStyle = ({ children }) => (
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
         }
 
         body {
-          font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-            Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+          font-family: ${theme.fonts.sans};
           font-feature-settings: 'ss01' 1, 'cv05' 1;
           text-rendering: optimizeLegibility;
           margin: 0;
@@ -93,6 +93,16 @@ const GlobalStyle = ({ children }) => (
           -ms-flex: 0 1 auto;
         }
 
+        p::-moz-selection {
+          background: #444444;
+          color: #fff;
+        }
+
+        p::selection {
+          background: #444444;
+          color: #fff;
+        }
+
         a {
           color: inherit;
           text-decoration: inherit;
@@ -102,6 +112,18 @@ const GlobalStyle = ({ children }) => (
         button,
         [role='button'] {
           cursor: pointer;
+        }
+
+        figure {
+          margin: 0;
+          padding: 0;
+
+          figcaption {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: ${theme.colors.gray600};
+            margin-top: 0.25rem;
+          }
         }
 
         article {

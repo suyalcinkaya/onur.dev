@@ -20,7 +20,7 @@ const About = () => (
       <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
         <Text
           as="h1"
-          fontFamily="Gilroy"
+          fontFamily="display"
           fontSize={{ _: 32, md: 48 }}
           fontWeight={500}
           letterSpacing="-0.025em"
