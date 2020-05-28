@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import styled from '@emotion/styled'
 import {
   border,
@@ -15,6 +16,7 @@ import {
 
 // --- Others
 import theme from 'utils/theme'
+import useColorMode from 'hooks/useColorMode'
 
 const StyledButton = styled.button`
   appearance: none;
@@ -26,7 +28,7 @@ const StyledButton = styled.button`
 
   @media not all and (hover: none) {
     &:hover {
-      background-color: #edeef0;
+      background-color: ${(props) => (props.colorMode === 'light' ? '#edeef0' : 'rgba(255, 255, 255, 0.08)')};
     }
 
     &:active {
@@ -35,9 +37,14 @@ const StyledButton = styled.button`
   }
 `
 
-const Button = styled(StyledButton)(
+const Btn = styled(StyledButton)(
   compose(border, borderRadius, color, flexbox, size, space, layout, position, shadow, typography)
 )
+
+const Button = forwardRef((props, ref) => {
+  const { colorMode } = useColorMode()
+  return <Btn ref={ref} colorMode={colorMode} {...props} />
+})
 
 Button.defaultProps = {
   display: 'inline-flex',
@@ -49,8 +56,8 @@ Button.defaultProps = {
   px: { _: '0.475rem', md: '1.125rem' },
   background: 'transparent',
   color: 'inherit',
-  height: '2.875rem',
-  minWidth: '2.875rem',
+  height: '2.5rem',
+  minWidth: '2.5rem',
   border: 'none',
   backgroundColor: 'transparent'
 }

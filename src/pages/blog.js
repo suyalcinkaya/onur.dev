@@ -8,6 +8,7 @@ import { Search } from 'components/icons'
 
 // --- Others
 import { frontMatter as blogPosts } from './blog/**/*.mdx' // Thanks to babel-plugin-import-glob-array
+import useColorMode from 'hooks/useColorMode'
 import theme from 'utils/theme'
 
 const url = 'https://onur.dev/blog'
@@ -16,6 +17,7 @@ const description = 'Thoughts on the software industry, programming, tech, music
 
 const Blog = () => {
   const [searchValue, setSearchValue] = useState('')
+  const { colorMode } = useColorMode()
 
   const sortedBlogPosts = blogPosts
     .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
@@ -41,7 +43,7 @@ const Blog = () => {
             fontSize={{ _: 32, md: 48 }}
             fontWeight={500}
             letterSpacing="-0.025em"
-            color="#000"
+            // color="#000"
             mt={0}
             mb={10}
           >
@@ -58,15 +60,16 @@ const Blog = () => {
             aria-label="Search articles"
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search articles"
+            colorMode={colorMode}
           />
           <Box position="absolute" top={0} right="1rem" height="100%">
-            <Flex alignItems="center" height="100%" color="gray500">
+            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray500' : 'gray700'}>
               <Search />
             </Flex>
           </Box>
         </Box>
         <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start" maxWidth={700} mt="0.5rem">
-          {!sortedBlogPosts.length && <Text>No post found</Text>}
+          {!sortedBlogPosts.length && <Text>No posts found.</Text>}
           {sortedBlogPosts.map((frontMatter) => (
             <BlogPost key={frontMatter.title} {...frontMatter} />
           ))}
@@ -87,14 +90,15 @@ const Input = styled.input`
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 0;
-  background-color: #fff;
-  border: 1px solid #d2d6dc;
+  color: inherit;
+  background-color: ${(props) => (props.colorMode === 'light' ? theme.colors.white : 'rgba(255, 255, 255, 0.06)')};
+  border: 1px solid ${(props) => (props.colorMode === 'light' ? '#d2d6dc' : 'rgba(255, 255, 255, 0.04)')};
   border-radius: 0.375rem;
   appearance: none;
 
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   ::placeholder {
-    color: ${theme.colors.gray500};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray700)};
     opacity: 1; /* Firefox */
   }
 
@@ -109,7 +113,7 @@ const Input = styled.input`
   }
 
   &:hover {
-    border-color: #cbd5e0;
+    border-color: ${(props) => (props.colorMode === 'light' ? '#cbd5e0' : 'rgba(255, 255, 255, 0.08)')};
   }
 
   &:focus {

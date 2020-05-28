@@ -7,6 +7,7 @@ import Flex from 'components/Flex'
 import Text from 'components/Text'
 
 // --- Others
+import useColorMode from 'hooks/useColorMode'
 import theme from 'utils/theme'
 
 const BlogPost = (frontMatter) => {
@@ -17,6 +18,8 @@ const BlogPost = (frontMatter) => {
     summary,
     title
   } = frontMatter
+
+  const { colorMode } = useColorMode()
 
   const slug = frontMatter.__resourcePath.split('/').pop().replace('blog/', '').replace('.mdx', '')
   const date = dayjs(publishedAt).format('MMM DD, YYYY')
@@ -32,28 +35,20 @@ const BlogPost = (frontMatter) => {
             height={{ _: 200, md: 100 }}
             maxWidth={{ _: '100%', md: 160 }}
             borderRadius={6}
-            border={`1px solid ${theme.colors.gray300}`}
+            border={`1px solid ${colorMode === 'light' ? theme.colors.gray300 : theme.colors.gray800}`}
             loading="lazy"
             css={{ objectFit: 'cover', width: '100%' }}
           />
-          <Flex width="100%" flexDirection="column" pl={{ _: 0, md: '1.5rem' }} pt={{ _: '1rem', md: 0 }}>
+          <Flex width="100%" flexDirection="column" pl={{ md: '1.5rem' }} pt={{ _: '1rem', md: 0 }}>
             <Text fontSize={14} color="gray600">
               {date}
               {' • '}
               {readingDuration}
             </Text>
-            <Text
-              as="h3"
-              fontSize={{ _: 20, md: 18 }}
-              fontWeight={500}
-              lineHeight={1.43}
-              m={0}
-              my="0.5rem"
-              color="#000"
-            >
+            <Text as="h3" fontSize={{ _: 20, md: 18 }} fontWeight={500} lineHeight={1.5} m={0} my="0.5rem">
               {title}
             </Text>
-            <Text color="gray700" lineHeight={1.5}>
+            <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} lineHeight={1.5}>
               {summary}
             </Text>
           </Flex>

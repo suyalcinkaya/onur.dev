@@ -1,6 +1,6 @@
 import { css } from '@emotion/core'
 
-const prismTheme = css`
+export const baseTheme = css`
   @font-face {
     font-family: 'Jetbrains Mono';
     src: url('/static/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
@@ -9,7 +9,6 @@ const prismTheme = css`
 
   code[class*='language-'],
   pre[class*='language-'] {
-    color: rgb(26, 32, 44);
     background: none;
     font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     font-size: 0.875rem;
@@ -37,9 +36,63 @@ const prismTheme = css`
 
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
+    border-radius: 0.5rem;
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*='language-'] {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .mdx-marker {
+    display: block;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    min-width: fit-content;
+  }
+
+  .remark-code-title {
+    padding: 0.5rem 1rem;
+    font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: 1rem;
+    width: 100%;
+
+    + pre {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-top: 0;
+    }
+  }
+`
+
+export const lightTheme = css`
+  :not(pre) > code[class*='language-'],
+  pre[class*='language-'] {
     background: rgb(247, 250, 252);
     border: 1px solid rgb(226, 232, 240);
-    border-radius: 0.5rem;
   }
 
   /* Inline code */
@@ -108,51 +161,94 @@ const prismTheme = css`
     color: #e90;
   }
 
-  .token.important,
-  .token.bold {
-    font-weight: bold;
-  }
-
-  .token.italic {
-    font-style: italic;
-  }
-
-  .token.entity {
-    cursor: help;
-  }
-
   .mdx-marker {
-    display: block;
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-size: 0.875rem;
     background-color: #e9f1fe;
     box-shadow: inset 3px 0px 0 0px blue;
-    min-width: fit-content;
   }
 
   .remark-code-title {
-    padding: 0.5rem 1rem;
-    font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     background: rgb(226, 232, 240);
-    color: rgb(26, 32, 44);
     border: 1px solid rgb(226, 232, 240);
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-top: 1rem;
-    width: 100%;
-
-    + pre {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      margin-top: 0;
-    }
+    color: rgb(26, 32, 44);
   }
 `
 
-export default prismTheme
+export const darkTheme = css`
+  :not(pre) > code[class*='language-'],
+  pre[class*='language-'] {
+    background: rgb(26, 32, 44);
+    border: 1px solid rgb(45, 55, 72);
+  }
+
+  .remark-code-title {
+    color: rgb(237, 242, 247);
+    background: rgb(45, 55, 72);
+    border: 1px solid rgb(45, 55, 72);
+  }
+
+  .token.attr-name {
+    color: rgb(173, 219, 103);
+    font-style: italic;
+  }
+
+  .token.comment {
+    color: rgb(128, 147, 147);
+  }
+
+  .token.string,
+  .token.url {
+    color: rgb(173, 219, 103);
+  }
+
+  .token.variable {
+    color: rgb(214, 222, 235);
+  }
+
+  .token.number {
+    color: rgb(247, 140, 108);
+  }
+
+  .token.builtin,
+  .token.char,
+  .token.constant,
+  .token.function {
+    color: rgb(130, 170, 255);
+  }
+
+  .token.punctuation {
+    color: rgb(199, 146, 234);
+  }
+
+  .token.selector,
+  .token.doctype {
+    color: rgb(199, 146, 234);
+    font-style: 'italic';
+  }
+
+  .token.class-name {
+    color: rgb(255, 203, 139);
+  }
+
+  .token.tag,
+  .token.operator,
+  .token.keyword {
+    color: #ffa7c4;
+  }
+
+  .token.boolean {
+    color: rgb(255, 88, 116);
+  }
+
+  .token.property {
+    color: rgb(128, 203, 196);
+  }
+
+  .token.namespace {
+    color: rgb(178, 204, 214);
+  }
+
+  .mdx-marker {
+    background-color: rgb(45, 55, 72);
+    box-shadow: inset 3px 0px 0 0px rgb(42, 105, 172);
+  }
+`

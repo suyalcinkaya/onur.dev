@@ -6,6 +6,7 @@ import Text from 'components/Text'
 
 // --- Others
 import theme from 'utils/theme'
+import useColorMode from 'hooks/useColorMode'
 
 const Table = (props) => (
   <Box
@@ -38,6 +39,18 @@ const TData = (props) => (
 )
 
 const Quote = (props) => {
+  const { colorMode } = useColorMode()
+
+  const bg = {
+    light: '#ebf8ff',
+    dark: 'rgb(45, 55, 72)'
+  }
+
+  const borderColor = {
+    light: '#3182ce',
+    dark: 'rgb(42, 105, 172)'
+  }
+
   return (
     <Flex
       alignItems="center"
@@ -48,9 +61,9 @@ const Quote = (props) => {
       py={12}
       mt={16}
       mb={32}
-      borderLeft="4px solid #3182ce"
+      borderLeft={`4px solid ${borderColor[colorMode]}`}
       width="98%"
-      bg="#ebf8ff"
+      bg={bg[colorMode]}
       css={{
         '> *:first-of-type': {
           marginTop: 0,
@@ -145,19 +158,33 @@ const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
   h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2rem" mb="1rem" {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1rem" mb="0.5rem" {...props} />,
-  inlineCode: (props) => (
-    <Box
-      as="code"
-      display="inline-block"
-      fontFamily="mono"
-      fontSize="0.84em"
-      bg="rgb(254, 252, 191)"
-      color="rgb(116, 66, 16)"
-      px="0.5rem"
-      borderRadius={6}
-      {...props}
-    />
-  ),
+  inlineCode: (props) => {
+    const { colorMode } = useColorMode()
+
+    const bg = {
+      light: 'rgb(254, 252, 191)',
+      dark: 'rgba(250, 240, 137, 0.16)'
+    }
+
+    const color = {
+      light: 'rgb(116, 66, 16)',
+      dark: 'rgb(250, 240, 137)'
+    }
+
+    return (
+      <Box
+        as="code"
+        display="inline-block"
+        fontFamily="mono"
+        fontSize="0.84em"
+        bg={bg[colorMode]}
+        color={color[colorMode]}
+        px="0.5rem"
+        borderRadius={6}
+        {...props}
+      />
+    )
+  },
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
   table: Table,
