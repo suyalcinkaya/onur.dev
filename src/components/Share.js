@@ -21,7 +21,7 @@ const Share = ({ title, url }) => {
     boxShadow: 'none',
     padding: 0,
     outline: 'none',
-    color: colorMode === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray300,
+    color: colorMode === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray400,
     transition: 'all 0.15s ease-out',
     '&:hover': {
       color: '#000'

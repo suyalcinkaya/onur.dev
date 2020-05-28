@@ -39,21 +39,13 @@ const BlogPost = (frontMatter) => {
             loading="lazy"
             css={{ objectFit: 'cover', width: '100%' }}
           />
-          <Flex width="100%" flexDirection="column" pl={{ _: 0, md: '1.5rem' }} pt={{ _: '1rem', md: 0 }}>
+          <Flex width="100%" flexDirection="column" pl={{ md: '1.5rem' }} pt={{ _: '1rem', md: 0 }}>
             <Text fontSize={14} color="gray600">
               {date}
               {' • '}
               {readingDuration}
             </Text>
-            <Text
-              as="h3"
-              fontSize={{ _: 20, md: 18 }}
-              fontWeight={500}
-              lineHeight={1.43}
-              m={0}
-              my="0.5rem"
-              // color="#000"
-            >
+            <Text as="h3" fontSize={{ _: 20, md: 18 }} fontWeight={500} lineHeight={1.5} m={0} my="0.5rem">
               {title}
             </Text>
             <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} lineHeight={1.5}>

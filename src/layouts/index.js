@@ -1,11 +1,10 @@
 import dayjs from 'dayjs'
 
 // --- Components
-import { BlogSeo, Box, Flex, Layout as Container, Share, Text } from 'components'
+import { BlogSeo, Box, Flex, Layout as Container, Link, Share, Text } from 'components'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
-import theme from 'utils/theme'
 
 // const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
@@ -66,7 +65,7 @@ const Layout = (frontMatter) => {
                   width={24}
                   loading="lazy"
                 />
-                <Text color={colorMode === 'light' ? 'gray800' : 'gray300'} lineHeight={1.5} ml="0.5rem">
+                <Text color={colorMode === 'light' ? 'gray800' : 'gray200'} lineHeight={1.5} ml="0.5rem">
                   {'Onur Şuyalçınkaya'}
                 </Text>
               </Flex>
@@ -96,22 +95,7 @@ const Layout = (frontMatter) => {
           )}
           {children}
           <Box mt={30}>
-            <Text
-              as="a"
-              href={discussUrl(slug)}
-              target="_blank"
-              color={colorMode === 'light' ? 'hsl(208,99%,44%)' : theme.colors.white}
-              css={{
-                textDecoration: 'none',
-                transition: 'all 0.15s ease-out',
-                borderBottom: '1px solid transparent',
-                '&:hover': {
-                  borderBottom: `1px solid ${colorMode === 'light' ? 'hsl(208,99%,44%)' : theme.colors.white}`
-                }
-              }}
-            >
-              {'Discuss on Twitter'}
-            </Text>
+            <Link href={discussUrl(slug)}>{'Discuss on Twitter ⟶'}</Link>
             {/* <Text color="gray400">{` • `}</Text>
             <Text
               as="a"

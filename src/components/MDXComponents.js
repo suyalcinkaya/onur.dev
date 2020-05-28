@@ -39,6 +39,18 @@ const TData = (props) => (
 )
 
 const Quote = (props) => {
+  const { colorMode } = useColorMode()
+
+  const bg = {
+    light: '#ebf8ff',
+    dark: 'rgb(45, 55, 72)'
+  }
+
+  const borderColor = {
+    light: '#3182ce',
+    dark: 'rgb(42, 105, 172)'
+  }
+
   return (
     <Flex
       alignItems="center"
@@ -49,9 +61,9 @@ const Quote = (props) => {
       py={12}
       mt={16}
       mb={32}
-      borderLeft="4px solid #3182ce"
+      borderLeft={`4px solid ${borderColor[colorMode]}`}
       width="98%"
-      bg="#ebf8ff"
+      bg={bg[colorMode]}
       css={{
         '> *:first-of-type': {
           marginTop: 0,
@@ -149,14 +161,24 @@ const MDXComponents = {
   inlineCode: (props) => {
     const { colorMode } = useColorMode()
 
+    const bg = {
+      light: 'rgb(254, 252, 191)',
+      dark: 'rgba(250, 240, 137, 0.16)'
+    }
+
+    const color = {
+      light: 'rgb(116, 66, 16)',
+      dark: 'rgb(250, 240, 137)'
+    }
+
     return (
       <Box
         as="code"
         display="inline-block"
         fontFamily="mono"
         fontSize="0.84em"
-        bg={colorMode === 'light' ? 'rgb(254, 252, 191)' : 'rgba(250, 240, 137, 0.16)'}
-        color={colorMode === 'light' ? 'rgb(116, 66, 16)' : 'rgb(250, 240, 137)'}
+        bg={bg[colorMode]}
+        color={color[colorMode]}
         px="0.5rem"
         borderRadius={6}
         {...props}

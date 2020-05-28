@@ -56,8 +56,8 @@ Button.defaultProps = {
   px: { _: '0.475rem', md: '1.125rem' },
   background: 'transparent',
   color: 'inherit',
-  height: '2.875rem',
-  minWidth: '2.875rem',
+  height: '2.5rem',
+  minWidth: '2.5rem',
   border: 'none',
   backgroundColor: 'transparent'
 }

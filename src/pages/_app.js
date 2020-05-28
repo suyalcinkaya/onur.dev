@@ -86,7 +86,7 @@ const GlobalStyle = ({ children }) => {
             padding: 0;
             font-size: 16px;
             line-height: 1.25;
-            color: ${colorMode === 'light' ? theme.colors.black : theme.colors.white};
+            color: ${colorMode === 'light' ? theme.colors.black : theme.colors.gray300};
             background-color: ${colorMode === 'light' ? theme.colors.white : '#171923'};
           }
 
@@ -127,7 +127,7 @@ const GlobalStyle = ({ children }) => {
             figcaption {
               font-size: 0.75rem;
               font-weight: 500;
-              color: ${theme.colors.gray600};
+              color: ${colorMode === 'light' ? theme.colors.gray600 : theme.colors.gray500};
               margin-top: 0.25rem;
             }
           }

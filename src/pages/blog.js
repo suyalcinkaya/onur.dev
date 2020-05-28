@@ -19,50 +19,6 @@ const Blog = () => {
   const [searchValue, setSearchValue] = useState('')
   const { colorMode } = useColorMode()
 
-  const Input = styled.input`
-    display: block;
-    font-size: 1rem;
-    line-height: 1.25rem;
-    width: 100%;
-    height: 3rem;
-    padding-right: 3rem;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    margin: 0;
-    background-color: #fff;
-    border: 1px solid #d2d6dc;
-    border-radius: 0.375rem;
-    appearance: none;
-
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    ::placeholder {
-      color: ${theme.colors.gray500};
-      opacity: 1; /* Firefox */
-    }
-
-    /* Internet Explorer 10-11 */
-    :-ms-input-placeholder {
-      color: ${theme.colors.gray500};
-    }
-
-    /* Microsoft Edge */
-    ::-ms-input-placeholder {
-      color: ${theme.colors.gray500};
-    }
-
-    &:hover {
-      border-color: #cbd5e0;
-    }
-
-    &:focus {
-      outline: none;
-      // box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
-      box-shadow: 0 0 0 1px rgba(50, 151, 211, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 0 0 4px rgba(50, 151, 211, 0.3);
-      border-color: #a4cafe;
-    }
-  `
-
   const sortedBlogPosts = blogPosts
     .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
     .filter((frontMatter) => frontMatter.title.toLowerCase().includes(searchValue.toLowerCase()))
@@ -104,9 +60,10 @@ const Blog = () => {
             aria-label="Search articles"
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search articles"
+            colorMode={colorMode}
           />
           <Box position="absolute" top={0} right="1rem" height="100%">
-            <Flex alignItems="center" height="100%" color="gray500">
+            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray500' : 'gray700'}>
               <Search />
             </Flex>
           </Box>
@@ -121,5 +78,50 @@ const Blog = () => {
     </>
   )
 }
+
+const Input = styled.input`
+  display: block;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  width: 100%;
+  height: 3rem;
+  padding-right: 3rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin: 0;
+  color: inherit;
+  background-color: ${(props) => (props.colorMode === 'light' ? theme.colors.white : 'rgba(255, 255, 255, 0.06)')};
+  border: 1px solid ${(props) => (props.colorMode === 'light' ? '#d2d6dc' : 'rgba(255, 255, 255, 0.04)')};
+  border-radius: 0.375rem;
+  appearance: none;
+
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  ::placeholder {
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray700)};
+    opacity: 1; /* Firefox */
+  }
+
+  /* Internet Explorer 10-11 */
+  :-ms-input-placeholder {
+    color: ${theme.colors.gray500};
+  }
+
+  /* Microsoft Edge */
+  ::-ms-input-placeholder {
+    color: ${theme.colors.gray500};
+  }
+
+  &:hover {
+    border-color: ${(props) => (props.colorMode === 'light' ? '#cbd5e0' : 'rgba(255, 255, 255, 0.08)')};
+  }
+
+  &:focus {
+    outline: none;
+    // box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
+    box-shadow: 0 0 0 1px rgba(50, 151, 211, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 0 0 4px rgba(50, 151, 211, 0.3);
+    border-color: #a4cafe;
+  }
+`
 
 export default Blog

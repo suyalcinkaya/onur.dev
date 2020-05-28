@@ -66,8 +66,6 @@ export const baseTheme = css`
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 0.875rem;
-    background-color: #e9f1fe;
-    box-shadow: inset 3px 0px 0 0px blue;
     min-width: fit-content;
   }
 
@@ -164,15 +162,8 @@ export const lightTheme = css`
   }
 
   .mdx-marker {
-    display: block;
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-size: 0.875rem;
     background-color: #e9f1fe;
     box-shadow: inset 3px 0px 0 0px blue;
-    min-width: fit-content;
   }
 
   .remark-code-title {
@@ -199,48 +190,65 @@ export const darkTheme = css`
     color: rgb(173, 219, 103);
     font-style: italic;
   }
+
   .token.comment {
     color: rgb(128, 147, 147);
   }
+
   .token.string,
   .token.url {
     color: rgb(173, 219, 103);
   }
+
   .token.variable {
     color: rgb(214, 222, 235);
   }
+
   .token.number {
     color: rgb(247, 140, 108);
   }
+
   .token.builtin,
   .token.char,
   .token.constant,
   .token.function {
     color: rgb(130, 170, 255);
   }
+
   .token.punctuation {
     color: rgb(199, 146, 234);
   }
+
   .token.selector,
   .token.doctype {
     color: rgb(199, 146, 234);
     font-style: 'italic';
   }
+
   .token.class-name {
     color: rgb(255, 203, 139);
   }
+
   .token.tag,
   .token.operator,
   .token.keyword {
     color: #ffa7c4;
   }
+
   .token.boolean {
     color: rgb(255, 88, 116);
   }
+
   .token.property {
     color: rgb(128, 203, 196);
   }
+
   .token.namespace {
     color: rgb(178, 204, 214);
+  }
+
+  .mdx-marker {
+    background-color: rgb(45, 55, 72);
+    box-shadow: inset 3px 0px 0 0px rgb(42, 105, 172);
   }
 `
