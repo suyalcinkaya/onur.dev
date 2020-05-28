@@ -26,6 +26,62 @@ class MyDocument extends Document {
               `
             }}
           />
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+                @font-face {
+                  font-family: 'Inter';
+                  font-weight: 400;
+                  font-style: normal;
+                  font-display: swap;
+                  src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
+                    url('/static/fonts/Inter-Regular.woff') format('woff');
+                }
+
+                @font-face {
+                  font-family: 'Inter';
+                  font-weight: 500;
+                  font-style: normal;
+                  font-display: swap;
+                  src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
+                    url('/static/fonts/Inter-Medium.woff') format('woff');
+                }
+
+                @font-face {
+                  font-family: 'Inter';
+                  font-weight: 600;
+                  font-style: normal;
+                  font-display: swap;
+                  src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
+                    url('/static/fonts/Inter-SemiBold.woff') format('woff');
+                }
+
+                @font-face {
+                  font-family: 'Gilroy';
+                  font-weight: 500;
+                  font-style: normal;
+                  font-display: swap;
+                  src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
+                    url('/static/fonts/Gilroy-Medium.woff') format('woff');
+                }
+
+                @font-face {
+                  font-family: 'Gilroy';
+                  font-weight: 600;
+                  font-style: normal;
+                  font-display: swap;
+                  src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
+                    url('/static/fonts/Gilroy-Bold.woff') format('woff');
+                }
+
+                @font-face {
+                  font-family: 'Jetbrains Mono';
+                  src: url('/static/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+                    url('/static/fonts/JetBrainsMono-Regular.woff') format('woff');
+                }
+              `
+            }}
+          />
         </Head>
         <body>
           <Main />

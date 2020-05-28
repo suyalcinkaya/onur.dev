@@ -1,12 +1,6 @@
 import { css } from '@emotion/core'
 
 export const baseTheme = css`
-  @font-face {
-    font-family: 'Jetbrains Mono';
-    src: url('/static/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
-      url('/static/fonts/JetBrainsMono-Regular.woff') format('woff');
-  }
-
   code[class*='language-'],
   pre[class*='language-'] {
     background: none;
