@@ -16,9 +16,11 @@ import SEO from '../../next-seo.config'
 import { baseTheme, lightTheme, darkTheme } from 'utils/prism'
 import theme from 'utils/theme'
 
-const FontStyles = () => (
+const DefaultStyles = () => (
   <Global
     styles={css`
+      ${baseTheme}
+
       @font-face {
         font-family: 'Inter';
         font-weight: 400;
@@ -63,87 +65,94 @@ const FontStyles = () => (
         src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
           url('/static/fonts/Gilroy-Bold.woff') format('woff');
       }
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      body {
+        font-family: ${theme.fonts.sans};
+        font-feature-settings: 'ss01' 1, 'cv05' 1;
+        text-rendering: optimizeLegibility;
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+        line-height: 1.25;
+      }
+
+      *,
+      :after,
+      :before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -ms-flex: 0 1 auto;
+      }
+
+      p::-moz-selection {
+        background: #444444;
+        color: #fff;
+      }
+
+      p::selection {
+        background: #444444;
+        color: #fff;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: inherit;
+        cursor: pointer;
+      }
+
+      button,
+      [role='button'] {
+        cursor: pointer;
+      }
+
+      figure {
+        margin: 0;
+        padding: 0;
+
+        figcaption {
+          font-size: 0.75rem;
+          font-weight: 500;
+          margin-top: 0.25rem;
+        }
+      }
+
+      article {
+        img,
+        video {
+          max-width: 100%;
+          height: auto;
+          object-fit: cover;
+          border-radius: 6px;
+        }
+      }
     `}
   />
 )
 
-const GlobalStyle = ({ children }) => {
+const DynamicStyles = () => {
   const { colorMode } = useColorMode()
 
   return (
     <Global
       styles={css`
-        ${baseTheme}
         ${colorMode === 'light' ? lightTheme : darkTheme}
 
-          html {
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-        }
-
         body {
-          font-family: ${theme.fonts.sans};
-          font-feature-settings: 'ss01' 1, 'cv05' 1;
-          text-rendering: optimizeLegibility;
-          margin: 0;
-          padding: 0;
-          font-size: 16px;
-          line-height: 1.25;
           color: ${colorMode === 'light' ? theme.colors.black : theme.colors.gray300};
           background-color: ${colorMode === 'light' ? theme.colors.white : '#171923'};
         }
 
-        *,
-        :after,
-        :before {
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          -ms-flex: 0 1 auto;
-        }
-
-        p::-moz-selection {
-          background: #444444;
-          color: #fff;
-        }
-
-        p::selection {
-          background: #444444;
-          color: #fff;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: inherit;
-          cursor: pointer;
-        }
-
-        button,
-        [role='button'] {
-          cursor: pointer;
-        }
-
         figure {
-          margin: 0;
-          padding: 0;
-
           figcaption {
-            font-size: 0.75rem;
-            font-weight: 500;
             color: ${colorMode === 'light' ? theme.colors.gray600 : theme.colors.gray500};
-            margin-top: 0.25rem;
-          }
-        }
-
-        article {
-          img,
-          video {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 6px;
           }
         }
       `}
@@ -167,8 +176,8 @@ function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <MDXProvider components={MDXComponents}>
           <DefaultSeo {...SEO} />
-          <FontStyles />
-          <GlobalStyle />
+          <DefaultStyles />
+          <DynamicStyles />
           <Header />
           <Component {...pageProps} />
         </MDXProvider>
