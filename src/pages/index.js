@@ -52,7 +52,7 @@ const Home = () => (
       </Text>
       <Text as="p">{`I’m a developer, writer, and DJ living in Istanbul, Turkey.`}</Text>
     </Flex>
-    <Flex justifyContent="space-between" alignItems="center" mt="2rem" mb="1rem">
+    <Flex justifyContent="space-between" alignItems="center" mt="2rem" mb="2rem">
       <Text as="h2" m={0} fontFamily="display" fontWeight={500}>
         Latest Posts
       </Text>
@@ -65,7 +65,7 @@ const Home = () => (
       <BlogPost {...reactMemo} />
       <BlogPost {...html5Video} />
     </Flex>
-    <Flex justifyContent="space-between" alignItems="center" mt="2rem" mb="1rem">
+    <Flex justifyContent="space-between" alignItems="center" mt="2rem" mb="2rem">
       <Text as="h2" m={0} fontFamily="display" fontWeight={500}>
         Popular Mixtapes
       </Text>

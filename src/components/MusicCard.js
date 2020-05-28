@@ -2,6 +2,7 @@
 import Box from 'components/Box'
 import Flex from 'components/Flex'
 import Text from 'components/Text'
+import { Soundcloud, Youtube } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
@@ -32,24 +33,21 @@ const MusicCard = (props) => {
     >
       <Box border="1px solid" borderColor={borderColor[colorMode]} p="1rem" borderRadius={6}>
         <Flex flexDirection={{ _: 'column', md: 'row' }}>
-          <Box>
-            <Box
-              as="img"
-              src={imageUrl}
-              height={100}
-              width={{ _: '100%', md: 100 }}
-              borderRadius={6}
-              css={{ objectFit: 'cover' }}
-            />
-          </Box>
+          <Flex alignItems="center" justifyContent="center">
+            {url.includes('soundcloud') ? (
+              <Soundcloud color="#ff7700" height={60} width={60} />
+            ) : (
+              <Youtube color="#FF0000" height={60} width={60} />
+            )}
+          </Flex>
           <Flex flexDirection="column" pl={{ md: '1.5rem' }} pt={{ _: '0.75rem', md: 0 }} lineHeight={1.5}>
             <Text fontSize={18} fontWeight={500}>
               {title}
             </Text>
-            <Text fontSize={14} my="0.5rem">
+            <Text color="gray700" fontSize={14} my="0.25rem">
               {description}
             </Text>
-            <Flex fontSize={14}>
+            <Flex color="gray600" fontSize={14}>
               {playCount}
               {'+ plays'}
               {' • '}
