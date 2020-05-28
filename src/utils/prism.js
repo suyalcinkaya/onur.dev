@@ -70,8 +70,7 @@ export const baseTheme = css`
   }
 
   .remark-code-title {
-    padding: 0.5rem 1rem;
-    font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    padding: 0.75rem 1rem;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     font-size: 0.8rem;

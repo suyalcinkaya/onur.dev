@@ -152,39 +152,50 @@ const Li = (props) => (
   </Box>
 )
 
-const Hr = () => <Box bg="gray300" height={1} my={12} width="100%" />
+const InlineCode = (props) => {
+  const { colorMode } = useColorMode()
+
+  const bg = {
+    light: 'rgb(254, 252, 191)',
+    dark: 'rgba(250, 240, 137, 0.16)'
+  }
+
+  const color = {
+    light: 'rgb(116, 66, 16)',
+    dark: 'rgb(250, 240, 137)'
+  }
+
+  return (
+    <Box
+      as="code"
+      display="inline-block"
+      fontFamily="mono"
+      fontSize="0.84em"
+      bg={bg[colorMode]}
+      color={color[colorMode]}
+      px="0.5rem"
+      borderRadius={6}
+      {...props}
+    />
+  )
+}
+
+const Hr = (props) => {
+  const { colorMode } = useColorMode()
+
+  const bg = {
+    light: theme.colors.gray300,
+    dark: theme.colors.gray800
+  }
+
+  return <Box bg={bg[colorMode]} height={1} my="2rem" width="100%" {...props} />
+}
 
 const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
   h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2rem" mb="1rem" {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1rem" mb="0.5rem" {...props} />,
-  inlineCode: (props) => {
-    const { colorMode } = useColorMode()
-
-    const bg = {
-      light: 'rgb(254, 252, 191)',
-      dark: 'rgba(250, 240, 137, 0.16)'
-    }
-
-    const color = {
-      light: 'rgb(116, 66, 16)',
-      dark: 'rgb(250, 240, 137)'
-    }
-
-    return (
-      <Box
-        as="code"
-        display="inline-block"
-        fontFamily="mono"
-        fontSize="0.84em"
-        bg={bg[colorMode]}
-        color={color[colorMode]}
-        px="0.5rem"
-        borderRadius={6}
-        {...props}
-      />
-    )
-  },
+  inlineCode: InlineCode,
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
   table: Table,

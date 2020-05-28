@@ -50,15 +50,13 @@ const Home = () => (
       >
         {'Hey, I’m Onur Şuyalçınkaya'}
       </Text>
-      <Text as="p" lineHeight={1.5}>
-        {`I’m a developer, writer, and DJ living in Istanbul, Turkey.`}
-      </Text>
+      <Text as="p">{`I’m a developer, writer, and DJ living in Istanbul, Turkey.`}</Text>
     </Flex>
-    <Flex justifyContent="space-between" alignItems="center">
-      <Text as="h2" fontFamily="display" fontWeight={500}>
+    <Flex justifyContent="space-between" alignItems="center" mt="2rem" mb="1rem">
+      <Text as="h2" m={0} fontFamily="display" fontWeight={500}>
         Latest Posts
       </Text>
-      <Link href="/blog">
+      <Link href="/blog" passHref>
         <Text as="a">{'See All ⟶'}</Text>
       </Link>
     </Flex>
@@ -67,8 +65,8 @@ const Home = () => (
       <BlogPost {...reactMemo} />
       <BlogPost {...html5Video} />
     </Flex>
-    <Flex justifyContent="space-between" alignItems="center">
-      <Text as="h2" fontFamily="display" fontWeight={500}>
+    <Flex justifyContent="space-between" alignItems="center" mt="2rem" mb="1rem">
+      <Text as="h2" m={0} fontFamily="display" fontWeight={500}>
         Popular Mixtapes
       </Text>
       <Text as="a" target="_blank" rel="noopener noreferrer" href="https://soundcloud.com/jagerman">

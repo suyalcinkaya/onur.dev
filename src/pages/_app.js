@@ -92,6 +92,10 @@ const DefaultStyles = () => (
         -ms-flex: 0 1 auto;
       }
 
+      p {
+        line-height: 1.625;
+      }
+
       p::-moz-selection {
         background: #444444;
         color: #fff;

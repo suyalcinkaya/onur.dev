@@ -49,7 +49,7 @@ const Blog = () => {
           >
             Blog
           </Text>
-          <Text as="p" lineHeight={1.5}>
+          <Text as="p">
             {`I've been writing online since 2018, mostly about web development, tips and tricks.
                 In total, I've written ${blogPosts.length} articles on this site.
                 Use the search below to filter by title.`}

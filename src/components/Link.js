@@ -15,7 +15,7 @@ const Link = (props) => {
   if (isInternalLink) {
     return (
       <NextLink href={href} passHref>
-        <Box as="a" pb={2} borderBottom="1px dotted" {...props} />
+        <Box as="a" pb={3} borderBottom="1px dotted" {...props} />
       </NextLink>
     )
   }
@@ -31,7 +31,7 @@ const Link = (props) => {
       target="_blank"
       rel="noopener noreferrer"
       color={color[colorMode]}
-      pb={4}
+      pb={3}
       css={{
         textDecoration: 'none',
         transition: 'all 0.15s ease-out',
