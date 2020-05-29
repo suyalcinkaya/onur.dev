@@ -27,11 +27,6 @@ class MyDocument extends Document {
               `
             }}
           />
-          <link
-            href="//db.onlinewebfonts.com/c/22b4c73e6141de7c9937f42cb58bdb4b?family=GT+America+Expanded+Bold"
-            rel="stylesheet"
-            type="text/css"
-          />
           <style jsx global>
             {globalStyles}
           </style>
