@@ -8,7 +8,6 @@ import Text from 'components/Text'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
-import theme from 'utils/theme'
 
 const BlogPost = (frontMatter) => {
   const {
@@ -38,6 +37,9 @@ const BlogPost = (frontMatter) => {
           </Text>
           <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} lineHeight={1.5}>
             {summary}
+          </Text>
+          <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} mt="0.5rem" lineHeight={1.5}>
+            {'Read more ⟶'}
           </Text>
         </Flex>
       </Box>

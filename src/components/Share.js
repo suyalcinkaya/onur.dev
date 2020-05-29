@@ -7,7 +7,7 @@ import { Facebook, LinkedinBox, Twitter } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
-import theme from 'utils/theme'
+import theme from 'styles/theme'
 
 const Share = ({ title, url }) => {
   const { colorMode } = useColorMode()

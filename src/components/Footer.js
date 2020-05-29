@@ -6,7 +6,7 @@ import { Github, Medium, Linkedin, Soundcloud, Twitter } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
-import theme from 'utils/theme'
+import theme from 'styles/theme'
 
 const Footer = () => {
   const { colorMode } = useColorMode()

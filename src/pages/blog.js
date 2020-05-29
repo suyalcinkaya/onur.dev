@@ -9,7 +9,7 @@ import { Search } from 'components/icons'
 // --- Others
 import { frontMatter as blogPosts } from './blog/**/*.mdx' // Thanks to babel-plugin-import-glob-array
 import useColorMode from 'hooks/useColorMode'
-import theme from 'utils/theme'
+import theme from 'styles/theme'
 
 const url = 'https://onur.dev/blog'
 const title = 'Blog – Onur Şuyalçınkaya'
@@ -63,7 +63,7 @@ const Blog = () => {
             colorMode={colorMode}
           />
           <Box position="absolute" top={0} right="1rem" height="100%">
-            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray500' : 'gray700'}>
+            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray500' : 'gray600'}>
               <Search />
             </Flex>
           </Box>
@@ -98,18 +98,18 @@ const Input = styled.input`
 
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   ::placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray700)};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray600)};
     opacity: 1; /* Firefox */
   }
 
   /* Internet Explorer 10-11 */
   :-ms-input-placeholder {
-    color: ${theme.colors.gray500};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray600)};
   }
 
   /* Microsoft Edge */
   ::-ms-input-placeholder {
-    color: ${theme.colors.gray500};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray600)};
   }
 
   &:hover {

@@ -13,88 +13,7 @@ import { ColorProvider } from 'contexts/ColorProvider'
 import useColorMode from 'hooks/useColorMode'
 import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
-import { baseTheme, lightTheme, darkTheme } from 'utils/prism'
-import theme from 'utils/theme'
-
-const DefaultStyles = () => (
-  <Global
-    styles={css`
-      ${baseTheme}
-
-      html {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      body {
-        font-family: ${theme.fonts.sans};
-        font-feature-settings: 'ss01' 1, 'cv05' 1;
-        text-rendering: optimizeLegibility;
-        margin: 0;
-        padding: 0;
-        font-size: 16px;
-        line-height: 1.25;
-      }
-
-      *,
-      :after,
-      :before {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -ms-flex: 0 1 auto;
-      }
-
-      p {
-        line-height: 1.625;
-      }
-
-      p::-moz-selection {
-        background: #444444;
-        color: #fff;
-      }
-
-      p::selection {
-        background: #444444;
-        color: #fff;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: inherit;
-        cursor: pointer;
-      }
-
-      button,
-      [role='button'] {
-        cursor: pointer;
-      }
-
-      figure {
-        margin: 0;
-        padding: 0;
-
-        figcaption {
-          font-size: 0.75rem;
-          font-weight: 500;
-          margin-top: 0.25rem;
-        }
-      }
-
-      article {
-        img,
-        video {
-          max-width: 100%;
-          height: auto;
-          object-fit: cover;
-          border-radius: 6px;
-        }
-      }
-    `}
-  />
-)
+import theme from 'styles/theme'
 
 const DynamicStyles = () => {
   const { colorMode } = useColorMode()
@@ -102,11 +21,19 @@ const DynamicStyles = () => {
   return (
     <Global
       styles={css`
-        ${colorMode === 'light' ? lightTheme : darkTheme}
-
         body {
           color: ${colorMode === 'light' ? theme.colors.black : theme.colors.gray300};
           background-color: ${colorMode === 'light' ? theme.colors.white : '#171923'};
+        }
+
+        p::selection {
+          background: ${colorMode === 'light' ? '#444444' : theme.colors.white};
+          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray200};
+        }
+
+        p::-moz-selection {
+          background: ${colorMode === 'light' ? '#444444' : theme.colors.white};
+          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray200};
         }
 
         figure {
@@ -135,7 +62,6 @@ function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <MDXProvider components={MDXComponents}>
           <DefaultSeo {...SEO} />
-          <DefaultStyles />
           <DynamicStyles />
           <Header />
           <Component {...pageProps} />

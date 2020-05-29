@@ -15,7 +15,7 @@ import {
 } from 'styled-system'
 
 // --- Others
-import theme from 'utils/theme'
+import theme from 'styles/theme'
 import useColorMode from 'hooks/useColorMode'
 
 const StyledButton = styled.button`

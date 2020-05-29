@@ -5,7 +5,7 @@ import Link from 'components/Link'
 import Text from 'components/Text'
 
 // --- Others
-import theme from 'utils/theme'
+import theme from 'styles/theme'
 import useColorMode from 'hooks/useColorMode'
 
 const Table = (props) => (

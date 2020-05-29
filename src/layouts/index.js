@@ -1,10 +1,12 @@
 import dayjs from 'dayjs'
+import styled from '@emotion/styled'
 
 // --- Components
-import { BlogSeo, Box, Flex, Layout as Container, Link, Share, Text } from 'components'
+import { BlogSeo, Box, Flex, Layout as LayoutCom, Link, Share, Text } from 'components'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
+import { baseTheme, lightTheme, darkTheme } from 'styles/prism'
 
 // const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
@@ -14,6 +16,11 @@ const Layout = (frontMatter) => {
 
   return ({ children }) => {
     const { colorMode } = useColorMode()
+
+    const Container = styled(LayoutCom)`
+      ${baseTheme}
+      ${colorMode === 'light' ? lightTheme : darkTheme}
+    `
 
     return (
       <Container>

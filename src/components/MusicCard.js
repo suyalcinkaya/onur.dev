@@ -2,11 +2,11 @@
 import Box from 'components/Box'
 import Flex from 'components/Flex'
 import Text from 'components/Text'
-import { Soundcloud, Youtube } from 'components/icons'
+import { Like, Play, Soundcloud, Youtube } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
-import theme from 'utils/theme'
+import theme from 'styles/theme'
 
 const MusicCard = (props) => {
   const { description, imageUrl, likeCount, playCount, title, url } = props
