@@ -53,7 +53,8 @@ const Quote = (props) => {
 
   return (
     <Flex
-      alignItems="center"
+      flexDirection="column"
+      alignItems="start"
       position="relative"
       overflow="hidden"
       pl={12}
@@ -69,6 +70,9 @@ const Quote = (props) => {
           marginTop: 0,
           marginBottom: 0,
           marginLeft: 8
+        },
+        '> *:last-of-type': {
+          marginBottom: 0
         }
       }}
       {...props}

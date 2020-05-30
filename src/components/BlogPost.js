@@ -27,19 +27,16 @@ const BlogPost = (frontMatter) => {
     <Link href={`blog/${slug}`} passHref>
       <Box as="a" type="button" mb="3rem" display="block" width="100%">
         <Flex width="100%" flexDirection="column" pt={{ _: '1rem', md: 0 }}>
+          <Text as="h3" fontSize={{ _: 20, md: 18 }} fontWeight={500} lineHeight={1.5} m={0} mb="0.5rem">
+            {title}
+          </Text>
+          <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} lineHeight={1.5} mb="0.5rem">
+            {summary}
+          </Text>
           <Text fontSize={14} color="gray600">
             {date}
             {' • '}
             {readingDuration}
-          </Text>
-          <Text as="h3" fontSize={{ _: 20, md: 18 }} fontWeight={500} lineHeight={1.5} m={0} my="0.5rem">
-            {title}
-          </Text>
-          <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} lineHeight={1.5}>
-            {summary}
-          </Text>
-          <Text color={colorMode === 'light' ? 'gray700' : 'gray500'} mt="0.5rem" lineHeight={1.5}>
-            {'Read more ⟶'}
           </Text>
         </Flex>
       </Box>

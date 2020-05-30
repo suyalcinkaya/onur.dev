@@ -59,7 +59,10 @@ Button.defaultProps = {
   height: '2.5rem',
   minWidth: '2.5rem',
   border: 'none',
-  backgroundColor: 'transparent'
+  backgroundColor: 'transparent',
+  transitionProperty: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+  transitionTimingFunction: 'cubic-bezier(.4, 0, .2, 1)',
+  transitionDuration: '.15s'
 }
 
 export default Button
