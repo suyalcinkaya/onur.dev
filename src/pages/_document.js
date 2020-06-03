@@ -1,7 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 
 import { GA_TRACKING_ID } from 'lib/gtag'
-import globalStyles from 'styles/global'
+// import globalStyles from 'styles/global'
 
 class MyDocument extends Document {
   render() {
@@ -11,7 +11,6 @@ class MyDocument extends Document {
           <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
           <meta content="width=device-width, initial-scale=1" name="viewport" />
           <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
-          <link href="/static/favicons/site.webmanifest" rel="manifest" />
           <link href="/static/favicons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
           <link href="/static/favicons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
           <link href="/static/favicons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
@@ -27,9 +26,9 @@ class MyDocument extends Document {
               `
             }}
           />
-          <style jsx global>
+          {/* <style jsx global>
             {globalStyles}
-          </style>
+          </style> */}
         </Head>
         <body>
           <Main />
