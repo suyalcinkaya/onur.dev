@@ -206,7 +206,7 @@ const MDXComponents = {
   th: THead,
   td: TData,
   a: Link,
-  p: (props) => <Text as="p" mt="1rem" mb="1rem" lineHeight="1.625" {...props} />,
+  p: (props) => <Text as="p" my="1rem" lineHeight="1.625" {...props} />,
   strong: (props) => <Text as="strong" fontWeight={600} {...props} />,
   ul: (props) => <Ul {...props} />,
   ol: (props) => <Box as="ol" pt="0.5rem" pl="1rem" ml="0.5rem" mb="2rem" {...props} />,

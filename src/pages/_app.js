@@ -4,6 +4,7 @@ import { ThemeProvider } from 'emotion-theming'
 import { Global, css } from '@emotion/core'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
+import { AnimatePresence } from 'framer-motion'
 
 // --- Components
 import { Header, MDXComponents } from 'components'
@@ -46,7 +47,7 @@ const DynamicStyles = () => {
   )
 }
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps, router }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       trackPageview(url)
@@ -64,7 +65,9 @@ function App({ Component, pageProps }) {
           <DefaultSeo {...SEO} />
           <DynamicStyles />
           <Header />
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} key={router.route} />
+          </AnimatePresence>
         </MDXProvider>
       </ThemeProvider>
     </ColorProvider>
