@@ -66,7 +66,7 @@ const Header = () => {
                 </Link>
               </React.Fragment>
             ))}
-            <Button px={0} onClick={toggleColorMode}>
+            <Button px={0} onClick={toggleColorMode} aria-label="Switch Theme">
               <Box as={colorMode === 'light' ? Moon : Sun} width={18} />
             </Button>
           </Box>
