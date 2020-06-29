@@ -21,7 +21,7 @@ const Share = ({ title, url }) => {
     boxShadow: 'none',
     padding: 0,
     outline: 'none',
-    color: colorMode === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray400,
+    color: colorMode === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray[400],
     transition: 'all 0.15s ease-out',
     '&:hover': {
       color: '#000'
@@ -45,7 +45,7 @@ const Share = ({ title, url }) => {
   }
 
   return (
-    <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} alignItems="center">
+    <Flex alignItems="center">
       <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0}>
         <Twitter />
       </Box>

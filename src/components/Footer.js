@@ -22,7 +22,7 @@ const Footer = () => {
       flexDirection={{ _: 'column', md: 'row' }}
       alignItems="center"
       justifyContent="space-between"
-      mb={30}
+      my={12}
     >
       <Flex justifyContent="center" alignItems="center" ml={{ md: '-0.75rem' }} mb={{ _: '0.5rem', md: 0 }}>
         <a href="https://twitter.com/onursdev" target="_blank" rel="noopener noreferrer" title="Twitter">
@@ -57,7 +57,9 @@ const Footer = () => {
         </a>
       </Flex>
       <Box fontSize={14}>
-        <strong>onur.suyalcinkaya</strong>
+        <strong>onur</strong>
+        {' dot '}
+        <strong>suyalcinkaya</strong>
         {' at '}
         <strong>gmail</strong>
         {' dot '}

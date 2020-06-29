@@ -1,8 +1,7 @@
+import { Box, Code, Flex, Grid, List, ListItem, Text } from '@chakra-ui/core'
+
 // --- Components
-import Box from 'components/Box'
-import Flex from 'components/Flex'
 import Link from 'components/Link'
-import Text from 'components/Text'
 
 // --- Others
 import theme from 'styles/theme'
@@ -12,24 +11,24 @@ const Table = (props) => (
   <Box
     as="table"
     textAlign="left"
-    mt={32}
+    my={4}
     width="100%"
     css={{
       'tbody > tr:nth-of-type(even)': {
-        backgroundColor: theme.colors.gray200
+        backgroundColor: theme.colors.gray[200]
       }
     }}
     {...props}
   />
 )
 
-const THead = (props) => <Box as="th" bg="gray500" color="white" fontWeight={500} p="0.5rem" {...props} />
+const THead = (props) => <Box as="th" bg="gray.400" color="white" fontWeight="medium" p="0.5rem" {...props} />
 
 const TData = (props) => (
   <Box
     as="td"
-    p="8px 0"
-    pl="0.5rem"
+    py={3}
+    pl={2}
     fontSize={14}
     css={{
       whiteSpace: 'normal'
@@ -52,18 +51,12 @@ const Quote = (props) => {
   }
 
   return (
-    <Flex
-      flexDirection="column"
-      alignItems="start"
-      position="relative"
-      overflow="hidden"
-      pl={12}
-      pr={16}
-      py={12}
-      mt={16}
-      mb={32}
+    <Grid
+      placeItems="center"
+      p={4}
+      mt={4}
+      mb={8}
       borderLeft={`4px solid ${borderColor[colorMode]}`}
-      width="98%"
       bg={bg[colorMode]}
       css={{
         '> *:first-of-type': {
@@ -82,9 +75,8 @@ const Quote = (props) => {
 
 const DocsHeading = (props) => (
   <Box
-    fontFamily="display"
+    fontWeight="medium"
     css={{
-      fontWeight: 600,
       scrollMarginTop: '120px',
       scrollSnapMargin: '120px', // Safari
       '&[id]': {
@@ -112,7 +104,7 @@ const DocsHeading = (props) => (
           fontWeight="normal"
           outline="none"
           opacity="0"
-          ml="0.375rem"
+          ml={2}
         >
           #
         </Box>
@@ -121,84 +113,26 @@ const DocsHeading = (props) => (
   </Box>
 )
 
-const Ul = (props) => (
-  <Box
-    as="ul"
-    p={0}
-    m={0}
-    mt="1rem"
-    mb="2rem"
-    css={{
-      listStyleType: 'circle',
-      listStylePosition: 'inside',
-      '* + li': {
-        marginTop: '0.5rem'
-      }
-    }}
-  >
-    {props.children}
-  </Box>
-)
-
-const Li = (props) => (
-  <Box
-    as="li"
-    position="relative"
-    pl={1}
-    lineHeight={1.5}
-    css={{
-      '> p': {
-        margin: 0
-      }
-    }}
-  >
-    {props.children}
-  </Box>
-)
-
 const InlineCode = (props) => {
   const { colorMode } = useColorMode()
-
-  const bg = {
-    light: 'rgb(254, 252, 191)',
-    dark: 'rgba(250, 240, 137, 0.16)'
-  }
-
-  const color = {
-    light: 'rgb(116, 66, 16)',
-    dark: 'rgb(250, 240, 137)'
-  }
-
-  return (
-    <Box
-      as="code"
-      display="inline-block"
-      fontFamily="mono"
-      fontSize="0.84em"
-      bg={bg[colorMode]}
-      color={color[colorMode]}
-      px="0.5rem"
-      borderRadius={6}
-      {...props}
-    />
-  )
+  return <Code variantColor={colorMode === 'light' ? 'yellow' : 'gray'} px="0.5rem" borderRadius={6} {...props} />
 }
 
 const Hr = (props) => {
   const { colorMode } = useColorMode()
 
   const bg = {
-    light: theme.colors.gray300,
-    dark: theme.colors.gray800
+    light: 'gray.300',
+    dark: 'gray.800'
   }
 
-  return <Box bg={bg[colorMode]} height={1} my="2rem" width="100%" {...props} />
+  return <Box bg={bg[colorMode]} height="1px" my={8} width="100%" {...props} />
 }
 
 const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
-  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 24, md: 30 }} mt="2rem" mb="1rem" {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 18, md: 22 }} mt="1rem" mb="0.5rem" {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
@@ -206,11 +140,11 @@ const MDXComponents = {
   th: THead,
   td: TData,
   a: Link,
-  p: (props) => <Text as="p" my="1rem" lineHeight="1.625" {...props} />,
-  strong: (props) => <Text as="strong" fontWeight={600} {...props} />,
-  ul: (props) => <Ul {...props} />,
-  ol: (props) => <Box as="ol" pt="0.5rem" pl="1rem" ml="0.5rem" mb="2rem" {...props} />,
-  li: (props) => <Li {...props} />,
+  p: (props) => <Text as="p" mb={4} {...props} />,
+  strong: (props) => <Text as="strong" fontWeight="bold" {...props} />,
+  ul: (props) => <List styleType="circle" stylePos="outside" my={4} {...props} />,
+  ol: (props) => <List as="ol" {...props} />,
+  li: (props) => <ListItem mb={4} {...props} />,
   blockquote: Quote
 }
 

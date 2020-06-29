@@ -1,8 +1,9 @@
+import { Avatar, Flex, Heading, Stack, Text } from '@chakra-ui/core'
 import dayjs from 'dayjs'
 import styled from '@emotion/styled'
 
 // --- Components
-import { BlogSeo, Box, Flex, Layout as LayoutCom, Link, Share, Text } from 'components'
+import { BlogSeo, Box, Layout as LayoutCom, Link, Share } from 'components'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
@@ -25,81 +26,22 @@ const Layout = (frontMatter) => {
     return (
       <Container>
         <BlogSeo url={`https://onur.dev/blog/${slug}`} {...frontMatter} />
-        <Flex
-          as="article"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="flex-start"
-          m="0 auto 4rem auto"
-          maxWidth={700}
-          width="100%"
-        >
-          <Flex
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            maxWidth="700px"
-            width="100%"
-            mb={16}
-          >
-            <Text
-              mb={10}
-              mt={0}
-              as="h1"
-              fontFamily="display"
-              fontSize={{ _: 32, md: 48 }}
-              fontWeight={500}
-              letterSpacing="-0.025em"
-              // color="#000"
-            >
+        <Box as="article">
+          <Stack spacing={2} mb={10}>
+            <Heading as="h1" fontSize={{ _: '2xl', md: '4xl' }} fontWeight="medium" letterSpacing={-1}>
               {frontMatter.title}
-            </Text>
-            <Flex
-              flexDirection={{ _: 'column', md: 'row' }}
-              justifyContent="space-between"
-              alignItems={{ _: 'flex-start', md: 'center' }}
-              width="100%"
-              mt={2}
-              mb={10}
-              fontSize={14}
-            >
-              <Flex alignItems="center">
-                <Box
-                  as="img"
-                  src="/static/images/me.jpg"
-                  alt="Onur Şuyalçınkaya"
-                  height={24}
-                  width={24}
-                  loading="lazy"
-                />
-                <Text color={colorMode === 'light' ? 'gray800' : 'gray200'} lineHeight={1.5} ml="0.5rem">
-                  {'Onur Şuyalçınkaya'}
-                </Text>
-              </Flex>
-              <Text color={colorMode === 'light' ? 'gray600' : 'gray500'} mt={{ _: '0.5rem', md: 0 }}>
+            </Heading>
+            <Box>
+              <Text color={colorMode === 'light' ? 'gray.600' : 'gray.500'} fontSize="sm">
                 {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
-                {/* {' / '}({dayjs(frontMatter.publishedAt).fromNow()}) */}
                 {' • '}
                 {frontMatter.readingTime.text}
               </Text>
-            </Flex>
-            <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} width="100%">
-              <Share title={frontMatter.title} url={`https://onur.dev/blog/${slug}`} />
-            </Flex>
-          </Flex>
-          {frontMatter.image && (
-            <Box my="2rem">
-              <Box
-                as="img"
-                src={frontMatter.image}
-                loading="lazy"
-                width={600}
-                height="fit-content"
-                maxHeight={{ _: 200, md: 400 }}
-                width="100%"
-              />
             </Box>
-          )}
+            <Box>
+              <Share title={frontMatter.title} url={`https://onur.dev/blog/${slug}`} />
+            </Box>
+          </Stack>
           {children}
           <Box mt={30}>
             <Link href={discussUrl(slug)}>{'Discuss on Twitter ⟶'}</Link>
@@ -121,7 +63,7 @@ const Layout = (frontMatter) => {
               {'Edit on GitHub'}
             </Text> */}
           </Box>
-        </Flex>
+        </Box>
       </Container>
     )
   }

@@ -15,14 +15,14 @@ const Link = (props) => {
   if (isInternalLink) {
     return (
       <NextLink href={href} passHref>
-        <Box as="a" pb={3} borderBottom="1px dotted" {...props} />
+        <Box as="a" fontWeight="medium" pb={1} borderBottom="1px dotted" {...props} />
       </NextLink>
     )
   }
 
   const color = {
-    light: 'hsl(208,99%,44%)',
-    dark: 'rgb(96, 179, 251)'
+    light: 'blue.500',
+    dark: 'blue.200'
   }
 
   return (
@@ -30,8 +30,9 @@ const Link = (props) => {
       as="a"
       target="_blank"
       rel="noopener noreferrer"
+      fontWeight="medium"
       color={color[colorMode]}
-      pb={3}
+      pb={1}
       css={{
         textDecoration: 'none',
         transition: 'all 0.15s ease-out',

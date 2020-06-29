@@ -21,6 +21,7 @@
     "svgr-new": "svgr ./src/icons -d ./src/components/icons --ignore-existing --svg-props 'className=' --svgo-config .svgorc.json"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.8.0",
     "@emotion/babel-preset-css-prop": "^10.0.27",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -30,7 +31,7 @@
     "babel-plugin-import-glob-array": "0.2.0",
     "dayjs": "^1.8.26",
     "emotion-theming": "^10.0.27",
-    "framer-motion": "^1.11.0",
+    "framer-moction": "^1.11.0",
     "mdx-prism": "^0.3.1",
     "next": "^9.4.0",
     "next-mdx-enhanced": "^3.0.0",

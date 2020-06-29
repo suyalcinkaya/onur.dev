@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Router from 'next/router'
-import { ThemeProvider } from 'emotion-theming'
+import { ThemeProvider, CSSReset } from '@chakra-ui/core'
 import { Global, css } from '@emotion/core'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
@@ -24,8 +24,8 @@ const StaticStyles = () => (
         font-weight: 400;
         font-style: normal;
         font-display: swap;
-        src: url('/static/fonts/Inter-Regular.woff2') format('woff2'),
-          url('/static/fonts/Inter-Regular.woff') format('woff');
+        src: url('/fonts/inter-regular-webfont.woff2') format('woff2'),
+          url('/fonts/inter-regular-webfont.woff') format('woff');
       }
 
       @font-face {
@@ -33,35 +33,17 @@ const StaticStyles = () => (
         font-weight: 500;
         font-style: normal;
         font-display: swap;
-        src: url('/static/fonts/Inter-Medium.woff2') format('woff2'),
-          url('/static/fonts/Inter-Medium.woff') format('woff');
+        src: url('/fonts/inter-medium-webfont.woff2') format('woff2'),
+          url('/fonts/inter-medium-webfont.woff') format('woff');
       }
 
       @font-face {
-        font-family: 'Inter';
+        font-family: 'Manrope';
         font-weight: 600;
         font-style: normal;
         font-display: swap;
-        src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2'),
-          url('/static/fonts/Inter-SemiBold.woff') format('woff');
-      }
-
-      @font-face {
-        font-family: 'Gilroy';
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-        src: url('/static/fonts/Gilroy-Medium.woff2') format('woff2'),
-          url('/static/fonts/Gilroy-Medium.woff') format('woff');
-      }
-
-      @font-face {
-        font-family: 'Gilroy';
-        font-weight: 600;
-        font-style: normal;
-        font-display: swap;
-        src: url('/static/fonts/Gilroy-Bold.woff2') format('woff2'),
-          url('/static/fonts/Gilroy-Bold.woff') format('woff');
+        src: url('/fonts/manrope-bold-webfont.woff2') format('woff2'),
+          url('/fonts/manrope-bold-webfont.woff') format('woff');
       }
 
       @font-face {
@@ -69,8 +51,8 @@ const StaticStyles = () => (
         font-weight: 400;
         font-style: normal;
         font-display: swap;
-        src: url('/static/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
-          url('/static/fonts/JetBrainsMono-Regular.woff') format('woff');
+        src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+          url('/fonts/JetBrainsMono-Regular.woff') format('woff');
       }
 
       html {
@@ -101,6 +83,7 @@ const StaticStyles = () => (
 
       p {
         line-height: 1.625;
+        margin: 0;
       }
 
       a {
@@ -142,23 +125,23 @@ const DynamicStyles = () => {
     <Global
       styles={css`
         body {
-          color: ${colorMode === 'light' ? theme.colors.black : theme.colors.gray300};
+          color: ${colorMode === 'light' ? theme.colors.black : theme.colors.gray[300]};
           background-color: ${colorMode === 'light' ? theme.colors.white : '#171923'};
         }
 
         p::selection {
           background: ${colorMode === 'light' ? '#444444' : theme.colors.white};
-          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray200};
+          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray[200]};
         }
 
         p::-moz-selection {
           background: ${colorMode === 'light' ? '#444444' : theme.colors.white};
-          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray200};
+          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray[200]};
         }
 
         figure {
           figcaption {
-            color: ${colorMode === 'light' ? theme.colors.gray600 : theme.colors.gray500};
+            color: ${colorMode === 'light' ? theme.colors.gray[400] : theme.colors.gray[400]};
           }
         }
       `}
@@ -168,6 +151,10 @@ const DynamicStyles = () => {
 
 function App({ Component, pageProps, router }) {
   useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      console.log('system is dark mode')
+    }
+
     const handleRouteChange = (url) => {
       trackPageview(url)
     }
@@ -180,11 +167,12 @@ function App({ Component, pageProps, router }) {
   return (
     <ColorProvider>
       <ThemeProvider theme={theme}>
+        <CSSReset />
+        <DefaultSeo {...SEO} />
+        <StaticStyles />
+        <DynamicStyles />
+        <Header />
         <MDXProvider components={MDXComponents}>
-          <DefaultSeo {...SEO} />
-          <StaticStyles />
-          <DynamicStyles />
-          <Header />
           <AnimatePresence exitBeforeEnter>
             <Component {...pageProps} key={router.route} />
           </AnimatePresence>

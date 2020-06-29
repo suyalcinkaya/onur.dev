@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import { NextSeo } from 'next-seo'
+import { Box, Flex, Grid, Heading, Input, InputLeftElement, InputGroup, Link, Text, Stack } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 // --- Components
-import { Box, BlogPost, Flex, Layout, Text } from 'components'
-import { Search } from 'components/icons'
+import { BlogPost, Layout } from 'components'
 
 // --- Others
 import { frontMatter as blogPosts } from './blog/**/*.mdx' // Thanks to babel-plugin-import-glob-array
@@ -16,12 +15,7 @@ const title = 'Blog – Onur Şuyalçınkaya'
 const description = 'Thoughts on the software industry, programming, tech, music, and my personal life.'
 
 const Blog = () => {
-  const [searchValue, setSearchValue] = useState('')
   const { colorMode } = useColorMode()
-
-  const sortedBlogPosts = blogPosts
-    .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
-    .filter((frontMatter) => frontMatter.title.toLowerCase().includes(searchValue.toLowerCase()))
 
   return (
     <>
@@ -36,26 +30,24 @@ const Blog = () => {
         }}
       />
       <Layout>
-        <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start">
-          <Text
-            as="h1"
-            fontFamily="display"
-            fontSize={{ _: 32, md: 48 }}
-            fontWeight={500}
-            letterSpacing="-0.025em"
-            // color="#000"
-            mt={0}
-            mb={10}
-          >
-            Blog
-          </Text>
-          <Text as="p">
-            {`I've been writing online since 2018, mostly about web development, tips and tricks.
-                In total, I've written ${blogPosts.length} articles on this site.
-                Use the search below to filter by title.`}
-          </Text>
-        </Flex>
-        <Box position="relative" mt="1rem" mb="2rem" boxShadow="0 1px 2px 0 rgba(0,0,0,.05)">
+        <Stack spacing={12}>
+          <Stack spacing={6}>
+            <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-1}>
+              Blog
+            </Heading>
+            <Text>
+              {`I've been writing online since 2018, mostly about web development, tips and tricks.
+                In total, I've written ${blogPosts.length} articles on this site.`}
+            </Text>
+          </Stack>
+          <Grid gridGap={8}>
+            {blogPosts.map((frontMatter) => (
+              <BlogPost key={frontMatter.title} {...frontMatter} />
+            ))}
+          </Grid>
+        </Stack>
+
+        {/* <Box position="relative" mt="1rem" mb="2rem" boxShadow="0 1px 2px 0 rgba(0,0,0,.05)">
           <Input
             aria-label="Search articles"
             onChange={(e) => setSearchValue(e.target.value)}
@@ -63,23 +55,17 @@ const Blog = () => {
             colorMode={colorMode}
           />
           <Box position="absolute" top={0} right="1rem" height="100%">
-            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray500' : 'gray600'}>
+            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray.500' : 'gray.600'}>
               <Search />
             </Flex>
           </Box>
-        </Box>
-        <Flex flexDirection="column" justifyContent="flex-start" alignItems="flex-start" maxWidth={700} mt="0.5rem">
-          {!sortedBlogPosts.length && <Text>No posts found.</Text>}
-          {sortedBlogPosts.map((frontMatter) => (
-            <BlogPost key={frontMatter.title} {...frontMatter} />
-          ))}
-        </Flex>
+        </Box> */}
       </Layout>
     </>
   )
 }
 
-const Input = styled.input`
+const Inputz = styled.input`
   display: block;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -98,18 +84,18 @@ const Input = styled.input`
 
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   ::placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray600)};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
     opacity: 1; /* Firefox */
   }
 
   /* Internet Explorer 10-11 */
   :-ms-input-placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray600)};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
   }
 
   /* Microsoft Edge */
   ::-ms-input-placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray600)};
+    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
   }
 
   &:hover {
