@@ -38,7 +38,7 @@ const TData = (props) => (
 )
 
 const Quote = (props) => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
 
   const bg = {
     light: '#ebf8ff',
@@ -56,8 +56,8 @@ const Quote = (props) => {
       p={4}
       mt={4}
       mb={8}
-      borderLeft={`4px solid ${borderColor[colorMode]}`}
-      bg={bg[colorMode]}
+      borderLeft={`4px solid ${borderColor[systemTheme]}`}
+      bg={bg[systemTheme]}
       css={{
         '> *:first-of-type': {
           marginTop: 0,
@@ -114,19 +114,19 @@ const DocsHeading = (props) => (
 )
 
 const InlineCode = (props) => {
-  const { colorMode } = useColorMode()
-  return <Code variantColor={colorMode === 'light' ? 'yellow' : 'gray'} px="0.5rem" borderRadius={6} {...props} />
+  const { systemTheme } = useColorMode()
+  return <Code variantColor={systemTheme === 'light' ? 'yellow' : 'gray'} px="0.5rem" borderRadius={6} {...props} />
 }
 
 const Hr = (props) => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
 
   const bg = {
     light: 'gray.300',
     dark: 'gray.800'
   }
 
-  return <Box bg={bg[colorMode]} height="1px" my={8} width="100%" {...props} />
+  return <Box bg={bg[systemTheme]} height="1px" my={8} width="100%" {...props} />
 }
 
 const MDXComponents = {
@@ -142,7 +142,7 @@ const MDXComponents = {
   a: Link,
   p: (props) => <Text as="p" mb={4} {...props} />,
   strong: (props) => <Text as="strong" fontWeight="bold" {...props} />,
-  ul: (props) => <List styleType="circle" stylePos="outside" my={4} {...props} />,
+  ul: (props) => <List styleType="circle" my={4} {...props} />,
   ol: (props) => <List as="ol" {...props} />,
   li: (props) => <ListItem mb={4} {...props} />,
   blockquote: Quote

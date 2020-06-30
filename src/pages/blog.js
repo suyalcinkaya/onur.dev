@@ -15,7 +15,9 @@ const title = 'Blog – Onur Şuyalçınkaya'
 const description = 'Thoughts on the software industry, programming, tech, music, and my personal life.'
 
 const Blog = () => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
+
+  const sortedBlogPosts = blogPosts.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
 
   return (
     <>
@@ -41,7 +43,7 @@ const Blog = () => {
             </Text>
           </Stack>
           <Grid gridGap={8}>
-            {blogPosts.map((frontMatter) => (
+            {sortedBlogPosts.map((frontMatter) => (
               <BlogPost key={frontMatter.title} {...frontMatter} />
             ))}
           </Grid>
@@ -52,10 +54,10 @@ const Blog = () => {
             aria-label="Search articles"
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder="Search articles"
-            colorMode={colorMode}
+            systemTheme={systemTheme}
           />
           <Box position="absolute" top={0} right="1rem" height="100%">
-            <Flex alignItems="center" height="100%" color={colorMode === 'light' ? 'gray.500' : 'gray.600'}>
+            <Flex alignItems="center" height="100%" color={systemTheme === 'light' ? 'gray.500' : 'gray.600'}>
               <Search />
             </Flex>
           </Box>
@@ -77,29 +79,29 @@ const Inputz = styled.input`
   padding-bottom: 0.5rem;
   margin: 0;
   color: inherit;
-  background-color: ${(props) => (props.colorMode === 'light' ? theme.colors.white : 'rgba(255, 255, 255, 0.06)')};
-  border: 1px solid ${(props) => (props.colorMode === 'light' ? '#d2d6dc' : 'rgba(255, 255, 255, 0.04)')};
+  background-color: ${(props) => (props.systemTheme === 'light' ? theme.colors.white : 'rgba(255, 255, 255, 0.06)')};
+  border: 1px solid ${(props) => (props.systemTheme === 'light' ? '#d2d6dc' : 'rgba(255, 255, 255, 0.04)')};
   border-radius: 0.375rem;
   appearance: none;
 
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   ::placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
+    color: ${(props) => (props.systemTheme === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
     opacity: 1; /* Firefox */
   }
 
   /* Internet Explorer 10-11 */
   :-ms-input-placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
+    color: ${(props) => (props.systemTheme === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
   }
 
   /* Microsoft Edge */
   ::-ms-input-placeholder {
-    color: ${(props) => (props.colorMode === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
+    color: ${(props) => (props.systemTheme === 'light' ? theme.colors.gray500 : theme.colors.gray[600])};
   }
 
   &:hover {
-    border-color: ${(props) => (props.colorMode === 'light' ? '#cbd5e0' : 'rgba(255, 255, 255, 0.08)')};
+    border-color: ${(props) => (props.systemTheme === 'light' ? '#cbd5e0' : 'rgba(255, 255, 255, 0.08)')};
   }
 
   &:focus {

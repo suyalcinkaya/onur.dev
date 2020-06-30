@@ -28,7 +28,7 @@ const StyledButton = styled.button`
 
   @media not all and (hover: none) {
     &:hover {
-      background-color: ${(props) => (props.colorMode === 'light' ? '#edeef0' : 'rgba(255, 255, 255, 0.08)')};
+      background-color: ${(props) => (props.systemTheme === 'light' ? '#edeef0' : 'rgba(255, 255, 255, 0.08)')};
     }
 
     &:active {
@@ -42,8 +42,8 @@ const Btn = styled(StyledButton)(
 )
 
 const Button = forwardRef((props, ref) => {
-  const { colorMode } = useColorMode()
-  return <Btn ref={ref} colorMode={colorMode} {...props} />
+  const { systemTheme } = useColorMode()
+  return <Btn ref={ref} systemTheme={systemTheme} {...props} />
 })
 
 Button.defaultProps = {

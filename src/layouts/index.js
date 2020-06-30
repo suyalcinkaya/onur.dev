@@ -1,4 +1,4 @@
-import { Avatar, Flex, Heading, Stack, Text } from '@chakra-ui/core'
+import { Heading, Stack, Text } from '@chakra-ui/core'
 import dayjs from 'dayjs'
 import styled from '@emotion/styled'
 
@@ -16,11 +16,11 @@ const Layout = (frontMatter) => {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
 
   return ({ children }) => {
-    const { colorMode } = useColorMode()
+    const { systemTheme } = useColorMode()
 
     const Container = styled(LayoutCom)`
       ${baseTheme}
-      ${colorMode === 'light' ? lightTheme : darkTheme}
+      ${systemTheme === 'light' ? lightTheme : darkTheme}
     `
 
     return (
@@ -32,7 +32,7 @@ const Layout = (frontMatter) => {
               {frontMatter.title}
             </Heading>
             <Box>
-              <Text color={colorMode === 'light' ? 'gray.600' : 'gray.500'} fontSize="sm">
+              <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.400'} fontSize="sm">
                 {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
                 {' • '}
                 {frontMatter.readingTime.text}

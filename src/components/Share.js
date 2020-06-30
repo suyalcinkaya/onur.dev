@@ -10,7 +10,7 @@ import useColorMode from 'hooks/useColorMode'
 import theme from 'styles/theme'
 
 const Share = ({ title, url }) => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
 
   const Button = styled.button({
     display: 'inline-flex',
@@ -21,7 +21,7 @@ const Share = ({ title, url }) => {
     boxShadow: 'none',
     padding: 0,
     outline: 'none',
-    color: colorMode === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray[400],
+    color: systemTheme === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray[400],
     transition: 'all 0.15s ease-out',
     '&:hover': {
       color: '#000'

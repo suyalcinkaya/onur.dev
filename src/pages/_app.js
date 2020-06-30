@@ -10,7 +10,6 @@ import { AnimatePresence } from 'framer-motion'
 import { Header, MDXComponents } from 'components'
 
 // --- Others
-import { ColorProvider } from 'contexts/ColorProvider'
 import useColorMode from 'hooks/useColorMode'
 import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
@@ -119,29 +118,29 @@ const StaticStyles = () => (
 )
 
 const DynamicStyles = () => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
 
   return (
     <Global
       styles={css`
         body {
-          color: ${colorMode === 'light' ? theme.colors.black : theme.colors.gray[300]};
-          background-color: ${colorMode === 'light' ? theme.colors.white : '#171923'};
+          color: ${systemTheme === 'light' ? theme.colors.black : theme.colors.white};
+          background-color: ${systemTheme === 'light' ? theme.colors.white : '#1A1A1A'};
         }
 
         p::selection {
-          background: ${colorMode === 'light' ? '#444444' : theme.colors.white};
-          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray[200]};
+          background: ${systemTheme === 'light' ? '#444444' : theme.colors.white};
+          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[200]};
         }
 
         p::-moz-selection {
-          background: ${colorMode === 'light' ? '#444444' : theme.colors.white};
-          color: ${colorMode === 'light' ? theme.colors.white : theme.colors.gray[200]};
+          background: ${systemTheme === 'light' ? '#444444' : theme.colors.white};
+          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[200]};
         }
 
         figure {
           figcaption {
-            color: ${colorMode === 'light' ? theme.colors.gray[400] : theme.colors.gray[400]};
+            color: ${systemTheme === 'light' ? theme.colors.gray[400] : theme.colors.gray[400]};
           }
         }
       `}
@@ -151,34 +150,30 @@ const DynamicStyles = () => {
 
 function App({ Component, pageProps, router }) {
   useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      console.log('system is dark mode')
-    }
-
     const handleRouteChange = (url) => {
       trackPageview(url)
     }
+
     Router.events.on('routeChangeComplete', handleRouteChange)
+
     return () => {
       Router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [])
 
   return (
-    <ColorProvider>
-      <ThemeProvider theme={theme}>
-        <CSSReset />
-        <DefaultSeo {...SEO} />
-        <StaticStyles />
-        <DynamicStyles />
-        <Header />
-        <MDXProvider components={MDXComponents}>
-          <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
-        </MDXProvider>
-      </ThemeProvider>
-    </ColorProvider>
+    <ThemeProvider theme={theme}>
+      <CSSReset />
+      <DefaultSeo {...SEO} />
+      <StaticStyles />
+      <DynamicStyles />
+      <Header />
+      <MDXProvider components={MDXComponents}>
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </MDXProvider>
+    </ThemeProvider>
   )
 }
 

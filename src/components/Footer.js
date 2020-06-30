@@ -9,7 +9,7 @@ import useColorMode from 'hooks/useColorMode'
 import theme from 'styles/theme'
 
 const Footer = () => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
 
   const color = {
     light: theme.colors.gray600,
@@ -26,12 +26,12 @@ const Footer = () => {
     >
       <Flex justifyContent="center" alignItems="center" ml={{ md: '-0.75rem' }} mb={{ _: '0.5rem', md: 0 }}>
         <a href="https://twitter.com/onursdev" target="_blank" rel="noopener noreferrer" title="Twitter">
-          <Button type="button" aria-label="Twitter" px="0.5rem" color={color[colorMode]}>
+          <Button type="button" aria-label="Twitter" px="0.5rem" color={color[systemTheme]}>
             <Twitter />
           </Button>
         </a>
         <a href="https://github.com/suyalcinkaya/" target="_blank" rel="noopener noreferrer" title="GitHub">
-          <Button type="button" aria-label="GitHub" px="0.5rem" color={color[colorMode]}>
+          <Button type="button" aria-label="GitHub" px="0.5rem" color={color[systemTheme]}>
             <Github />
           </Button>
         </a>
@@ -41,17 +41,17 @@ const Footer = () => {
           rel="noopener noreferrer"
           title="LinkedIn"
         >
-          <Button type="button" aria-label="LinkedIn" px="0.5rem" color={color[colorMode]}>
+          <Button type="button" aria-label="LinkedIn" px="0.5rem" color={color[systemTheme]}>
             <Linkedin />
           </Button>
         </a>
         <a href="https://medium.com/@suyalcinkaya" target="_blank" rel="noopener noreferrer" title="Medium">
-          <Button type="button" aria-label="Medium" px="0.5rem" color={color[colorMode]}>
+          <Button type="button" aria-label="Medium" px="0.5rem" color={color[systemTheme]}>
             <Medium />
           </Button>
         </a>
         <a href="https://soundcloud.com/jagerman" target="_blank" rel="noopener noreferrer" title="Soundcloud">
-          <Button type="button" aria-label="Soundcloud" px="0.5rem" color={color[colorMode]}>
+          <Button type="button" aria-label="Soundcloud" px="0.5rem" color={color[systemTheme]}>
             <Soundcloud />
           </Button>
         </a>

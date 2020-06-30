@@ -68,7 +68,7 @@ export const baseTheme = css`
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0;
     margin-top: 1rem;
     width: 100%;
