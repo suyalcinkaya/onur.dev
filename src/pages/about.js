@@ -35,7 +35,7 @@ const About = () => (
           <Text>
             I grew up in Ankara—the capital city of Turkey—and went to Doğuş University, graduating with a degree in
             Computer Engineering. I spend my free time contributing to open source, sharing everything I know through my{' '}
-            <Link href="/blog">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>, DJing, doing
+            <Link href="/">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>, DJing, doing
             bodybuilding, playing Football Manager (since 2000), watching my favorite team's—Beşiktaş 🦅— football
             matches and enjoying time with friends and family.
           </Text>

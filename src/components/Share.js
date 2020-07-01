@@ -1,8 +1,7 @@
+import { Box, Flex } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 // --- Components
-import Box from 'components/Box'
-import Flex from 'components/Flex'
 import { Facebook, LinkedinBox, Twitter } from 'components/icons'
 
 // --- Others

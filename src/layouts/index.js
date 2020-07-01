@@ -1,16 +1,15 @@
-import { Heading, Stack, Text } from '@chakra-ui/core'
-import dayjs from 'dayjs'
+import { Box, Heading, Stack, Text } from '@chakra-ui/core'
+import tinytime from 'tinytime'
 import styled from '@emotion/styled'
 
 // --- Components
-import { BlogSeo, Box, Layout as LayoutCom, Link, Share } from 'components'
+import { BlogSeo, Layout as LayoutCom, Link, Share } from 'components'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
 import { baseTheme, lightTheme, darkTheme } from 'styles/prism'
 
-// const editUrl = (slug) => `https://github.com/suyalcinkaya/onur.dev/edit/master/pages/blog/${slug}.mdx`
-const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/blog/${slug}`)}`
+const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`
 
 const Layout = (frontMatter) => {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
@@ -25,7 +24,7 @@ const Layout = (frontMatter) => {
 
     return (
       <Container>
-        <BlogSeo url={`https://onur.dev/blog/${slug}`} {...frontMatter} />
+        <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
         <Box as="article">
           <Stack spacing={2} mb={10}>
             <Heading as="h1" fontSize={{ _: '2xl', md: '4xl' }} fontWeight="medium" letterSpacing={-1}>
@@ -33,13 +32,15 @@ const Layout = (frontMatter) => {
             </Heading>
             <Box>
               <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.400'} fontSize="sm">
-                {dayjs(frontMatter.publishedAt).format('MMMM DD, YYYY')}
+                <time dateTime={frontMatter.publishedAt}>
+                  {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
+                </time>
                 {' • '}
                 {frontMatter.readingTime.text}
               </Text>
             </Box>
             <Box>
-              <Share title={frontMatter.title} url={`https://onur.dev/blog/${slug}`} />
+              <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
             </Box>
           </Stack>
           {children}

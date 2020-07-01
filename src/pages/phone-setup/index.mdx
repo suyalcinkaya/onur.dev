@@ -5,7 +5,7 @@ publishedAt: '2020-05-28'
 image: '/images/phone-setup.webp'
 ---
 
-import { Box } from 'components'
+import { Grid } from '@chakra-ui/core'
 
 I've always used lots of apps that I didn't even need. My home screen was a mess and it was really damn hard to find anything.
 I decided to go with more minimalist and productive.
@@ -14,12 +14,7 @@ Ever since I've become more minimal lately—even for my phone—I wanted to fur
 
 I’m currently down to 80 apps in total—still working on it tho 😅—So let’s break down the setup:
 
-<Box
-  display="grid"
-  gridTemplateColumns={{ _: '1fr', md: 'repeat(2, 1fr)' }}
-  gridGap={{ _: '2rem', md: '1.5rem' }}
-  my="1rem"
->
+<Grid gridTemplateColumns={{ _: '1fr', md: 'repeat(2, 1fr)' }} gridGap={{ _: '2rem', md: '1.5rem' }} my="1rem">
   <figure>
     <img src="/images/iphone-lock.webp" loading="lazy" style={{ width: '100%' }} />
     <figcaption>Lock Screen</figcaption>
@@ -28,7 +23,7 @@ I’m currently down to 80 apps in total—still working on it tho 😅—So let
     <img src="/images/iphone-home.webp" loading="lazy" style={{ width: '100%' }} />
     <figcaption>Home Screen</figcaption>
   </figure>
-</Box>
+</Grid>
 
 ## Lock Screen
 

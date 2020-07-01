@@ -5,10 +5,7 @@ import { Flex, Grid, Heading, Link as ChakraLink, Text, Stack } from '@chakra-ui
 import { BlogPost, Link, MusicCard, Layout } from 'components'
 
 // --- Articles
-import { frontMatter as phoneSetup } from './blog/phone-setup.mdx'
-import { frontMatter as useFetch } from './blog/useFetch-react-hook.mdx'
-import { frontMatter as html5Video } from './blog/html5-video.mdx'
-import { frontMatter as reactMemo } from './blog/understanding-react-memo.mdx'
+import { frontMatter as blogPosts } from './**/*.mdx' // Thanks to babel-plugin-import-glob-array
 
 const popularMixtapes = [
   {
@@ -41,71 +38,73 @@ const popularMixtapes = [
   }
 ]
 
-const Home = () => (
-  <Layout>
-    <Stack spacing={12}>
-      <Stack spacing={6}>
-        <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-1}>
-          {'Hey, I’m Onur Şuyalçınkaya'}
-        </Heading>
-        <Text>
-          {`I’m a Software Engineer, Writer, and DJ currently living in Istanbul, Turkey. I develop things on `}
-          <Link
-            href="https://yemek.com"
-            css={{
-              textDecoration: 'none',
-              '&:hover': {
-                textDecoration: 'none'
-              }
-            }}
-          >
-            yemek.com
-          </Link>
-          {` at Yemeksepeti.`}
-        </Text>
-      </Stack>
-      <Stack spacing={4}>
-        <Flex justifyContent="space-between" alignItems="center">
-          <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-1}>
-            Latest Posts
+const Home = () => {
+  const sortedBlogPosts = blogPosts.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+
+  return (
+    <Layout>
+      <Stack spacing={12}>
+        <Stack spacing={6}>
+          <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-1}>
+            {'Hey, I’m Onur Şuyalçınkaya'}
           </Heading>
-          <NextLink href="/blog">
-            <a>See All ⟶</a>
-          </NextLink>
-        </Flex>
-        <Grid gridGap={6}>
-          <BlogPost {...phoneSetup} />
-          <BlogPost {...useFetch} />
-          <BlogPost {...reactMemo} />
-          <BlogPost {...html5Video} />
-        </Grid>
-      </Stack>
-      <Stack spacing={4}>
-        <Flex justifyContent="space-between" alignItems="center">
+          <Text>
+            {`I’m a Software Engineer, Writer, and DJ currently living in Istanbul, Turkey. I develop things on `}
+            <Link
+              href="https://yemek.com"
+              css={{
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'none'
+                }
+              }}
+            >
+              yemek.com
+            </Link>
+            {` at Yemeksepeti.`}
+          </Text>
+          <Text>
+            {`I've been writing online since 2018, mostly about web development, tips and tricks.
+                In total, I've written ${blogPosts.length} articles on this site.`}
+          </Text>
+        </Stack>
+        <Stack spacing={6}>
           <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-1}>
-            Popular Mixtapes
+            Blog Posts
           </Heading>
-          <ChakraLink
-            isExternal
-            href="https://soundcloud.com/jagerman"
-            css={{
-              textDecoration: 'none',
-              '&:hover': {
-                textDecoration: 'none'
-              }
-            }}
-          >
-            See All ⟶
-          </ChakraLink>
-        </Flex>
-        <Grid gridGap={6}>
-          {popularMixtapes.map((mixtape, mixtapeId) => (
-            <MusicCard key={`mixtape_${mixtapeId}`} {...mixtape} />
-          ))}
-        </Grid>
+          <Grid gridGap={6}>
+            {sortedBlogPosts.map((frontMatter) => (
+              <BlogPost key={frontMatter.title} {...frontMatter} />
+            ))}
+          </Grid>
+        </Stack>
+        <Stack spacing={6}>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-1}>
+              Popular Mixtapes
+            </Heading>
+            <ChakraLink
+              isExternal
+              href="https://soundcloud.com/jagerman"
+              css={{
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'none'
+                }
+              }}
+            >
+              See All ⟶
+            </ChakraLink>
+          </Flex>
+          <Grid gridGap={6}>
+            {popularMixtapes.map((mixtape, mixtapeId) => (
+              <MusicCard key={`mixtape_${mixtapeId}`} {...mixtape} />
+            ))}
+          </Grid>
+        </Stack>
       </Stack>
-    </Stack>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 export default Home

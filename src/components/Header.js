@@ -11,10 +11,6 @@ import useColorMode from 'hooks/useColorMode'
 const HEADER_HEIGHT = 80
 const navigation = [
   {
-    url: '/blog',
-    name: 'Blog'
-  },
-  {
     url: '/about',
     name: 'About'
   }

@@ -1,23 +1,22 @@
 import NextLink from 'next/link'
 import { Heading, Stack, Text } from '@chakra-ui/core'
-import dayjs from 'dayjs'
+import tinytime from 'tinytime'
 
 const BlogPost = (frontMatter) => {
   const {
-    // image,
     publishedAt,
     readingTime: { text: readingDuration },
     // summary,
     title
   } = frontMatter
 
-  const slug = frontMatter.__resourcePath.split('/').pop().replace('blog/', '').replace('.mdx', '')
-  const date = dayjs(publishedAt).format('MMM DD, YYYY')
+  const pathFiles = frontMatter.__resourcePath.split('/')
+  const slug = pathFiles[pathFiles.length - 2]
 
   return (
-    <NextLink href={`blog/${slug}`} passHref>
+    <NextLink href={`/${slug}`} passHref>
       <a>
-        <Stack spacing={1}>
+        <Stack spacing={2}>
           <Heading as="h3" fontSize="lg" fontWeight="medium">
             {title}
           </Heading>
@@ -25,7 +24,7 @@ const BlogPost = (frontMatter) => {
             {summary}
           </Text> */}
           <Text fontSize="sm" color="gray.400">
-            {date}
+            <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
             {' • '}
             {readingDuration}
           </Text>
