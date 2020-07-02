@@ -14,23 +14,21 @@ const BlogPost = (frontMatter) => {
   const slug = pathFiles[pathFiles.length - 2]
 
   return (
-    <NextLink href={`/${slug}`} passHref>
-      <a>
-        <Stack spacing={2}>
-          <Heading as="h3" fontSize="lg" fontWeight="medium">
-            {title}
-          </Heading>
-          {/* <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.500'} mb={2}>
+    <Stack as="article" spacing={2}>
+      <Heading as="h3" fontSize="lg" fontWeight="medium">
+        <NextLink href={`/${slug}`} passHref>
+          <a>{title}</a>
+        </NextLink>
+      </Heading>
+      {/* <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.500'} mb={2}>
             {summary}
           </Text> */}
-          <Text fontSize="sm" color="gray.400">
-            <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
-            {' • '}
-            {readingDuration}
-          </Text>
-        </Stack>
-      </a>
-    </NextLink>
+      <Text fontSize="sm" color="gray.400">
+        <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
+        {' • '}
+        {readingDuration}
+      </Text>
+    </Stack>
   )
 }
 
