@@ -129,13 +129,13 @@ const DynamicStyles = () => {
         }
 
         p::selection {
-          background: ${systemTheme === 'light' ? '#444444' : theme.colors.white};
-          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[200]};
+          background: ${systemTheme === 'light' ? '#444444' : theme.colors.gray[100]};
+          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[700]};
         }
 
         p::-moz-selection {
-          background: ${systemTheme === 'light' ? '#444444' : theme.colors.white};
-          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[200]};
+          background: ${systemTheme === 'light' ? '#444444' : theme.colors.gray[100]};
+          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[700]};
         }
 
         figure {

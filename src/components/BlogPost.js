@@ -2,6 +2,9 @@ import NextLink from 'next/link'
 import { Heading, Stack, Text } from '@chakra-ui/core'
 import tinytime from 'tinytime'
 
+// --- Others
+import useColorMode from 'hooks/useColorMode'
+
 const BlogPost = (frontMatter) => {
   const {
     publishedAt,
@@ -9,6 +12,8 @@ const BlogPost = (frontMatter) => {
     // summary,
     title
   } = frontMatter
+
+  const { systemTheme } = useColorMode()
 
   const pathFiles = frontMatter.__resourcePath.split('/')
   const slug = pathFiles[pathFiles.length - 2]
@@ -23,7 +28,7 @@ const BlogPost = (frontMatter) => {
       {/* <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.500'} mb={2}>
             {summary}
           </Text> */}
-      <Text fontSize="sm" color="gray.400">
+      <Text fontSize="sm" color={systemTheme === 'light' ? 'gray.500' : 'gray.400'}>
         <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
         {' • '}
         {readingDuration}
