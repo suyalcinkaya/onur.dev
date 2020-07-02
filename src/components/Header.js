@@ -7,14 +7,7 @@ import { O } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
-
-const HEADER_HEIGHT = 80
-const navigation = [
-  {
-    url: '/about',
-    name: 'About'
-  }
-]
+import { HEADER_HEIGHT, navigations } from 'constant'
 
 const Header = () => {
   const { systemTheme } = useColorMode()
@@ -50,7 +43,7 @@ const Header = () => {
             </NextLink>
           </Box>
           <Box>
-            {navigation.map((nav, navIndex) => (
+            {navigations.map((nav, navIndex) => (
               <React.Fragment key={`nav_${navIndex}`}>
                 <NextLink href={nav.url} passHref>
                   <Button as="a" type="button">

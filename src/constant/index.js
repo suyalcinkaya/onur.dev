@@ -27,3 +27,43 @@ export const profiles = [
     icon: <Soundcloud />
   }
 ]
+
+export const popularMixtapes = [
+  {
+    title: 'Summer Sax',
+    description: 'Melodic Saxophone Deep House Summer Mix',
+    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0',
+    playCount: '9.4M',
+    likeCount: '46K'
+  },
+  {
+    title: 'Sax On Fire',
+    description: 'Melodic Saxophone Deep House Summer Mix',
+    url: 'https://soundcloud.com/jagerman/saxonfire',
+    playCount: '1.36M',
+    likeCount: '33.6K'
+  },
+  {
+    title: 'Casablanca',
+    description: 'Soulful Deep House Mix',
+    url: 'https://soundcloud.com/jagerman/casablanca',
+    playCount: '113K',
+    likeCount: '2.8K'
+  },
+  {
+    title: 'I Wanna Live Not Just Survive',
+    description: 'Deep House Mixtape',
+    url: 'https://soundcloud.com/jagerman/i-wanna-live-not-just-survive',
+    playCount: '7K',
+    likeCount: '290'
+  }
+]
+
+export const HEADER_HEIGHT = 80
+
+export const navigations = [
+  {
+    url: '/about',
+    name: 'About'
+  }
+]
