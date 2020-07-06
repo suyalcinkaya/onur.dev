@@ -27,7 +27,7 @@ const About = () => (
         </Heading>
         <Stack spacing={4}>
           <Text>
-            {`Hey, I'm Onur, a Software Engineer, Writer, and DJ who dabbles in design with a strong sense of aesthetics, currently living
+            {`Hey, I'm Onur, a Software Engineer, Writer, and DJ who dabbles in design with a strong sense of aesthetics, living
             in Istanbul, Turkey where currently developing things on `}
             <Link
               href="https://yemek.com"

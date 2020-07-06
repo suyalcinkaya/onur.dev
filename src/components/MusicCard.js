@@ -12,6 +12,7 @@ const MusicCard = (props) => {
           textDecoration: 'none'
         }
       }}
+      isExternal
     >
       <Stack spacing={1}>
         <Heading as="h3" fontSize="lg" fontWeight="medium">

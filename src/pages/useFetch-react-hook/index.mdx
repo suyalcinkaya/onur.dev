@@ -160,7 +160,7 @@ const useFetch = (url) => {
         }
         setIsLoading(false)
       } catch (err) {
-        setError(true)
+        setHasError(true)
         setErrorMessage(err.message)
         setIsLoading(false)
       }
@@ -213,7 +213,7 @@ const useFetch = (url, skip = false) => {
         }
         setIsLoading(false)
       } catch (err) {
-        setError(true)
+        setHasError(true)
         setErrorMessage(err.message)
         setIsLoading(false)
       }
@@ -267,7 +267,7 @@ const useFetch = (initialUrl, skip = false) => {
         }
         setIsLoading(false)
       } catch (err) {
-        setError(true)
+        setHasError(true)
         setErrorMessage(err.message)
         setIsLoading(false)
       }
@@ -326,7 +326,7 @@ const useFetch = (initialUrl, initialParams = {}, skip = false) => {
         }
         setIsLoading(false)
       } catch (err) {
-        setError(true)
+        setHasError(true)
         setErrorMessage(err.message)
         setIsLoading(false)
       }
@@ -401,7 +401,7 @@ const useFetch = (initialUrl, initialParams = {}, skip = false) => {
         }
         setIsLoading(false)
       } catch (err) {
-        setError(true)
+        setHasError(true)
         setErrorMessage(err.message)
         setIsLoading(false)
       }
@@ -460,7 +460,7 @@ const useFetch = (initialUrl, initialParams = {}, skip = false) => {
           setErrorMessage(result)
         }
       } catch (err) {
-        setError(true)
+        setHasError(true)
         setErrorMessage(err.message)
       } finally {
         setIsLoading(false)

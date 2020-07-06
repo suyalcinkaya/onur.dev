@@ -7,20 +7,29 @@ import Link from 'components/Link'
 import theme from 'styles/theme'
 import useColorMode from 'hooks/useColorMode'
 
-const Table = (props) => (
-  <Box
-    as="table"
-    textAlign="left"
-    my={4}
-    width="100%"
-    css={{
-      'tbody > tr:nth-of-type(even)': {
-        backgroundColor: theme.colors.gray[200]
-      }
-    }}
-    {...props}
-  />
-)
+const Table = (props) => {
+  const { systemTheme } = useColorMode()
+
+  const bg = {
+    light: theme.colors.gray[200],
+    dark: theme.colors.gray[600]
+  }
+
+  return (
+    <Box
+      as="table"
+      textAlign="left"
+      my={4}
+      width="100%"
+      css={{
+        'tbody > tr:nth-of-type(even)': {
+          backgroundColor: bg[systemTheme]
+        }
+      }}
+      {...props}
+    />
+  )
+}
 
 const THead = (props) => <Box as="th" bg="gray.400" color="white" fontWeight="medium" p="0.5rem" {...props} />
 
@@ -123,7 +132,7 @@ const Hr = (props) => {
 
   const bg = {
     light: 'gray.300',
-    dark: 'gray.800'
+    dark: 'gray.700'
   }
 
   return <Box bg={bg[systemTheme]} height="1px" my={8} width="100%" {...props} />
