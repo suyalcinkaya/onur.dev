@@ -1,24 +1,12 @@
 import { forwardRef } from 'react'
+import { Button as ChakraButton } from '@chakra-ui/core'
 import styled from '@emotion/styled'
-import {
-  border,
-  borderRadius,
-  color,
-  compose,
-  flexbox,
-  layout,
-  size,
-  shadow,
-  space,
-  position,
-  typography
-} from 'styled-system'
 
 // --- Others
 import theme from 'styles/theme'
 import useColorMode from 'hooks/useColorMode'
 
-const StyledButton = styled.button`
+const StyledButton = styled(ChakraButton)`
   appearance: none;
   user-select: none;
   white-space: nowrap;
@@ -37,13 +25,9 @@ const StyledButton = styled.button`
   }
 `
 
-const Btn = styled(StyledButton)(
-  compose(border, borderRadius, color, flexbox, size, space, layout, position, shadow, typography)
-)
-
 const Button = forwardRef((props, ref) => {
   const { systemTheme } = useColorMode()
-  return <Btn ref={ref} systemTheme={systemTheme} {...props} />
+  return <StyledButton ref={ref} systemTheme={systemTheme} {...props} />
 })
 
 Button.defaultProps = {
