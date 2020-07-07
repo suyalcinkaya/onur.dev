@@ -4,8 +4,9 @@ My portfolio has transformed over the years - from a static HTML site, to Create
 
 ## Overview
 
-- `pages/blog/*` - Static pre-rendered blog pages using [MDX](https://github.com/mdx-js/mdx).
-- `pages/*` - All other static pages.
+- `/` - Home page.
+- `pages/about` - About page.
+- `pages/**/index.mdx` - Static pre-rendered blog pages using [MDX](https://github.com/mdx-js/mdx).
 
 ## Running Locally
 
@@ -21,4 +22,4 @@ $ yarn dev
 - [Vercel](https://vercel.com)
 - [Next.js](https://nextjs.org/)
 - [MDX](https://github.com/mdx-js/mdx)
-- [Styled System](https://styled-system.com/)
+- [Chakra UI](http://chakra-ui.com/)

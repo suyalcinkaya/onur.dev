@@ -1,0 +1,132 @@
+---
+title: 'Using Flickity with React'
+summary: 'I love using Flickity, it’s great and super easy to use. But…'
+publishedAt: '2018-11-06'
+image: '/images/using-flickity-with-react.webp'
+---
+
+I love using Flickity, it’s great and super easy to use. But… When I started to work with React and need Flickity, things got pretty confusing. So I started to look for a component style library but find nothing effective. And built mine…
+
+## Step 1: Install flickity
+
+To install the plugin, use your favorite package manager.
+
+```bash:NPM
+npm install flickity --save
+```
+
+```bash:Yarn
+yarn add flickity
+```
+
+## Step 2: Create a file called Slider.js
+
+This file will contain Flickity configurations. You can of course name it as you want but be careful with naming component name and then importing also.
+
+```jsx:Slider.js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Flickity from 'flickity'
+import 'flickity/dist/flickity.min.css'
+
+export default class Slider extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      flickityReady: false
+    }
+
+    this.refreshFlickity = this.refreshFlickity.bind(this)
+  }
+
+  componentDidMount() {
+    this.flickity = new Flickity(this.flickityNode, this.props.options || {})
+
+    this.setState({
+      flickityReady: true
+    })
+  }
+
+  refreshFlickity() {
+    this.flickity.reloadCells()
+    this.flickity.resize()
+    this.flickity.updateDraggable()
+  }
+
+  componentWillUnmount() {
+    this.flickity.destroy()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const flickityDidBecomeActive = !prevState.flickityReady && this.state.flickityReady
+    const childrenDidChange = prevProps.children.length !== this.props.children.length
+
+    if (flickityDidBecomeActive || childrenDidChange) {
+      this.refreshFlickity()
+    }
+  }
+
+  renderPortal() {
+    if (!this.flickityNode) {
+      return null
+    }
+
+    const mountNode = this.flickityNode.querySelector('.flickity-slider')
+
+    if (mountNode) {
+      return ReactDOM.createPortal(this.props.children, mountNode)
+    }
+  }
+
+  render() {
+    return [
+      <div className={'test'} key="flickityBase" ref={(node) => (this.flickityNode = node)} />,
+      this.renderPortal()
+    ].filter(Boolean)
+  }
+}
+```
+
+Voilà! You’ve made it! 😍
+
+## Step 3: Using in a component
+
+```jsx:ExampleComponent.js
+import React, { Component } from 'react'
+import Image1 from '../assets/images/image1.jpg'
+import Image2 from '../assets/images/image2.jpg'
+import Image3 from '../assets/images/image3.jpg'
+import Image4 from '../assets/images/image4.jpg'
+import Image5 from '../assets/images/image5.jpg'
+import Slider from '../components/Slider'
+
+const images = [Image1, Image2, Image3, Image4, Image5]
+
+export default class Home extends Component {
+  render() {
+    return (
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }} />
+        <Slider
+          options={{
+            autoPlay: 4000,
+            pauseAutoPlayOnHover: true,
+            wrapAround: true,
+            fullscreen: true,
+            adaptiveHeight: true
+          }}
+        >
+          {images.map((image, index) => (
+            <div key={index} style={{ width: '80%', height: '400px', margin: '0 0.5em' }}>
+              <img src={image} alt="" />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    )
+  }
+}
+```
+
+Thanks for reading! 💛

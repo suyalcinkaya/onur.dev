@@ -1,15 +1,23 @@
-import { useContext, useEffect } from 'react'
-
-import ThemeContext from 'contexts/ColorProvider'
+import { useEffect, useState } from 'react'
 
 const useColorMode = () => {
-  const { colorMode, toggleColorMode } = useContext(ThemeContext)
+  const [systemTheme, systemThemeSet] = useState()
 
   useEffect(() => {
-    localStorage.colorMode = colorMode
-  }, [colorMode])
+    systemThemeSet(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
 
-  return { colorMode, toggleColorMode }
+    const handleThemeChange = (event) => {
+      systemThemeSet(event.matches ? 'dark' : 'light')
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', handleThemeChange)
+
+    return () => {
+      window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', handleThemeChange)
+    }
+  }, [])
+
+  return { systemTheme }
 }
 
 export default useColorMode

@@ -1,47 +1,37 @@
-const space = []
+import { theme as chakraTheme } from '@chakra-ui/core'
 
-const colors = {
-  // scheme colors
-  white: '#FFFFFF',
-  // black: '#484848',
-  black: '#161e2e',
-  inherit: 'inherit',
-
-  gray100: '#f7fafc',
-  gray200: '#edf2f7',
-  gray300: '#e2e8f0',
-  gray400: '#cbd5e0',
-  gray500: '#a0aec0',
-  gray600: '#718096',
-  gray700: '#4a5568',
-  gray800: '#2d3748',
-  gray900: '#1a202c'
-}
-
-const breakpoints = ['40em', '52em', '64em', '76em']
-breakpoints.sm = breakpoints[0]
-breakpoints.md = breakpoints[1]
-breakpoints.lg = breakpoints[2]
-breakpoints.xl = breakpoints[3]
-
-const radii = {
-  normal: 6,
-  full: 9999
-}
-
-const fontSizes = []
+const breakpoints = ['23em', '40em', '52em', '64em', '76em']
+breakpoints.xs = breakpoints[0]
+breakpoints.sm = breakpoints[1]
+breakpoints.md = breakpoints[2]
+breakpoints.lg = breakpoints[3]
+breakpoints.xl = breakpoints[4]
 
 const fonts = {
   sans: `Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
-  display: `Gilroy, Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
   mono: `SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`
 }
 
-export default {
-  breakpoints,
-  colors,
-  fonts,
-  fontSizes,
-  radii,
-  space
+const theme = {
+  ...chakraTheme,
+  breakpoints: breakpoints,
+  fonts: {
+    ...fonts,
+    body: fonts.sans,
+    heading: fonts.sans,
+    code: fonts.mono
+  },
+  fontWeights: {
+    normal: 400,
+    medium: 500,
+    bold: 600,
+    bolder: 700
+  },
+  radii: {
+    ...chakraTheme.radii,
+    normal: 8,
+    full: 9999
+  }
 }
+
+export default theme

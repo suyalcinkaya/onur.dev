@@ -1,16 +1,15 @@
+import { Box, Flex } from '@chakra-ui/core'
 import styled from '@emotion/styled'
 
 // --- Components
-import Box from 'components/Box'
-import Flex from 'components/Flex'
-import { Facebook, LinkedinBox, Twitter } from 'components/icons'
+import { Facebook, Linkedin, Twitter } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
 import theme from 'styles/theme'
 
 const Share = ({ title, url }) => {
-  const { colorMode } = useColorMode()
+  const { systemTheme } = useColorMode()
 
   const Button = styled.button({
     display: 'inline-flex',
@@ -21,10 +20,10 @@ const Share = ({ title, url }) => {
     boxShadow: 'none',
     padding: 0,
     outline: 'none',
-    color: colorMode === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray400,
+    color: systemTheme === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray[400],
     transition: 'all 0.15s ease-out',
     '&:hover': {
-      color: '#000'
+      color: systemTheme === 'light' ? theme.colors.gray[600] : theme.colors.gray[500]
     }
   })
 
@@ -45,12 +44,12 @@ const Share = ({ title, url }) => {
   }
 
   return (
-    <Flex justifyContent={{ _: 'flex-start', md: 'flex-end' }} alignItems="center">
+    <Flex alignItems="center">
       <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0}>
         <Twitter />
       </Box>
       <Box as={Button} type="button" title="Share on LinkedIn" onClick={shareOnLinkedIn} m={0} mx="0.375rem">
-        <LinkedinBox />
+        <Linkedin />
       </Box>
       <Box as={Button} type="button" title="Share on Facebook" onClick={shareOnFacebook} m={0}>
         <Facebook />
