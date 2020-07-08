@@ -8,7 +8,7 @@ import { Layout, Link, MusicCard } from 'components'
 import { popularMixtapes } from 'constant'
 
 const url = 'https://onur.dev/about'
-const title = 'About Me – Onur Şuyalçınkaya'
+const title = 'About Me — Onur Şuyalçınkaya'
 
 const About = () => (
   <>

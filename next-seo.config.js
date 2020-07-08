@@ -1,4 +1,4 @@
-const title = 'Onur Şuyalçınkaya – Developer, Writer, DJ.'
+const title = 'Onur Şuyalçınkaya — Engineer, Writer, DJ.'
 const description = 'Frontend Engineer, JavaScript enthusiast, and DJ'
 
 const SEO = {

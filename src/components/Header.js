@@ -3,7 +3,7 @@ import { Box, Flex } from '@chakra-ui/core'
 
 // --- Components
 import Button from 'components/Button'
-import { O } from 'components/icons'
+import { OBlack, OWhite } from 'components/icons'
 
 // --- Others
 import useColorMode from 'hooks/useColorMode'
@@ -38,7 +38,7 @@ const Header = () => {
           <Box>
             <NextLink href="/">
               <a>
-                <Box as={O} size="24px" />
+                <Box as={systemTheme === 'light' ? OBlack : OWhite} size={5} />
               </a>
             </NextLink>
           </Box>

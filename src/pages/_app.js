@@ -105,6 +105,7 @@ const StaticStyles = () => (
         font-size: 0.75rem;
         font-weight: 500;
         margin-top: 0.25rem;
+        color: ${theme.colors.gray[400]};
       }
 
       article img {
@@ -137,12 +138,6 @@ const DynamicStyles = () => {
           background: ${systemTheme === 'light' ? '#444444' : theme.colors.gray[100]};
           color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[700]};
         }
-
-        figure {
-          figcaption {
-            color: ${systemTheme === 'light' ? theme.colors.gray[400] : theme.colors.gray[400]};
-          }
-        }
       `}
     />
   )
@@ -151,7 +146,7 @@ const DynamicStyles = () => {
 function App({ Component, pageProps, router }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
-      trackPageview(url)
+      process.env.NODE_ENV === 'production' && trackPageview(url)
     }
 
     Router.events.on('routeChangeComplete', handleRouteChange)
@@ -167,12 +162,14 @@ function App({ Component, pageProps, router }) {
       <DefaultSeo {...SEO} />
       <StaticStyles />
       <DynamicStyles />
-      <Header />
-      <MDXProvider components={MDXComponents}>
-        <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={router.route} />
-        </AnimatePresence>
-      </MDXProvider>
+      <>
+        <Header />
+        <MDXProvider components={MDXComponents}>
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} key={router.route} />
+          </AnimatePresence>
+        </MDXProvider>
+      </>
     </ThemeProvider>
   )
 }

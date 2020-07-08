@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/core'
-import tinytime from 'tinytime'
 import styled from '@emotion/styled'
+import tinytime from 'tinytime'
 
 // --- Components
 import { BlogSeo, Layout as LayoutCom, Link, Share } from 'components'

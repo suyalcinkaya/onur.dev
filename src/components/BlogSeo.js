@@ -10,7 +10,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
   return (
     <>
       <NextSeo
-        title={`${title} – Onur Şuyalçınkaya`}
+        title={`${title} — Onur Şuyalçınkaya`}
         description={summary}
         canonical={url}
         openGraph={{
@@ -30,7 +30,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
         datePublished={date}
         description={summary}
         images={[featuredImage]}
-        // publisherLogo="/favicons/android-chrome-192x192.png"
+        publisherLogo="/images/me.jpg"
         publisherName="Onur Şuyalçınkaya"
         title={title}
         url={url}
