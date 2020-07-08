@@ -37,7 +37,7 @@ const Header = () => {
         >
           <Box>
             <NextLink href="/">
-              <a>
+              <a aria-label="onur.dev Logo">
                 <Box as={systemTheme === 'light' ? OBlack : OWhite} size={5} />
               </a>
             </NextLink>
