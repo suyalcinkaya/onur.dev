@@ -18,21 +18,12 @@ const StaticStyles = () => (
   <Global
     styles={css`
       @font-face {
-        font-family: 'Inter';
+        font-family: 'GT America';
         font-weight: 400;
         font-style: normal;
         font-display: swap;
         src: url('/fonts/gt_america_regular-webfont.woff2') format('woff2'),
           url('/fonts/gt_america_regular-webfont.woff') format('woff');
-      }
-
-      @font-face {
-        font-family: 'Inter';
-        font-weight: 500;
-        font-style: normal;
-        font-display: swap;
-        src: url('/fonts/inter-medium-webfont.woff2') format('woff2'),
-          url('/fonts/inter-medium-webfont.woff') format('woff');
       }
 
       @font-face {

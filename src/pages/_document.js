@@ -57,14 +57,14 @@ class MyDocument extends Document {
           {/* Fonts */}
           <link
             rel="preload"
-            href="/fonts/inter-regular-webfont.woff2"
+            href="/fonts/gt_america_regular-webfont.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
           />
           <link
             rel="preload"
-            href="/fonts/inter-medium-webfont.woff2"
+            href="/fonts/gt_america_extended_medium-webfont.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"
