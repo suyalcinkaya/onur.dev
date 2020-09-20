@@ -5,28 +5,25 @@ import styled from '@emotion/styled'
 import { Facebook, Linkedin, Twitter } from 'components/icons'
 
 // --- Others
-import useColorMode from 'hooks/useColorMode'
 import theme from 'styles/theme'
 
+const Button = styled.button({
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  border: 'none',
+  background: 'none',
+  boxShadow: 'none',
+  padding: 0,
+  outline: 'none',
+  color: 'hsla(0, 0%, 0%, 0.8)',
+  transition: 'all 0.15s ease-out',
+  '&:hover': {
+    color: theme.colors.gray[600]
+  }
+})
+
 const Share = ({ title, url }) => {
-  const { systemTheme } = useColorMode()
-
-  const Button = styled.button({
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: 'none',
-    background: 'none',
-    boxShadow: 'none',
-    padding: 0,
-    outline: 'none',
-    color: systemTheme === 'light' ? 'hsla(0, 0%, 0%, 0.8)' : theme.colors.gray[400],
-    transition: 'all 0.15s ease-out',
-    '&:hover': {
-      color: systemTheme === 'light' ? theme.colors.gray[600] : theme.colors.gray[500]
-    }
-  })
-
   const shareOnFacebook = () => {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=400, height=500')
   }

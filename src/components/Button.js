@@ -1,10 +1,5 @@
-import { forwardRef } from 'react'
 import { Button as ChakraButton } from '@chakra-ui/core'
 import styled from '@emotion/styled'
-
-// --- Others
-import theme from 'styles/theme'
-import useColorMode from 'hooks/useColorMode'
 
 const StyledButton = styled(ChakraButton)`
   appearance: none;
@@ -15,20 +10,18 @@ const StyledButton = styled(ChakraButton)`
   transition: all 250ms;
 
   @media not all and (hover: none) {
-    &:hover {
-      background-color: ${(props) => (props.systemTheme === 'light' ? '#edeef0' : 'rgba(255, 255, 255, 0.08)')};
+    &:hover,
+    &:active {
+      background-color: transparent;
     }
 
-    &:active {
-      background-color: ${theme.colors.gray300};
+    &:focus {
+      box-shadow: none;
     }
   }
 `
 
-const Button = forwardRef((props, ref) => {
-  const { systemTheme } = useColorMode()
-  return <StyledButton ref={ref} systemTheme={systemTheme} {...props} />
-})
+const Button = (props) => <StyledButton {...props} />
 
 Button.defaultProps = {
   display: 'inline-flex',

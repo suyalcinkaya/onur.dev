@@ -166,7 +166,7 @@ export const lightTheme = css`
   }
 `
 
-export const darkTheme = css`
+/* export const darkTheme = css`
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
     background: rgb(26, 32, 44);
@@ -244,4 +244,4 @@ export const darkTheme = css`
     background-color: rgb(45, 55, 72);
     box-shadow: inset 3px 0px 0 0px rgb(42, 105, 172);
   }
-`
+` */

@@ -3,17 +3,16 @@ import NextLink from 'next/link'
 import { Box, Link as ChakraLink } from '@chakra-ui/core'
 
 // --- Others
-import useColorMode from 'hooks/useColorMode'
+import theme from 'styles/theme'
 
 const Link = (props) => {
   const href = props.href
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
-  const { systemTheme } = useColorMode()
 
   if (isInternalLink) {
     return (
       <NextLink href={href} passHref>
-        <Box as="a" fontWeight="medium" pb="2px" borderBottom="1px dotted" {...props} />
+        <Box as="a" pb="2px" borderBottom="1px dotted" {...props} />
       </NextLink>
     )
   }
@@ -26,16 +25,14 @@ const Link = (props) => {
   return (
     <ChakraLink
       isExternal
-      fontWeight="medium"
-      color={color[systemTheme]}
-      pb={1}
+      color="link"
       css={{
         textDecoration: 'none',
         transition: 'all 0.15s ease-out',
         borderBottom: '1px solid transparent',
         '&:hover': {
           textDecoration: 'none',
-          borderBottom: `1px solid ${color[systemTheme]}`
+          borderBottom: `1px solid ${theme.colors.link}`
         }
       }}
       {...props}

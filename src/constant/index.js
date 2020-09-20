@@ -59,7 +59,7 @@ export const popularMixtapes = [
   }
 ]
 
-export const HEADER_HEIGHT = 80
+export const HEADER_HEIGHT = 70
 
 export const navigations = [
   {

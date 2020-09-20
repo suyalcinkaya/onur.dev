@@ -13,8 +13,8 @@ const Home = () => {
     <Layout>
       <Stack spacing={8}>
         <Stack spacing={8}>
-          <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-1}>
-            {'Hey, I’m Onur Şuyalçınkaya'}
+          <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-0.4}>
+            {'Hey, I’m Onur Suyalcinkaya'}
           </Heading>
           <Text>
             {`I've been writing online since 2018, mostly about web development, tips and tricks.

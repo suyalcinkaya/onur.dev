@@ -10,7 +10,6 @@ import { AnimatePresence } from 'framer-motion'
 import { Header, MDXComponents } from 'components'
 
 // --- Others
-import useColorMode from 'hooks/useColorMode'
 import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
 import theme from 'styles/theme'
@@ -23,8 +22,8 @@ const StaticStyles = () => (
         font-weight: 400;
         font-style: normal;
         font-display: swap;
-        src: url('/fonts/inter-regular-webfont.woff2') format('woff2'),
-          url('/fonts/inter-regular-webfont.woff') format('woff');
+        src: url('/fonts/gt_america_regular-webfont.woff2') format('woff2'),
+          url('/fonts/gt_america_regular-webfont.woff') format('woff');
       }
 
       @font-face {
@@ -37,12 +36,12 @@ const StaticStyles = () => (
       }
 
       @font-face {
-        font-family: 'Manrope';
+        font-family: 'GT America Extended';
         font-weight: 600;
         font-style: normal;
         font-display: swap;
-        src: url('/fonts/manrope-bold-webfont.woff2') format('woff2'),
-          url('/fonts/manrope-bold-webfont.woff') format('woff');
+        src: url('/fonts/gt_america_extended_medium-webfont.woff2') format('woff2'),
+          url('/fonts/gt_america_extended_medium-webfont.woff') format('woff');
       }
 
       @font-face {
@@ -69,6 +68,8 @@ const StaticStyles = () => (
         padding: 0;
         font-size: 16px;
         line-height: 1.25;
+        color: ${theme.colors.black};
+        background-color: #fff;
       }
 
       *,
@@ -83,6 +84,16 @@ const StaticStyles = () => (
       p {
         line-height: 1.625;
         margin: 0;
+      }
+
+      p::selection {
+        background: #444444;
+        color: ${theme.colors.white};
+      }
+
+      p::-moz-selection {
+        background: #444444;
+        color: ${theme.colors.white};
       }
 
       a {
@@ -118,31 +129,6 @@ const StaticStyles = () => (
   />
 )
 
-const DynamicStyles = () => {
-  const { systemTheme } = useColorMode()
-
-  return (
-    <Global
-      styles={css`
-        body {
-          color: ${systemTheme === 'light' ? theme.colors.black : theme.colors.white};
-          background-color: ${systemTheme === 'light' ? theme.colors.white : '#1A1A1A'};
-        }
-
-        p::selection {
-          background: ${systemTheme === 'light' ? '#444444' : theme.colors.gray[100]};
-          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[700]};
-        }
-
-        p::-moz-selection {
-          background: ${systemTheme === 'light' ? '#444444' : theme.colors.gray[100]};
-          color: ${systemTheme === 'light' ? theme.colors.white : theme.colors.gray[700]};
-        }
-      `}
-    />
-  )
-}
-
 function App({ Component, pageProps, router }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -161,7 +147,6 @@ function App({ Component, pageProps, router }) {
       <CSSReset />
       <DefaultSeo {...SEO} />
       <StaticStyles />
-      <DynamicStyles />
       <>
         <Header />
         <MDXProvider components={MDXComponents}>

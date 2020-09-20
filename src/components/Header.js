@@ -1,17 +1,13 @@
 import NextLink from 'next/link'
-import { Box, Flex } from '@chakra-ui/core'
+import { Box, Flex, Text } from '@chakra-ui/core'
 
 // --- Components
 import Button from 'components/Button'
-import { OBlack, OWhite } from 'components/icons'
 
 // --- Others
-import useColorMode from 'hooks/useColorMode'
 import { HEADER_HEIGHT, navigations } from 'constant'
 
 const Header = () => {
-  const { systemTheme } = useColorMode()
-
   return (
     <>
       <Box
@@ -22,9 +18,9 @@ const Header = () => {
         zIndex={9}
         height={HEADER_HEIGHT}
         width="100%"
-        bg={systemTheme === 'light' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'}
+        bg="hsla(0, 0%, 100%, 0.8)"
         css={{
-          backdropFilter: 'saturate(180%) blur(20px)'
+          backdropFilter: 'saturate(180%) blur(5px)'
         }}
       >
         <Flex
@@ -38,7 +34,9 @@ const Header = () => {
           <Box>
             <NextLink href="/">
               <a aria-label="onur.dev Logo">
-                <Box as={systemTheme === 'light' ? OBlack : OWhite} size={5} />
+                <Text fontFamily="heading" fontSize="2xl">
+                  onur
+                </Text>
               </a>
             </NextLink>
           </Box>

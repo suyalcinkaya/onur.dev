@@ -5,31 +5,21 @@ import Link from 'components/Link'
 
 // --- Others
 import theme from 'styles/theme'
-import useColorMode from 'hooks/useColorMode'
 
-const Table = (props) => {
-  const { systemTheme } = useColorMode()
-
-  const bg = {
-    light: theme.colors.gray[200],
-    dark: theme.colors.gray[600]
-  }
-
-  return (
-    <Box
-      as="table"
-      textAlign="left"
-      my={4}
-      width="100%"
-      css={{
-        'tbody > tr:nth-of-type(even)': {
-          backgroundColor: bg[systemTheme]
-        }
-      }}
-      {...props}
-    />
-  )
-}
+const Table = (props) => (
+  <Box
+    as="table"
+    textAlign="left"
+    my={4}
+    width="100%"
+    css={{
+      'tbody > tr:nth-of-type(even)': {
+        backgroundColor: theme.colors.gray[200]
+      }
+    }}
+    {...props}
+  />
+)
 
 const THead = (props) => <Box as="th" bg="gray.400" color="white" fontWeight="medium" p="0.5rem" {...props} />
 
@@ -46,41 +36,27 @@ const TData = (props) => (
   />
 )
 
-const Quote = (props) => {
-  const { systemTheme } = useColorMode()
-
-  const bg = {
-    light: '#ebf8ff',
-    dark: 'rgb(45, 55, 72)'
-  }
-
-  const borderColor = {
-    light: '#3182ce',
-    dark: 'rgb(42, 105, 172)'
-  }
-
-  return (
-    <Grid
-      placeItems="center"
-      p={4}
-      mt={4}
-      mb={8}
-      borderLeft={`4px solid ${borderColor[systemTheme]}`}
-      bg={bg[systemTheme]}
-      css={{
-        '> *:first-of-type': {
-          marginTop: 0,
-          marginBottom: 0,
-          marginLeft: 8
-        },
-        '> *:last-of-type': {
-          marginBottom: 0
-        }
-      }}
-      {...props}
-    />
-  )
-}
+const Quote = (props) => (
+  <Grid
+    placeItems="center"
+    p={4}
+    mt={4}
+    mb={8}
+    borderLeft={`4px solid #3182ce`}
+    bg="#ebf8ff"
+    css={{
+      '> *:first-of-type': {
+        marginTop: 0,
+        marginBottom: 0,
+        marginLeft: 8
+      },
+      '> *:last-of-type': {
+        marginBottom: 0
+      }
+    }}
+    {...props}
+  />
+)
 
 const DocsHeading = (props) => (
   <Box
@@ -109,7 +85,7 @@ const DocsHeading = (props) => (
           aria-label="anchor"
           as="a"
           href={`#${props.id}`}
-          color="#3182ce"
+          color="link"
           fontWeight="normal"
           outline="none"
           opacity="0"
@@ -122,28 +98,14 @@ const DocsHeading = (props) => (
   </Box>
 )
 
-const InlineCode = (props) => {
-  const { systemTheme } = useColorMode()
-  return <Code variantColor={systemTheme === 'light' ? 'yellow' : 'gray'} px="0.5rem" borderRadius={6} {...props} />
-}
+const InlineCode = (props) => <Code variantColor="yellow" px="0.5rem" borderRadius={6} {...props} />
 
-const Hr = (props) => {
-  const { systemTheme } = useColorMode()
-
-  const bg = {
-    light: 'gray.300',
-    dark: 'gray.700'
-  }
-
-  return <Box bg={bg[systemTheme]} height="1px" my={8} width="100%" {...props} />
-}
+const Hr = (props) => <Box bg="gray.300" height="1px" my={8} width="100%" {...props} />
 
 const MDXComponents = {
   // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
-  h2: (props) => (
-    <DocsHeading as="h2" fontSize={{ _: 'xl', md: '2xl' }} mt={8} mb={4} letterSpacing={-0.5} {...props} />
-  ),
-  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 'lg', md: 'xl' }} mt={8} mb={2} letterSpacing={-0.5} {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
