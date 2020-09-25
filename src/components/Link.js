@@ -17,11 +17,6 @@ const Link = (props) => {
     )
   }
 
-  const color = {
-    light: 'blue.500',
-    dark: 'blue.200'
-  }
-
   return (
     <ChakraLink
       isExternal

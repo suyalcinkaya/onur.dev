@@ -1,7 +1,4 @@
-import { Box, Flex } from '@chakra-ui/core'
-
-// --- Components
-import Button from 'components/Button'
+import { Box, Flex, Text } from '@chakra-ui/core'
 
 // --- Others
 import { profiles } from 'constant'
@@ -10,27 +7,29 @@ const Footer = () => (
   <Flex flexDir={{ base: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" my={12}>
     <Flex justifyContent="center" alignItems="center" ml={{ md: -3 }} mb={{ base: 2, md: 0 }}>
       {profiles.map((profile, profileIndex) => (
-        <a
+        <Box
+          as="a"
           key={`profile_${profileIndex}_${profile.name}`}
           href={profile.url}
           target="_blank"
           rel="noopener noreferrer"
           title={profile.name}
+          aria-label={profile.name}
+          color="gray.700"
+          px={1}
         >
-          <Button type="button" aria-label={profile.name} px={2} color="gray.600">
-            {profile.icon}
-          </Button>
-        </a>
+          {profile.icon}
+        </Box>
       ))}
     </Flex>
     <Box fontSize="sm">
-      <strong>onur</strong>
-      {' dot '}
-      <strong>suyalcinkaya</strong>
-      {' at '}
-      <strong>gmail</strong>
-      {' dot '}
-      <strong>com</strong>
+      <Text as="span">onur</Text>
+      <Text as="span" color="gray.500">{' dot '}</Text>
+      <Text as="span">suyalcinkaya</Text>
+      <Text as="span" color="gray.500">{' at '}</Text>
+      <Text as="span">gmail</Text>
+      <Text as="span" color="gray.500">{' dot '}</Text>
+      <Text as="span">com</Text>
     </Box>
   </Flex>
 )

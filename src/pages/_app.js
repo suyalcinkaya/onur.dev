@@ -90,7 +90,10 @@ const StaticStyles = () => (
       a {
         color: inherit;
         text-decoration: inherit;
-        cursor: pointer;
+
+        @media (hover: hover) {
+          cursor: pointer;
+        }
       }
 
       button,

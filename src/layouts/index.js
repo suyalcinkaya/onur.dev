@@ -10,40 +10,39 @@ import { baseTheme, lightTheme } from 'styles/prism'
 
 const discussUrl = (slug) => `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`
 
-const Layout = (frontMatter) => {
+const Container = styled(LayoutCom)`
+  ${baseTheme}
+  ${lightTheme}
+`
+
+const Layout = ({ frontMatter, children }) => {
   const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
 
-  return ({ children }) => {
-    const Container = styled(LayoutCom)`
-      ${baseTheme}
-      ${lightTheme}
-    `
-
-    return (
-      <Container>
-        <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
-        <Box as="article">
-          <Stack spacing={2} mb={10}>
-            <Heading as="h1" fontSize={{ _: '2xl', md: '4xl' }} fontWeight="medium" letterSpacing={-0.4}>
-              {frontMatter.title}
-            </Heading>
-            <Box>
-              <Text color="gray.600" fontSize="sm">
-                <time dateTime={frontMatter.publishedAt}>
-                  {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
-                </time>
-                {' • '}
-                {frontMatter.readingTime.text}
-              </Text>
-            </Box>
-            <Box>
-              <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
-            </Box>
-          </Stack>
-          {children}
-          <Box mt={30}>
-            <Link href={discussUrl(slug)}>{'Discuss on Twitter ⟶'}</Link>
-            {/* <Text color="gray400">{` • `}</Text>
+  return (
+    <Container>
+      <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
+      <Box as="article">
+        <Stack spacing={2} mb={10}>
+          <Heading as="h1" fontSize={{ _: '2xl', md: '4xl' }} fontWeight="medium" letterSpacing={-0.4}>
+            {frontMatter.title}
+          </Heading>
+          <Box>
+            <Text color="gray.600" fontSize="sm">
+              <time dateTime={frontMatter.publishedAt}>
+                {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
+              </time>
+              {' • '}
+              {frontMatter.readingTime.text}
+            </Text>
+          </Box>
+          <Box>
+            <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
+          </Box>
+        </Stack>
+        {children}
+        <Box mt={30}>
+          <Link href={discussUrl(slug)}>{'Discuss on Twitter ⟶'}</Link>
+          {/* <Text color="gray400">{` • `}</Text>
             <Text
               as="a"
               href={editUrl(slug)}
@@ -60,11 +59,10 @@ const Layout = (frontMatter) => {
             >
               {'Edit on GitHub'}
             </Text> */}
-          </Box>
         </Box>
-      </Container>
-    )
-  }
+      </Box>
+    </Container>
+  )
 }
 
 export default Layout

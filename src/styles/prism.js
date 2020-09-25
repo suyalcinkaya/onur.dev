@@ -156,7 +156,7 @@ export const lightTheme = css`
 
   .mdx-marker {
     background-color: #e9f1fe;
-    box-shadow: inset 3px 0px 0 0px blue;
+    box-shadow: inset 3px 0px 0 0px #0070F3;
   }
 
   .remark-code-title {

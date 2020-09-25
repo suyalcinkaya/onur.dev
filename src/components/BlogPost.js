@@ -14,7 +14,7 @@ const BlogPost = (frontMatter) => {
   const slug = pathFiles[pathFiles.length - 2]
 
   return (
-    <Stack as="article" spacing={2}>
+    <Stack as="article" spacing={1}>
       <Heading as="h3" fontSize="lg" fontFamily="sans" fontWeight="medium">
         <NextLink href={`/${slug}`} passHref>
           <a>{title}</a>

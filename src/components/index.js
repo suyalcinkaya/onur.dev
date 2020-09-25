@@ -1,6 +1,5 @@
 export { default as BlogPost } from './BlogPost'
 export { default as BlogSeo } from './BlogSeo'
-export { default as Button } from './Button'
 export { default as Link } from './Link'
 export { default as Footer } from './Footer'
 export { default as Header } from './Header'

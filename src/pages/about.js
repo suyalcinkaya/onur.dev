@@ -26,10 +26,10 @@ const About = () => (
           About Me
         </Heading>
         <Grid gridTemplateColumns={{ _: '1fr', md: 'repeat(2, 1fr)' }} gridGap="2rem" my="1rem">
-          <Image src="images/me.webp" />
+          <Image src="images/me.webp" loading="lazy" w={400} h="auto" />
           <Stack spacing={4}>
             <Text>
-              {`Hey, I'm Onur, a Software Engineer, writer, and DJ who dabbles in design with a strong sense of aesthetics, living
+              {`I'm Onur, a Software Engineer, writer, and DJ who dabbles in design with a strong sense of aesthetics, living
             in Berlin, Germany where currently developing things at `}
               <Link
                 href="https://hey.car"
@@ -51,9 +51,10 @@ const About = () => (
             <Text>
               I grew up in Ankara—the capital city of Turkey—and went to Doğuş University, graduating with a degree in
               Computer Engineering. I spend my free time contributing to open source, sharing everything I know through
-              my <Link href="/">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>, DJing,
-              doing bodybuilding, playing Football Manager (since 2000), watching my favorite team's—Besiktas 🦅—
-              football matches and enjoying time with friends and family.
+              my <Link href="/">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>,{' '}
+              <Link href="https://soundcloud.com/jagerman">DJing</Link>, doing bodybuilding, playing Football Manager
+              (since 2000), watching my favorite team's—Besiktas 🦅— football matches and enjoying time with friends and
+              family.
             </Text>
           </Stack>
         </Grid>
@@ -72,7 +73,7 @@ const About = () => (
                 }
               }}
             >
-              See All ⟶
+              See All →
             </Link>
           </Flex>
           <Grid gridGap={6}>
