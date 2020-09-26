@@ -62,8 +62,8 @@ const DocsHeading = (props) => (
   <Box
     fontWeight="medium"
     css={{
-      scrollMarginTop: '120px',
-      scrollSnapMargin: '120px', // Safari
+      scrollMarginTop: '40px',
+      scrollSnapMargin: '40px', // Safari
       '&[id]': {
         pointerEvents: 'none'
       },

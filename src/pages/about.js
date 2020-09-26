@@ -26,11 +26,11 @@ const About = () => (
           About Me
         </Heading>
         <Grid gridTemplateColumns={{ _: '1fr', md: 'repeat(2, 1fr)' }} gridGap="2rem" my="1rem">
-          <Image src="images/me.webp" loading="lazy" w={400} h="auto" />
+          <Image src="images/me.webp" loading="lazy" htmlWidth={400} />
           <Stack spacing={4}>
             <Text>
-              {`I'm Onur, a Software Engineer, writer, and DJ who dabbles in design with a strong sense of aesthetics, living
-            in Berlin, Germany where currently developing things at `}
+              {`I'm Onur, a Software Engineer, writer, and DJ who dabbles in design with a strong sense of aesthetics. Currently living
+            in Berlin, Germany and developing things at `}
               <Link
                 href="https://hey.car"
                 css={{
@@ -52,9 +52,9 @@ const About = () => (
               I grew up in Ankara—the capital city of Turkey—and went to Doğuş University, graduating with a degree in
               Computer Engineering. I spend my free time contributing to open source, sharing everything I know through
               my <Link href="/">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>,{' '}
-              <Link href="https://soundcloud.com/jagerman">DJing</Link>, doing bodybuilding, playing Football Manager
-              (since 2000), watching my favorite team's—Besiktas 🦅— football matches and enjoying time with friends and
-              family.
+              <Link href="https://soundcloud.com/jagerman">DJing</Link>, doing bodybuilding, playing Football
+              Manager—since 2000—, watching my favorite team's—Besiktas 🦅— football matches and enjoying time with
+              friends and family.
             </Text>
           </Stack>
         </Grid>
