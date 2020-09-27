@@ -5,7 +5,7 @@ export const baseTheme = css`
   pre[class*='language-'] {
     background: none;
     font-family: 'Jetbrains Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    font-size: 0.875rem;
+    font-size: 0.825rem;
     line-height: 1.5;
     text-align: left;
     white-space: pre;
@@ -67,7 +67,7 @@ export const baseTheme = css`
     padding: 0.75rem 1rem;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 0;
     margin-top: 1rem;

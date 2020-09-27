@@ -59,7 +59,7 @@ const StaticStyles = () => (
         padding: 0;
         font-size: 16px;
         line-height: 1.25;
-        color: ${theme.colors.black};
+        color: rgb(34, 34, 34);
         background-color: #fff;
       }
 
