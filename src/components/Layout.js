@@ -12,7 +12,7 @@ const vars = {
 }
 
 const Layout = ({ children, ...others }) => (
-  <Box mx="auto" px={6} my={{ base: 10, sm: 12 }} maxWidth={{ sm: 640, md: 768 }} {...others}>
+  <Box mx="auto" px={6} my={{ base: 10, sm: 12 }} maxWidth={{ sm: 640 }} {...others}>
     <motion.div initial="exit" animate="enter" exit="exit">
       <motion.div variants={vars}>
         <Box>{children}</Box>

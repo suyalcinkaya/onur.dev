@@ -1,8 +1,8 @@
 import { NextSeo } from 'next-seo'
-import { Box, Flex, Grid, Heading, Image, Text, Stack } from '@chakra-ui/core'
+import { Box, Grid, Heading, Text, Stack } from '@chakra-ui/core'
 
 // --- Components
-import { Layout, Link } from 'components'
+import { Layout } from 'components'
 
 // -- Constants
 import { journeyData } from 'constant'
@@ -27,18 +27,20 @@ const Journey = () => (
         </Heading>
         <Grid gridGap={6}>
           {journeyData.map((data, dataIndex) => (
-            <Grid key={`data_${dataIndex}`} gap={4}>
-              <Text fontSize="xl">{data.year}</Text>
-              <Stack spacing={4}>
-                {data.items.map((item, itemIndex) => (
-                  <Stack key={`journey_${itemIndex}`} spacing={1}>
-                    <Text>{item.title}</Text>
-                    <Text color="gray.500">{item.description}</Text>
-                  </Stack>
-                ))}
-              </Stack>
+            <React.Fragment key={`data_${dataIndex}`}>
+              <Grid gap={4}>
+                <Text fontSize="xl">{data.year}</Text>
+                <Stack spacing={4}>
+                  {data.items.map((item, itemIndex) => (
+                    <Stack key={`journey_${itemIndex}`} spacing={1}>
+                      <Text>{item.title}</Text>
+                      <Text color="gray.500">{item.description}</Text>
+                    </Stack>
+                  ))}
+                </Stack>
+              </Grid>
               <Box bg="gray.200" height="1px" my={4} width="100%" />
-            </Grid>
+            </React.Fragment>
           ))}
         </Grid>
       </Stack>

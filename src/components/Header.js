@@ -24,9 +24,9 @@ const Header = () => {
           justify="space-between"
           alignItems="center"
           height="100%"
-          maxWidth="800px"
+          // maxWidth="800px"
           m="0 auto"
-          px={{ base: 6, sm: 0 }}
+          px={{ base: 6, sm: 12 }}
         >
           <NextLink href="/">
             <a aria-label="onur.dev Logo">

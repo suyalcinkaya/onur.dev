@@ -26,6 +26,10 @@ const theme = {
     heading: fonts.heading,
     code: fonts.mono
   },
+  fontSizes: {
+    ...chakraTheme.fontSizes,
+    xxs: '.675rem'
+  },
   fontWeights: {
     normal: 400,
     medium: 500,
