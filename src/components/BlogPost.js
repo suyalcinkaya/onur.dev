@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { Heading, Stack, Text } from '@chakra-ui/core'
+import { Box, Heading, Stack, Text } from '@chakra-ui/core'
 import tinytime from 'tinytime'
 
 const BlogPost = (frontMatter) => {
@@ -15,15 +15,17 @@ const BlogPost = (frontMatter) => {
 
   return (
     <Stack as="article" spacing={1}>
-      <Heading as="h3" fontSize="lg" fontFamily="sans" fontWeight="medium">
-        <NextLink href={`/${slug}`} passHref>
-          <a>{title}</a>
-        </NextLink>
-      </Heading>
+      <Box as={NextLink} href={`/${slug}`}>
+        <a>
+          <Heading as="h3" fontSize="lg" fontFamily="sans" fontWeight="medium">
+            {title}
+          </Heading>
+        </a>
+      </Box>
       {/* <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.500'} mb={2}>
             {summary}
           </Text> */}
-      <Text fontSize="sm" color="gray.500">
+      <Text fontSize="sm" color="gray.600">
         <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
         {' • '}
         {readingDuration}

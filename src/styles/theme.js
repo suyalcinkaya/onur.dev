@@ -1,11 +1,11 @@
 import { theme as chakraTheme } from '@chakra-ui/core'
 
-const breakpoints = ['23em', '40em', '52em', '64em', '76em']
-breakpoints.xs = breakpoints[0]
-breakpoints.sm = breakpoints[1]
-breakpoints.md = breakpoints[2]
-breakpoints.lg = breakpoints[3]
-breakpoints.xl = breakpoints[4]
+// 480px, 640px, 1024px, 1280px
+const breakpoints = ['30em', '40em', '64em', '80em']
+breakpoints.sm = breakpoints[0]
+breakpoints.md = breakpoints[1]
+breakpoints.lg = breakpoints[2]
+breakpoints.xl = breakpoints[3]
 
 const fonts = {
   sans: `GT America, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
@@ -15,7 +15,7 @@ const fonts = {
 
 const theme = {
   ...chakraTheme,
-  breakpoints: breakpoints,
+  breakpoints,
   colors: {
     ...chakraTheme.colors,
     link: '#0070F3'
