@@ -8,16 +8,13 @@ import { BlogSeo, Layout as LayoutCom, Link, Share } from 'components'
 // --- Others
 import { baseTheme, lightTheme } from 'styles/prism'
 
-const discussUrl = () =>
-  `https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev${window.location.pathname}`)}`
-
 const Container = styled(LayoutCom)`
   ${baseTheme}
   ${lightTheme}
 `
 
 const Layout = ({ frontMatter, children }) => {
-  const slug = frontMatter.__resourcePath.split('/').pop().replace('.mdx', '')
+  const slug = frontMatter.__resourcePath.split('/')[0]
 
   return (
     <Container>
@@ -42,7 +39,9 @@ const Layout = ({ frontMatter, children }) => {
         </Stack>
         {children}
         <Box mt={30}>
-          <Link href={discussUrl()}>{'Discuss on Twitter ⟶'}</Link>
+          <Link href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`}>
+            {'Discuss on Twitter →'}
+          </Link>
           {/* <Text color="gray400">{` • `}</Text>
             <Text
               as="a"
