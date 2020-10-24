@@ -1,4 +1,4 @@
-import { Box, Code, Flex, Grid, List, ListItem, Text } from '@chakra-ui/core'
+import { Box, Code, Grid, List, ListItem, Text } from '@chakra-ui/core'
 
 // --- Components
 import Link from 'components/Link'

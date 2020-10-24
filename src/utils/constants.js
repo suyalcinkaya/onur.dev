@@ -28,7 +28,7 @@ export const profiles = [
   }
 ]
 
-export const popularMixtapes = [
+export const mixtapes = [
   {
     title: 'Summer Sax',
     description: 'Melodic Saxophone Deep House Summer Mix',
@@ -150,7 +150,7 @@ export const cvData = {
     {
       company: 'heycar',
       title: 'Frontend Engineer',
-      startDate: 'Sep 2018',
+      startDate: 'Sep 2020',
       endDate: 'Present',
       location: 'Berlin, Germany',
       descriptions: [],

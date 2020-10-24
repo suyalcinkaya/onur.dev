@@ -4,8 +4,8 @@ import { Flex, Grid, Heading, Image, Text, Stack } from '@chakra-ui/core'
 // --- Components
 import { Layout, Link, MusicCard } from 'components'
 
-// --- others
-import { popularMixtapes } from 'constant'
+// --- Others
+import { mixtapes } from 'utils/constants'
 
 const url = 'https://onur.dev/about'
 const title = 'About Me — Onur Şuyalçınkaya'
@@ -61,7 +61,7 @@ const About = () => (
         <Stack spacing={4}>
           <Flex justifyContent="space-between" alignItems="center">
             <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-0.4}>
-              Popular Mixtapes
+              Popular mixtapes
             </Heading>
             <Link
               isExternal
@@ -77,7 +77,7 @@ const About = () => (
             </Link>
           </Flex>
           <Grid gridGap={6}>
-            {popularMixtapes.map((mixtape, mixtapeId) => (
+            {mixtapes.map((mixtape, mixtapeId) => (
               <MusicCard key={`mixtape_${mixtapeId}`} {...mixtape} />
             ))}
           </Grid>

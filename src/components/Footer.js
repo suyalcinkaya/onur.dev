@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/core'
 
 // --- Others
-import { profiles } from 'constant'
+import { profiles } from 'utils/constants'
 
 const Footer = () => (
   <Flex flexDir={{ base: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" my={12}>

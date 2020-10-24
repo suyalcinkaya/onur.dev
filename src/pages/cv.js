@@ -1,21 +1,22 @@
 import { NextSeo } from 'next-seo'
 import styled from '@emotion/styled'
-import { Badge, Box, Divider, Grid, Heading, Text, Stack } from '@chakra-ui/core'
+import { Badge, Divider, Grid, Heading, Text, Stack } from '@chakra-ui/core'
 
 // --- Components
 import { Layout } from 'components'
 
-// -- Constants
-import { cvData } from 'constant'
+// --- Other
+import { cvData } from 'utils/constants'
+import { webkitOnly } from 'utils/helper'
 
 const url = 'https://onur.dev/cv'
 const title = 'Curriculum Vitae — Onur Şuyalçınkaya'
 
-const StackContainer = styled(Stack)`
+const TechStackContainer = styled(Stack)`
   row-gap: 0.5rem;
 `
 
-StackContainer.defaultProps = { isInline: true, wrap: 'wrap', spacing: 2 }
+TechStackContainer.defaultProps = { isInline: true, wrap: 'wrap', spacing: 2 }
 
 const CurriculumVitae = () => (
   <>
@@ -55,8 +56,8 @@ const CurriculumVitae = () => (
                     {description}
                   </Text>
                 ))}
-                {experience.stack.length > 0 && (
-                  <StackContainer>
+                {experience.stack?.length > 0 && (
+                  <TechStackContainer>
                     {experience.stack.map((item, itemIndex) => (
                       <Badge
                         key={`stack_${itemIndex}`}
@@ -66,11 +67,12 @@ const CurriculumVitae = () => (
                         letterSpacing="1px"
                         px={2}
                         fontWeight="normal"
+                        css={webkitOnly`margin-bottom: 0.5rem;`} // row-gap is not supported for Safari
                       >
                         {item}
                       </Badge>
                     ))}
-                  </StackContainer>
+                  </TechStackContainer>
                 )}
               </Grid>
               {experienceIndex !== cvData.experiences.length - 1 && <Divider />}

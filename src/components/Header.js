@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 import { Box, Flex, Text } from '@chakra-ui/core'
 
 // --- Others
-import { HEADER_HEIGHT, navigations } from 'constant'
+import { HEADER_HEIGHT, navigations } from 'utils/constants'
 
 const Header = () => {
   return (

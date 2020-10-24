@@ -4,8 +4,8 @@ import { Box, Grid, Heading, Text, Stack } from '@chakra-ui/core'
 // --- Components
 import { Layout } from 'components'
 
-// -- Constants
-import { journeyData } from 'constant'
+// --- Other
+import { journeyData } from 'utils/constants'
 
 const url = 'https://onur.dev/journey'
 const title = 'Journey — Onur Şuyalçınkaya'

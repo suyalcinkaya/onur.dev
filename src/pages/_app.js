@@ -10,7 +10,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Header, MDXComponents } from 'components'
 
 // --- Others
-import { trackPageview } from 'lib/gtag'
+import { trackPageview } from 'utils/gtag'
 import SEO from '../../next-seo.config'
 import theme from 'styles/theme'
 
