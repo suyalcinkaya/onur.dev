@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useEffect } from 'react'
 import Router from 'next/router'
 import { ThemeProvider, CSSReset } from '@chakra-ui/core'
@@ -137,19 +138,25 @@ function App({ Component, pageProps, router }) {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <CSSReset />
-      <DefaultSeo {...SEO} />
-      <StaticStyles />
-      <>
-        <Header />
-        <MDXProvider components={MDXComponents}>
-          <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
-        </MDXProvider>
-      </>
-    </ThemeProvider>
+    <>
+      <Head>
+        {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <ThemeProvider theme={theme}>
+        <CSSReset />
+        <DefaultSeo {...SEO} />
+        <StaticStyles />
+        <>
+          <Header />
+          <MDXProvider components={MDXComponents}>
+            <AnimatePresence exitBeforeEnter>
+              <Component {...pageProps} key={router.route} />
+            </AnimatePresence>
+          </MDXProvider>
+        </>
+      </ThemeProvider>
+    </>
   )
 }
 

@@ -1,7 +1,9 @@
 import { css } from '@emotion/core'
 
-export const webkitOnly = (attrs) => css`
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    ${attrs};
+export const safariOnly = (attrs) => css`
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      ${attrs};
+    }
   }
 `

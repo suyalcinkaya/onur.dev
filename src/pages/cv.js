@@ -7,7 +7,7 @@ import { Layout } from 'components'
 
 // --- Other
 import { cvData } from 'utils/constants'
-import { webkitOnly } from 'utils/helper'
+import { safariOnly } from 'utils/helper'
 
 const url = 'https://onur.dev/cv'
 const title = 'Curriculum Vitae — Onur Şuyalçınkaya'
@@ -67,7 +67,7 @@ const CurriculumVitae = () => (
                         letterSpacing="1px"
                         px={2}
                         fontWeight="normal"
-                        css={webkitOnly`margin-bottom: 0.5rem;`} // row-gap is not supported for Safari
+                        css={safariOnly`margin-bottom: 0.5rem;`} // row-gap is not supported on Safari yet
                       >
                         {item}
                       </Badge>
