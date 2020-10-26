@@ -59,7 +59,6 @@ export const baseTheme = css`
     margin-right: -1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    font-size: 0.875rem;
     min-width: fit-content;
   }
 
