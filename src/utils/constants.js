@@ -33,8 +33,8 @@ export const mixtapes = [
     title: 'Summer Sax',
     description: 'Melodic Saxophone Deep House Summer Mix',
     url: 'https://www.youtube.com/watch?v=bzZupZkrjm0',
-    playCount: '9.4M',
-    likeCount: '46K'
+    playCount: '10M',
+    likeCount: '50K'
   },
   {
     title: 'Sax On Fire',

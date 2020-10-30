@@ -15,10 +15,10 @@ const MusicCard = (props) => {
       isExternal
     >
       <Stack spacing={1}>
-        <Heading as="h3" fontFamily="sans" fontSize="md" fontWeight="medium">
+        <Heading as="h3" fontFamily="sans" fontSize="md" fontWeight="medium" lineHeight="base">
           {title} — {description}
         </Heading>
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize="xs" color="gray.500">
           {playCount}
           {'+ plays'}
           {' • '}

@@ -15,17 +15,19 @@ const BlogPost = (frontMatter) => {
 
   return (
     <Stack as="article" spacing={1}>
-      <Box as={NextLink} href={`/${slug}`}>
-        <a>
-          <Heading as="h3" fontSize="lg" fontFamily="sans" fontWeight="medium">
-            {title}
-          </Heading>
-        </a>
+      <Box>
+        <NextLink href={`/${slug}`}>
+          <a>
+            <Heading as="h3" fontSize={{ xl: 'xl' }} fontFamily="sans" fontWeight="medium" lineHeight="base">
+              {title}
+            </Heading>
+          </a>
+        </NextLink>
       </Box>
       {/* <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.500'} mb={2}>
             {summary}
           </Text> */}
-      <Text fontSize="sm" color="gray.600">
+      <Text fontSize="xs" color="gray.600" lineHeight="shorter">
         <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
         {' • '}
         {readingDuration}

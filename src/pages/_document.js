@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import { GA_TRACKING_ID } from 'utils/gtag'
@@ -36,7 +37,7 @@ class MyDocument extends Document {
 
           {/* Analytics */}
           {process.env.NODE_ENV === 'production' && (
-            <>
+            <Fragment>
               <link rel="preconnect" href="https://www.googletagmanager.com" />
               <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
               <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
@@ -50,7 +51,7 @@ class MyDocument extends Document {
               `
                 }}
               />
-            </>
+            </Fragment>
           )}
 
           {/* Fonts */}

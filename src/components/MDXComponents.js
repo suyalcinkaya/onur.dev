@@ -1,4 +1,5 @@
 import { Box, Code, Grid, List, ListItem, Text } from '@chakra-ui/core'
+import Image from 'next/image'
 
 // --- Components
 import Link from 'components/Link'
@@ -98,6 +99,8 @@ const DocsHeading = (props) => (
   </Box>
 )
 
+const Img = (props) => <Image unsized quality={50} {...props} />
+
 const InlineCode = (props) => <Code variantColor="yellow" px="0.5rem" borderRadius={6} {...props} />
 
 const Hr = (props) => <Box bg="gray.300" height="1px" my={8} width="100%" {...props} />
@@ -118,7 +121,8 @@ const MDXComponents = {
   ul: (props) => <List styleType="circle" my={4} {...props} />,
   ol: (props) => <List as="ol" {...props} />,
   li: (props) => <ListItem mb={4} {...props} />,
-  blockquote: Quote
+  blockquote: Quote,
+  img: Img
 }
 
 export default MDXComponents

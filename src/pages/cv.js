@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
 import styled from '@emotion/styled'
 import { Badge, Divider, Grid, Heading, Text, Stack } from '@chakra-ui/core'
@@ -19,7 +20,7 @@ const TechStackContainer = styled(Stack)`
 TechStackContainer.defaultProps = { isInline: true, wrap: 'wrap', spacing: 2 }
 
 const CurriculumVitae = () => (
-  <>
+  <Fragment>
     <NextSeo
       title={title}
       canonical={url}
@@ -38,7 +39,7 @@ const CurriculumVitae = () => (
             Experience
           </Heading>
           {cvData.experiences.map((experience, experienceIndex) => (
-            <React.Fragment key={`experience_${experienceIndex}`}>
+            <Fragment key={`experience_${experienceIndex}`}>
               <Grid gap={4}>
                 <Grid>
                   <Text>
@@ -76,14 +77,14 @@ const CurriculumVitae = () => (
                 )}
               </Grid>
               {experienceIndex !== cvData.experiences.length - 1 && <Divider />}
-            </React.Fragment>
+            </Fragment>
           ))}
           <Divider />
           <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-0.4}>
             Education
           </Heading>
           {cvData.educations.map((education, educationIndex) => (
-            <React.Fragment key={`education_${educationIndex}`}>
+            <Fragment key={`education_${educationIndex}`}>
               <Grid gap={4}>
                 <Grid>
                   <Text>
@@ -98,12 +99,12 @@ const CurriculumVitae = () => (
                 </Grid>
               </Grid>
               {educationIndex !== cvData.educations.length - 1 && <Divider />}
-            </React.Fragment>
+            </Fragment>
           ))}
         </Grid>
       </Stack>
     </Layout>
-  </>
+  </Fragment>
 )
 
 export default CurriculumVitae

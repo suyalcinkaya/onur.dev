@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
 import { Box, Grid, Heading, Text, Stack } from '@chakra-ui/core'
 
@@ -11,7 +12,7 @@ const url = 'https://onur.dev/journey'
 const title = 'Journey — Onur Şuyalçınkaya'
 
 const Journey = () => (
-  <>
+  <Fragment>
     <NextSeo
       title={title}
       canonical={url}
@@ -27,7 +28,7 @@ const Journey = () => (
         </Heading>
         <Grid gridGap={6}>
           {journeyData.map((data, dataIndex) => (
-            <React.Fragment key={`data_${dataIndex}`}>
+            <Fragment key={`data_${dataIndex}`}>
               <Grid gap={4}>
                 <Text fontSize="xl">{data.year}</Text>
                 <Stack spacing={4}>
@@ -40,12 +41,12 @@ const Journey = () => (
                 </Stack>
               </Grid>
               <Box bg="gray.200" height="1px" my={4} width="100%" />
-            </React.Fragment>
+            </Fragment>
           ))}
         </Grid>
       </Stack>
     </Layout>
-  </>
+  </Fragment>
 )
 
 export default Journey

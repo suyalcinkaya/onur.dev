@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
 const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
@@ -8,7 +9,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <NextSeo
         title={`${title} — Onur Şuyalçınkaya`}
         description={summary}
@@ -35,7 +36,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
         title={title}
         url={url}
       />
-    </>
+    </Fragment>
   )
 }
 

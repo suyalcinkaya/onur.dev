@@ -1,5 +1,7 @@
+import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Flex, Grid, Heading, Image, Text, Stack } from '@chakra-ui/core'
+import { Box, Flex, Grid, Heading, Text, Stack } from '@chakra-ui/core'
+import Image from 'next/image'
 
 // --- Components
 import { Layout, Link, MusicCard } from 'components'
@@ -11,7 +13,7 @@ const url = 'https://onur.dev/about'
 const title = 'About Me — Onur Şuyalçınkaya'
 
 const About = () => (
-  <>
+  <Fragment>
     <NextSeo
       title={title}
       canonical={url}
@@ -25,8 +27,10 @@ const About = () => (
         <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-0.4}>
           About Me
         </Heading>
-        <Grid gridTemplateColumns={{ _: '1fr', md: 'repeat(2, 1fr)' }} gridGap="2rem" my="1rem" mx={{ md: -20 }}>
-          <Image src="images/me.webp" loading="lazy" htmlWidth={400} m="0 auto" />
+        <Grid gridTemplateColumns={{ _: '1fr', lg: 'repeat(2, 1fr)' }} gridGap="2rem" my="1rem" mx={{ lg: -20 }}>
+          <Box m="0 auto">
+            <Image src="/images/me.webp" unsized quality={50} alt="Onur Suyalcinkaya" />
+          </Box>
           <Stack spacing={4}>
             <Text>
               {`I'm Onur, a Software Engineer, writer, and DJ who dabbles in design with a strong sense of aesthetics. Currently living
@@ -49,9 +53,10 @@ const About = () => (
               Developer at Tanbula and Specialist at Apple.
             </Text>
             <Text>
-              I was born in in Ankara—the capital city of Turkey—, grew up in Istanbul and went to Doğuş University, graduating with a degree in
-              Computer Engineering. When I’m not nerding out, I'm contributing to open source, sharing everything I know
-              through my <Link href="/">blog</Link> and <Link href="https://medium.com/@suyalcinkaya">Medium</Link>,{' '}
+              I was born in in Ankara—the capital city of Turkey—, grew up in Istanbul and went to Doğuş University,
+              graduating with a degree in Computer Engineering. When I’m not nerding out, I'm contributing to open
+              source, sharing everything I know through my <Link href="/">blog</Link> and{' '}
+              <Link href="https://medium.com/@suyalcinkaya">Medium</Link>,{' '}
               <Link href="https://soundcloud.com/jagerman">DJing</Link>, doing bodybuilding, playing Football
               Manager—since 2000—, watching my favorite team's—Besiktas 🦅— football matches and enjoying time with
               friends and family.
@@ -84,7 +89,7 @@ const About = () => (
         </Stack>
       </Stack>
     </Layout>
-  </>
+  </Fragment>
 )
 
 export default About

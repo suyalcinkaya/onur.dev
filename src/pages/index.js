@@ -17,7 +17,7 @@ const Home = () => {
             {'Hey, I’m Onur Suyalcinkaya'}
           </Heading>
           <Text>
-            {`Frontend Engineer, JavaScript enthusiast, DJ, writer and minimalist. Writing about code, design and also my thoughts.`}
+            {`Frontend Engineer, JavaScript enthusiast, DJ, writer and minimalist. Writing mostly about code and design and a bit of my thoughts.`}
           </Text>
         </Stack>
         <Grid gridGap={6}>
