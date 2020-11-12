@@ -17,7 +17,11 @@ const TechStackContainer = styled(Stack)`
   row-gap: 0.5rem;
 `
 
-TechStackContainer.defaultProps = { isInline: true, wrap: 'wrap', spacing: 2 }
+const StackBadge = styled(Badge)`
+  ${safariOnly('margin-bottom: 0.5rem')}
+`
+
+TechStackContainer.defaultProps = { direction: 'row', wrap: 'wrap', spacing: 2 }
 
 const CurriculumVitae = () => (
   <Fragment>
@@ -31,36 +35,34 @@ const CurriculumVitae = () => (
     />
     <Layout>
       <Stack spacing={8}>
-        <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} fontWeight="medium" letterSpacing={-0.4}>
+        <Heading as="h1" fontSize="5xl" fontWeight="bolder" lineHeight="shorter">
           Curriculum Vitae
         </Heading>
         <Grid gridGap={6}>
-          <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-0.4}>
+          <Heading as="h2" size="lg" fontSize="2xl">
             Experience
           </Heading>
           {cvData.experiences.map((experience, experienceIndex) => (
             <Fragment key={`experience_${experienceIndex}`}>
               <Grid gap={4}>
                 <Grid>
-                  <Text>
+                  <Text fontSize="lg" fontWeight="medium">
                     {experience.title} @ {experience.company}
-                  </Text>
-                  <Text fontSize="sm" color="gray.500">
-                    {experience.location}
                   </Text>
                   <Text fontSize="sm" color="gray.500">
                     {experience.startDate} — {experience.endDate}
                   </Text>
+                  <Text fontSize="sm" color="gray.500">
+                    {experience.location}
+                  </Text>
                 </Grid>
                 {experience.descriptions.map((description, descriptionIndex) => (
-                  <Text key={`description_${descriptionIndex}`} fontSize="sm">
-                    {description}
-                  </Text>
+                  <Text key={`description_${descriptionIndex}`}>{description}</Text>
                 ))}
                 {experience.stack?.length > 0 && (
-                  <TechStackContainer>
+                  <TechStackContainer align="stretch">
                     {experience.stack.map((item, itemIndex) => (
-                      <Badge
+                      <StackBadge
                         key={`stack_${itemIndex}`}
                         variant="outline"
                         fontSize="xxs"
@@ -68,10 +70,10 @@ const CurriculumVitae = () => (
                         letterSpacing="1px"
                         px={2}
                         fontWeight="normal"
-                        css={safariOnly`margin-bottom: 0.5rem;`} // row-gap is not supported on Safari yet
+                        // css={safariOnly`margin-bottom: 0.5rem;`} // row-gap is not supported on Safari yet
                       >
                         {item}
-                      </Badge>
+                      </StackBadge>
                     ))}
                   </TechStackContainer>
                 )}
@@ -80,14 +82,14 @@ const CurriculumVitae = () => (
             </Fragment>
           ))}
           <Divider />
-          <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="medium" letterSpacing={-0.4}>
+          <Heading as="h2" size="lg" fontSize="2xl">
             Education
           </Heading>
           {cvData.educations.map((education, educationIndex) => (
             <Fragment key={`education_${educationIndex}`}>
               <Grid gap={4}>
                 <Grid>
-                  <Text>
+                  <Text fontSize="lg" fontWeight="medium">
                     {education.field} @ {education.school}
                   </Text>
                   <Text fontSize="sm" color="gray.500">

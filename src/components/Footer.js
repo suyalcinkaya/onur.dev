@@ -4,7 +4,7 @@ import { Box, Flex, Text } from '@chakra-ui/core'
 import { profiles } from 'utils/constants'
 
 const Footer = () => (
-  <Flex flexDir={{ base: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" my={12}>
+  <Flex flexDir={{ base: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" mt={16} mb={12}>
     <Flex justifyContent="center" alignItems="center" ml={{ md: -1 }} mb={{ base: 2, md: 0 }}>
       {profiles.map((profile, profileIndex) => (
         <Box
@@ -23,13 +23,13 @@ const Footer = () => (
       ))}
     </Flex>
     <Box fontSize="sm">
-      <Text as="span">onur</Text>
+      <Text as="span" fontWeight="bold">onur</Text>
       <Text as="span" color="gray.600">{' dot '}</Text>
-      <Text as="span">suyalcinkaya</Text>
+      <Text as="span" fontWeight="bold">suyalcinkaya</Text>
       <Text as="span" color="gray.600">{' at '}</Text>
-      <Text as="span">gmail</Text>
+      <Text as="span" fontWeight="bold">gmail</Text>
       <Text as="span" color="gray.600">{' dot '}</Text>
-      <Text as="span">com</Text>
+      <Text as="span" fontWeight="bold">com</Text>
     </Box>
   </Flex>
 )

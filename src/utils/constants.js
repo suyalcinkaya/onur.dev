@@ -139,7 +139,8 @@ export const journeyData = [
     year: 1992,
     items: [
       {
-        title: 'Born 👶🏼 🍼'
+        title: 'Born',
+        description: '👶🏼 🍼'
       }
     ]
   }
@@ -155,17 +156,7 @@ export const cvData = {
       location: 'Berlin, Germany',
       descriptions: [],
       accomplishments: [],
-      stack: [
-        'React',
-        'Redux',
-        'Express',
-        'styled-components',
-        'Storybook',
-        'Jest',
-        'Enzyme',
-        'Git',
-        'Kibana'
-      ]
+      stack: ['React', 'Redux', 'Express', 'styled-components', 'Storybook', 'Jest', 'Enzyme', 'Git', 'Kibana']
     },
     {
       company: 'Yemeksepeti',

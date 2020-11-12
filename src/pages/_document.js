@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { extractCritical } from '@emotion/server'
 
 import { GA_TRACKING_ID } from 'utils/gtag'
 // import globalStyles from 'styles/global'
@@ -7,7 +8,16 @@ import { GA_TRACKING_ID } from 'utils/gtag'
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const styles = extractCritical(initialProps.html)
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          <style data-emotion-css={styles.ids.join(' ')} dangerouslySetInnerHTML={{ __html: styles.css }} />
+        </>
+      )
+    }
   }
 
   render() {
@@ -53,22 +63,6 @@ class MyDocument extends Document {
               />
             </Fragment>
           )}
-
-          {/* Fonts */}
-          <link
-            rel="preload"
-            href="/fonts/gt_america_regular-webfont.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="/fonts/gt_america_extended_medium-webfont.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin="anonymous"
-          />
         </Head>
         <body>
           <Main />
