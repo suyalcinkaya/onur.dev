@@ -29,7 +29,7 @@ const Header = () => {
         >
           <NextLink href="/">
             <a aria-label="onur.dev Logo">
-              <Text as="span" fontFamily="heading" fontSize="2xl">
+              <Text as="span" fontSize="2xl" fontWeight="bolder">
                 onur
               </Text>
             </a>
@@ -38,7 +38,7 @@ const Header = () => {
             {navigations.map((nav, navIndex) => (
               <Fragment key={`nav_${navIndex}`}>
                 <NextLink href={nav.url} passHref>
-                  <Box as="a" px={{ _: '0.475rem', md: '1.125rem' }}>
+                  <Box as="a" px={{ base: '0.475rem', md: '1.125rem' }}>
                     {nav.name}
                   </Box>
                 </NextLink>

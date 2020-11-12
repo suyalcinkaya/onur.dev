@@ -12,12 +12,21 @@ const vars = {
 }
 
 const Layout = ({ children, ...others }) => (
-  <Box mx="auto" px={6} my={{ base: 10, sm: 12 }} maxWidth={{ md: 640 }} {...others}>
-    <motion.div initial="exit" animate="enter" exit="exit">
-      <motion.div variants={vars}>
-        <Box>{children}</Box>
+  <Box
+    as="main"
+    mx="auto"
+    pl="env(safe-area-inset-left)"
+    pr="env(safe-area-inset-right)"
+    my={{ base: 10, sm: 12 }}
+    maxWidth={768}
+    overflow="hidden"
+    {...others}
+  >
+    <motion.div initial="exit" animate="enter" exit="exit" variants={vars}>
+      <Box px={{ base: 4, sm: 6, md: 10 }}>
+        {children}
         <Footer />
-      </motion.div>
+      </Box>
     </motion.div>
   </Box>
 )

@@ -19,13 +19,13 @@ const Layout = ({ frontMatter, children }) => {
   return (
     <Container>
       <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
-      <Box as="article">
-        <Stack spacing={2} mb={10}>
-          <Heading as="h1" fontSize={{ _: '2xl', md: '4xl' }} fontWeight="medium" letterSpacing={-0.4}>
+      <article>
+        <Stack spacing={4} mb={10}>
+          <Heading as="h1" fontSize="5xl" fontWeight="bolder" lineHeight="shorter">
             {frontMatter.title}
           </Heading>
           <Box>
-            <Text color="gray.600" fontSize="sm">
+            <Text color="gray.500">
               <time dateTime={frontMatter.publishedAt}>
                 {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
               </time>
@@ -60,7 +60,7 @@ const Layout = ({ frontMatter, children }) => {
               {'Edit on GitHub'}
             </Text> */}
         </Box>
-      </Box>
+      </article>
     </Container>
   )
 }

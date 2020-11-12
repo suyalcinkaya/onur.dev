@@ -14,20 +14,17 @@ const BlogPost = (frontMatter) => {
   const slug = pathFiles[pathFiles.length - 2]
 
   return (
-    <Stack as="article" spacing={1}>
+    <Stack as="article" spacing={2}>
       <Box>
         <NextLink href={`/${slug}`}>
           <a>
-            <Heading as="h3" fontSize={{ xl: 'xl' }} fontFamily="sans" fontWeight="medium" lineHeight="base">
+            <Heading as="h3" fontSize="2xl" fontWeight="medium" lineHeight="base">
               {title}
             </Heading>
           </a>
         </NextLink>
       </Box>
-      {/* <Text color={systemTheme === 'light' ? 'gray.600' : 'gray.500'} mb={2}>
-            {summary}
-          </Text> */}
-      <Text fontSize="xs" color="gray.600" lineHeight="shorter">
+      <Text color="gray.500" lineHeight="shorter">
         <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
         {' • '}
         {readingDuration}

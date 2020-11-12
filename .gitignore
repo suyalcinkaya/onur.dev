@@ -1,10 +1,26 @@
-.DS_Store
-.next
-.mdx-data
 .vscode
 .env*
+
+# next.js
+/.next/
+/out/
+.mdx-data
 .vercel
-node_modules
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# production
+/build
+sw.js
+workbox-*.js
+
+# misc
+.DS_Store
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

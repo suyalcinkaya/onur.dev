@@ -1,4 +1,4 @@
-import { Box, Code, Grid, List, ListItem, Text } from '@chakra-ui/core'
+import { Box, Code, List, ListItem, Text } from '@chakra-ui/core'
 import Image from 'next/image'
 
 // --- Components
@@ -38,8 +38,7 @@ const TData = (props) => (
 )
 
 const Quote = (props) => (
-  <Grid
-    placeItems="center"
+  <Box
     p={4}
     mt={4}
     mb={8}
@@ -61,7 +60,7 @@ const Quote = (props) => (
 
 const DocsHeading = (props) => (
   <Box
-    fontWeight="medium"
+    fontWeight="bold"
     css={{
       scrollMarginTop: '40px',
       scrollSnapMargin: '40px', // Safari
@@ -99,16 +98,16 @@ const DocsHeading = (props) => (
   </Box>
 )
 
-const Img = (props) => <Image unsized quality={50} {...props} />
+const Img = (props) => <Image quality={25} {...props} />
 
-const InlineCode = (props) => <Code variantColor="yellow" px="0.5rem" borderRadius={6} {...props} />
+const InlineCode = (props) => <Code colorScheme="yellow" px="0.5rem" borderRadius={6} {...props} />
 
 const Hr = (props) => <Box bg="gray.300" height="1px" my={8} width="100%" {...props} />
 
 const MDXComponents = {
-  // h1: (props) => <Text as="h1" fontSize={{ _: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
-  h2: (props) => <DocsHeading as="h2" fontSize={{ _: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontSize={{ _: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
+  // h1: (props) => <Text as="h1" fontSize={{ base: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
@@ -117,8 +116,7 @@ const MDXComponents = {
   td: TData,
   a: Link,
   p: (props) => <Text as="p" mb={4} {...props} />,
-  strong: (props) => <Text as="strong" fontWeight="bold" {...props} />,
-  ul: (props) => <List styleType="circle" my={4} {...props} />,
+  ul: (props) => <List styleType="circle" stylePosition="inside" my={4} {...props} />,
   ol: (props) => <List as="ol" {...props} />,
   li: (props) => <ListItem mb={4} {...props} />,
   blockquote: Quote,
