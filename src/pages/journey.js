@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Box, Grid, Heading, Text, Stack } from '@chakra-ui/core'
+import { Box, Grid, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
 import { Layout } from 'components'

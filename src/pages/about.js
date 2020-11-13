@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Box, Flex, Grid, Heading, Text, Stack } from '@chakra-ui/core'
-import Image from 'next/image'
+import { Button, Flex, Grid, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
 import { Layout, Link, MusicCard } from 'components'
@@ -29,19 +28,11 @@ const About = () => (
         </Heading>
         <Stack spacing={4} fontSize="lg">
           <Text>
-            {`I'm Onur, a Software Engineer, writer, and DJ who dabbles in design with a strong sense of aesthetics. Currently living
-            in Berlin, Germany and developing things at `}
-            <Link
-              href="https://hey.car"
-              css={{
-                textDecoration: 'none',
-                '&:hover': {
-                  textDecoration: 'none'
-                }
-              }}
-            >
-              heycar
-            </Link>
+            I'm Onur, a <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
+            <Link href="https://medium.com/@suyalcinkaya">writer</Link>, and{' '}
+            <Link href="https://soundcloud.com/jagerman">DJ</Link> who dabbles in design with a strong sense of
+            aesthetics. Currently living in Berlin, Germany and developing things at{' '}
+            <Link href="https://hey.car">heycar</Link>
             {`.`}
           </Text>
           <Text>
@@ -58,23 +49,14 @@ const About = () => (
             friends and family.
           </Text>
         </Stack>
-        <Stack spacing={4}>
+        <Stack spacing={6}>
           <Flex justifyContent="space-between" alignItems="center">
-            <Heading as="h2" size="lg" fontSize="2xl">
+            <Heading as="h2" size="lg" fontSize="3xl">
               Popular mixtapes
             </Heading>
-            <Link
-              isExternal
-              href="https://soundcloud.com/jagerman"
-              css={{
-                textDecoration: 'none',
-                '&:hover': {
-                  textDecoration: 'none'
-                }
-              }}
-            >
-              See All →
-            </Link>
+            <Button as="a" rightIcon={<Text>→</Text>} href="https://soundcloud.com/jagerman">
+              See All
+            </Button>
           </Flex>
           <Grid gridGap={6}>
             {mixtapes.map((mixtape, mixtapeId) => (

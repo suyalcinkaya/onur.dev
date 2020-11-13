@@ -1,4 +1,5 @@
 import theme from '@chakra-ui/theme'
+import { extendTheme } from "@chakra-ui/react"
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 
 const breakpoints = createBreakpoints({
@@ -102,4 +103,4 @@ const customTheme = {
   styles
 }
 
-export default customTheme
+export default extendTheme(customTheme)

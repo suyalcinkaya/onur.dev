@@ -1,10 +1,11 @@
-import { Heading, Link, Stack, Text } from '@chakra-ui/core'
+import { Heading, Link, Stack, Text } from '@chakra-ui/react'
 
 const MusicCard = (props) => {
   const { description, likeCount, playCount, title, url } = props
 
   return (
     <Link
+      isExternal
       href={url}
       css={{
         textDecoration: 'none',
@@ -12,7 +13,6 @@ const MusicCard = (props) => {
           textDecoration: 'none'
         }
       }}
-      isExternal
     >
       <Stack spacing={2}>
         <Heading as="h3" fontSize="lg" fontWeight="medium" lineHeight="base">

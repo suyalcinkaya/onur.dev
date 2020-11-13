@@ -1,9 +1,17 @@
 import NextLink from 'next/link'
+import { Box, Link as ChakraLink } from '@chakra-ui/react'
 
-import { Box, Link as ChakraLink } from '@chakra-ui/core'
-
-// --- Others
-import theme from 'styles/theme'
+const linkStyle = {
+  pb: '2px',
+  color: 'link',
+  borderBottom: '3px solid',
+  borderColor: 'blue.100',
+  textDecoration: 'none',
+  _hover: {
+    borderColor: 'link',
+    textDecoration: 'none'
+  }
+}
 
 const Link = (props) => {
   const href = props.href
@@ -12,27 +20,12 @@ const Link = (props) => {
   if (isInternalLink) {
     return (
       <NextLink href={href} passHref>
-        <Box as="a" pb="2px" borderBottom="1px dotted" {...props} />
+        <Box as="a" {...linkStyle} {...props} />
       </NextLink>
     )
   }
 
-  return (
-    <ChakraLink
-      isExternal
-      color="link"
-      css={{
-        textDecoration: 'none',
-        transition: 'all 0.15s ease-out',
-        borderBottom: '1px solid transparent',
-        '&:hover': {
-          textDecoration: 'none',
-          borderBottom: `1px solid ${theme.colors.link}`
-        }
-      }}
-      {...props}
-    />
-  )
+  return <ChakraLink isExternal {...linkStyle} {...props} />
 }
 
 export default Link

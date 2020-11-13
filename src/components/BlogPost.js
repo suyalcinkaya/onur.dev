@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { Box, Heading, Stack, Text } from '@chakra-ui/core'
+import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 import tinytime from 'tinytime'
 
 const BlogPost = (frontMatter) => {
@@ -18,7 +18,7 @@ const BlogPost = (frontMatter) => {
       <Box>
         <NextLink href={`/${slug}`}>
           <a>
-            <Heading as="h3" fontSize="2xl" fontWeight="medium" lineHeight="base">
+            <Heading as="h3" fontSize="xl" fontWeight="medium" lineHeight="base">
               {title}
             </Heading>
           </a>

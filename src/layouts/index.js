@@ -1,4 +1,4 @@
-import { Box, Heading, Stack, Text } from '@chakra-ui/core'
+import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import tinytime from 'tinytime'
 

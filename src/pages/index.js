@@ -1,7 +1,7 @@
-import { Grid, Heading, Text, Stack } from '@chakra-ui/core'
+import { Grid, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { BlogPost, Layout } from 'components'
+import { BlogPost, Layout, Link } from 'components'
 
 // --- Other
 import { frontMatter as blogPosts } from './**/*.mdx' // Thanks to babel-plugin-import-glob-array
@@ -11,13 +11,18 @@ const Home = () => {
 
   return (
     <Layout>
-      <Stack spacing={8}>
+      <Stack spacing={12}>
         <Stack spacing={8}>
           <Heading as="h1" fontSize="5xl" fontWeight="bolder" lineHeight="shorter">
-            {'Hey, I’m Onur Suyalcinkaya'}
+            {'Onur Suyalcinkaya'}
           </Heading>
           <Text fontSize="lg">
-            {`Frontend Engineer, JavaScript enthusiast, DJ, writer and minimalist. Currently living in Berlin, Germany and developing things at heycar. Writing mostly about code and design and a bit of my thoughts.`}
+            <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
+            <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}
+            <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
+            <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist. Currently living in Berlin,
+            Germany and developing things at <Link href="https://hey.car">heycar</Link>. Writing mostly about code and
+            design and a bit of my thoughts.
           </Text>
         </Stack>
         <Grid gridGap={12}>

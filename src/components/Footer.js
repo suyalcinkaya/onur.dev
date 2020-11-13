@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/core'
+import { Box, Flex, Text } from '@chakra-ui/react'
 
 // --- Others
 import { profiles } from 'utils/constants'
@@ -15,7 +15,6 @@ const Footer = () => (
           rel="noopener noreferrer"
           title={profile.name}
           aria-label={profile.name}
-          color="gray.700"
           px={1}
         >
           {profile.icon}

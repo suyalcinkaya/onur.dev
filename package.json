@@ -13,20 +13,16 @@
   },
   "scripts": {
     "dev": "next dev",
-    "dev-purge": "rm -r .mdx-data .next && next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",
     "svgr-all": "svgr ./src/icons -d ./src/components/icons --svg-props 'className=' --svgo-config .svgorc.json",
-    "svgr-new": "svgr ./src/icons -d ./src/components/icons --ignore-existing --svg-props 'className=' --svgo-config .svgorc.json"
+    "svgr-new": "svgr ./src/icons -d ./src/components/icons --ignore-existing --svg-props 'className=' --svgo-config .svgorc.json",
+    "clear-cache": "rm -r .mdx-data .next"
   },
   "dependencies": {
-    "@chakra-ui/core": "next",
-    "@emotion/babel-plugin": "^11.0.0",
-    "@emotion/cache": "^11.0.0",
-    "@emotion/css": "^11.0.0",
+    "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",
-    "@emotion/server": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@mdx-js/loader": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
@@ -48,6 +44,7 @@
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.0.0",
     "@svgr/cli": "^5.4.0",
     "rehype": "^11.0.0"
   }

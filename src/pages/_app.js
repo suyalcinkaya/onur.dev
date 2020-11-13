@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import { ChakraProvider } from '@chakra-ui/core'
+import { ChakraProvider } from '@chakra-ui/react'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
 import { AnimatePresence } from 'framer-motion'

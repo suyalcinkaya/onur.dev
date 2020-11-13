@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import NextLink from 'next/link'
-import { Box, Flex, Text } from '@chakra-ui/core'
+import { Box, Flex, Text } from '@chakra-ui/react'
 
 // --- Others
 import { HEADER_HEIGHT, navigations } from 'utils/constants'
@@ -38,7 +38,7 @@ const Header = () => {
             {navigations.map((nav, navIndex) => (
               <Fragment key={`nav_${navIndex}`}>
                 <NextLink href={nav.url} passHref>
-                  <Box as="a" px={{ base: '0.475rem', md: '1.125rem' }}>
+                  <Box as="a" px={{ base: '0.475rem', md: '1.125rem' }} fontWeight="medium">
                     {nav.name}
                   </Box>
                 </NextLink>
