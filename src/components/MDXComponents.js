@@ -60,13 +60,15 @@ const Quote = (props) => (
 )
 
 const HeadingContainer = styled(Box)`
-  scroll-margin-top: 40px;
-  scroll-snap-margin: 40px;
+  scroll-margin-top: 100px;
+  scroll-snap-margin: 100px;
+
+  a {
+    transition: 200ms ease-in-out;
+  }
 
   &[id]:before {
     display: block;
-    height: 6rem;
-    margin-top: -6rem;
     visibility: hidden;
     content: '';
   }
@@ -88,7 +90,7 @@ const DocsHeading = (props) => (
           as="a"
           href={`#${props.id}`}
           color="link"
-          fontWeight="normal"
+          fontWeight="medium"
           outline="none"
           opacity="0"
           ml={2}
