@@ -17,16 +17,9 @@ const Header = () => {
         height={HEADER_HEIGHT}
         width="100%"
         bg="hsla(0, 0%, 100%, 0.8)"
-        style={{ backdropFilter: 'saturate(180%) blur(5px)' }}
+        style={{ backdropFilter: 'saturate(180%) blur(5px)', WebkitBackdropFilter: 'saturate(180%) blur(5px)' }}
       >
-        <Flex
-          justify="space-between"
-          alignItems="center"
-          height="100%"
-          // maxWidth="800px"
-          m="0 auto"
-          px={{ base: 6, md: 8, lg: 12 }}
-        >
+        <Flex justify="space-between" alignItems="center" height="100%" m="0 auto" px={{ base: 6, md: 8, lg: 12 }}>
           <NextLink href="/">
             <a aria-label="onur.dev Logo">
               <Text as="span" fontSize="2xl" fontWeight="bolder">

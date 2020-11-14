@@ -1,9 +1,9 @@
-import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import { Box, Stack, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import tinytime from 'tinytime'
 
 // --- Components
-import { BlogSeo, Layout as LayoutCom, Link, Share } from 'components'
+import { BlogSeo, Layout as LayoutCom, Link, PageHeading, Share } from 'components'
 
 // --- Others
 import { baseTheme, lightTheme } from 'styles/prism'
@@ -21,9 +21,7 @@ const Layout = ({ frontMatter, children }) => {
       <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
       <article>
         <Stack spacing={4} mb={10}>
-          <Heading as="h1" fontSize="5xl" fontWeight="bolder" lineHeight="shorter">
-            {frontMatter.title}
-          </Heading>
+          <PageHeading>{frontMatter.title}</PageHeading>
           <Box>
             <Text color="gray.500">
               <time dateTime={frontMatter.publishedAt}>

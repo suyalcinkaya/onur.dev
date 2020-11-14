@@ -1,4 +1,5 @@
 import { Box, Code, List, ListItem, Text } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import Image from 'next/image'
 
 // --- Components
@@ -43,7 +44,7 @@ const Quote = (props) => (
     mt={4}
     mb={8}
     borderLeft={`4px solid #3182ce`}
-    bg="#ebf8ff"
+    bg="gray.200"
     css={{
       '> *:first-of-type': {
         marginTop: 0,
@@ -58,27 +59,28 @@ const Quote = (props) => (
   />
 )
 
+const HeadingContainer = styled(Box)`
+  scroll-margin-top: 40px;
+  scroll-snap-margin: 40px;
+
+  &[id]:before {
+    display: block;
+    height: 6rem;
+    margin-top: -6rem;
+    visibility: hidden;
+    content: '';
+  }
+
+  &[id]:hover {
+    a {
+      opacity: 1;
+    }
+  }
+`
+
 const DocsHeading = (props) => (
-  <Box
-    fontWeight="bold"
-    css={{
-      scrollMarginTop: '40px',
-      scrollSnapMargin: '40px', // Safari
-      '&[id]': {
-        pointerEvents: 'none'
-      },
-      '&[id]:before': {
-        display: 'block',
-        height: ' 6rem',
-        marginTop: '-6rem',
-        visibility: 'hidden',
-        content: `""`
-      },
-      '&[id]:hover a': { opacity: 1 }
-    }}
-    {...props}
-  >
-    <Box css={{ pointerEvents: 'auto' }}>
+  <HeadingContainer fontWeight="bold" {...props}>
+    <div style={{ pointerEvents: 'auto' }}>
       {props.children}
       {props.id && (
         <Box
@@ -94,8 +96,8 @@ const DocsHeading = (props) => (
           #
         </Box>
       )}
-    </Box>
-  </Box>
+    </div>
+  </HeadingContainer>
 )
 
 const Img = (props) => <Image quality={25} {...props} />
@@ -105,7 +107,6 @@ const InlineCode = (props) => <Code colorScheme="yellow" px="0.5rem" borderRadiu
 const Hr = (props) => <Box bg="gray.300" height="1px" my={8} width="100%" {...props} />
 
 const MDXComponents = {
-  // h1: (props) => <Text as="h1" fontSize={{ base: 30, md: 36 }} fontWeight={600} my={4} {...props} />,
   h2: (props) => <DocsHeading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,

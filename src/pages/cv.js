@@ -1,10 +1,10 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
 import styled from '@emotion/styled'
-import { Badge, Divider, Grid, Heading, Text, Stack } from '@chakra-ui/react'
+import { Badge, Divider, Flex, Grid, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { Layout } from 'components'
+import { Layout, PageHeading } from 'components'
 
 // --- Other
 import { cvData } from 'utils/constants'
@@ -13,10 +13,12 @@ import { safariOnly } from 'utils/helper'
 const url = 'https://onur.dev/cv'
 const title = 'Curriculum Vitae — Onur Şuyalçınkaya'
 
-const TechStackContainer = styled(Stack)`
+const TechStackContainer = styled(Flex)`
   row-gap: 0.5rem;
+  column-gap: 0.5rem;
 `
 
+// row-gap is not supported on Safari yet
 const StackBadge = styled(Badge)`
   ${safariOnly('margin-bottom: 0.5rem')}
 `
@@ -35,11 +37,9 @@ const CurriculumVitae = () => (
     />
     <Layout>
       <Stack spacing={8}>
-        <Heading as="h1" fontSize="5xl" fontWeight="bolder" lineHeight="shorter">
-          Curriculum Vitae
-        </Heading>
+        <PageHeading>Curriculum Vitae</PageHeading>
         <Grid gridGap={6}>
-          <Heading as="h2" size="lg" fontSize="3xl">
+          <Heading as="h2" size="xl" fontSize="3xl">
             Experience
           </Heading>
           {cvData.experiences.map((experience, experienceIndex) => (
@@ -70,7 +70,6 @@ const CurriculumVitae = () => (
                         letterSpacing="1px"
                         px={2}
                         fontWeight="normal"
-                        // css={safariOnly`margin-bottom: 0.5rem;`} // row-gap is not supported on Safari yet
                       >
                         {item}
                       </StackBadge>
@@ -82,7 +81,7 @@ const CurriculumVitae = () => (
             </Fragment>
           ))}
           <Divider />
-          <Heading as="h2" size="lg" fontSize="3xl">
+          <Heading as="h2" size="xl" fontSize="3xl">
             Education
           </Heading>
           {cvData.educations.map((education, educationIndex) => (

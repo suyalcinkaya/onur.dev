@@ -1,7 +1,7 @@
-import { Grid, Heading, Text, Stack } from '@chakra-ui/react'
+import { Grid, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { BlogPost, Layout, Link } from 'components'
+import { BlogPost, Layout, Link, PageHeading } from 'components'
 
 // --- Other
 import { frontMatter as blogPosts } from './**/*.mdx' // Thanks to babel-plugin-import-glob-array
@@ -13,9 +13,7 @@ const Home = () => {
     <Layout>
       <Stack spacing={12}>
         <Stack spacing={8}>
-          <Heading as="h1" fontSize="5xl" fontWeight="bolder" lineHeight="shorter">
-            {'Onur Suyalcinkaya'}
-          </Heading>
+          <PageHeading>{'Onur Suyalcinkaya'}</PageHeading>
           <Text fontSize="lg">
             <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
             <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}

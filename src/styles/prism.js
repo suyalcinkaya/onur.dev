@@ -143,7 +143,8 @@ export const lightTheme = css`
   }
 
   .token.function,
-  .token.class-name {
+  .token.class-name,
+  .token.maybe-class-name {
     color: #dd4a68;
   }
 
@@ -155,7 +156,7 @@ export const lightTheme = css`
 
   .mdx-marker {
     background-color: #e9f1fe;
-    box-shadow: inset 3px 0px 0 0px #0070F3;
+    box-shadow: inset 3px 0px 0 0px #0070f3;
   }
 
   .remark-code-title {
