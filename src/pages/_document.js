@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import { GA_TRACKING_ID } from 'utils/gtag'
-// import globalStyles from 'styles/global'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {

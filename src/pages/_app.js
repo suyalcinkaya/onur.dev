@@ -33,7 +33,7 @@ function App({ Component, pageProps, router }) {
     <Fragment>
       <Head>
         {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </Head>
       <DefaultSeo {...SEO} />
       <ChakraProvider theme={theme}>
