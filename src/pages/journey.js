@@ -7,9 +7,11 @@ import { Layout, PageHeading } from 'components'
 
 // --- Other
 import { journeyData } from 'utils/constants'
+import { ogImageUrl } from 'utils/helper'
 
 const url = 'https://onur.dev/journey'
 const title = 'Journey — Onur Şuyalçınkaya'
+const ogTitle = 'Journey'
 
 const Journey = () => (
   <Fragment>
@@ -18,7 +20,13 @@ const Journey = () => (
       canonical={url}
       openGraph={{
         url,
-        title
+        title,
+        images: [
+          {
+            url: ogImageUrl(ogTitle),
+            alt: title
+          }
+        ]
       }}
     />
     <Layout>

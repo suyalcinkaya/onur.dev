@@ -7,9 +7,11 @@ import { Layout, Link, MusicCard, PageHeading } from 'components'
 
 // --- Others
 import { mixtapes } from 'utils/constants'
+import { ogImageUrl } from 'utils/helper'
 
 const url = 'https://onur.dev/about'
 const title = 'About Me — Onur Şuyalçınkaya'
+const ogTitle = 'About Me'
 
 const About = () => (
   <Fragment>
@@ -18,7 +20,13 @@ const About = () => (
       canonical={url}
       openGraph={{
         url,
-        title
+        title,
+        images: [
+          {
+            url: ogImageUrl(ogTitle),
+            alt: title
+          }
+        ]
       }}
     />
     <Layout>

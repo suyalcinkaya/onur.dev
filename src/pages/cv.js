@@ -8,10 +8,11 @@ import { Layout, PageHeading } from 'components'
 
 // --- Other
 import { cvData } from 'utils/constants'
-import { safariOnly } from 'utils/helper'
+import { safariOnly, ogImageUrl } from 'utils/helper'
 
 const url = 'https://onur.dev/cv'
 const title = 'Curriculum Vitae — Onur Şuyalçınkaya'
+const ogTitle = 'Curriculum Vitae'
 
 const TechStackContainer = styled(Flex)`
   flex-direction: row;
@@ -39,7 +40,13 @@ const CurriculumVitae = () => (
       canonical={url}
       openGraph={{
         url,
-        title
+        title,
+        images: [
+          {
+            url: ogImageUrl(ogTitle),
+            alt: title
+          }
+        ]
       }}
     />
     <Layout>

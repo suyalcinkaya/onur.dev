@@ -1,10 +1,14 @@
 import { Fragment } from 'react'
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
-const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
+// --- Other
+import { ogImageUrl } from 'utils/helper'
+
+const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
   const date = new Date(publishedAt).toISOString()
+
   const featuredImage = {
-    url: `https://onur.dev${image}`,
+    url: ogImageUrl(ogTitle || title),
     alt: title
   }
 
