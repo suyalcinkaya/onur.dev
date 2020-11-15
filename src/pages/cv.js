@@ -14,16 +14,23 @@ const url = 'https://onur.dev/cv'
 const title = 'Curriculum Vitae — Onur Şuyalçınkaya'
 
 const TechStackContainer = styled(Flex)`
+  flex-direction: row;
+  flex-wrap: wrap;
   row-gap: 0.5rem;
   column-gap: 0.5rem;
+
+  ${safariOnly(`
+    margin-bottom: -0.5rem;
+  `)}
 `
 
-// row-gap is not supported on Safari yet
+// gap is not supported on Safari yet
 const StackBadge = styled(Badge)`
-  ${safariOnly('margin-bottom: 0.5rem')}
+  ${safariOnly(`
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+  `)}
 `
-
-TechStackContainer.defaultProps = { direction: 'row', wrap: 'wrap', spacing: 2 }
 
 const CurriculumVitae = () => (
   <Fragment>
@@ -68,8 +75,8 @@ const CurriculumVitae = () => (
                         fontSize="xxs"
                         lineHeight="taller"
                         letterSpacing="1px"
-                        px={2}
                         fontWeight="normal"
+                        px={2}
                       >
                         {item}
                       </StackBadge>
