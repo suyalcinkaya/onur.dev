@@ -8,35 +8,39 @@ import Link from 'components/Link'
 // --- Others
 import theme from 'styles/theme'
 
-const Table = (props) => (
-  <Box
-    as="table"
-    textAlign="left"
-    my={4}
-    width="100%"
-    css={{
-      'tbody > tr:nth-of-type(even)': {
-        backgroundColor: theme.colors.gray[200]
-      }
-    }}
-    {...props}
-  />
-)
+const Table = (props) => <Box as="table" d="inline-table" textAlign="left" my={4} width="100%" {...props} />
 
-const THead = (props) => <Box as="th" bg="gray.400" color="white" fontWeight="medium" p="0.5rem" {...props} />
+const StyledTHead = styled(Box)({
+  boxShadow: `0 0 0 1px ${theme.colors.gray[200]}`,
+  borderRadius: theme.radii.normal,
+  overflow: 'hidden',
 
-const TData = (props) => (
-  <Box
-    as="td"
-    py={3}
-    pl={2}
-    fontSize={14}
-    css={{
-      whiteSpace: 'normal'
-    }}
-    {...props}
-  />
-)
+  th: {
+    background: theme.colors.gray[50]
+  },
+  'th:first-of-type': {
+    borderTopLeftRadius: theme.radii.normal,
+    borderBottomLeftRadius: theme.radii.normal
+  },
+  'th:last-of-type': {
+    borderTopRightRadius: theme.radii.normal,
+    borderBottomRightRadius: theme.radii.normal
+  }
+})
+
+const StyledTBody = styled(Box)({
+  'tr:not(:last-of-type)': {
+    borderBottom: `1px solid ${theme.colors.gray[200]}`
+  }
+})
+
+const THead = (props) => <StyledTHead as="thead" color="gray.600" {...props} />
+
+const TBody = (props) => <StyledTBody as="tbody" {...props} />
+
+const TH = (props) => <Box as="th" fontWeight="normal" px={{ base: 3, md: 4 }} py={3} {...props} />
+
+const TData = (props) => <Box as="td" py={3} pl={{ base: 3, md: 4 }} whiteSpace="normal" {...props} />
 
 const Quote = (props) => (
   <Box
@@ -115,8 +119,10 @@ const MDXComponents = {
   br: (props) => <Box height={24} {...props} />,
   hr: Hr,
   table: Table,
-  th: THead,
+  th: TH,
   td: TData,
+  thead: THead,
+  tbody: TBody,
   a: Link,
   p: (props) => <Text as="p" mb={4} {...props} />,
   ul: (props) => <List styleType="circle" stylePosition="inside" my={4} {...props} />,

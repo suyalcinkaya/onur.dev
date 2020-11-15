@@ -1,5 +1,5 @@
 import theme from '@chakra-ui/theme'
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 
 const breakpoints = createBreakpoints({
@@ -79,7 +79,8 @@ const customTheme = {
   breakpoints,
   colors: {
     ...theme.colors,
-    link: '#0070F3'
+    link: '#0070F3',
+    lightLink: '#D3E5FF'
   },
   fontSizes: {
     ...theme.fontSizes,

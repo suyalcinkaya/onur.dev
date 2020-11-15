@@ -67,7 +67,7 @@ const CurriculumVitae = () => (
                   <Text key={`description_${descriptionIndex}`}>{description}</Text>
                 ))}
                 {experience.stack?.length > 0 && (
-                  <TechStackContainer align="stretch">
+                  <TechStackContainer>
                     {experience.stack.map((item, itemIndex) => (
                       <StackBadge
                         key={`stack_${itemIndex}`}

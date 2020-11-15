@@ -31,7 +31,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, image }) => {
         datePublished={date}
         description={summary}
         images={[featuredImage]}
-        publisherLogo="/images/me.jpg"
+        publisherLogo="/images/me.png"
         publisherName="Onur Şuyalçınkaya"
         title={title}
         url={url}

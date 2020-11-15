@@ -1,6 +1,7 @@
 export { default as Facebook } from './Facebook'
 export { default as Github } from './Github'
 export { default as Linkedin } from './Linkedin'
+export { default as Me } from './Me'
 export { default as Medium } from './Medium'
 export { default as OBlack } from './OBlack'
 export { default as OWhite } from './OWhite'

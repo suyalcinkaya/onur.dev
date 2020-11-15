@@ -13,10 +13,10 @@ const SEO = {
     description,
     images: [
       {
-        url: 'https://onur.dev/images/og.png',
+        url: 'https://onur.dev/images/me.png',
         alt: title,
-        width: 1280,
-        height: 720
+        width: 1024,
+        height: 1024
       }
     ]
   },

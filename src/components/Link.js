@@ -5,7 +5,7 @@ const linkStyle = {
   pb: '2px',
   color: 'link',
   borderBottom: '3px solid',
-  borderColor: 'blue.100',
+  borderColor: 'lightLink',
   textDecoration: 'none',
   _hover: {
     borderColor: 'link',

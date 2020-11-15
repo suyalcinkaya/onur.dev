@@ -59,7 +59,7 @@ export const mixtapes = [
   }
 ]
 
-export const HEADER_HEIGHT = 70
+export const HEADER_HEIGHT = 20
 
 export const navigations = [
   {
@@ -81,12 +81,12 @@ export const journeyData = [
     year: 2020,
     items: [
       {
-        title: 'Joined Heycar',
+        title: 'Joined heycar',
         description: 'Thrilled to join this brilliant company. 🎉'
       },
       {
         title: 'Moved to Berlin',
-        description: "This is the first time I live and work abroad and I'm far away from my family and friends."
+        description: "It's my first time living abroad and I'm far away from my family and friends."
       }
     ]
   },
@@ -104,7 +104,7 @@ export const journeyData = [
     items: [
       {
         title: 'Joined Yemeksepeti',
-        description: "I'm excited to help grow the Yemek.com."
+        description: "I'm excited to help grow the Yemek.com team."
       }
     ]
   },
@@ -131,7 +131,7 @@ export const journeyData = [
     items: [
       {
         title: 'Started at Dogus University',
-        description: 'Studying Computer Engineering is one of the luckiest moments of my life.'
+        description: 'Being able to study Computer Engineering is one of the luckiest moments of my life.'
       }
     ]
   },
