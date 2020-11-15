@@ -25,7 +25,9 @@ const Header = () => {
         <Flex justify="space-between" alignItems="center" height="100%" m="0 auto" px={{ base: 6, md: 8, lg: 12 }}>
           <NextLink href="/">
             <a aria-label="onur.dev Logo">
-              <Box as={Me} boxSize={{ base: 12, md: 14 }} />
+              <Box d="inline-flex" boxSize={{ base: 12, md: 14 }}>
+                <img src="/images/me.svg" alt="onur.dev Logo" width="1024" height="1024" />
+              </Box>
             </a>
           </NextLink>
           <Flex>
