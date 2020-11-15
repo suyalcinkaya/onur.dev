@@ -1,9 +1,7 @@
 import { Fragment } from 'react'
 import NextLink from 'next/link'
+import Image from 'next/image'
 import { Box, Flex } from '@chakra-ui/react'
-
-// --- Components
-import { Me } from 'components/icons'
 
 // --- Others
 import { HEADER_HEIGHT, navigations } from 'utils/constants'
@@ -25,8 +23,8 @@ const Header = () => {
         <Flex justify="space-between" alignItems="center" height="100%" m="0 auto" px={{ base: 6, md: 8, lg: 12 }}>
           <NextLink href="/">
             <a aria-label="onur.dev Logo">
-              <Box d="inline-flex" boxSize={{ base: 12, md: 14 }}>
-                <img src="/images/me.svg" alt="onur.dev Logo" width="1024" height="1024" />
+              <Box boxSize={{ base: 12, md: 14 }}>
+                <Image src="/images/me.svg" alt="onur.dev Logo" width={1024} height={1024} />
               </Box>
             </a>
           </NextLink>
