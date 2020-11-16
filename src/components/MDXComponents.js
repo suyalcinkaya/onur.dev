@@ -42,23 +42,21 @@ const TH = (props) => <Box as="th" fontWeight="normal" px={{ base: 3, md: 4 }} p
 
 const TData = (props) => <Box as="td" py={3} pl={{ base: 3, md: 4 }} whiteSpace="normal" {...props} />
 
+const StyledQuote = styled(Box)({
+  '> *:last-of-type': {
+    marginBottom: 0
+  }
+})
+
 const Quote = (props) => (
-  <Box
-    p={4}
-    mt={4}
-    mb={8}
-    borderLeft={`4px solid #3182ce`}
-    bg="gray.200"
-    css={{
-      '> *:first-of-type': {
-        marginTop: 0,
-        marginBottom: 0,
-        marginLeft: 8
-      },
-      '> *:last-of-type': {
-        marginBottom: 0
-      }
-    }}
+  <StyledQuote
+    as="blockquote"
+    pl={{ base: 4, md: 6 }}
+    my={4}
+    borderLeftWidth={4}
+    borderLeftColor="gray.300"
+    bg="transparent"
+    fontStyle="italic"
     {...props}
   />
 )

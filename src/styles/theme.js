@@ -59,7 +59,7 @@ const styles = {
     'figure figcaption': {
       fontSize: theme.fontSizes.sm,
       fontWeight: theme.fontWeights.medium,
-      marginTop: theme.space[4]
+      color: theme.colors.gray[600]
     },
     'article img': {
       maxWidth: '100%',

@@ -59,7 +59,7 @@ export const mixtapes = [
   }
 ]
 
-export const HEADER_HEIGHT = 20
+export const HEADER_HEIGHT = 20 //rem
 
 export const navigations = [
   {
