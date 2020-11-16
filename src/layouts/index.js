@@ -1,9 +1,9 @@
-import { Box, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Divider, Stack, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import tinytime from 'tinytime'
 
 // --- Components
-import { BlogSeo, Layout as LayoutCom, Link, PageHeading, Share } from 'components'
+import { BlogSeo, Layout as LayoutCom, PageHeading, Share } from 'components'
 
 // --- Others
 import { baseTheme, lightTheme } from 'styles/prism'
@@ -37,26 +37,17 @@ const Layout = ({ frontMatter, children }) => {
         </Stack>
         {children}
         <Box mt={30}>
-          <Link href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`}>
+          <Divider my={6} borderColor="gray.300" />
+          <Button
+            as="a"
+            href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            // variant="outline"
+            colorScheme="twitter"
+          >
             {'Discuss on Twitter →'}
-          </Link>
-          {/* <Text color="gray400">{` • `}</Text>
-            <Text
-              as="a"
-              href={editUrl(slug)}
-              target="_blank"
-              color="hsl(208,99%,44%)"
-              css={{
-                textDecoration: 'none',
-                transition: 'all 0.15s ease-out',
-                borderBottom: '1px solid transparent',
-                '&:hover': {
-                  borderBottom: '1px solid hsl(208,99%,44%)'
-                }
-              }}
-            >
-              {'Edit on GitHub'}
-            </Text> */}
+          </Button>
         </Box>
       </article>
     </Container>
