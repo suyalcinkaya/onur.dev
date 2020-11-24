@@ -57,7 +57,14 @@ const About = () => (
             <Heading as="h2" size="xl" fontSize="3xl">
               Popular Mixtapes
             </Heading>
-            <Button as="a" rightIcon={<Text>→</Text>} href="https://soundcloud.com/jagerman">
+            <Button
+              as="a"
+              href="https://soundcloud.com/jagerman"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              rightIcon={<Text>→</Text>}
+            >
               See All
             </Button>
           </Flex>

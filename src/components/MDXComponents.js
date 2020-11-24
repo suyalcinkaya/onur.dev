@@ -1,4 +1,4 @@
-import { Box, Code, List, ListItem, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Code, Divider, List, ListItem, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import Image from 'next/image'
 
@@ -52,9 +52,9 @@ const Quote = (props) => (
   <StyledQuote
     as="blockquote"
     pl={{ base: 4, md: 6 }}
-    my={4}
+    mb={6}
     borderLeftWidth={4}
-    borderLeftColor="gray.300"
+    borderLeftColor="gray.200"
     bg="transparent"
     fontStyle="italic"
     {...props}
@@ -104,17 +104,23 @@ const DocsHeading = (props) => (
   </HeadingContainer>
 )
 
+const iFrame = ({ children, ...other }) => (
+  <AspectRatio ratio={16 / 9} {...other}>
+    {children}
+  </AspectRatio>
+)
+
 const Img = (props) => <Image quality={25} {...props} />
 
 const InlineCode = (props) => <Code colorScheme="yellow" px="0.5rem" borderRadius={6} {...props} />
 
-const Hr = (props) => <Box bg="gray.300" height="1px" my={8} width="100%" {...props} />
+const Hr = (props) => <Divider my={8} mx="auto" width={1 / 2} {...props} />
 
 const MDXComponents = {
   h2: (props) => <DocsHeading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,
-  br: (props) => <Box height={24} {...props} />,
+  br: (props) => <Box height={2} {...props} />,
   hr: Hr,
   table: Table,
   th: TH,
@@ -122,11 +128,12 @@ const MDXComponents = {
   thead: THead,
   tbody: TBody,
   a: Link,
-  p: (props) => <Text as="p" mb={4} {...props} />,
-  ul: (props) => <List styleType="circle" stylePosition="inside" my={4} {...props} />,
-  ol: (props) => <List as="ol" {...props} />,
+  p: (props) => <Text as="p" mb={6} {...props} />,
+  ul: (props) => <List as="ul" styleType="circle" stylePosition="inside" my={4} pl={6} {...props} />,
+  ol: (props) => <List as="ol" styleType="decimal" stylePosition="inside" my={4} pl={6} {...props} />,
   li: (props) => <ListItem mb={4} {...props} />,
   blockquote: Quote,
+  // iframe: iFrame,
   img: Img
 }
 

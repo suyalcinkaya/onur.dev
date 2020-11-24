@@ -50,7 +50,7 @@ const Journey = () => (
                   ))}
                 </Stack>
               </Stack>
-              <Box bg="gray.200" height="1px" my={4} width="100%" />
+              {dataIndex !== journeyData.length - 1 && <Box bg="gray.200" height="1px" my={4} width="100%" />}
             </Fragment>
           ))}
         </Stack>

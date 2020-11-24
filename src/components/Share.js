@@ -1,27 +1,7 @@
-import { Box, Flex } from '@chakra-ui/react'
-import styled from '@emotion/styled'
+import { IconButton, Stack } from '@chakra-ui/react'
 
 // --- Components
 import { Facebook, Linkedin, Twitter } from 'components/icons'
-
-// --- Others
-import theme from 'styles/theme'
-
-const Button = styled.button({
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  border: 'none',
-  background: 'none',
-  boxShadow: 'none',
-  padding: 0,
-  outline: 'none',
-  color: 'hsla(0, 0%, 0%, 0.8)',
-  transition: 'all 0.15s ease-out',
-  '&:hover': {
-    color: theme.colors.gray[600]
-  }
-})
 
 const Share = ({ title, url }) => {
   const shareOnFacebook = () => {
@@ -41,17 +21,11 @@ const Share = ({ title, url }) => {
   }
 
   return (
-    <Flex alignItems="center">
-      <Box as={Button} type="button" title="Share on Twitter" onClick={shareOnTwitter} m={0}>
-        <Twitter />
-      </Box>
-      <Box as={Button} type="button" title="Share on LinkedIn" onClick={shareOnLinkedIn} m={0} mx="0.375rem">
-        <Linkedin />
-      </Box>
-      <Box as={Button} type="button" title="Share on Facebook" onClick={shareOnFacebook} m={0}>
-        <Facebook />
-      </Box>
-    </Flex>
+    <Stack isInline spacing={0}>
+      <IconButton aria-label="Share on Twitter" variant="ghost" icon={<Twitter />} onClick={shareOnTwitter} />
+      <IconButton aria-label="Share on LinkedIn" variant="ghost" icon={<Linkedin />} onClick={shareOnLinkedIn} />
+      <IconButton aria-label="Share on Facebook" variant="ghost" icon={<Facebook />} onClick={shareOnFacebook} />
+    </Stack>
   )
 }
 

@@ -1,8 +1,8 @@
 const withPlugins = require('next-compose-plugins')
 const withPWA = require('next-pwa')
 const withMdxEnhanced = require('next-mdx-enhanced')
-const readingTime = require('reading-time')
 const mdxPrism = require('mdx-prism')
+const readingTime = require('reading-time')
 
 module.exports = withPlugins(
   [

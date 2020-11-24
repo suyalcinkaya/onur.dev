@@ -1,9 +1,10 @@
-import { Box, Button, Divider, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Stack, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import tinytime from 'tinytime'
 
 // --- Components
 import { BlogSeo, Layout as LayoutCom, PageHeading, Share } from 'components'
+import { Twitter } from 'components/icons'
 
 // --- Others
 import { baseTheme, lightTheme } from 'styles/prism'
@@ -19,10 +20,10 @@ const Layout = ({ frontMatter, children }) => {
   return (
     <Container>
       <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
-      <article>
-        <Stack spacing={4} mb={10}>
+      <Stack as="article" spacing={16}>
+        <Stack spacing={6}>
           <PageHeading>{frontMatter.title}</PageHeading>
-          <Box>
+          <Stack spacing={2}>
             <Text color="gray.500">
               <time dateTime={frontMatter.publishedAt}>
                 {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
@@ -30,26 +31,24 @@ const Layout = ({ frontMatter, children }) => {
               {' • '}
               {frontMatter.readingTime.text}
             </Text>
-          </Box>
-          <Box>
             <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
-          </Box>
+          </Stack>
         </Stack>
-        {children}
-        <Box mt={30}>
-          <Divider my={6} borderColor="gray.300" />
+        <Stack spacing={6}>
+          <Box>{children}</Box>
           <Button
             as="a"
             href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            // variant="outline"
+            leftIcon={<Twitter />}
             colorScheme="twitter"
+            alignSelf="flex-start"
           >
             {'Discuss on Twitter →'}
           </Button>
-        </Box>
-      </article>
+        </Stack>
+      </Stack>
     </Container>
   )
 }

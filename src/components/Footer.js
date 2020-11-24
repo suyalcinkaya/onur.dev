@@ -1,49 +1,67 @@
-import { Flex, IconButton, Text } from '@chakra-ui/react'
+import { Fragment } from 'react'
+import { Button, Divider, Flex, Heading, IconButton, Text, Stack } from '@chakra-ui/react'
 
 // --- Others
 import { profiles } from 'utils/constants'
 
 const Footer = () => (
-  <Flex
-    flexDir={{ base: 'column', md: 'row' }}
-    alignItems="center"
-    justifyContent="space-between"
-    my={{ base: 8, md: 12 }}
-  >
-    <Flex justifyContent="center" alignItems="center" ml={{ md: -1 }} mb={{ base: 2, md: 0 }}>
-      {profiles.map((profile, profileIndex) => (
-        <IconButton
-          as="a"
-          key={`profile_${profileIndex}_${profile.name}`}
-          href={profile.url}
-          target="_blank"
-          bg="transparent"
-          rel="noopener noreferrer"
-          title={profile.name}
-          aria-label={profile.name}
-          px={1}
-          mr={{ base: 2, md: 1 }}
-        >
-          {profile.icon}
-        </IconButton>
-      ))}
+  <Fragment>
+    <Divider my={12} />
+    <Stack as="section" spacing={6} align="center" textAlign="center">
+      <Heading as="h2" size="md">
+        If you find there's any value in what I do and feel generous to want to help, you can support directly.
+      </Heading>
+      <Button
+        as="a"
+        href="https://ko-fi.com/suyalcinkaya"
+        target="_blank"
+        rel="noopener noreferrer"
+        leftIcon={
+          <span role="img" aria-label="celebrate">
+            🎉
+          </span>
+        }
+        colorScheme="red"
+      >
+        {'Support me on Ko-fi →'}
+      </Button>
+    </Stack>
+    <Divider my={12} />
+    <Flex flexDir={{ base: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" mb={12}>
+      <Flex justifyContent="center" alignItems="center" ml={{ md: -1 }} mb={{ base: 2, md: 0 }}>
+        {profiles.map((profile, profileIndex) => (
+          <IconButton
+            key={`profile_${profileIndex}_${profile.name}`}
+            as="a"
+            href={profile.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={profile.name}
+            bg="transparent"
+            px={1}
+            mr={{ base: 2, md: 1 }}
+          >
+            {profile.icon}
+          </IconButton>
+        ))}
+      </Flex>
+      <div>
+        <strong>onur</strong>
+        <Text as="span" color="gray.500">
+          {' dot '}
+        </Text>
+        <strong>suyalcinkaya</strong>
+        <Text as="span" color="gray.500">
+          {' at '}
+        </Text>
+        <strong>gmail</strong>
+        <Text as="span" color="gray.500">
+          {' dot '}
+        </Text>
+        <strong>com</strong>
+      </div>
     </Flex>
-    <div>
-      <strong>onur</strong>
-      <Text as="span" color="gray.600">
-        {' dot '}
-      </Text>
-      <strong>suyalcinkaya</strong>
-      <Text as="span" color="gray.600">
-        {' at '}
-      </Text>
-      <strong>gmail</strong>
-      <Text as="span" color="gray.600">
-        {' dot '}
-      </Text>
-      <strong>com</strong>
-    </div>
-  </Flex>
+  </Fragment>
 )
 
 export default Footer

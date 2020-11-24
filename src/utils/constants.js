@@ -1,5 +1,7 @@
 import { Github, Medium, Linkedin, Soundcloud, Twitter } from 'components/icons'
 
+export const HEADER_HEIGHT = 20 //rem
+
 export const profiles = [
   {
     name: 'Twitter',
@@ -13,7 +15,7 @@ export const profiles = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/onursuyalcinkaya/',
+    url: 'https://www.linkedin.com/in/suyalcinkaya/',
     icon: <Linkedin />
   },
   {
@@ -58,8 +60,6 @@ export const mixtapes = [
     likeCount: '290'
   }
 ]
-
-export const HEADER_HEIGHT = 20 //rem
 
 export const navigations = [
   {
@@ -153,7 +153,7 @@ export const cvData = {
       title: 'Frontend Engineer',
       startDate: 'Sep 2020',
       endDate: 'Present',
-      location: '🇩🇪 Berlin, Germany',
+      location: 'Berlin, Germany',
       descriptions: [],
       accomplishments: [],
       stack: ['React', 'Redux', 'Express', 'styled-components', 'Storybook', 'Jest', 'Enzyme', 'Git', 'Kanban']
@@ -163,7 +163,7 @@ export const cvData = {
       title: 'Frontend Engineer',
       startDate: 'Sep 2018',
       endDate: 'Sep 2020',
-      location: '🇹🇷 Istanbul, Turkey',
+      location: 'Istanbul, Turkey',
       descriptions: [
         `I was responsible for Yemek.com, which is a sub-brand within Yemeksepeti and a platform that is visited by 20 million unique people monthly and contains recipes, videos, and contents such as fun and instructional subjects related on everything about food.`,
         `As a Frontend Engineer, my tasks were; writing clean and modern JavaScript ES6 code with the best practices, making UI tweaks, building project/landing pages for the brand cooperations, adding new features, increasing the performance of yemek.com and working closely with product managers and UI/UX designers to facilitate better user experience. We were working with Scrum methodology in an Agile-driven environment to design, develop and deploy scalable and robust software.`
@@ -193,7 +193,7 @@ export const cvData = {
       title: 'Fullstack Developer',
       startDate: 'Dec 2015',
       endDate: 'Sep 2018',
-      location: '🇹🇷 Istanbul, Turkey',
+      location: 'Istanbul, Turkey',
       descriptions: [
         `I specialized in analyzing and documenting the project requirements, organizing resource/people scheduling according to the project tasks using Microsoft Project and ProjectLibre, designing and developing multiple web-based applications using Java with Spring Framework and AngularJS.`
       ],
@@ -219,7 +219,7 @@ export const cvData = {
       title: 'Specialist',
       startDate: 'Aug 2014',
       endDate: 'Dec 2015',
-      location: '🇹🇷 Istanbul, Turkey',
+      location: 'Istanbul, Turkey',
       descriptions: [
         `I participated in the NSO (New Store Opening) process of Apple Store Akasya in Turkey. Created a seamless customer journey and ownership by following the Apple Steps of Service. Maintained composure and customer focus while troubleshooting and solving issues. Repaired relationships. Managed time, took rational risks and made appropriate decisions quickly. Supported the team in helping with all functions within the store.`
       ],

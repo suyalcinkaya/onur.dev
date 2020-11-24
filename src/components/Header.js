@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 
 // --- Others
 import { HEADER_HEIGHT, navigations } from 'utils/constants'
@@ -20,21 +20,44 @@ const Header = () => {
         bg="hsla(0, 0%, 100%, 0.8)"
         style={{ backdropFilter: 'saturate(180%) blur(5px)', WebkitBackdropFilter: 'saturate(180%) blur(5px)' }}
       >
-        <Flex justify="space-between" alignItems="center" height="100%" m="0 auto" px={{ base: 6, md: 8, lg: 12 }} ml={-4}>
+        <Flex
+          justify="space-between"
+          alignItems="center"
+          height="100%"
+          m="0 auto"
+          px={{ base: 6, md: 8, lg: 12 }}
+          ml={-4}
+        >
           <NextLink href="/">
             <a aria-label="onur.dev Logo">
               <Box boxSize={{ base: 16, md: 20 }}>
-                <Image src="/images/optimized-me.png" alt="onur.dev Logo" width={1024} height={1024} />
+                <Image src="/images/optimized-me.png" alt="onur.dev Logo" width={80} height={80} />
               </Box>
             </a>
           </NextLink>
           <Flex>
+            <Button
+              as="a"
+              href="https://ko-fi.com/suyalcinkaya"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="ghost"
+              leftIcon={
+                <span role="img" aria-label="Donate">
+                  ☕️
+                </span>
+              }
+              fontWeight="medium"
+              px={{ base: '0.475rem', md: '1.125rem' }}
+            >
+              Donate
+            </Button>
             {navigations.map((nav, navIndex) => (
               <Fragment key={`nav_${navIndex}`}>
                 <NextLink href={nav.url} passHref>
-                  <Box as="a" px={{ base: '0.475rem', md: '1.125rem' }} fontWeight="medium">
+                  <Button as="a" variant="ghost" fontWeight="medium" px={{ base: 1, md: 4 }}>
                     {nav.name}
-                  </Box>
+                  </Button>
                 </NextLink>
               </Fragment>
             ))}

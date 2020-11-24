@@ -23,9 +23,9 @@ const styles = {
       margin: 0,
       padding: 0,
       fontFamily: 'body',
-      fontSize: '16px',
+      fontSize: 17,
       // fontFeatureSettings: `'ss01' 1, 'cv05' 1`,
-      lineHeight: theme.lineHeights.base,
+      lineHeight: 1.7,
       letterSpacing: '-0.01em',
       backgroundColor: theme.colors.white
     },

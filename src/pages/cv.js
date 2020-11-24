@@ -53,22 +53,20 @@ const CurriculumVitae = () => (
       <Stack spacing={8}>
         <PageHeading>Curriculum Vitae</PageHeading>
         <Grid gridGap={6}>
-          <Heading as="h2" size="xl" fontSize="3xl">
-            Experience
+          <Heading as="h2" size="lg">
+            Work Experience
           </Heading>
           {cvData.experiences.map((experience, experienceIndex) => (
             <Fragment key={`experience_${experienceIndex}`}>
               <Grid gap={4}>
-                <Grid>
-                  <Text fontSize="sm" color="gray.500">
+                <Grid gap={1}>
+                  <Text color="gray.400">
                     {experience.startDate} — {experience.endDate}
                   </Text>
-                  <Text fontSize="lg" fontWeight="medium">
+                  <Heading as="h3" size="md">
                     {experience.title} @ {experience.company}
-                  </Text>
-                  <Text fontSize="sm" color="gray.500">
-                    {experience.location}
-                  </Text>
+                  </Heading>
+                  <Text color="gray.400">{experience.location}</Text>
                 </Grid>
                 {experience.descriptions.map((description, descriptionIndex) => (
                   <Text key={`description_${descriptionIndex}`}>{description}</Text>
@@ -95,22 +93,20 @@ const CurriculumVitae = () => (
             </Fragment>
           ))}
           <Divider />
-          <Heading as="h2" size="xl" fontSize="3xl">
+          <Heading as="h2" size="lg">
             Education
           </Heading>
           {cvData.educations.map((education, educationIndex) => (
             <Fragment key={`education_${educationIndex}`}>
               <Grid gap={4}>
-                <Grid>
-                  <Text fontSize="sm" color="gray.500">
+                <Grid gap={1}>
+                  <Text color="gray.400">
                     {education.startDate} — {education.endDate}
                   </Text>
-                  <Text fontSize="lg" fontWeight="medium">
+                  <Heading as="h3" size="md">
                     {education.field} @ {education.school}
-                  </Text>
-                  <Text fontSize="sm" color="gray.500">
-                    {education.degree}
-                  </Text>
+                  </Heading>
+                  <Text color="gray.400">{education.degree}</Text>
                 </Grid>
               </Grid>
               {educationIndex !== cvData.educations.length - 1 && <Divider />}
