@@ -160,7 +160,7 @@ export const cvData = {
       location: 'Berlin, Germany',
       descriptions: [],
       accomplishments: [],
-      stack: ['React', 'Redux', 'Express', 'styled-components', 'Storybook', 'Jest', 'Enzyme', 'Git', 'Kanban']
+      stack: ['React', 'Redux', 'Express', 'styled-components', 'Storybook', 'Jest', 'Enzyme', 'Git', 'Scrum']
     },
     {
       company: 'Yemeksepeti',
@@ -189,7 +189,7 @@ export const cvData = {
         'Kibana',
         'New Relic',
         'Git',
-        'Jira'
+        'Scrum'
       ]
     },
     {

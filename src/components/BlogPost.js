@@ -6,7 +6,7 @@ const BlogPost = (frontMatter) => {
   const {
     publishedAt,
     readingTime: { text: readingDuration },
-    // summary,
+    summary,
     title
   } = frontMatter
 
@@ -14,10 +14,21 @@ const BlogPost = (frontMatter) => {
   const slug = pathFiles[pathFiles.length - 2]
 
   return (
-    <Stack as="article" spacing={1}>
-      <Text color="gray.500">
+    <Stack
+      as="article"
+      spacing={1}
+      transition={{ md: 'background 200ms ease-in-out' }}
+      _hover={{ md: { bg: 'gray.100' } }}
+      p={{ md: 4 }}
+      m={{ md: -4 }}
+      rounded={{ md: 'normal' }}
+      cursor={{ md: 'pointer' }}
+    >
+      <Stack isInline spacing={1} color="gray.500">
         <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
-      </Text>
+        <span>&bull;</span>
+        <span>{readingDuration}</span>
+      </Stack>
       <Box>
         <NextLink href={`/${slug}`}>
           <a>
@@ -27,9 +38,7 @@ const BlogPost = (frontMatter) => {
           </a>
         </NextLink>
       </Box>
-      <Text color="gray.500">
-        {readingDuration}
-      </Text>
+      <Text color="gray.500">{summary}</Text>
     </Stack>
   )
 }

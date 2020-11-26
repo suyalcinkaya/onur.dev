@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack } from '@chakra-ui/react'
 
 // --- Others
 import { HEADER_HEIGHT, navigations } from 'utils/constants'
@@ -35,7 +35,7 @@ const Header = () => {
               </Box>
             </a>
           </NextLink>
-          <Flex>
+          <Stack isInline spacing={1}>
             <Button
               as="a"
               href="https://ko-fi.com/suyalcinkaya"
@@ -61,7 +61,7 @@ const Header = () => {
                 </NextLink>
               </Fragment>
             ))}
-          </Flex>
+          </Stack>
         </Flex>
       </Box>
       <Box height={HEADER_HEIGHT} />
