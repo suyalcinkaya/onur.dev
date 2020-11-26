@@ -1,7 +1,9 @@
 import { IconButton, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { Facebook, Linkedin, Twitter } from 'components/icons'
+import Facebook from 'components/icons/Facebook'
+import Linkedin from 'components/icons/Linkedin'
+import Twitter from 'components/icons/Twitter'
 
 const Share = ({ title, url }) => {
   const shareOnFacebook = () => {

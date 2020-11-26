@@ -4,7 +4,8 @@ import styled from '@emotion/styled'
 import { Badge, Divider, Flex, Grid, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { Layout, PageHeading } from 'components'
+import Layout from 'components/Layout'
+import PageHeading from 'components/PageHeading'
 
 // --- Other
 import { cvData } from 'utils/constants'

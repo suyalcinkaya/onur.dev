@@ -1,4 +1,8 @@
-import { Github, Medium, Linkedin, Soundcloud, Twitter } from 'components/icons'
+import Github from 'components/icons/Github'
+import Medium from 'components/icons/Medium'
+import Linkedin from 'components/icons/Linkedin'
+import Soundcloud from 'components/icons/Soundcloud'
+import Twitter from 'components/icons/Twitter'
 
 export const HEADER_HEIGHT = 20 //rem
 

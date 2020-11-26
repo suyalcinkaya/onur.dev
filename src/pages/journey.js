@@ -3,7 +3,8 @@ import { NextSeo } from 'next-seo'
 import { Box, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { Layout, PageHeading } from 'components'
+import Layout from 'components/Layout'
+import PageHeading from 'components/PageHeading'
 
 // --- Other
 import { journeyData } from 'utils/constants'

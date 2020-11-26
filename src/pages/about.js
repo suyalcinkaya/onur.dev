@@ -3,7 +3,10 @@ import { NextSeo } from 'next-seo'
 import { Button, Flex, Grid, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { Layout, Link, MusicCard, PageHeading } from 'components'
+import Layout from 'components/Layout'
+import Link from 'components/Link'
+import MusicCard from 'components/MusicCard'
+import PageHeading from 'components/PageHeading'
 
 // --- Others
 import { mixtapes } from 'utils/constants'

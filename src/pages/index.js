@@ -1,7 +1,10 @@
 import { Grid, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
-import { BlogPost, Layout, Link, PageHeading } from 'components'
+import BlogPost from 'components/BlogPost'
+import Layout from 'components/Layout'
+import Link from 'components/Link'
+import PageHeading from 'components/PageHeading'
 
 // --- Other
 import { frontMatter as blogPosts } from './**/*.mdx' // Thanks to babel-plugin-import-glob-array

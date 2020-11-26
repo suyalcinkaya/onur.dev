@@ -3,13 +3,16 @@ import styled from '@emotion/styled'
 import tinytime from 'tinytime'
 
 // --- Components
-import { BlogSeo, Layout as LayoutCom, PageHeading, Share } from 'components'
-import { Twitter } from 'components/icons'
+import BlogSeo from 'components/BlogSeo'
+import LayoutCmp from 'components/Layout'
+import PageHeading from 'components/PageHeading'
+import Share from 'components/Share'
+import Twitter from 'components/icons/Twitter'
 
 // --- Others
 import { baseTheme, lightTheme } from 'styles/prism'
 
-const Container = styled(LayoutCom)`
+const Container = styled(LayoutCmp)`
   ${baseTheme}
   ${lightTheme}
 `

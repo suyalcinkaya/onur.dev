@@ -7,7 +7,8 @@ import { DefaultSeo } from 'next-seo'
 import { AnimatePresence } from 'framer-motion'
 
 // --- Components
-import { Header, MDXComponents } from 'components'
+import Header from 'components/Header'
+import MDXComponents from 'components/MDXComponents'
 
 // --- Others
 import { trackPageview } from 'utils/gtag'
