@@ -24,9 +24,27 @@ const Share = ({ title, url }) => {
 
   return (
     <Stack isInline spacing={0}>
-      <IconButton aria-label="Share on Twitter" variant="ghost" icon={<Twitter />} onClick={shareOnTwitter} />
-      <IconButton aria-label="Share on LinkedIn" variant="ghost" icon={<Linkedin />} onClick={shareOnLinkedIn} />
-      <IconButton aria-label="Share on Facebook" variant="ghost" icon={<Facebook />} onClick={shareOnFacebook} />
+      <IconButton
+        aria-label="Share on Twitter"
+        title="Share on Twitter"
+        variant="ghost"
+        icon={<Twitter />}
+        onClick={shareOnTwitter}
+      />
+      <IconButton
+        aria-label="Share on LinkedIn"
+        title="Share on LinkedIn"
+        variant="ghost"
+        icon={<Linkedin />}
+        onClick={shareOnLinkedIn}
+      />
+      <IconButton
+        aria-label="Share on Facebook"
+        title="Share on Facebook"
+        variant="ghost"
+        icon={<Facebook />}
+        onClick={shareOnFacebook}
+      />
     </Stack>
   )
 }

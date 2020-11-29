@@ -7,6 +7,8 @@ const linkStyle = {
   borderBottom: '3px solid',
   borderColor: 'lightLink',
   textDecoration: 'none',
+  alignSelf: 'flex-start',
+  fontWeight: 500,
   _hover: {
     borderColor: 'link',
     textDecoration: 'none'
@@ -14,7 +16,7 @@ const linkStyle = {
 }
 
 const Link = (props) => {
-  const href = props.href
+  const { href } = props
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
 
   if (isInternalLink) {

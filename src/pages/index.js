@@ -1,4 +1,4 @@
-import { Grid, Text, Stack } from '@chakra-ui/react'
+import { Grid, Stack } from '@chakra-ui/react'
 
 // --- Components
 import BlogPost from 'components/BlogPost'
@@ -16,15 +16,15 @@ const Home = () => {
     <Layout>
       <Stack spacing={12}>
         <Stack spacing={8}>
-          <PageHeading>{'Onur Suyalcinkaya'}</PageHeading>
-          <Text fontSize="lg">
+          <PageHeading>Onur Şuyalçınkaya</PageHeading>
+          <p>
             <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
             <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}
             <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
             <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist. Currently living in Berlin,
-            Germany and developing things at <Link href="https://hey.car">heycar</Link>. Writing mostly about code and
-            design and a bit of my thoughts.
-          </Text>
+            Germany and developing things at <Link href="https://hey.car">heycar</Link>. Writing mostly about code,
+            design and a bit of my thoughts to learn, not to teach.
+          </p>
         </Stack>
         <Grid gridGap={12}>
           {sortedBlogPosts.map((frontMatter) => (

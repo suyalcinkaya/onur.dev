@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Box, Heading, Text, Stack } from '@chakra-ui/react'
+import { Divider, Heading, Text, Stack, VStack } from '@chakra-ui/react'
 
 // --- Components
 import Layout from 'components/Layout'
@@ -33,28 +33,25 @@ const Journey = () => (
     <Layout>
       <Stack spacing={8}>
         <PageHeading>Journey</PageHeading>
-        <Stack spacing={6}>
+        <VStack divider={<Divider borderColor="gray.200" />} spacing={6} align="stretch">
           {journeyData.map((data, dataIndex) => (
-            <Fragment key={`data_${dataIndex}`}>
+            <Stack key={`data_${dataIndex}`} spacing={4}>
+              <Heading as="h2" size="lg">
+                {data.year}
+              </Heading>
               <Stack spacing={4}>
-                <Heading as="h2" size="xl" fontSize="3xl">
-                  {data.year}
-                </Heading>
-                <Stack spacing={4}>
-                  {data.items.map((item, itemIndex) => (
-                    <Stack key={`journey_${itemIndex}`} spacing={1}>
-                      <Text fontSize="lg" fontWeight="medium">
-                        {item.title}
-                      </Text>
-                      <Text color="gray.500">{item.description}</Text>
-                    </Stack>
-                  ))}
-                </Stack>
+                {data.items.map((item, itemIndex) => (
+                  <Stack key={`journey_${itemIndex}`} spacing={1}>
+                    <Heading as="h3" fontSize="lg">
+                      {item.title}
+                    </Heading>
+                    <Text color="gray.500">{item.description}</Text>
+                  </Stack>
+                ))}
               </Stack>
-              {dataIndex !== journeyData.length - 1 && <Box bg="gray.200" height="1px" my={4} width="100%" />}
-            </Fragment>
+            </Stack>
           ))}
-        </Stack>
+        </VStack>
       </Stack>
     </Layout>
   </Fragment>

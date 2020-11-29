@@ -21,6 +21,7 @@ function App({ Component, pageProps, router }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       process.env.NODE_ENV === 'production' && trackPageview(url)
+      window.scrollTo(0, 0) // because router.push(...) doesn't scroll to top
     }
 
     Router.events.on('routeChangeComplete', handleRouteChange)

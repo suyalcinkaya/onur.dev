@@ -37,6 +37,7 @@ const Footer = () => (
             target="_blank"
             rel="noopener noreferrer"
             aria-label={profile.name}
+            title={profile.name}
             bg="transparent"
             px={1}
             mr={{ base: 2, md: 1 }}

@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Stack, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import tinytime from 'tinytime'
 
@@ -34,6 +34,10 @@ const Layout = ({ frontMatter, children }) => {
               {' • '}
               {frontMatter.readingTime.text}
             </Text>
+            <Stack isInline align="center" spacing={3}>
+              <Avatar size="sm" name="Onur Şuyalçınkaya" src="/images/og.jpg" />
+              <Text color="gray.500">Onur Şuyalçınkaya</Text>
+            </Stack>
             <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
           </Stack>
         </Stack>

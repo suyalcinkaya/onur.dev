@@ -3,6 +3,7 @@ import Medium from 'components/icons/Medium'
 import Linkedin from 'components/icons/Linkedin'
 import Soundcloud from 'components/icons/Soundcloud'
 import Twitter from 'components/icons/Twitter'
+import Youtube from 'components/icons/Youtube'
 
 export const HEADER_HEIGHT = 20 //rem
 
@@ -24,13 +25,18 @@ export const profiles = [
   },
   {
     name: 'Medium',
-    url: 'https://medium.com/@suyalcinkaya',
+    url: 'https://suyalcinkaya.medium.com',
     icon: <Medium />
   },
   {
     name: 'Soundcloud',
     url: 'https://soundcloud.com/jagerman',
     icon: <Soundcloud />
+  },
+  {
+    name: 'YouTube',
+    url: 'https://www.youtube.com/c/jagermanmusic',
+    icon: <Youtube />
   }
 ]
 
@@ -60,23 +66,31 @@ export const mixtapes = [
     title: 'I Wanna Live Not Just Survive',
     description: 'Deep House Mixtape',
     url: 'https://soundcloud.com/jagerman/i-wanna-live-not-just-survive',
-    playCount: '7K',
-    likeCount: '290'
+    playCount: '10K',
+    likeCount: '300'
   }
 ]
 
 export const navigations = [
   {
-    url: '/cv',
-    name: 'CV'
+    url: '/',
+    name: 'Blog'
+  },
+  {
+    url: '/about',
+    name: 'About'
+  },
+  {
+    url: '/projects',
+    name: 'Projects'
   },
   {
     url: '/journey',
     name: 'Journey'
   },
   {
-    url: '/about',
-    name: 'About'
+    url: '/cv',
+    name: 'Curriculum Vitae'
   }
 ]
 
@@ -169,7 +183,7 @@ export const cvData = {
       endDate: 'Sep 2020',
       location: 'Istanbul, Turkey',
       descriptions: [
-        `I was responsible for Yemek.com, which is a sub-brand within Yemeksepeti and a platform that is visited by 20 million unique people monthly and contains recipes, videos, and contents such as fun and instructional subjects related on everything about food.`,
+        `I was responsible for Yemek.com, which is a sub-brand within Yemeksepeti and a platform that is visited by ~10 million unique people monthly and contains recipes, videos, and contents such as fun and instructional subjects related on everything about food.`,
         `As a Frontend Engineer, my tasks were; writing clean and modern JavaScript ES6 code with the best practices, making UI tweaks, building project/landing pages for the brand cooperations, adding new features, increasing the performance of yemek.com and working closely with product managers and UI/UX designers to facilitate better user experience. We were working with Scrum methodology in an Agile-driven environment to design, develop and deploy scalable and robust software.`
       ],
       accomplishments: [
@@ -249,5 +263,55 @@ export const cvData = {
       GPA: 2.26
     }
   ],
+  certifications: [
+    {
+      name: 'PSM-1',
+      issuedBy: 'Scrum.org',
+      date: '2018'
+    },
+    {
+      name: 'Global Retail Training',
+      issuedBy: 'Apple',
+      date: '2014'
+    },
+    {
+      name: 'Software Web Programming and Database',
+      issuedBy: 'Bilge Adam',
+      date: '2012'
+    }
+  ],
   skills: []
 }
+
+export const projectData = [
+  {
+    url: 'https://github.com/suyalcinkaya/notebook',
+    name: 'Notebook',
+    description: 'My personal notebook.'
+  },
+  {
+    url: 'https://github.com/suyalcinkaya/notiful',
+    name: 'Notiful',
+    description: 'An open source minimal and clean taking notes extension for Chrome.'
+  },
+  {
+    url: 'https://github.com/suyalcinkaya/koalazily',
+    name: 'Koalazily',
+    description: 'Loading images lazily in a modern way using Intersection Observer API.'
+  },
+  {
+    url: 'https://github.com/suyalcinkaya/karussel',
+    name: 'Karussel',
+    description: 'A minimal React based carousel/slider component.'
+  },
+  {
+    url: 'https://github.com/suyalcinkaya/browsefy',
+    name: 'Browsefy',
+    description: 'A lightweight browser detector.'
+  },
+  {
+    url: 'https://github.com/suyalcinkaya/a11y.css',
+    name: 'a11y.css',
+    description: 'A CSS file emphasizing about possible improvements and errors that exist in HTML semantic elements.'
+  }
+]
