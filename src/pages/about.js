@@ -55,9 +55,8 @@ const About = () => (
             <br />
             <p>
               You can find me on <Link href="https://twitter.com/onursdev">Twitter</Link> where I talk about code and
-              design, or on <Link href="https://github.com/suyalcinkaya/">GitHub</Link> where I’m building cool stuff,
-              or on <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I’m creating mixtapes and
-              songs.
+              design, or on <Link href="https://github.com/suyalcinkaya/">GitHub</Link> where I build cool stuff, or on{' '}
+              <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I create mixtapes and songs.
             </p>
           </div>
         </Stack>
