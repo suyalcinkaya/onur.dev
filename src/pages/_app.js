@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from 'react'
 import Head from 'next/head'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { ChakraProvider } from '@chakra-ui/react'
 import { MDXProvider } from '@mdx-js/react'
 import { DefaultSeo } from 'next-seo'
@@ -17,19 +17,19 @@ import theme from 'styles/theme'
 
 import 'styles/fonts.css'
 
-function App({ Component, pageProps, router }) {
+function App({ Component, pageProps }) {
+  const router = useRouter()
+
   useEffect(() => {
     const handleRouteChange = (url) => {
       process.env.NODE_ENV === 'production' && trackPageview(url)
       window.scrollTo(0, 0) // because router.push(...) doesn't scroll to top
     }
-
-    Router.events.on('routeChangeComplete', handleRouteChange)
-
+    router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [])
+  }, [router.events])
 
   return (
     <Fragment>
@@ -42,7 +42,7 @@ function App({ Component, pageProps, router }) {
         <Header />
         <MDXProvider components={MDXComponents}>
           <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} key={router.route} />
+            <Component {...pageProps} />
           </AnimatePresence>
         </MDXProvider>
       </ChakraProvider>

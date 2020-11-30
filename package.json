@@ -24,7 +24,8 @@
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",
     "svgr-all": "svgr ./src/icons -d ./src/components/icons --svg-props 'className=' --svgo-config .svgorc.json",
     "svgr-new": "svgr ./src/icons -d ./src/components/icons --ignore-existing --svg-props 'className=' --svgo-config .svgorc.json",
-    "clear-cache": "rm -r .mdx-data .next"
+    "clear-cache": "rm -r .mdx-data .next",
+    "find:unused": "next-unused"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.0.1",
@@ -52,6 +53,13 @@
   "devDependencies": {
     "@emotion/babel-plugin": "^11.0.0",
     "@svgr/cli": "^5.4.0",
+    "next-unused": "^0.0.3",
     "rehype": "^11.0.0"
+  },
+  "next-unused": {
+    "debug": true,
+    "entrypoints": [
+      "src"
+    ]
   }
 }

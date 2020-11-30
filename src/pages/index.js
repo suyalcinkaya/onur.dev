@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Grid, Stack } from '@chakra-ui/react'
 
 // --- Components
@@ -28,7 +29,9 @@ const Home = () => {
         </Stack>
         <Grid gridGap={12}>
           {sortedBlogPosts.map((frontMatter) => (
-            <BlogPost key={frontMatter.title} {...frontMatter} />
+            <Fragment key={frontMatter.title}>
+              <BlogPost {...frontMatter} />
+            </Fragment>
           ))}
         </Grid>
       </Stack>

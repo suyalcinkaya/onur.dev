@@ -8,7 +8,7 @@ const linkStyle = {
   borderColor: 'lightLink',
   textDecoration: 'none',
   alignSelf: 'flex-start',
-  fontWeight: 500,
+  // fontWeight: 500,
   _hover: {
     borderColor: 'link',
     textDecoration: 'none'

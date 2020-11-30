@@ -10,7 +10,7 @@ import Share from 'components/Share'
 import Twitter from 'components/icons/Twitter'
 
 // --- Others
-import { baseTheme, lightTheme } from 'styles/prism'
+import { baseTheme, lightTheme } from 'styles/prism.css'
 
 const Container = styled(LayoutCmp)`
   ${baseTheme}

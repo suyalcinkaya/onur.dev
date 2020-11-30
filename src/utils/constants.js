@@ -168,6 +168,7 @@ export const cvData = {
   experiences: [
     {
       company: 'heycar',
+      url: 'https://hey.car/',
       title: 'Frontend Engineer',
       startDate: 'Sep 2020',
       endDate: 'Present',
@@ -178,6 +179,7 @@ export const cvData = {
     },
     {
       company: 'Yemeksepeti',
+      url: 'https://www.yemeksepeti.com/',
       title: 'Frontend Engineer',
       startDate: 'Sep 2018',
       endDate: 'Sep 2020',
@@ -208,6 +210,7 @@ export const cvData = {
     },
     {
       company: 'Sistas',
+      url: 'https://www.sistas.com.tr/',
       title: 'Fullstack Developer',
       startDate: 'Dec 2015',
       endDate: 'Sep 2018',
@@ -234,6 +237,7 @@ export const cvData = {
     },
     {
       company: 'Apple',
+      url: 'https://www.apple.com/',
       title: 'Specialist',
       startDate: 'Aug 2014',
       endDate: 'Dec 2015',
@@ -267,7 +271,9 @@ export const cvData = {
     {
       name: 'PSM-1',
       issuedBy: 'Scrum.org',
-      date: '2018'
+      date: '2018',
+      url:
+        'https://www.linkedin.com/in/suyalcinkaya/detail/overlay-view/urn:li:fsd_profileTreasuryMedia:(ACoAAAqCHzcBG8Or0xzHiZ5ukO_cvYq1B1VGCBs,1580969288770)/'
     },
     {
       name: 'Global Retail Training',

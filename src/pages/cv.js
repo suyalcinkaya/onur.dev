@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { Badge, Divider, Heading, Text, Stack, VStack } from '@chakra-ui/react'
 
 // --- Components
+import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 
@@ -52,22 +53,19 @@ const CurriculumVitae = () => (
       <Stack spacing={8}>
         <PageHeading>Curriculum Vitae</PageHeading>
         <VStack divider={<Divider />} spacing={12} align="stretch">
-          <Stack spacing={4}>
+          <Stack spacing={8}>
             <Heading as="h2" size="lg">
               Work Experience
             </Heading>
             <VStack divider={<Divider />} spacing={8} align="stretch">
               {cvData.experiences.map((experience, experienceIndex) => (
                 <Stack spacing={4} key={`experience_${experienceIndex}`}>
-                  <Stack spacing={1}>
-                    <Text color="gray.500">
-                      {experience.startDate} — {experience.endDate}
-                    </Text>
-                    <Heading as="h3" size="md">
-                      {experience.title} @ {experience.company}
-                    </Heading>
-                    <Text color="gray.500">{experience.location}</Text>
-                  </Stack>
+                  <Card
+                    title={`${experience.title} @ ${experience.company}`}
+                    primaryText={`${experience.startDate} — ${experience.endDate}`}
+                    secondaryText={experience.location}
+                    url={experience.url}
+                  />
                   {experience.descriptions.map((description, descriptionIndex) => (
                     <Text key={`description_${descriptionIndex}`}>{description}</Text>
                   ))}
@@ -92,40 +90,35 @@ const CurriculumVitae = () => (
               ))}
             </VStack>
           </Stack>
-          <Stack spacing={4}>
+          <Stack spacing={8}>
             <Heading as="h2" size="lg">
               Education
             </Heading>
             <VStack divider={<Divider />} spacing={8} align="stretch">
               {cvData.educations.map((education, educationIndex) => (
                 <Stack key={`education_${educationIndex}`} spacing={4}>
-                  <Stack spacing={1}>
-                    <Text color="gray.500">
-                      {education.startDate} — {education.endDate}
-                    </Text>
-                    <Heading as="h3" size="md">
-                      {education.field} @ {education.school}
-                    </Heading>
-                    <Text color="gray.500">{education.degree}</Text>
-                  </Stack>
+                  <Card
+                    title={`${education.field} @ ${education.school}`}
+                    primaryText={`${education.startDate} — ${education.endDate}`}
+                    secondaryText={education.degree}
+                  />
                 </Stack>
               ))}
             </VStack>
           </Stack>
-          <Stack spacing={4}>
+          <Stack spacing={8}>
             <Heading as="h2" size="lg">
               Certifications
             </Heading>
             <VStack divider={<Divider />} spacing={8} align="stretch">
               {cvData.certifications.map((certification, certificationIndex) => (
                 <Stack key={`certification_${certificationIndex}`} spacing={4}>
-                  <Stack spacing={1}>
-                    <Text color="gray.500">{certification.date}</Text>
-                    <Heading as="h3" size="md">
-                      {certification.name}
-                    </Heading>
-                    <Text color="gray.500">{certification.issuedBy}</Text>
-                  </Stack>
+                  <Card
+                    title={certification.name}
+                    primaryText={certification.date}
+                    secondaryText={certification.issuedBy}
+                    url={certification.url}
+                  />
                 </Stack>
               ))}
             </VStack>
