@@ -7,8 +7,8 @@ import Footer from 'components/Footer'
 const easing = [0.175, 0.85, 0.42, 0.96]
 
 const vars = {
-  exit: { y: 20, opacity: 0, transition: { duration: 0.3, ease: easing } },
-  enter: { y: 0, opacity: 1, transition: { duration: 0.3, ease: easing } }
+  exit: { y: 10, opacity: 0, transition: { duration: 0.25, ease: easing } },
+  enter: { y: 0, opacity: 1, transition: { duration: 0.25, ease: easing } }
 }
 
 const Layout = ({ children, ...others }) => (

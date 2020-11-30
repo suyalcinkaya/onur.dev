@@ -17,19 +17,19 @@ import theme from 'styles/theme'
 
 import 'styles/fonts.css'
 
-function App({ Component, pageProps }) {
-  const router = useRouter()
+function App({ Component, pageProps, router }) {
+  const nextRouter = useRouter()
 
   useEffect(() => {
     const handleRouteChange = (url) => {
       process.env.NODE_ENV === 'production' && trackPageview(url)
-      window.scrollTo(0, 0) // because router.push(...) doesn't scroll to top
+      window.scrollTo(0, 0) // because nextRouter.push(...) doesn't scroll to top
     }
-    router.events.on('routeChangeComplete', handleRouteChange)
+    nextRouter.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
+      nextRouter.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [router.events])
+  }, [nextRouter.events])
 
   return (
     <Fragment>
@@ -42,7 +42,7 @@ function App({ Component, pageProps }) {
         <Header />
         <MDXProvider components={MDXComponents}>
           <AnimatePresence exitBeforeEnter>
-            <Component {...pageProps} />
+            <Component key={router.route} {...pageProps} />
           </AnimatePresence>
         </MDXProvider>
       </ChakraProvider>
