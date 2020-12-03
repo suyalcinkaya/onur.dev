@@ -13,17 +13,17 @@ const Footer = () => (
       </Heading>
       <Button
         as="a"
-        href="https://ko-fi.com/suyalcinkaya"
+        href="http://buymeacoff.ee/suyalcinkaya"
         target="_blank"
         rel="noopener noreferrer"
         leftIcon={
           <span role="img" aria-label="celebrate">
-            🎉
+            ☕️
           </span>
         }
-        colorScheme="red"
+        colorScheme="blue"
       >
-        {'Support me on Ko-fi →'}
+        {'Buy me a coffee →'}
       </Button>
     </Stack>
     <Divider my={12} />
