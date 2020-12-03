@@ -28,7 +28,6 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
         borderBottomStyle="solid"
         borderBottomColor="transparent"
         transition="border-bottom 200ms ease-in-out"
-        //_hover={!isInternalLink && { borderBottomColor: 'black' }}
         {...(url && { _hover: { borderBottomColor: 'black' } })}
       >
         {title}
