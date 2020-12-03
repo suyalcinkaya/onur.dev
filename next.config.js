@@ -29,6 +29,15 @@ module.exports = withPlugins(
     trailingSlash: false,
     images: {
       deviceSizes: [320, 375, 768, 1024, 1280]
-    }
+    },
+    async redirects() {
+      return [
+        {
+          source: '/turkiyeden-gitmek-berline-uzanan-bir-goc-hikayesi-bolum-1-nedenler',
+          destination: '/bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler',
+          permanent: true,
+        },
+      ]
+    },
   }
 )

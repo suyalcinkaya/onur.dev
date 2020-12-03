@@ -43,6 +43,10 @@ const styles = {
       overflowWrap: 'break-word',
       borderColor: theme.colors.gray[200]
     },
+    '#__next': {
+      maxWidth: 768,
+      margin: '0 auto'
+    },
     p: {
       lineHeight: 1.75,
       margin: 0

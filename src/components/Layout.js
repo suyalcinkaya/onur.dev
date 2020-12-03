@@ -14,17 +14,14 @@ const vars = {
 const Layout = ({ children, ...others }) => (
   <Box
     as="main"
-    mx="auto"
     pl="env(safe-area-inset-left)"
     pr="env(safe-area-inset-right)"
     mt={{ base: 12, md: 24 }}
-    // mb={{ base: 4, sm: 6, md: 12 }}
-    maxWidth={768}
     overflow="hidden"
     {...others}
   >
     <motion.div initial="exit" animate="enter" exit="exit" variants={vars}>
-      <Box px={{ base: 4, sm: 6, md: 10 }}>
+      <Box px={{ base: 4, sm: 6, md: 16 }}>
         {children}
         <Footer />
       </Box>

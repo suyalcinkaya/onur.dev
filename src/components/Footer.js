@@ -7,7 +7,7 @@ import { profiles } from 'utils/constants'
 const Footer = () => (
   <Fragment>
     <Divider my={12} />
-    <Stack as="section" spacing={6} align="center" textAlign="center">
+    <Stack as="section" spacing={6}>
       <Heading as="h3" size="md">
         If you find there's any value in what I do and feel generous to want to help, you can support directly.
       </Heading>
