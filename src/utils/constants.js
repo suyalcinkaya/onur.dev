@@ -6,6 +6,8 @@ import Twitter from 'components/icons/Twitter'
 import Youtube from 'components/icons/Youtube'
 
 export const HEADER_HEIGHT = 20 //rem
+export const MAX_WIDTH = 768 //rem
+export const BUY_ME_COFFEE_URL = 'http://buymeacoff.ee/suyalcinkaya'
 
 export const profiles = [
   {

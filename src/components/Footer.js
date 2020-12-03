@@ -1,8 +1,11 @@
 import { Fragment } from 'react'
-import { Button, Divider, Flex, Heading, IconButton, Text, Stack } from '@chakra-ui/react'
+import { Box, Button, Divider, Flex, Heading, IconButton, Text, Stack } from '@chakra-ui/react'
+
+// --- Icons
+import External from 'components/icons/External'
 
 // --- Others
-import { profiles } from 'utils/constants'
+import { BUY_ME_COFFEE_URL, profiles } from 'utils/constants'
 
 const Footer = () => (
   <Fragment>
@@ -13,17 +16,23 @@ const Footer = () => (
       </Heading>
       <Button
         as="a"
-        href="http://buymeacoff.ee/suyalcinkaya"
+        href={BUY_ME_COFFEE_URL}
         target="_blank"
         rel="noopener noreferrer"
         leftIcon={
-          <span role="img" aria-label="celebrate">
+          <span role="img" aria-label="coffee">
             ☕️
           </span>
         }
-        colorScheme="blue"
+        variant="solid"
       >
-        {'Buy me a coffee →'}
+        <Box pos="relative">
+          Buy me a coffee
+          <Box pos="absolute" top={0} right={-5}>
+            <External height={14} width={14} />
+          </Box>
+        </Box>{' '}
+        &nbsp;
       </Button>
     </Stack>
     <Divider my={12} />

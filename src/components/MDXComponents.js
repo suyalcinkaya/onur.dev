@@ -63,7 +63,7 @@ const Quote = (props) => (
 
 const HeadingContainer = styled(Box)`
   scroll-margin-top: 100px;
-  scroll-snap-margin: 100px;
+  scroll-snap-margin-top: 100px;
 
   a {
     transition: 200ms ease-in-out;

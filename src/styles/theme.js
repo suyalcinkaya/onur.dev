@@ -2,6 +2,8 @@ import theme from '@chakra-ui/theme'
 import { extendTheme } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 
+import { MAX_WIDTH } from 'utils/constants'
+
 const breakpoints = createBreakpoints({
   xs: '320px',
   sm: '375px',
@@ -44,7 +46,7 @@ const styles = {
       borderColor: theme.colors.gray[200]
     },
     '#__next': {
-      maxWidth: 768,
+      maxWidth: MAX_WIDTH,
       margin: '0 auto'
     },
     p: {

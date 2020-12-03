@@ -52,6 +52,9 @@ class MyDocument extends Document {
               />
             </Fragment>
           )}
+
+          {/* Fonts */}
+          {/* <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" /> */}
         </Head>
         <body>
           <Main />

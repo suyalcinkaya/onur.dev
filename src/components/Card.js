@@ -1,5 +1,4 @@
-import { Fragment } from 'react'
-import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import { Box, Heading, Stack } from '@chakra-ui/react'
 
 // --- Icons
 import External from 'components/icons/External'
@@ -17,7 +16,21 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
       })}
       w="fit-content"
     >
-      <Heading as="h3"  fontSize="xl" size="xl" pos={url && 'relative'} w={url && 'calc(100% + 20px)'}>
+      <Heading
+        as="h3"
+        fontSize="xl"
+        size="xl"
+        pos={url && 'relative'}
+        w={url && 'calc(100% + 20px)'}
+        pb="1px"
+        mb="-1px"
+        borderBottomWidth="1px"
+        borderBottomStyle="solid"
+        borderBottomColor="transparent"
+        transition="border-bottom 200ms ease-in-out"
+        //_hover={!isInternalLink && { borderBottomColor: 'black' }}
+        {...(url && { _hover: { borderBottomColor: 'black' } })}
+      >
         {title}
         {url && (
           <Box pos="absolute" top="3px" right={0}>
