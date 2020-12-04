@@ -1,7 +1,7 @@
 import { ogImageUrl } from 'utils/helper'
 
 const title = 'Onur Şuyalçınkaya — Engineer, Writer, DJ.'
-const description = 'Frontend Engineer, JavaScript enthusiast, Writer and DJ'
+const description = 'Frontend Engineer, JavaScript enthusiast, Writer, and DJ.'
 const ogTitle = '**Onur Şuyalçınkaya** <br> Engineer, Writer, DJ.'
 
 const SEO = {
