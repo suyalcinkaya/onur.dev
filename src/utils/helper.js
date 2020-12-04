@@ -10,5 +10,5 @@ export const safariOnly = (attrs) => css`
 
 export const ogImageUrl = (text) => {
   const encodedText = encodeURIComponent(text)
-  return `https://og-onurdev.vercel.app/${encodedText}.png?md=1&fontSize=120px&images=https%3A%2F%2Fonur.dev%2Fimages%2Fme.svg&widths=350&heights=350`
+  return `https://og-onurdev.vercel.app/${encodedText}.png?md=1&fontSize=120px&images=https%3A%2F%2Fonur.dev%2Fimages%2Fme.svg`
 }
