@@ -12,7 +12,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
         pos: 'relative',
         href: url,
         rel: 'noopener noreferrer',
-        target: 'blank'
+        target: '_blank'
       })}
       w="fit-content"
     >
@@ -20,15 +20,17 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
         as="h3"
         fontSize="xl"
         size="xl"
-        pos={url && 'relative'}
-        w={url && 'calc(100% + 20px)'}
-        pb="1px"
-        mb="-1px"
-        borderBottomWidth="1px"
-        borderBottomStyle="solid"
-        borderBottomColor="transparent"
-        transition="border-bottom 200ms ease-in-out"
-        {...(url && { _hover: { borderBottomColor: 'black' } })}
+        {...(url && {
+          pos: 'relative',
+          w: 'calc(100% + 20px)',
+          mb: '-1px',
+          pb: '1px',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderBottomColor: 'transparent',
+          transition: 'border-bottom 200ms ease-in-out',
+          _hover: { borderBottomColor: 'black' }
+        })}
       >
         {title}
         {url && (
