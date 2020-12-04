@@ -27,18 +27,27 @@ const Layout = ({ frontMatter, children }) => {
         <Stack spacing={6}>
           <PageHeading>{frontMatter.title}</PageHeading>
           <Stack spacing={2}>
-            <Text color="gray.500">
-              <time dateTime={frontMatter.publishedAt}>
-                {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
-              </time>
-              {' • '}
-              {frontMatter.readingTime.text}
-            </Text>
-            <Stack isInline align="center" spacing={3}>
-              <Avatar size="sm" name="Onur Şuyalçınkaya" src="/images/og.jpg" />
-              <Text color="gray.500">Onur Şuyalçınkaya</Text>
+            <Stack
+              spacing={{ base: 4, md: 0 }}
+              flexDir={{ base: 'column', md: 'row' }}
+              justify={{ md: 'space-between' }}
+              align={{ md: 'flex-end' }}
+            >
+              <Stack isInline align="center" spacing={3}>
+                <Avatar size="md" name="Onur Şuyalçınkaya" src="/images/og.jpg" />
+                <Stack spacing={0}>
+                  <Text fontWeight="medium" lineHeight="short">Onur Şuyalçınkaya</Text>
+                  <Text fontSize="sm" color="gray.500">
+                    <time dateTime={frontMatter.publishedAt}>
+                      {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
+                    </time>
+                    {' • '}
+                    {frontMatter.readingTime.text}
+                  </Text>
+                </Stack>
+              </Stack>
+              <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
             </Stack>
-            <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
           </Stack>
         </Stack>
         <Stack spacing={6}>
