@@ -29,7 +29,7 @@ const Share = ({ title, url }) => {
         title="Share on LinkedIn"
         size="sm"
         variant="ghost"
-        colorScheme="linkedin"
+        color="#0a66c2"
         icon={<Linkedin />}
         onClick={() =>
           window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
@@ -40,7 +40,7 @@ const Share = ({ title, url }) => {
         title="Share on Facebook"
         size="sm"
         variant="ghost"
-        colorScheme="facebook"
+        color="#1877f2"
         icon={<Facebook />}
         onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank')}
       />
