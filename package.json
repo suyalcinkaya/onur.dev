@@ -18,13 +18,13 @@
     "not op_mini all"
   ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "yarn clear-cache && next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",
     "svgr-all": "svgr ./src/icons -d ./src/components/icons --svg-props 'className=' --svgo-config .svgorc.json",
     "svgr-new": "svgr ./src/icons -d ./src/components/icons --ignore-existing --svg-props 'className=' --svgo-config .svgorc.json",
-    "clear-cache": "rm -r .mdx-data .next",
+    "clear-cache": "rm -rf .next",
     "find:unused": "next-unused"
   },
   "dependencies": {

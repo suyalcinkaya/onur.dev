@@ -5,19 +5,15 @@ import tinytime from 'tinytime'
 // --- Components
 import Card from 'components/Card'
 
+// --- Other
+import { getReadingTime } from 'utils/helper'
+
 const BlogPost = (frontMatter) => {
   const router = useRouter()
 
-  const {
-    publishedAt,
-    readingTime: { text: readingDuration },
-    summary,
-    title,
-    tags
-  } = frontMatter
-
   const pathFiles = frontMatter.__resourcePath.split('/')
   const slug = pathFiles[pathFiles.length - 2]
+  const readingTime = getReadingTime(frontMatter.readingTime.minutes)
 
   return (
     <Box
@@ -31,15 +27,17 @@ const BlogPost = (frontMatter) => {
       onClick={() => router.push(`/${slug}`)}
     >
       <Card
-        title={title}
+        title={frontMatter.title}
         primaryText={
           <Stack isInline spacing={1} color="gray.500">
-            <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
+            <time dateTime={frontMatter.publishedAt}>
+              {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
+            </time>
             <span>&bull;</span>
-            <span>{readingDuration}</span>
+            <span>{readingTime}</span>
           </Stack>
         }
-        secondaryText={summary}
+        secondaryText={frontMatter.summary}
       />
     </Box>
   )

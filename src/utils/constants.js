@@ -1,7 +1,12 @@
+import Blog from 'components/icons/Blog'
+import Cv from 'components/icons/Cv'
+import About from 'components/icons/About'
 import Github from 'components/icons/Github'
+import Journey from 'components/icons/Journey'
 import Medium from 'components/icons/Medium'
 import Linkedin from 'components/icons/Linkedin'
 import Soundcloud from 'components/icons/Soundcloud'
+import Projects from 'components/icons/Projects'
 import Twitter from 'components/icons/Twitter'
 import Youtube from 'components/icons/Youtube'
 
@@ -76,23 +81,28 @@ export const mixtapes = [
 export const navigations = [
   {
     url: '/',
-    name: 'Blog'
+    name: 'Blog',
+    icon: <Blog />
   },
   {
     url: '/about',
-    name: 'About'
+    name: 'About',
+    icon: <About />
   },
   {
     url: '/projects',
-    name: 'Projects'
+    name: 'Projects',
+    icon: <Projects />
   },
   {
     url: '/journey',
-    name: 'Journey'
+    name: 'Journey',
+    icon: <Journey style={{ transform: 'rotate(45deg)' }} />
   },
   {
     url: '/cv',
-    name: 'Curriculum Vitae'
+    name: 'Curriculum Vitae',
+    icon: <Cv />
   }
 ]
 

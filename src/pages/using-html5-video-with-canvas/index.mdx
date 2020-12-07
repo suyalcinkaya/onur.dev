@@ -1,0 +1,102 @@
+---
+title: 'Using HTML5 <video> with <canvas>'
+summary: 'Did you know that the <video> and <canvas> elements would be a great choice to use together?'
+publishedAt: '2020-01-31'
+tags: [html5, video, canvas, javascript]
+ogTitle: '**Using HTML5 Video with Canvas**'
+---
+
+You’ve already learned a lot about the `<video>` element in my previous article
+“[What I’ve Learned From Working With HTML5 Video Over A Month](/what-i-have-learned-from-working-with-html5-video-over-a-month)”,
+but did you know that the `<video>` and `<canvas>` elements would be a great choice to use together? In fact, the two
+elements are absolutely wondrous when you combine them! I’m going to show you a handy demo using these two elements,
+which I hope will prompt cool future projects from you. Firstly, place the `<video>` and `<canvas>` elements in your
+HTML. Give your dimensions(width, height) to `<canvas>` according to your video. And of course, hide your video with the
+hidden attribute or “display: none” styling. Because
+
+`<canvas>` will do the trick for you ;) Let’s go through one by one.
+
+## View
+
+```html
+<canvas width="1280" height="720"></canvas>
+<video src="foo.mp4" preload="auto" autoplay playsinline webkit-playsinline muted hidden></video>
+```
+
+> We’re hiding the video element because we just want `<canvas>` to show the video, not `<video>` element itself.
+
+## Declarations
+
+Let’s declare the variables that will be used.
+
+```jsx
+const canvas = document.querySelector('canvas')
+const video = document.querySelector('video')
+```
+
+These our `<canvas>` and `<video>` elements that will be used later.
+
+```jsx
+const fps = 60
+```
+
+**fps** means frame per second. It’s important according to the video’s frame. You may want to use it as 24, or 30,
+or 60. It will be used for the intervals millisecond value.
+
+```jsx
+const width = 1280
+const height = 720
+```
+
+**width** and **height** are the dimensions in pixels of the video. They will be given to the canvas element. If you do
+not specify them, `<canvas>` will take **300** for width and **150** for height as
+[default](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) which may break your view.
+
+```jsx
+const canvasInterval = null
+```
+
+I will use canvasInterval variable to set and clear an
+_[interval](https://www.w3schools.com/jsref/met_win_setInterval.asp)_ to make `<canvas>` follow and unfollow the
+`<video>` element.
+
+## Logic
+
+Here is the magical part, with the whole code.
+
+```jsx
+const canvas = document.querySelector('canvas');
+const video = document.querySelector('video');
+const fps = 60;
+const width = 1280;
+const height = 720;
+const canvasInterval = null;
+
+drawImage() {
+  canvas.getContext('2d', { alpha: false }).drawImage(video, 0, 0, width, height);
+}
+
+canvasInterval = window.setInterval(() => {
+  drawImage(video);
+}, 1000 / fps);
+
+video.onpause = function() {
+  clearInterval(canvasInterval);
+};
+
+video.onended = function() {
+  clearInterval(canvasInterval);
+};
+
+video.onplay = function() {
+  clearInterval(canvasInterval);
+  canvasInterval = window.setInterval(() => {
+    drawImage(video);
+  }, 1000 / fps);
+};
+```
+
+`drawImage()` method draws the video onto the canvas. `video.onpause()`, `video.onended()`, and `video.onplay()` methods
+are related to the performance issue. When the video paused or ended, we do not need to draw `<video>` onto the
+`<canvas>`, because you know, the frame is not changing after **paused** or **ended**. And when the `<video>` starts
+playing/resuming, `<canvas>` should start/resume drawing the `<video>` onto `<canvas>` as well.

@@ -1,8 +1,10 @@
 import { Fragment } from 'react'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Box, Button, Flex, IconButton, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from '@chakra-ui/react'
 
 // --- Icons
+import Coffee from 'components/icons/Coffee'
 import MenuIcon from 'components/icons/Menu'
 import External from 'components/icons/External'
 
@@ -15,7 +17,7 @@ const Header = () => {
   return (
     <Fragment>
       <Box
-        as="nav"
+        as="header"
         position="fixed"
         top={0}
         left={0}
@@ -36,30 +38,44 @@ const Header = () => {
           m="0 auto"
           px={{ base: 4, sm: 6, md: 16 }}
         >
-          <Button variant="outline" onClick={() => router.push('/')}>
-            Home
-          </Button>
+          <NextLink href="/" passHref>
+            <Button as="a" variant="outline">
+              Home
+            </Button>
+          </NextLink>
           <Menu isLazy>
             <MenuButton as={IconButton} aria-label="Menü" title="Menü" icon={<MenuIcon />} variant="ghost" />
-            <MenuList>
-              <MenuItem as="a" href={BUY_ME_COFFEE_URL} target="_blank" rel="noopener noreferrer" px={6} py={2}>
-                <Box pos="relative">
-                  <span role="img" aria-label="coffee">
-                    ☕️
-                  </span>
+            <MenuList px={2} rounded="normal">
+              <MenuItem
+                as="a"
+                href={BUY_ME_COFFEE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                px={4}
+                py={2}
+                rounded="normal"
+              >
+                <Flex align="center" pos="relative">
+                  <Coffee />
                   &nbsp;&nbsp;
                   <span>Buy me a coffee</span>
                   &nbsp;
                   <Box pos="absolute" top="0.3rem" right={-4}>
                     <External height={14} width={14} />
                   </Box>
-                </Box>
+                </Flex>
               </MenuItem>
               <MenuDivider />
               {navigations.map((nav, navIndex) => (
-                <MenuItem key={`nav_${navIndex}`} px={6} py={2} onClick={() => router.push(nav.url)}>
-                  {nav.name}
-                </MenuItem>
+                <Fragment key={`nav_${navIndex}`}>
+                  <NextLink href={nav.url} passHref>
+                    <MenuItem as="a" px={4} py={2} rounded="normal" isDisabled={router.pathname === nav.url}>
+                      {nav.icon}
+                      &nbsp;&nbsp;
+                      {nav.name}
+                    </MenuItem>
+                  </NextLink>
+                </Fragment>
               ))}
             </MenuList>
           </Menu>

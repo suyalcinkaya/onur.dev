@@ -8,6 +8,9 @@ import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
 
+// --- Icons
+import AboutIcon from 'components/icons/About'
+
 // --- Others
 import { mixtapes } from 'utils/constants'
 import { ogImageUrl } from 'utils/helper'
@@ -35,7 +38,10 @@ const About = () => (
     <Layout>
       <Stack spacing={12}>
         <Stack spacing={8}>
-          <PageHeading>About Me</PageHeading>
+          <PageHeading>
+            <Box as={AboutIcon} height={{ base: 10, md: 12 }} width={{ base: 10, md: 12 }} mr={{ base: 2, md: 4 }} />
+            About Me
+          </PageHeading>
           <div>
             <Box float="left" width={150} height={140} mt={4} style={{ shapeOutside: 'circle(50%)' }}>
               <Avatar size="2xl" name="Onur Şuyalçınkaya" src="/images/og.jpg" />
@@ -54,8 +60,8 @@ const About = () => (
             </p>
             <br />
             <p>
-              You can find me on <Link href="https://twitter.com/onursdev">Twitter</Link> where I talk about code and
-              design, or on <Link href="https://github.com/suyalcinkaya/">GitHub</Link> where I build cool stuff, or on{' '}
+              You can find me on <Link href="https://twitter.com/onursdev">Twitter</Link> where I share my thoughts, or
+              on <Link href="https://github.com/suyalcinkaya/">GitHub</Link> where I build cool stuff, or on{' '}
               <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I create mixtapes and songs.
             </p>
           </div>
@@ -76,7 +82,7 @@ const About = () => (
               See All
             </Button>
           </Stack>
-          <Stack spacing={6}>
+          <Stack spacing={8}>
             {mixtapes.map((mixtape, mixtapeId) => (
               <Card
                 key={`mixtape_${mixtapeId}`}

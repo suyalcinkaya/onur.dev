@@ -117,7 +117,7 @@ const InlineCode = (props) => <Code colorScheme="yellow" px="0.5rem" borderRadiu
 const Hr = (props) => <Divider my={8} mx="auto" width={1 / 2} {...props} />
 
 const MDXComponents = {
-  h2: (props) => <DocsHeading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
+  h2: (props) => <DocsHeading as="h2" size="lg" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
   h3: (props) => <DocsHeading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,
   br: (props) => <Box height={2} {...props} />,

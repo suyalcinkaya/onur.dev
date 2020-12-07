@@ -1,11 +1,14 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Divider, Heading, Stack, VStack } from '@chakra-ui/react'
+import { Box, Divider, Heading, Stack, VStack } from '@chakra-ui/react'
 
 // --- Components
 import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
+
+// --- Icons
+import JourneyIcon from 'components/icons/Journey'
 
 // --- Other
 import { journeyData } from 'utils/constants'
@@ -33,14 +36,23 @@ const Journey = () => (
     />
     <Layout>
       <Stack spacing={8}>
-        <PageHeading>Journey</PageHeading>
+        <PageHeading>
+          <Box
+            as={JourneyIcon}
+            height={{ base: 10, md: 12 }}
+            width={{ base: 10, md: 12 }}
+            style={{ transform: 'rotate(45deg)' }}
+            mr={{ base: 2, md: 4 }}
+          />
+          Journey
+        </PageHeading>
         <VStack divider={<Divider borderColor="gray.200" />} spacing={8} align="stretch">
           {journeyData.map((data, dataIndex) => (
             <Stack key={`data_${dataIndex}`} spacing={8}>
               <Heading as="h2" size="lg">
                 {data.year}
               </Heading>
-              <Stack spacing={6}>
+              <Stack spacing={8}>
                 {data.items.map((item, itemIndex) => (
                   <Card key={`journey_${itemIndex}`} title={item.title} secondaryText={item.description} />
                 ))}

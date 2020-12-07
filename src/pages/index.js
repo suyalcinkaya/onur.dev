@@ -24,7 +24,7 @@ const Home = () => {
             <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
             <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist. Currently living in Berlin,
             Germany and developing things at <Link href="https://hey.car">heycar</Link>. Writing mostly about code,
-            design and a bit of my thoughts to learn, not to teach.
+            design, and my notions to learn, not to teach.
           </p>
         </Stack>
         <Grid gridGap={12}>

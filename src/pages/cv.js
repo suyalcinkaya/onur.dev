@@ -1,12 +1,15 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
 import styled from '@emotion/styled'
-import { Badge, Divider, Heading, Text, Stack, VStack } from '@chakra-ui/react'
+import { Badge, Box, Divider, Heading, Text, Stack } from '@chakra-ui/react'
 
 // --- Components
 import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
+
+// --- Icons
+import CvIcon from 'components/icons/Cv'
 
 // --- Other
 import { cvData } from 'utils/constants'
@@ -51,13 +54,16 @@ const CurriculumVitae = () => (
     />
     <Layout>
       <Stack spacing={8}>
-        <PageHeading>Curriculum Vitae</PageHeading>
-        <VStack divider={<Divider />} spacing={12} align="stretch">
+        <PageHeading>
+          <Box as={CvIcon} height={{ base: 10, md: 12 }} width={{ base: 10, md: 12 }} mr={{ base: 2, md: 4 }} />
+          Curriculum Vitae
+        </PageHeading>
+        <Stack spacing={12} align="stretch">
           <Stack spacing={8}>
             <Heading as="h2" size="lg">
               Work Experience
             </Heading>
-            <VStack divider={<Divider />} spacing={8} align="stretch">
+            <Stack spacing={12} align="stretch">
               {cvData.experiences.map((experience, experienceIndex) => (
                 <Stack spacing={4} key={`experience_${experienceIndex}`}>
                   <Card
@@ -80,6 +86,7 @@ const CurriculumVitae = () => (
                           letterSpacing="1px"
                           fontWeight="normal"
                           px={2}
+                          rounded={3}
                         >
                           {item}
                         </StackBadge>
@@ -88,13 +95,14 @@ const CurriculumVitae = () => (
                   )}
                 </Stack>
               ))}
-            </VStack>
+            </Stack>
           </Stack>
+          <Divider />
           <Stack spacing={8}>
             <Heading as="h2" size="lg">
               Education
             </Heading>
-            <VStack divider={<Divider />} spacing={8} align="stretch">
+            <Stack spacing={8} align="stretch">
               {cvData.educations.map((education, educationIndex) => (
                 <Stack key={`education_${educationIndex}`} spacing={4}>
                   <Card
@@ -104,13 +112,14 @@ const CurriculumVitae = () => (
                   />
                 </Stack>
               ))}
-            </VStack>
+            </Stack>
           </Stack>
+          <Divider />
           <Stack spacing={8}>
             <Heading as="h2" size="lg">
               Certifications
             </Heading>
-            <VStack divider={<Divider />} spacing={8} align="stretch">
+            <Stack spacing={8} align="stretch">
               {cvData.certifications.map((certification, certificationIndex) => (
                 <Stack key={`certification_${certificationIndex}`} spacing={4}>
                   <Card
@@ -121,9 +130,9 @@ const CurriculumVitae = () => (
                   />
                 </Stack>
               ))}
-            </VStack>
+            </Stack>
           </Stack>
-        </VStack>
+        </Stack>
       </Stack>
     </Layout>
   </Fragment>

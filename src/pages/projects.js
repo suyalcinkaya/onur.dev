@@ -1,11 +1,14 @@
 import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Stack } from '@chakra-ui/react'
+import { Box, Stack } from '@chakra-ui/react'
 
 // --- Components
 import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
+
+// --- Icons
+import ProjectsIcon from 'components/icons/Projects'
 
 // --- Others
 import { projectData } from 'utils/constants'
@@ -35,11 +38,19 @@ const Projects = () => {
       <Layout>
         <Stack spacing={12}>
           <Stack spacing={8}>
-            <PageHeading>Projects</PageHeading>
+            <PageHeading>
+              <Box
+                as={ProjectsIcon}
+                height={{ base: 10, md: 12 }}
+                width={{ base: 10, md: 12 }}
+                mr={{ base: 2, md: 4 }}
+              />
+              Projects
+            </PageHeading>
             <p>Small just-for-fun weekend open source projects/works I've been working on.</p>
           </Stack>
           <Stack spacing={8}>
-            <Stack spacing={6}>
+            <Stack spacing={8}>
               {projectData.map((project, projectIndex) => (
                 <Card
                   key={`project_${projectIndex}`}
