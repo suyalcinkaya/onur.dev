@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Box, Button, Divider, Flex, Heading, IconButton, Text, Stack } from '@chakra-ui/react'
 
 // --- Icons
+import Coffee from 'components/icons/Coffee'
 import External from 'components/icons/External'
 
 // --- Others
@@ -20,9 +21,7 @@ const Footer = () => (
         target="_blank"
         rel="noopener noreferrer"
         leftIcon={
-          <span role="img" aria-label="coffee">
-            ☕️
-          </span>
+          <Coffee />
         }
         variant="solid"
       >
