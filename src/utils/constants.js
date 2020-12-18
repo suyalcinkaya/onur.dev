@@ -82,27 +82,27 @@ export const navigations = [
   {
     url: '/',
     name: 'Blog',
-    icon: <Blog />
+    icon: <Blog width={20} height={20} />
   },
   {
     url: '/about',
     name: 'About',
-    icon: <About />
+    icon: <About width={20} height={20} />
   },
   {
     url: '/projects',
     name: 'Projects',
-    icon: <Projects />
+    icon: <Projects width={20} height={20} />
   },
   {
     url: '/journey',
     name: 'Journey',
-    icon: <Journey style={{ transform: 'rotate(45deg)' }} />
+    icon: <Journey width={20} height={20} style={{ transform: 'rotate(45deg)' }} />
   },
   {
     url: '/cv',
     name: 'Curriculum Vitae',
-    icon: <Cv />
+    icon: <Cv width={20} height={20} />
   }
 ]
 

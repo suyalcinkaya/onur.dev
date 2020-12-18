@@ -56,8 +56,8 @@ const Header = () => {
                 rounded="normal"
               >
                 <Flex align="center" pos="relative">
-                  <Coffee />
-                  &nbsp;&nbsp;
+                  <Coffee width={20} height={20} />
+                  &nbsp;&nbsp;&nbsp;
                   <span>Buy me a coffee</span>
                   &nbsp;
                   <Box pos="absolute" top="0.3rem" right={-4}>
@@ -71,7 +71,7 @@ const Header = () => {
                   <NextLink href={nav.url} passHref>
                     <MenuItem as="a" px={4} py={2} rounded="normal" isDisabled={router.pathname === nav.url}>
                       {nav.icon}
-                      &nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;
                       {nav.name}
                     </MenuItem>
                   </NextLink>
