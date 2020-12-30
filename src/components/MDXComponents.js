@@ -129,9 +129,9 @@ const MDXComponents = {
   tbody: TBody,
   a: Link,
   p: (props) => <Text as="p" mb={6} {...props} />,
-  ul: (props) => <List as="ul" styleType="circle" stylePosition="inside" my={4} pl={6} {...props} />,
+  ul: (props) => <List as="ul" styleType="circle" stylePosition="inside" mt={2} mb={6} pl={6} {...props} />,
   ol: (props) => <List as="ol" styleType="decimal" stylePosition="inside" my={4} pl={6} {...props} />,
-  li: (props) => <ListItem mb={4} {...props} />,
+  li: (props) => <ListItem mb={3} {...props} />,
   blockquote: Quote,
   // iframe: iFrame,
   img: Img

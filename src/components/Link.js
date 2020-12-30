@@ -8,6 +8,7 @@ const linkStyle = {
   borderColor: 'lightLink',
   textDecoration: 'none',
   alignSelf: 'flex-start',
+  transition: 'border-color 100ms ease-in-out',
   // fontWeight: 500,
   _hover: {
     borderColor: 'link',
