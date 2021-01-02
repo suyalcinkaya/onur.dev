@@ -27,9 +27,9 @@ const styles = {
       fontFamily: 'body',
       fontSize: 17,
       // fontFeatureSettings: `'ss01' 1, 'cv05' 1`,
-      lineHeight: 1.7,
-      letterSpacing: '-0.01em',
-      backgroundColor: theme.colors.white
+      lineHeight: 1.7
+      // letterSpacing: '-0.01em',
+      // backgroundColor: theme.colors.white
     },
     'html, body': {
       WebkitFontSmoothing: 'antialiased',
@@ -87,6 +87,10 @@ const customTheme = {
     ...theme.colors,
     link: '#0070F3',
     lightLink: '#D3E5FF'
+  },
+  fonts: {
+    heading: `'Inter', ${theme.fonts.heading}`,
+    body: `'Inter', ${theme.fonts.body}`
   },
   fontSizes: {
     ...theme.fontSizes,

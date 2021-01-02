@@ -132,12 +132,8 @@ Ul.defaultProps = {
 }
 
 const MDXComponents = {
-  h2: (props) => (
-    <DocsHeading as="h2" size="lg" fontWeight="bolder" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />
-  ),
-  h3: (props) => (
-    <DocsHeading as="h3" fontWeight="bolder" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />
-  ),
+  h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bolder" fontSize="2xl" mt={8} mb={4} {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontWeight="bolder" fontSize="xl" mt={8} mb={2} {...props} />,
   inlineCode: InlineCode,
   br: (props) => <Box height={2} {...props} />,
   hr: Hr,
@@ -154,7 +150,9 @@ const MDXComponents = {
   blockquote: Quote,
   // iframe: iFrame,
   img: Img,
-  figcaption: (props) => <Text as="figcaption" fontSize="sm" fontWeight="bold" color="gray.500" {...props} />
+  figcaption: (props) => (
+    <Text as="figcaption" fontSize="sm" color="gray.500" textAlign="center" {...props} />
+  )
 }
 
 export default MDXComponents

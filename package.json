@@ -39,6 +39,7 @@
     "mdx-prism": "^0.3.1",
     "next": "^10.0.3",
     "next-compose-plugins": "^2.2.1",
+    "next-google-fonts": "^1.2.1",
     "next-mdx-enhanced": "^5.0.0",
     "next-pwa": "^3.1.5",
     "next-seo": "^4.17.0",
