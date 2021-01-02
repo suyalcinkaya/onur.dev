@@ -116,9 +116,28 @@ const InlineCode = (props) => <Code colorScheme="yellow" px="0.5rem" borderRadiu
 
 const Hr = (props) => <Divider my={8} mx="auto" width={1 / 2} {...props} />
 
+const Ul = styled(List)`
+  ul {
+    padding-left: ${theme.sizes[6]};
+    list-style-type: square;
+  }
+`
+
+Ul.defaultProps = {
+  as: 'ul',
+  styleType: 'circle',
+  stylePosition: 'inside',
+  mt: 2,
+  mb: 6
+}
+
 const MDXComponents = {
-  h2: (props) => <DocsHeading as="h2" size="lg" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />,
+  h2: (props) => (
+    <DocsHeading as="h2" size="lg" fontWeight="bolder" fontSize={{ base: 'xl', md: '2xl' }} mt={8} mb={4} {...props} />
+  ),
+  h3: (props) => (
+    <DocsHeading as="h3" fontWeight="bolder" fontSize={{ base: 'lg', md: 'xl' }} mt={8} mb={2} {...props} />
+  ),
   inlineCode: InlineCode,
   br: (props) => <Box height={2} {...props} />,
   hr: Hr,
@@ -129,12 +148,13 @@ const MDXComponents = {
   tbody: TBody,
   a: Link,
   p: (props) => <Text as="p" mb={6} {...props} />,
-  ul: (props) => <List as="ul" styleType="circle" stylePosition="inside" mt={2} mb={6} pl={6} {...props} />,
-  ol: (props) => <List as="ol" styleType="decimal" stylePosition="inside" my={4} pl={6} {...props} />,
+  ul: (props) => <Ul {...props} />,
+  ol: (props) => <List as="ol" styleType="decimal" stylePosition="inside" my={4} {...props} />,
   li: (props) => <ListItem mb={3} {...props} />,
   blockquote: Quote,
   // iframe: iFrame,
-  img: Img
+  img: Img,
+  figcaption: (props) => <Text as="figcaption" fontSize="sm" fontWeight="bold" color="gray.500" {...props} />
 }
 
 export default MDXComponents

@@ -35,9 +35,14 @@ module.exports = withPlugins(
         {
           source: '/turkiyeden-gitmek-berline-uzanan-bir-goc-hikayesi-bolum-1-nedenler',
           destination: '/bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler',
-          permanent: true,
+          permanent: true
         },
+        {
+          source: '/my-2020-year-in-review',
+          destination: '/2020-year-in-review',
+          permanent: true
+        }
       ]
-    },
+    }
   }
 )
