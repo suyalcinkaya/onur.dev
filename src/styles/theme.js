@@ -88,7 +88,7 @@ const customTheme = {
     lightLink: '#D3E5FF'
   },
   fonts: {
-    // heading: `'Inter', ${theme.fonts.heading}`,
+    heading: `'Inter', ${theme.fonts.heading}`,
     body: `'Inter', ${theme.fonts.body}`
   },
   fontSizes: {

@@ -244,22 +244,26 @@ export const articlesData = [
   {
     title: 'First, Understand Your Screen',
     url: 'https://tripleodeon.com/2011/12/first-understand-your-screen/',
-    author: 'James Pearce'
+    author: 'James Pearce',
+    type: 'Article'
   },
   {
     title: 'React is slow, what now?',
     url: 'https://nosleepjavascript.com/react-performance/',
-    author: 'NoSleep Javascript'
+    author: 'NoSleep Javascript',
+    type: 'Article'
   },
   {
     title: 'Yurt Dışından Neden Döndüm',
     url: 'https://keremkoseoglu.com/2016/11/10/yurt-disindan-neden-dondum/',
-    author: 'Dr. Kerem Koseoglu'
+    author: 'Dr. Kerem Koseoglu',
+    type: 'Blog'
   },
   {
     title: 'Debounce vs Throttle: Definitive Visual Guide',
     url: 'https://redd.one/blog/debounce-vs-throttle',
-    author: 'Artem Zakharchenko'
+    author: 'Artem Zakharchenko',
+    type: 'Article'
   }
 ]
 

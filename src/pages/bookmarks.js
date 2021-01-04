@@ -64,7 +64,7 @@ const Bookmarks = () => {
             <TabList fontWeight="bold">
               <Tab>All</Tab>
               <Tab _selected={{ color: 'link', borderColor: 'link' }}>Portfolios</Tab>
-              <Tab>Articles</Tab>
+              <Tab>Reading</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -99,8 +99,8 @@ const Bookmarks = () => {
                     <Card
                       key={`article_${articleIndex}`}
                       title={article.title}
+                      primaryText={article.type}
                       secondaryText={article.author}
-                      // secondaryText={article.notion}
                       url={article.url}
                     />
                   ))}

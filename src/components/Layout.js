@@ -16,7 +16,7 @@ const Layout = ({ children, ...others }) => (
     as="main"
     pl="env(safe-area-inset-left)"
     pr="env(safe-area-inset-right)"
-    mt={{ base: 12, md: 16 }}
+    mt={{ base: 12, md: 20 }}
     overflow="hidden"
     {...others}
   >
