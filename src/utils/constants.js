@@ -1,6 +1,7 @@
-import Blog from 'components/icons/Blog'
-import Cv from 'components/icons/Cv'
 import About from 'components/icons/About'
+import Blog from 'components/icons/Blog'
+import Bookmarks from 'components/icons/Bookmarks'
+import Cv from 'components/icons/Cv'
 import Github from 'components/icons/Github'
 import Journey from 'components/icons/Journey'
 import Medium from 'components/icons/Medium'
@@ -78,7 +79,40 @@ export const mixtapes = [
   }
 ]
 
-export const navigations = [
+export const mobileMenuNavigations = [
+  {
+    url: '/',
+    name: 'Blog',
+    icon: <Blog width={20} height={20} />
+  },
+  {
+    url: '/about',
+    name: 'About',
+    icon: <About width={20} height={20} />
+  },
+  {
+    url: '/projects',
+    name: 'Projects',
+    icon: <Projects width={20} height={20} />
+  },
+  {
+    url: '/bookmarks',
+    name: 'Bookmarks',
+    icon: <Bookmarks width={20} height={20} />
+  },
+  {
+    url: '/journey',
+    name: 'Journey',
+    icon: <Journey width={20} height={20} style={{ transform: 'rotate(45deg)' }} />
+  },
+  {
+    url: '/cv',
+    name: 'Curriculum Vitae',
+    icon: <Cv width={20} height={20} />
+  }
+]
+
+export const headerNavigations = [
   {
     url: '/',
     name: 'Blog',
@@ -100,9 +134,132 @@ export const navigations = [
     icon: <Journey width={20} height={20} style={{ transform: 'rotate(45deg)' }} />
   },
   {
+    url: '/bookmarks',
+    name: 'Bookmarks',
+    icon: <Bookmarks width={20} height={20} />
+  }
+]
+
+export const footerNavigations = [
+  {
+    url: '/',
+    name: 'Home'
+  },
+  {
+    url: '/about',
+    name: 'About'
+  },
+  {
     url: '/cv',
-    name: 'Curriculum Vitae',
-    icon: <Cv width={20} height={20} />
+    name: 'Curriculum Vitae'
+  },
+  {
+    url: '/',
+    name: 'Blog'
+  },
+  {
+    url: '/projects',
+    name: 'Projects'
+  },
+  {
+    url: '/journey',
+    name: 'Journey'
+  },
+  {
+    url: '/bookmarks',
+    name: 'Bookmarks'
+  }
+]
+
+export const bookmarksData = [
+  {
+    url: 'http://brianlovin.com/?ref=onur.dev',
+    by: 'Brian Lovin',
+    category: 'Portfolio'
+    // notion: "I think it's beautiful!"
+  },
+  {
+    url: 'https://leerob.io/?ref=onur.dev',
+    by: 'Lee Robinson',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://cmhb.de/?ref=onur.dev',
+    by: 'Carl Barenbrug',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://paco.sh/?ref=onur.dev',
+    by: 'Paco Coursey',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://www.sean-blanton.com/?ref=onur.dev',
+    by: 'Sean Blanton',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://marcomelilli.com/?ref=onur.dev',
+    by: 'Marco Melilli',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://rsms.me/?ref=onur.dev',
+    by: 'Rasmus Andersson',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://www.philipcdavis.com/?ref=onur.dev',
+    by: 'Philip Davis',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://www.joshwcomeau.com/?ref=onur.dev',
+    by: 'Josh W Comeau',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://tkkong.com/?ref=onur.dev',
+    by: 'TK Kong',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://www.julie.design/?ref=onur.dev',
+    by: 'Julie Chabin',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://hayk.design/?ref=onur.dev',
+    by: 'Hayk An',
+    category: 'Portfolio'
+  },
+  {
+    url: 'https://mknepprath.com/?ref=onur.dev',
+    by: 'Michael Knepprath',
+    category: 'Portfolio'
+  }
+]
+
+export const articlesData = [
+  {
+    title: 'First, Understand Your Screen',
+    url: 'https://tripleodeon.com/2011/12/first-understand-your-screen/',
+    author: 'James Pearce'
+  },
+  {
+    title: 'React is slow, what now?',
+    url: 'https://nosleepjavascript.com/react-performance/',
+    author: 'NoSleep Javascript'
+  },
+  {
+    title: 'Yurt Dışından Neden Döndüm',
+    url: 'https://keremkoseoglu.com/2016/11/10/yurt-disindan-neden-dondum/',
+    author: 'Dr. Kerem Koseoglu'
+  },
+  {
+    title: 'Debounce vs Throttle: Definitive Visual Guide',
+    url: 'https://redd.one/blog/debounce-vs-throttle',
+    author: 'Artem Zakharchenko'
   }
 ]
 

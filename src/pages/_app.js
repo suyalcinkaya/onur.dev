@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { ChakraProvider } from '@chakra-ui/react'
@@ -8,6 +8,7 @@ import { AnimatePresence } from 'framer-motion'
 
 // --- Components
 import Header from 'components/Header'
+import Footer from 'components/Footer'
 import MDXComponents from 'components/MDXComponents'
 
 // --- Others
@@ -32,7 +33,7 @@ function App({ Component, pageProps, router }) {
   }, [nextRouter.events])
 
   return (
-    <Fragment>
+    <>
       <Head>
         {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -45,8 +46,9 @@ function App({ Component, pageProps, router }) {
             <Component key={router.route} {...pageProps} />
           </AnimatePresence>
         </MDXProvider>
+        <Footer />
       </ChakraProvider>
-    </Fragment>
+    </>
   )
 }
 

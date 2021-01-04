@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 
-// --- Components
-import Footer from 'components/Footer'
+// --- Others
+import { MAX_WIDTH } from 'utils/constants'
 
 const easing = [0.175, 0.85, 0.42, 0.96]
 
@@ -16,14 +16,13 @@ const Layout = ({ children, ...others }) => (
     as="main"
     pl="env(safe-area-inset-left)"
     pr="env(safe-area-inset-right)"
-    mt={{ base: 12, md: 24 }}
+    mt={{ base: 12, md: 16 }}
     overflow="hidden"
     {...others}
   >
     <motion.div initial="exit" animate="enter" exit="exit" variants={vars}>
-      <Box px={{ base: 4, sm: 6, md: 16 }}>
+      <Box px={{ base: 4, sm: 6, md: 16 }} maxW={MAX_WIDTH} mx="auto">
         {children}
-        <Footer />
       </Box>
     </motion.div>
   </Box>

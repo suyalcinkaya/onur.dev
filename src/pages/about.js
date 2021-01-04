@@ -17,7 +17,6 @@ import { ogImageUrl } from 'utils/helper'
 
 const url = 'https://onur.dev/about'
 const title = 'About Me — Onur Şuyalçınkaya'
-const ogTitle = 'About Me'
 
 const About = () => (
   <Fragment>
@@ -29,7 +28,7 @@ const About = () => (
         title,
         images: [
           {
-            url: ogImageUrl(ogTitle),
+            url: ogImageUrl('**About**'),
             alt: title
           }
         ]

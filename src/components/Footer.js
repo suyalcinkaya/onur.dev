@@ -1,76 +1,91 @@
-import { Fragment } from 'react'
-import { Box, Button, Divider, Flex, Heading, IconButton, Text, Stack } from '@chakra-ui/react'
-
-// --- Icons
-import Coffee from 'components/icons/Coffee'
-import External from 'components/icons/External'
+import NextLink from 'next/link'
+import { Box, Button, Flex, Grid, IconButton, Text } from '@chakra-ui/react'
 
 // --- Others
-import { BUY_ME_COFFEE_URL, profiles } from 'utils/constants'
+import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, footerNavigations } from 'utils/constants'
 
 const Footer = () => (
-  <Fragment>
-    <Divider my={12} />
-    <Stack as="section" spacing={6}>
-      <Heading as="h3" size="md">
-        If you find there's any value in what I do and feel generous to want to help, you can support directly.
-      </Heading>
-      <Button
-        as="a"
-        href={BUY_ME_COFFEE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        leftIcon={
-          <Coffee />
-        }
-        variant="solid"
+  <Box as="footer" bg="black" color="white" mt={{ base: 12, md: 16 }} py={12}>
+    <Box maxW={MAX_WIDTH} mx="auto" px={{ base: 4, sm: 6, md: 16 }}>
+      <Grid
+        templateColumns={{ md: 'repeat(3, 1fr)' }}
+        templateRows={{ md: 'repeat(3, 1fr)' }}
+        autoFlow={{ md: 'column' }}
+        gap={6}
       >
-        <Box pos="relative">
-          Buy me a coffee
-          <Box pos="absolute" top={0} right={-5}>
-            <External height={14} width={14} />
-          </Box>
-        </Box>{' '}
-        &nbsp;
-      </Button>
-    </Stack>
-    <Divider my={12} />
-    <Flex flexDir={{ base: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" mb={12}>
-      <Flex justifyContent="center" alignItems="center" ml={{ md: -1 }} mb={{ base: 2, md: 0 }}>
-        {profiles.map((profile, profileIndex) => (
-          <IconButton
-            key={`profile_${profileIndex}_${profile.name}`}
-            as="a"
-            href={profile.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={profile.name}
-            title={profile.name}
-            bg="transparent"
-            px={1}
-            mr={{ base: 2, md: 1 }}
-          >
-            {profile.icon}
-          </IconButton>
+        {footerNavigations.map((footerNav, footerNavIndex) => (
+          <NextLink key={`footerNav_${footerNavIndex}`} href={footerNav.url} passHref>
+            <Button as="a" variant="link" justifyContent="flex-start" color="inherit" w="fit-content">
+              {footerNav.name}
+            </Button>
+          </NextLink>
         ))}
+        <Button
+          as="a"
+          href={BUY_ME_COFFEE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="link"
+          justifyContent="flex-start"
+          color="inherit"
+          w="fit-content"
+        >
+          Buy me a coffee
+        </Button>
+        <Button
+          variant="link"
+          justifyContent="flex-start"
+          color="inherit"
+          w="fit-content"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          Scroll to top &uarr;
+        </Button>
+      </Grid>
+      <Flex
+        flexDir={{ base: 'column', md: 'row' }}
+        alignItems="center"
+        justifyContent="space-between"
+        mt={8}
+        mx={{ md: -1 }}
+      >
+        <Flex justifyContent="center" alignItems="center" ml={{ md: -1 }} mb={{ base: 2, md: 0 }}>
+          {profiles.map((profile, profileIndex) => (
+            <IconButton
+              key={`profile_${profileIndex}_${profile.name}`}
+              as="a"
+              href={profile.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={profile.name}
+              title={profile.name}
+              bg="transparent"
+              px={1}
+              mr={{ base: 2, md: 1 }}
+              _hover={{ color: 'gray.400' }}
+            >
+              {profile.icon}
+            </IconButton>
+          ))}
+        </Flex>
+        <div>
+          <strong>onur</strong>
+          <Text as="span" color="gray.400">
+            {' dot '}
+          </Text>
+          <strong>suyalcinkaya</strong>
+          <Text as="span" color="gray.400">
+            {' at '}
+          </Text>
+          <strong>gmail</strong>
+          <Text as="span" color="gray.400">
+            {' dot '}
+          </Text>
+          <strong>com</strong>
+        </div>
       </Flex>
-      <div>
-        <strong>onur</strong>
-        <Text as="span" color="gray.500">
-          {' dot '}
-        </Text>
-        <strong>suyalcinkaya</strong>
-        <Text as="span" color="gray.500">
-          {' at '}
-        </Text>
-        <strong>gmail</strong>
-        <Text as="span" color="gray.500">
-          {' dot '}
-        </Text>
-        <strong>com</strong>
-      </div>
-    </Flex>
-  </Fragment>
+    </Box>
+  </Box>
 )
 
 export default Footer

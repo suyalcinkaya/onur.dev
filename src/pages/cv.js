@@ -17,7 +17,6 @@ import { safariOnly, ogImageUrl } from 'utils/helper'
 
 const url = 'https://onur.dev/cv'
 const title = 'Curriculum Vitae — Onur Şuyalçınkaya'
-const ogTitle = 'Curriculum Vitae'
 
 const TechStackContainer = styled(Stack)`
   row-gap: 0.5rem;
@@ -46,7 +45,7 @@ const CurriculumVitae = () => (
         title,
         images: [
           {
-            url: ogImageUrl(ogTitle),
+            url: ogImageUrl('**Curriculum Vitae**'),
             alt: title
           }
         ]

@@ -1,4 +1,4 @@
-import { Box, Heading, Stack } from '@chakra-ui/react'
+import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 
 // --- Icons
 import External from 'components/icons/External'
@@ -16,10 +16,11 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
       })}
       w="fit-content"
     >
-      <Heading
-        as="h3"
+      <Text
         fontSize="xl"
         size="xl"
+        fontWeight="bold"
+        lineHeight="shorter"
         {...(url && {
           pos: 'relative',
           w: 'calc(100% + 20px)',
@@ -38,7 +39,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
             <External height={14} width={14} />
           </Box>
         )}
-      </Heading>
+      </Text>
     </Box>
     {secondaryText && <Box color="gray.500">{secondaryText}</Box>}
   </Stack>

@@ -2,8 +2,6 @@ import theme from '@chakra-ui/theme'
 import { extendTheme } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 
-import { MAX_WIDTH } from 'utils/constants'
-
 const breakpoints = createBreakpoints({
   xs: '320px',
   sm: '375px',
@@ -26,9 +24,10 @@ const styles = {
       padding: 0,
       fontFamily: 'body',
       fontSize: 17,
+      // fontWeight: 500,
       // fontFeatureSettings: `'ss01' 1, 'cv05' 1`,
-      lineHeight: 1.7
-      // letterSpacing: '-0.01em',
+      lineHeight: 1.7,
+      letterSpacing: '-0.01em'
       // backgroundColor: theme.colors.white
     },
     'html, body': {
@@ -46,7 +45,7 @@ const styles = {
       borderColor: theme.colors.gray[200]
     },
     '#__next': {
-      maxWidth: MAX_WIDTH,
+      // maxWidth: MAX_WIDTH,
       margin: '0 auto'
     },
     p: {
@@ -89,7 +88,7 @@ const customTheme = {
     lightLink: '#D3E5FF'
   },
   fonts: {
-    heading: `'Inter', ${theme.fonts.heading}`,
+    // heading: `'Inter', ${theme.fonts.heading}`,
     body: `'Inter', ${theme.fonts.body}`
   },
   fontSizes: {
