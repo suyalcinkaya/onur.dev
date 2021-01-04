@@ -42,14 +42,8 @@ const Footer = () => (
           Scroll to top &uarr;
         </Button>
       </Grid>
-      <Flex
-        flexDir={{ base: 'column', md: 'row' }}
-        alignItems="center"
-        justifyContent="space-between"
-        mt={8}
-        mx={{ md: -1 }}
-      >
-        <Flex justifyContent="center" alignItems="center" ml={{ md: -1 }} mb={{ base: 2, md: 0 }}>
+      <Grid mt={{ base: 4, md: 8 }} gridGap={{ md: 2 }}>
+        <Flex alignItems="center" ml={-2} mb={{ base: 2, md: 0 }}>
           {profiles.map((profile, profileIndex) => (
             <IconButton
               key={`profile_${profileIndex}_${profile.name}`}
@@ -61,7 +55,7 @@ const Footer = () => (
               title={profile.name}
               bg="transparent"
               px={1}
-              mr={{ base: 2, md: 1 }}
+              mr={{ base: 2, md: 2 }}
               _hover={{ color: 'gray.400' }}
             >
               {profile.icon}
@@ -83,7 +77,7 @@ const Footer = () => (
           </Text>
           <strong>com</strong>
         </div>
-      </Flex>
+      </Grid>
     </Box>
   </Box>
 )
