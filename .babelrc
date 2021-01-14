@@ -1,4 +1,4 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["@emotion", "import-glob-array"]
+  "plugins": ["@emotion"]
 }

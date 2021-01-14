@@ -14,7 +14,7 @@ const IconButton = ({ href, name, children, ...others }) => {
       rel={isExternal && 'noopener noreferrer'}
       aria-label={name}
       title={name}
-      className="inline-flex items-center justify-items-center bg-transparent hover:text-gray-700 transition-colors duration-200 h-8 min-w-8"
+      className="inline-flex items-center justify-items-center bg-transparent hover:text-gray-600 transition-colors duration-200 h-8 min-w-8"
       {...others}
     >
       {children}

@@ -15,12 +15,11 @@ import TwitterIcon from 'components/icons/Twitter'
 import { getReadingTime } from 'lib/helper'
 
 const Layout = ({ frontMatter, children, ...others }) => {
-  const slug = frontMatter.__resourcePath.split('/')[0]
   const readingTime = getReadingTime(frontMatter.readingTime.minutes)
 
   return (
     <LayoutCmp {...others}>
-      <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
+      <BlogSeo url={`https://onur.dev/${readingTime.slug}`} {...frontMatter} />
       <article>
         <PageHeading>{frontMatter.title}</PageHeading>
         <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
@@ -39,14 +38,14 @@ const Layout = ({ frontMatter, children, ...others }) => {
               </p>
             </div>
           </div>
-          <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
+          <Share title={frontMatter.title} url={`https://onur.dev/${frontMatter.slug}`} />
         </div>
         <div className="mt-16">
           <div className="prose mb-12">{children}</div>
           <Button
             as="a"
             variant="solid"
-            href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`}
+            href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${frontMatter.slug}`)}`}
             isExternal
           >
             <TwitterIcon />

@@ -76,7 +76,11 @@ export const mixtapes = [
 export const mobileMenuNavigations = [
   {
     url: '/',
-    name: 'Home / Writing'
+    name: 'Home'
+  },
+  {
+    url: '/writing',
+    name: 'Writing'
   },
   {
     url: '/about',
@@ -104,6 +108,10 @@ export const headerNavigations = [
   {
     url: '/',
     name: 'Home'
+  },
+  {
+    url: '/writing',
+    name: 'Writing'
   },
   {
     url: '/about',

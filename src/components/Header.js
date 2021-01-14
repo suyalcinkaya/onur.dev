@@ -71,7 +71,7 @@ const Header = () => {
               </div>
             )}
           </div>
-          <div className="hidden md:grid md:grid-flow-col md:my-0 md:place-content-around md:px-0 min-h-20">
+          <div className="hidden md:grid md:grid-flow-col md:my-0 md:place-content-evenly md:px-0 min-h-20">
             {headerNavigations.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>
                 <NextLink href={headerNav.url} passHref>

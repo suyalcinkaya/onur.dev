@@ -1,25 +1,20 @@
 // --- Components
 import BlogPost from 'components/BlogPost'
 import Layout from 'components/Layout'
-import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
 
 // --- Other
 import { getAllFilesFrontMatter } from 'lib/mdx'
 
-const Home = ({ posts }) => {
+const Blog = ({ posts }) => {
   const sortedBlogPosts = posts.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
 
   return (
     <Layout>
-      <PageHeading>Onur Şuyalçınkaya</PageHeading>
+      <PageHeading>Writing</PageHeading>
       <p>
-        <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
-        <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}
-        <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
-        <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist. Currently living in Berlin, Germany
-        and developing things at <Link href="https://hey.car">heycar</Link>. Writing mostly about code, design, and my
-        notions to learn, not to teach.
+        I've been writing online since 2018, mostly about web development and tech careers. In total, I've written{' '}
+        {sortedBlogPosts.length} blog posts so far.
       </p>
       <div className="space-y-12 md:space-y-6 mt-12">
         {sortedBlogPosts.map((frontMatter) => (
@@ -36,4 +31,4 @@ export async function getStaticProps() {
   return { props: { posts } }
 }
 
-export default Home
+export default Blog
