@@ -1,48 +1,39 @@
-import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 
 // --- Icons
 import External from 'components/icons/External'
 
+const Box = styled.div``
+
 const Card = ({ title, primaryText, secondaryText, url = undefined, ...others }) => (
-  <Stack spacing={2} {...others}>
-    {primaryText && <Box color="gray.500">{primaryText}</Box>}
+  <div {...others}>
+    {primaryText && <div className="text-gray-500">{primaryText}</div>}
     <Box
       as={url ? 'a' : 'div'}
+      className={`max-w-max mt-2 block ${url && 'relative'}`}
       {...(url && {
-        pos: 'relative',
         href: url,
         rel: 'noopener noreferrer',
         target: '_blank'
       })}
-      w="fit-content"
     >
-      <Text
-        fontSize="xl"
-        size="xl"
-        fontWeight="bold"
-        lineHeight="shorter"
-        {...(url && {
-          pos: 'relative',
-          w: 'calc(100% + 20px)',
-          mb: '-1px',
-          pb: '1px',
-          borderBottomWidth: '1px',
-          borderBottomStyle: 'solid',
-          borderBottomColor: 'transparent',
-          transition: 'border-bottom 200ms ease-in-out',
-          _hover: { borderBottomColor: 'black' }
-        })}
+      <div
+        className={
+          url &&
+          'relative -mb-px pb-px border-b border-solid border-transparent transition-colors duration-200 ease-in-out hover:border-black'
+        }
+        style={{ width: url && 'calc(100% + 20px)' }}
       >
-        {title}
+        <p className="text-xl leading-tight font-semibold">{title}</p>
         {url && (
-          <Box pos="absolute" top="3px" right={0}>
+          <div className="absolute top-0.5 right-0">
             <External height={14} width={14} />
-          </Box>
+          </div>
         )}
-      </Text>
+      </div>
     </Box>
-    {secondaryText && <Box color="gray.500">{secondaryText}</Box>}
-  </Stack>
+    {secondaryText && <div className="text-gray-500 mt-2">{secondaryText}</div>}
+  </div>
 )
 
 export default Card

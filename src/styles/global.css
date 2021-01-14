@@ -1,0 +1,188 @@
+::selection {
+  background-color: #47a3f3;
+  color: #fefefe;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  font-size: 16px;
+}
+
+body {
+  @apply m-0 p-0 font-sans leading-slack text-charcoal antialiased;
+  /* letter-spacing: -0.01em; */
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* h1, h2, h3 {
+  @apply font-extrabold tracking-tight;
+} */
+
+button,
+a {
+  @apply outline-none;
+}
+
+button:focus,
+a:focus {
+  @apply outline-none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+}
+
+p {
+  @apply leading-slacker;
+}
+
+li p,
+li h1,
+li h2 {
+  @apply my-0;
+}
+
+/* Codes */
+
+/* .prose pre {
+  @apply bg-gray-50 border border-gray-200;
+} */
+
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply text-sm leading-normal w-full text-left break-normal whitespace-pre rounded-lg;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  @apply p-4 my-3 mx-0 overflow-auto min-w-full;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  @apply rounded-b-lg;
+}
+
+/* Inline code */
+/* :not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+} */
+
+.token.important,
+.token.bold {
+  @apply font-semibold;
+}
+
+/* .token.italic {
+  @apply italic;
+} */
+
+/* .token.entity {
+  cursor: help;
+} */
+
+.mdx-marker {
+  @apply block -mx-4 px-4 bg-blue-100;
+  min-width: fit-content;
+  box-shadow: inset 3px 0px 0 0px #0070f3;
+}
+
+.remark-code-title {
+  @apply py-3 px-4 rounded-t-lg text-sm font-semibold mb-0 mt-4 w-full;
+  background: rgb(226, 232, 240);
+  border: 1px solid rgb(226, 232, 240);
+}
+
+.remark-code-title + pre {
+  @apply rounded-t-none mt-0;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background: rgb(247, 250, 252);
+  border: 1px solid rgb(226, 232, 240);
+}
+
+/* Inline code */
+/* :not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+} */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-gray-400;
+}
+
+.token.operator,
+.token.punctuation {
+  @apply text-gray-500;
+}
+
+.token.namespace {
+  @apply opacity-70;
+}
+
+.token.property,
+.token.boolean,
+.token.symbol,
+.token.deleted {
+  color: #f5a623;
+}
+
+.token.attr-value,
+.token.selector,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #29bc9b;
+}
+
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+
+.token.attr-name,
+.token.atrule,
+.token.keyword {
+  color: #0070f3;
+}
+
+.token.number,
+.token.tag,
+.token.function,
+.token.class-name,
+.token.maybe-class-name {
+  color: #ff0078;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #e90;
+}
+
+.token.constant {
+  color: inherit;
+}

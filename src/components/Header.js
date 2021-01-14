@@ -1,110 +1,91 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import {
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  useMediaQuery
-} from '@chakra-ui/react'
+
+// --- Components
+import Button from 'components/Button'
 
 // --- Icons
 import MenuIcon from 'components/icons/Menu'
-import External from 'components/icons/External'
 
 // --- Others
-import { BUY_ME_COFFEE_URL, HEADER_HEIGHT, MAX_WIDTH, mobileMenuNavigations, headerNavigations } from 'utils/constants'
+import { HEADER_HEIGHT, MAX_WIDTH, mobileMenuNavigations, headerNavigations } from 'lib/constants'
 
 const Header = () => {
   const router = useRouter()
-  const [isDesktop] = useMediaQuery('(min-width: 767px)')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setIsMenuOpen(false)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
-    <Fragment>
-      <Box
-        as="header"
-        position="fixed"
-        top={0}
-        left={0}
-        right={0}
-        zIndex={9}
-        height={HEADER_HEIGHT}
-        width="100%"
-        mx="auto"
-        bg="hsla(0, 0%, 100%, 0.8)"
-        borderBottom="1px solid rgb(234, 234, 234)"
-        style={{ backdropFilter: 'saturate(180%) blur(5px)', WebkitBackdropFilter: 'saturate(180%) blur(5px)' }}
+    <>
+      <header
+        className="fixed top-0 inset-x-0 z-10 w-full mx-auto md:border-b"
+        style={{
+          backdropFilter: 'saturate(180%) blur(5px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(5px)',
+          backgroundColor: 'hsla(0, 0%, 100%, 0.8)',
+          minHeight: HEADER_HEIGHT
+        }}
       >
-        <Box d="grid" height="100%" maxW={MAX_WIDTH} m="0 auto">
-          <Flex justify="space-between" alignItems="center" px={{ base: 4, sm: 6, md: 16 }} mx={{ md: -4 }}>
-            <NextLink href="/" passHref>
-              <Button as="a" variant="ghost">
-                Home
-              </Button>
-            </NextLink>
-            {!isDesktop ? (
-              <Menu>
-                <MenuButton as={IconButton} aria-label="Menü" title="Menü" icon={<MenuIcon />} variant="ghost" />
-                <MenuList px={2} rounded="normal">
-                  <MenuItem
-                    as="a"
-                    href={BUY_ME_COFFEE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    px={4}
-                    py={2}
-                    rounded="normal"
-                  >
-                    <Flex align="center" pos="relative">
-                      <span>Buy me a coffee</span>
-                      &nbsp;
-                      <Box pos="absolute" top="0.3rem" right={-4}>
-                        <External height={14} width={14} />
-                      </Box>
-                    </Flex>
-                  </MenuItem>
-                  <MenuDivider />
-                  {mobileMenuNavigations.map((mobileMenuNav, mobileMenuNavIndex) => (
-                    <Fragment key={`mobileMenuNav_${mobileMenuNavIndex}`}>
-                      <NextLink href={mobileMenuNav.url} passHref>
-                        <MenuItem
-                          as="a"
-                          px={4}
-                          py={2}
-                          rounded="normal"
-                          isDisabled={router.pathname === mobileMenuNav.url}
-                        >
-                          {mobileMenuNav.name}
-                        </MenuItem>
-                      </NextLink>
-                    </Fragment>
-                  ))}
-                </MenuList>
-              </Menu>
-            ) : (
+        <div className="shadow md:shadow-none md:mx-auto px-4 sm:px-6 min-h-20" style={{ maxWidth: MAX_WIDTH }}>
+          <div className="flex md:hidden items-center min-h-20">
+            {!isMenuOpen ? (
               <>
-                {headerNavigations.map((headerNav, headerNavIndex) => (
-                  <Fragment key={`headerNav_${headerNavIndex}`}>
-                    <NextLink href={headerNav.url} passHref>
-                      <Button as="a" colorScheme="gray" variant="ghost">
-                        {headerNav.name}
-                      </Button>
+                <MenuIcon onClick={() => setIsMenuOpen(true)} />
+                <NextLink href="/" passHref>
+                  <Button as="a" variant="ghost">
+                    Home
+                  </Button>
+                </NextLink>
+              </>
+            ) : (
+              <div className="grid gap-4 w-full pt-4 pb-6">
+                <div className="text-3xl leading-none font-light mt-1.5 w-min" onClick={() => setIsMenuOpen(false)}>
+                  ×
+                </div>
+                {mobileMenuNavigations.map((mobileMenuNav, mobileMenuNavIndex) => (
+                  <Fragment key={`mobileMenuNav_${mobileMenuNavIndex}`}>
+                    <NextLink href={mobileMenuNav.url}>
+                      <a
+                        className={`font-semibold ${
+                          router.pathname === mobileMenuNav.url
+                            ? 'rounded-md bg-blue-100 py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3'
+                            : ''
+                        }`}
+                        disabled={router.pathname === mobileMenuNav.url}
+                      >
+                        {mobileMenuNav.name}
+                      </a>
                     </NextLink>
                   </Fragment>
                 ))}
-              </>
+              </div>
             )}
-          </Flex>
-        </Box>
-      </Box>
-      <Box height={HEADER_HEIGHT} />
-    </Fragment>
+          </div>
+          <div className="hidden md:grid md:grid-flow-col md:my-0 md:place-content-around md:px-0 min-h-20">
+            {headerNavigations.map((headerNav, headerNavIndex) => (
+              <Fragment key={`headerNav_${headerNavIndex}`}>
+                <NextLink href={headerNav.url} passHref>
+                  <Button as="a" variant="ghost">
+                    {headerNav.name}
+                  </Button>
+                </NextLink>
+              </Fragment>
+            ))}
+          </div>
+        </div>
+      </header>
+      <div style={{ minHeight: HEADER_HEIGHT }} />
+    </>
   )
 }
 

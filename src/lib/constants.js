@@ -1,50 +1,44 @@
-import About from 'components/icons/About'
-import Blog from 'components/icons/Blog'
-import Bookmarks from 'components/icons/Bookmarks'
-import Cv from 'components/icons/Cv'
-import Github from 'components/icons/Github'
-import Journey from 'components/icons/Journey'
-import Medium from 'components/icons/Medium'
-import Linkedin from 'components/icons/Linkedin'
-import Soundcloud from 'components/icons/Soundcloud'
-import Projects from 'components/icons/Projects'
-import Twitter from 'components/icons/Twitter'
-import Youtube from 'components/icons/Youtube'
+import GithubIcon from 'components/icons/Github'
+import MediumIcon from 'components/icons/Medium'
+import LinkedinIcon from 'components/icons/Linkedin'
+import SoundcloudIcon from 'components/icons/Soundcloud'
+import TwitterIcon from 'components/icons/Twitter'
+import YoutubeIcon from 'components/icons/Youtube'
 
-export const HEADER_HEIGHT = 20 //rem
-export const MAX_WIDTH = `max(50vw, 768px)`
+export const HEADER_HEIGHT = '5rem'
+export const MAX_WIDTH = 'max(50vw, 768px)'
 export const BUY_ME_COFFEE_URL = 'http://buymeacoff.ee/suyalcinkaya'
 
 export const profiles = [
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/onursdev',
-    icon: <Twitter />
-  },
-  {
     name: 'GitHub',
     url: 'https://github.com/suyalcinkaya/',
-    icon: <Github />
+    icon: <GithubIcon />
+  },
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/onursdev',
+    icon: <TwitterIcon />
   },
   {
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/suyalcinkaya/',
-    icon: <Linkedin />
+    icon: <LinkedinIcon />
   },
   {
     name: 'Medium',
     url: 'https://suyalcinkaya.medium.com',
-    icon: <Medium />
+    icon: <MediumIcon />
   },
   {
     name: 'Soundcloud',
     url: 'https://soundcloud.com/jagerman',
-    icon: <Soundcloud />
+    icon: <SoundcloudIcon />
   },
   {
     name: 'YouTube',
     url: 'https://www.youtube.com/c/jagermanmusic',
-    icon: <Youtube />
+    icon: <YoutubeIcon />
   }
 ]
 
@@ -82,61 +76,50 @@ export const mixtapes = [
 export const mobileMenuNavigations = [
   {
     url: '/',
-    name: 'Blog',
-    icon: <Blog width={20} height={20} />
+    name: 'Home / Writing'
   },
   {
     url: '/about',
-    name: 'About',
-    icon: <About width={20} height={20} />
+    name: 'About'
   },
   {
     url: '/projects',
-    name: 'Projects',
-    icon: <Projects width={20} height={20} />
+    name: 'Projects'
   },
   {
     url: '/bookmarks',
-    name: 'Bookmarks',
-    icon: <Bookmarks width={20} height={20} />
+    name: 'Bookmarks'
   },
   {
     url: '/journey',
-    name: 'Journey',
-    icon: <Journey width={20} height={20} style={{ transform: 'rotate(45deg)' }} />
+    name: 'Journey'
   },
   {
     url: '/cv',
-    name: 'Curriculum Vitae',
-    icon: <Cv width={20} height={20} />
+    name: 'Curriculum Vitae'
   }
 ]
 
 export const headerNavigations = [
   {
     url: '/',
-    name: 'Blog',
-    icon: <Blog width={20} height={20} />
+    name: 'Home'
   },
   {
     url: '/about',
-    name: 'About',
-    icon: <About width={20} height={20} />
+    name: 'About'
   },
   {
     url: '/projects',
-    name: 'Projects',
-    icon: <Projects width={20} height={20} />
+    name: 'Projects'
   },
   {
     url: '/journey',
-    name: 'Journey',
-    icon: <Journey width={20} height={20} style={{ transform: 'rotate(45deg)' }} />
+    name: 'Journey'
   },
   {
     url: '/bookmarks',
-    name: 'Bookmarks',
-    icon: <Bookmarks width={20} height={20} />
+    name: 'Bookmarks'
   }
 ]
 
@@ -155,7 +138,7 @@ export const footerNavigations = [
   },
   {
     url: '/',
-    name: 'Blog'
+    name: 'Writing'
   },
   {
     url: '/projects',
@@ -245,25 +228,29 @@ export const articlesData = [
     title: 'First, Understand Your Screen',
     url: 'https://tripleodeon.com/2011/12/first-understand-your-screen/',
     author: 'James Pearce',
-    type: 'Article'
+    type: 'Article',
+    lang: 'en'
   },
   {
     title: 'React is slow, what now?',
     url: 'https://nosleepjavascript.com/react-performance/',
     author: 'NoSleep Javascript',
-    type: 'Article'
+    type: 'Article',
+    lang: 'en'
   },
   {
     title: 'Yurt Dışından Neden Döndüm',
     url: 'https://keremkoseoglu.com/2016/11/10/yurt-disindan-neden-dondum/',
     author: 'Dr. Kerem Koseoglu',
-    type: 'Blog'
+    type: 'Blog',
+    lang: 'tr'
   },
   {
     title: 'Debounce vs Throttle: Definitive Visual Guide',
     url: 'https://redd.one/blog/debounce-vs-throttle',
     author: 'Artem Zakharchenko',
-    type: 'Article'
+    type: 'Article',
+    lang: 'en'
   }
 ]
 
@@ -273,11 +260,13 @@ export const journeyData = [
     items: [
       {
         title: 'Joined heycar',
-        description: 'Thrilled to join this brilliant company. 🎉'
+        description: 'Thrilled to join this brilliant company. 🎉',
+        emoji: '🚙'
       },
       {
         title: 'Moved to Berlin',
-        description: "It's my first time living abroad and I'm far away from my family and friends."
+        description: "It's my first time living abroad and I'm far away from my family and friends.",
+        emoji: '🇩🇪'
       }
     ]
   },
@@ -286,7 +275,8 @@ export const journeyData = [
     items: [
       {
         title: 'Served in the military',
-        description: "I'm glad to get rid of this 💩."
+        description: "I'm glad to get rid of this 💩.",
+        emoji: '💂'
       }
     ]
   },
@@ -295,7 +285,8 @@ export const journeyData = [
     items: [
       {
         title: 'Joined Yemeksepeti',
-        description: "I'm excited to help grow the Yemek.com team."
+        description: "I'm excited to help grow the Yemek.com team.",
+        emoji: '🍕'
       }
     ]
   },
@@ -304,7 +295,13 @@ export const journeyData = [
     items: [
       {
         title: 'Joined Sistas',
-        description: 'This is my first software related job. Feel so lucky.'
+        description: 'This is my first software related job. Feeling super lucky.',
+        emoji: '🥳'
+      },
+      {
+        title: 'Graduated from Dogus University',
+        description: 'It was a long 5 years. I worked my ass off to make it.',
+        emoji: '🎓'
       }
     ]
   },
@@ -313,7 +310,8 @@ export const journeyData = [
     items: [
       {
         title: 'Joined Apple',
-        description: 'My first job within the best company in the universe!'
+        description: 'My first job within the best company in the universe!',
+        emoji: ''
       }
     ]
   },
@@ -322,7 +320,8 @@ export const journeyData = [
     items: [
       {
         title: 'Started at Dogus University',
-        description: 'Being able to study Computer Engineering is one of the luckiest moments of my life.'
+        description: 'Being able to study Computer Engineering is one of the luckiest moments of my life.',
+        emoji: '📚'
       }
     ]
   },
@@ -331,7 +330,8 @@ export const journeyData = [
     items: [
       {
         title: 'Born',
-        description: '👶🏼 🍼'
+        description: 'On 23th of June.',
+        emoji: '👶🏼'
       }
     ]
   }

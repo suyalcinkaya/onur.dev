@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
-import { Box, Stack } from '@chakra-ui/react'
 import tinytime from 'tinytime'
 
 // --- Components
 import Card from 'components/Card'
 
 // --- Other
-import { getReadingTime } from 'utils/helper'
+import { getReadingTime } from 'lib/helper'
 
 const BlogPost = (frontMatter) => {
   const router = useRouter()
@@ -16,30 +15,24 @@ const BlogPost = (frontMatter) => {
   const readingTime = getReadingTime(frontMatter.readingTime.minutes)
 
   return (
-    <Box
-      as="article"
-      p={{ md: 4 }}
-      m={{ md: -4 }}
-      rounded={{ md: 'normal' }}
-      cursor={{ md: 'pointer' }}
-      transition={{ md: 'background 200ms ease-in-out' }}
-      _hover={{ md: { bg: 'gray.100' } }}
+    <article
+      className="md:hover:bg-gray-100 md:rounded-lg md:p-4 md:-mx-4 md:cursor-pointer md:transition-colors md:duration-200 md:ease-in-out"
       onClick={() => router.push(`/${slug}`)}
     >
       <Card
         title={frontMatter.title}
         primaryText={
-          <Stack isInline spacing={1} color="gray.500">
+          <div className="text-gray-500">
             <time dateTime={frontMatter.publishedAt}>
               {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
             </time>
-            <span>&bull;</span>
-            <span>{readingTime}</span>
-          </Stack>
+            <span className="ml-1">&bull;</span>
+            <span className="ml-1">{readingTime}</span>
+          </div>
         }
         secondaryText={frontMatter.summary}
       />
-    </Box>
+    </article>
   )
 }
 

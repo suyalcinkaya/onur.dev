@@ -1,18 +1,8 @@
-import { Heading } from '@chakra-ui/react'
-
 const PageHeading = ({ children, ...others }) => {
   return (
-    <Heading
-      as="h1"
-      d="flex"
-      alignItems="center"
-      fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
-      fontWeight="bolder"
-      lineHeight="shorter"
-      {...others}
-    >
+    <h1 className="flex items-center text-3xl md:text-4xl font-extrabold mb-6 md:mb-8" {...others}>
       {children}
-    </Heading>
+    </h1>
   )
 }
 

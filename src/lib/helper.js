@@ -14,3 +14,5 @@ export const ogImageUrl = (text) => {
 }
 
 export const getReadingTime = (minutes) => (minutes > 1 ? `${Math.ceil(minutes)} mins read` : `1 min read`)
+
+export const isExternalLink = (href) => href && !href.startsWith('/') && !href.startsWith('#')

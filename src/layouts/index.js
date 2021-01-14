@@ -1,75 +1,60 @@
-import { Avatar, Box, Button, Stack, Text } from '@chakra-ui/react'
-import styled from '@emotion/styled'
+import NextImage from 'next/image'
 import tinytime from 'tinytime'
 
 // --- Components
 import BlogSeo from 'components/BlogSeo'
+import Button from 'components/Button'
 import LayoutCmp from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 import Share from 'components/Share'
-import Twitter from 'components/icons/Twitter'
+
+// --- Icons
+import TwitterIcon from 'components/icons/Twitter'
 
 // --- Others
-import { getReadingTime } from 'utils/helper'
-import { baseTheme, lightTheme } from 'styles/prism.css'
+import { getReadingTime } from 'lib/helper'
 
-const Container = styled(LayoutCmp)`
-  ${baseTheme}
-  ${lightTheme}
-`
-
-const Layout = ({ frontMatter, children }) => {
+const Layout = ({ frontMatter, children, ...others }) => {
   const slug = frontMatter.__resourcePath.split('/')[0]
   const readingTime = getReadingTime(frontMatter.readingTime.minutes)
 
   return (
-    <Container>
+    <LayoutCmp {...others}>
       <BlogSeo url={`https://onur.dev/${slug}`} {...frontMatter} />
-      <Stack as="article" spacing={16}>
-        <Stack spacing={6}>
-          <PageHeading>{frontMatter.title}</PageHeading>
-          <Stack spacing={2}>
-            <Stack
-              spacing={{ base: 4, md: 0 }}
-              flexDir={{ base: 'column', md: 'row' }}
-              justify={{ md: 'space-between' }}
-              align={{ md: 'flex-end' }}
-            >
-              <Stack isInline align="center" spacing={3}>
-                <Avatar size="md" name="Onur Şuyalçınkaya" src="/images/og.jpg" />
-                <Stack spacing={0}>
-                  <Text fontWeight="medium" lineHeight="short">
-                    Onur Şuyalçınkaya
-                  </Text>
-                  <Text fontSize="sm" color="gray.500">
-                    <time dateTime={frontMatter.publishedAt}>
-                      {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
-                    </time>
-                    {' • '}
-                    {readingTime}
-                  </Text>
-                </Stack>
-              </Stack>
-              <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
-            </Stack>
-          </Stack>
-        </Stack>
-        <Stack spacing={6}>
-          <Box>{children}</Box>
+      <article>
+        <PageHeading>{frontMatter.title}</PageHeading>
+        <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
+          <div className="flex items-center">
+            <div className="h-12 w-12 rounded-full overflow-hidden">
+              <NextImage height={400} width={400} src="/images/og.jpg" alt="Onur Şuyalçınkaya" />
+            </div>
+            <div className="flex flex-col ml-3">
+              <p className="font-medium">Onur Şuyalçınkaya</p>
+              <p className="text-sm text-gray-500">
+                <time dateTime={frontMatter.publishedAt}>
+                  {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
+                </time>
+                {' • '}
+                {readingTime}
+              </p>
+            </div>
+          </div>
+          <Share title={frontMatter.title} url={`https://onur.dev/${slug}`} />
+        </div>
+        <div className="mt-16">
+          <div className="prose mb-12">{children}</div>
           <Button
             as="a"
+            variant="solid"
             href={`https://twitter.com/search?q=${encodeURIComponent(`https://onur.dev/${slug}`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            leftIcon={<Twitter />}
-            colorScheme="twitter"
-            alignSelf="flex-start"
+            isExternal
           >
-            {'Discuss on Twitter →'}
+            <TwitterIcon />
+            <span>Discuss on Twitter</span>
           </Button>
-        </Stack>
-      </Stack>
-    </Container>
+        </div>
+      </article>
+    </LayoutCmp>
   )
 }
 

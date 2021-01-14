@@ -1,9 +1,6 @@
-import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Box, Divider, Heading, Stack, VStack } from '@chakra-ui/react'
 
 // --- Components
-import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 
@@ -11,14 +8,14 @@ import PageHeading from 'components/PageHeading'
 import JourneyIcon from 'components/icons/Journey'
 
 // --- Other
-import { journeyData } from 'utils/constants'
-import { ogImageUrl } from 'utils/helper'
+import { journeyData } from 'lib/constants'
+import { ogImageUrl } from 'lib/helper'
 
 const url = 'https://onur.dev/journey'
 const title = 'Journey — Onur Şuyalçınkaya'
 
 const Journey = () => (
-  <Fragment>
+  <>
     <NextSeo
       title={title}
       canonical={url}
@@ -34,34 +31,42 @@ const Journey = () => (
       }}
     />
     <Layout>
-      <Stack spacing={8}>
-        <PageHeading>
-          <Box
-            as={JourneyIcon}
-            height={{ base: 10, md: 12 }}
-            width={{ base: 10, md: 12 }}
-            style={{ transform: 'rotate(45deg)' }}
-            mr={{ base: 2, md: 4 }}
-          />
-          Journey
-        </PageHeading>
-        <VStack divider={<Divider borderColor="gray.200" />} spacing={8} align="stretch">
-          {journeyData.map((data, dataIndex) => (
-            <Stack key={`data_${dataIndex}`} spacing={8}>
-              <Heading as="h2" size="lg">
-                {data.year}
-              </Heading>
-              <Stack spacing={8}>
-                {data.items.map((item, itemIndex) => (
-                  <Card key={`journey_${itemIndex}`} title={item.title} secondaryText={item.description} />
-                ))}
-              </Stack>
-            </Stack>
-          ))}
-        </VStack>
-      </Stack>
+      <PageHeading>
+        <JourneyIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" />
+        Journey
+      </PageHeading>
+      <div className="flex flex-col space-y-10 items-stretch">
+        {journeyData.map((data, dataIndex) => (
+          <div key={`data_${dataIndex}`} className="space-y-8">
+            <div className="flex items-center mt-4 mb-8">
+              <h2 className="text-2xl font-bold">{data.year}</h2>
+              <div className="bg-gray-200 flex-1 h-px ml-4" />
+            </div>
+            <section>
+              {data.items.map((item, itemIndex) => (
+                <div key={`journey_${itemIndex}`} className="flex relative pb-8 last:pb-0">
+                  {itemIndex !== data.items.length - 1 && (
+                    <div className="w-10 absolute inset-x-0 inset-y-1 mt-10 flex items-center justify-center">
+                      <div className="h-full w-px bg-gray-200 pointer-events-none"></div>
+                    </div>
+                  )}
+                  <div className="flex items-center justify-center align-middle flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full z-0">
+                    <span role="img" aria-label={item.title} className="text-lg">
+                      {item.emoji}
+                    </span>
+                  </div>
+                  <div className="flex-grow pl-4">
+                    <h2 className="font-semibold text-lg mb-1">{item.title}</h2>
+                    <p className="leading-relaxed text-gray-500">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </section>
+          </div>
+        ))}
+      </div>
     </Layout>
-  </Fragment>
+  </>
 )
 
 export default Journey

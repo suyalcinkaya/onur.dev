@@ -1,6 +1,4 @@
-import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
-import { Box, Stack } from '@chakra-ui/react'
 
 // --- Components
 import Card from 'components/Card'
@@ -11,15 +9,15 @@ import PageHeading from 'components/PageHeading'
 import ProjectsIcon from 'components/icons/Projects'
 
 // --- Others
-import { projectData } from 'utils/constants'
-import { ogImageUrl } from 'utils/helper'
+import { projectData } from 'lib/constants'
+import { ogImageUrl } from 'lib/helper'
 
 const url = 'https://onur.dev/projects'
 const title = 'Projects — Onur Şuyalçınkaya'
 
 const Projects = () => {
   return (
-    <Fragment>
+    <>
       <NextSeo
         title={title}
         canonical={url}
@@ -35,34 +33,23 @@ const Projects = () => {
         }}
       />
       <Layout>
-        <Stack spacing={12}>
-          <Stack spacing={8}>
-            <PageHeading>
-              <Box
-                as={ProjectsIcon}
-                height={{ base: 10, md: 12 }}
-                width={{ base: 10, md: 12 }}
-                mr={{ base: 2, md: 4 }}
-              />
-              Projects
-            </PageHeading>
-            <p>Small just-for-fun weekend open source projects/works I've been working on.</p>
-          </Stack>
-          <Stack spacing={8}>
-            <Stack spacing={8}>
-              {projectData.map((project, projectIndex) => (
-                <Card
-                  key={`project_${projectIndex}`}
-                  title={project.name}
-                  secondaryText={project.description}
-                  url={project.url}
-                />
-              ))}
-            </Stack>
-          </Stack>
-        </Stack>
+        <PageHeading>
+          <ProjectsIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" />
+          Projects
+        </PageHeading>
+        <p>Small just-for-fun weekend open source projects/works I've been working on.</p>
+        <div className="space-y-8 mt-12">
+          {projectData.map((project, projectIndex) => (
+            <Card
+              key={`project_${projectIndex}`}
+              title={project.name}
+              secondaryText={project.description}
+              url={project.url}
+            />
+          ))}
+        </div>
       </Layout>
-    </Fragment>
+    </>
   )
 }
 
