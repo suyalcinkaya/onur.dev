@@ -36,7 +36,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
       {primaryText && <div className="text-gray-500">{primaryText}</div>}
       <Wrapper
         url={url}
-        className={`inline-block${url && isExternal ? ' relative' : ''}`}
+        className="inline-block relative"
         {...(url && {
           href: url
         })}
