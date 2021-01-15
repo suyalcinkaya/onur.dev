@@ -19,9 +19,9 @@ const Wrapper = ({ url = undefined, children, ...others }) => {
   }
 
   return (
-    <div {...others}>
+    <div>
       <NextLink href={url}>
-        <a>{children}</a>
+        <a {...others}>{children}</a>
       </NextLink>
     </div>
   )
