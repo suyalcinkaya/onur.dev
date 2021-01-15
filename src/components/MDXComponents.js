@@ -49,7 +49,7 @@ const HeadingContainer = styled.div`
 `
 
 const DocsHeading = (props) => (
-  <HeadingContainer className="font-semibold" {...props}>
+  <HeadingContainer {...props}>
     <div style={{ pointerEvents: 'auto' }}>
       {props.children}
       {props.id && (
@@ -81,8 +81,8 @@ Ul.defaultProps = {
 }
 
 const MDXComponents = {
-  h2: (props) => <DocsHeading as="h2" className="text-2xl font-semibold mt-8 mb-4" {...props} />,
-  h3: (props) => <DocsHeading as="h3" className="text-xl font-semibold mt-8 mb-2" {...props} />,
+  h2: (props) => <DocsHeading as="h2" className="title-link mt-8 mb-4" {...props} />,
+  h3: (props) => <DocsHeading as="h3" className="title-link mt-8 mb-2" {...props} />,
   inlineCode: (props) => (
     <code
       className="font-mono px-2 py-1 rounded-md text-sm"

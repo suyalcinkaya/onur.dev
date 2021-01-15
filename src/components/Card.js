@@ -1,39 +1,71 @@
-import styled from '@emotion/styled'
+import NextLink from 'next/link'
 
 // --- Icons
 import External from 'components/icons/External'
 
-const Box = styled.div``
+// --- Others
+import { isExternalLink } from 'lib/helper'
 
-const Card = ({ title, primaryText, secondaryText, url = undefined, ...others }) => (
-  <div {...others}>
-    {primaryText && <div className="text-gray-500">{primaryText}</div>}
-    <Box
-      as={url ? 'a' : 'div'}
-      className={`max-w-max mt-2 block ${url && 'relative'}`}
-      {...(url && {
-        href: url,
-        rel: 'noopener noreferrer',
-        target: '_blank'
-      })}
-    >
-      <div
-        className={
-          url &&
-          'relative -mb-px pb-px border-b border-solid border-transparent transition-colors duration-200 ease-in-out hover:border-black'
-        }
-        style={{ width: url && 'calc(100% + 20px)' }}
+const Wrapper = ({ url = undefined, children, ...others }) => {
+  if (!url) return <div {...others}>{children}</div>
+  const isExternal = isExternalLink(url)
+
+  if (isExternal) {
+    return (
+      <a href={url} {...others}>
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <div {...others}>
+      <NextLink href={url}>
+        <a>{children}</a>
+      </NextLink>
+    </div>
+  )
+}
+
+const Card = ({ title, primaryText, secondaryText, url = undefined, ...others }) => {
+  let isExternal = false
+  if (url) isExternal = isExternalLink(url)
+
+  return (
+    <div className="space-y-2">
+      {primaryText && <div className="text-gray-500">{primaryText}</div>}
+      <Wrapper
+        url={url}
+        className={`inline-block${url && isExternal ? ' relative' : ''}`}
+        {...(url && {
+          href: url
+        })}
+        {...(url &&
+          isExternal && {
+            href: url,
+            rel: 'noopener noreferrer',
+            target: '_blank'
+          })}
+        {...others}
       >
-        <p className="text-xl leading-tight font-semibold">{title}</p>
-        {url && (
-          <div className="absolute top-0.5 right-0">
-            <External height={14} width={14} />
-          </div>
-        )}
-      </div>
-    </Box>
-    {secondaryText && <div className="text-gray-500 mt-2">{secondaryText}</div>}
-  </div>
-)
+        <div
+          className={
+            url
+              ? 'flex items-baseline relative -mb-px pb-px border-b border-solid border-transparent transition-colors duration-200 ease-in-out hover:border-black'
+              : ''
+          }
+        >
+          <p className="text-lg md:text-xl leading-snug md:leading-tight font-semibold">{title}</p>
+          {url && isExternal && (
+            <div className="ml-1.5">
+              <External height={14} width={14} />
+            </div>
+          )}
+        </div>
+      </Wrapper>
+      {secondaryText && <div className="text-gray-500">{secondaryText}</div>}
+    </div>
+  )
+}
 
 export default Card

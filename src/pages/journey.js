@@ -32,7 +32,7 @@ const Journey = () => (
     />
     <Layout>
       <PageHeading>
-        <JourneyIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" />
+        {/* <JourneyIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" /> */}
         Journey
       </PageHeading>
       <div className="flex flex-col space-y-10 items-stretch">

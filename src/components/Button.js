@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import styled from '@emotion/styled'
 
 const commonClassNames =
-  'inline-flex appearance-none items-center transition-all duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-md font-semibold space-x-2'
+  'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-md font-semibold space-x-2'
 
 const StyledButton = styled.button``
 

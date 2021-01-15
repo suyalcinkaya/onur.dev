@@ -87,10 +87,6 @@ export const mobileMenuNavigations = [
     name: 'About'
   },
   {
-    url: '/projects',
-    name: 'Projects'
-  },
-  {
     url: '/bookmarks',
     name: 'Bookmarks'
   },
@@ -118,10 +114,6 @@ export const headerNavigations = [
     name: 'About'
   },
   {
-    url: '/projects',
-    name: 'Projects'
-  },
-  {
     url: '/journey',
     name: 'Journey'
   },
@@ -147,10 +139,6 @@ export const footerNavigations = [
   {
     url: '/',
     name: 'Writing'
-  },
-  {
-    url: '/projects',
-    name: 'Projects'
   },
   {
     url: '/journey',

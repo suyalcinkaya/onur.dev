@@ -9,10 +9,10 @@ import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
 
 // --- Icons
-import AboutIcon from 'components/icons/About'
+// import AboutIcon from 'components/icons/About'
 
 // --- Others
-import { mixtapes } from 'lib/constants'
+import { mixtapes, projectData } from 'lib/constants'
 import { ogImageUrl } from 'lib/helper'
 
 const url = 'https://onur.dev/about'
@@ -36,7 +36,10 @@ const About = () => (
     />
     <Layout>
       <PageHeading>
-        <AboutIcon className="h-8 md:h-10 w-8 md:w-10 mr-2 md:mr-4" />
+        {/* <AboutIcon className="h-8 md:h-10 w-8 md:w-10 mr-2 md:mr-4" /> */}
+        {/* <span role="img" className="mr-4">
+          👋🏼
+        </span> */}
         About Me
       </PageHeading>
       <div>
@@ -68,9 +71,10 @@ const About = () => (
           <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I create mixtapes and songs.
         </p>
       </div>
-      <div className="mt-12">
+      <hr />
+      <>
         <div className="flex items-center justify-between">
-          <h2 className="text-xl md:text-2xl font-bold">Popular Mixtapes</h2>
+          <h2>Popular Mixtapes</h2>
           <Button as="a" href="https://soundcloud.com/jagerman" isExternal variant="ghost">
             See All &rarr;
           </Button>
@@ -90,6 +94,20 @@ const About = () => (
               secondaryText={mixtape.description}
               url={mixtape.url}
             />
+          ))}
+        </div>
+      </>
+      <hr />
+      <div className="mt-12 space-y-8 md:space-y-6">
+        <div className="space-y-2">
+          <h2>Projects</h2>
+          <p>Small just-for-fun weekend open source projects/works I've been working on.</p>
+        </div>
+        <div className="space-y-8 md:space-y-6">
+          {projectData.map((project, projectId) => (
+            <div key={`project_${projectId}`}>
+              <Card title={project.name} secondaryText={project.description} url={project.url} />
+            </div>
           ))}
         </div>
       </div>

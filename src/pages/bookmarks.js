@@ -7,7 +7,7 @@ import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 
 // --- Icons
-import BookmarksIcon from 'components/icons/Bookmarks'
+// import BookmarksIcon from 'components/icons/Bookmarks'
 
 // --- Others
 import { articlesData, bookmarksData } from 'lib/constants'
@@ -38,7 +38,7 @@ const Bookmarks = () => {
       />
       <Layout>
         <PageHeading>
-          <BookmarksIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" />
+          {/* <BookmarksIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" /> */}
           Bookmarks
         </PageHeading>
         <p>Internet things, saved for later.</p>
@@ -48,7 +48,7 @@ const Bookmarks = () => {
             {tabs.map((item, itemIndex) => (
               <button
                 key={`tabItem_${itemIndex}`}
-                className={`flex-1 py-2 px-4 font-semibold border-b-2 outline-none focus:outline-none hover:text-primary-default transition-all duration-200 ${
+                className={`flex-1 py-2 px-4 font-semibold border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 ${
                   itemIndex === activeTabIndex ? 'text-primary-default border-primary-default' : 'text-gray-600'
                 }`}
                 onClick={() => itemIndex !== activeTabIndex && setActiveTabIndex(itemIndex)}

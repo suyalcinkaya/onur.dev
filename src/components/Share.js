@@ -14,7 +14,7 @@ const Share = ({ title, url }) => {
   const { hasCopied, onCopy } = useClipboard(url)
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-4">
       <Button size="sm" variant="outline" onClick={onCopy}>
         {hasCopied ? 'Copied' : 'Copy Link'}
       </Button>

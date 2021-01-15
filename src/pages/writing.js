@@ -11,11 +11,13 @@ const Blog = ({ posts }) => {
 
   return (
     <Layout>
-      <PageHeading>Writing</PageHeading>
-      <p>
-        I've been writing online since 2018, mostly about web development and tech careers. In total, I've written{' '}
-        {sortedBlogPosts.length} blog posts so far.
-      </p>
+      <PageHeading>
+        {/* <span role="img" className="mr-4">
+          🖋
+        </span> */}
+        Writing
+      </PageHeading>
+      <p>I've been writing online since 2018, mostly about code, design, and my notions to learn, not to teach.</p>
       <div className="space-y-12 md:space-y-6 mt-12">
         {sortedBlogPosts.map((frontMatter) => (
           <BlogPost key={frontMatter.title} {...frontMatter} />

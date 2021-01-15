@@ -24,17 +24,31 @@ body {
   min-height: 100vh;
 }
 
-/* h1, h2, h3 {
-  @apply font-extrabold tracking-tight;
-} */
+h1,
+h2,
+h3 {
+  @apply font-bold;
+}
+
+h2 {
+  @apply text-xl md:text-2xl;
+}
+
+h3 {
+  @apply text-lg md:text-xl;
+}
+
+.title-link {
+  scroll-margin-top: 100px;
+  scroll-snap-margin-top: 100px;
+}
 
 button,
 a {
   @apply outline-none;
 }
 
-button:focus,
-a:focus {
+button:focus {
   @apply outline-none;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
@@ -47,6 +61,10 @@ li p,
 li h1,
 li h2 {
   @apply my-0;
+}
+
+hr {
+  @apply border-gray-200 my-12
 }
 
 /* Codes */

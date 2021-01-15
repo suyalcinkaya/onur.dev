@@ -4,11 +4,7 @@ import NextLink from 'next/link'
 import { isExternalLink } from 'lib/helper'
 
 const className =
-  'text-primary-default no-underline border-primary-light self-start transition-colors duration-200 ease-in-out hover:border-primary-default hover:no-underline pb-px'
-
-const style = {
-  borderBottomWidth: 3
-}
+  'border-b-2 border-transparent duration-200 ease-in-out hover:border-primary-default no-underline -mb-px pb-px self-start text-primary-default transition-colors'
 
 const Link = (props) => {
   const { href } = props
@@ -16,12 +12,12 @@ const Link = (props) => {
   if (!isExternalLink(href)) {
     return (
       <NextLink href={href}>
-        <a className={className} style={style} {...props} />
+        <a className={className} {...props} />
       </NextLink>
     )
   }
 
-  return <a target="_blank" rel="noopener noreferrer" className={className} style={style} {...props} />
+  return <a target="_blank" rel="noopener noreferrer" className={className} {...props} />
 }
 
 export default Link
