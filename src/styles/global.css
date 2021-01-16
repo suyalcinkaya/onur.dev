@@ -39,8 +39,18 @@ h3 {
 }
 
 .title-link {
+  @apply max-w-max cursor-pointer border-b border-transparent hover:border-black;
   scroll-margin-top: 100px;
   scroll-snap-margin-top: 100px;
+}
+
+.title-link:before .title-link-anchor {
+  @apply block invisible;
+  content: '';
+}
+
+.title-link:hover .title-link-anchor {
+  @apply opacity-100;
 }
 
 button,
@@ -64,7 +74,16 @@ li h2 {
 }
 
 hr {
-  @apply border-gray-200 my-12
+  @apply border-gray-200 my-12;
+}
+
+/* ul {
+  @apply mt-2 mb-6 list-inside list-circle;
+} */
+
+ul ul {
+  @apply pl-6;
+  list-style-type: square;
 }
 
 /* Codes */
@@ -85,12 +104,29 @@ pre[class*='language-'] {
 
 /* Code blocks */
 pre[class*='language-'] {
-  @apply p-4 my-3 mx-0 overflow-auto min-w-full;
+  @apply p-4 my-6 mx-0 overflow-auto min-w-full;
 }
 
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
   @apply rounded-b-lg;
+}
+
+thead {
+  @apply text-gray-600 bg-gray-50 rounded-md overflow-hidden;
+  box-shadow: 0 0 0 1px #d1d5db;
+}
+
+thead th:first-of-type {
+  @apply rounded-l-md;
+}
+
+thead th:last-of-type {
+  @apply rounded-r-md;
+}
+
+tbody tr:not(:last-of-type) {
+  @apply border-b border-gray-200;
 }
 
 /* Inline code */

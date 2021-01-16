@@ -1,84 +1,20 @@
-import styled from '@emotion/styled'
 import NextImage from 'next/image'
-const { colors, borderRadius, spacing } = require('tailwindcss/defaultTheme')
 
 // --- Components
 import Link from 'components/Link'
 
-const StyledTHead = styled.thead({
-  boxShadow: `0 0 0 1px ${colors.gray[300]}`,
-
-  th: {
-    background: colors.gray[50]
-  },
-  'th:first-of-type': {
-    borderTopLeftRadius: borderRadius.md,
-    borderBottomLeftRadius: borderRadius.md
-  },
-  'th:last-of-type': {
-    borderTopRightRadius: borderRadius.md,
-    borderBottomRightRadius: borderRadius.md
-  }
-})
-
-const StyledTBody = styled.tbody({
-  'tr:not(:last-of-type)': {
-    borderBottom: `1px solid ${colors.gray[200]}`
-  }
-})
-
-const HeadingContainer = styled.div`
-  scroll-margin-top: 100px;
-  scroll-snap-margin-top: 100px;
-
-  a {
-    transition: 200ms ease-in-out;
-  }
-
-  &[id]:before {
-    display: block;
-    visibility: hidden;
-    content: '';
-  }
-
-  &[id]:hover {
-    a {
-      opacity: 1;
-    }
-  }
-`
-
 const DocsHeading = (props) => (
-  <HeadingContainer {...props}>
+  <props.as {...props}>
     <div style={{ pointerEvents: 'auto' }}>
-      {props.children}
-      {props.id && (
-        <a
-          href={`#${props.id}`}
-          aria-label="anchor"
-          className="text-primary-default font-medium outline-none opacity-0 ml-2"
-        >
+      <a href={`#${props.id}`}>
+        {props.children}{' '}
+        <span className="title-link-anchor font-medium outline-none ml-px opacity-0" aria-label="anchor">
           #
-        </a>
-      )}
+        </span>
+      </a>
     </div>
-  </HeadingContainer>
+  </props.as>
 )
-
-const Ul = styled.ul`
-  ul {
-    padding-left: ${spacing[6]};
-    list-style-type: square;
-  }
-`
-
-Ul.defaultProps = {
-  as: 'ul',
-  styleType: 'circle',
-  stylePosition: 'inside',
-  mt: 2,
-  mb: 6
-}
 
 const MDXComponents = {
   h2: (props) => <DocsHeading as="h2" className="title-link mt-8 mb-4" {...props} />,
@@ -95,11 +31,11 @@ const MDXComponents = {
   table: (props) => <table className="inline-table text-left my-4 w-full" {...props} />,
   th: (props) => <th className="font-normal px-3 md:px-4 py-3" {...props} />,
   td: (props) => <td className="py-3 pl-3 md:pl-4 whitespace-normal" {...props} />,
-  thead: (props) => <StyledTHead className="text-gray-600 rounded-md overflow-hidden" {...props} />,
-  tbody: (props) => <StyledTBody {...props} />,
+  // thead: (props) => <thead {...props} />,
+  // tbody: (props) => <tbody {...props} />,
   a: Link,
   p: (props) => <p className="mb-6" {...props} />,
-  ul: (props) => <Ul className="list-circle list-inside my-4" {...props} />,
+  ul: (props) => <ul className="list-circle list-inside my-4" {...props} />,
   ol: (props) => <ol className="list-decimal list-inside my-4" {...props} />,
   li: (props) => <li className="mb-3 last:mb-0" {...props} />,
   blockquote: (props) => (

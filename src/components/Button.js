@@ -1,30 +1,26 @@
 import { forwardRef } from 'react'
-import styled from '@emotion/styled'
 
 const commonClassNames =
   'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-md font-semibold space-x-2'
 
-const StyledButton = styled.button``
+const Wrapper = forwardRef(({ as, variant, children, ...others }, ref) => {
+  if (variant === 'link' || as === 'a') {
+    return (
+      <a ref={ref} {...others}>
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <button ref={ref} {...others}>
+      {children}
+    </button>
+  )
+})
 
 const Button = forwardRef((props, ref) => {
-  let {
-    children,
-    className = '',
-    colorScheme = 'primary-default',
-    isExternal,
-    variant = 'solid',
-    size,
-    ...others
-  } = props
-
-  StyledButton.defaultProps = {
-    as: variant === 'link' && 'a',
-    type: 'button',
-    className: commonClassNames,
-    rel: isExternal && 'noopener noreferrer',
-    target: isExternal && '_blank',
-    role: 'button'
-  }
+  let { children, className = '', isExternal, variant = 'solid', size, ...others } = props
 
   if (size === 'sm') {
     className += ' text-sm leading-loose h-8 min-w-8'
@@ -51,9 +47,19 @@ const Button = forwardRef((props, ref) => {
   }
 
   return (
-    <StyledButton ref={ref} className={`${commonClassNames} ${className}`} {...others}>
+    <Wrapper
+      ref={ref}
+      type="button"
+      {...(isExternal && {
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        role: 'button'
+      })}
+      className={`${commonClassNames} ${className}`}
+      {...others}
+    >
       {children}
-    </StyledButton>
+    </Wrapper>
   )
 })
 

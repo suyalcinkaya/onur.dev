@@ -1,14 +1,10 @@
-import styled from '@emotion/styled'
-
-const Button = styled.button``
-
 // --- Others
 import { isExternalLink } from 'lib/helper'
 
 const IconButton = ({ href, name, children, ...others }) => {
   const isExternal = href ? isExternalLink(href) : false
   return (
-    <Button
+    <button
       href={href}
       {...(isExternal && {
         target: '_blank',
@@ -20,7 +16,7 @@ const IconButton = ({ href, name, children, ...others }) => {
       {...others}
     >
       {children}
-    </Button>
+    </button>
   )
 }
 
