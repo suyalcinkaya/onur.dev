@@ -6,7 +6,7 @@ import TwitterIcon from 'components/icons/Twitter'
 import YoutubeIcon from 'components/icons/Youtube'
 
 export const HEADER_HEIGHT = '5rem'
-export const MAX_WIDTH = 'max(50vw, 768px)'
+export const MAX_WIDTH = 'max(40vw, 768px)'
 export const BUY_ME_COFFEE_URL = 'http://buymeacoff.ee/suyalcinkaya'
 
 export const profiles = [

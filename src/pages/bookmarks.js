@@ -18,7 +18,7 @@ const title = 'Bookmarks — Onur Şuyalçınkaya'
 
 const Bookmarks = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
-  const tabs = ['All', 'Portfolios', 'Reading']
+  const tabs = ['All', 'Reading', 'Personal Sites', 'Tweets']
 
   return (
     <>

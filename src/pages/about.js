@@ -72,14 +72,14 @@ const About = () => (
         </p>
       </div>
       <hr />
-      <>
+      <div>
         <div className="flex items-center justify-between">
           <h2>Popular Mixtapes</h2>
           <Button as="a" href="https://soundcloud.com/jagerman" isExternal variant="ghost">
             See All &rarr;
           </Button>
         </div>
-        <div className="space-y-8 mt-6">
+        <div className="space-y-8 mt-8">
           {mixtapes.map((mixtape, mixtapeId) => (
             <Card
               key={`mixtape_${mixtapeId}`}
@@ -96,14 +96,14 @@ const About = () => (
             />
           ))}
         </div>
-      </>
+      </div>
       <hr />
-      <div className="mt-12 space-y-8 md:space-y-6">
-        <div className="space-y-2">
+      <div>
+        <div className="space-y-4">
           <h2>Projects</h2>
           <p>Small just-for-fun weekend open source projects/works I've been working on.</p>
         </div>
-        <div className="space-y-8 md:space-y-6">
+        <div className="space-y-8 mt-8">
           {projectData.map((project, projectId) => (
             <div key={`project_${projectId}`}>
               <Card title={project.name} secondaryText={project.description} url={project.url} />

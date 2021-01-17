@@ -22,12 +22,18 @@ const Home = () => (
       <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist, living in Berlin, Germany. I'm
       currently developing things at <Link href="https://hey.car">heycar</Link>.
     </p>
-    <div className="mt-12 space-y-8 md:space-y-6">
-      <div className="space-y-2">
-        <h2>Recent Writings</h2>
-        <p>Writing mostly about code, design, and my notions to learn, not to teach.</p>
-      </div>
-      <div className="space-y-8 md:space-y-6">
+    <div className="mt-12">
+      <h2>Recent Writings</h2>
+      <div className="space-y-8 mt-8">
+        <div>
+          <BlogPost
+            title="Setting Up Google Analytics with ▲ Next.js"
+            summary="Building the structure for Google Analytics can be overwhelming sometimes. Even more with Next.js."
+            publishedAt="2021-01-21"
+            slug="setting-up-google-analytics-with-nextjs"
+            readingTime={{ minutes: 3 }}
+          />
+        </div>
         <div>
           <BlogPost
             title="2020 — Year in Review"
