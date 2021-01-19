@@ -22,10 +22,10 @@ const Bookmarks = ({ all, reading, personalSites, tweets }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
   const tabs = ['All', 'Reading', 'Personal Sites', 'Tweets']
 
-  console.log('all :>> ', all)
-  console.log('reading :>> ', reading)
-  console.log('personalSites :>> ', personalSites)
-  console.log('tweets :>> ', tweets)
+  // console.log('all :>> ', all)
+  // console.log('reading :>> ', reading)
+  // console.log('personalSites :>> ', personalSites)
+  // console.log('tweets :>> ', tweets)
 
   const rtf = new Intl.RelativeTimeFormat('en', {
     style: 'long',
@@ -37,7 +37,6 @@ const Bookmarks = ({ all, reading, personalSites, tweets }) => {
     const now = new Date()
     const diffTime = Math.abs(now - date)
     const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24))
-    console.log('diffDays :>> ', diffDays)
     return rtf.format(diffDays * -1, 'days')
   }
 
