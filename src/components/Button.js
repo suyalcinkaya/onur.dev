@@ -36,7 +36,7 @@ const Button = forwardRef((props, ref) => {
       className += ' border border-gray-200 bg-white hover:bg-gray-100 text-black px-3'
       break
     case 'ghost':
-      className += ' bg-transparent hover:bg-gray-100 px-3'
+      className += ' bg-transparent hover:bg-gray-100 px-3 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50'
       break
     case 'link':
       className += ' p-0 text-inherit hover:underline'

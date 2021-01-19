@@ -32,11 +32,11 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
   if (url) isExternal = isExternalLink(url)
 
   return (
-    <div className="space-y-2">
-      {primaryText && <div className="text-gray-500">{primaryText}</div>}
+    <div className="space-y-1">
+      {primaryText && <div className="text-gray-500 leading-7">{primaryText}</div>}
       <Wrapper
         url={url}
-        className="inline-block relative"
+        className="inline-flex relative"
         {...(url && {
           href: url
         })}
@@ -55,7 +55,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
               : ''
           }
         >
-          <p className="text-lg md:text-xl leading-snug md:leading-tight font-semibold">{title}</p>
+          <p className="text-lg leading-snug md:leading-relaxed font-semibold">{title}</p>
           {url && isExternal && (
             <div className="ml-1.5">
               <External height={14} width={14} />
@@ -63,7 +63,14 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
           )}
         </div>
       </Wrapper>
-      {secondaryText && <div className="text-gray-500">{secondaryText}</div>}
+      {secondaryText && (
+        <div
+          className="text-gray-500 leading-7 overflow-hidden"
+          style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
+        >
+          {secondaryText}
+        </div>
+      )}
     </div>
   )
 }

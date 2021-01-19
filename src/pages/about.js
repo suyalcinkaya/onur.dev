@@ -35,13 +35,7 @@ const About = () => (
       }}
     />
     <Layout>
-      <PageHeading>
-        {/* <AboutIcon className="h-8 md:h-10 w-8 md:w-10 mr-2 md:mr-4" /> */}
-        {/* <span role="img" className="mr-4">
-          👋🏼
-        </span> */}
-        About Me
-      </PageHeading>
+      <PageHeading heading="About Me" />
       <div>
         <div className="float-left mt-3 mr-4" style={{ shapeOutside: 'circle(50%)' }}>
           <NextImage

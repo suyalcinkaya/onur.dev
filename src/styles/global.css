@@ -1,6 +1,5 @@
 ::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+  @apply bg-gray-700 text-white;
 }
 
 html {
@@ -60,7 +59,6 @@ a {
 
 button:focus {
   @apply outline-none;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
 
 p {

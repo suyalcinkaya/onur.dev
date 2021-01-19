@@ -12,7 +12,7 @@ const vars = {
 
 const Layout = ({ children, ...others }) => (
   <main
-    className="mt-12 mb-16 md:my-24 overflow-hidden"
+    className="my-12 md:my-24 overflow-hidden"
     style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
     {...others}
   >

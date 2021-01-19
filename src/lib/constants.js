@@ -150,106 +150,6 @@ export const footerNavigations = [
   }
 ]
 
-export const bookmarksData = [
-  {
-    url: 'http://brianlovin.com/?ref=onur.dev',
-    by: 'Brian Lovin',
-    category: 'Portfolio'
-    // notion: "I think it's beautiful!"
-  },
-  {
-    url: 'https://leerob.io/?ref=onur.dev',
-    by: 'Lee Robinson',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://cmhb.de/?ref=onur.dev',
-    by: 'Carl Barenbrug',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://paco.sh/?ref=onur.dev',
-    by: 'Paco Coursey',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://www.sean-blanton.com/?ref=onur.dev',
-    by: 'Sean Blanton',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://marcomelilli.com/?ref=onur.dev',
-    by: 'Marco Melilli',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://rsms.me/?ref=onur.dev',
-    by: 'Rasmus Andersson',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://www.philipcdavis.com/?ref=onur.dev',
-    by: 'Philip Davis',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://www.joshwcomeau.com/?ref=onur.dev',
-    by: 'Josh W Comeau',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://tkkong.com/?ref=onur.dev',
-    by: 'TK Kong',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://www.julie.design/?ref=onur.dev',
-    by: 'Julie Chabin',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://hayk.design/?ref=onur.dev',
-    by: 'Hayk An',
-    category: 'Portfolio'
-  },
-  {
-    url: 'https://mknepprath.com/?ref=onur.dev',
-    by: 'Michael Knepprath',
-    category: 'Portfolio'
-  }
-]
-
-export const articlesData = [
-  {
-    title: 'First, Understand Your Screen',
-    url: 'https://tripleodeon.com/2011/12/first-understand-your-screen/',
-    author: 'James Pearce',
-    type: 'Article',
-    lang: 'en'
-  },
-  {
-    title: 'React is slow, what now?',
-    url: 'https://nosleepjavascript.com/react-performance/',
-    author: 'NoSleep Javascript',
-    type: 'Article',
-    lang: 'en'
-  },
-  {
-    title: 'Yurt Dışından Neden Döndüm',
-    url: 'https://keremkoseoglu.com/2016/11/10/yurt-disindan-neden-dondum/',
-    author: 'Dr. Kerem Koseoglu',
-    type: 'Blog',
-    lang: 'tr'
-  },
-  {
-    title: 'Debounce vs Throttle: Definitive Visual Guide',
-    url: 'https://redd.one/blog/debounce-vs-throttle',
-    author: 'Artem Zakharchenko',
-    type: 'Article',
-    lang: 'en'
-  }
-]
-
 export const journeyData = [
   {
     year: 2020,
@@ -490,3 +390,9 @@ export const projectData = [
     description: 'A CSS file emphasizing about possible improvements and errors that exist in HTML semantic elements.'
   }
 ]
+
+export const raindropCollectionIDs = {
+  reading: 15807897, // Reading
+  personalSites: 15807896, // Personal Sites
+  tweets: 15896982 // Tweets
+}

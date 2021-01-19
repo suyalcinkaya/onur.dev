@@ -21,7 +21,7 @@ const Layout = ({ frontMatter, children, ...others }) => {
     <LayoutCmp {...others}>
       <BlogSeo url={`https://onur.dev/${readingTime.slug}`} {...frontMatter} />
       <article>
-        <PageHeading>{frontMatter.title}</PageHeading>
+        <PageHeading heading={frontMatter.title} />
         <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
           <div className="flex items-center">
             <div className="h-12 w-12 rounded-full overflow-hidden">

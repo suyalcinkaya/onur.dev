@@ -1,11 +1,9 @@
 import { NextSeo } from 'next-seo'
 
 // --- Components
+import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
-
-// --- Icons
-import JourneyIcon from 'components/icons/Journey'
 
 // --- Other
 import { journeyData } from 'lib/constants'
@@ -31,10 +29,7 @@ const Journey = () => (
       }}
     />
     <Layout>
-      <PageHeading>
-        {/* <JourneyIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" /> */}
-        Journey
-      </PageHeading>
+      <PageHeading heading="Journey" />
       <div className="flex flex-col space-y-10 items-stretch">
         {journeyData.map((data, dataIndex) => (
           <div key={`data_${dataIndex}`} className="space-y-8">
@@ -56,8 +51,7 @@ const Journey = () => (
                     </span>
                   </div>
                   <div className="flex-grow pl-4">
-                    <h2 className="font-semibold text-lg mb-1">{item.title}</h2>
-                    <p className="leading-relaxed text-gray-500">{item.description}</p>
+                    <Card title={item.title} secondaryText={item.description} />
                   </div>
                 </div>
               ))}

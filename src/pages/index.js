@@ -9,21 +9,29 @@ import PageHeading from 'components/PageHeading'
 
 const Home = () => (
   <Layout>
-    <PageHeading>
-      <span role="img" className="mr-4">
-        👋🏼
-      </span>
-      Hey, I'm Onur
-    </PageHeading>
-    <p>
-      I'm a <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
-      <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}
-      <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
-      <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist, living in Berlin, Germany. I'm
-      currently developing things at <Link href="https://hey.car">heycar</Link>.
-    </p>
-    <div className="mt-12">
+    <PageHeading
+      heading={
+        <>
+          <span role="img" className="mr-4">
+            👋🏼
+          </span>
+          Hey, I'm Onur
+        </>
+      }
+      description={
+        <>
+          I'm a <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
+          <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}
+          <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
+          <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist, living in Berlin, Germany. I'm
+          currently developing things at <Link href="https://hey.car">heycar</Link>.
+        </>
+      }
+    />
+    <p></p>
+    <div>
       <h2>Recent Writings</h2>
+      {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
       <div className="space-y-8 mt-8">
         <div>
           <BlogPost

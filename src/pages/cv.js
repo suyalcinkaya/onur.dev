@@ -32,10 +32,7 @@ const CurriculumVitae = () => (
       }}
     />
     <Layout>
-      <PageHeading>
-        {/* <CvIcon className="h-10 md:h-12 w-10 md:w-12 mr-2 md:mr-4" /> */}
-        Curriculum Vitae
-      </PageHeading>
+      <PageHeading heading="Curriculum Vitae" />
       <>
         <h2 className="text-2xl font-bold">Work Experience</h2>
         <div className="space-y-10 mt-6">
