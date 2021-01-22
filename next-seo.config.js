@@ -1,4 +1,4 @@
-import { ogImageUrl } from 'utils/helper'
+import { ogImageUrl } from 'lib/helper'
 
 const title = 'Onur Şuyalçınkaya — Engineer, Writer, DJ.'
 const description = 'Frontend Engineer, JavaScript enthusiast, Writer, and DJ.'
@@ -12,6 +12,7 @@ const SEO = {
     type: 'website',
     locale: 'en_IE',
     url: 'https://onur.dev',
+    site_name: 'Onur Şuyalçınkaya',
     title,
     description,
     images: [

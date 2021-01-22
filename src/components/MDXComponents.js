@@ -1,158 +1,49 @@
-import { AspectRatio, Box, Code, Divider, List, ListItem, Text } from '@chakra-ui/react'
-import styled from '@emotion/styled'
-import Image from 'next/image'
+import NextImage from 'next/image'
 
 // --- Components
 import Link from 'components/Link'
 
-// --- Others
-import theme from 'styles/theme'
-
-const Table = (props) => <Box as="table" d="inline-table" textAlign="left" my={4} width="100%" {...props} />
-
-const StyledTHead = styled(Box)({
-  boxShadow: `0 0 0 1px ${theme.colors.gray[200]}`,
-  borderRadius: theme.radii.normal,
-  overflow: 'hidden',
-
-  th: {
-    background: theme.colors.gray[50]
-  },
-  'th:first-of-type': {
-    borderTopLeftRadius: theme.radii.normal,
-    borderBottomLeftRadius: theme.radii.normal
-  },
-  'th:last-of-type': {
-    borderTopRightRadius: theme.radii.normal,
-    borderBottomRightRadius: theme.radii.normal
-  }
-})
-
-const StyledTBody = styled(Box)({
-  'tr:not(:last-of-type)': {
-    borderBottom: `1px solid ${theme.colors.gray[200]}`
-  }
-})
-
-const THead = (props) => <StyledTHead as="thead" color="gray.600" {...props} />
-
-const TBody = (props) => <StyledTBody as="tbody" {...props} />
-
-const TH = (props) => <Box as="th" fontWeight="normal" px={{ base: 3, md: 4 }} py={3} {...props} />
-
-const TData = (props) => <Box as="td" py={3} pl={{ base: 3, md: 4 }} whiteSpace="normal" {...props} />
-
-const StyledQuote = styled(Box)({
-  '> *:last-of-type': {
-    marginBottom: 0
-  }
-})
-
-const Quote = (props) => (
-  <StyledQuote
-    as="blockquote"
-    pl={{ base: 4, md: 6 }}
-    mb={6}
-    borderLeftWidth={4}
-    borderLeftColor="gray.200"
-    bg="transparent"
-    fontStyle="italic"
-    {...props}
-  />
-)
-
-const HeadingContainer = styled(Box)`
-  scroll-margin-top: 100px;
-  scroll-snap-margin-top: 100px;
-
-  a {
-    transition: 200ms ease-in-out;
-  }
-
-  &[id]:before {
-    display: block;
-    visibility: hidden;
-    content: '';
-  }
-
-  &[id]:hover {
-    a {
-      opacity: 1;
-    }
-  }
-`
-
 const DocsHeading = (props) => (
-  <HeadingContainer fontWeight="bold" {...props}>
+  <props.as {...props}>
     <div style={{ pointerEvents: 'auto' }}>
-      {props.children}
-      {props.id && (
-        <Box
-          aria-label="anchor"
-          as="a"
-          href={`#${props.id}`}
-          color="link"
-          fontWeight="medium"
-          outline="none"
-          opacity="0"
-          ml={2}
-        >
+      <a href={`#${props.id}`} className="inline-block">
+        {props.children}
+        <span className="inline-block title-link-anchor font-medium outline-none ml-1 opacity-0" aria-label="anchor">
           #
-        </Box>
-      )}
+        </span>
+      </a>
     </div>
-  </HeadingContainer>
+  </props.as>
 )
-
-const iFrame = ({ children, ...other }) => (
-  <AspectRatio ratio={16 / 9} {...other}>
-    {children}
-  </AspectRatio>
-)
-
-const Img = (props) => <Image quality={25} {...props} />
-
-const InlineCode = (props) => <Code colorScheme="yellow" px="0.5rem" borderRadius={6} {...props} />
-
-const Hr = (props) => <Divider my={8} mx="auto" width={1 / 2} {...props} />
-
-const Ul = styled(List)`
-  ul {
-    padding-left: ${theme.sizes[6]};
-    list-style-type: square;
-  }
-`
-
-Ul.defaultProps = {
-  as: 'ul',
-  styleType: 'circle',
-  stylePosition: 'inside',
-  mt: 2,
-  mb: 6
-}
 
 const MDXComponents = {
-  h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bolder" fontSize="2xl" mt={8} mb={4} {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontWeight="bolder" fontSize="xl" mt={8} mb={2} {...props} />,
-  inlineCode: InlineCode,
-  br: (props) => <Box height={2} {...props} />,
-  hr: Hr,
-  table: Table,
-  th: TH,
-  td: TData,
-  thead: THead,
-  tbody: TBody,
+  h2: (props) => <DocsHeading as="h2" className="title-link mt-8 mb-4" {...props} />,
+  h3: (props) => <DocsHeading as="h3" className="title-link mt-8 mb-2" {...props} />,
+  inlineCode: (props) => (
+    <code
+      className="font-mono px-2 py-1 rounded-md text-sm"
+      style={{ background: '#FEFCBF', color: '#744210' }}
+      {...props}
+    />
+  ),
+  br: (props) => <div className="h-2" {...props} />,
+  hr: (props) => <div className="my-8 mx-auto w-1/2 opacity-70 border-b border-solid border-gray-200" {...props} />,
+  table: (props) => <table className="inline-table text-left my-4 w-full" {...props} />,
+  th: (props) => <th className="font-normal px-3 md:px-4 py-3" {...props} />,
+  td: (props) => <td className="py-3 pl-3 md:pl-4 whitespace-normal" {...props} />,
+  // thead: (props) => <thead {...props} />,
+  // tbody: (props) => <tbody {...props} />,
   a: Link,
-  p: (props) => <Text as="p" mb={6} {...props} />,
-  ul: (props) => <Ul {...props} />,
-  ol: (props) => <List as="ol" styleType="decimal" stylePosition="inside" my={4} {...props} />,
-  li: (props) => <ListItem mb={3} {...props} />,
-  blockquote: Quote,
-  // iframe: iFrame,
-  img: Img,
-  figcaption: (props) => (
-    <Text as="figcaption" fontSize="sm" color="gray.500" textAlign="center" {...props} />
-  )
+  p: (props) => <p className="mb-6" {...props} />,
+  ul: (props) => <ul className="list-circle list-inside my-4" {...props} />,
+  ol: (props) => <ol className="list-decimal list-inside my-4" {...props} />,
+  li: (props) => <li className="mb-3 last:mb-0" {...props} />,
+  blockquote: (props) => (
+    <blockquote className="pl-4 md:pl-6 mb-6 last:mb-0 border-l-4 border-gray-200 bg-transparent italic" {...props} />
+  ),
+  img: (props) => <NextImage quality={25} {...props} />,
+  figcaption: (props) => <figcaption className="text-sm text-gray-500 text-center" {...props} />,
+  iframe: (props) => <iframe className="w-full" {...props} />
 }
 
 export default MDXComponents

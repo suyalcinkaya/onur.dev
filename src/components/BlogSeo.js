@@ -1,8 +1,7 @@
-import { Fragment } from 'react'
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
 // --- Other
-import { ogImageUrl } from 'utils/helper'
+import { ogImageUrl } from 'lib/helper'
 
 const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
   const date = new Date(publishedAt).toISOString()
@@ -13,7 +12,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
   }
 
   return (
-    <Fragment>
+    <>
       <NextSeo
         title={`${title} — Onur Şuyalçınkaya`}
         description={summary}
@@ -40,7 +39,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
         title={title}
         url={url}
       />
-    </Fragment>
+    </>
   )
 }
 

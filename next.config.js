@@ -1,8 +1,5 @@
 const withPlugins = require('next-compose-plugins')
 const withPWA = require('next-pwa')
-const withMdxEnhanced = require('next-mdx-enhanced')
-const mdxPrism = require('mdx-prism')
-const readingTime = require('reading-time')
 
 module.exports = withPlugins(
   [
@@ -10,18 +7,6 @@ module.exports = withPlugins(
       pwa: {
         dest: 'public',
         disable: process.env.NODE_ENV !== 'production'
-      }
-    }),
-    withMdxEnhanced({
-      layoutPath: './src/layouts',
-      defaultLayout: true,
-      remarkPlugins: [require('remark-autolink-headings'), require('remark-slug'), require('remark-code-titles')],
-      rehypePlugins: [mdxPrism],
-      extendFrontMatter: {
-        process: (mdxContent) => ({
-          wordCount: mdxContent.split(/\s+/gu).length,
-          readingTime: readingTime(mdxContent)
-        })
       }
     })
   ],
@@ -32,14 +17,34 @@ module.exports = withPlugins(
     },
     async redirects() {
       return [
+        /* {
+          source: '/:slug',
+          destination: '/writing/:slug',
+          permanent: true
+        } */
         {
           source: '/turkiyeden-gitmek-berline-uzanan-bir-goc-hikayesi-bolum-1-nedenler',
-          destination: '/bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler',
+          destination: '/writing/bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler',
           permanent: true
         },
         {
           source: '/my-2020-year-in-review',
-          destination: '/2020-year-in-review',
+          destination: '/writing/2020-year-in-review',
+          permanent: true
+        },
+        {
+          source: '/what-i-have-learned-from-working-with-html5-video-over-a-month',
+          destination: '/writing/what-i-have-learned-from-working-with-html5-video-over-a-month',
+          permanent: true
+        },
+        {
+          source: '/useFetch-react-hook',
+          destination: '/writing/useFetch-react-hook',
+          permanent: true
+        },
+        {
+          source: '/understanding-react-memo',
+          destination: '/writing/understanding-react-memo',
           permanent: true
         }
       ]

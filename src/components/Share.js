@@ -1,50 +1,48 @@
-import { Button, IconButton, Stack, useClipboard } from '@chakra-ui/react'
-
 // --- Components
-import Facebook from 'components/icons/Facebook'
-import Linkedin from 'components/icons/Linkedin'
-import Twitter from 'components/icons/Twitter'
+import Button from 'components/Button'
+import IconButton from 'components/IconButton'
+
+// --- Icons
+import FacebookIcon from 'components/icons/Facebook'
+import LinkedinIcon from 'components/icons/Linkedin'
+import TwitterIcon from 'components/icons/Twitter'
+
+// --- Others
+import useClipboard from 'lib/hooks/useClipboard'
 
 const Share = ({ title, url }) => {
   const { hasCopied, onCopy } = useClipboard(url)
 
   return (
-    <Stack isInline spacing={1} align="center">
-      <Button mr={1} size="sm" variant="outline" onClick={onCopy}>
+    <div className="flex items-center space-x-4">
+      <Button size="sm" variant="outline" onClick={onCopy}>
         {hasCopied ? 'Copied' : 'Copy Link'}
       </Button>
       <IconButton
-        aria-label="Share on Twitter"
-        title="Share on Twitter"
-        size="sm"
-        variant="ghost"
-        colorScheme="twitter"
-        icon={<Twitter />}
+        name="Share on Twitter"
         onClick={() =>
           window.open(`https://twitter.com/intent/tweet?url=${url}&text=“${title}”&via=onursdev`, '_blank')
         }
-      />
+      >
+        <TwitterIcon />
+      </IconButton>
       <IconButton
-        aria-label="Share on LinkedIn"
-        title="Share on LinkedIn"
-        size="sm"
-        variant="ghost"
-        color="#0a66c2"
-        icon={<Linkedin />}
+        name="Share on LinkedIn"
+        // color="#0a66c2"
         onClick={() =>
           window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank')
         }
-      />
+      >
+        <LinkedinIcon />
+      </IconButton>
       <IconButton
-        aria-label="Share on Facebook"
-        title="Share on Facebook"
-        size="sm"
-        variant="ghost"
-        color="#1877f2"
-        icon={<Facebook />}
+        name="Share on Facebook"
+        // color="#1877f2"
         onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank')}
-      />
-    </Stack>
+      >
+        <FacebookIcon />
+      </IconButton>
+    </div>
   )
 }
 

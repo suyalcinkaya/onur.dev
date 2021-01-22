@@ -1,34 +1,22 @@
 import NextLink from 'next/link'
-import { Box, Link as ChakraLink } from '@chakra-ui/react'
 
-const linkStyle = {
-  pb: '2px',
-  color: 'link',
-  borderBottom: '3px solid',
-  borderColor: 'lightLink',
-  textDecoration: 'none',
-  alignSelf: 'flex-start',
-  transition: 'border-color 100ms ease-in-out',
-  // fontWeight: 500,
-  _hover: {
-    borderColor: 'link',
-    textDecoration: 'none'
-  }
-}
+// --- Others
+import { isExternalLink } from 'lib/helper'
+
+const className = 'underline-under hover:underline -mb-px pb-px self-start text-primary-default transition-colors'
 
 const Link = (props) => {
   const { href } = props
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
 
-  if (isInternalLink) {
+  if (!isExternalLink(href)) {
     return (
-      <NextLink href={href} passHref>
-        <Box as="a" {...linkStyle} {...props} />
+      <NextLink href={href}>
+        <a className={className} {...props} />
       </NextLink>
     )
   }
 
-  return <ChakraLink isExternal {...linkStyle} {...props} />
+  return <a target="_blank" rel="noopener noreferrer" className={className} {...props} />
 }
 
 export default Link
