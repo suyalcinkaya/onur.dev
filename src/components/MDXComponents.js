@@ -6,9 +6,9 @@ import Link from 'components/Link'
 const DocsHeading = (props) => (
   <props.as {...props}>
     <div style={{ pointerEvents: 'auto' }}>
-      <a href={`#${props.id}`}>
-        {props.children}{' '}
-        <span className="title-link-anchor font-medium outline-none ml-px opacity-0" aria-label="anchor">
+      <a href={`#${props.id}`} className="inline-block">
+        {props.children}
+        <span className="inline-block title-link-anchor font-medium outline-none ml-1 opacity-0" aria-label="anchor">
           #
         </span>
       </a>

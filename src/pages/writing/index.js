@@ -22,7 +22,7 @@ const Blog = ({ posts }) => (
         title,
         images: [
           {
-            url: ogImageUrl('**About**'),
+            url: ogImageUrl('**Writing**'),
             alt: title
           }
         ]

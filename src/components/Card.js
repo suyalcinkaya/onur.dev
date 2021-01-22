@@ -11,8 +11,9 @@ const Wrapper = ({ url = undefined, children, ...others }) => {
   const isExternal = isExternalLink(url)
 
   if (isExternal) {
+    const href = `${url}?ref=onur.dev`
     return (
-      <a href={url} {...others}>
+      <a href={href} {...others}>
         {children}
       </a>
     )
@@ -36,32 +37,19 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
       {primaryText && <div className="text-gray-500 leading-7">{primaryText}</div>}
       <Wrapper
         url={url}
-        className="inline-flex relative"
-        {...(url && {
-          href: url
+        className={`inline-block text-lg font-semibold${url ? ' underline-under hover:underline' : ''}`}
+        {...(isExternal && {
+          rel: 'noopener noreferrer',
+          target: '_blank'
         })}
-        {...(url &&
-          isExternal && {
-            href: url,
-            rel: 'noopener noreferrer',
-            target: '_blank'
-          })}
         {...others}
       >
-        <div
-          className={
-            url
-              ? 'flex items-baseline relative -mb-px pb-px border-b border-solid border-transparent transition-colors duration-200 ease-in-out hover:border-black'
-              : ''
-          }
-        >
-          <p className="text-lg leading-snug md:leading-relaxed font-semibold">{title}</p>
-          {url && isExternal && (
-            <div className="ml-1.5">
-              <External height={14} width={14} />
-            </div>
-          )}
-        </div>
+        {title}
+        {isExternal && (
+          <span className="ml-1 inline-block">
+            <External height={14} width={14} />
+          </span>
+        )}
       </Wrapper>
       {secondaryText && (
         <div

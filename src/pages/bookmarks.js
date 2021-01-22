@@ -1,31 +1,25 @@
 import { useState } from 'react'
 import { NextSeo } from 'next-seo'
-// import tinytime from 'tinytime'
 
 // --- Components
 import Card from 'components/Card'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 
-// --- Icons
-// import BookmarksIcon from 'components/icons/Bookmarks'
-
 // --- Others
-import { raindropCollectionIDs } from 'lib/constants'
+import { raindropCollections } from 'lib/constants'
 import getBookmarks from 'lib/raindrop'
 import { ogImageUrl } from 'lib/helper'
 
 const url = 'https://onur.dev/bookmarks'
 const title = 'Bookmarks — Onur Şuyalçınkaya'
 
-const Bookmarks = ({ all, reading, personalSites, tweets }) => {
+const Bookmarks = ({ readings, personalSites, UIs }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
-  const tabs = ['All', 'Reading', 'Personal Sites', 'Tweets']
 
-  // console.log('all :>> ', all)
-  // console.log('reading :>> ', reading)
-  // console.log('personalSites :>> ', personalSites)
-  // console.log('tweets :>> ', tweets)
+  /* console.log('readings :>> ', readings)
+  console.log('personalSites :>> ', personalSites)
+  console.log('UIs :>> ', UIs) */
 
   const rtf = new Intl.RelativeTimeFormat('en', {
     style: 'long',
@@ -60,7 +54,7 @@ const Bookmarks = ({ all, reading, personalSites, tweets }) => {
         <PageHeading heading="Bookmarks" description="Internet things, saved for later." />
         <div>
           <div role="tablist" aria-orientation="horizontal" className="flex flex-start flex-row justify-around">
-            {tabs.map((item, itemIndex) => (
+            {Object.values(raindropCollections).map((item, itemIndex) => (
               <button
                 key={`tabItem_${itemIndex}`}
                 className={`flex-1 py-2 px-4 font-semibold border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 ${
@@ -74,22 +68,22 @@ const Bookmarks = ({ all, reading, personalSites, tweets }) => {
           </div>
           <div>
             {activeTabIndex === 0 && (
-              <div className="space-y-8 mt-8">
-                {all?.length &&
-                  all.map((item, itemIndex) => (
+              <div className="space-y-6 mt-6 divide divide-y-2">
+                {personalSites.map((personalSite, personalSiteIndex) => (
+                  <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
                     <Card
-                      key={`item_${itemIndex}`}
-                      title={item.title}
-                      // secondaryText={item.category || item.author}
-                      // secondaryText={item.notion}
-                      url={item.link}
+                      title={personalSite.domain}
+                      primaryText={diffByDays(personalSite.created)}
+                      // secondaryText={personalSite.excerpt}
+                      url={personalSite.link}
                     />
-                  ))}
+                  </div>
+                ))}
               </div>
             )}
             {activeTabIndex === 1 && (
               <div className="space-y-6 mt-6 divide divide-y-2">
-                {reading.map((readingItem, readingItemIndex) => (
+                {readings.map((readingItem, readingItemIndex) => (
                   <div key={`readingItem_${readingItemIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={readingItem.title}
@@ -105,22 +99,15 @@ const Bookmarks = ({ all, reading, personalSites, tweets }) => {
             )}
             {activeTabIndex === 2 && (
               <div className="space-y-6 mt-6 divide divide-y-2">
-                {personalSites.map((personalSite, personalSiteIndex) => (
-                  <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
+                {UIs.map((item, itemIndex) => (
+                  <div key={`ui_${itemIndex}`} className="first:pt-0 pt-6">
                     <Card
-                      title={personalSite.domain}
-                      primaryText={diffByDays(personalSite.created)}
-                      secondaryText={personalSite.excerpt}
-                      url={personalSite.link}
+                      title={item.title}
+                      primaryText={diffByDays(item.created)}
+                      secondaryText={item.excerpt}
+                      url={item.link}
                     />
                   </div>
-                ))}
-              </div>
-            )}
-            {activeTabIndex === 3 && (
-              <div className="space-y-8 mt-8">
-                {tweets.map((tweet, tweetIndex) => (
-                  <Card key={`tweet_${tweetIndex}`} title={tweet.excerpt} url={tweet.link} />
                 ))}
               </div>
             )}
@@ -138,20 +125,20 @@ export async function getStaticProps() {
     return format(parseISO(item.created), 'd MMMM yyyy', { locale: tr })
   }) */
 
-  const readingItems = data.items.filter((item) => item.collectionId === raindropCollectionIDs.reading)
-  const personalSitesItems = data.items.filter((item) => item.collectionId === raindropCollectionIDs.personalSites)
-  const tweetsItems = data.items.filter((item) => item.collectionId === raindropCollectionIDs.tweets)
+  const personalSites = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[0]))
+  const readings = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[1]))
+  const UIs = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[2]))
 
-  const all = [...readingItems, ...personalSitesItems, ...tweetsItems].sort(
+  /* const all = [...readingItems, ...personalSitesItems, ...uiItems].sort(
     (a, b) => Number(new Date(b.created)) - Number(new Date(a.created))
-  )
+  ) */
 
   return {
     props: {
-      all,
-      reading: readingItems,
-      personalSites: personalSitesItems,
-      tweets: tweetsItems
+      // all,
+      readings,
+      personalSites,
+      UIs
     },
     revalidate: 600
   }

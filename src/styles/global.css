@@ -38,9 +38,17 @@ h3 {
 }
 
 .title-link {
-  @apply max-w-max cursor-pointer border-b border-transparent hover:border-black;
+  @apply max-w-max cursor-pointer;
   scroll-margin-top: 100px;
   scroll-snap-margin-top: 100px;
+}
+
+.title-link a {
+  @apply underline-under;
+}
+
+.title-link:hover a {
+  @apply underline;
 }
 
 .title-link:before .title-link-anchor {
@@ -82,6 +90,10 @@ hr {
 ul ul {
   @apply pl-6;
   list-style-type: square;
+}
+
+.underline-under {
+  text-underline-position: under;
 }
 
 /* Codes */

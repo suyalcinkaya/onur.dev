@@ -391,8 +391,26 @@ export const projectData = [
   }
 ]
 
-export const raindropCollectionIDs = {
-  reading: 15807897, // Reading
-  personalSites: 15807896, // Personal Sites
-  tweets: 15896982 // Tweets
+/* export const raindropCollections = [
+  {
+    id: 15807897,
+    key: 'readings',
+    name: 'Reading'
+  },
+  {
+    id: 15807896,
+    key: 'personalSites',
+    name: 'Personal Sites'
+  },
+  {
+    id: 15968768,
+    key: 'UIs',
+    name: 'UI'
+  }
+] */
+
+export const raindropCollections = {
+  15807896: 'Personal Sites',
+  15807897: 'Reading',
+  15968768: 'UI'
 }
