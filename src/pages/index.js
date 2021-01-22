@@ -12,7 +12,7 @@ const Home = () => (
     <PageHeading
       heading={
         <>
-          <span role="img" className="mr-4">
+          <span role="img" aria-label="Waving Hand" className="mr-4">
             👋🏼
           </span>
           Hey, I'm Onur
@@ -33,15 +33,6 @@ const Home = () => (
       <h2>Recent Writings</h2>
       {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
       <div className="space-y-8 mt-8">
-        <div>
-          <BlogPost
-            title="Setting Up Google Analytics with ▲ Next.js"
-            summary="Building the structure for Google Analytics can be overwhelming sometimes. Even more with Next.js."
-            publishedAt="2021-01-21"
-            slug="setting-up-google-analytics-with-nextjs"
-            readingTime={{ minutes: 3 }}
-          />
-        </div>
         <div>
           <BlogPost
             title="2020 — Year in Review"
