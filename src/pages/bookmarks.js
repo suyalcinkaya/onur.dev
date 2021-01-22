@@ -51,7 +51,10 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
         }}
       />
       <Layout>
-        <PageHeading heading="Bookmarks" description="Internet things, saved for later." />
+        <PageHeading
+          heading="Bookmarks"
+          description="Personal sites, articles, blog posts, and some useful UI materials. Hoping to grow it in the time to come. I'll be also using here for remembering things."
+        />
         <div>
           <div role="tablist" aria-orientation="horizontal" className="flex flex-start flex-row justify-around">
             {Object.values(raindropCollections).map((item, itemIndex) => (
