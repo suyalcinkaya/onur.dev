@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NextSeo } from 'next-seo'
+import tinytime from 'tinytime'
 
 // --- Components
 import Card from 'components/Card'
@@ -16,23 +17,6 @@ const title = 'Bookmarks — Onur Şuyalçınkaya'
 
 const Bookmarks = ({ readings, personalSites, UIs }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
-
-  /* console.log('readings :>> ', readings)
-  console.log('personalSites :>> ', personalSites)
-  console.log('UIs :>> ', UIs) */
-
-  const rtf = new Intl.RelativeTimeFormat('en', {
-    style: 'long',
-    numeric: 'auto'
-  })
-
-  const diffByDays = (from) => {
-    const date = new Date(from)
-    const now = new Date()
-    const diffTime = Math.abs(now - date)
-    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24))
-    return rtf.format(diffDays * -1, 'days')
-  }
 
   return (
     <>
@@ -76,8 +60,11 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                   <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={personalSite.domain}
-                      primaryText={diffByDays(personalSite.created)}
-                      // secondaryText={personalSite.excerpt}
+                      primaryText={
+                        <time dateTime={personalSite.created}>
+                          {tinytime('{MM} {DD}, {YYYY}').render(new Date(personalSite.created))}
+                        </time>
+                      }
                       url={personalSite.link}
                     />
                   </div>
@@ -90,9 +77,11 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                   <div key={`readingItem_${readingItemIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={readingItem.title}
-                      // primaryText={readingItem.domain}
-                      primaryText={diffByDays(readingItem.created)}
-                      // secondaryText={readingItem.excerpt}
+                      primaryText={
+                        <time dateTime={readingItem.created}>
+                          {tinytime('{MM} {DD}, {YYYY}').render(new Date(readingItem.created))}
+                        </time>
+                      }
                       secondaryText={readingItem.domain}
                       url={readingItem.link}
                     />
@@ -106,7 +95,11 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                   <div key={`ui_${itemIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={item.title}
-                      primaryText={diffByDays(item.created)}
+                      primaryText={
+                        <time dateTime={item.created}>
+                          {tinytime('{MM} {DD}, {YYYY}').render(new Date(item.created))}
+                        </time>
+                      }
                       secondaryText={item.excerpt}
                       url={item.link}
                     />
