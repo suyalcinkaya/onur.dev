@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment } from 'react'
 import { NextSeo } from 'next-seo'
 import tinytime from 'tinytime'
 
@@ -15,104 +15,98 @@ import { ogImageUrl } from 'lib/helper'
 const url = 'https://onur.dev/bookmarks'
 const title = 'Bookmarks — Onur Şuyalçınkaya'
 
-const Bookmarks = ({ readings, personalSites, UIs }) => {
-  const [activeTabIndex, setActiveTabIndex] = useState(0)
-
-  return (
-    <>
-      <NextSeo
-        title={title}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          images: [
-            {
-              url: ogImageUrl('**Bookmarks**'),
-              alt: title
-            }
-          ]
-        }}
+const Bookmarks = ({ readings, personalSites, UIs }) => (
+  <>
+    <NextSeo
+      title={title}
+      canonical={url}
+      openGraph={{
+        url,
+        title,
+        images: [
+          {
+            url: ogImageUrl('**Bookmarks**'),
+            alt: title
+          }
+        ]
+      }}
+    />
+    <Layout>
+      <PageHeading
+        heading="Bookmarks"
+        description="Personal sites, articles, blog posts, and some useful UI materials. Hoping to grow it in the time to come. I'll be also using here for remembering things."
       />
-      <Layout>
-        <PageHeading
-          heading="Bookmarks"
-          description="Personal sites, articles, blog posts, and some useful UI materials. Hoping to grow it in the time to come. I'll be also using here for remembering things."
-        />
-        <div>
-          <div role="tablist" aria-orientation="horizontal" className="flex flex-start flex-row justify-around">
-            {Object.values(raindropCollections).map((item, itemIndex) => (
-              <button
-                key={`tabItem_${itemIndex}`}
-                className={`flex-1 py-2 px-4 font-semibold border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 ${
-                  itemIndex === activeTabIndex ? 'text-primary-default border-primary-default' : 'text-gray-600'
-                }`}
-                onClick={() => itemIndex !== activeTabIndex && setActiveTabIndex(itemIndex)}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <div>
-            {activeTabIndex === 0 && (
-              <div className="space-y-6 mt-6 divide divide-y-2">
-                {personalSites.map((personalSite, personalSiteIndex) => (
-                  <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
-                    <Card
-                      title={personalSite.domain}
-                      primaryText={
-                        <time dateTime={personalSite.created}>
-                          {tinytime('{MM} {DD}, {YYYY}').render(new Date(personalSite.created))}
-                        </time>
-                      }
-                      url={personalSite.link}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-            {activeTabIndex === 1 && (
-              <div className="space-y-6 mt-6 divide divide-y-2">
-                {readings.map((readingItem, readingItemIndex) => (
-                  <div key={`readingItem_${readingItemIndex}`} className="first:pt-0 pt-6">
-                    <Card
-                      title={readingItem.title}
-                      primaryText={
-                        <time dateTime={readingItem.created}>
-                          {tinytime('{MM} {DD}, {YYYY}').render(new Date(readingItem.created))}
-                        </time>
-                      }
-                      secondaryText={readingItem.domain}
-                      url={readingItem.link}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-            {activeTabIndex === 2 && (
-              <div className="space-y-6 mt-6 divide divide-y-2">
-                {UIs.map((item, itemIndex) => (
-                  <div key={`ui_${itemIndex}`} className="first:pt-0 pt-6">
-                    <Card
-                      title={item.title}
-                      primaryText={
-                        <time dateTime={item.created}>
-                          {tinytime('{MM} {DD}, {YYYY}').render(new Date(item.created))}
-                        </time>
-                      }
-                      secondaryText={item.excerpt}
-                      url={item.link}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </Layout>
-    </>
-  )
-}
+      <div className="tabs flex flex-wrap items-end">
+        {Object.values(raindropCollections).map((item, itemIndex) => (
+          <Fragment key={`collection_${itemIndex}`}>
+            <input type="radio" name="tabs" id={`tab-${itemIndex}`} defaultChecked={itemIndex === 0 && 'checked'} />
+            <label
+              htmlFor={`tab-${itemIndex}`}
+              className="flex-1 py-2 px-4 font-semibold text-center text-gray-600 border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 order-1 cursor-pointer"
+            >
+              {item}
+            </label>
+            <div className="tab flex-grow order-2 w-full hidden bg-white">
+              {itemIndex === 0 && (
+                <div className="space-y-6 mt-6 divide divide-y-2">
+                  {personalSites.map((personalSite, personalSiteIndex) => (
+                    <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
+                      <Card
+                        title={personalSite.domain}
+                        primaryText={
+                          <time dateTime={personalSite.created}>
+                            {tinytime('{MM} {DD}, {YYYY}').render(new Date(personalSite.created))}
+                          </time>
+                        }
+                        url={personalSite.link}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {itemIndex === 1 && (
+                <div className="space-y-6 mt-6 divide divide-y-2">
+                  {readings.map((readingItem, readingItemIndex) => (
+                    <div key={`readingItem_${readingItemIndex}`} className="first:pt-0 pt-6">
+                      <Card
+                        title={readingItem.title}
+                        primaryText={
+                          <time dateTime={readingItem.created}>
+                            {tinytime('{MM} {DD}, {YYYY}').render(new Date(readingItem.created))}
+                          </time>
+                        }
+                        secondaryText={readingItem.domain}
+                        url={readingItem.link}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {itemIndex === 2 && (
+                <div className="space-y-6 mt-6 divide divide-y-2">
+                  {UIs.map((item, itemIndex) => (
+                    <div key={`ui_${itemIndex}`} className="first:pt-0 pt-6">
+                      <Card
+                        title={item.title}
+                        primaryText={
+                          <time dateTime={item.created}>
+                            {tinytime('{MM} {DD}, {YYYY}').render(new Date(item.created))}
+                          </time>
+                        }
+                        secondaryText={item.excerpt}
+                        url={item.link}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </Fragment>
+        ))}
+      </div>
+    </Layout>
+  </>
+)
 
 export async function getStaticProps() {
   const data = await getBookmarks()

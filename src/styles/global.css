@@ -1,3 +1,18 @@
+@layer utilities {
+  .underline-under {
+    text-underline-position: under;
+  }
+
+  .scroll-top-100 {
+    scroll-margin-top: 100px;
+    scroll-snap-margin-top: 100px;
+  }
+}
+
+/**
+ * Global
+ */
+
 ::selection {
   @apply bg-gray-700 text-white;
 }
@@ -38,9 +53,7 @@ h3 {
 }
 
 .title-link {
-  @apply max-w-max cursor-pointer;
-  scroll-margin-top: 100px;
-  scroll-snap-margin-top: 100px;
+  @apply max-w-max cursor-pointer scroll-top-100;
 }
 
 .title-link a {
@@ -83,20 +96,14 @@ hr {
   @apply border-gray-200 my-12;
 }
 
-/* ul {
-  @apply mt-2 mb-6 list-inside list-circle;
-} */
-
 ul ul {
   @apply pl-6;
   list-style-type: square;
 }
 
-.underline-under {
-  text-underline-position: under;
-}
-
-/* Codes */
+/**
+ * Codes
+ */
 
 /* .prose pre {
   @apply bg-gray-50 border border-gray-200;
@@ -151,14 +158,6 @@ tbody tr:not(:last-of-type) {
   @apply font-semibold;
 }
 
-/* .token.italic {
-  @apply italic;
-} */
-
-/* .token.entity {
-  cursor: help;
-} */
-
 .mdx-marker {
   @apply block -mx-4 px-4 bg-blue-100;
   min-width: fit-content;
@@ -180,13 +179,6 @@ pre[class*='language-'] {
   background: rgb(247, 250, 252);
   border: 1px solid rgb(226, 232, 240);
 }
-
-/* Inline code */
-/* :not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-} */
 
 .token.comment,
 .token.prolog,
@@ -249,4 +241,19 @@ pre[class*='language-'] {
 
 .token.constant {
   color: inherit;
+}
+
+/**
+ * Tabs
+ */
+.tabs input[type='radio'] {
+  @apply hidden;
+}
+
+.tabs input[type='radio']:checked + label {
+  @apply text-primary-default border-primary-default;
+}
+
+.tabs input[type='radio']:checked + label + .tab {
+  @apply block;
 }
