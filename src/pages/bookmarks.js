@@ -42,7 +42,7 @@ const Bookmarks = ({ readings, personalSites, UIs }) => (
             <input type="radio" name="tabs" id={`tab-${itemIndex}`} defaultChecked={itemIndex === 0 && 'checked'} />
             <label
               htmlFor={`tab-${itemIndex}`}
-              className="flex-1 py-2 px-4 font-semibold text-center text-gray-600 border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 order-1 cursor-pointer"
+              className="flex-1 py-2 px-4 min-w-max font-semibold text-center text-gray-600 border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 order-1 cursor-pointer"
             >
               {item}
             </label>
