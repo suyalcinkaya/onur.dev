@@ -51,14 +51,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
           </span>
         )}
       </Wrapper>
-      {secondaryText && (
-        <div
-          className="text-gray-500 leading-7 overflow-hidden"
-          style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
-        >
-          {secondaryText}
-        </div>
-      )}
+      {secondaryText && <div className="text-gray-500 leading-7 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
     </div>
   )
 }

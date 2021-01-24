@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 
 // --- Components
-import BlogPost from 'components/BlogPost'
+import BlogPost from 'components/WritingCard'
 import Button from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
@@ -53,11 +53,11 @@ const Home = () => (
         </div>
         <div>
           <BlogPost
-            title="Bir Yazılımcı Olarak Türkiye’den Gitmek (Bölüm 1: Nedenler)"
-            summary="28 yaşında Berlin'de yaşamaya başlayan genç bir adamın hikayesi..."
-            publishedAt="2020-11-24"
-            slug="bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler"
-            readingTime={{ minutes: 9 }}
+            title="useFetch: A Custom React Hook"
+            summary="What about extracting that recurrent logic into a reusable piece of code (hook) and reuse it where the need be?"
+            publishedAt="2020-05-24"
+            slug="useFetch-react-hook"
+            readingTime={{ minutes: 10 }}
           />
         </div>
         <div>

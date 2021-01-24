@@ -6,7 +6,7 @@ import Card from 'components/Card'
 // --- Other
 import { getReadingTime } from 'lib/helper'
 
-const BlogPost = ({ title, summary, slug, publishedAt, readingTime }) => {
+const WritingCard = ({ title, summary, slug, publishedAt, readingTime }) => {
   const readingDuration = getReadingTime(readingTime.minutes)
 
   return (
@@ -25,4 +25,4 @@ const BlogPost = ({ title, summary, slug, publishedAt, readingTime }) => {
   )
 }
 
-export default BlogPost
+export default WritingCard

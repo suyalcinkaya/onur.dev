@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 
 const commonClassNames =
-  'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-md font-semibold space-x-2'
+  'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-md font-medium space-x-2'
 
 const Wrapper = forwardRef(({ as, variant, children, ...others }, ref) => {
   if (variant === 'link' || as === 'a') {
@@ -33,7 +33,7 @@ const Button = forwardRef((props, ref) => {
       className += ' border border-black bg-black hover:bg-white text-white hover:text-black px-3'
       break
     case 'outline':
-      className += ' border border-gray-200 bg-white hover:bg-gray-100 text-black px-3'
+      className += ' border border-gray-200 bg-white hover:bg-gray-100 text-black px-3 shadow-normal'
       break
     case 'ghost':
       className += ' bg-transparent hover:bg-gray-100 px-3 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50'

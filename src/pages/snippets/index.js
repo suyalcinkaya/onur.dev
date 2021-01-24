@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 
 // --- Components
-import WritingCard from 'components/WritingCard'
+import SnippetCard from 'components/SnippetCard'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 
@@ -9,10 +9,10 @@ import PageHeading from 'components/PageHeading'
 import { getAllFilesFrontMatter } from 'lib/mdx'
 import { ogImageUrl } from 'lib/helper'
 
-const url = 'https://onur.dev/writing'
-const title = 'Writing — Onur Şuyalçınkaya'
+const url = 'https://onur.dev/snippets'
+const title = 'Snippets — Onur Şuyalçınkaya'
 
-export default function Writings({ posts }) {
+export default function Snippets({ snippets }) {
   return (
     <>
       <NextSeo
@@ -23,7 +23,7 @@ export default function Writings({ posts }) {
           title,
           images: [
             {
-              url: ogImageUrl('**Writing**'),
+              url: ogImageUrl('**Snippets**'),
               alt: title
             }
           ]
@@ -31,13 +31,13 @@ export default function Writings({ posts }) {
       />
       <Layout>
         <PageHeading
-          heading="Writing"
-          description="I've been writing online since 2018, mostly about code, design, and my notions to learn, not to teach."
+          heading="Snippets"
+          description="These are a collection of code snippets I've used in the past and saved."
         />
         <div className="space-y-8">
-          {posts.map((frontMatter) => (
+          {snippets.map((frontMatter) => (
             <div key={frontMatter.title}>
-              <WritingCard {...frontMatter} />
+              <SnippetCard {...frontMatter} />
             </div>
           ))}
         </div>
@@ -47,8 +47,8 @@ export default function Writings({ posts }) {
 }
 
 export async function getStaticProps() {
-  const data = await getAllFilesFrontMatter('writing')
-  const posts = data.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+  const data = await getAllFilesFrontMatter('snippets')
+  const snippets = data.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
 
-  return { props: { posts } }
+  return { props: { snippets } }
 }

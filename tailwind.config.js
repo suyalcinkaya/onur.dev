@@ -12,6 +12,9 @@ module.exports = {
       xl: '1280px'
     },
     extend: {
+      boxShadow: {
+        normal: '0 1px 2px rgba(16, 29, 52, .1)'
+      },
       colors: {
         charcoal: '#303030',
         inherit: 'inherit',
@@ -46,10 +49,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      // borderWidth: ['last'],
       margin: ['last'],
       padding: ['first', 'last']
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/line-clamp')]
 }

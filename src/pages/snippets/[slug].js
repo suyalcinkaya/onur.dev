@@ -1,19 +1,19 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
 import { getFiles, getFileBySlug } from 'lib/mdx'
-import WritingLayout from 'layouts/WritingLayout'
+import SnippetLayout from 'layouts/SnippetLayout'
 import MDXComponents from 'components/MDXComponents'
 
-export default function WritingSlug({ mdxSource, frontMatter }) {
+export default function Snippet({ mdxSource, frontMatter }) {
   const content = hydrate(mdxSource, {
     components: MDXComponents
   })
 
-  return <WritingLayout frontMatter={frontMatter}>{content}</WritingLayout>
+  return <SnippetLayout frontMatter={frontMatter}>{content}</SnippetLayout>
 }
 
 export async function getStaticPaths() {
-  const posts = await getFiles('writing')
+  const posts = await getFiles('snippets')
 
   return {
     paths: posts.map((p) => ({
@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const post = await getFileBySlug('writing', params.slug)
+  const post = await getFileBySlug('snippets', params.slug)
 
   return { props: post }
 }

@@ -87,6 +87,10 @@ export const mobileMenuNavigations = [
     name: 'About'
   },
   {
+    url: '/snippets',
+    name: 'Snippets'
+  },
+  {
     url: '/bookmarks',
     name: 'Bookmarks'
   },
@@ -141,12 +145,16 @@ export const footerNavigations = [
     name: 'Writing'
   },
   {
-    url: '/journey',
-    name: 'Journey'
+    url: '/snippets',
+    name: 'Snippets'
   },
   {
     url: '/bookmarks',
     name: 'Bookmarks'
+  },
+  {
+    url: '/journey',
+    name: 'Journey'
   }
 ]
 

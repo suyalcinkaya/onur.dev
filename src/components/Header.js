@@ -75,7 +75,7 @@ const Header = () => {
             {headerNavigations.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>
                 <NextLink href={headerNav.url} passHref>
-                  <Button as="a" variant="ghost">
+                  <Button as="a" variant="ghost" className="font-semibold">
                     {headerNav.name}
                   </Button>
                 </NextLink>
