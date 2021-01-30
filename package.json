@@ -56,7 +56,9 @@
   "devDependencies": {
     "@svgr/cli": "^5.4.0",
     "next-unused": "^0.0.3",
-    "rehype": "^11.0.0",
+    "rehype": "^11.0.0"
+  },
+  "resolutions": {
     "webpack": "^5.19.0"
   },
   "next-unused": {
