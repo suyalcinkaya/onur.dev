@@ -37,7 +37,7 @@
     "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
     "mdx-prism": "^0.3.1",
-    "next": "^10.0.6",
+    "next": "^10.0.5",
     "next-compose-plugins": "^2.2.1",
     "next-google-fonts": "^1.2.1",
     "next-mdx-remote": "^2.1.1",
@@ -57,9 +57,6 @@
     "@svgr/cli": "^5.4.0",
     "next-unused": "^0.0.3",
     "rehype": "^11.0.0"
-  },
-  "resolutions": {
-    "webpack": "^5.19.0"
   },
   "next-unused": {
     "debug": true,
