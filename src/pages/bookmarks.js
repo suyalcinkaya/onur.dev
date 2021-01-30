@@ -43,7 +43,7 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
           <div className="relative w-full mt-1.5">
             <label
               htmlFor="category"
-              class="absolute top-2 left-4 text-gray-400 font-medium text-xs pointer-events-none"
+              className="absolute top-2 left-4 text-gray-400 font-medium text-xs pointer-events-none"
             >
               Category
             </label>
