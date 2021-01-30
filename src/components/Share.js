@@ -15,7 +15,7 @@ const Share = ({ title, url }) => {
 
   return (
     <div className="flex items-center space-x-4">
-      <Button size="sm" variant="outline" onClick={onCopy}>
+      <Button size="sm" variant="outline" onClick={onCopy} disabled={!!hasCopied}>
         {hasCopied ? 'Copied' : 'Copy Link'}
       </Button>
       <IconButton

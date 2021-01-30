@@ -79,9 +79,9 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
             </span>
           </div>
           <div className="mt-6 w-full">
-            {activeIndex === 0 && (
-              <div className="space-y-6 divide divide-y-2">
-                {personalSites.map((personalSite, personalSiteIndex) => (
+            <div className="space-y-6 divide divide-y-2">
+              {activeIndex === 0 &&
+                personalSites.map((personalSite, personalSiteIndex) => (
                   <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={personalSite.domain}
@@ -94,11 +94,8 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                     />
                   </div>
                 ))}
-              </div>
-            )}
-            {activeIndex === 1 && (
-              <div className="space-y-6 divide divide-y-2">
-                {readings.map((readingItem, readingItemIndex) => (
+              {activeIndex === 1 &&
+                readings.map((readingItem, readingItemIndex) => (
                   <div key={`readingItem_${readingItemIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={readingItem.title}
@@ -112,11 +109,8 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                     />
                   </div>
                 ))}
-              </div>
-            )}
-            {activeIndex === 2 && (
-              <div className="space-y-6 divide divide-y-2">
-                {UIs.map((item, itemIndex) => (
+              {activeIndex === 2 &&
+                UIs.map((item, itemIndex) => (
                   <div key={`ui_${itemIndex}`} className="first:pt-0 pt-6">
                     <Card
                       title={item.title}
@@ -130,8 +124,7 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                     />
                   </div>
                 ))}
-              </div>
-            )}
+            </div>
           </div>
 
           {/* {Object.values(raindropCollections).map((item, itemIndex) => (

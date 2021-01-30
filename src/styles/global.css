@@ -81,6 +81,11 @@ button:focus {
   @apply outline-none;
 }
 
+button:disabled,
+button[disabled] {
+  @apply cursor-not-allowed;
+}
+
 p {
   @apply leading-slacker;
 }
