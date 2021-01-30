@@ -15,6 +15,7 @@ module.exports = withPlugins(
     images: {
       deviceSizes: [320, 375, 768, 1024, 1280]
     },
+    future: { webpack5: true },
     async redirects() {
       return [
         /* {
