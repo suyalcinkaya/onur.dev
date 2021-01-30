@@ -29,7 +29,6 @@ body {
 
 body {
   @apply m-0 p-0 font-sans leading-slack text-charcoal antialiased;
-  /* letter-spacing: -0.01em; */
 }
 
 #__next {
@@ -241,19 +240,4 @@ pre[class*='language-'] {
 
 .token.constant {
   color: inherit;
-}
-
-/**
- * Tabs
- */
-.tabs input[type='radio'] {
-  @apply hidden;
-}
-
-.tabs input[type='radio']:checked + label {
-  @apply text-primary-default border-primary-default;
-}
-
-.tabs input[type='radio']:checked + label + .tab {
-  @apply block;
 }
