@@ -8,7 +8,7 @@ import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, footerNavigations } from 'lib/c
 
 const Footer = () => (
   <footer>
-    <div className="-mt-40">
+    <div className="-mt-8 md:-mt-32 lg:-mt-40">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#000"
@@ -17,7 +17,7 @@ const Footer = () => (
         ></path>
       </svg>
     </div>
-    <div className="bg-black text-white pb-12 pt-4">
+    <div className="bg-black text-white pb-12 pt-10 md:pt-4">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: MAX_WIDTH }}>
         <div className="grid gap-6 md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
           {footerNavigations.map((footerNav, footerNavIndex) => (
