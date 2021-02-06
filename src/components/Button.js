@@ -3,7 +3,7 @@ import { forwardRef } from 'react'
 const commonClassNames =
   'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-md font-medium space-x-2'
 
-const Wrapper = forwardRef(({ as, variant, children, ...others }, ref) => {
+const ButtonCmp = forwardRef(({ as, variant, children, ...others }, ref) => {
   if (variant === 'link' || as === 'a') {
     return (
       <a ref={ref} {...others}>
@@ -13,14 +13,14 @@ const Wrapper = forwardRef(({ as, variant, children, ...others }, ref) => {
   }
 
   return (
-    <button ref={ref} {...others}>
+    <button type="button" ref={ref} {...others}>
       {children}
     </button>
   )
 })
 
 const Button = forwardRef((props, ref) => {
-  let { children, className = '', isExternal, variant = 'solid', size, ...others } = props
+  let { className = '', isExternal, variant = 'solid', size, ...others } = props
 
   if (size === 'sm') {
     className += ' text-sm leading-loose h-8 min-w-8'
@@ -47,19 +47,16 @@ const Button = forwardRef((props, ref) => {
   }
 
   return (
-    <Wrapper
+    <ButtonCmp
       ref={ref}
-      type="button"
+      variant={variant}
       {...(isExternal && {
         target: '_blank',
-        rel: 'noopener noreferrer',
-        role: 'button'
+        rel: 'noopener noreferrer'
       })}
       className={`${commonClassNames} ${className}`}
       {...others}
-    >
-      {children}
-    </Wrapper>
+    />
   )
 })
 
