@@ -43,14 +43,14 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
           <div className="relative w-full mt-1.5">
             <label
               htmlFor="category"
-              className="absolute top-2 left-4 pl-px text-gray-400 font-medium text-xs pointer-events-none"
+              className="absolute top-2 left-4 pl-px text-gray-400 font-display font-medium text-xs pointer-events-none"
             >
               Category
             </label>
             <select
               id="category"
               name="category"
-              className="flex justify-center w-full appearance-none rounded-md leading-tight border border-gray-300 shadow-normal px-4 pt-7 pb-2 bg-white font-medium hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 cursor-pointer"
+              className="flex justify-center w-full appearance-none font-display leading-tight rounded-md border border-gray-300 shadow-normal px-4 pt-7 pb-2 bg-white font-medium hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 cursor-pointer"
               onChange={({ target }) => {
                 const selectedIndex = target.options.selectedIndex
                 if (activeIndex !== selectedIndex) setActiveIndex(selectedIndex)
@@ -79,7 +79,7 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
             </span>
           </div>
           <div className="mt-6 w-full">
-            <div className="space-y-6 divide divide-y-2">
+            <div className="space-y-6 divide divide-y divide-dashed">
               {activeIndex === 0 &&
                 personalSites.map((personalSite, personalSiteIndex) => (
                   <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
@@ -126,73 +126,6 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
                 ))}
             </div>
           </div>
-
-          {/* {Object.values(raindropCollections).map((item, itemIndex) => (
-            <Fragment key={`collection_${itemIndex}`}>
-              <input type="radio" name="tabs" id={`tab-${itemIndex}`} defaultChecked={itemIndex === 0 && 'checked'} />
-              <label
-                htmlFor={`tab-${itemIndex}`}
-                className="flex-1 py-2 px-4 min-w-max font-semibold text-center text-gray-600 border-b-2 outline-none focus:outline-none hover:text-primary-default transition-colors duration-200 order-1 cursor-pointer"
-              >
-                {item}
-              </label>
-              <div className="tab flex-grow order-2 w-full hidden bg-white">
-                {itemIndex === 0 && (
-                  <div className="space-y-6 mt-6 divide divide-y-2">
-                    {personalSites.map((personalSite, personalSiteIndex) => (
-                      <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">
-                        <Card
-                          title={personalSite.domain}
-                          primaryText={
-                            <time dateTime={personalSite.created}>
-                              {tinytime('{MM} {DD}, {YYYY}').render(new Date(personalSite.created))}
-                            </time>
-                          }
-                          url={personalSite.link}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {itemIndex === 1 && (
-                  <div className="space-y-6 mt-6 divide divide-y-2">
-                    {readings.map((readingItem, readingItemIndex) => (
-                      <div key={`readingItem_${readingItemIndex}`} className="first:pt-0 pt-6">
-                        <Card
-                          title={readingItem.title}
-                          primaryText={
-                            <time dateTime={readingItem.created}>
-                              {tinytime('{MM} {DD}, {YYYY}').render(new Date(readingItem.created))}
-                            </time>
-                          }
-                          secondaryText={readingItem.domain}
-                          url={readingItem.link}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {itemIndex === 2 && (
-                  <div className="space-y-6 mt-6 divide divide-y-2">
-                    {UIs.map((item, itemIndex) => (
-                      <div key={`ui_${itemIndex}`} className="first:pt-0 pt-6">
-                        <Card
-                          title={item.title}
-                          primaryText={
-                            <time dateTime={item.created}>
-                              {tinytime('{MM} {DD}, {YYYY}').render(new Date(item.created))}
-                            </time>
-                          }
-                          secondaryText={item.excerpt}
-                          url={item.link}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </Fragment>
-          ))} */}
         </>
       </Layout>
     </>
@@ -202,17 +135,11 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
 export async function getStaticProps() {
   const data = await getBookmarks()
 
-  /* const dataGroupByDay = groupBy(data, (item) => {
-    return format(parseISO(item.created), 'd MMMM yyyy', { locale: tr })
-  }) */
-
   const personalSites = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[0]))
   const readings = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[1]))
   const UIs = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[2]))
 
-  /* const all = [...readingItems, ...personalSitesItems, ...uiItems].sort(
-    (a, b) => Number(new Date(b.created)) - Number(new Date(a.created))
-  ) */
+  console.log('personalSites :>> ', personalSites);
 
   return {
     props: {

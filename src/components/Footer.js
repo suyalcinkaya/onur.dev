@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 
 // --- Components
-import Button from 'components/Button'
+import { LinkButton } from 'components/Button'
 
 // --- Others
 import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, footerNavigations } from 'lib/constants'
@@ -19,18 +19,18 @@ const Footer = () => (
     </div>
     <div className="bg-black text-white pb-12 pt-8 lg:pt-4">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: MAX_WIDTH }}>
-        <div className="grid gap-6 md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
+        <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
           {footerNavigations.map((footerNav, footerNavIndex) => (
             <NextLink key={`footerNav_${footerNavIndex}`} href={footerNav.url} passHref>
-              <Button variant="link">{footerNav.name}</Button>
+              <LinkButton>{footerNav.name}</LinkButton>
             </NextLink>
           ))}
-          <Button href={BUY_ME_COFFEE_URL} variant="link" isExternal>
+          <LinkButton href={BUY_ME_COFFEE_URL} isExternal>
             Buy me a coffee
-          </Button>
-          <Button variant="link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          </LinkButton>
+          <LinkButton as="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             Scroll to top &uarr;
-          </Button>
+          </LinkButton>
         </div>
         <div className="mt-6">
           <div className="flex items-center mb-2 space-x-6">
@@ -49,13 +49,13 @@ const Footer = () => (
             ))}
           </div>
           <div className="mt-3 text-sm">
-            <strong>onur</strong>
+            <span>onur</span>
             <span className="text-gray-400">{' dot '}</span>
-            <strong>suyalcinkaya</strong>
+            <span>suyalcinkaya</span>
             <span className="text-gray-400">{' at '}</span>
-            <strong>gmail</strong>
+            <span>gmail</span>
             <span className="text-gray-400">{' dot '}</span>
-            <strong>com</strong>
+            <span>com</span>
           </div>
         </div>
       </div>

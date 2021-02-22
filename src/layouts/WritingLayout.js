@@ -1,9 +1,10 @@
 import NextImage from 'next/image'
+import NextLink from 'next/link'
 import tinytime from 'tinytime'
 
 // --- Components
 import BlogSeo from 'components/BlogSeo'
-import Button from 'components/Button'
+import { LinkButton, OutlineButton } from 'components/Button'
 import LayoutCmp from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 import Share from 'components/Share'
@@ -21,6 +22,9 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
     <LayoutCmp {...others}>
       <BlogSeo url={`https://onur.dev/${readingTime.slug}`} {...frontMatter} />
       <article>
+        <NextLink href="/writing">
+          <LinkButton className="mb-3 text-gray-400">&larr; Writing</LinkButton>
+        </NextLink>
         <PageHeading heading={frontMatter.title} />
         <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
           <div className="flex items-center">
@@ -29,7 +33,7 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
             </div>
             <div className="flex flex-col ml-3">
               <p className="font-medium">Onur Şuyalçınkaya</p>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-400">
                 <time dateTime={frontMatter.publishedAt}>
                   {tinytime('{MM} {DD}, {YYYY}').render(new Date(frontMatter.publishedAt))}
                 </time>
@@ -43,10 +47,8 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
         <div className="mt-16">
           <div className="prose mb-12">{children}</div>
           <div className="mb-1">
-            <Button
+            <OutlineButton
               as="a"
-              // variant="outline"
-              // size="sm"
               href={`https://twitter.com/search?q=${encodeURIComponent(
                 `https://onur.dev/writing/${frontMatter.slug}`
               )}`}
@@ -54,7 +56,7 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
             >
               <TwitterIcon height={20} width={20} />
               <span>Discuss on Twitter</span>
-            </Button>
+            </OutlineButton>
           </div>
         </div>
       </article>

@@ -1,4 +1,4 @@
-const URL = ['https://api.raindrop.io/rest/v1/raindrops/0?', 'perpage=50&'].join('')
+const URL = ['https://api.raindrop.io/rest/v1/raindrops/0?', 'perpage=200&'].join('')
 
 async function getBookmarks() {
   const res = await fetch(URL, {

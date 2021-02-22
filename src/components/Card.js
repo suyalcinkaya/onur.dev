@@ -34,10 +34,10 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
 
   return (
     <div className="space-y-1">
-      {primaryText && <div className="text-gray-500 leading-7">{primaryText}</div>}
+      {primaryText && <div className="text-gray-400">{primaryText}</div>}
       <Wrapper
         url={url}
-        className={`inline-block text-lg font-semibold${url ? ' underline-under hover:underline' : ''}`}
+        className={`inline-block${url ? ' underline-under hover:underline' : ''}`}
         {...(isExternal && {
           rel: 'noopener noreferrer',
           target: '_blank'
@@ -51,7 +51,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
           </span>
         )}
       </Wrapper>
-      {secondaryText && <div className="text-gray-500 leading-7 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
+      {secondaryText && <div className="text-gray-400 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
     </div>
   )
 }

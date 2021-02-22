@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import GoogleFonts from 'next-google-fonts'
 
@@ -14,7 +13,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <>
-          <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+          <GoogleFonts href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" />
           <Head>
             {/* Base */}
             <meta charSet="utf-8" />
@@ -39,7 +38,7 @@ class MyDocument extends Document {
 
             {/* Analytics */}
             {process.env.NODE_ENV === 'production' && (
-              <Fragment>
+              <>
                 <link rel="preconnect" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
@@ -53,7 +52,7 @@ class MyDocument extends Document {
                   `
                   }}
                 />
-              </Fragment>
+              </>
             )}
 
             {/* Fonts */}

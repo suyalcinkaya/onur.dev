@@ -35,14 +35,14 @@ const Journey = () => (
           <div key={`data_${dataIndex}`} className="space-y-8">
             <div className="flex items-center mt-4 mb-8">
               <h2 className="text-2xl font-bold">{data.year}</h2>
-              <div className="bg-gray-200 flex-1 h-px ml-4" />
+              <hr className="border-dashed flex-1 ml-4 my-0" />
             </div>
             <section>
               {data.items.map((item, itemIndex) => (
                 <div key={`journey_${itemIndex}`} className="flex relative pb-8 last:pb-0">
                   {itemIndex !== data.items.length - 1 && (
                     <div className="w-10 absolute inset-x-0 inset-y-1 mt-10 flex items-center justify-center">
-                      <div className="h-full w-px bg-gray-200 pointer-events-none"></div>
+                      <div className="border-l border-dashed h-full w-px pointer-events-none"></div>
                     </div>
                   )}
                   <div className="flex items-center justify-center align-middle flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full z-0">

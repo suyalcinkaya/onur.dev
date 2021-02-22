@@ -1,5 +1,5 @@
 // --- Components
-import Button from 'components/Button'
+import { OutlineButton } from 'components/Button'
 import IconButton from 'components/IconButton'
 
 // --- Icons
@@ -15,9 +15,9 @@ const Share = ({ title, url }) => {
 
   return (
     <div className="flex items-center space-x-4">
-      <Button size="sm" variant="outline" onClick={onCopy} disabled={!!hasCopied}>
+      <OutlineButton onClick={onCopy} disabled={!!hasCopied}>
         {hasCopied ? 'Copied' : 'Copy Link'}
-      </Button>
+      </OutlineButton>
       <IconButton
         name="Share on Twitter"
         onClick={() =>

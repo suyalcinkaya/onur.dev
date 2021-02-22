@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 
 // --- Components
 import BlogPost from 'components/WritingCard'
-import Button from 'components/Button'
+import { LinkButton } from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
@@ -62,7 +62,7 @@ const Home = () => (
         </div>
         <div>
           <NextLink href="/writing" passHref>
-            <Button variant="link">See All Writings &rarr;</Button>
+            <LinkButton>See All Writings &rarr;</LinkButton>
           </NextLink>
         </div>
       </div>

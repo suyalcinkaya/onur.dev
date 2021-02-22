@@ -5,8 +5,8 @@ publishedAt: '2020-01-07'
 tags: [javascript, html5, video]
 ---
 
-I had a chance to work with HTML5 `<video>` in a project over a month and am going to tell you my experiences and knowledge
-on it.
+I had a chance to work with HTML5 `<video>` in a project over a month and am going to tell you my experiences and
+knowledge on it.
 
 The project is a kind of simulation of an interactive video similar to Netflix's Bandersnatch series. The story goes
 upon user choices: adding tomato or pickle, choosing brioche or classic bread, whether garnishing with an egg or an
@@ -713,25 +713,19 @@ Here are a few tips:
 - **Do not send a 1080p video to a mobile device like a phone:** That doesn't make much sense, the video will likely be
   too big for the screen, and the bandwidth required to send the video may use all of the user's limited data connection
   extremely quickly. Use 720p or 480p instead.
-
 - **Use a CDN:** CDN is a network of servers that store cached copies of your site’s static assets. In addition to
   improving redundancy, CDNs ensure faster content delivery as the content is served from the nearest edge server. This
   is essential for large files such as videos. That way, users don’t have to wait forever for your videos to download
   and buffer.
-
 - **Offer both standard (MP4) and edge source file types (WebM):** You reward users who have a client with advanced
   compression and quality capabilities (WebM) but provide a fallback to widely supported formats (MP4s).
-
 - **Remove audio from muted videos:** If you have a video with the audio muted, you can remove the audio data from the
   video file to save on the size of the video.
-
 - **Use data compression tools:** Data compression tools like Blazemp and HandBrake reduce the size of video files
   without degrading image quality. Smaller media files load faster, so you can save users a huge amount of time by
   compressing all of your videos.
-
 - **Use poster image:** A poster image that can be displayed until playback begins. This gives viewers a meaningful idea
   of the content without needing to download video or start playback.
-
 - **Specify the video size:** In your HTML or CSS, be sure to define the width and height of videos so that the browser
   can allocate the necessary bandwidth with no extra work.
 

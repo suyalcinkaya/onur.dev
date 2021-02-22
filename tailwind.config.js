@@ -16,7 +16,7 @@ module.exports = {
         normal: '0 1px 2px rgba(16, 29, 52, .1)'
       },
       colors: {
-        charcoal: '#303030',
+        charcoal: '#252F3F',
         inherit: 'inherit',
         primary: {
           default: '#0070F3',
@@ -24,7 +24,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', ...fontFamily.sans]
+        sans: ['Quattro', ...fontFamily.sans],
+        display: ['Inter', ...fontFamily.sans]
       },
       fontSize: {
         xxs: '.675rem',
@@ -33,6 +34,7 @@ module.exports = {
         '5xl': ['3rem', '1.25']
       },
       minHeight: {
+        16: '4rem',
         20: '5rem'
       },
       lineHeight: {

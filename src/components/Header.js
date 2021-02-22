@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 // --- Components
-import Button from 'components/Button'
+import { GhostButton } from 'components/Button'
 
 // --- Icons
 import MenuIcon from 'components/icons/Menu'
@@ -36,19 +36,20 @@ const Header = () => {
           minHeight: HEADER_HEIGHT
         }}
       >
-        <div className="shadow md:shadow-none md:mx-auto px-4 sm:px-6 min-h-20" style={{ maxWidth: MAX_WIDTH }}>
-          <div className="flex md:hidden items-center min-h-20">
+        <div
+          className={`shadow md:shadow-none md:mx-auto px-4 sm:px-6 min-h-16 ${isMenuOpen && 'rounded-b-3xl'}`}
+          style={{ maxWidth: MAX_WIDTH }}
+        >
+          <div className="flex md:hidden items-center min-h-16">
             {!isMenuOpen ? (
               <>
-                <MenuIcon onClick={() => setIsMenuOpen(true)} />
+                <MenuIcon onClick={() => setIsMenuOpen(true)} className="mr-2" />
                 <NextLink href="/" passHref>
-                  <Button as="a" variant="ghost">
-                    Home
-                  </Button>
+                  <GhostButton as="a">Home</GhostButton>
                 </NextLink>
               </>
             ) : (
-              <div className="grid gap-4 w-full pt-4 pb-6">
+              <div className="grid gap-4 w-full pt-2 pb-4">
                 <div className="text-3xl leading-none font-light mt-1.5 w-min" onClick={() => setIsMenuOpen(false)}>
                   ×
                 </div>
@@ -75,16 +76,16 @@ const Header = () => {
             {headerNavigations.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>
                 <NextLink href={headerNav.url} passHref>
-                  <Button as="a" variant="ghost" className="font-semibold">
+                  <GhostButton as="a" size="sm">
                     {headerNav.name}
-                  </Button>
+                  </GhostButton>
                 </NextLink>
               </Fragment>
             ))}
           </div>
         </div>
       </header>
-      <div style={{ minHeight: HEADER_HEIGHT }} />
+      <div className="h-16" />
     </>
   )
 }

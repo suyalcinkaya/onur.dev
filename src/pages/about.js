@@ -2,14 +2,11 @@ import { NextSeo } from 'next-seo'
 import NextImage from 'next/image'
 
 // --- Components
-import Button from 'components/Button'
+import { GhostButton } from 'components/Button'
 import Card from 'components/Card'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
-
-// --- Icons
-// import AboutIcon from 'components/icons/About'
 
 // --- Others
 import { mixtapes, projectData } from 'lib/constants'
@@ -65,13 +62,13 @@ const About = () => (
           <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I create mixtapes and songs.
         </p>
       </div>
-      <hr />
+      <hr className="border-dashed" />
       <div>
         <div className="flex items-center justify-between">
           <h2>Popular Mixtapes</h2>
-          <Button as="a" href="https://soundcloud.com/jagerman" isExternal variant="ghost">
+          <GhostButton as="a" href="https://soundcloud.com/jagerman" isExternal>
             See All &rarr;
-          </Button>
+          </GhostButton>
         </div>
         <div className="space-y-8 mt-8">
           {mixtapes.map((mixtape, mixtapeId) => (
@@ -91,7 +88,7 @@ const About = () => (
           ))}
         </div>
       </div>
-      <hr />
+      <hr className="border-dashed" />
       <div>
         <div className="space-y-4">
           <h2>Projects</h2>
