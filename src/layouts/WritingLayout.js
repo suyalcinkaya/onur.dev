@@ -28,7 +28,7 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
         <PageHeading heading={frontMatter.title} />
         <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
           <div className="flex items-center">
-            <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-200">
+            <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-600">
               <NextImage height={400} width={400} src="/images/og.jpg" alt="Onur Şuyalçınkaya" />
             </div>
             <div className="flex flex-col ml-3">

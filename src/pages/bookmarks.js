@@ -43,14 +43,14 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
           <div className="relative w-full mt-1.5">
             <label
               htmlFor="category"
-              className="absolute top-2 left-4 pl-px text-gray-300 font-display text-xs pointer-events-none"
+              className="absolute top-2 left-4 pl-px text-gray-300 text-xs pointer-events-none"
             >
               Category
             </label>
             <select
               id="category"
               name="category"
-              className="flex justify-center w-full appearance-none font-display leading-tight rounded-md border border-gray-700 shadow-normal px-4 pt-7 pb-2 bg-gray-700 font-medium hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-gray-200 focus:ring-blue-500 cursor-pointer"
+              className="flex justify-center w-full appearance-none leading-tight rounded-md border border-gray-700 shadow-normal px-4 pt-7 pb-2 bg-gray-700 hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-gray-200 focus:ring-blue-500 cursor-pointer"
               onChange={({ target }) => {
                 const selectedIndex = target.options.selectedIndex
                 if (activeIndex !== selectedIndex) setActiveIndex(selectedIndex)

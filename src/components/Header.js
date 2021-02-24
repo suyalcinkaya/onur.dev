@@ -59,7 +59,7 @@ const Header = () => {
                       <a
                         className={
                           router.pathname === mobileMenuNav.url
-                            ? 'rounded-md bg-blue-100 py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3'
+                            ? 'rounded-md bg-gray-700 py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3'
                             : ''
                         }
                         disabled={router.pathname === mobileMenuNav.url}
