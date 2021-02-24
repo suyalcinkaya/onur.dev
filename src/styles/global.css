@@ -44,7 +44,6 @@ body {
 body {
   @apply font-sans leading-slack subpixel-antialiased bg-charcoal;
   color: #e4e5e7;
-  letter-spacing: -0.01em;
 }
 
 #__next {

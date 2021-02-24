@@ -52,7 +52,7 @@ const CurriculumVitae = () => (
                   {experience.stack.map((item, itemIndex) => (
                     <div
                       key={`stack_${itemIndex}`}
-                      className="bg-gray-700 rounded text-xs px-2 py-1 leading-tight mt-2 mr-2"
+                      className="bg-gray-700 text-gray-300 rounded text-xs px-2 py-1 leading-tight mt-2 mr-2 uppercase tracking-wider"
                     >
                       {item}
                     </div>
