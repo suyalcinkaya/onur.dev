@@ -139,8 +139,6 @@ export async function getStaticProps() {
   const readings = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[1]))
   const UIs = data.items.filter((item) => item.collectionId === Number(Object.keys(raindropCollections)[2]))
 
-  console.log('personalSites :>> ', personalSites);
-
   return {
     props: {
       // all,
