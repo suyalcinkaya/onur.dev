@@ -76,7 +76,7 @@ const About = () => (
               key={`mixtape_${mixtapeId}`}
               title={mixtape.title}
               primaryText={
-                <div className="flex space-x-1">
+                <div className="space-x-1">
                   <span>{mixtape.playCount} plays</span>
                   <span>&bull;</span>
                   <span>{mixtape.likeCount} likes</span>

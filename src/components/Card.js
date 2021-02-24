@@ -34,7 +34,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
 
   return (
     <div className="space-y-1.5">
-      {primaryText && <div className="inline-block text-gray-500 text-sm">{primaryText}</div>}
+      {primaryText && <div className="inline text-gray-500 text-sm">{primaryText}</div>}
       <Wrapper
         url={url}
         className={`inline-block ${url ? 'underline-under hover:underline' : ''}`}
@@ -51,7 +51,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
           </span>
         )}
       </Wrapper>
-      {secondaryText && <div className="inline-block text-gray-400 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
+      {secondaryText && <div className="inline text-gray-400 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
     </div>
   )
 }
