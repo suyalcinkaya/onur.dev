@@ -62,7 +62,7 @@ const About = () => (
           <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I create mixtapes and songs.
         </p>
       </div>
-      <hr className="border-dashed" />
+      <hr className="border-dashed border-gray-600" />
       <div>
         <div className="flex items-center justify-between">
           <h2>Popular Mixtapes</h2>
@@ -88,7 +88,7 @@ const About = () => (
           ))}
         </div>
       </div>
-      <hr className="border-dashed" />
+      <hr className="border-dashed border-gray-600" />
       <div>
         <div className="space-y-4">
           <h2>Projects</h2>
