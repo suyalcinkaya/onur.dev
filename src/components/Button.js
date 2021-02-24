@@ -5,7 +5,7 @@ export const OutlineButton = ({ as = 'button', className = '', isExternal, ...ot
   const Tag = as
   return (
     <Tag
-      className={`${commonClassNames} ${className } text-sm h-8 border border-gray-200 bg-white hover:bg-gray-100 px-3 shadow-normal`}
+      className={`${commonClassNames} ${className } text-sm h-8 border border-gray-600 bg-gray-600 hover:bg-gray-500 px-3`}
       {...(as === 'button' && {
         type: 'button'
       })}
@@ -22,7 +22,7 @@ export const GhostButton = ({ as = 'button', className, isExternal, ...others })
   const Tag = as
   return (
     <Tag
-      className={`${commonClassNames} bg-transparent hover:bg-gray-100 px-4 h-10 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50`}
+      className={`${commonClassNames} bg-transparent hover:bg-gray-700 px-4 h-10 focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50`}
       {...(as === 'button' && {
         type: 'button'
       })}

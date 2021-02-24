@@ -34,7 +34,7 @@ export default function Writings({ posts }) {
           heading="Writing"
           description="I've been writing online since 2018, mostly about code, design, and my notions to learn, not to teach."
         />
-        <div className="space-y-8">
+        <div className="space-y-10">
           {posts.map((frontMatter) => (
             <div key={frontMatter.title}>
               <WritingCard {...frontMatter} />

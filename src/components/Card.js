@@ -33,18 +33,18 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
   if (url) isExternal = isExternalLink(url)
 
   return (
-    <div className="space-y-1">
-      {primaryText && <div className="text-gray-400">{primaryText}</div>}
+    <div className="space-y-2">
+      {primaryText && <div className="text-gray-500 text-sm">{primaryText}</div>}
       <Wrapper
         url={url}
-        className={`inline-block${url ? ' underline-under hover:underline' : ''}`}
+        className={`inline-block mt-0.5${url ? ' underline-under hover:underline' : ''}`}
         {...(isExternal && {
           rel: 'noopener noreferrer',
           target: '_blank'
         })}
         {...others}
       >
-        {title}
+        <span className="text-lg">{title}</span>
         {isExternal && (
           <span className="ml-1 inline-block">
             <External height={14} width={14} />

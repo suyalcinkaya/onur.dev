@@ -43,14 +43,14 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
           <div className="relative w-full mt-1.5">
             <label
               htmlFor="category"
-              className="absolute top-2 left-4 pl-px text-gray-400 font-display font-medium text-xs pointer-events-none"
+              className="absolute top-2 left-4 pl-px text-gray-300 font-display text-xs pointer-events-none"
             >
               Category
             </label>
             <select
               id="category"
               name="category"
-              className="flex justify-center w-full appearance-none font-display leading-tight rounded-md border border-gray-300 shadow-normal px-4 pt-7 pb-2 bg-white font-medium hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 cursor-pointer"
+              className="flex justify-center w-full appearance-none font-display leading-tight rounded-md border border-gray-700 shadow-normal px-4 pt-7 pb-2 bg-gray-700 font-medium hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-gray-200 focus:ring-blue-500 cursor-pointer"
               onChange={({ target }) => {
                 const selectedIndex = target.options.selectedIndex
                 if (activeIndex !== selectedIndex) setActiveIndex(selectedIndex)
@@ -78,8 +78,8 @@ const Bookmarks = ({ readings, personalSites, UIs }) => {
               </svg>
             </span>
           </div>
-          <div className="mt-6 w-full">
-            <div className="space-y-6 divide divide-y divide-dashed">
+          <div className="mt-8 w-full">
+            <div className="space-y-6 divide divide-y divide-dashed divide-gray-600">
               {activeIndex === 0 &&
                 personalSites.map((personalSite, personalSiteIndex) => (
                   <div key={`personalSite_${personalSiteIndex}`} className="first:pt-0 pt-6">

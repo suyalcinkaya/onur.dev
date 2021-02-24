@@ -9,7 +9,7 @@ import { GhostButton } from 'components/Button'
 import MenuIcon from 'components/icons/Menu'
 
 // --- Others
-import { HEADER_HEIGHT, MAX_WIDTH, mobileMenuNavigations, headerNavigations } from 'lib/constants'
+import { MAX_WIDTH, mobileMenuNavigations, headerNavigations } from 'lib/constants'
 
 const Header = () => {
   const router = useRouter()
@@ -28,12 +28,12 @@ const Header = () => {
   return (
     <>
       <header
-        className="fixed top-0 inset-x-0 z-10 w-full mx-auto md:border-b"
+        className="fixed top-0 inset-x-0 z-10 w-full mx-auto min-h-16"
         style={{
-          backdropFilter: 'saturate(180%) blur(5px)',
-          WebkitBackdropFilter: 'saturate(180%) blur(5px)',
-          backgroundColor: 'hsla(0, 0%, 100%, 0.8)',
-          minHeight: HEADER_HEIGHT
+          backdropFilter: 'saturate(180%) blur(25px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(25px)',
+          // backgroundColor: 'hsla(0, 0%, 100%, 0.8)',
+          // minHeight: HEADER_HEIGHT
         }}
       >
         <div
@@ -57,11 +57,11 @@ const Header = () => {
                   <Fragment key={`mobileMenuNav_${mobileMenuNavIndex}`}>
                     <NextLink href={mobileMenuNav.url}>
                       <a
-                        className={`font-semibold ${
+                        className={
                           router.pathname === mobileMenuNav.url
                             ? 'rounded-md bg-blue-100 py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3'
                             : ''
-                        }`}
+                        }
                         disabled={router.pathname === mobileMenuNav.url}
                       >
                         {mobileMenuNav.name}

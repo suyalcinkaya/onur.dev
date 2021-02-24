@@ -21,28 +21,28 @@ const MDXComponents = {
   h3: (props) => <DocsHeading as="h3" className="title-link mt-8 mb-2" {...props} />,
   inlineCode: (props) => (
     <code
-      className="font-mono text-sm px-2 py-1 rounded-md"
-      style={{ background: '#FEFCBF', color: '#744210' }}
+      className="font-mono not-italic text-sm px-1.5 py-0.5 rounded-md bg-yellow-300 text-yellow-800"
+      // style={{ background: '#FEFCBF', color: '#744210' }}
       {...props}
     />
   ),
   br: (props) => <div className="h-2" {...props} />,
   hr: (props) => <div className="my-8 border-dashed" {...props} />,
   table: (props) => (
-    <div className="my-8 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-      <table className="min-w-full divide-y divide-gray-200" {...props} />
+    <div className="my-8 shadow overflow-hidden border-2 border-gray-600 sm:rounded-lg">
+      <table className="min-w-full divide-y divide-gray-400" {...props} />
     </div>
   ),
-  thead: (props) => <thead className="bg-gray-50" {...props} />,
-  tbody: (props) => <tbody className="bg-white divide-y divide-gray-200" {...props} />,
+  thead: (props) => <thead className="bg-gray-600" {...props} />,
+  tbody: (props) => <tbody className="bg-gray-400 divide-y divide-gray-600 divide-dashed" {...props} />,
   th: (props) => (
     <th
       scope="col"
-      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+      className="px-6 py-3 text-left text-sm font-medium text-gray-300 tracking-wider"
       {...props}
     />
   ),
-  td: (props) => <td className="text-sm px-6 py-4 whitespace-nowrap" {...props} />,
+  td: (props) => <td className="text-sm text-charcoal px-6 py-4 whitespace-nowrap" {...props} />,
   a: Link,
   p: (props) => <p className="mb-6" {...props} />,
   ul: (props) => <ul className="list-circle list-inside my-4" {...props} />,

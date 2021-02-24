@@ -8,16 +8,7 @@ import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, footerNavigations } from 'lib/c
 
 const Footer = () => (
   <footer>
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#000"
-          fillOpacity="1"
-          d="M0,288L60,272C120,256,240,224,360,208C480,192,600,192,720,208C840,224,960,256,1080,266.7C1200,277,1320,267,1380,261.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </div>
-    <div className="bg-black text-white pb-12 pt-8 lg:pt-4">
+    <div className="bg-black text-white py-12 md:py-20">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: MAX_WIDTH }}>
         <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
           {footerNavigations.map((footerNav, footerNavIndex) => (
@@ -48,7 +39,7 @@ const Footer = () => (
               </a>
             ))}
           </div>
-          <div className="mt-3 text-sm">
+          <div className="mt-3 text-sm md:text-base">
             <span>onur</span>
             <span className="text-gray-400">{' dot '}</span>
             <span>suyalcinkaya</span>

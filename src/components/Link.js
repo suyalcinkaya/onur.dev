@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 // --- Others
 import { isExternalLink } from 'lib/helper'
 
-const className = 'underline-under hover:underline -mb-px pb-px self-start text-primary-default transition-colors'
+const className = 'underline-under hover:underline -mb-px pb-px self-start text-blue-400 transition-colors'
 
 const Link = (props) => {
   const { href } = props

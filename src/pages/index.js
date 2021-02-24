@@ -32,7 +32,7 @@ const Home = () => (
     <div>
       <h2>Recent Writings</h2>
       {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
-      <div className="space-y-8 mt-8">
+      <div className="space-y-10 mt-8">
         <div>
           <BlogPost
             title="2020 — Year in Review"

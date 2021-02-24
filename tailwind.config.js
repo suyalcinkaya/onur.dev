@@ -16,7 +16,7 @@ module.exports = {
         normal: '0 1px 2px rgba(16, 29, 52, .1)'
       },
       colors: {
-        charcoal: '#252F3F',
+        charcoal: '#131415',
         inherit: 'inherit',
         primary: {
           default: '#0070F3',
