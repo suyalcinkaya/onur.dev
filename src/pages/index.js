@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 
 // --- Components
 import BlogPost from 'components/WritingCard'
-import { LinkButton } from 'components/Button'
+import { GhostButton } from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
@@ -30,7 +30,12 @@ const Home = () => (
     />
     <p></p>
     <div>
-      <h2>Recent Writings</h2>
+      <div className="flex items-center justify-between">
+        <h2>Recent Writings</h2>
+        <NextLink href="/writing" passHref>
+          <GhostButton as="a">See All &rarr;</GhostButton>
+        </NextLink>
+      </div>
       {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
       <div className="space-y-10 mt-8">
         <div>
@@ -59,11 +64,6 @@ const Home = () => (
             slug="useFetch-react-hook"
             readingTime={{ minutes: 10 }}
           />
-        </div>
-        <div>
-          <NextLink href="/writing" passHref>
-            <LinkButton>See All Writings &rarr;</LinkButton>
-          </NextLink>
         </div>
       </div>
     </div>

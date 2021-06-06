@@ -45,7 +45,7 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
           <Share title={frontMatter.title} url={`https://onur.dev/writing/${frontMatter.slug}`} />
         </div>
         <div className="mt-16">
-          <div className="prose mb-12">{children}</div>
+          <div className="prose mb-12 text-lg">{children}</div>
           <div className="mb-1">
             <OutlineButton
               as="a"

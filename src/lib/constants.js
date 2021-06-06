@@ -72,90 +72,82 @@ export const mixtapes = [
   }
 ]
 
-export const mobileMenuNavigations = [
-  {
-    url: '/',
-    name: 'Home'
-  },
-  {
-    url: '/writing',
-    name: 'Writing'
-  },
-  {
-    url: '/about',
-    name: 'About'
-  },
-  {
-    url: '/snippets',
-    name: 'Snippets'
-  },
-  {
-    url: '/bookmarks',
-    name: 'Bookmarks'
-  },
-  {
-    url: '/journey',
-    name: 'Journey'
-  },
-  {
-    url: '/cv',
-    name: 'Curriculum Vitae'
-  }
-]
-
-export const headerNavigations = [
-  {
-    url: '/',
-    name: 'Home'
-  },
-  {
-    url: '/writing',
-    name: 'Writing'
-  },
-  {
-    url: '/about',
-    name: 'About'
-  },
-  {
-    url: '/journey',
-    name: 'Journey'
-  },
-  {
-    url: '/bookmarks',
-    name: 'Bookmarks'
-  }
-]
-
-export const footerNavigations = [
-  {
-    url: '/',
-    name: 'Home'
-  },
-  {
-    url: '/about',
-    name: 'About'
-  },
-  {
-    url: '/cv',
-    name: 'Curriculum Vitae'
-  },
-  {
-    url: '/',
-    name: 'Writing'
-  },
-  {
-    url: '/snippets',
-    name: 'Snippets'
-  },
-  {
-    url: '/bookmarks',
-    name: 'Bookmarks'
-  },
-  {
-    url: '/journey',
-    name: 'Journey'
-  }
-]
+export const navigations = {
+  mobile: [
+    {
+      url: '/',
+      name: 'Home'
+    },
+    {
+      url: '/writing',
+      name: 'Writing'
+    },
+    {
+      url: '/about',
+      name: 'About'
+    },
+    {
+      url: '/snippets',
+      name: 'Snippets'
+    },
+    {
+      url: '/journey',
+      name: 'Journey'
+    },
+    {
+      url: '/cv',
+      name: 'Curriculum Vitae'
+    }
+  ],
+  header: [
+    {
+      url: '/',
+      name: 'Home'
+    },
+    {
+      url: '/writing',
+      name: 'Writing'
+    },
+    {
+      url: '/about',
+      name: 'About'
+    },
+    {
+      url: '/journey',
+      name: 'Journey'
+    },
+    {
+      url: '/cv',
+      name: 'Curriculum Vitae'
+    }
+  ],
+  footer: [
+    {
+      url: '/',
+      name: 'Home'
+    },
+    {
+      url: '/about',
+      name: 'About'
+    },
+    {
+      url: '/cv',
+      name: 'Curriculum Vitae'
+    },
+    {
+      url: '/',
+      name: 'Writing'
+    },
+    {
+      url: '/snippets',
+      name: 'Snippets'
+    },
+    {
+      url: '/journey',
+      name: 'Journey'
+    }
+  ]
+}
 
 export const journeyData = [
   {
@@ -397,27 +389,3 @@ export const projectData = [
     description: 'A CSS file emphasizing about possible improvements and errors that exist in HTML semantic elements.'
   }
 ]
-
-/* export const raindropCollections = [
-  {
-    id: 15807897,
-    key: 'readings',
-    name: 'Reading'
-  },
-  {
-    id: 15807896,
-    key: 'personalSites',
-    name: 'Personal Sites'
-  },
-  {
-    id: 15968768,
-    key: 'UIs',
-    name: 'UI'
-  }
-] */
-
-export const raindropCollections = {
-  15807896: 'Personal Sites',
-  15807897: 'Reading',
-  15968768: 'UI'
-}

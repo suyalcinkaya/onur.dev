@@ -1,5 +1,4 @@
 export { default as About } from './About'
-export { default as Bookmarks } from './Bookmarks'
 export { default as Coffee } from './Coffee'
 export { default as Cv } from './Cv'
 export { default as External } from './External'

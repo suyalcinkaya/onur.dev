@@ -4,14 +4,14 @@ import NextLink from 'next/link'
 import { LinkButton } from 'components/Button'
 
 // --- Others
-import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, footerNavigations } from 'lib/constants'
+import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, navigations } from 'lib/constants'
 
 const Footer = () => (
   <footer>
-    <div className="bg-black text-white py-12 md:py-20">
+    <div className="bg-black text-white py-12 md:py-20 border-t border-gray-700">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: MAX_WIDTH }}>
         <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
-          {footerNavigations.map((footerNav, footerNavIndex) => (
+          {navigations.footer.map((footerNav, footerNavIndex) => (
             <NextLink key={`footerNav_${footerNavIndex}`} href={footerNav.url} passHref>
               <LinkButton>{footerNav.name}</LinkButton>
             </NextLink>

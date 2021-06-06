@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import GoogleFonts from 'next-google-fonts'
 
 import { GA_TRACKING_ID } from 'lib/gtag'
 
@@ -13,8 +12,15 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <>
-          <GoogleFonts href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" />
           <Head>
+            <link
+              rel="preload"
+              href="/fonts/Inter-roman.var.woff2"
+              as="font"
+              type="font/woff2"
+              crossOrigin="anonymous"
+            />
+
             {/* Base */}
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />

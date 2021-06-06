@@ -3,13 +3,13 @@ import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 // --- Components
-import { GhostButton } from 'components/Button'
+import { GhostButton, OutlineButton } from 'components/Button'
 
 // --- Icons
 import MenuIcon from 'components/icons/Menu'
 
 // --- Others
-import { MAX_WIDTH, mobileMenuNavigations, headerNavigations } from 'lib/constants'
+import { MAX_WIDTH, navigations } from 'lib/constants'
 
 const Header = () => {
   const router = useRouter()
@@ -31,7 +31,7 @@ const Header = () => {
         className="fixed top-0 inset-x-0 z-10 w-full mx-auto min-h-16"
         style={{
           backdropFilter: 'saturate(180%) blur(25px)',
-          WebkitBackdropFilter: 'saturate(180%) blur(25px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(25px)'
           // backgroundColor: 'hsla(0, 0%, 100%, 0.8)',
           // minHeight: HEADER_HEIGHT
         }}
@@ -53,13 +53,13 @@ const Header = () => {
                 <div className="text-3xl leading-none font-light mt-1.5 w-min" onClick={() => setIsMenuOpen(false)}>
                   ×
                 </div>
-                {mobileMenuNavigations.map((mobileMenuNav, mobileMenuNavIndex) => (
+                {navigations.mobile.map((mobileMenuNav, mobileMenuNavIndex) => (
                   <Fragment key={`mobileMenuNav_${mobileMenuNavIndex}`}>
                     <NextLink href={mobileMenuNav.url}>
                       <a
                         className={
                           router.pathname === mobileMenuNav.url
-                            ? 'rounded-md bg-gray-700 py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3'
+                            ? 'rounded-md py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3 glassmorphism'
                             : ''
                         }
                         disabled={router.pathname === mobileMenuNav.url}
@@ -73,10 +73,10 @@ const Header = () => {
             )}
           </div>
           <div className="hidden md:grid md:grid-flow-col md:my-0 md:place-content-around md:px-0 min-h-20">
-            {headerNavigations.map((headerNav, headerNavIndex) => (
+            {navigations.header.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>
                 <NextLink href={headerNav.url} passHref>
-                  <GhostButton as="a" size="sm">
+                  <GhostButton as="a" size="sm" className={router.pathname === headerNav.url ? 'glassmorphism' : ''}>
                     {headerNav.name}
                   </GhostButton>
                 </NextLink>

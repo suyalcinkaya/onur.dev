@@ -16,7 +16,7 @@ module.exports = {
         normal: '0 1px 2px rgba(16, 29, 52, .1)'
       },
       colors: {
-        charcoal: '#131415',
+        charcoal: '#111318',
         inherit: 'inherit',
         primary: {
           default: '#0070F3',
@@ -24,7 +24,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Quattro', ...fontFamily.sans],
+        sans: ['Inter', ...fontFamily.sans],
         display: ['Inter', ...fontFamily.sans]
       },
       fontSize: {

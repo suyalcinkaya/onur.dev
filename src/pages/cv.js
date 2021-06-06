@@ -33,34 +33,36 @@ const CurriculumVitae = () => (
     />
     <Layout>
       <PageHeading heading="Curriculum Vitae" />
-      <div className="divide-y divide-dashed space-y-8">
+      <div className="divide-y divide-gray-700 space-y-8">
         <div className="space-y-8 mt-8">
           <h2 className="text-2xl font-bold">Work Experience</h2>
-          {cvData.experiences.map((experience, experienceIndex) => (
-            <div key={`experience_${experienceIndex}`} className="space-y-2">
-              <Card
-                title={`${experience.title} @ ${experience.company}`}
-                primaryText={`${experience.startDate} — ${experience.endDate}`}
-                secondaryText={experience.location}
-                url={experience.url}
-              />
-              {experience.descriptions.map((description, descriptionIndex) => (
-                <p key={`description_${descriptionIndex}`}>{description}</p>
-              ))}
-              {experience.stack?.length > 0 && (
-                <div className="flex flex-wrap">
-                  {experience.stack.map((item, itemIndex) => (
-                    <div
-                      key={`stack_${itemIndex}`}
-                      className="bg-gray-700 text-gray-300 rounded text-xs px-2 py-1 leading-tight mt-2 mr-2 uppercase tracking-wider"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          <div className="divide-y divide-dashed divide-gray-700 space-y-8">
+            {cvData.experiences.map((experience, experienceIndex) => (
+              <div key={`experience_${experienceIndex}`} className="space-y-4 pt-6">
+                <Card
+                  title={`${experience.title} @ ${experience.company}`}
+                  primaryText={`${experience.startDate} — ${experience.endDate}`}
+                  secondaryText={experience.location}
+                  url={experience.url}
+                />
+                {experience.descriptions.map((description, descriptionIndex) => (
+                  <p key={`description_${descriptionIndex}`}>{description}</p>
+                ))}
+                {experience.stack?.length > 0 && (
+                  <div className="flex flex-wrap">
+                    {experience.stack.map((item, itemIndex) => (
+                      <div
+                        key={`stack_${itemIndex}`}
+                        className="bg-[#18191a] text-gray-300 glassmorphism rounded text-xs px-2 py-1 mt-2 mr-2 uppercase tracking-wider"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
         <div className="pt-8">
           <h2 className="text-2xl font-bold">Education</h2>

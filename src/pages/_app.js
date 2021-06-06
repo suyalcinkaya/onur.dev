@@ -15,8 +15,6 @@ import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
 
 // --- Styles
-import 'styles/tailwind.css'
-import 'tailwindcss/utilities.css'
 import 'styles/global.css'
 
 function App({ Component, pageProps, router }) {
