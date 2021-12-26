@@ -59,7 +59,7 @@ const Header = () => {
                       <a
                         className={
                           router.pathname === mobileMenuNav.url
-                            ? 'rounded-md py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3 glassmorphism'
+                            ? 'rounded-md py-2 px-2 sm:px-3 -my-2 -mx-2 sm:-mx-3'
                             : ''
                         }
                         disabled={router.pathname === mobileMenuNav.url}
@@ -76,7 +76,7 @@ const Header = () => {
             {navigations.header.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>
                 <NextLink href={headerNav.url} passHref>
-                  <GhostButton as="a" size="sm" className={router.pathname === headerNav.url ? 'glassmorphism' : ''}>
+                  <GhostButton as="a" size="sm" className={router.pathname === headerNav.url ? '' : ''}>
                     {headerNav.name}
                   </GhostButton>
                 </NextLink>

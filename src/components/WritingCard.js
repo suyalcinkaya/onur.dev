@@ -12,15 +12,14 @@ const WritingCard = ({ title, summary, slug, publishedAt, readingTime }) => {
   return (
     <Card
       title={title}
-      primaryText={
+      secondaryText={
         <>
           <time dateTime={publishedAt}>{tinytime('{MM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
           <span className="ml-1">&bull;</span>
           <span className="ml-1">{readingDuration}</span>
         </>
       }
-      secondaryText={summary}
-      url={`/writing/${slug}`}
+      url={`/blog/${slug}`}
     />
   )
 }

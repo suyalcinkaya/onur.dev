@@ -20,7 +20,7 @@ const WritingLayout = ({ frontMatter, children, ...others }) => {
 
   return (
     <LayoutCmp {...others}>
-      <BlogSeo url={`https://onur.dev/${readingTime.slug}`} {...frontMatter} />
+      <BlogSeo url={`https://onur.dev/${frontMatter.slug}`} {...frontMatter} />
       <article>
         <NextLink href="/writing">
           <LinkButton className="mb-3 text-gray-400">&larr; Writing</LinkButton>

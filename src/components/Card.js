@@ -51,7 +51,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
           </span>
         )}
       </Wrapper>
-      {secondaryText && <div className="text-gray-400 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
+      {secondaryText && <div className="text-gray-500 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
     </div>
   )
 }

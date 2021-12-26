@@ -13,9 +13,10 @@ module.exports = withPlugins(
   {
     trailingSlash: false,
     images: {
+      domains: ['images.ctfassets.net', 'assets.ctfassets.net'],
       deviceSizes: [320, 375, 768, 1024, 1280]
     },
-    future: { webpack5: true },
+    // future: { webpack5: true },
     async redirects() {
       return [
         /* {
