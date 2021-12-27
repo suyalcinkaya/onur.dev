@@ -1,11 +1,12 @@
 import { NextSeo } from 'next-seo'
+import tinytime from 'tinytime'
 
 // --- Components
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 import Card from 'components/Card'
 
-// --- Other
+// --- Others
 import { getAllPosts } from 'lib/contentful'
 import { ogImageUrl } from 'lib/helper'
 
@@ -33,7 +34,16 @@ export default function Blog({ allPosts }) {
         <PageHeading heading="Blog" />
         <div className="space-y-10">
           {allPosts.map((post) => (
-            <Card key={post.slug} title={post.title} description={post.description} url={`/blog/${post.slug}`} />
+            <Card
+              key={post.slug}
+              title={post.title}
+              description={
+                <time dateTime={post.date || post.sys.firstPublishedAt}>
+                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.firstPublishedAt))}
+                </time>
+              }
+              url={`/blog/${post.slug}`}
+            />
           ))}
         </div>
       </Layout>
@@ -43,6 +53,7 @@ export default function Blog({ allPosts }) {
 
 export async function getStaticProps({ preview = false }) {
   const allPosts = (await getAllPosts(null, preview)) ?? []
+
   return {
     props: { allPosts }
   }

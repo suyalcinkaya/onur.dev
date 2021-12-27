@@ -1,11 +1,13 @@
 import NextLink from 'next/link'
 import ErrorPage from 'next/error'
 
+// --- Components
 import { LinkButton } from 'components/Button'
 import CodeBlock from 'components/CodeBlock'
 import Layout from 'components/Layout'
 import Share from 'components/Share'
 
+// --- Others
 import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
 
 export default function Snippet({ codeSnippet, preview }) {

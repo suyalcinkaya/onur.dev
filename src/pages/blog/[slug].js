@@ -3,18 +3,20 @@ import NextLink from 'next/link'
 import ErrorPage from 'next/error'
 import tinytime from 'tinytime'
 
+// --- Components
 import { LinkButton } from 'components/Button'
-import LayoutCmp from 'components/Layout'
+import Layout from 'components/Layout'
 import RichText from 'components/RichText'
 import Share from 'components/Share'
 
+// --- Others
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post, preview }) {
   if (!post) return <ErrorPage statusCode={404} />
 
   return (
-    <LayoutCmp preview={preview}>
+    <Layout preview={preview}>
       <article>
         <NextLink href="/blog">
           <LinkButton className="mb-3 text-gray-400">&larr; Blog</LinkButton>
@@ -40,7 +42,7 @@ export default function Post({ post, preview }) {
         </div>
         <RichText content={post.content} />
       </article>
-    </LayoutCmp>
+    </Layout>
   )
 }
 

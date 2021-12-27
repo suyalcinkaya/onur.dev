@@ -7,10 +7,7 @@ import Link from 'components/Link'
 const DynamicCodeBlock = dynamic(() => import('components/CodeBlock'))
 
 function options(links) {
-  console.log(`links`, links)
-
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
-
   const findInlineEntry = (id) => links?.entries.inline.find((item) => item.sys.id === id)
 
   return {
@@ -59,7 +56,6 @@ function options(links) {
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
-        console.log(`entry`, entry)
 
         switch (entry.__typename) {
           case 'ContentEmbed':
@@ -118,10 +114,7 @@ function options(links) {
 }
 
 const RichText = ({ content }) => {
-  console.log(`content`, content)
-
-  const { json: document, links } = content
-  return documentToReactComponents(document, options(links))
+  return documentToReactComponents(content?.json, options(content?.links))
 }
 
 export default RichText

@@ -5,7 +5,7 @@ import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
 import Card from 'components/Card'
 
-// --- Other
+// --- Others
 import { getAllCodeSnippets } from 'lib/contentful'
 import { ogImageUrl } from 'lib/helper'
 

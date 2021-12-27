@@ -13,8 +13,6 @@ const url = 'https://onur.dev/journey'
 const title = 'Journey — Onur Şuyalçınkaya'
 
 const Journey = ({ allLogbook }) => {
-  console.log(`allLogbook`, allLogbook)
-
   return (
     <>
       <NextSeo

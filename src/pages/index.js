@@ -8,11 +8,11 @@ import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
 
+// --- Others
 import { getAllPosts } from 'lib/contentful'
+import { mixtapes, projectData } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
-  console.log(`recentPosts`, recentPosts)
-
   return (
     <Layout>
       <PageHeading
@@ -34,27 +34,62 @@ export default function Home({ recentPosts }) {
           </>
         }
       />
-      <div>
-        <div className="flex items-center justify-between border-b border-gray-200">
-          <h3>Recent Posts</h3>
-          <NextLink href="/blog" passHref>
-            <GhostButton as="a">See All &rarr;</GhostButton>
-          </NextLink>
+      <div className="space-y-16">
+        <div>
+          <div className="flex items-center justify-between border-b border-gray-200">
+            <h3>Recent Posts</h3>
+            <NextLink href="/blog" passHref>
+              <GhostButton as="a">See All &rarr;</GhostButton>
+            </NextLink>
+          </div>
+          {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
+          <div className="space-y-10 mt-8">
+            {recentPosts.map((post) => (
+              <Card
+                key={post.slug}
+                title={post.title}
+                description={
+                  <time dateTime={post.date || post.sys.firstPublishedAt}>
+                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.firstPublishedAt))}
+                  </time>
+                }
+                url={`/blog/${post.slug}`}
+              />
+            ))}
+          </div>
         </div>
-        {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
-        <div className="space-y-10 mt-8">
-          {recentPosts.map((post) => (
-            <Card
-              key={post.slug}
-              title={post.title}
-              description={
-                <time dateTime={post.date || post.sys.firstPublishedAt}>
-                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.firstPublishedAt))}
-                </time>
-              }
-              url={`/blog/${post.slug}`}
-            />
-          ))}
+        <div>
+          <div className="flex items-center justify-between border-b border-gray-200">
+            <h3>Popular Mixtapes</h3>
+            <GhostButton as="a" href="https://soundcloud.com/jagerman" isExternal>
+              See All &rarr;
+            </GhostButton>
+          </div>
+          <div className="space-y-8 mt-8">
+            {mixtapes.map((mixtape, mixtapeId) => (
+              <Card
+                key={`mixtape_${mixtapeId}`}
+                title={mixtape.title}
+                description={mixtape.description}
+                url={mixtape.url}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <div className="flex items-center justify-between border-b border-gray-200">
+            <h3>Some Projects</h3>
+            <GhostButton as="a" href="https://github.com/suyalcinkaya?tab=repositories" isExternal>
+              See All &rarr;
+            </GhostButton>
+          </div>
+          <div className="space-y-8 mt-8">
+            {projectData.map((project, projectId) => (
+              <div key={`project_${projectId}`}>
+                <Card title={project.name} description={project.description} url={project.url} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Layout>
@@ -63,6 +98,7 @@ export default function Home({ recentPosts }) {
 
 export async function getStaticProps({ preview = false }) {
   const recentPosts = (await getAllPosts(3, preview)) ?? []
+
   return {
     props: { recentPosts }
   }
