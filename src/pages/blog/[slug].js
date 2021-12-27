@@ -1,6 +1,6 @@
 import NextImage from 'next/image'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+
 import ErrorPage from 'next/error'
 import tinytime from 'tinytime'
 
@@ -12,11 +12,7 @@ import Share from 'components/Share'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post, preview }) {
-  const router = useRouter()
-
-  if (!router.isFallback && !post) {
-    return <ErrorPage statusCode={404} />
-  }
+  if (!post) return <ErrorPage statusCode={404} />
 
   return (
     <LayoutCmp preview={preview}>
