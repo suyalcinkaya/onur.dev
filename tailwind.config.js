@@ -25,8 +25,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', ...fontFamily.sans],
-        display: ['Inter', ...fontFamily.sans]
+        sans: ['Untitled Sans', ...fontFamily.sans]
       },
       fontSize: {
         xxs: '.675rem',

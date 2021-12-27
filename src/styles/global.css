@@ -34,7 +34,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-display font-medium;
+  @apply font-medium;
 }
 
 h2 {

@@ -28,13 +28,12 @@ const Wrapper = ({ url = undefined, children, ...others }) => {
   )
 }
 
-const Card = ({ title, primaryText, secondaryText, url = undefined, ...others }) => {
+const Card = ({ title, description, url = undefined, ...others }) => {
   let isExternal = false
   if (url) isExternal = isExternalLink(url)
 
   return (
     <div className="space-y-1.5">
-      {primaryText && <div className="inline text-gray-500 text-sm">{primaryText}</div>}
       <Wrapper
         url={url}
         className={`inline-block ${url ? 'underline-under hover:underline' : ''}`}
@@ -51,7 +50,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
           </span>
         )}
       </Wrapper>
-      {secondaryText && <div className="text-gray-500 overflow-hidden md:line-clamp-2">{secondaryText}</div>}
+      {description && <div className="text-gray-500 overflow-hidden md:line-clamp-2">{description}</div>}
     </div>
   )
 }

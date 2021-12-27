@@ -51,7 +51,7 @@ const Journey = () => (
                     </span>
                   </div>
                   <div className="flex-grow pl-4">
-                    <Card title={item.title} secondaryText={item.description} />
+                    <Card title={item.title} description={item.description} />
                   </div>
                 </div>
               ))}

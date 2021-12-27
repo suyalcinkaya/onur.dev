@@ -74,14 +74,7 @@ const About = () => (
             <Card
               key={`mixtape_${mixtapeId}`}
               title={mixtape.title}
-              primaryText={
-                <div className="space-x-1">
-                  <span>{mixtape.playCount} plays</span>
-                  <span>&bull;</span>
-                  <span>{mixtape.likeCount} likes</span>
-                </div>
-              }
-              secondaryText={mixtape.description}
+              description={mixtape.description}
               url={mixtape.url}
             />
           ))}
@@ -97,7 +90,7 @@ const About = () => (
         <div className="space-y-8 mt-8">
           {projectData.map((project, projectId) => (
             <div key={`project_${projectId}`}>
-              <Card title={project.name} secondaryText={project.description} url={project.url} />
+              <Card title={project.name} description={project.description} url={project.url} />
             </div>
           ))}
         </div>

@@ -44,31 +44,23 @@ export const profiles = [
 export const mixtapes = [
   {
     title: 'Summer Sax',
-    description: 'Melodic Saxophone Deep House Summer Mix',
-    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0',
-    playCount: '10M',
-    likeCount: '50K'
+    description: '10M plays • 50K likes',
+    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0'
   },
   {
     title: 'Sax On Fire',
-    description: 'Melodic Saxophone Deep House Summer Mix',
-    url: 'https://soundcloud.com/jagerman/saxonfire',
-    playCount: '1.36M',
-    likeCount: '33.6K'
+    description: '1.36M plays • 33.6K likes',
+    url: 'https://soundcloud.com/jagerman/saxonfire'
   },
   {
     title: 'Casablanca',
-    description: 'Soulful Deep House Mix',
-    url: 'https://soundcloud.com/jagerman/casablanca',
-    playCount: '113K',
-    likeCount: '2.8K'
+    description: '113K plays • 2.8K likes',
+    url: 'https://soundcloud.com/jagerman/casablanca'
   },
   {
     title: 'I Wanna Live Not Just Survive',
-    description: 'Deep House Mixtape',
-    url: 'https://soundcloud.com/jagerman/i-wanna-live-not-just-survive',
-    playCount: '10K',
-    likeCount: '300'
+    description: '10K plays • 300 likes',
+    url: 'https://soundcloud.com/jagerman/i-wanna-live-not-just-survive'
   }
 ]
 

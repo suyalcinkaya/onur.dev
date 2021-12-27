@@ -7,7 +7,7 @@ const WritingCard = ({ title, slug, publishedAt }) => {
   return (
     <Card
       title={title}
-      secondaryText={
+      description={
         <time dateTime={publishedAt}>{tinytime('{MMMM} {DD}, {YYYY}').render(new Date(publishedAt))}</time>
       }
       url={`/blog/${slug}`}
