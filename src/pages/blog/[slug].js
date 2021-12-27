@@ -11,39 +11,6 @@ import Share from 'components/Share'
 
 import { getPost, getAllPosts } from 'lib/contentful'
 
-/* import { MDXRemote } from 'next-mdx-remote'
-
-import { getFiles, getFileBySlug } from 'lib/mdx'
-import WritingLayout from 'layouts/WritingLayout'
-import MDXComponents from 'components/MDXComponents' */
-
-/* export default function WritingSlug({ mdxSource, frontMatter }) {
-  return (
-    <WritingLayout frontMatter={frontMatter}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
-    </WritingLayout>
-  )
-}
-
-export async function getStaticPaths() {
-  const posts = await getFiles('writing')
-
-  return {
-    paths: posts.map((p) => ({
-      params: {
-        slug: p.replace(/\.mdx/, '')
-      }
-    })),
-    fallback: false
-  }
-}
-
-export async function getStaticProps({ params }) {
-  const post = await getFileBySlug('writing', params.slug)
-
-  return { props: post }
-} */
-
 export default function Post({ post, preview }) {
   console.log(`post`, post)
   const router = useRouter()
@@ -55,8 +22,8 @@ export default function Post({ post, preview }) {
   return (
     <LayoutCmp preview={preview}>
       <article>
-        <NextLink href="/posts">
-          <LinkButton className="mb-3 text-gray-400">&larr; Posts</LinkButton>
+        <NextLink href="/blog">
+          <LinkButton className="mb-3 text-gray-400">&larr; Blog</LinkButton>
         </NextLink>
         <div className="mb-12">
           <h1 className="text-3xl mb-4">{post.title}</h1>

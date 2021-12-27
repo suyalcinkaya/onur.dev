@@ -33,7 +33,7 @@ const About = () => (
     />
     <Layout>
       <PageHeading heading="About Me" />
-      <div>
+      <div className="mb-12">
         <div className="float-left mt-3 mr-4" style={{ shapeOutside: 'circle(50%)' }}>
           <NextImage
             className="rounded-full overflow-hidden"
@@ -48,11 +48,11 @@ const About = () => (
           solve problems and dabbles in design with a strong sense of aesthetics. Currently living in Berlin, Germany
           and developing things at <Link href="https://hey.car">heycar</Link>. Previously, I worked as a Frontend
           Engineer at Yemeksepeti, Full Stack Developer at Sistas, Mobile Developer at Tanbula and Specialist at Apple.
-          I was born in in Ankara—the capital city of Turkey—, grew up in Istanbul and went to Doğuş University,
+          I was born in in Ankara (the capital city of Turkey) grew up in Istanbul and went to Doğuş University,
           graduating with a degree in Computer Engineering. I'm contributing to open source, sharing everything I know
           through <Link href="/">my blog</Link> and <Link href="https://suyalcinkaya.medium.com">Medium</Link>. When I’m
           not nerding out, I'm <Link href="https://soundcloud.com/jagerman">DJing</Link>, doing bodybuilding, playing
-          Football Manager since 2000, watching Besiktas 🦅 —my favorite team— matches and enjoying time with friends
+          Football Manager since 2000, watching Besiktas 🦅 (my favorite team) matches and enjoying time with friends
           and family.
         </p>
         <br />
@@ -62,10 +62,9 @@ const About = () => (
           <Link href="https://soundcloud.com/jagerman">Soundcloud</Link> where I create mixtapes and songs.
         </p>
       </div>
-      <hr className="border-dashed border-gray-700" />
-      <div>
-        <div className="flex items-center justify-between">
-          <h2>Popular Mixtapes</h2>
+      <div className="mb-12">
+        <div className="flex items-center justify-between border-b border-gray-200">
+          <h3>Popular Mixtapes</h3>
           <GhostButton as="a" href="https://soundcloud.com/jagerman" isExternal>
             See All &rarr;
           </GhostButton>
@@ -88,11 +87,12 @@ const About = () => (
           ))}
         </div>
       </div>
-      <hr className="border-dashed border-gray-700" />
       <div>
-        <div className="space-y-4">
-          <h2>Projects</h2>
-          <p>Small just-for-fun weekend open source projects/works I've been working on.</p>
+        <div className="flex items-center justify-between border-b border-gray-200">
+          <h3>Projects</h3>
+          <GhostButton as="a" href="https://github.com/suyalcinkaya?tab=repositories" isExternal>
+            See All &rarr;
+          </GhostButton>
         </div>
         <div className="space-y-8 mt-8">
           {projectData.map((project, projectId) => (

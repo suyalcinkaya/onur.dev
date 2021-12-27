@@ -26,6 +26,7 @@ function App({ Component, pageProps, router }) {
       window.scrollTo(0, 0) // because nextRouter.push(...) doesn't scroll to top
     }
     nextRouter.events.on('routeChangeComplete', handleRouteChange)
+
     return () => {
       nextRouter.events.off('routeChangeComplete', handleRouteChange)
     }

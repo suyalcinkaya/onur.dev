@@ -37,7 +37,7 @@ const Card = ({ title, primaryText, secondaryText, url = undefined, ...others })
       {primaryText && <div className="inline text-gray-500 text-sm">{primaryText}</div>}
       <Wrapper
         url={url}
-        className={`block ${url ? 'underline-under hover:underline' : ''}`}
+        className={`inline-block ${url ? 'underline-under hover:underline' : ''}`}
         {...(isExternal && {
           rel: 'noopener noreferrer',
           target: '_blank'

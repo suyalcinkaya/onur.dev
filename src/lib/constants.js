@@ -73,40 +73,14 @@ export const mixtapes = [
 ]
 
 export const navigations = {
-  mobile: [
-    {
-      url: '/',
-      name: 'Home'
-    },
-    {
-      url: '/writing',
-      name: 'Writing'
-    },
-    {
-      url: '/about',
-      name: 'About'
-    },
-    {
-      url: '/snippets',
-      name: 'Snippets'
-    },
-    {
-      url: '/journey',
-      name: 'Journey'
-    },
-    {
-      url: '/cv',
-      name: 'Curriculum Vitae'
-    }
-  ],
   header: [
     {
       url: '/',
       name: 'Home'
     },
     {
-      url: '/writing',
-      name: 'Writing'
+      url: '/blog',
+      name: 'Blog'
     },
     {
       url: '/about',
@@ -115,10 +89,6 @@ export const navigations = {
     {
       url: '/journey',
       name: 'Journey'
-    },
-    {
-      url: '/cv',
-      name: 'Curriculum Vitae'
     }
   ],
   footer: [
@@ -135,8 +105,8 @@ export const navigations = {
       name: 'Curriculum Vitae'
     },
     {
-      url: '/',
-      name: 'Writing'
+      url: '/blog',
+      name: 'Blog'
     },
     {
       url: '/snippets',
@@ -340,8 +310,7 @@ export const cvData = {
       name: 'PSM-1',
       issuedBy: 'Scrum.org',
       date: '2018',
-      url:
-        'https://www.linkedin.com/in/suyalcinkaya/detail/overlay-view/urn:li:fsd_profileTreasuryMedia:(ACoAAAqCHzcBG8Or0xzHiZ5ukO_cvYq1B1VGCBs,1580969288770)/'
+      url: 'https://www.linkedin.com/in/suyalcinkaya/detail/overlay-view/urn:li:fsd_profileTreasuryMedia:(ACoAAAqCHzcBG8Or0xzHiZ5ukO_cvYq1B1VGCBs,1580969288770)/'
     },
     {
       name: 'Global Retail Training',

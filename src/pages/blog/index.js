@@ -1,18 +1,18 @@
 import { NextSeo } from 'next-seo'
 
 // --- Components
-import WritingCard from 'components/WritingCard'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
+import BlogPost from 'components/WritingCard'
 
 // --- Other
-import { getAllFilesFrontMatter } from 'lib/mdx'
+import { getAllPosts } from 'lib/contentful'
 import { ogImageUrl } from 'lib/helper'
 
-const url = 'https://onur.dev/writing'
-const title = 'Writing — Onur Şuyalçınkaya'
+const url = 'https://onur.dev/blog'
+const title = 'Blog — Onur Şuyalçınkaya'
 
-export default function Writings({ posts }) {
+export default function Blog({ allPosts }) {
   return (
     <>
       <NextSeo
@@ -23,21 +23,24 @@ export default function Writings({ posts }) {
           title,
           images: [
             {
-              url: ogImageUrl('**Writing**'),
+              url: ogImageUrl('**Blog**'),
               alt: title
             }
           ]
         }}
       />
       <Layout>
-        <PageHeading
-          heading="Writing"
-          description="I've been writing online since 2018, mostly about code, design, and my notions to learn, not to teach."
-        />
+        <PageHeading heading="Blog" />
         <div className="space-y-10">
-          {posts.map((frontMatter) => (
-            <div key={frontMatter.title}>
-              <WritingCard {...frontMatter} />
+          {allPosts.map((post) => (
+            <div key={post.slug}>
+              <BlogPost
+                title={post.title}
+                summary={post.description}
+                publishedAt={post.date || post.sys.firstPublishedAt}
+                slug={post.slug}
+                readingTime={{ minutes: 10 }}
+              />
             </div>
           ))}
         </div>
@@ -46,9 +49,9 @@ export default function Writings({ posts }) {
   )
 }
 
-export async function getStaticProps() {
-  const data = await getAllFilesFrontMatter('writing')
-  const posts = data.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
-
-  return { props: { posts } }
+export async function getStaticProps({ preview = false }) {
+  const allPosts = (await getAllPosts(undefined, preview)) ?? []
+  return {
+    props: { allPosts }
+  }
 }

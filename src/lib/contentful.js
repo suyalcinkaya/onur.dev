@@ -1,5 +1,3 @@
-import readingTime from 'reading-time'
-
 async function fetchGraphQL(query, preview = false) {
   return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
@@ -13,10 +11,10 @@ async function fetchGraphQL(query, preview = false) {
   }).then((response) => response.json())
 }
 
-export async function getAllPosts(preview = false) {
+export async function getAllPosts(limit = 10, preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
+      postCollection(order: date_DESC, preview: ${preview}, limit: ${limit}) {
         items {
           title
           description

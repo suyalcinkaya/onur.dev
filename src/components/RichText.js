@@ -35,9 +35,7 @@ function options(links) {
       [BLOCKS.OL_LIST]: (node, children) => <ol className="list-decimal list-inside pl-4 mb-6">{children}</ol>,
       [BLOCKS.LIST_ITEM]: (node, children) => <li className="mb-2 last:mb-0">{children}</li>,
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="pl-4 my-6 last:my-0 border-l-4 border-gray-200 bg-transparent">
-          {children}
-        </blockquote>
+        <blockquote className="pl-4 my-6 last:my-0 border-l-4 border-gray-200 bg-transparent">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)
@@ -73,6 +71,21 @@ function options(links) {
                     allowFullScreen
                     className="w-full aspect-video rounded-lg shadow-lg"
                   />
+                )
+              }
+              case 'Github': {
+                return (
+                  <>
+                    <script async src="//cdn.iframe.ly/embed.js" charSet="utf-8"></script>
+                    <div className="iframely-embed">
+                      <div className="iframely-responsive" style={{ paddingBottom: '50%', paddingTop: '120px' }}>
+                        <a href={entry.embedUrl} data-iframely-url="//cdn.iframe.ly/2VgWF1e"></a>
+                      </div>
+                      {entry.title && (
+                        <span className="grid place-center w-full text-sm text-gray-500">{entry.title}</span>
+                      )}
+                    </div>
+                  </>
                 )
               }
               case 'Tweet': {

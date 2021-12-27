@@ -34,7 +34,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-display font-bold;
+  @apply font-display font-medium;
 }
 
 h2 {
@@ -151,7 +151,7 @@ pre[class*='language-'] {
 }
 
 .code-title {
-  @apply flex py-3 px-4 rounded-t-lg text-sm mb-0 mt-4 w-full bg-gray-100 border border-gray-300;
+  @apply flex py-3 px-4 rounded-t-lg text-sm font-semibold mb-0 mt-4 w-full bg-gray-100 border border-gray-300;
 }
 
 :not(pre) > code[class*='language-'],
@@ -256,7 +256,7 @@ pre[class*='language-'] {
 }
 
 .language-css .token.atrule {
-  @apply text-white;
+  @apply text-gray-700;
 }
 
 .language-css .token.rule {
