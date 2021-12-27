@@ -124,7 +124,7 @@ img {
 
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply text-xs md:text-sm leading-slacker md:leading-slack w-full text-left break-normal whitespace-pre rounded-lg;
+  @apply text-sm leading-slack w-full text-left break-normal whitespace-pre rounded-lg;
 }
 
 /* Code blocks */

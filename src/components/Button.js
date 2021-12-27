@@ -5,7 +5,7 @@ export const OutlineButton = ({ as = 'button', className = '', isExternal, ...ot
   const Tag = as
   return (
     <Tag
-      className={`${commonClassNames} ${className} text-sm h-8 hover:bg-gray-100 px-3`}
+      className={`${commonClassNames} ${className} text-sm h-8 bg-gray-100 hover:bg-gray-200 px-3`}
       {...(as === 'button' && {
         type: 'button'
       })}

@@ -12,7 +12,6 @@ import Share from 'components/Share'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post, preview }) {
-  console.log(`post`, post)
   const router = useRouter()
 
   if (!router.isFallback && !post) {
@@ -36,10 +35,8 @@ export default function Post({ post, preview }) {
                 <p className="font-medium">Onur Şuyalçınkaya</p>
                 <p className="text-sm text-gray-400">
                   <time dateTime={post.date || post.sys.publishedAt}>
-                    {tinytime('{MM} {DD}, {YYYY}').render(new Date(post.date || post.sys.publishedAt))}
+                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.publishedAt))}
                   </time>
-                  {' • '}
-                  10 minutes
                 </p>
               </div>
             </div>
