@@ -15,9 +15,16 @@ class MyDocument extends Document {
           <Head>
             <link
               rel="preload"
-              href="/fonts/untitled-sans-regular.woff2"
+              href="/fonts/UntitledSansWeb-Regular.woff2"
               as="font"
               type="font/woff2"
+              crossOrigin="anonymous"
+            />
+            <link
+              rel="preload"
+              href="/fonts/UntitledSansWeb-Regular.woff"
+              as="font"
+              type="font/woff"
               crossOrigin="anonymous"
             />
 

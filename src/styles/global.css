@@ -6,11 +6,24 @@
   .underline-under {
     text-underline-position: under;
   }
+
+  .slashed-zero {
+    font-variant-numeric: slashed-zero;
+  }
 }
 
 /**
  * Global
  */
+
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSansWeb-Regular.woff2') format('woff2'),
+    url('/fonts/UntitledSansWeb-Regular.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
 ::selection {
   @apply bg-gray-300 text-black;
