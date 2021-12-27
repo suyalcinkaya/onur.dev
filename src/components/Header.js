@@ -25,11 +25,7 @@ const Header = () => {
             {navigations.header.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>
                 <NextLink href={headerNav.url} passHref>
-                  <GhostButton
-                    as="a"
-                    size="sm"
-                    className={`${router.pathname === headerNav.url ? 'font-semibold' : ''}`}
-                  >
+                  <GhostButton as="a" size="sm" className={`${router.pathname === headerNav.url ? 'font-medium' : ''}`}>
                     {headerNav.name}
                   </GhostButton>
                 </NextLink>

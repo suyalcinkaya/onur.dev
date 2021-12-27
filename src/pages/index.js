@@ -1,7 +1,8 @@
 import NextLink from 'next/link'
+import tinytime from 'tinytime'
 
 // --- Components
-import BlogPost from 'components/WritingCard'
+import Card from 'components/Card'
 import { GhostButton } from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
@@ -43,15 +44,16 @@ export default function Home({ recentPosts }) {
         {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
         <div className="space-y-10 mt-8">
           {recentPosts.map((post) => (
-            <div key={post.slug}>
-              <BlogPost
-                title={post.title}
-                summary={post.description}
-                publishedAt={post.date || post.sys.firstPublishedAt}
-                slug={post.slug}
-                readingTime={{ minutes: 10 }}
-              />
-            </div>
+            <Card
+              key={post.slug}
+              title={post.title}
+              description={
+                <time dateTime={post.date || post.sys.firstPublishedAt}>
+                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.firstPublishedAt))}
+                </time>
+              }
+              url={`/blog/${post.slug}`}
+            />
           ))}
         </div>
       </div>

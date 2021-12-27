@@ -22,9 +22,16 @@ class MyDocument extends Document {
             />
             <link
               rel="preload"
-              href="/fonts/UntitledSansWeb-Regular.woff"
+              href="/fonts/UntitledSansWeb-Medium.woff2"
               as="font"
-              type="font/woff"
+              type="font/woff2"
+              crossOrigin="anonymous"
+            />
+            <link
+              rel="preload"
+              href="/fonts/UntitledSansWeb-Bold.woff2"
+              as="font"
+              type="font/woff2"
               crossOrigin="anonymous"
             />
 

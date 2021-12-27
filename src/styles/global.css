@@ -18,10 +18,25 @@
 
 @font-face {
   font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSansWeb-Regular.woff2') format('woff2'),
-    url('/fonts/UntitledSansWeb-Regular.woff') format('woff');
+  src: url('/fonts/UntitledSansWeb-Regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSansWeb-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSansWeb-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
   font-display: swap;
 }
 
@@ -47,7 +62,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-medium;
+  @apply font-normal;
 }
 
 h2 {
@@ -164,7 +179,7 @@ pre[class*='language-'] {
 }
 
 .code-title {
-  @apply flex py-3 px-4 rounded-t-lg text-sm font-semibold mb-0 mt-4 w-full bg-gray-100 border border-gray-300;
+  @apply flex py-3 px-4 rounded-t-lg text-sm font-medium mb-0 mt-4 w-full bg-gray-100 border border-gray-300;
 }
 
 :not(pre) > code[class*='language-'],
@@ -265,7 +280,7 @@ pre[class*='language-'] {
 
 .language-css .token.property,
 .language-css .token.punctuation {
-  @apply text-white;
+  /* @apply text-white; */
 }
 
 .language-css .token.atrule {

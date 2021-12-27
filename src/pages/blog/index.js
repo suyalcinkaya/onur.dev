@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo'
 // --- Components
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
-import BlogPost from 'components/WritingCard'
+import Card from 'components/Card'
 
 // --- Other
 import { getAllPosts } from 'lib/contentful'
@@ -33,15 +33,7 @@ export default function Blog({ allPosts }) {
         <PageHeading heading="Blog" />
         <div className="space-y-10">
           {allPosts.map((post) => (
-            <div key={post.slug}>
-              <BlogPost
-                title={post.title}
-                summary={post.description}
-                publishedAt={post.date || post.sys.firstPublishedAt}
-                slug={post.slug}
-                readingTime={{ minutes: 10 }}
-              />
-            </div>
+            <Card key={post.slug} title={post.title} description={post.description} url={`/blog/${post.slug}`} />
           ))}
         </div>
       </Layout>
@@ -50,7 +42,7 @@ export default function Blog({ allPosts }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPosts(undefined, preview)) ?? []
+  const allPosts = (await getAllPosts(null, preview)) ?? []
   return {
     props: { allPosts }
   }

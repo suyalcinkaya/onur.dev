@@ -1,6 +1,5 @@
 import NextImage from 'next/image'
 import NextLink from 'next/link'
-
 import ErrorPage from 'next/error'
 import tinytime from 'tinytime'
 
@@ -28,7 +27,7 @@ export default function Post({ post, preview }) {
                 <NextImage height={400} width={400} src="/images/og.jpg" alt="Onur Şuyalçınkaya" />
               </div>
               <div className="flex flex-col ml-3">
-                <p className="font-medium">Onur Şuyalçınkaya</p>
+                <p>Onur Şuyalçınkaya</p>
                 <p className="text-sm text-gray-400">
                   <time dateTime={post.date || post.sys.publishedAt}>
                     {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.publishedAt))}

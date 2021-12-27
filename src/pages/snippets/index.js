@@ -1,18 +1,18 @@
 import { NextSeo } from 'next-seo'
 
 // --- Components
-import SnippetCard from 'components/SnippetCard'
 import Layout from 'components/Layout'
 import PageHeading from 'components/PageHeading'
+import Card from 'components/Card'
 
 // --- Other
-import { getAllFilesFrontMatter } from 'lib/mdx'
+import { getAllCodeSnippets } from 'lib/contentful'
 import { ogImageUrl } from 'lib/helper'
 
 const url = 'https://onur.dev/snippets'
 const title = 'Snippets — Onur Şuyalçınkaya'
 
-export default function Snippets({ snippets }) {
+export default function Snippets({ allCodeSnippets }) {
   return (
     <>
       <NextSeo
@@ -35,10 +35,13 @@ export default function Snippets({ snippets }) {
           description="These are a collection of code snippets I've used in the past and saved."
         />
         <div className="space-y-8">
-          {snippets.map((frontMatter) => (
-            <div key={frontMatter.title}>
-              <SnippetCard {...frontMatter} />
-            </div>
+          {allCodeSnippets.map((codeSnippet) => (
+            <Card
+              key={codeSnippet.slug}
+              title={codeSnippet.title}
+              description={codeSnippet.description}
+              url={`/snippets/${codeSnippet.slug}`}
+            />
           ))}
         </div>
       </Layout>
@@ -46,9 +49,10 @@ export default function Snippets({ snippets }) {
   )
 }
 
-export async function getStaticProps() {
-  const data = await getAllFilesFrontMatter('snippets')
-  const snippets = data.sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+export async function getStaticProps({ preview = false }) {
+  const allCodeSnippets = (await getAllCodeSnippets(preview)) ?? []
 
-  return { props: { snippets } }
+  return {
+    props: { allCodeSnippets }
+  }
 }

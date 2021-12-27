@@ -101,3 +101,64 @@ export async function getPost(slug, preview = false) {
     post: entry?.data?.postCollection?.items?.[0]
   }
 }
+
+export async function getAllCodeSnippets(preview = false) {
+  const entries = await fetchGraphQL(
+    `query {
+      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
+        items {
+          title
+          description
+          slug
+        }
+      }
+    }`,
+    preview
+  )
+
+  return entries?.data?.codeSnippetCollection?.items
+}
+
+export async function getCodeSnippet(slug, preview = false) {
+  const entry = await fetchGraphQL(
+    `query {
+      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
+        items {
+          title
+          description
+          slug
+          code
+          language
+          sys {
+            id
+            firstPublishedAt
+            publishedAt
+          }
+        }
+      }
+    }`,
+    preview
+  )
+
+  return {
+    codeSnippet: entry?.data?.codeSnippetCollection?.items?.[0]
+  }
+}
+
+export async function getAllLogbook(preview = false) {
+  const entries = await fetchGraphQL(
+    `query {
+      logbookCollection(order: date_DESC, preview: ${preview}) {
+        items {
+          title
+          description
+          emoji
+          date
+        }
+      }
+    }`,
+    preview
+  )
+
+  return entries?.data?.logbookCollection?.items
+}
