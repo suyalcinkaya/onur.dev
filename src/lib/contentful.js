@@ -14,7 +14,7 @@ async function fetchGraphQL(query, preview = false) {
 export async function getAllPosts(limit = 10, preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: date_DESC, preview: ${preview}, limit: ${limit}) {
+      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}, limit: ${limit}) {
         items {
           title
           description
@@ -37,7 +37,7 @@ export async function getAllPosts(limit = 10, preview = false) {
 export async function getPost(slug, preview = false) {
   const entry = await fetchGraphQL(
     `query {
-      postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
+      postCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'}, limit: 1) {
         items {
           title
           description
@@ -105,7 +105,7 @@ export async function getPost(slug, preview = false) {
 export async function getAllCodeSnippets(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
+      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview ? 'true' : 'false'}) {
         items {
           title
           description
@@ -122,7 +122,7 @@ export async function getAllCodeSnippets(preview = false) {
 export async function getCodeSnippet(slug, preview = false) {
   const entry = await fetchGraphQL(
     `query {
-      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
+      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'}, limit: 1) {
         items {
           title
           description
@@ -148,7 +148,7 @@ export async function getCodeSnippet(slug, preview = false) {
 export async function getAllLogbook(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      logbookCollection(order: date_DESC, preview: ${preview}) {
+      logbookCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}) {
         items {
           title
           description

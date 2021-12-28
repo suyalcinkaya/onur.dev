@@ -3,11 +3,11 @@ import { NextSeo, ArticleJsonLd } from 'next-seo'
 // --- Other
 import { ogImageUrl } from 'lib/helper'
 
-const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
+const BlogSeo = ({ title, description, publishedAt, url }) => {
   const date = new Date(publishedAt).toISOString()
 
   const featuredImage = {
-    url: ogImageUrl(ogTitle || title),
+    url: ogImageUrl(title),
     alt: title
   }
 
@@ -15,7 +15,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
     <>
       <NextSeo
         title={`${title} — Onur Şuyalçınkaya`}
-        description={summary}
+        description={description}
         canonical={url}
         openGraph={{
           type: 'article',
@@ -24,7 +24,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
           },
           url,
           title,
-          description: summary,
+          description: description,
           images: [featuredImage]
         }}
       />
@@ -32,7 +32,7 @@ const BlogSeo = ({ title, summary, publishedAt, url, ogTitle }) => {
         authorName="Onur Şuyalçınkaya"
         dateModified={date}
         datePublished={date}
-        description={summary}
+        description={description}
         images={[featuredImage]}
         publisherLogo="/images/me.png"
         publisherName="Onur Şuyalçınkaya"

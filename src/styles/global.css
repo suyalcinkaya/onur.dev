@@ -102,7 +102,7 @@ li h2 {
 }
 
 hr {
-  @apply border-gray-200 my-12;
+  @apply border-gray-200 my-6;
 }
 
 ul ul {
@@ -211,7 +211,7 @@ pre[class*='language-'] {
 }
 
 .token.script {
-  @apply text-charcoal;
+  @apply text-gray-700;
 }
 
 .token.property,

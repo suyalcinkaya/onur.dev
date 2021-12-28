@@ -5,8 +5,7 @@ import SoundcloudIcon from 'components/icons/Soundcloud'
 import TwitterIcon from 'components/icons/Twitter'
 import YoutubeIcon from 'components/icons/Youtube'
 
-export const MAX_WIDTH = 'max(40vw, 768px)'
-export const BUY_ME_COFFEE_URL = 'http://buymeacoff.ee/suyalcinkaya'
+export const LAYOUT_WIDTH = 'max(40vw, 768px)'
 
 export const profiles = {
   github: {
@@ -16,7 +15,8 @@ export const profiles = {
   },
   twitter: {
     name: 'Twitter',
-    url: 'https://twitter.com/onursdev',
+    username: 'onurshu_',
+    url: 'https://twitter.com/onurshu_',
     icon: <TwitterIcon />
   },
   linkedin: {
@@ -38,33 +38,24 @@ export const profiles = {
     name: 'YouTube',
     url: 'https://www.youtube.com/c/jagermanmusic',
     icon: <YoutubeIcon />
-  },
-  cv: {
-    name: 'read.cv',
-    url: 'https://read.cv/onur'
   }
 }
 
 export const mixtapes = [
   {
     title: 'Summer Sax',
-    description: '10M plays • 50K likes',
+    description: '11M+ plays • 55K+ likes',
     url: 'https://www.youtube.com/watch?v=bzZupZkrjm0'
   },
   {
     title: 'Sax On Fire',
-    description: '1.36M plays • 33.6K likes',
+    description: '1.5M+ plays • 35K+ likes',
     url: 'https://soundcloud.com/jagerman/saxonfire'
   },
   {
     title: 'Casablanca',
-    description: '113K plays • 2.8K likes',
+    description: '120K+ plays • 3K+ likes',
     url: 'https://soundcloud.com/jagerman/casablanca'
-  },
-  {
-    title: 'I Wanna Live Not Just Survive',
-    description: '10K plays • 300 likes',
-    url: 'https://soundcloud.com/jagerman/i-wanna-live-not-just-survive'
   }
 ]
 
@@ -111,6 +102,10 @@ export const navigations = {
     {
       url: 'https://read.cv/onur',
       name: 'Curriculum Vitae'
+    },
+    {
+      url: 'http://buymeacoff.ee/suyalcinkaya',
+      name: 'Buy me a coffee'
     }
   ]
 }
@@ -130,20 +125,5 @@ export const projects = [
     url: 'https://github.com/suyalcinkaya/koalazily',
     name: 'Koalazily',
     description: 'Loading images lazily in a modern way using Intersection Observer API.'
-  },
-  {
-    url: 'https://github.com/suyalcinkaya/karussel',
-    name: 'Karussel',
-    description: 'A minimal React based carousel/slider component.'
-  },
-  {
-    url: 'https://github.com/suyalcinkaya/browsefy',
-    name: 'Browsefy',
-    description: 'A lightweight browser detector.'
-  },
-  {
-    url: 'https://github.com/suyalcinkaya/a11y.css',
-    name: 'a11y.css',
-    description: 'A CSS file emphasizing about possible improvements and errors that exist in HTML semantic elements.'
   }
 ]

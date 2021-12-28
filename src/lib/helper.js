@@ -1,7 +1,5 @@
-export const ogImageUrl = (text) =>
-  `https://og-onurdev.vercel.app/${encodeURIComponent(
-    text
-  )}.png?theme=dark&md=1&fontSize=120px&images=https%3A%2F%2Fonur.dev%2Fimages%2Fme.svg`
+export const ogImageUrl = (title) =>
+  `https://og-image-onur.vercel.app/${encodeURIComponent(title)}.png?md=1&fontSize=125px`
 
 export const getReadingTime = (minutes) => (minutes > 1 ? `${Math.ceil(minutes)} mins read` : `1 min read`)
 

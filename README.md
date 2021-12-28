@@ -5,15 +5,17 @@
 <br>
 <br>
 
-My portfolio has transformed over the years - from a static HTML site, to Create React App, to GatsbyJS, and finally to Next.js/React/MDX. My personal slice of the internet provides a platform for my writing and to showcase my latest work.
+My portfolio has transformed over the years - from a static HTML site, to `Create React App`, to `GatsbyJS`, to
+`Next.js + Chakra UI + MDX` combo and finally to `Next.js + Tailwind CSS + Contentful` combo. My personal slice of the
+internet provides a platform for my writing and to showcase my latest work.
 
 ## Overview
 
 - `/` - Home page.
+- `pages/blog/[slug]` - Static pre-rendered blog pages using [Contentful](https://www.contentful.com).
 - `pages/about` - About page.
 - `pages/journey` - Journey page.
-- `pages/cv` - Curriculum Vitae page.
-- `pages/**/index.mdx` - Static pre-rendered blog pages using [MDX](https://github.com/mdx-js/mdx).
+- `pages/snippets/[slug]` - Static pre-rendered code snippet pages using [Contentful](https://www.contentful.com).
 
 ## Running Locally
 
@@ -27,6 +29,6 @@ $ yarn dev
 ## Built With
 
 - [Vercel](https://vercel.com)
-- [Next.js](https://nextjs.org/)
-- [MDX](https://github.com/mdx-js/mdx)
-- [Chakra UI](http://chakra-ui.com/)
+- [Next.js](https://nextjs.org)
+- [Contentful](https://www.contentful.com)
+- [Tailwind CSS](https://tailwindcss.com)

@@ -24,7 +24,7 @@ export default function Blog({ allPosts }) {
           title,
           images: [
             {
-              url: ogImageUrl('**Blog**'),
+              url: ogImageUrl('Blog'),
               alt: title
             }
           ]

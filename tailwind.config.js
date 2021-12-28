@@ -1,9 +1,7 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  mode: 'jit',
   content: ['./src/**/*.js'],
-  darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {
       xs: '320px',
@@ -13,11 +11,7 @@ module.exports = {
       xl: '1280px'
     },
     extend: {
-      boxShadow: {
-        normal: '0 1px 2px rgba(16, 29, 52, .1)'
-      },
       colors: {
-        charcoal: '#111318',
         inherit: 'inherit',
         primary: {
           default: '#0070F3',
@@ -27,15 +21,8 @@ module.exports = {
       fontFamily: {
         sans: ['Untitled Sans', ...fontFamily.sans]
       },
-      fontSize: {
-        xxs: '.675rem',
-        '3xl': ['1.875rem', '1.25'],
-        '4xl': ['2.25rem', '1.25'],
-        '5xl': ['3rem', '1.25']
-      },
       minHeight: {
-        16: '4rem',
-        20: '5rem'
+        16: '4rem'
       },
       lineHeight: {
         slack: '1.7',
@@ -43,16 +30,7 @@ module.exports = {
       },
       listStyleType: {
         circle: 'circle'
-      },
-      spacing: {
-        '2px': '2px'
       }
-    }
-  },
-  variants: {
-    extend: {
-      margin: ['last'],
-      padding: ['first', 'last']
     }
   },
   plugins: [require('@tailwindcss/line-clamp')]

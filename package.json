@@ -18,7 +18,7 @@
     "not op_mini all"
   ],
   "scripts": {
-    "dev": "yarn clear-cache && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",

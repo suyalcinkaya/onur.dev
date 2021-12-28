@@ -10,7 +10,7 @@ import PageHeading from 'components/PageHeading'
 
 // --- Others
 import { getAllPosts } from 'lib/contentful'
-import { mixtapes, projects } from 'lib/constants'
+import { mixtapes, projects, profiles } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
   return (
@@ -26,11 +26,11 @@ export default function Home({ recentPosts }) {
         }
         description={
           <>
-            I'm a <Link href="https://www.linkedin.com/in/onursuyalcinkaya/">Frontend Engineer</Link>,{' '}
-            <Link href="https://github.com/suyalcinkaya">JavaScript enthusiast</Link>,{' '}
-            <Link href="https://soundcloud.com/jagerman">DJ</Link>,{' '}
-            <Link href="https://medium.com/@suyalcinkaya">writer</Link> and minimalist, living in Berlin, Germany. I'm
-            currently developing things at <Link href="https://hey.car">heycar</Link>.
+            I'm a <Link href={profiles.linkedin.url}>Frontend Engineer</Link>,{' '}
+            <Link href={profiles.github.url}>JavaScript enthusiast</Link>,{' '}
+            <Link href={profiles.soundcloud.url}>DJ</Link>, <Link href={profiles.linkedin.url}>writer</Link> and
+            minimalist, living in Berlin, Germany. I'm currently developing things at{' '}
+            <Link href="https://hey.car">heycar</Link>.
           </>
         }
       />
@@ -61,7 +61,7 @@ export default function Home({ recentPosts }) {
         <div>
           <div className="flex items-center justify-between border-b border-gray-200">
             <h3>Popular Mixtapes</h3>
-            <GhostButton as="a" href="https://soundcloud.com/jagerman" isExternal>
+            <GhostButton as="a" href={profiles.soundcloud.url} isExternal>
               See All &rarr;
             </GhostButton>
           </div>
@@ -79,7 +79,7 @@ export default function Home({ recentPosts }) {
         <div>
           <div className="flex items-center justify-between border-b border-gray-200">
             <h3>Some Projects</h3>
-            <GhostButton as="a" href="https://github.com/suyalcinkaya?tab=repositories" isExternal>
+            <GhostButton as="a" href={profiles.github.url} isExternal>
               See All &rarr;
             </GhostButton>
           </div>

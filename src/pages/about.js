@@ -24,7 +24,7 @@ export default function About() {
           title,
           images: [
             {
-              url: ogImageUrl('**About**'),
+              url: ogImageUrl('About Me'),
               alt: title
             }
           ]

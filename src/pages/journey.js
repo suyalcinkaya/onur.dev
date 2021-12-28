@@ -23,7 +23,7 @@ const Journey = ({ allLogbook }) => {
           title,
           images: [
             {
-              url: ogImageUrl('**Journey**'),
+              url: ogImageUrl('Journey'),
               alt: title
             }
           ]

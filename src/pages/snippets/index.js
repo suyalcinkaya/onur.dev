@@ -23,7 +23,7 @@ export default function Snippets({ allCodeSnippets }) {
           title,
           images: [
             {
-              url: ogImageUrl('**Snippets**'),
+              url: ogImageUrl('Snippets'),
               alt: title
             }
           ]

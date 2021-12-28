@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
+// --- Components
 import Link from 'components/Link'
 const DynamicCodeBlock = dynamic(() => import('components/CodeBlock'))
 
@@ -53,17 +54,21 @@ function options(links) {
           </figure>
         )
       },
+      [BLOCKS.HR]: (node, children) => <hr />,
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
 
         switch (entry.__typename) {
-          case 'ContentEmbed':
-            switch (entry.type) {
+          case 'ContentEmbed': {
+            const { title, embedUrl, type } = entry
+
+            switch (type) {
               case 'Video': {
                 return (
                   <iframe
-                    src={entry.embedUrl}
+                    src={embedUrl}
+                    title={title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -71,27 +76,25 @@ function options(links) {
                   />
                 )
               }
-              case 'Github': {
+              case 'SoundCloud': {
                 return (
-                  <>
-                    <script async src="//cdn.iframe.ly/embed.js" charSet="utf-8"></script>
-                    <div className="iframely-embed">
-                      <div className="iframely-responsive" style={{ paddingBottom: '50%', paddingTop: '120px' }}>
-                        <a href={entry.embedUrl} data-iframely-url="//cdn.iframe.ly/2VgWF1e"></a>
-                      </div>
-                      {entry.title && (
-                        <span className="grid place-center w-full text-sm text-gray-500">{entry.title}</span>
-                      )}
-                    </div>
-                  </>
+                  <iframe
+                    src={embedUrl}
+                    title={title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full rounded-lg shadow-lg"
+                  />
                 )
               }
               case 'Tweet': {
                 return (
                   <iframe
-                    src={entry.embedUrl}
+                    src={embedUrl}
                     height="460"
                     width="640"
+                    title={title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -102,6 +105,7 @@ function options(links) {
               default:
                 return null
             }
+          }
           case 'CodeBlock': {
             return <DynamicCodeBlock {...entry} />
           }

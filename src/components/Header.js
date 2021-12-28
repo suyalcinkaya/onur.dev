@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { GhostButton } from 'components/Button'
 
 // --- Others
-import { MAX_WIDTH, navigations } from 'lib/constants'
+import { LAYOUT_WIDTH, navigations } from 'lib/constants'
 
 const Header = () => {
   const router = useRouter()
@@ -20,7 +20,7 @@ const Header = () => {
           WebkitBackdropFilter: 'saturate(180%) blur(25px)'
         }}
       >
-        <div className="shadow md:shadow-none md:mx-auto px-2 md:px-12" style={{ maxWidth: MAX_WIDTH }}>
+        <div className="shadow md:shadow-none md:mx-auto px-2 md:px-12" style={{ maxWidth: LAYOUT_WIDTH }}>
           <div className="flex items-center min-h-16">
             {navigations.header.map((headerNav, headerNavIndex) => (
               <Fragment key={`headerNav_${headerNavIndex}`}>

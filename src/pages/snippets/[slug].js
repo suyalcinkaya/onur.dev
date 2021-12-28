@@ -10,11 +10,11 @@ import Share from 'components/Share'
 // --- Others
 import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
 
-export default function Snippet({ codeSnippet, preview }) {
+export default function Snippet({ codeSnippet }) {
   if (!codeSnippet) return <ErrorPage statusCode={404} />
 
   return (
-    <Layout preview={preview}>
+    <Layout>
       <article>
         <NextLink href="/snippets">
           <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
@@ -34,7 +34,7 @@ export async function getStaticProps({ params, preview = false }) {
 
   return {
     props: {
-      preview,
+      // preview,
       codeSnippet: data?.codeSnippet ?? null
     }
   }

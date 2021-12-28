@@ -9,6 +9,7 @@ import TwitterIcon from 'components/icons/Twitter'
 
 // --- Others
 import useClipboard from 'lib/hooks/useClipboard'
+import { profiles } from 'lib/constants'
 
 const Share = ({ title, url }) => {
   const { hasCopied, onCopy } = useClipboard(url)
@@ -21,7 +22,10 @@ const Share = ({ title, url }) => {
       <IconButton
         name="Share on Twitter"
         onClick={() =>
-          window.open(`https://twitter.com/intent/tweet?url=${url}&text=“${title}”&via=onursdev`, '_blank')
+          window.open(
+            `https://twitter.com/intent/tweet?url=${url}&text=“${title}”&via=${profiles.twitter.username}`,
+            '_blank'
+          )
         }
       >
         <TwitterIcon />
