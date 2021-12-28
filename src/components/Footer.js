@@ -25,7 +25,7 @@ const Footer = () => (
         </div>
         <div className="mt-6">
           <div className="flex items-center mb-2 space-x-6">
-            {profiles.map((profile, profileIndex) => (
+            {Object.values(profiles).map((profile, profileIndex) => (
               <a
                 key={`profile_${profileIndex}_${profile.name}`}
                 href={profile.url}
@@ -39,13 +39,13 @@ const Footer = () => (
               </a>
             ))}
           </div>
-          <div className="mt-3 text-sm md:text-base">
+          <div className="mt-3 text-base md:text-lg">
             <span>onur</span>
-            <span className="text-gray-400">{' dot '}</span>
+            <span className="text-gray-500">{' dot '}</span>
             <span>suyalcinkaya</span>
-            <span className="text-gray-400">{' at '}</span>
+            <span className="text-gray-500">{' at '}</span>
             <span>gmail</span>
-            <span className="text-gray-400">{' dot '}</span>
+            <span className="text-gray-500">{' dot '}</span>
             <span>com</span>
           </div>
         </div>

@@ -10,7 +10,7 @@ import PageHeading from 'components/PageHeading'
 
 // --- Others
 import { getAllPosts } from 'lib/contentful'
-import { mixtapes, projectData } from 'lib/constants'
+import { mixtapes, projects } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
   return (
@@ -84,7 +84,7 @@ export default function Home({ recentPosts }) {
             </GhostButton>
           </div>
           <div className="space-y-8 mt-8">
-            {projectData.map((project, projectId) => (
+            {projects.map((project, projectId) => (
               <div key={`project_${projectId}`}>
                 <Card title={project.name} description={project.description} url={project.url} />
               </div>

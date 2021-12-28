@@ -31,6 +31,7 @@
     "@contentful/rich-text-react-renderer": "^15.10.1",
     "@tailwindcss/line-clamp": "^0.2.0",
     "copy-to-clipboard": "^3.3.1",
+    "cssnano": "^5.0.14",
     "framer-motion": "^4.1.17",
     "next": "^12.0.7",
     "next-compose-plugins": "^2.2.1",

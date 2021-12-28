@@ -88,7 +88,7 @@ button[disabled] {
 }
 
 p {
-  @apply leading-slacker;
+  @apply text-lg leading-slacker;
 }
 
 li p {

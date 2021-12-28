@@ -19,7 +19,7 @@ export default function Post({ post, preview }) {
     <Layout preview={preview}>
       <article>
         <NextLink href="/blog">
-          <LinkButton className="mb-3 text-gray-400">&larr; Blog</LinkButton>
+          <LinkButton className="mb-8 text-gray-400">&larr; Blog</LinkButton>
         </NextLink>
         <div className="mb-12">
           <h1 className="text-3xl mb-4">{post.title}</h1>
@@ -28,13 +28,11 @@ export default function Post({ post, preview }) {
               <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-200">
                 <NextImage height={400} width={400} src="/images/og.jpg" alt="Onur Şuyalçınkaya" />
               </div>
-              <div className="flex flex-col ml-3">
-                <p>Onur Şuyalçınkaya</p>
-                <p className="text-sm text-gray-400">
-                  <time dateTime={post.date || post.sys.publishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.publishedAt))}
-                  </time>
-                </p>
+              <div className="flex flex-col ml-3 space-y-0.5">
+                <p className="text-base">Onur Şuyalçınkaya</p>
+                <time className="text-sm text-gray-400" dateTime={post.date || post.sys.publishedAt}>
+                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.publishedAt))}
+                </time>
               </div>
             </div>
             <Share title={post.title} url={`https://onur.dev/writing/${post.slug}`} />

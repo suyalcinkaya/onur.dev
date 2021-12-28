@@ -47,7 +47,7 @@ const Journey = ({ allLogbook }) => {
                       </div>
                     )}
                     <div className="flex items-center justify-center align-middle flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full z-0">
-                      <span role="img" aria-label={log.title}>
+                      <span className="text-lg" role="img" aria-label={log.title}>
                         {log.emoji}
                       </span>
                     </div>

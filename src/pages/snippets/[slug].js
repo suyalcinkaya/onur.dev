@@ -17,7 +17,7 @@ export default function Snippet({ codeSnippet, preview }) {
     <Layout preview={preview}>
       <article>
         <NextLink href="/snippets">
-          <LinkButton className="mb-3 text-gray-400">&larr; Snippets</LinkButton>
+          <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
         </NextLink>
         <div className="mb-12">
           <h1 className="text-3xl mb-4">{codeSnippet.title}</h1>
