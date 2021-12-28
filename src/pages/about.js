@@ -44,14 +44,14 @@ export default function About() {
           </div>
           <div className="space-y-6">
             <p>
-              My name is Onur (meaning "Honour" in English), a{' '}
-              <Link href={profiles.linkedin.url}>Frontend Engineer</Link> who loves to solve problems and dabbles in
+              My name is Onur (meaning "Honour" in English). I'm a{' '}
+              <Link href={profiles.linkedin.url}>Software Engineer</Link> who loves to solve problems and dabbles in
               design with a strong sense of aesthetics.
             </p>
             <p>
-              Currently living in Berlin, Germany and developing things at <Link href="https://hey.car">heycar</Link>.
-              Previously, I worked as a Frontend Engineer at Yemeksepeti, Full Stack Developer at Sistas, Mobile
-              Developer at Tanbula and Specialist at Apple.
+              Currently living in Berlin, Germany and developing things as a Senior Frontend Engineer at{' '}
+              <Link href="https://hey.car">heycar</Link>. Previously, I worked as a Frontend Engineer at Yemeksepeti,
+              Full Stack Developer at Sistas, Mobile Developer at Tanbula and Specialist at Apple.
             </p>
             <p>
               I was born in Ankara (the capital city of Turkey) grew up in Istanbul and went to Doğuş University,
@@ -61,9 +61,8 @@ export default function About() {
               I'm contributing to open source, sharing everything I know through <Link href="/blog">this blog</Link> and{' '}
               <Link href={profiles.medium.url}>Medium</Link>. When I’m not nerding out, I'm{' '}
               <Link href={profiles.soundcloud.url}>DJing</Link>, doing bodybuilding, playing Football Manager since
-              2000, watching Besiktas 🦅 (my favorite team) matches and enjoying time with friends and family.
+              2000, watching Beşiktaş 🦅 matches and enjoying time with friends.
             </p>
-            <br />
             <p>
               You can find me on <Link href={profiles.twitter.url}>Twitter</Link> where I share my thoughts, on{' '}
               <Link href={profiles.github.url}>GitHub</Link> where I build cool stuff, on{' '}
