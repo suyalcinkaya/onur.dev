@@ -39,12 +39,12 @@ export default function Post({ post }) {
         <article>
           <div className="mb-12 space-y-4">
             <div className="relative">
-              <div className="absolute -top-12 left-0">
+              <div className="absolute -top-10 md:-top-14 left-0">
                 <NextLink href="/blog">
                   <LinkButton className="mb-8 text-gray-400">&larr; Blog</LinkButton>
                 </NextLink>
               </div>
-              <h1 className="font-medium text-3xl">{title}</h1>
+              <h1 className="text-2xl md:text-3xl font-medium">{title}</h1>
             </div>
             <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
               <div className="flex items-center">
