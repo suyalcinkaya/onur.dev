@@ -26,7 +26,7 @@ export default function Home({ recentPosts }) {
         }
         description={
           <>
-            I'm a <Link href={profiles.linkedin.url}>Frontend Engineer</Link>,{' '}
+            I'm a <Link href={profiles.linkedin.url}>Software Engineer</Link>,{' '}
             <Link href={profiles.github.url}>JavaScript enthusiast</Link>,{' '}
             <Link href={profiles.soundcloud.url}>DJ</Link>, <Link href={profiles.linkedin.url}>writer</Link> and
             minimalist, living in Berlin, Germany. I'm currently developing things at{' '}
