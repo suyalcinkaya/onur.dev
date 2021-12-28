@@ -38,7 +38,7 @@ export default function About() {
               className="rounded-full overflow-hidden"
               width={140}
               height={140}
-              src="/images/og.jpg"
+              src="/images/me.jpg"
               alt="Onur Şuyalçınkaya"
             />
           </div>

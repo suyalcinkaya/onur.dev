@@ -49,7 +49,7 @@ export default function Post({ post }) {
             <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
               <div className="flex items-center">
                 <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-200">
-                  <NextImage height={400} width={400} src="/images/og.jpg" alt="Onur Şuyalçınkaya" />
+                  <NextImage src="/images/me.jpg" width={96} height={96} alt="Onur Şuyalçınkaya" />
                 </div>
                 <div className="flex flex-col ml-3 space-y-0.5">
                   <p className="text-base">Onur Şuyalçınkaya</p>
