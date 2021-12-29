@@ -50,7 +50,7 @@ html {
 }
 
 body {
-  @apply font-sans subpixel-antialiased bg-white text-gray-700 text-base;
+  @apply font-sans subpixel-antialiased bg-white text-black text-base;
 }
 
 #__next {
