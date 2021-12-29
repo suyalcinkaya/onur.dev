@@ -23,7 +23,7 @@ const BlogSeo = ({ title, description, publishedAt, url }) => {
             publishedTime: date
           },
           url,
-          title,
+          title: `${title} — Onur Şuyalçınkaya`,
           description: description,
           images: [featuredImage]
         }}
