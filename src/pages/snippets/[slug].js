@@ -1,5 +1,4 @@
 import NextLink from 'next/link'
-import ErrorPage from 'next/error'
 
 // --- Components
 import { LinkButton } from 'components/Button'
@@ -11,19 +10,30 @@ import Share from 'components/Share'
 import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
 
 export default function Snippet({ codeSnippet }) {
-  if (!codeSnippet) return <ErrorPage statusCode={404} />
+  const {
+    title,
+    // description,
+    slug,
+    code,
+    language
+    // sys: { publishedAt }
+  } = codeSnippet
 
   return (
     <Layout>
       <article>
-        <NextLink href="/snippets">
-          <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
-        </NextLink>
-        <div className="mb-12">
-          <h1 className="text-3xl mb-4">{codeSnippet.title}</h1>
-          <Share title={codeSnippet.title} url={`https://onur.dev/snippets/${codeSnippet.slug}`} />
+        <div className="mb-12 space-y-4">
+          <div className="relative">
+            <div className="absolute -top-10 md:-top-14 left-0">
+              <NextLink href="/snippets">
+                <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
+              </NextLink>
+            </div>
+            <h1 className="text-2xl md:text-3xl font-medium">{title}</h1>
+          </div>
+          <Share title={title} url={`https://onur.dev/snippets/${slug}`} />
         </div>
-        <CodeBlock language={codeSnippet.language} code={codeSnippet.code} />
+        <CodeBlock language={language} code={code} />
       </article>
     </Layout>
   )
@@ -45,6 +55,6 @@ export async function getStaticPaths() {
 
   return {
     paths: allCodeSnippets?.map(({ slug }) => `/snippets/${slug}`) ?? [],
-    fallback: true
+    fallback: false
   }
 }

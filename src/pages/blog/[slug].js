@@ -1,6 +1,5 @@
 import NextImage from 'next/image'
 import NextLink from 'next/link'
-import ErrorPage from 'next/error'
 import tinytime from 'tinytime'
 
 // --- Components
@@ -14,8 +13,6 @@ import Share from 'components/Share'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post }) {
-  if (!post) return <ErrorPage statusCode={404} />
-
   const {
     title,
     description,
@@ -84,6 +81,6 @@ export async function getStaticPaths() {
 
   return {
     paths: allPosts?.map(({ slug }) => `/blog/${slug}`) ?? [],
-    fallback: true
+    fallback: false
   }
 }
