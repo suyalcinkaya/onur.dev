@@ -53,6 +53,10 @@ body {
   @apply font-sans subpixel-antialiased bg-white text-gray-700 text-base;
 }
 
+#__next {
+  @apply flex flex-col min-h-screen;
+}
+
 h1,
 h2,
 h3 {

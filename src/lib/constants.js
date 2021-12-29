@@ -5,7 +5,7 @@ import SoundcloudIcon from 'components/icons/Soundcloud'
 import TwitterIcon from 'components/icons/Twitter'
 import YoutubeIcon from 'components/icons/Youtube'
 
-export const LAYOUT_WIDTH = 'max(40vw, 768px)'
+export const LAYOUT_WIDTH = 'max(24vw, 768px)'
 
 export const profiles = {
   github: {
