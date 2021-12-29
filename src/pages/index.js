@@ -6,7 +6,7 @@ import Card from 'components/Card'
 import { GhostButton } from 'components/Button'
 import Layout from 'components/Layout'
 import Link from 'components/Link'
-import PageHeading from 'components/PageHeading'
+import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
@@ -15,8 +15,8 @@ import { mixtapes, projects, profiles } from 'lib/constants'
 export default function Home({ recentPosts }) {
   return (
     <Layout>
-      <PageHeading
-        heading={
+      <PageTitle
+        title={
           <>
             <span role="img" aria-label="Waving Hand" className="mr-4">
               👋🏼

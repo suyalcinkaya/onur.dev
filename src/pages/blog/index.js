@@ -3,7 +3,7 @@ import tinytime from 'tinytime'
 
 // --- Components
 import Layout from 'components/Layout'
-import PageHeading from 'components/PageHeading'
+import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 
 // --- Others
@@ -31,7 +31,7 @@ export default function Blog({ allPosts }) {
         }}
       />
       <Layout>
-        <PageHeading heading="Blog" />
+        <PageTitle title="Blog" />
         <div className="space-y-10">
           {allPosts.map((post) => (
             <Card

@@ -4,7 +4,7 @@ import NextImage from 'next/image'
 // --- Components
 import Layout from 'components/Layout'
 import Link from 'components/Link'
-import PageHeading from 'components/PageHeading'
+import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { profiles } from 'lib/constants'
@@ -31,7 +31,7 @@ export default function About() {
         }}
       />
       <Layout>
-        <PageHeading heading="About Me" />
+        <PageTitle title="About Me" />
         <div className="mb-12">
           <div className="float-left mt-3 mr-4" style={{ shapeOutside: 'circle(50%)' }}>
             <NextImage

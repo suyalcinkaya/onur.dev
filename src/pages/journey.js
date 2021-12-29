@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo'
 // --- Components
 import Card from 'components/Card'
 import Layout from 'components/Layout'
-import PageHeading from 'components/PageHeading'
+import PageTitle from 'components/PageTitle'
 
 // --- Other
 import { getAllLogbook } from 'lib/contentful'
@@ -30,7 +30,7 @@ const Journey = ({ allLogbook }) => {
         }}
       />
       <Layout>
-        <PageHeading heading="Journey" />
+        <PageTitle title="Journey" />
         <div className="flex flex-col space-y-12 items-stretch">
           {allLogbook.map((item, itemIndex) => (
             <div key={`data_${itemIndex}`} className="space-y-6">

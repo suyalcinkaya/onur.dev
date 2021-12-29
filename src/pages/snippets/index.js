@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo'
 
 // --- Components
 import Layout from 'components/Layout'
-import PageHeading from 'components/PageHeading'
+import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 
 // --- Others
@@ -30,8 +30,8 @@ export default function Snippets({ allCodeSnippets }) {
         }}
       />
       <Layout>
-        <PageHeading
-          heading="Snippets"
+        <PageTitle
+          title="Snippets"
           description="These are a collection of code snippets I've used in the past and saved."
         />
         <div className="space-y-8">

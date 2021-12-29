@@ -5,6 +5,7 @@ import { LinkButton } from 'components/Button'
 import CodeBlock from 'components/CodeBlock'
 import Layout from 'components/Layout'
 import Share from 'components/Share'
+import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
@@ -29,7 +30,8 @@ export default function Snippet({ codeSnippet }) {
                 <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
               </NextLink>
             </div>
-            <h1 className="text-2xl md:text-3xl font-medium">{title}</h1>
+            <PageTitle title={title} isSlugTitle />
+            {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
           </div>
           <Share title={title} url={`https://onur.dev/snippets/${slug}`} />
         </div>

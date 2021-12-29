@@ -8,6 +8,7 @@ import { LinkButton } from 'components/Button'
 import Layout from 'components/Layout'
 import RichText from 'components/RichText'
 import Share from 'components/Share'
+import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getPost, getAllPosts } from 'lib/contentful'
@@ -41,7 +42,8 @@ export default function Post({ post }) {
                   <LinkButton className="mb-8 text-gray-400">&larr; Blog</LinkButton>
                 </NextLink>
               </div>
-              <h1 className="text-2xl md:text-3xl font-medium">{title}</h1>
+              <PageTitle title={title} isSlugTitle />
+              {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
             </div>
             <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
               <div className="flex items-center">
