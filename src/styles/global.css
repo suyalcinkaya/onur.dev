@@ -41,22 +41,16 @@
 }
 
 ::selection {
-  @apply bg-gray-300 text-black;
+  @apply bg-blue-100;
 }
 
 html {
-  scroll-behavior: smooth;
+  @apply scroll-smooth;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   @apply font-sans subpixel-antialiased bg-white text-gray-700 text-base;
-}
-
-#__next {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 h1,
