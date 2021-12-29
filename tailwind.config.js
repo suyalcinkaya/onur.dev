@@ -11,13 +11,6 @@ module.exports = {
       xl: '1280px'
     },
     extend: {
-      colors: {
-        inherit: 'inherit',
-        primary: {
-          default: '#0070F3',
-          light: '#D3E5FF'
-        }
-      },
       fontFamily: {
         sans: ['Untitled Sans', ...fontFamily.sans],
         mono: ['MonoLisa', ...fontFamily.mono]
