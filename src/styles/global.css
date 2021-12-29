@@ -33,10 +33,10 @@
 }
 
 @font-face {
-  font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSansWeb-Bold.woff2') format('woff2');
+  font-family: 'MonoLisa';
+  src: url('/fonts/MonoLisa-Regular.woff2') format('woff2');
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-display: swap;
 }
 

@@ -27,13 +27,6 @@ class MyDocument extends Document {
               type="font/woff2"
               crossOrigin="anonymous"
             />
-            <link
-              rel="preload"
-              href="/fonts/UntitledSansWeb-Bold.woff2"
-              as="font"
-              type="font/woff2"
-              crossOrigin="anonymous"
-            />
 
             {/* Base */}
             <meta charSet="utf-8" />

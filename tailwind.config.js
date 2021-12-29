@@ -19,7 +19,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Untitled Sans', ...fontFamily.sans]
+        sans: ['Untitled Sans', ...fontFamily.sans],
+        mono: ['MonoLisa', ...fontFamily.mono]
       },
       minHeight: {
         16: '4rem'

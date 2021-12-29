@@ -16,9 +16,7 @@ function options(links) {
       [MARKS.BOLD]: (text) => <span className="font-medium">{text}</span>,
       [MARKS.ITALIC]: (text) => <span className="italic">{text}</span>,
       [MARKS.CODE]: (text) => (
-        <code className="font-mono not-italic text-sm px-1.5 py-0.5 rounded-md bg-yellow-200 text-yellow-700">
-          {text}
-        </code>
+        <code className="font-mono not-italic text-sm p-1.5 rounded-md bg-yellow-200 text-yellow-700">{text}</code>
       )
     },
     renderNode: {
