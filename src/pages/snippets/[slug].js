@@ -24,7 +24,7 @@ export default function Snippet({ codeSnippet }) {
   return (
     <>
       <BlogSeo
-        title={`${title} — Onur Şuyalçınkaya`}
+        title={title}
         description={description}
         publishedAt={new Date(publishedAt)}
         url={`https://onur.dev/snippets/${slug}`}

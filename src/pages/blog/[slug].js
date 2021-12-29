@@ -28,7 +28,7 @@ export default function Post({ post }) {
   return (
     <>
       <BlogSeo
-        title={`${title} — Onur Şuyalçınkaya`}
+        title={title}
         description={description}
         publishedAt={publishDate}
         url={`https://onur.dev/blog/${slug}`}
