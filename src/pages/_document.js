@@ -15,7 +15,14 @@ class MyDocument extends Document {
           <Head>
             <link
               rel="preload"
-              href="/fonts/Inter-roman.var.woff2"
+              href="/fonts/UntitledSansWeb-Regular.woff2"
+              as="font"
+              type="font/woff2"
+              crossOrigin="anonymous"
+            />
+            <link
+              rel="preload"
+              href="/fonts/UntitledSansWeb-Medium.woff2"
               as="font"
               type="font/woff2"
               crossOrigin="anonymous"
@@ -65,9 +72,6 @@ class MyDocument extends Document {
                 />
               </>
             )}
-
-            {/* Fonts */}
-            {/* <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" /> */}
           </Head>
         </>
         <body>

@@ -3,10 +3,10 @@ import NextLink from 'next/link'
 // --- Others
 import { isExternalLink } from 'lib/helper'
 
-const className = 'underline-under hover:underline -mb-px pb-px self-start text-blue-400 transition-colors'
+const className = 'underline-under hover:underline -mb-px pb-px self-start text-[#0433ff]'
 
 const Link = (props) => {
-  const { href } = props
+  const { href = '#' } = props
 
   if (!isExternalLink(href)) {
     return (

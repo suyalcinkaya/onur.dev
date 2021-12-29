@@ -7,12 +7,8 @@
     text-underline-position: under;
   }
 
-  @variants hover, focus {
-    .glassmorphism {
-      background: linear-gradient(134deg, rgb(51, 55, 58) 0%, rgb(27, 30, 33) 100%);
-      box-shadow: rgb(3 4 5 / 40%) 0px 2px 6px 0px, rgb(154 160 164 / 40%) 1px 1px 2px 0px inset,
-        rgb(42 47 52) -1px -1px 2px 0px inset;
-    }
+  .slashed-zero {
+    font-variant-numeric: slashed-zero;
   }
 }
 
@@ -20,35 +16,51 @@
  * Global
  */
 
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSansWeb-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSansWeb-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MonoLisa';
+  src: url('/fonts/MonoLisa-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 ::selection {
-  @apply bg-gray-300 text-black;
+  @apply bg-blue-100;
 }
 
 html {
-  scroll-behavior: smooth;
+  @apply scroll-smooth;
   -webkit-text-size-adjust: 100%;
 }
 
-html,
 body {
-  font-size: 14px;
-  letter-spacing: 0.02em;
-}
-
-body {
-  @apply font-sans leading-slack subpixel-antialiased bg-black text-[#e4e5e7];
+  @apply font-sans subpixel-antialiased bg-white text-gray-700 text-base;
 }
 
 #__next {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  @apply flex flex-col min-h-screen;
 }
 
 h1,
 h2,
 h3 {
-  @apply font-display font-bold;
+  @apply font-normal;
 }
 
 h2 {
@@ -74,7 +86,11 @@ button[disabled] {
 }
 
 p {
-  @apply leading-slacker;
+  @apply text-lg leading-slacker;
+}
+
+li p {
+  @apply inline;
 }
 
 li p,
@@ -84,7 +100,7 @@ li h2 {
 }
 
 hr {
-  @apply border-gray-200 my-12;
+  @apply border-gray-200 my-6;
 }
 
 ul ul {
@@ -134,17 +150,12 @@ img {
 
 code[class*='language-'],
 pre[class*='language-'] {
-  @apply text-xs leading-slacker w-full text-left break-normal whitespace-pre rounded-lg;
+  @apply text-sm leading-slack w-full text-left break-normal whitespace-pre rounded-lg;
 }
 
 /* Code blocks */
 pre[class*='language-'] {
   @apply p-4 my-6 mx-0 overflow-auto min-w-full;
-}
-
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-  @apply rounded-b-lg;
 }
 
 /* Inline code */
@@ -165,17 +176,17 @@ pre[class*='language-'] {
   box-shadow: inset 3px 0 0 0 #9ca3af;
 }
 
-.remark-code-title {
-  @apply py-3 px-4 rounded-t-lg text-sm mb-0 mt-4 w-full bg-gray-700 border border-gray-700;
-}
-
-.remark-code-title + pre {
-  @apply rounded-t-none mt-0;
+.code-title {
+  @apply flex py-3 px-4 rounded-t-lg text-sm font-medium mb-0 mt-4 w-full bg-gray-100 border border-gray-300;
 }
 
 :not(pre) > code[class*='language-'],
 pre[class*='language-'] {
-  @apply bg-[#18191a] border border-gray-700;
+  @apply rounded-b-lg bg-white border border-gray-300;
+}
+
+.code-title + pre {
+  @apply rounded-t-none border-t-0 mt-0;
 }
 
 .token.comment,
@@ -190,7 +201,7 @@ pre[class*='language-'] {
 .token.script-punctuation,
 .token.operator,
 .token.arrow.operator {
-  @apply text-white;
+  /* @apply text-white; */
 }
 
 .token.namespace {
@@ -198,7 +209,7 @@ pre[class*='language-'] {
 }
 
 .token.script {
-  @apply text-charcoal;
+  @apply text-gray-700;
 }
 
 .token.property,
@@ -267,11 +278,11 @@ pre[class*='language-'] {
 
 .language-css .token.property,
 .language-css .token.punctuation {
-  @apply text-white;
+  /* @apply text-white; */
 }
 
 .language-css .token.atrule {
-  @apply text-white;
+  @apply text-gray-700;
 }
 
 .language-css .token.rule {

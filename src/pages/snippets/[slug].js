@@ -1,32 +1,62 @@
-import { MDXRemote } from 'next-mdx-remote'
+import NextLink from 'next/link'
 
-import { getFiles, getFileBySlug } from 'lib/mdx'
-import SnippetLayout from 'layouts/SnippetLayout'
-import MDXComponents from 'components/MDXComponents'
+// --- Components
+import { LinkButton } from 'components/Button'
+import CodeBlock from 'components/CodeBlock'
+import Layout from 'components/Layout'
+import Share from 'components/Share'
+import PageTitle from 'components/PageTitle'
 
-export default function Snippet({ mdxSource, frontMatter }) {
+// --- Others
+import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
+
+export default function Snippet({ codeSnippet }) {
+  const {
+    title,
+    // description,
+    slug,
+    code,
+    language
+    // sys: { publishedAt }
+  } = codeSnippet
+
   return (
-    <SnippetLayout frontMatter={frontMatter}>
-      <MDXRemote {...mdxSource} components={MDXComponents} />
-    </SnippetLayout>
+    <Layout>
+      <article>
+        <div className="mb-12 space-y-4">
+          <div className="relative">
+            <div className="absolute -top-10 md:-top-14 left-0">
+              <NextLink href="/snippets">
+                <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
+              </NextLink>
+            </div>
+            <PageTitle title={title} isSlugTitle />
+            {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
+          </div>
+          <Share title={title} url={`https://onur.dev/snippets/${slug}`} />
+        </div>
+        <CodeBlock language={language} code={code} />
+      </article>
+    </Layout>
   )
 }
 
-export async function getStaticPaths() {
-  const posts = await getFiles('snippets')
+export async function getStaticProps({ params, preview = false }) {
+  const data = await getCodeSnippet(params.slug, preview)
 
   return {
-    paths: posts.map((p) => ({
-      params: {
-        slug: p.replace(/\.mdx/, '')
-      }
-    })),
-    fallback: false
+    props: {
+      // preview,
+      codeSnippet: data?.codeSnippet ?? null
+    }
   }
 }
 
-export async function getStaticProps({ params }) {
-  const post = await getFileBySlug('snippets', params.slug)
+export async function getStaticPaths() {
+  const allCodeSnippets = (await getAllCodeSnippets()) ?? []
 
-  return { props: post }
+  return {
+    paths: allCodeSnippets?.map(({ slug }) => `/snippets/${slug}`) ?? [],
+    fallback: false
+  }
 }

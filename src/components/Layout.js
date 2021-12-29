@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 // --- Others
-import { MAX_WIDTH } from 'lib/constants'
+import { LAYOUT_WIDTH } from 'lib/constants'
 
 const easing = [0.175, 0.85, 0.42, 0.96]
 
@@ -12,12 +12,12 @@ const vars = {
 
 const Layout = ({ children, ...others }) => (
   <main
-    className="flex-1 my-12 md:my-24 overflow-hidden"
+    className="flex-1 py-16 md:py-24 overflow-hidden"
     style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
     {...others}
   >
     <motion.div initial="exit" animate="enter" exit="exit" variants={vars}>
-      <div className="px-4 sm:px-6 md:px-16 mx-auto" style={{ maxWidth: MAX_WIDTH }}>
+      <div className="px-4 sm:px-6 md:px-16 mx-auto" style={{ maxWidth: LAYOUT_WIDTH }}>
         {children}
       </div>
     </motion.div>

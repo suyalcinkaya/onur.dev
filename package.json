@@ -18,7 +18,7 @@
     "not op_mini all"
   ],
   "scripts": {
-    "dev": "yarn clear-cache && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",
@@ -28,35 +28,27 @@
     "find:unused": "next-unused"
   },
   "dependencies": {
-    "@mdx-js/loader": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "@next/mdx": "^10.2.3",
+    "@contentful/rich-text-react-renderer": "^15.10.1",
     "@tailwindcss/line-clamp": "^0.2.0",
-    "autoprefixer": "^10.2.6",
     "copy-to-clipboard": "^3.3.1",
+    "cssnano": "^5.0.14",
     "framer-motion": "^4.1.17",
-    "gray-matter": "^4.0.2",
-    "mdx-prism": "^0.3.1",
-    "next": "^10.2.3",
+    "next": "^12.0.7",
     "next-compose-plugins": "^2.2.1",
-    "next-mdx-remote": "^3.0.2",
     "next-pwa": "^5.2.21",
     "next-seo": "^4.24.0",
+    "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "reading-time": "^1.2.0",
-    "remark-autolink-headings": "^6.0.1",
-    "remark-code-titles": "^0.1.1",
-    "remark-slug": "^6.0.0",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
     "@svgr/cli": "^5.4.0",
     "@tailwindcss/jit": "^0.1.18",
+    "autoprefixer": "^10.4.0",
     "next-unused": "^0.0.3",
-    "postcss": "^8.3.0",
-    "rehype": "^11.0.0",
-    "tailwindcss": "^2.1.4"
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.7"
   },
   "next-unused": {
     "debug": true,

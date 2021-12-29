@@ -1,31 +1,38 @@
-import NextLink from 'next/link'
-
 // --- Components
+import Link from 'components/Link'
 import { LinkButton } from 'components/Button'
+import External from 'components/icons/External'
 
 // --- Others
-import { BUY_ME_COFFEE_URL, profiles, MAX_WIDTH, navigations } from 'lib/constants'
+import { isExternalLink } from 'lib/helper'
+import { profiles, LAYOUT_WIDTH, navigations } from 'lib/constants'
 
 const Footer = () => (
   <footer>
     <div className="bg-black text-white py-12 md:py-20 border-t border-gray-700">
-      <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: MAX_WIDTH }}>
+      <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: LAYOUT_WIDTH }}>
         <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
           {navigations.footer.map((footerNav, footerNavIndex) => (
-            <NextLink key={`footerNav_${footerNavIndex}`} href={footerNav.url} passHref>
-              <LinkButton>{footerNav.name}</LinkButton>
-            </NextLink>
+            <Link
+              key={`footerNav_${footerNav.url}`}
+              href={footerNav.url}
+              className="text-white underline-under hover:underline"
+            >
+              {footerNav.name}
+              {isExternalLink(footerNav.url) && (
+                <span className="ml-1 inline-block">
+                  <External height={14} width={14} />
+                </span>
+              )}
+            </Link>
           ))}
-          <LinkButton href={BUY_ME_COFFEE_URL} isExternal>
-            Buy me a coffee
-          </LinkButton>
           <LinkButton as="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             Scroll to top &uarr;
           </LinkButton>
         </div>
         <div className="mt-6">
           <div className="flex items-center mb-2 space-x-6">
-            {profiles.map((profile, profileIndex) => (
+            {Object.values(profiles).map((profile, profileIndex) => (
               <a
                 key={`profile_${profileIndex}_${profile.name}`}
                 href={profile.url}
@@ -39,13 +46,13 @@ const Footer = () => (
               </a>
             ))}
           </div>
-          <div className="mt-3 text-sm md:text-base">
+          <div className="mt-3 text-base md:text-lg">
             <span>onur</span>
-            <span className="text-gray-400">{' dot '}</span>
+            <span className="text-gray-500">{' dot '}</span>
             <span>suyalcinkaya</span>
-            <span className="text-gray-400">{' at '}</span>
+            <span className="text-gray-500">{' at '}</span>
             <span>gmail</span>
-            <span className="text-gray-400">{' dot '}</span>
+            <span className="text-gray-500">{' dot '}</span>
             <span>com</span>
           </div>
         </div>
