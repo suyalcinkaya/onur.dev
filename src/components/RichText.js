@@ -64,40 +64,49 @@ function options(links) {
             switch (type) {
               case 'Video': {
                 return (
-                  <iframe
-                    src={embedUrl}
-                    title={title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full aspect-video rounded-lg shadow-lg"
-                  />
+                  <figure>
+                    <iframe
+                      src={embedUrl}
+                      title={title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full aspect-video rounded-lg shadow-lg"
+                    />
+                    <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
+                  </figure>
                 )
               }
               case 'SoundCloud': {
                 return (
-                  <iframe
-                    src={embedUrl}
-                    title={title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full rounded-lg shadow-lg"
-                  />
+                  <figure>
+                    <iframe
+                      src={embedUrl}
+                      title={title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full rounded-lg shadow-lg"
+                    />
+                    <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
+                  </figure>
                 )
               }
               case 'Tweet': {
                 return (
-                  <iframe
-                    src={embedUrl}
-                    height="460"
-                    width="640"
-                    title={title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full rounded-lg"
-                  />
+                  <figure>
+                    <iframe
+                      src={embedUrl}
+                      height="460"
+                      width="640"
+                      title={title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full rounded-lg"
+                    />
+                    <figcaption className="text-sm text-gray-500 text-center mt-1">{title}</figcaption>
+                  </figure>
                 )
               }
               default:

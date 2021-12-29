@@ -37,14 +37,13 @@
     "next-compose-plugins": "^2.2.1",
     "next-pwa": "^5.2.21",
     "next-seo": "^4.24.0",
-    "prismjs": "^1.25.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-syntax-highlighter": "^15.4.5",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
     "@svgr/cli": "^5.4.0",
-    "@tailwindcss/jit": "^0.1.18",
     "autoprefixer": "^10.4.0",
     "next-unused": "^0.0.3",
     "postcss": "^8.4.5",

@@ -4,7 +4,6 @@
 # next.js
 /.next/
 /out/
-.mdx-data
 .vercel
 
 # dependencies

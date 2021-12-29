@@ -1,17 +1,14 @@
-import { useEffect } from 'react'
-import Prism from 'prismjs'
+import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 export default function CodeBlock({ title, language, code }) {
-  useEffect(() => {
-    Prism.highlightAll()
-  }, [])
+  const resetDefaultStyle = { backgroundColor: '' }
 
   return (
     <>
       {title && <span className="code-title">{title}</span>}
-      <pre className={`language-${language}`}>
-        <code>{code}</code>
-      </pre>
+      <SyntaxHighlighter language={language} customStyle={resetDefaultStyle}>
+        {code}
+      </SyntaxHighlighter>
     </>
   )
 }
