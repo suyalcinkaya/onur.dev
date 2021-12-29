@@ -20,17 +20,16 @@ export default function Post({ post }) {
     date,
     slug,
     content,
-    sys: { publishedAt }
+    sys: { firstPublishedAt, publishedAt: updatedAt }
   } = post
-
-  const publishDate = new Date(date || publishedAt)
 
   return (
     <>
       <BlogSeo
         title={title}
         description={description}
-        publishedAt={publishDate}
+        publishedAt={date || firstPublishedAt}
+        updatedAt={updatedAt}
         url={`https://onur.dev/blog/${slug}`}
       />
       <Layout>
@@ -52,8 +51,8 @@ export default function Post({ post }) {
                 </div>
                 <div className="flex flex-col ml-3 space-y-0.5">
                   <p className="text-base">Onur Şuyalçınkaya</p>
-                  <time className="text-sm text-gray-400" dateTime={date || publishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(publishDate)}
+                  <time className="text-sm text-gray-400" dateTime={date || firstPublishedAt}>
+                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
                   </time>
                 </div>
               </div>

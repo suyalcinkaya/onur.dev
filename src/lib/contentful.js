@@ -46,7 +46,6 @@ export async function getLast3Posts(preview = false) {
           sys {
             id
             firstPublishedAt
-            publishedAt
           }
         }
       }
@@ -69,7 +68,6 @@ export async function getPost(slug, preview = false) {
           image {
             title
             description
-            size
             url
             width
             height

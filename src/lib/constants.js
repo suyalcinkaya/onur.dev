@@ -9,33 +9,33 @@ export const LAYOUT_WIDTH = 'max(24vw, 768px)'
 
 export const profiles = {
   github: {
-    name: 'GitHub',
+    title: 'GitHub',
     url: 'https://github.com/suyalcinkaya/',
     icon: <GithubIcon />
   },
   twitter: {
-    name: 'Twitter',
+    title: 'Twitter',
     username: 'onurshu_',
     url: 'https://twitter.com/onurshu_',
     icon: <TwitterIcon />
   },
   linkedin: {
-    name: 'LinkedIn',
+    title: 'LinkedIn',
     url: 'https://www.linkedin.com/in/suyalcinkaya/',
     icon: <LinkedinIcon />
   },
   medium: {
-    name: 'Medium',
+    title: 'Medium',
     url: 'https://suyalcinkaya.medium.com',
     icon: <MediumIcon />
   },
   soundcloud: {
-    name: 'Soundcloud',
+    title: 'Soundcloud',
     url: 'https://soundcloud.com/jagerman',
     icon: <SoundcloudIcon />
   },
   youtube: {
-    name: 'YouTube',
+    title: 'YouTube',
     url: 'https://www.youtube.com/c/jagermanmusic',
     icon: <YoutubeIcon />
   }
@@ -62,68 +62,68 @@ export const mixtapes = [
 export const navigations = {
   header: [
     {
-      url: '/',
-      name: 'Home'
+      title: 'Home',
+      url: '/'
     },
     {
-      url: '/blog',
-      name: 'Blog'
+      title: 'Blog',
+      url: '/blog'
     },
     {
-      url: '/about',
-      name: 'About'
+      title: 'About',
+      url: '/about'
     },
     {
-      url: '/journey',
-      name: 'Journey'
+      title: 'Journey',
+      url: '/journey'
     }
   ],
   footer: [
     {
-      url: '/',
-      name: 'Home'
+      title: 'Home',
+      url: '/'
     },
     {
-      url: '/blog',
-      name: 'Blog'
+      title: 'Blog',
+      url: '/blog'
     },
     {
-      url: '/about',
-      name: 'About'
+      title: 'About',
+      url: '/about'
     },
     {
-      url: '/journey',
-      name: 'Journey'
+      title: 'Journey',
+      url: '/journey'
     },
     {
-      url: '/snippets',
-      name: 'Snippets'
+      title: 'Snippets',
+      url: '/snippets'
     },
     {
-      url: 'https://read.cv/onur',
-      name: 'Curriculum Vitae'
+      title: 'Curriculum Vitae',
+      url: 'https://read.cv/onur'
     },
     {
-      url: 'http://buymeacoff.ee/suyalcinkaya',
-      name: 'Buy me a coffee'
+      title: 'Buy me a coffee',
+      url: 'http://buymeacoff.ee/suyalcinkaya'
     }
   ]
 }
 
 export const projects = [
   {
-    url: 'https://github.com/suyalcinkaya/notebook',
-    name: 'Notebook',
-    description: 'My personal notebook.'
+    title: 'Notebook',
+    description: 'My personal notebook.',
+    url: 'https://github.com/suyalcinkaya/notebook'
   },
   {
-    url: 'https://github.com/suyalcinkaya/notiful',
-    name: 'Notiful',
-    description: 'An open source minimal and clean taking notes extension for Chrome.'
+    title: 'Notiful',
+    description: 'An open source minimal and clean taking notes extension for Chrome.',
+    url: 'https://github.com/suyalcinkaya/notiful'
   },
   {
-    url: 'https://github.com/suyalcinkaya/koalazily',
-    name: 'Koalazily',
-    description: 'Loading images lazily in a modern way using Intersection Observer API.'
+    title: 'Koalazily',
+    description: 'Loading images lazily in a modern way using Intersection Observer API.',
+    url: 'https://github.com/suyalcinkaya/koalazily'
   }
 ]

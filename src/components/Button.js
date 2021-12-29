@@ -1,3 +1,5 @@
+import { forwardRef } from 'react'
+
 const commonClassNames =
   'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-lg space-x-2 whitespace-nowrap cursor-pointer'
 
@@ -18,10 +20,11 @@ export const OutlineButton = ({ as = 'button', className = '', isExternal, ...ot
   )
 }
 
-export const GhostButton = ({ as = 'button', className, isExternal, ...others }) => {
+export const GhostButton = forwardRef(({ as = 'button', className, isExternal, ...others }, ref) => {
   const Tag = as
   return (
     <Tag
+      ref={ref}
       className={`${commonClassNames} ${className} bg-transparent px-4 h-10 focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50`}
       {...(as === 'button' && {
         type: 'button'
@@ -33,12 +36,13 @@ export const GhostButton = ({ as = 'button', className, isExternal, ...others })
       {...others}
     />
   )
-}
+})
 
-export const LinkButton = ({ as = 'a', className = '', isExternal, ...others }) => {
+export const LinkButton = forwardRef(({ as = 'a', className = '', isExternal, ...others }, ref) => {
   const Tag = as
   return (
     <Tag
+      ref={ref}
       className={`${commonClassNames} ${className} leading-normal p-0 underline-under hover:underline`}
       {...(isExternal && {
         target: '_blank',
@@ -47,4 +51,4 @@ export const LinkButton = ({ as = 'a', className = '', isExternal, ...others }) 
       {...others}
     />
   )
-}
+})

@@ -44,18 +44,28 @@ export default function Home({ recentPosts }) {
           </div>
           {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
           <div className="space-y-10 mt-8">
-            {recentPosts.map((post) => (
-              <Card
-                key={post.slug}
-                title={post.title}
-                description={
-                  <time dateTime={post.date || post.sys.firstPublishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.firstPublishedAt))}
-                  </time>
-                }
-                url={`/blog/${post.slug}`}
-              />
-            ))}
+            {recentPosts.map((post) => {
+              const {
+                title,
+                // description,
+                date,
+                slug,
+                sys: { firstPublishedAt }
+              } = post
+
+              return (
+                <Card
+                  key={`post_${slug}`}
+                  title={title}
+                  description={
+                    <time dateTime={date || firstPublishedAt}>
+                      {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                    </time>
+                  }
+                  url={`/blog/${slug}`}
+                />
+              )
+            })}
           </div>
         </div>
         <div>
@@ -66,14 +76,10 @@ export default function Home({ recentPosts }) {
             </GhostButton>
           </div>
           <div className="space-y-8 mt-8">
-            {mixtapes.map((mixtape, mixtapeId) => (
-              <Card
-                key={`mixtape_${mixtapeId}`}
-                title={mixtape.title}
-                description={mixtape.description}
-                url={mixtape.url}
-              />
-            ))}
+            {mixtapes.map((mixtape) => {
+              const { title, description, url } = mixtape
+              return <Card key={`mixtape_${url}`} title={title} description={description} url={url} />
+            })}
           </div>
         </div>
         <div>
@@ -84,11 +90,10 @@ export default function Home({ recentPosts }) {
             </GhostButton>
           </div>
           <div className="space-y-8 mt-8">
-            {projects.map((project, projectId) => (
-              <div key={`project_${projectId}`}>
-                <Card title={project.name} description={project.description} url={project.url} />
-              </div>
-            ))}
+            {projects.map((project) => {
+              const { title, description, url } = project
+              return <Card key={`project_${url}`} title={title} description={description} url={url} />
+            })}
           </div>
         </div>
       </div>

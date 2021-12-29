@@ -18,7 +18,7 @@ export default function Snippet({ codeSnippet }) {
     slug,
     code,
     language,
-    sys: { publishedAt }
+    sys: { firstPublishedAt, publishedAt: updatedAt }
   } = codeSnippet
 
   return (
@@ -26,7 +26,8 @@ export default function Snippet({ codeSnippet }) {
       <BlogSeo
         title={title}
         description={description}
-        publishedAt={new Date(publishedAt)}
+        publishedAt={firstPublishedAt}
+        updatedAt={updatedAt}
         url={`https://onur.dev/snippets/${slug}`}
       />
       <Layout>

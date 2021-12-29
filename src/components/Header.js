@@ -22,15 +22,19 @@ const Header = () => {
       >
         <div className="shadow md:shadow-none md:mx-auto px-2 md:px-12" style={{ maxWidth: LAYOUT_WIDTH }}>
           <div className="flex items-center min-h-16">
-            {navigations.header.map((headerNav, headerNavIndex) => (
-              <Fragment key={`headerNav_${headerNavIndex}`}>
-                <NextLink href={headerNav.url} passHref>
-                  <GhostButton as="a" size="sm" className={`${router.pathname === headerNav.url ? 'font-medium' : ''}`}>
-                    {headerNav.name}
-                  </GhostButton>
-                </NextLink>
-              </Fragment>
-            ))}
+            {navigations.header.map((headerNav) => {
+              const { title, url } = headerNav
+
+              return (
+                <Fragment key={`headerNav_${url}`}>
+                  <NextLink href={url} passHref>
+                    <GhostButton as="a" size="sm" className={`${router.pathname === url ? 'font-medium' : ''}`}>
+                      {title}
+                    </GhostButton>
+                  </NextLink>
+                </Fragment>
+              )
+            })}
           </div>
         </div>
       </header>

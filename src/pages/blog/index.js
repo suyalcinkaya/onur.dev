@@ -33,18 +33,28 @@ export default function Blog({ allPosts }) {
       <Layout>
         <PageTitle title="Blog" />
         <div className="space-y-10">
-          {allPosts.map((post) => (
-            <Card
-              key={post.slug}
-              title={post.title}
-              description={
-                <time dateTime={post.date || post.sys.firstPublishedAt}>
-                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(post.date || post.sys.firstPublishedAt))}
-                </time>
-              }
-              url={`/blog/${post.slug}`}
-            />
-          ))}
+          {allPosts.map((post) => {
+            const {
+              title,
+              // description,
+              date,
+              slug,
+              sys: { firstPublishedAt }
+            } = post
+
+            return (
+              <Card
+                key={`post_${slug}`}
+                title={title}
+                description={
+                  <time dateTime={date || firstPublishedAt}>
+                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                  </time>
+                }
+                url={`/blog/${slug}`}
+              />
+            )
+          })}
         </div>
       </Layout>
     </>

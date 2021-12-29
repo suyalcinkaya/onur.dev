@@ -12,39 +12,43 @@ const Footer = () => (
     <div className="bg-black text-white py-12 md:py-20 border-t border-gray-700">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: LAYOUT_WIDTH }}>
         <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
-          {navigations.footer.map((footerNav, footerNavIndex) => (
-            <Link
-              key={`footerNav_${footerNav.url}`}
-              href={footerNav.url}
-              className="text-white underline-under hover:underline"
-            >
-              {footerNav.name}
-              {isExternalLink(footerNav.url) && (
-                <span className="ml-1 inline-block">
-                  <External height={14} width={14} />
-                </span>
-              )}
-            </Link>
-          ))}
+          {navigations.footer.map((footerNav) => {
+            const { title, url } = footerNav
+
+            return (
+              <Link key={`footerNav_${url}`} href={url} className="text-white underline-under hover:underline">
+                {title}
+                {isExternalLink(url) && (
+                  <span className="ml-1 inline-block">
+                    <External height={14} width={14} />
+                  </span>
+                )}
+              </Link>
+            )
+          })}
           <LinkButton as="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             Scroll to top &uarr;
           </LinkButton>
         </div>
         <div className="mt-6">
           <div className="flex items-center mb-2 space-x-6">
-            {Object.values(profiles).map((profile, profileIndex) => (
-              <a
-                key={`profile_${profileIndex}_${profile.name}`}
-                href={profile.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={profile.name}
-                title={profile.name}
-                className="inline-flex items-center justify-items-center bg-transparent hover:text-gray-400 transition-colors h-8 min-w-8"
-              >
-                {profile.icon}
-              </a>
-            ))}
+            {Object.values(profiles).map((profile) => {
+              const { title, url, icon } = profile
+
+              return (
+                <a
+                  key={`profile_${url}`}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={title}
+                  title={title}
+                  className="inline-flex items-center justify-items-center bg-transparent hover:text-gray-400 transition-colors h-8 min-w-8"
+                >
+                  {icon}
+                </a>
+              )
+            })}
           </div>
           <div className="mt-3 text-base md:text-lg">
             <span>onur</span>

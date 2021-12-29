@@ -40,7 +40,7 @@ const Journey = ({ allLogbook }) => {
               </div>
               <section>
                 {item.logs.map((log, logIndex) => (
-                  <div key={`journey_${logIndex}`} className="flex relative pb-8 last:pb-0">
+                  <div key={`log_${logIndex}`} className="flex relative pb-8 last:pb-0">
                     {logIndex !== item.logs.length - 1 && (
                       <div className="w-10 absolute inset-x-0 inset-y-1 mt-10 flex items-center justify-center">
                         <div className="border-l border-dashed border-gray-400 h-full w-px pointer-events-none"></div>
