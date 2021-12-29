@@ -9,7 +9,7 @@ import Link from 'components/Link'
 import PageHeading from 'components/PageHeading'
 
 // --- Others
-import { getAllPosts } from 'lib/contentful'
+import { getLast3Posts } from 'lib/contentful'
 import { mixtapes, projects, profiles } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
@@ -97,7 +97,7 @@ export default function Home({ recentPosts }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const recentPosts = (await getAllPosts(3, preview)) ?? []
+  const recentPosts = (await getLast3Posts(preview)) ?? []
 
   return {
     props: { recentPosts }

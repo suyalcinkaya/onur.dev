@@ -11,10 +11,33 @@ async function fetchGraphQL(query, preview = false) {
   }).then((response) => response.json())
 }
 
-export async function getAllPosts(limit = 10, preview = false) {
+export async function getAllPosts(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}, limit: ${limit}) {
+      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}) {
+        items {
+          title
+          description
+          slug
+          date
+          sys {
+            id
+            firstPublishedAt
+            publishedAt
+          }
+        }
+      }
+    }`,
+    preview
+  )
+
+  return entries?.data?.postCollection?.items
+}
+
+export async function getLast3Posts(preview = false) {
+  const entries = await fetchGraphQL(
+    `query {
+      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}, limit: 3) {
         items {
           title
           description

@@ -52,7 +52,7 @@ export default function Blog({ allPosts }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPosts(null, preview)) ?? []
+  const allPosts = (await getAllPosts(preview)) ?? []
 
   return {
     props: { allPosts }

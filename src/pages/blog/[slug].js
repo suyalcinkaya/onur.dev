@@ -50,7 +50,7 @@ export default function Post({ post }) {
                 </div>
                 <div className="flex flex-col ml-3 space-y-0.5">
                   <p className="text-base">Onur Şuyalçınkaya</p>
-                  <time className="text-sm text-gray-400" dateTime={publishDate}>
+                  <time className="text-sm text-gray-400" dateTime={date || publishedAt}>
                     {tinytime('{MMMM} {DD}, {YYYY}').render(publishDate)}
                   </time>
                 </div>
