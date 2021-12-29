@@ -4,11 +4,11 @@ import tinytime from 'tinytime'
 
 // --- Components
 import BlogSeo from 'components/BlogSeo'
-import { LinkButton } from 'components/Button'
 import Layout from 'components/Layout'
+import { LinkButton } from 'components/Button'
+import PageTitle from 'components/PageTitle'
 import RichText from 'components/RichText'
 import Share from 'components/Share'
-import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getPost, getAllPosts } from 'lib/contentful'
@@ -28,7 +28,7 @@ export default function Post({ post }) {
   return (
     <>
       <BlogSeo
-        title={title}
+        title={`${title} — Onur Şuyalçınkaya`}
         description={description}
         publishedAt={publishDate}
         url={`https://onur.dev/blog/${slug}`}

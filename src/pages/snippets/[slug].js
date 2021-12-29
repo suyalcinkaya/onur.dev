@@ -1,11 +1,12 @@
 import NextLink from 'next/link'
 
 // --- Components
-import { LinkButton } from 'components/Button'
+import BlogSeo from 'components/BlogSeo'
 import CodeBlock from 'components/CodeBlock'
 import Layout from 'components/Layout'
-import Share from 'components/Share'
+import { LinkButton } from 'components/Button'
 import PageTitle from 'components/PageTitle'
+import Share from 'components/Share'
 
 // --- Others
 import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
@@ -13,31 +14,39 @@ import { getCodeSnippet, getAllCodeSnippets } from 'lib/contentful'
 export default function Snippet({ codeSnippet }) {
   const {
     title,
-    // description,
+    description,
     slug,
     code,
-    language
-    // sys: { publishedAt }
+    language,
+    sys: { publishedAt }
   } = codeSnippet
 
   return (
-    <Layout>
-      <article>
-        <div className="mb-12 space-y-4">
-          <div className="relative">
-            <div className="absolute -top-10 md:-top-14 left-0">
-              <NextLink href="/snippets">
-                <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
-              </NextLink>
+    <>
+      <BlogSeo
+        title={`${title} — Onur Şuyalçınkaya`}
+        description={description}
+        publishedAt={new Date(publishedAt)}
+        url={`https://onur.dev/snippets/${slug}`}
+      />
+      <Layout>
+        <article>
+          <div className="mb-12 space-y-4">
+            <div className="relative">
+              <div className="absolute -top-10 md:-top-14 left-0">
+                <NextLink href="/snippets">
+                  <LinkButton className="mb-8 text-gray-400">&larr; Snippets</LinkButton>
+                </NextLink>
+              </div>
+              <PageTitle title={title} isSlugTitle />
+              {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
             </div>
-            <PageTitle title={title} isSlugTitle />
-            {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
+            <Share title={title} url={`https://onur.dev/snippets/${slug}`} />
           </div>
-          <Share title={title} url={`https://onur.dev/snippets/${slug}`} />
-        </div>
-        <CodeBlock language={language} code={code} />
-      </article>
-    </Layout>
+          <CodeBlock language={language} code={code} />
+        </article>
+      </Layout>
+    </>
   )
 }
 
