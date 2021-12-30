@@ -19,7 +19,8 @@ import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post }) {
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
-  const [supabaseData, setSupabaseData] = useState()
+  const [likeCount, setLikeCount] = useState()
+  const [viewCount, setViewCount] = useState()
   const [supabaseError, setSupabaseError] = useState()
 
   const {
@@ -32,25 +33,50 @@ export default function Post({ post }) {
   } = post
 
   useEffect(async () => {
-    await getSupabaseData()
+    await getInitialSupabaseData()
     if (process.env.NODE_ENV === 'production') {
       incrementViewCount()
     }
   }, [slug])
 
-  async function getSupabaseData() {
+  async function getInitialSupabaseData() {
     try {
       setSupabaseDataLoading(true)
 
       let { data } = await supabase.from('pages').select().eq('slug', slug).single()
       if (data) {
-        setSupabaseData(data)
+        setLikeCount(data.like_count)
       } else {
         const newDate = new Date()
         const { data: createdData } = await supabase
           .from('pages')
           .insert([{ slug, like_count_updated_at: newDate, view_count_updated_at: newDate }])
-        if (createdData) setSupabaseData(createdData[0])
+        if (createdData) {
+          const { like_count } = createdData[0]
+          setLikeCount(like_count)
+        }
+      }
+    } catch (error) {
+      setSupabaseError(error)
+    } finally {
+      setSupabaseDataLoading(false)
+    }
+  }
+
+  async function incrementViewCount() {
+    try {
+      setSupabaseDataLoading(true)
+
+      let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
+      let { data: updatedData } = await supabase.from('pages').upsert({
+        ...latestData,
+        view_count: latestData.view_count + 1,
+        view_count_updated_at: new Date()
+      })
+      if (updatedData) {
+        const { view_count } = updatedData[0]
+        setViewCount(view_count)
+        // setLikeCount(like_count)
       }
     } catch (error) {
       setSupabaseError(error)
@@ -69,25 +95,11 @@ export default function Post({ post }) {
         like_count: latestData.like_count + 1,
         like_count_updated_at: new Date()
       })
-      if (updatedData) setSupabaseData(updatedData[0])
-    } catch (error) {
-      setSupabaseError(error)
-    } finally {
-      setSupabaseDataLoading(false)
-    }
-  }
-
-  async function incrementViewCount() {
-    try {
-      setSupabaseDataLoading(true)
-
-      let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
-      let { data: updatedData } = await supabase.from('pages').upsert({
-        ...latestData,
-        view_count: latestData.view_count + 1,
-        view_count_updated_at: new Date()
-      })
-      if (updatedData) setSupabaseData(updatedData[0])
+      if (updatedData) {
+        const { like_count } = updatedData[0]
+        setLikeCount(like_count)
+        // setViewCount(view_count)
+      }
     } catch (error) {
       setSupabaseError(error)
     } finally {
@@ -128,7 +140,7 @@ export default function Post({ post }) {
                       {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
                     </time>
                     {' ∙ '}
-                    <span>{supabaseData?.view_count ?? '-'} views</span>
+                    <span>{viewCount || '-'} views</span>
                   </div>
                 </div>
               </div>
@@ -139,7 +151,7 @@ export default function Post({ post }) {
                   disabled={supabaseDataLoading}
                   onClick={() => !supabaseDataLoading && incrementLikeCount()}
                 >
-                  <LikeIcon height={18} width={18} /> <span>{supabaseData?.like_count ?? '-'}</span>
+                  <LikeIcon height={18} width={18} /> <span>{likeCount ?? '-'}</span>
                 </OutlineButton>
                 <Share title={title} url={`https://onur.dev/blog/${slug}`} />
               </div>
