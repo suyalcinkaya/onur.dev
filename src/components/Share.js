@@ -16,9 +16,9 @@ const Share = ({ title, url }) => {
 
   return (
     <div className="flex items-center space-x-4">
-      <OutlineButton onClick={onCopy} disabled={!!hasCopied}>
+      {/* <OutlineButton onClick={onCopy} disabled={!!hasCopied}>
         {hasCopied ? 'Copied' : 'Copy Link'}
-      </OutlineButton>
+      </OutlineButton> */}
       <IconButton
         name="Share on Twitter"
         onClick={() =>

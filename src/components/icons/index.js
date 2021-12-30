@@ -1,6 +1,7 @@
 export { default as External } from './External'
 export { default as Facebook } from './Facebook'
 export { default as Github } from './Github'
+export { default as Heart } from './Heart'
 export { default as Linkedin } from './Linkedin'
 export { default as Medium } from './Medium'
 export { default as Soundcloud } from './Soundcloud'
