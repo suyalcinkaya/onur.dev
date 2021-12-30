@@ -1,5 +1,5 @@
 // --- Components
-import { OutlineButton } from 'components/Button'
+// import { OutlineButton } from 'components/Button'
 import IconButton from 'components/IconButton'
 
 // --- Icons
@@ -8,11 +8,11 @@ import LinkedinIcon from 'components/icons/Linkedin'
 import TwitterIcon from 'components/icons/Twitter'
 
 // --- Others
-import useClipboard from 'lib/hooks/useClipboard'
+// import useClipboard from 'lib/hooks/useClipboard'
 import { profiles } from 'lib/constants'
 
 const Share = ({ title, url }) => {
-  const { hasCopied, onCopy } = useClipboard(url)
+  // const { hasCopied, onCopy } = useClipboard(url)
 
   return (
     <div className="flex items-center space-x-4">
