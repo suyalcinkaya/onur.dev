@@ -1,7 +1,7 @@
 // --- Components
 import Link from 'components/Link'
 import { LinkButton } from 'components/Button'
-import External from 'components/icons/External'
+import ExternalIcon from 'components/icons/External'
 
 // --- Others
 import { isExternalLink } from 'lib/helper'
@@ -20,7 +20,7 @@ const Footer = () => (
                 {title}
                 {isExternalLink(url) && (
                   <span className="ml-1 inline-block">
-                    <External height={14} width={14} />
+                    <ExternalIcon height={14} width={14} />
                   </span>
                 )}
               </Link>

@@ -11,7 +11,7 @@ import { OutlineButton } from 'components/Button'
 import PageTitle from 'components/PageTitle'
 import RichText from 'components/RichText'
 import Share from 'components/Share'
-import LikeIcon from 'components/icons/Heart'
+import LikeIcon from 'components/icons/Like'
 
 // --- Others
 import supabase from 'lib/supabase'
@@ -20,6 +20,7 @@ import { getPost, getAllPosts } from 'lib/contentful'
 export default function Post({ post }) {
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [supabaseData, setSupabaseData] = useState()
+  const [supabaseError, setSupabaseError] = useState()
 
   const {
     title,
@@ -37,10 +38,6 @@ export default function Post({ post }) {
     }
   }, [slug])
 
-  useEffect(() => {
-    if (supabaseData) console.log(`supabaseData`, supabaseData)
-  }, [supabaseData])
-
   async function getSupabaseData() {
     try {
       setSupabaseDataLoading(true)
@@ -49,14 +46,14 @@ export default function Post({ post }) {
       if (data) {
         setSupabaseData(data)
       } else {
-        const newData = new Date()
+        const newDate = new Date()
         const { data: createdData } = await supabase
           .from('pages')
-          .insert([{ slug: slug, view_count: 1, like_count_updated_at: newData, view_count_updated_at: newData }])
+          .insert([{ slug, like_count_updated_at: newDate, view_count_updated_at: newDate }])
         if (createdData) setSupabaseData(createdData[0])
       }
     } catch (error) {
-      console.log(error)
+      setSupabaseError(error)
     } finally {
       setSupabaseDataLoading(false)
     }
@@ -74,7 +71,7 @@ export default function Post({ post }) {
       })
       if (updatedData) setSupabaseData(updatedData[0])
     } catch (error) {
-      console.log(error)
+      setSupabaseError(error)
     } finally {
       setSupabaseDataLoading(false)
     }
@@ -92,7 +89,7 @@ export default function Post({ post }) {
       })
       if (updatedData) setSupabaseData(updatedData[0])
     } catch (error) {
-      console.log(error)
+      setSupabaseError(error)
     } finally {
       setSupabaseDataLoading(false)
     }
@@ -138,11 +135,11 @@ export default function Post({ post }) {
               <div className="flex flex-col items-start md:items-end space-y-2">
                 <OutlineButton
                   title="Like"
-                  className="space-x-0.5"
+                  className="space-x-1"
                   disabled={supabaseDataLoading}
                   onClick={() => !supabaseDataLoading && incrementLikeCount()}
                 >
-                  <LikeIcon height={20} width={20} /> <span>{supabaseData?.like_count ?? '-'}</span>
+                  <LikeIcon height={18} width={18} /> <span>{supabaseData?.like_count ?? '-'}</span>
                 </OutlineButton>
                 <Share title={title} url={`https://onur.dev/blog/${slug}`} />
               </div>
