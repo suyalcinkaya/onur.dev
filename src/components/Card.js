@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 
 // --- Icons
-import External from 'components/icons/External'
+import ExternalIcon from 'components/icons/External'
 
 // --- Others
 import { isExternalLink } from 'lib/helper'
@@ -46,7 +46,7 @@ const Card = ({ title, description, url = undefined, ...others }) => {
         <span className="text-lg slashed-zero">{title}</span>
         {isExternal && (
           <span className="ml-1 inline-block">
-            <External height={14} width={14} />
+            <ExternalIcon height={14} width={14} />
           </span>
         )}
       </Wrapper>

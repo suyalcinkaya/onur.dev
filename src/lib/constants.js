@@ -44,17 +44,17 @@ export const profiles = {
 export const mixtapes = [
   {
     title: 'Summer Sax',
-    description: '11M+ plays • 55K+ likes',
+    description: '11M+ plays ∙ 55K+ likes',
     url: 'https://www.youtube.com/watch?v=bzZupZkrjm0'
   },
   {
     title: 'Sax On Fire',
-    description: '1.5M+ plays • 35K+ likes',
+    description: '1.5M+ plays ∙ 35K+ likes',
     url: 'https://soundcloud.com/jagerman/saxonfire'
   },
   {
     title: 'Casablanca',
-    description: '120K+ plays • 3K+ likes',
+    description: '120K+ plays ∙ 3K+ likes',
     url: 'https://soundcloud.com/jagerman/casablanca'
   }
 ]

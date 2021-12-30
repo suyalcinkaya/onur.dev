@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 import tinytime from 'tinytime'
@@ -6,14 +7,22 @@ import tinytime from 'tinytime'
 import BlogSeo from 'components/BlogSeo'
 import Layout from 'components/Layout'
 import { LinkButton } from 'components/Button'
+import { OutlineButton } from 'components/Button'
 import PageTitle from 'components/PageTitle'
 import RichText from 'components/RichText'
 import Share from 'components/Share'
+import LikeIcon from 'components/icons/Like'
 
 // --- Others
+import supabase from 'lib/supabase'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post }) {
+  const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
+  const [likeCount, setLikeCount] = useState()
+  const [viewCount, setViewCount] = useState()
+  const [supabaseError, setSupabaseError] = useState()
+
   const {
     title,
     description,
@@ -22,6 +31,81 @@ export default function Post({ post }) {
     content,
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = post
+
+  useEffect(async () => {
+    await getInitialSupabaseData()
+    if (process.env.NODE_ENV === 'production') {
+      incrementViewCount()
+    }
+  }, [slug])
+
+  async function getInitialSupabaseData() {
+    try {
+      setSupabaseDataLoading(true)
+
+      let { data } = await supabase.from('pages').select().eq('slug', slug).single()
+      if (data) {
+        setLikeCount(data.like_count)
+      } else {
+        const newDate = new Date()
+        const { data: createdData } = await supabase
+          .from('pages')
+          .insert([{ slug, like_count_updated_at: newDate, view_count_updated_at: newDate }])
+        if (createdData) {
+          const { like_count } = createdData[0]
+          setLikeCount(like_count)
+        }
+      }
+    } catch (error) {
+      setSupabaseError(error)
+    } finally {
+      setSupabaseDataLoading(false)
+    }
+  }
+
+  async function incrementViewCount() {
+    try {
+      setSupabaseDataLoading(true)
+
+      let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
+      let { data: updatedData } = await supabase.from('pages').upsert({
+        ...latestData,
+        view_count: latestData.view_count + 1,
+        view_count_updated_at: new Date()
+      })
+      if (updatedData) {
+        const { view_count } = updatedData[0]
+        setViewCount(view_count)
+        // setLikeCount(like_count)
+      }
+    } catch (error) {
+      setSupabaseError(error)
+    } finally {
+      setSupabaseDataLoading(false)
+    }
+  }
+
+  async function incrementLikeCount() {
+    try {
+      setSupabaseDataLoading(true)
+
+      let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
+      let { data: updatedData } = await supabase.from('pages').upsert({
+        ...latestData,
+        like_count: latestData.like_count + 1,
+        like_count_updated_at: new Date()
+      })
+      if (updatedData) {
+        const { like_count } = updatedData[0]
+        setLikeCount(like_count)
+        // setViewCount(view_count)
+      }
+    } catch (error) {
+      setSupabaseError(error)
+    } finally {
+      setSupabaseDataLoading(false)
+    }
+  }
 
   return (
     <>
@@ -51,12 +135,26 @@ export default function Post({ post }) {
                 </div>
                 <div className="flex flex-col ml-3 space-y-0.5">
                   <p className="text-base">Onur Şuyalçınkaya</p>
-                  <time className="text-sm text-gray-400" dateTime={date || firstPublishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
-                  </time>
+                  <div className="text-sm text-gray-400">
+                    <time dateTime={date || firstPublishedAt}>
+                      {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                    </time>
+                    {' ∙ '}
+                    <span>{viewCount || '-'} views</span>
+                  </div>
                 </div>
               </div>
-              <Share title={title} url={`https://onur.dev/blog/${slug}`} />
+              <div className="flex flex-col items-start md:items-end space-y-2">
+                <OutlineButton
+                  title="Like"
+                  className="space-x-1"
+                  disabled={supabaseDataLoading}
+                  onClick={() => !supabaseDataLoading && incrementLikeCount()}
+                >
+                  <LikeIcon height={18} width={18} /> <span>{likeCount ?? '-'}</span>
+                </OutlineButton>
+                <Share title={title} url={`https://onur.dev/blog/${slug}`} />
+              </div>
             </div>
           </div>
           <RichText content={content} />
