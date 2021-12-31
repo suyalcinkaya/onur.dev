@@ -49,7 +49,7 @@ export default function About() {
               design with a strong sense of aesthetics.
             </p>
             <p>
-              Currently living in Berlin, Germany and developing things as Frontend Engineer at{' '}
+              I'm currently living in Berlin, Germany and developing things as a Frontend Engineer at{' '}
               <Link href="https://hey.car">heycar</Link>. Previously, I worked as a Frontend Engineer at Yemeksepeti,
               Full Stack Developer at Sistas, Mobile Developer at Tanbula and Specialist at Apple.
             </p>

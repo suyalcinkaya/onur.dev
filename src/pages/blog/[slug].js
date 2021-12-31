@@ -51,6 +51,7 @@ export default function Post({ post }) {
         const { data: createdData } = await supabase
           .from('pages')
           .insert([{ slug, like_count_updated_at: newDate, view_count_updated_at: newDate }])
+
         if (createdData) {
           const { like_count } = createdData[0]
           setLikeCount(like_count)
@@ -67,12 +68,13 @@ export default function Post({ post }) {
     try {
       setSupabaseDataLoading(true)
 
-      let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
-      let { data: updatedData } = await supabase.from('pages').upsert({
-        ...latestData,
-        view_count: latestData.view_count + 1,
-        view_count_updated_at: new Date()
-      })
+      const { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
+
+      const { data: updatedData } = await supabase
+        .from('pages')
+        .update({ view_count: latestData.view_count + 1, view_count_updated_at: new Date() })
+        .match({ id: latestData.id, slug: latestData.slug })
+
       if (updatedData) {
         const { view_count } = updatedData[0]
         setViewCount(view_count)
@@ -90,11 +92,12 @@ export default function Post({ post }) {
       setSupabaseDataLoading(true)
 
       let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
-      let { data: updatedData } = await supabase.from('pages').upsert({
-        ...latestData,
-        like_count: latestData.like_count + 1,
-        like_count_updated_at: new Date()
-      })
+
+      const { data: updatedData } = await supabase
+        .from('pages')
+        .update({ like_count: latestData.like_count + 1, like_count_updated_at: new Date() })
+        .match({ id: latestData.id, slug: latestData.slug })
+
       if (updatedData) {
         const { like_count } = updatedData[0]
         setLikeCount(like_count)
@@ -147,7 +150,7 @@ export default function Post({ post }) {
               <div className="flex flex-col items-start md:items-end space-y-2">
                 <OutlineButton
                   title="Like"
-                  className="space-x-1"
+                  className="text-sm leading-tight space-x-1"
                   disabled={supabaseDataLoading}
                   onClick={() => !supabaseDataLoading && incrementLikeCount()}
                 >

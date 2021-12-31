@@ -43,14 +43,18 @@ const Card = ({ title, description, url = undefined, ...others }) => {
         })}
         {...others}
       >
-        <span className="text-lg slashed-zero">{title}</span>
+        <span className="text-lg slashed-zero word-break">{title}</span>
         {isExternal && (
           <span className="ml-1 inline-block">
             <ExternalIcon height={14} width={14} />
           </span>
         )}
       </Wrapper>
-      {description && <div className="text-gray-500 overflow-hidden md:line-clamp-2">{description}</div>}
+      {description && (
+        <div>
+          <span className="text-gray-500 word-break">{description}</span>
+        </div>
+      )}
     </div>
   )
 }
