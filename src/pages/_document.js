@@ -13,21 +13,6 @@ class MyDocument extends Document {
       <Html lang="en">
         <>
           <Head>
-            <link
-              rel="preload"
-              href="/fonts/UntitledSansWeb-Regular.woff2"
-              as="font"
-              type="font/woff2"
-              crossOrigin="anonymous"
-            />
-            <link
-              rel="preload"
-              href="/fonts/UntitledSansWeb-Medium.woff2"
-              as="font"
-              type="font/woff2"
-              crossOrigin="anonymous"
-            />
-
             {/* Base */}
             <meta charSet="utf-8" />
             <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -49,12 +34,27 @@ class MyDocument extends Document {
             <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#1A1A1A" />
             <link rel="shortcut icon" href="/favicons/favicon.ico" />
 
+            <link
+              rel="preload"
+              href="/fonts/UntitledSansWeb-Regular.woff2"
+              as="font"
+              type="font/woff2"
+              crossOrigin="anonymous"
+            />
+            <link
+              rel="preload"
+              href="/fonts/UntitledSansWeb-Medium.woff2"
+              as="font"
+              type="font/woff2"
+              crossOrigin="anonymous"
+            />
+
             {/* Analytics */}
             {process.env.NODE_ENV === 'production' && (
               <>
                 <link rel="preconnect" href="https://www.googletagmanager.com" />
                 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-                <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                <script defer src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
                 <script
                   dangerouslySetInnerHTML={{
                     __html: `
@@ -64,11 +64,6 @@ class MyDocument extends Document {
                     gtag('config', '${GA_TRACKING_ID}');
                   `
                   }}
-                />
-                <script
-                  data-ad-client="ca-pub-4011249382463639"
-                  async
-                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
                 />
               </>
             )}

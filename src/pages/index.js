@@ -37,7 +37,7 @@ export default function Home({ recentPosts }) {
       <div className="space-y-16">
         <div>
           <div className="flex items-center justify-between border-b border-gray-200">
-            <h3>Recent Posts</h3>
+            <span className="text-lg md:text-xl">Recent Posts</span>
             <NextLink href="/blog" passHref>
               <GhostButton as="a">See All &rarr;</GhostButton>
             </NextLink>
@@ -70,7 +70,7 @@ export default function Home({ recentPosts }) {
         </div>
         <div>
           <div className="flex items-center justify-between border-b border-gray-200">
-            <h3>Popular Mixtapes</h3>
+            <span className="text-lg md:text-xl">Popular Mixtapes</span>
             <GhostButton as="a" href={profiles.soundcloud.url} isExternal>
               See All &rarr;
             </GhostButton>
@@ -84,7 +84,7 @@ export default function Home({ recentPosts }) {
         </div>
         <div>
           <div className="flex items-center justify-between border-b border-gray-200">
-            <h3>Some Projects</h3>
+            <span className="text-lg md:text-xl">Some Projects</span>
             <GhostButton as="a" href={profiles.github.url} isExternal>
               See All &rarr;
             </GhostButton>

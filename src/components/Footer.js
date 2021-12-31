@@ -9,12 +9,11 @@ import { profiles, LAYOUT_WIDTH, navigations } from 'lib/constants'
 
 const Footer = () => (
   <footer>
-    <div className="bg-black text-white py-12 md:py-20 border-t border-gray-700">
+    <div className="bg-black text-white py-12 md:py-20">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: LAYOUT_WIDTH }}>
         <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
           {navigations.footer.map((footerNav) => {
             const { title, url } = footerNav
-
             return (
               <Link key={`footerNav_${url}`} href={url} className="text-white underline-under hover:underline">
                 {title}
@@ -34,7 +33,6 @@ const Footer = () => (
           <div className="flex items-center mb-2 space-x-6">
             {Object.values(profiles).map((profile) => {
               const { title, url, icon } = profile
-
               return (
                 <a
                   key={`profile_${url}`}
