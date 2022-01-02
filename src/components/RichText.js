@@ -20,11 +20,7 @@ function options(links) {
       )
     },
     renderNode: {
-      [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 id="conclusion" className="font-medium mb-4">
-          {children}
-        </h2>
-      ),
+      [BLOCKS.HEADING_2]: (node, children) => <h2 className="font-medium mb-4">{children}</h2>,
       [BLOCKS.HEADING_3]: (node, children) => <h3 className="font-medium mb-3">{children}</h3>,
       [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-6">{children}</p>,
       [BLOCKS.UL_LIST]: (node, children) => <ul className="list-circle list-inside pl-4 mb-6 space-y-2">{children}</ul>,

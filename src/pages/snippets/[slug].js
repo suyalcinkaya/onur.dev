@@ -50,8 +50,8 @@ export default function Snippet({ codeSnippet }) {
   )
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const data = await getCodeSnippet(params.slug, preview)
+export async function getStaticProps({ params: { slug }, preview = false }) {
+  const data = await getCodeSnippet(slug, preview)
 
   return {
     props: {
