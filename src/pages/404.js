@@ -15,13 +15,19 @@ export default function Custom404() {
         openGraph={{
           title
         }}
+        noindex={true}
+        nofollow={true}
       />
       <Layout>
-        <PageTitle title="404: Looks like you're lost." />
-        <p>
-          This link might be broken, deleted, or moved. Nevertheless, you can simply go to the{' '}
-          <Link href="/">homepage</Link> and everything will be alright.
-        </p>
+        <PageTitle
+          title="404: Looks like you're lost."
+          description={
+            <p>
+              This link might be broken, deleted, or moved. Nevertheless, you can simply go to the{' '}
+              <Link href="/">homepage</Link> and everything will be alright.
+            </p>
+          }
+        />
       </Layout>
     </>
   )

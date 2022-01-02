@@ -14,6 +14,10 @@
   .word-break {
     word-break: break-word;
   }
+
+  .list-square {
+    list-style-type: square;
+  }
 }
 
 /**
@@ -108,8 +112,7 @@ hr {
 }
 
 ul ul {
-  @apply pl-6;
-  list-style-type: square;
+  @apply pl-6 pt-2 mb-2.5 list-square !important;
 }
 
 img {

@@ -100,6 +100,10 @@ export const navigations = {
       url: '/snippets'
     },
     {
+      title: 'Uses',
+      url: '/uses'
+    },
+    {
       title: 'Curriculum Vitae',
       url: 'https://read.cv/onur'
     },

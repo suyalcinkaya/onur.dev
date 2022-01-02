@@ -46,6 +46,7 @@ export default function Post({ post }) {
       let { data } = await supabase.from('pages').select().eq('slug', slug).single()
       if (data) {
         setLikeCount(data.like_count)
+        if (process.env.NODE_ENV !== 'production') setViewCount(data.view_count)
       } else {
         const newDate = new Date()
         const { data: createdData } = await supabase
@@ -53,8 +54,9 @@ export default function Post({ post }) {
           .insert([{ slug, like_count_updated_at: newDate, view_count_updated_at: newDate }])
 
         if (createdData) {
-          const { like_count } = createdData[0]
+          const { like_count, view_count } = createdData[0]
           setLikeCount(like_count)
+          if (process.env.NODE_ENV !== 'production') setViewCount(view_count)
         }
       }
     } catch (error) {
@@ -129,7 +131,6 @@ export default function Post({ post }) {
                 </NextLink>
               </div>
               <PageTitle title={title} isSlugTitle />
-              {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
             </div>
             <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
               <div className="flex items-center">

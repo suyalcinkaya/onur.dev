@@ -1,36 +1,20 @@
-import { NextSeo } from 'next-seo'
-
 // --- Components
 import Card from 'components/Card'
 import Layout from 'components/Layout'
+import Markdown from 'components/Markdown'
 import PageTitle from 'components/PageTitle'
+import PageSeo from 'components/PageSeo'
 
-// --- Other
-import { getAllLogbook } from 'lib/contentful'
-import { ogImageUrl } from 'lib/helper'
+// --- Others
+import { getAllLogbook, getPageSeo } from 'lib/contentful'
 
-const url = 'https://onur.dev/journey'
-const title = 'Journey — Onur Şuyalçınkaya'
-
-const Journey = ({ allLogbook }) => {
+const Journey = ({ allLogbook, pageSeo }) => {
+  const { title, ...rest } = pageSeo
   return (
     <>
-      <NextSeo
-        title={title}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          images: [
-            {
-              url: ogImageUrl('Journey'),
-              alt: title
-            }
-          ]
-        }}
-      />
+      <PageSeo title={title} {...rest} />
       <Layout>
-        <PageTitle title="Journey" />
+        <PageTitle title={title || 'Journey'} />
         <div className="flex flex-col space-y-12 items-stretch">
           {allLogbook.map((item, itemIndex) => (
             <div key={`data_${itemIndex}`} className="space-y-6">
@@ -52,7 +36,7 @@ const Journey = ({ allLogbook }) => {
                       </span>
                     </div>
                     <div className="flex-grow pl-4">
-                      <Card title={log.title} description={log.description} />
+                      <Card title={log.title} description={<Markdown>{log.description}</Markdown>} />
                     </div>
                   </div>
                 ))}
@@ -67,6 +51,7 @@ const Journey = ({ allLogbook }) => {
 
 export async function getStaticProps({ preview = false }) {
   const allLogbook = (await getAllLogbook(preview)) ?? []
+  const pageSeo = (await getPageSeo('journey', preview)) ?? {}
 
   const mappedLogbook = []
   allLogbook.map((log) => {
@@ -84,7 +69,7 @@ export async function getStaticProps({ preview = false }) {
   })
 
   return {
-    props: { allLogbook: mappedLogbook }
+    props: { allLogbook: mappedLogbook, pageSeo }
   }
 }
 
