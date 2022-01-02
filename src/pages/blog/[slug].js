@@ -17,7 +17,7 @@ import LikeIcon from 'components/icons/Like'
 import supabase from 'lib/supabase'
 import { getPost, getAllPosts } from 'lib/contentful'
 
-export default function Post({ post, preview }) {
+export default function Post({ post }) {
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [likeCount, setLikeCount] = useState()
   const [viewCount, setViewCount] = useState()
@@ -174,7 +174,7 @@ export async function getStaticProps({ params, preview = false }) {
 
   return {
     props: {
-      preview,
+      // preview,
       post: data?.post ?? null
     }
   }
