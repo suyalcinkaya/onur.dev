@@ -131,7 +131,6 @@ export default function Post({ post }) {
                 </NextLink>
               </div>
               <PageTitle title={title} isSlugTitle />
-              {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
             </div>
             <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:justify-between">
               <div className="flex items-center">

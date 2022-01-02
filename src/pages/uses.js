@@ -14,8 +14,7 @@ export default function Uses({ pageDetails }) {
     <>
       <PageSeo title={title} {...rest} />
       <Layout>
-        <PageTitle title={title || 'Uses'} />
-        <RichText content={content} />
+        <PageTitle title={title || 'Uses'} description={<RichText content={content} />} />
       </Layout>
     </>
   )

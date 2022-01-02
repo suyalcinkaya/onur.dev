@@ -14,8 +14,7 @@ export default function About({ pageDetails }) {
     <>
       <PageSeo title={title} {...rest} />
       <Layout>
-        <PageTitle title={title || 'About Me'} />
-        <RichText content={content} />
+        <PageTitle title={title || 'About Me'} description={<RichText content={content} />} />
       </Layout>
     </>
   )

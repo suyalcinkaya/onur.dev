@@ -40,7 +40,6 @@ export default function Snippet({ codeSnippet }) {
                 </NextLink>
               </div>
               <PageTitle title={title} isSlugTitle />
-              {/* <h1 className="text-2xl md:text-3xl font-medium slashed-zero tracking-tight">{title}</h1> */}
             </div>
             <Share title={title} url={`https://onur.dev/snippets/${slug}`} />
           </div>
