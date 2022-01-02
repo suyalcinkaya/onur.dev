@@ -6,8 +6,7 @@ import tinytime from 'tinytime'
 // --- Components
 import BlogSeo from 'components/BlogSeo'
 import Layout from 'components/Layout'
-import { LinkButton } from 'components/Button'
-import { OutlineButton } from 'components/Button'
+import { LinkButton, OutlineButton } from 'components/Button'
 import PageTitle from 'components/PageTitle'
 import RichText from 'components/RichText'
 import Share from 'components/Share'
@@ -46,7 +45,7 @@ export default function Post({ post }) {
       let { data } = await supabase.from('pages').select().eq('slug', slug).single()
       if (data) {
         setLikeCount(data.like_count)
-        if (process.env.NODE_ENV !== 'production') setViewCount(data.view_count)
+        setViewCount(data.view_count + 1)
       } else {
         const newDate = new Date()
         const { data: createdData } = await supabase
@@ -68,24 +67,14 @@ export default function Post({ post }) {
 
   async function incrementViewCount() {
     try {
-      setSupabaseDataLoading(true)
-
       const { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
 
-      const { data: updatedData } = await supabase
+      await supabase
         .from('pages')
         .update({ view_count: latestData.view_count + 1, view_count_updated_at: new Date() })
         .match({ id: latestData.id, slug: latestData.slug })
-
-      if (updatedData) {
-        const { view_count } = updatedData[0]
-        setViewCount(view_count)
-        // setLikeCount(like_count)
-      }
     } catch (error) {
       setSupabaseError(error)
-    } finally {
-      setSupabaseDataLoading(false)
     }
   }
 
