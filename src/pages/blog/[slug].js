@@ -13,13 +13,12 @@ import Share from 'components/Share'
 import LikeIcon from 'components/icons/Like'
 
 // --- Others
-import { supabase, getInitialSupabaseData, incrementViews } from 'lib/supabase'
+import { incrementViews, incrementLikes } from 'lib/supabase'
 import { getPost, getAllPosts } from 'lib/contentful'
 
-export default function Post({ post, initialSupabaseData }) {
-  const [isLiking, setIsLiking] = useState(false)
-  const [likes, setLikes] = useState(initialSupabaseData.likes)
-  const [supabaseError, setSupabaseError] = useState()
+export default function Post({ post }) {
+  const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
+  const [supabaseData, setSupabaseData] = useState({ likes: null, views: null })
 
   const {
     title,
@@ -30,28 +29,24 @@ export default function Post({ post, initialSupabaseData }) {
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = post
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      incrementViews(slug)
-    }
+  useEffect(async () => {
+    const data = await incrementViews(slug)
+
+    setSupabaseData({
+      likes: data.likes,
+      views: data.views
+    })
+    setSupabaseDataLoading(false)
   }, [slug])
 
-  async function incrementLikes() {
-    try {
-      setIsLiking(true)
-
-      let { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
-      const { data: updatedData } = await supabase
-        .from('pages')
-        .update({ like_count: latestData.like_count + 1, like_count_updated_at: new Date() })
-        .match({ id: latestData.id, slug: latestData.slug })
-
-      if (Array.isArray(updatedData) && updatedData?.length > 0) setLikes(updatedData[0].like_count)
-    } catch (error) {
-      setSupabaseError(error)
-    } finally {
-      setIsLiking(false)
-    }
+  async function incrementLikeCount() {
+    setSupabaseDataLoading(true)
+    const data = await incrementLikes(slug)
+    setSupabaseData((prevState) => ({
+      ...prevState,
+      likes: data.likes
+    }))
+    setSupabaseDataLoading(false)
   }
 
   return (
@@ -86,7 +81,7 @@ export default function Post({ post, initialSupabaseData }) {
                       {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
                     </time>
                     {' ∙ '}
-                    <span>{initialSupabaseData?.views || '-'} views</span>
+                    <span>{supabaseData?.views || '-'} views</span>
                   </div>
                 </div>
               </div>
@@ -94,10 +89,10 @@ export default function Post({ post, initialSupabaseData }) {
                 <OutlineButton
                   title="Like"
                   className="text-sm leading-tight space-x-1"
-                  disabled={isLiking}
-                  onClick={() => !isLiking && incrementLikes()}
+                  disabled={supabaseDataLoading}
+                  onClick={() => !supabaseDataLoading && incrementLikeCount()}
                 >
-                  <LikeIcon height={18} width={18} /> <span>{likes ?? '-'}</span>
+                  <LikeIcon height={18} width={18} /> <span>{supabaseData?.likes ?? '-'}</span>
                 </OutlineButton>
                 <Share title={title} url={`https://onur.dev/blog/${slug}`} />
               </div>
@@ -110,15 +105,13 @@ export default function Post({ post, initialSupabaseData }) {
   )
 }
 
-export async function getStaticProps({ params: { slug }, preview = false }) {
-  const postData = await getPost(slug, preview)
-  const initialSupabaseData = await getInitialSupabaseData(slug)
+export async function getStaticProps({ params, preview = false }) {
+  const data = await getPost(params.slug, preview)
 
   return {
     props: {
       // preview,
-      post: postData?.post ?? null,
-      initialSupabaseData
+      post: data?.post ?? null
     }
   }
 }
