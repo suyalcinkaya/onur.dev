@@ -15,6 +15,8 @@ export default function Custom404() {
         openGraph={{
           title
         }}
+        noindex={true}
+        nofollow={true}
       />
       <Layout>
         <PageTitle title="404: Looks like you're lost." />

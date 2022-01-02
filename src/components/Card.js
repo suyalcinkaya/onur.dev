@@ -50,11 +50,7 @@ const Card = ({ title, description, url = undefined, ...others }) => {
           </span>
         )}
       </Wrapper>
-      {description && (
-        <div>
-          <span className="text-gray-500 word-break">{description}</span>
-        </div>
-      )}
+      {description && <div className="text-gray-500 word-break">{description}</div>}
     </div>
   )
 }

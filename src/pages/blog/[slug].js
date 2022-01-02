@@ -17,7 +17,8 @@ import LikeIcon from 'components/icons/Like'
 import supabase from 'lib/supabase'
 import { getPost, getAllPosts } from 'lib/contentful'
 
-export default function Post({ post }) {
+export default function Post({ post, preview }) {
+  console.log(`preview`, preview)
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [likeCount, setLikeCount] = useState()
   const [viewCount, setViewCount] = useState()
@@ -46,6 +47,7 @@ export default function Post({ post }) {
       let { data } = await supabase.from('pages').select().eq('slug', slug).single()
       if (data) {
         setLikeCount(data.like_count)
+        if (process.env.NODE_ENV !== 'production') setViewCount(data.view_count)
       } else {
         const newDate = new Date()
         const { data: createdData } = await supabase
@@ -53,8 +55,9 @@ export default function Post({ post }) {
           .insert([{ slug, like_count_updated_at: newDate, view_count_updated_at: newDate }])
 
         if (createdData) {
-          const { like_count } = createdData[0]
+          const { like_count, view_count } = createdData[0]
           setLikeCount(like_count)
+          if (process.env.NODE_ENV !== 'production') setViewCount(view_count)
         }
       }
     } catch (error) {
@@ -172,7 +175,7 @@ export async function getStaticProps({ params, preview = false }) {
 
   return {
     props: {
-      // preview,
+      preview,
       post: data?.post ?? null
     }
   }

@@ -1,39 +1,21 @@
-import { NextSeo } from 'next-seo'
-
 // --- Components
 import Layout from 'components/Layout'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
+import PageSeo from 'components/PageSeo'
+import RichText from 'components/RichText'
 
 // --- Others
-import { getAllCodeSnippets } from 'lib/contentful'
-import { ogImageUrl } from 'lib/helper'
+import { getAllCodeSnippets, getPageSeo } from 'lib/contentful'
 
-const url = 'https://onur.dev/snippets'
-const title = 'Snippets — Onur Şuyalçınkaya'
+export default function Snippets({ allCodeSnippets, pageSeo }) {
+  const { title, content, ...rest } = pageSeo
 
-export default function Snippets({ allCodeSnippets }) {
   return (
     <>
-      <NextSeo
-        title={title}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          images: [
-            {
-              url: ogImageUrl('Snippets'),
-              alt: title
-            }
-          ]
-        }}
-      />
+      <PageSeo title={title} {...rest} />
       <Layout>
-        <PageTitle
-          title="Snippets"
-          description="These are a collection of code snippets I've used in the past and saved."
-        />
+        <PageTitle title={title || 'Snippets'} description={<RichText content={content} />} />
         <div className="space-y-8">
           {allCodeSnippets.map((codeSnippet) => (
             <Card
@@ -51,8 +33,9 @@ export default function Snippets({ allCodeSnippets }) {
 
 export async function getStaticProps({ preview = false }) {
   const allCodeSnippets = (await getAllCodeSnippets(preview)) ?? []
+  const pageSeo = (await getPageSeo('blog', preview)) ?? {}
 
   return {
-    props: { allCodeSnippets }
+    props: { allCodeSnippets, pageSeo }
   }
 }

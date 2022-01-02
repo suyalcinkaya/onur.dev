@@ -1,6 +1,6 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
-// --- Other
+// --- Others
 import { ogImageUrl } from 'lib/helper'
 
 const BlogSeo = ({ title, description, publishedAt, updatedAt, url }) => {

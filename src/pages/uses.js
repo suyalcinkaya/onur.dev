@@ -1,20 +1,20 @@
 // --- Components
 import Layout from 'components/Layout'
-import PageSeo from 'components/PageSeo'
 import PageTitle from 'components/PageTitle'
+import PageSeo from 'components/PageSeo'
 import RichText from 'components/RichText'
 
 // --- Others
 import { getPageDetails } from 'lib/contentful'
 
-export default function About({ pageDetails }) {
-  const { content, title, ...rest } = pageDetails
+export default function Uses({ pageDetails }) {
+  const { title, content, ...rest } = pageDetails
 
   return (
     <>
       <PageSeo title={title} {...rest} />
       <Layout>
-        <PageTitle title={title || 'About Me'} />
+        <PageTitle title={title || 'Uses'} />
         <RichText content={content} />
       </Layout>
     </>
@@ -22,7 +22,7 @@ export default function About({ pageDetails }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const pageDetails = (await getPageDetails('about', preview)) ?? {}
+  const pageDetails = (await getPageDetails('uses', preview)) ?? {}
 
   return {
     props: { pageDetails }

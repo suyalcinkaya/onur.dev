@@ -1,37 +1,23 @@
-import { NextSeo } from 'next-seo'
 import tinytime from 'tinytime'
 
 // --- Components
 import Layout from 'components/Layout'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
+import PageSeo from 'components/PageSeo'
+import RichText from 'components/RichText'
 
 // --- Others
-import { getAllPosts } from 'lib/contentful'
-import { ogImageUrl } from 'lib/helper'
+import { getAllPosts, getPageDetails } from 'lib/contentful'
 
-const url = 'https://onur.dev/blog'
-const title = 'Blog — Onur Şuyalçınkaya'
+export default function Blog({ allPosts, pageDetails }) {
+  const { title, content, ...rest } = pageDetails
 
-export default function Blog({ allPosts }) {
   return (
     <>
-      <NextSeo
-        title={title}
-        canonical={url}
-        openGraph={{
-          url,
-          title,
-          images: [
-            {
-              url: ogImageUrl('Blog'),
-              alt: title
-            }
-          ]
-        }}
-      />
+      <PageSeo title={title} {...rest} />
       <Layout>
-        <PageTitle title="Blog" />
+        <PageTitle title={title || 'Blog'} description={<RichText content={content} />} />
         <div className="space-y-10">
           {allPosts.map((post) => {
             const {
@@ -63,8 +49,9 @@ export default function Blog({ allPosts }) {
 
 export async function getStaticProps({ preview = false }) {
   const allPosts = (await getAllPosts(preview)) ?? []
+  const pageDetails = (await getPageDetails('blog', preview)) ?? {}
 
   return {
-    props: { allPosts }
+    props: { allPosts, pageDetails }
   }
 }
