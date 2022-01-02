@@ -18,7 +18,6 @@ import supabase from 'lib/supabase'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post, preview }) {
-  console.log(`preview`, preview)
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [likeCount, setLikeCount] = useState()
   const [viewCount, setViewCount] = useState()
