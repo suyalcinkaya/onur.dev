@@ -7,9 +7,9 @@
     text-underline-position: under;
   }
 
-  .slashed-zero {
+  /* .slashed-zero {
     font-variant-numeric: slashed-zero;
-  }
+  } */
 
   .word-break {
     word-break: break-word;
@@ -136,7 +136,6 @@ code[class*='language-'],
 pre[class*='language-'],
 pre {
   @apply text-sm leading-slack w-full text-left break-normal rounded-lg;
-  @apply whitespace-pre !important;
 }
 
 /* Code blocks */
@@ -157,17 +156,17 @@ pre {
   @apply font-medium;
 }
 
-.code-title {
-  @apply flex py-3 px-4 rounded-t-lg text-sm font-medium mb-0 mt-4 w-full bg-gray-100 border border-gray-300;
-}
-
 :not(pre) > code[class*='language-'],
 pre[class*='language-'],
 pre {
   @apply rounded-b-lg bg-white border border-gray-300 text-inherit;
 }
 
-.code-title + pre {
+.code-header {
+  @apply flex items-center space-x-4 py-3 px-4 rounded-t-lg bg-gray-100 border border-gray-300;
+}
+
+.code-header + pre {
   @apply rounded-t-none border-t-0 mt-0;
 }
 

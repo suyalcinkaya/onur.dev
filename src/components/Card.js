@@ -43,7 +43,7 @@ const Card = ({ title, description, url = undefined, ...others }) => {
         })}
         {...others}
       >
-        <span className="text-lg slashed-zero word-break">{title}</span>
+        <span className="text-lg word-break">{title}</span>
         {isExternal && (
           <span className="ml-1 inline-block">
             <ExternalIcon height={14} width={14} />

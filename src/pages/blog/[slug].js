@@ -81,18 +81,18 @@ export default function Post({ post }) {
                       {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
                     </time>
                     {' ∙ '}
-                    <span>{supabaseData?.views || '-'} views</span>
+                    <span>{supabaseData?.views || '—'} views</span>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-start md:items-end space-y-2">
+              <div className="flex items-center space-x-4">
                 <OutlineButton
                   title="Like"
                   className="text-sm leading-tight space-x-1"
                   disabled={supabaseDataLoading}
                   onClick={() => !supabaseDataLoading && incrementLikeCount()}
                 >
-                  <LikeIcon height={18} width={18} /> <span>{supabaseData?.likes ?? '-'}</span>
+                  <LikeIcon height={18} width={18} /> <span>{supabaseData?.likes ?? '—'}</span>
                 </OutlineButton>
                 <Share title={title} url={`https://onur.dev/blog/${slug}`} />
               </div>
