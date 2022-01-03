@@ -33,7 +33,7 @@ export default function Snippets({ allCodeSnippets, pageSeo }) {
 
 export async function getStaticProps({ preview = false }) {
   const allCodeSnippets = (await getAllCodeSnippets(preview)) ?? []
-  const pageSeo = (await getPageSeo('blog', preview)) ?? {}
+  const pageSeo = (await getPageSeo('snippets', preview)) ?? {}
 
   return {
     props: { allCodeSnippets, pageSeo }
