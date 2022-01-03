@@ -14,7 +14,7 @@ async function fetchGraphQL(query, preview = false) {
 export async function getAllPosts(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}) {
+      postCollection(order: date_DESC, preview: ${preview}) {
         items {
           title
           description
@@ -37,7 +37,7 @@ export async function getAllPosts(preview = false) {
 export async function getLast3Posts(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}, limit: 3) {
+      postCollection(order: date_DESC, preview: ${preview}, limit: 3) {
         items {
           title
           description
@@ -59,7 +59,7 @@ export async function getLast3Posts(preview = false) {
 export async function getPost(slug, preview = false) {
   const entry = await fetchGraphQL(
     `query {
-      postCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'}, limit: 1) {
+      postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
         items {
           title
           description
@@ -126,7 +126,7 @@ export async function getPost(slug, preview = false) {
 export async function getAllCodeSnippets(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview ? 'true' : 'false'}) {
+      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
         items {
           title
           description
@@ -143,7 +143,7 @@ export async function getAllCodeSnippets(preview = false) {
 export async function getCodeSnippet(slug, preview = false) {
   const entry = await fetchGraphQL(
     `query {
-      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview ? 'true' : 'false'}, limit: 1) {
+      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
         items {
           title
           description
@@ -169,7 +169,7 @@ export async function getCodeSnippet(slug, preview = false) {
 export async function getAllLogbook(preview = false) {
   const entries = await fetchGraphQL(
     `query {
-      logbookCollection(order: date_DESC, preview: ${preview ? 'true' : 'false'}) {
+      logbookCollection(order: date_DESC, preview: ${preview}) {
         items {
           title
           date
@@ -187,7 +187,7 @@ export async function getAllLogbook(preview = false) {
 export async function getPageDetails(url, preview = false) {
   const entry = await fetchGraphQL(
     `query {
-      pageCollection(where: { url: "${url}" }, preview: ${preview ? 'true' : 'false'}, limit: 1) {
+      pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {
         items {
           title
           url
@@ -245,7 +245,7 @@ export async function getPageDetails(url, preview = false) {
 export async function getPageSeo(url, preview = false) {
   const entry = await fetchGraphQL(
     `query {
-      pageCollection(where: { url: "${url}" }, preview: ${preview ? 'true' : 'false'}, limit: 1) {
+      pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {
         items {
           title
           url
