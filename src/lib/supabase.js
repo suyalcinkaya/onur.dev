@@ -7,6 +7,14 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export async function incrementViews(slug) {
   const { data: latestData } = await supabase.from('pages').select().eq('slug', slug).single()
 
+  // Do not upsert to db on development
+  if (process.env.NODE_ENV !== 'production') {
+    return {
+      likes: latestData?.like_count || 0,
+      views: latestData?.view_count || 0
+    }
+  }
+
   const { data: newOrUpdatedData } = await supabase.from('pages').upsert({
     ...latestData,
     id: latestData?.id,

@@ -68,7 +68,11 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-normal;
+  @apply font-medium tracking-tighter;
+}
+
+h1 {
+  @apply text-2xl md:text-3xl;
 }
 
 h2 {

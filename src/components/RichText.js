@@ -22,14 +22,14 @@ function options(links) {
     renderNode: {
       [BLOCKS.HEADING_2]: (node, children) => <h2 className="font-medium mb-4">{children}</h2>,
       [BLOCKS.HEADING_3]: (node, children) => <h3 className="font-medium mb-3">{children}</h3>,
-      [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-6">{children}</p>,
+      [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-6 last:mb-0">{children}</p>,
       [BLOCKS.UL_LIST]: (node, children) => <ul className="list-circle list-inside pl-4 mb-6 space-y-2">{children}</ul>,
       [BLOCKS.OL_LIST]: (node, children) => (
         <ol className="list-decimal list-inside pl-4 mb-6 space-y-2">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="pl-4 my-6 last:my-0 border-l-4 border-gray-200 bg-transparent">{children}</blockquote>
+        <blockquote className="py-6 px-8 my-6 border-l-4 border-gray-200 bg-gray-100 rounded-xl">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)
@@ -48,7 +48,7 @@ function options(links) {
           </figure>
         )
       },
-      [BLOCKS.HR]: (node, children) => <hr />,
+      [BLOCKS.HR]: (node, children) => <hr className="my-12" />,
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
