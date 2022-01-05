@@ -13,7 +13,7 @@ import Share from 'components/Share'
 import LikeIcon from 'components/icons/Like'
 
 // --- Others
-import { incrementViews, incrementLikes } from 'lib/supabase'
+import { handleViews, incrementLikes } from 'lib/supabase'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 export default function Post({ post }) {
@@ -30,7 +30,7 @@ export default function Post({ post }) {
   } = post
 
   useEffect(async () => {
-    const data = await incrementViews(slug)
+    const data = await handleViews(slug)
 
     setSupabaseData({
       likes: data.likes,

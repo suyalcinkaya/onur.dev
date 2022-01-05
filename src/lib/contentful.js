@@ -65,13 +65,6 @@ export async function getPost(slug, preview = false) {
           description
           slug
           date
-          image {
-            title
-            description
-            url
-            width
-            height
-          }
           content {
             json
             links {
