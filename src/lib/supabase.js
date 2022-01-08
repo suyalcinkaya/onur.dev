@@ -17,7 +17,19 @@ export async function handleViews(slug) {
     }
   }
 
-  if (latestData) {
+  const { data: newOrUpdatedData } = await supabase.from(tableName).upsert({
+    id: latestData?.id,
+    slug: slug,
+    view_count: latestData ? latestData.view_count + 1 : 1,
+    view_count_updated_at: new Date()
+  })
+
+  return {
+    likes: newOrUpdatedData[0].like_count,
+    views: newOrUpdatedData[0].view_count
+  }
+
+  /* if (latestData) {
     const { data: updatedData } = await supabase
       .from(tableName)
       .update({ view_count: latestData.view_count + 1, view_count_updated_at: new Date() })
@@ -35,7 +47,7 @@ export async function handleViews(slug) {
   return {
     likes: newData[0].like_count,
     views: newData[0].view_count
-  }
+  } */
 }
 
 export async function incrementLikes(slug) {
