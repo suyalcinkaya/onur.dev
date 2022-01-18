@@ -177,7 +177,22 @@ export async function getAllLogbook(preview = false) {
   return entries?.data?.logbookCollection?.items
 }
 
-export async function getPageDetails(url, preview = false) {
+export async function getAllPages(preview = false) {
+  const entries = await fetchGraphQL(
+    `query {
+      pageCollection(preview: ${preview}) {
+        items {
+          url
+        }
+      }
+    }`,
+    preview
+  )
+
+  return entries?.data?.pageCollection?.items
+}
+
+export async function getPage(url, preview = false) {
   const entry = await fetchGraphQL(
     `query {
       pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {

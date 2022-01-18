@@ -1,7 +1,9 @@
 import { NextSeo } from 'next-seo'
 
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
-import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageTitle from 'components/PageTitle'
 
@@ -18,7 +20,7 @@ export default function Custom404() {
         noindex={true}
         nofollow={true}
       />
-      <Layout>
+      <PageLayout>
         <PageTitle
           title="404: Looks like you're lost."
           description={
@@ -28,7 +30,7 @@ export default function Custom404() {
             </p>
           }
         />
-      </Layout>
+      </PageLayout>
     </>
   )
 }

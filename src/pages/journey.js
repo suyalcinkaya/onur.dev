@@ -1,6 +1,8 @@
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
 import Card from 'components/Card'
-import Layout from 'components/Layout'
 import Markdown from 'components/Markdown'
 import PageTitle from 'components/PageTitle'
 import PageSeo from 'components/PageSeo'
@@ -13,7 +15,7 @@ const Journey = ({ allLogbook, pageSeo }) => {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <Layout>
+      <PageLayout>
         <PageTitle title={title || 'Journey'} />
         <div className="flex flex-col space-y-12 items-stretch">
           {allLogbook.map((item, itemIndex) => (
@@ -44,7 +46,7 @@ const Journey = ({ allLogbook, pageSeo }) => {
             </div>
           ))}
         </div>
-      </Layout>
+      </PageLayout>
     </>
   )
 }

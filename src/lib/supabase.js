@@ -6,7 +6,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 const tableName = 'pages'
 
 export async function handleViews(slug) {
-  const { data } = await supabase.from(tableName).select('id, view_count').eq('slug', slug)
+  const { data } = await supabase.from(tableName).select('id, view_count, like_count').eq('slug', slug)
   const latestData = data[0]
 
   // Do not upsert to db on development

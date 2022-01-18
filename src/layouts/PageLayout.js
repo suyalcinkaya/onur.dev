@@ -10,7 +10,7 @@ const vars = {
   enter: { y: 0, opacity: 1, transition: { duration: 0.2, ease: easing } }
 }
 
-const Layout = ({ children, ...others }) => (
+const PageLayout = ({ children, ...others }) => (
   <main
     className="flex-1 py-16 md:py-24 overflow-hidden"
     style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
@@ -24,4 +24,4 @@ const Layout = ({ children, ...others }) => (
   </main>
 )
 
-export default Layout
+export default PageLayout

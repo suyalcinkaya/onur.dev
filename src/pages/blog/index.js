@@ -1,22 +1,24 @@
 import tinytime from 'tinytime'
 
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
-import Layout from 'components/Layout'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 import PageSeo from 'components/PageSeo'
 import RichText from 'components/RichText'
 
 // --- Others
-import { getAllPosts, getPageDetails } from 'lib/contentful'
+import { getAllPosts, getPage } from 'lib/contentful'
 
-export default function Blog({ allPosts, pageDetails }) {
-  const { title, content, ...rest } = pageDetails
+export default function Blog({ allPosts, page }) {
+  const { title, content, ...rest } = page
 
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <Layout>
+      <PageLayout>
         <PageTitle title={title || 'Blog'} description={<RichText content={content} />} />
         <div className="space-y-10">
           {allPosts.map((post) => {
@@ -42,16 +44,16 @@ export default function Blog({ allPosts, pageDetails }) {
             )
           })}
         </div>
-      </Layout>
+      </PageLayout>
     </>
   )
 }
 
 export async function getStaticProps({ preview = false }) {
   const allPosts = (await getAllPosts(preview)) ?? []
-  const pageDetails = (await getPageDetails('blog', preview)) ?? {}
+  const page = (await getPage('blog', preview)) ?? {}
 
   return {
-    props: { allPosts, pageDetails }
+    props: { allPosts, page }
   }
 }

@@ -3,9 +3,11 @@ import NextImage from 'next/image'
 import NextLink from 'next/link'
 import tinytime from 'tinytime'
 
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
 import BlogSeo from 'components/BlogSeo'
-import Layout from 'components/Layout'
 import { LinkButton, OutlineButton } from 'components/Button'
 import PageTitle from 'components/PageTitle'
 import RichText from 'components/RichText'
@@ -58,7 +60,7 @@ export default function Post({ post }) {
         updatedAt={updatedAt}
         url={`https://onur.dev/blog/${slug}`}
       />
-      <Layout>
+      <PageLayout>
         <article>
           <div className="mb-12 space-y-4">
             <div className="relative">
@@ -100,7 +102,7 @@ export default function Post({ post }) {
           </div>
           <RichText content={content} />
         </article>
-      </Layout>
+      </PageLayout>
     </>
   )
 }

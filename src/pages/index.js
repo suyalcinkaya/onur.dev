@@ -1,10 +1,12 @@
 import NextLink from 'next/link'
 import tinytime from 'tinytime'
 
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
 import Card from 'components/Card'
 import { GhostButton } from 'components/Button'
-import Layout from 'components/Layout'
 import Link from 'components/Link'
 import PageTitle from 'components/PageTitle'
 
@@ -14,7 +16,7 @@ import { mixtapes, projects, profiles } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
   return (
-    <Layout>
+    <PageLayout>
       <PageTitle
         title={
           <>
@@ -97,7 +99,7 @@ export default function Home({ recentPosts }) {
           </div>
         </div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
 

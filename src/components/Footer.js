@@ -11,7 +11,7 @@ const Footer = () => (
   <footer>
     <div className="bg-black text-white py-12 md:py-20">
       <div className="mx-auto px-4 sm:px-6 md:px-16" style={{ maxWidth: LAYOUT_WIDTH }}>
-        <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-3 md:grid-flow-col">
+        <div className="grid gap-6 place-items-start md:grid-cols-3 md:grid-rows-4 md:grid-flow-col">
           {navigations.footer.map((footerNav) => {
             const { title, url } = footerNav
             return (

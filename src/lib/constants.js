@@ -92,6 +92,10 @@ export const navigations = {
       url: '/about'
     },
     {
+      title: 'Now',
+      url: '/now'
+    },
+    {
       title: 'Journey',
       url: '/journey'
     },

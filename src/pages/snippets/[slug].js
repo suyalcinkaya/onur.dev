@@ -1,9 +1,11 @@
 import NextLink from 'next/link'
 
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
 import BlogSeo from 'components/BlogSeo'
 import CodeBlock from 'components/CodeBlock'
-import Layout from 'components/Layout'
 import { LinkButton } from 'components/Button'
 import PageTitle from 'components/PageTitle'
 import Share from 'components/Share'
@@ -30,7 +32,7 @@ export default function Snippet({ codeSnippet }) {
         updatedAt={updatedAt}
         url={`https://onur.dev/snippets/${slug}`}
       />
-      <Layout>
+      <PageLayout>
         <article>
           <div className="mb-12 space-y-4">
             <div className="relative">
@@ -45,7 +47,7 @@ export default function Snippet({ codeSnippet }) {
           </div>
           <CodeBlock language={language} code={code} />
         </article>
-      </Layout>
+      </PageLayout>
     </>
   )
 }

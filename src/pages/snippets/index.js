@@ -1,5 +1,7 @@
+// --- Layouts
+import PageLayout from 'layouts/PageLayout'
+
 // --- Components
-import Layout from 'components/Layout'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 import PageSeo from 'components/PageSeo'
@@ -14,7 +16,7 @@ export default function Snippets({ allCodeSnippets, pageSeo }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <Layout>
+      <PageLayout>
         <PageTitle title={title || 'Snippets'} description={<RichText content={content} />} />
         <div className="space-y-8">
           {allCodeSnippets.map((codeSnippet) => (
@@ -26,7 +28,7 @@ export default function Snippets({ allCodeSnippets, pageSeo }) {
             />
           ))}
         </div>
-      </Layout>
+      </PageLayout>
     </>
   )
 }
