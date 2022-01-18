@@ -34,7 +34,7 @@ export async function getStaticPaths({ preview = false }) {
   const allPages = await getAllPages(preview)
 
   return {
-    paths: allPages?.map(({ url }) => `/${url}`) ?? [],
+    paths: allPages?.filter(({ hasCustomPage }) => !Boolean(hasCustomPage)).map(({ url }) => `/${url}`) ?? [],
     fallback: false
   }
 }

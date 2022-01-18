@@ -183,6 +183,7 @@ export async function getAllPages(preview = false) {
       pageCollection(preview: ${preview}) {
         items {
           url
+          hasCustomPage
         }
       }
     }`,
