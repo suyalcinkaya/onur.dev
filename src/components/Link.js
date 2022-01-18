@@ -16,8 +16,6 @@ const Link = (props) => {
     )
   }
 
-  console.log(`href`, href)
-
   return <a target="_blank" href={`${href}?ref=onur.dev`} rel="noopener noreferrer" className={className} {...rest} />
 }
 
