@@ -19,8 +19,9 @@ export default function Blog({ allPosts, page }) {
     <>
       <PageSeo title={title} {...rest} />
       <PageLayout>
-        <PageTitle title={title || 'Blog'} description={<RichText content={content} />} />
-        <div className="space-y-10">
+        <PageTitle title={title || 'Blog'} />
+        {content && <RichText content={content} />}
+        <div className="space-y-3">
           {allPosts.map((post) => {
             const {
               title,

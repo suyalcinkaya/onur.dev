@@ -6,7 +6,6 @@ import { AnimatePresence } from 'framer-motion'
 
 // --- Components
 import Header from 'components/Header'
-import Footer from 'components/Footer'
 
 // --- Others
 import { trackPageview } from 'lib/gtag'
@@ -41,7 +40,6 @@ function App({ Component, pageProps, router }) {
       <AnimatePresence exitBeforeEnter>
         <Component key={router.route} {...pageProps} />
       </AnimatePresence>
-      <Footer />
     </>
   )
 }

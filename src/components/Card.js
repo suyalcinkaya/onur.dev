@@ -1,14 +1,10 @@
 import NextLink from 'next/link'
 
-// --- Icons
-import ExternalIcon from 'components/icons/External'
-
 // --- Others
 import { isExternalLink } from 'lib/helper'
 
-const Wrapper = ({ url = undefined, children, ...others }) => {
+const Wrapper = ({ url = undefined, isExternal, children, ...others }) => {
   if (!url) return <div {...others}>{children}</div>
-  const isExternal = isExternalLink(url)
 
   if (isExternal) {
     const href = `${url}?ref=onur.dev`
@@ -33,24 +29,20 @@ const Card = ({ title, description, url = undefined, ...others }) => {
   if (url) isExternal = isExternalLink(url)
 
   return (
-    <div className="space-y-1.5">
-      <Wrapper
-        url={url}
-        className={`inline-block ${url ? 'underline-under hover:underline' : ''}`}
-        {...(isExternal && {
-          rel: 'noopener noreferrer',
-          target: '_blank'
-        })}
-        {...others}
-      >
-        <span className="text-lg word-break">{title}</span>
-        {isExternal && (
-          <span className="ml-1 inline-block">
-            <ExternalIcon height={14} width={14} />
-          </span>
-        )}
-      </Wrapper>
-      {description && <div className="text-gray-500 word-break">{description}</div>}
+    <div {...others}>
+      <div className={`flex flex-col space-y-1 rounded-lg p-3 -m-3 ${url ? 'hover:bg-gray-100 cursor-pointer' : ''}`}>
+        <Wrapper
+          url={url}
+          isExternal={isExternal}
+          {...(isExternal && {
+            rel: 'noopener noreferrer',
+            target: '_blank'
+          })}
+        >
+          <span className="font-medium word-break">{title}</span>
+        </Wrapper>
+        {description && <div className="text-sm font-light text-gray-400 word-break">{description}</div>}
+      </div>
     </div>
   )
 }

@@ -10,13 +10,14 @@ import RichText from 'components/RichText'
 import { getAllPages, getPage } from 'lib/contentful'
 
 export default function Page({ page }) {
-  const { title, content, ...rest } = page
+  const { title, content, url, ...rest } = page
 
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageLayout>
-        <PageTitle title={title} description={<RichText content={content} />} />
+      <PageLayout id={url}>
+        <PageTitle title={title} />
+        <RichText content={content} />
       </PageLayout>
     </>
   )

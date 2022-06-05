@@ -1,8 +1,7 @@
-const PageTitle = ({ title, description, isSlugTitle = false, ...others }) => {
+const PageTitle = ({ title, ...others }) => {
   return (
-    <div className={!isSlugTitle ? 'mb-12 space-y-12' : ''}>
+    <div className="mb-6">
       <h1 {...others}>{title}</h1>
-      {description && <div>{description}</div>}
     </div>
   )
 }

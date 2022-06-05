@@ -13,29 +13,24 @@ const Header = () => {
 
   return (
     <>
-      <header
-        className="fixed top-0 inset-x-0 z-10 w-full mx-auto min-h-16 md:border-b md:border-gray-200"
-        style={{
-          backdropFilter: 'saturate(180%) blur(25px)',
-          WebkitBackdropFilter: 'saturate(180%) blur(25px)'
-        }}
-      >
-        <div className="shadow md:shadow-none md:mx-auto px-2 md:px-12" style={{ maxWidth: LAYOUT_WIDTH }}>
-          <div className="flex items-center min-h-16">
-            {navigations.header.map((headerNav) => {
-              const { title, url } = headerNav
+      <header className="fixed top-0 inset-x-0 z-10 w-full bg-white mx-auto md:border-b md:border-gray-200">
+        <div
+          className="shadow md:shadow-none md:mx-auto h-12 py-1 px-2 md:px-12 flex items-center text-sm"
+          style={{ maxWidth: LAYOUT_WIDTH }}
+        >
+          {navigations.header.map((headerNav) => {
+            const { title, url } = headerNav
 
-              return (
-                <Fragment key={`headerNav_${url}`}>
-                  <NextLink href={url} passHref>
-                    <GhostButton as="a" size="sm" className={`${router.pathname === url ? 'font-medium' : ''}`}>
-                      {title}
-                    </GhostButton>
-                  </NextLink>
-                </Fragment>
-              )
-            })}
-          </div>
+            return (
+              <Fragment key={`headerNav_${url}`}>
+                <NextLink href={url} passHref>
+                  <GhostButton as="a" size="sm" className={`${router.pathname === url ? 'bg-gray-200' : ''}`}>
+                    {title}
+                  </GhostButton>
+                </NextLink>
+              </Fragment>
+            )
+          })}
         </div>
       </header>
       <div className="h-16" />

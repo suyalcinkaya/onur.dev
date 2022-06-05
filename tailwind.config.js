@@ -12,7 +12,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Untitled Sans', ...fontFamily.sans],
+        // sans: ['Untitled Sans', ...fontFamily.sans],
         mono: ['MonoLisa', ...fontFamily.mono]
       },
       letterSpacing: {

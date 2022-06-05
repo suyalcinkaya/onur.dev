@@ -10,13 +10,13 @@ const vars = {
   enter: { y: 0, opacity: 1, transition: { duration: 0.2, ease: easing } }
 }
 
-const PageLayout = ({ children, ...others }) => (
+const PageLayout = ({ id, children, ...others }) => (
   <main
     className="flex-1 py-16 md:py-24 overflow-hidden"
     style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
     {...others}
   >
-    <motion.div initial="exit" animate="enter" exit="exit" variants={vars}>
+    <motion.div key={id} initial="enter" animate="enter" exit="exit" variants={vars}>
       <div className="px-4 sm:px-6 md:px-16 mx-auto" style={{ maxWidth: LAYOUT_WIDTH }}>
         {children}
       </div>

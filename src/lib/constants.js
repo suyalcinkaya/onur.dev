@@ -76,44 +76,10 @@ export const navigations = {
     {
       title: 'Journey',
       url: '/journey'
-    }
-  ],
-  footer: [
-    {
-      title: 'Home',
-      url: '/'
-    },
-    {
-      title: 'Blog',
-      url: '/blog'
-    },
-    {
-      title: 'About',
-      url: '/about'
-    },
-    {
-      title: 'Now',
-      url: '/now'
-    },
-    {
-      title: 'Journey',
-      url: '/journey'
-    },
-    {
-      title: 'Snippets',
-      url: '/snippets'
     },
     {
       title: 'Uses',
       url: '/uses'
-    },
-    {
-      title: 'Curriculum Vitae',
-      url: 'https://read.cv/onur'
-    },
-    {
-      title: 'Buy me a coffee',
-      url: 'http://buymeacoff.ee/suyalcinkaya'
     }
   ]
 }

@@ -6,7 +6,7 @@ import PageLayout from 'layouts/PageLayout'
 
 // --- Components
 import Card from 'components/Card'
-import { GhostButton } from 'components/Button'
+import { Button2 } from 'components/Button'
 import Link from 'components/Link'
 import PageTitle from 'components/PageTitle'
 
@@ -26,26 +26,23 @@ export default function Home({ recentPosts }) {
             Hey, I'm Onur
           </>
         }
-        description={
-          <p>
-            I'm a <Link href={profiles.linkedin.url}>Software Engineer</Link>,{' '}
-            <Link href={profiles.github.url}>JavaScript enthusiast</Link>,{' '}
-            <Link href={profiles.soundcloud.url}>DJ</Link>, <Link href={profiles.linkedin.url}>writer</Link> and
-            minimalist, living in Berlin, Germany. I'm currently developing things at{' '}
-            <Link href="https://hey.car">heycar</Link>.
-          </p>
-        }
       />
-      <div className="space-y-16">
+      <p>
+        I'm a <Link href={profiles.linkedin.url}>Software Engineer</Link>,{' '}
+        <Link href={profiles.github.url}>JavaScript enthusiast</Link>, <Link href={profiles.soundcloud.url}>DJ</Link>,{' '}
+        <Link href={profiles.linkedin.url}>writer</Link> and minimalist, living in Berlin, Germany. I'm currently
+        developing things at <Link href="https://hey.car">heycar</Link>.
+      </p>
+      <div className="space-y-8 mt-6">
         <div>
-          <div className="flex items-center justify-between border-b border-gray-200">
-            <span className="text-lg md:text-xl">Recent Posts</span>
+          <div className="flex items-center justify-between">
+            <h3>Recent Posts</h3>
             <NextLink href="/blog" passHref>
-              <GhostButton as="a">See All &rarr;</GhostButton>
+              <Button2>See All &rarr;</Button2>
             </NextLink>
           </div>
           {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
-          <div className="space-y-10 mt-8">
+          <div className="space-y-3 mt-2">
             {recentPosts.map((post) => {
               const {
                 title,
@@ -71,13 +68,13 @@ export default function Home({ recentPosts }) {
           </div>
         </div>
         <div>
-          <div className="flex items-center justify-between border-b border-gray-200">
-            <span className="text-lg md:text-xl">Popular Mixtapes</span>
-            <GhostButton as="a" href={profiles.soundcloud.url} isExternal>
+          <div className="flex items-center justify-between">
+            <h3>Popular Mixtapes</h3>
+            <Button2 href={profiles.soundcloud.url} isExternal>
               See All &rarr;
-            </GhostButton>
+            </Button2>
           </div>
-          <div className="space-y-8 mt-8">
+          <div className="space-y-3 mt-2">
             {mixtapes.map((mixtape) => {
               const { title, description, url } = mixtape
               return <Card key={`mixtape_${url}`} title={title} description={description} url={url} />
@@ -85,13 +82,13 @@ export default function Home({ recentPosts }) {
           </div>
         </div>
         <div>
-          <div className="flex items-center justify-between border-b border-gray-200">
-            <span className="text-lg md:text-xl">Some Projects</span>
-            <GhostButton as="a" href={profiles.github.url} isExternal>
+          <div className="flex items-center justify-between">
+            <h3>Some Projects</h3>
+            <Button2 href={profiles.github.url} isExternal>
               See All &rarr;
-            </GhostButton>
+            </Button2>
           </div>
-          <div className="space-y-8 mt-8">
+          <div className="space-y-3 mt-2">
             {projects.map((project) => {
               const { title, description, url } = project
               return <Card key={`project_${url}`} title={title} description={description} url={url} />
