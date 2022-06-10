@@ -6,7 +6,8 @@ import PageLayout from 'layouts/PageLayout'
 
 // --- Components
 import Card from 'components/Card'
-import { Button2 } from 'components/Button'
+import SectionBlock from 'components/SectionBlock'
+import { Button2, Button3 } from 'components/Button'
 import Link from 'components/Link'
 import PageTitle from 'components/PageTitle'
 
@@ -16,7 +17,7 @@ import { mixtapes, projects, profiles } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
   return (
-    <PageLayout>
+    <>
       <PageTitle
         title={
           <>
@@ -28,75 +29,52 @@ export default function Home({ recentPosts }) {
         }
       />
       <p>
-        I'm a <Link href={profiles.linkedin.url}>Software Engineer</Link>,{' '}
-        <Link href={profiles.github.url}>JavaScript enthusiast</Link>, <Link href={profiles.soundcloud.url}>DJ</Link>,{' '}
-        <Link href={profiles.linkedin.url}>writer</Link> and minimalist, living in Berlin, Germany. I'm currently
+        I'm a <Link href={profiles.linkedin.url}>software engineer</Link>,{' '}
+        <Link href={profiles.github.url}>javascript enthusiast</Link>, <Link href={profiles.soundcloud.url}>dj</Link>,{' '}
+        <Link href={profiles.linkedin.url}>writer</Link>, and minimalist, living in Berlin, Germany. I'm currently
         developing things at <Link href="https://hey.car">heycar</Link>.
       </p>
-      <div className="space-y-8 mt-6">
-        <div>
-          <div className="flex items-center justify-between">
-            <h3>Recent Posts</h3>
-            <NextLink href="/blog" passHref>
-              <Button2>See All &rarr;</Button2>
-            </NextLink>
-          </div>
-          {/* <p>I express myself in writing and below are some of my latest posts.</p> */}
-          <div className="space-y-3 mt-2">
-            {recentPosts.map((post) => {
-              const {
-                title,
-                // description,
-                date,
-                slug,
-                sys: { firstPublishedAt }
-              } = post
+      <div className="space-y-8 mt-12">
+        <SectionBlock title="Recent Posts" url="/blog">
+          {recentPosts.map((post) => {
+            const {
+              title,
+              // description,
+              date,
+              slug,
+              sys: { firstPublishedAt }
+            } = post
 
-              return (
-                <Card
-                  key={`post_${slug}`}
-                  title={title}
-                  description={
-                    <time dateTime={date || firstPublishedAt}>
-                      {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
-                    </time>
-                  }
-                  url={`/blog/${slug}`}
-                />
-              )
-            })}
-          </div>
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <h3>Popular Mixtapes</h3>
-            <Button2 href={profiles.soundcloud.url} isExternal>
-              See All &rarr;
-            </Button2>
-          </div>
-          <div className="space-y-3 mt-2">
-            {mixtapes.map((mixtape) => {
-              const { title, description, url } = mixtape
-              return <Card key={`mixtape_${url}`} title={title} description={description} url={url} />
-            })}
-          </div>
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <h3>Some Projects</h3>
-            <Button2 href={profiles.github.url} isExternal>
-              See All &rarr;
-            </Button2>
-          </div>
-          <div className="space-y-3 mt-2">
-            {projects.map((project) => {
-              const { title, description, url } = project
-              return <Card key={`project_${url}`} title={title} description={description} url={url} />
-            })}
-          </div>
-        </div>
+            return (
+              <Card
+                key={`post_${slug}`}
+                title={title}
+                description={
+                  <time dateTime={date || firstPublishedAt}>
+                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                  </time>
+                }
+                url={`/blog/${slug}`}
+              />
+            )
+          })}
+        </SectionBlock>
+
+        <SectionBlock title="Popular Mixtapes" url={profiles.soundcloud.url}>
+          {mixtapes.map((mixtape) => {
+            const { title, description, url } = mixtape
+            return <Card key={`mixtape_${url}`} title={title} description={description} url={url} />
+          })}
+        </SectionBlock>
+
+        <SectionBlock title="Some Projects" url={profiles.github.url}>
+          {projects.map((project) => {
+            const { title, description, url } = project
+            return <Card key={`project_${url}`} title={title} description={description} url={url} />
+          })}
+        </SectionBlock>
       </div>
-    </PageLayout>
+    </>
   )
 }
 

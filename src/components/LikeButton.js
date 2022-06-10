@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { handleViews, incrementLikes } from 'lib/supabase'
 
-import { Button } from 'components/Button'
+import { OutlineButton } from 'components/Button'
 import LikeIcon from 'components/icons/Like'
 
 const LikeButton = ({ slug }) => {
@@ -29,9 +29,9 @@ const LikeButton = ({ slug }) => {
   }
 
   return (
-    <Button title="Like" disabled={supabaseDataLoading} onClick={() => !supabaseDataLoading && incrementLikeCount()}>
+    <OutlineButton title="Like" className="px-3 py-1.5 space-x-2" disabled={supabaseDataLoading} onClick={() => !supabaseDataLoading && incrementLikeCount()}>
       <LikeIcon height={14} width={14} /> <span>{supabaseData?.likes ?? '—'}</span>
-    </Button>
+    </OutlineButton>
   )
 }
 

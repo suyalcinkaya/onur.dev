@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
-import { AnimatePresence } from 'framer-motion'
 
 // --- Components
 import Header from 'components/Header'
+import PageLayout from 'layouts/PageLayout'
 
 // --- Others
 import { trackPageview } from 'lib/gtag'
@@ -37,9 +37,9 @@ function App({ Component, pageProps, router }) {
       </Head>
       <DefaultSeo {...SEO} />
       <Header />
-      <AnimatePresence exitBeforeEnter>
-        <Component key={router.route} {...pageProps} />
-      </AnimatePresence>
+      <PageLayout>
+        <Component {...pageProps} />
+      </PageLayout>
     </>
   )
 }

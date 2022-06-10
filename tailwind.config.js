@@ -15,12 +15,6 @@ module.exports = {
         // sans: ['Untitled Sans', ...fontFamily.sans],
         mono: ['MonoLisa', ...fontFamily.mono]
       },
-      letterSpacing: {
-        tighter: '-0.0325em'
-      },
-      minHeight: {
-        16: '4rem'
-      },
       lineHeight: {
         slack: '1.7',
         slacker: '1.75'

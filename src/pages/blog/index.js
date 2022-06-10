@@ -1,8 +1,5 @@
 import tinytime from 'tinytime'
 
-// --- Layouts
-import PageLayout from 'layouts/PageLayout'
-
 // --- Components
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
@@ -18,34 +15,32 @@ export default function Blog({ allPosts, page }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageLayout>
-        <PageTitle title={title || 'Blog'} />
-        {content && <RichText content={content} />}
-        <div className="space-y-3">
-          {allPosts.map((post) => {
-            const {
-              title,
-              // description,
-              date,
-              slug,
-              sys: { firstPublishedAt }
-            } = post
+      <PageTitle title={title || 'Blog'} />
+      {content && <RichText content={content} />}
+      <div className="space-y-3">
+        {allPosts.map((post) => {
+          const {
+            title,
+            // description,
+            date,
+            slug,
+            sys: { firstPublishedAt }
+          } = post
 
-            return (
-              <Card
-                key={`post_${slug}`}
-                title={title}
-                description={
-                  <time dateTime={date || firstPublishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
-                  </time>
-                }
-                url={`/blog/${slug}`}
-              />
-            )
-          })}
-        </div>
-      </PageLayout>
+          return (
+            <Card
+              key={`post_${slug}`}
+              title={title}
+              description={
+                <time dateTime={date || firstPublishedAt}>
+                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                </time>
+              }
+              url={`/blog/${slug}`}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }

@@ -58,7 +58,7 @@ html {
 }
 
 body {
-  @apply font-sans subpixel-antialiased bg-white text-base text-gray-600;
+  @apply font-sans subpixel-antialiased bg-white text-base text-gray-700;
 }
 
 #__next {
@@ -127,10 +127,6 @@ img {
  * Codes
  */
 
-/* .prose pre {
-  @apply bg-gray-50 border border-gray-200;
-} */
-
 .prose img {
   /* Don't apply styles to next/image */
   @apply m-0;
@@ -139,21 +135,14 @@ img {
 code[class*='language-'],
 pre[class*='language-'],
 pre {
-  @apply text-sm leading-slack w-full text-left break-normal rounded-lg;
+  @apply text-xs leading-slack w-full text-left break-normal rounded-lg;
 }
 
 /* Code blocks */
 pre[class*='language-'],
 pre {
-  @apply p-4 my-6 mx-0 overflow-auto min-w-full;
+  @apply p-3 my-6 mx-0 overflow-auto min-w-full;
 }
-
-/* Inline code */
-/* :not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-} */
 
 .token.important,
 .token.bold {
@@ -167,7 +156,7 @@ pre {
 }
 
 .code-header {
-  @apply flex items-center space-x-4 py-3 px-4 rounded-t-lg bg-gray-100 border border-gray-300;
+  @apply flex items-center space-x-4 py-2.5 px-4 rounded-t-lg bg-gray-100 border border-gray-300;
 }
 
 .code-header + pre {

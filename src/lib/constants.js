@@ -78,8 +78,8 @@ export const navigations = {
       url: '/journey'
     },
     {
-      title: 'Uses',
-      url: '/uses'
+      title: 'Stack',
+      url: '/stack'
     }
   ]
 }

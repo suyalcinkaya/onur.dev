@@ -1,17 +1,10 @@
 import { forwardRef } from 'react'
 
-const commonClassNames =
-  'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-lg space-x-2 whitespace-nowrap cursor-pointer'
-
-export const GhostButton = forwardRef(({ as = 'button', className, isExternal, ...others }, ref) => {
-  const Tag = as
+export const GhostButton = forwardRef(({ className, isExternal, ...others }, ref) => {
   return (
-    <Tag
+    <a
       ref={ref}
-      className={`${commonClassNames} ${className} bg-transparent px-4 py-1.5 focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50`}
-      {...(as === 'button' && {
-        type: 'button'
-      })}
+      className={`flex space-x-1.5 flex-none items-center justify-center cursor-pointer leading-none transition-colors font-medium px-3 py-2 md:px-4 md:py-2.5 text-sm rounded-lg text-gray-700 bg-white ${className}`}
       {...(isExternal && {
         target: '_blank',
         rel: 'noopener noreferrer'
@@ -21,20 +14,11 @@ export const GhostButton = forwardRef(({ as = 'button', className, isExternal, .
   )
 })
 
-export const Button = (props) => {
-  return (
-    <button
-      className="flex space-x-2 flex-none items-center justify-center cursor-pointer leading-none transition-all px-3 py-2 text-sm opacity-100 rounded-md text-gray-700 hover:text-gray-1000 shadow-xs bg-white border border-gray-400 border-opacity-30 hover:border-opacity-50 hover:shadow-sm"
-      {...props}
-    />
-  )
-}
-
-export const Button2 = (props) => {
+export const OutlineButton = ({ className, ...rest }) => {
   return (
     <a
-      className="flex items-center justify-center rounded-md px-3 py-2 space-x-2 text-sm hover:bg-gray-100"
-      {...props}
+      className={`flex space-x-1.5 flex-none items-center justify-center cursor-pointer leading-none transition-all font-medium px-4 py-2.5 text-sm rounded-lg text-gray-700 hover:text-gray-900 shadow-xs bg-white border border-gray-400 border-opacity-30 hover:border-opacity-50 hover:shadow-sm ${className}`}
+      {...rest}
     />
   )
 }

@@ -13,9 +13,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-10 w-full bg-white mx-auto md:border-b md:border-gray-200">
+      <header className="fixed top-0 inset-x-0 z-10 w-full bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
         <div
-          className="shadow md:shadow-none md:mx-auto h-12 py-1 px-2 md:px-12 flex items-center text-sm"
+          className="shadow md:shadow-none md:mx-auto h-12 py-1 px-2 md:px-12 flex items-center space-x-1"
           style={{ maxWidth: LAYOUT_WIDTH }}
         >
           {navigations.header.map((headerNav) => {
@@ -24,7 +24,7 @@ const Header = () => {
             return (
               <Fragment key={`headerNav_${url}`}>
                 <NextLink href={url} passHref>
-                  <GhostButton as="a" size="sm" className={`${router.pathname === url ? 'bg-gray-200' : ''}`}>
+                  <GhostButton className={`${router.asPath === url ? 'bg-black text-white' : 'hover:bg-gray-100'}`}>
                     {title}
                   </GhostButton>
                 </NextLink>

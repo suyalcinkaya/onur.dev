@@ -1,6 +1,3 @@
-// --- Layouts
-import PageLayout from 'layouts/PageLayout'
-
 // --- Components
 import PageTitle from 'components/PageTitle'
 import PageSeo from 'components/PageSeo'
@@ -15,10 +12,8 @@ export default function Page({ page }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageLayout id={url}>
-        <PageTitle title={title} />
-        <RichText content={content} />
-      </PageLayout>
+      <PageTitle title={title} />
+      <RichText content={content} />
     </>
   )
 }

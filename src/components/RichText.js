@@ -13,10 +13,10 @@ function options(links) {
 
   return {
     renderMark: {
-      [MARKS.BOLD]: (text) => <span className="font-medium">{text}</span>,
+      [MARKS.BOLD]: (text) => <span className="font-semibold text-black">{text}</span>,
       [MARKS.ITALIC]: (text) => <span className="italic">{text}</span>,
       [MARKS.CODE]: (text) => (
-        <code className="font-mono not-italic text-sm p-1.5 rounded-md bg-yellow-200 text-yellow-700">{text}</code>
+        <code className="font-mono not-italic text-sm px-1.5 py-1 rounded-md bg-gray-100">{text}</code>
       )
     },
     renderNode: {
@@ -41,12 +41,12 @@ function options(links) {
               alt={asset.description}
             />
             {asset.description && (
-              <figcaption className="text-sm text-gray-500 text-center">{asset.description}</figcaption>
+              <figcaption className="text-xs text-gray-400 text-center font-light">{asset.description}</figcaption>
             )}
           </figure>
         )
       },
-      [BLOCKS.HR]: (node, children) => <hr className="my-12" />,
+      [BLOCKS.HR]: (node, children) => <hr className="my-12 w-1/5" />,
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
