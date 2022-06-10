@@ -13,23 +13,21 @@ function options(links) {
 
   return {
     renderMark: {
-      [MARKS.BOLD]: (text) => <span className="font-medium">{text}</span>,
+      [MARKS.BOLD]: (text) => <span className="font-semibold text-black">{text}</span>,
       [MARKS.ITALIC]: (text) => <span className="italic">{text}</span>,
       [MARKS.CODE]: (text) => (
-        <code className="font-mono not-italic text-sm p-1.5 rounded-md bg-yellow-200 text-yellow-700">{text}</code>
+        <code className="font-mono not-italic text-sm px-1.5 py-1 rounded-md bg-gray-100">{text}</code>
       )
     },
     renderNode: {
-      [BLOCKS.HEADING_2]: (node, children) => <h2 className="font-medium mb-4">{children}</h2>,
-      [BLOCKS.HEADING_3]: (node, children) => <h3 className="font-medium mb-3">{children}</h3>,
-      [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-6 last:mb-0">{children}</p>,
-      [BLOCKS.UL_LIST]: (node, children) => <ul className="list-circle list-inside pl-4 mb-6 space-y-2">{children}</ul>,
-      [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="list-decimal list-inside pl-4 mb-6 space-y-2">{children}</ol>
-      ),
+      [BLOCKS.HEADING_2]: (node, children) => <h2 className="font-semibold mt-8 mb-2">{children}</h2>,
+      [BLOCKS.HEADING_3]: (node, children) => <h3 className="font-semibold mt-8 mb-2">{children}</h3>,
+      [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-4 last:mb-0">{children}</p>,
+      [BLOCKS.UL_LIST]: (node, children) => <ul className="list-circle list-inside mb-6 space-y-2">{children}</ul>,
+      [BLOCKS.OL_LIST]: (node, children) => <ol className="list-decimal list-inside mb-6 space-y-2">{children}</ol>,
       [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="py-6 px-8 my-6 border-l-4 border-gray-200 bg-gray-100 rounded-xl">{children}</blockquote>
+        <blockquote className="py-3 px-4 my-6 border-l-8 border-gray-100 bg-gray-50 rounded-r-xl">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)
@@ -43,12 +41,12 @@ function options(links) {
               alt={asset.description}
             />
             {asset.description && (
-              <figcaption className="text-sm text-gray-500 text-center">{asset.description}</figcaption>
+              <figcaption className="text-xs text-gray-400 text-center font-light">{asset.description}</figcaption>
             )}
           </figure>
         )
       },
-      [BLOCKS.HR]: (node, children) => <hr className="my-12" />,
+      [BLOCKS.HR]: (node, children) => <hr className="my-12 w-1/5" />,
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)

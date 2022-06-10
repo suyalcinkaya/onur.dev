@@ -12,7 +12,7 @@ internet provides a platform for my writing and to showcase my latest work.
 ## Overview
 
 - `/` - Home page.
-- `pages/blog/[slug]` - Static pre-rendered blog pages using [Contentful](https://www.contentful.com).
+- `pages/writing/[slug]` - Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
 - `pages/about` - About page.
 - `pages/journey` - Journey page.
 - `pages/snippets/[slug]` - Static pre-rendered code snippet pages using [Contentful](https://www.contentful.com).

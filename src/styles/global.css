@@ -44,7 +44,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-medium tracking-tighter;
+  @apply font-bold text-black;
 }
 
 h1 {
@@ -52,7 +52,7 @@ h1 {
 }
 
 h2 {
-  @apply text-xl md:text-2xl;
+  @apply text-xl;
 }
 
 h3 {
@@ -61,7 +61,7 @@ h3 {
 
 button,
 a {
-  @apply outline-none;
+  @apply outline-none cursor-pointer;
 }
 
 button:focus {
@@ -74,7 +74,7 @@ button[disabled] {
 }
 
 p {
-  @apply text-lg leading-slacker;
+  @apply leading-slacker;
 }
 
 li p {
@@ -103,10 +103,6 @@ img {
  * Codes
  */
 
-/* .prose pre {
-  @apply bg-gray-50 border border-gray-200;
-} */
-
 .prose img {
   /* Don't apply styles to next/image */
   @apply m-0;
@@ -115,21 +111,14 @@ img {
 code[class*='language-'],
 pre[class*='language-'],
 pre {
-  @apply text-sm leading-slack w-full text-left break-normal rounded-lg;
+  @apply text-xs leading-slack w-full text-left break-normal rounded-lg;
 }
 
 /* Code blocks */
 pre[class*='language-'],
 pre {
-  @apply p-4 my-6 mx-0 overflow-auto min-w-full;
+  @apply p-3 my-6 mx-0 overflow-auto min-w-full;
 }
-
-/* Inline code */
-/* :not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-} */
 
 .token.important,
 .token.bold {
@@ -143,7 +132,7 @@ pre {
 }
 
 .code-header {
-  @apply flex items-center space-x-4 py-3 px-4 rounded-t-lg bg-gray-100 border border-gray-300;
+  @apply flex items-center space-x-4 py-2.5 px-4 rounded-t-lg bg-gray-100 border border-gray-300;
 }
 
 .code-header + pre {

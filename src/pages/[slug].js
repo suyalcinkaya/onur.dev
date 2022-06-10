@@ -1,6 +1,3 @@
-// --- Layouts
-import PageLayout from 'layouts/PageLayout'
-
 // --- Components
 import PageTitle from 'components/PageTitle'
 import PageSeo from 'components/PageSeo'
@@ -10,14 +7,13 @@ import RichText from 'components/RichText'
 import { getAllPages, getPage } from 'lib/contentful'
 
 export default function Page({ page }) {
-  const { title, content, ...rest } = page
+  const { title, content, url, ...rest } = page
 
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageLayout>
-        <PageTitle title={title} description={<RichText content={content} />} />
-      </PageLayout>
+      <PageTitle title={title} />
+      <RichText content={content} />
     </>
   )
 }

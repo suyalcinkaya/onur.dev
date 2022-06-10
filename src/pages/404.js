@@ -1,8 +1,5 @@
 import { NextSeo } from 'next-seo'
 
-// --- Layouts
-import PageLayout from 'layouts/PageLayout'
-
 // --- Components
 import Link from 'components/Link'
 import PageTitle from 'components/PageTitle'
@@ -20,17 +17,15 @@ export default function Custom404() {
         noindex={true}
         nofollow={true}
       />
-      <PageLayout>
-        <PageTitle
-          title="404: Looks like you're lost."
-          description={
-            <p>
-              This link might be broken, deleted, or moved. Nevertheless, you can simply go to the{' '}
-              <Link href="/">homepage</Link> and everything will be alright.
-            </p>
-          }
-        />
-      </PageLayout>
+      <PageTitle
+        title="404: Looks like you're lost."
+        description={
+          <p>
+            This link might be broken, deleted, or moved. Nevertheless, you can simply go to the{' '}
+            <Link href="/">homepage</Link> and everything will be alright.
+          </p>
+        }
+      />
     </>
   )
 }
