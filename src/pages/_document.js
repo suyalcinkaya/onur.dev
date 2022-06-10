@@ -11,21 +11,6 @@ class MyDocument extends Document {
       <Html lang="en">
         <>
           <Head>
-            <link
-              rel="preload"
-              href="/fonts/UntitledSansWeb-Regular.woff2"
-              as="font"
-              type="font/woff2"
-              crossOrigin="anonymous"
-            />
-            <link
-              rel="preload"
-              href="/fonts/UntitledSansWeb-Medium.woff2"
-              as="font"
-              type="font/woff2"
-              crossOrigin="anonymous"
-            />
-
             <link rel="icon" href="/favicons/favicon.ico" sizes="48x48" />
             <link rel="icon" href="/favicons/icon.svg" type="image/svg+xml" />
             <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" sizes="180x180" />

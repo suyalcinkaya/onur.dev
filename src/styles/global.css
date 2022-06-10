@@ -24,30 +24,6 @@
  * Global
  */
 
-@font-face {
-  font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSansWeb-Regular.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Untitled Sans';
-  src: url('/fonts/UntitledSansWeb-Medium.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'MonoLisa';
-  src: url('/fonts/MonoLisa-Regular.woff2') format('woff2');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
 ::selection {
   @apply bg-blue-100;
 }
@@ -172,6 +148,10 @@ pre {
 
 .code-header + pre {
   @apply rounded-t-none border-t-0 mt-0;
+}
+
+.react-syntax-highlighter-line-number {
+  @apply mr-5 text-gray-400 font-light !important;
 }
 
 .token.comment,

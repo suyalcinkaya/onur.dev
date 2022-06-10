@@ -1,5 +1,3 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-
 module.exports = {
   content: ['./src/**/*.js'],
   theme: {
@@ -11,16 +9,6 @@ module.exports = {
       xl: '1280px'
     },
     extend: {
-      fontFamily: {
-        sans: ['Untitled Sans', ...fontFamily.sans],
-        mono: ['MonoLisa', ...fontFamily.mono]
-      },
-      letterSpacing: {
-        tighter: '-0.0325em'
-      },
-      minHeight: {
-        16: '4rem'
-      },
       lineHeight: {
         slack: '1.7',
         slacker: '1.75'
