@@ -35,7 +35,7 @@ export default function Home({ recentPosts }) {
         developing things at <Link href="https://hey.car">heycar</Link>.
       </p>
       <div className="space-y-8 mt-12">
-        <SectionBlock title="Recent Posts" url="/blog">
+        <SectionBlock title="Recent Posts" url="/writing">
           {recentPosts.map((post) => {
             const {
               title,
@@ -54,7 +54,7 @@ export default function Home({ recentPosts }) {
                     {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
                   </time>
                 }
-                url={`/blog/${slug}`}
+                url={`/writing/${slug}`}
               />
             )
           })}

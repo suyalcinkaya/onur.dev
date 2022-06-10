@@ -66,8 +66,8 @@ export const navigations = {
       url: '/'
     },
     {
-      title: 'Blog',
-      url: '/blog'
+      title: 'Writing',
+      url: '/writing'
     },
     {
       title: 'About',

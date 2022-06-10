@@ -4,6 +4,11 @@ import { v4 as uuid } from 'uuid'
 // --- Others
 import { LAYOUT_WIDTH } from 'lib/constants'
 
+const transition = {
+  duration: 0.2,
+  ease: [0.175, 0.85, 0.42, 0.96]
+}
+
 const PageLayout = ({ children, ...others }) => {
   const uniqueId = uuid()
 
@@ -21,8 +26,8 @@ const PageLayout = ({ children, ...others }) => {
             animate="enter"
             exit="exit"
             variants={{
-              exit: { y: 10, opacity: 0, transition: { duration: 0.3, ease: [0.175, 0.85, 0.42, 0.96] } },
-              enter: { y: 0, opacity: 1, transition: { duration: 0.3, ease: [0.175, 0.85, 0.42, 0.96] } }
+              exit: { y: 10, opacity: 0, transition },
+              enter: { y: 0, opacity: 1, transition }
             }}
           >
             <>{children}</>

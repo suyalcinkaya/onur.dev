@@ -15,7 +15,7 @@ export default function Blog({ allPosts, page }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageTitle title={title || 'Blog'} />
+      <PageTitle title={title || 'Writing'} />
       {content && <RichText content={content} />}
       <div className="space-y-3">
         {allPosts.map((post) => {
@@ -36,7 +36,7 @@ export default function Blog({ allPosts, page }) {
                   {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
                 </time>
               }
-              url={`/blog/${slug}`}
+              url={`/writing/${slug}`}
             />
           )
         })}

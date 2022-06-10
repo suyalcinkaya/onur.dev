@@ -27,7 +27,7 @@ function options(links) {
       [BLOCKS.OL_LIST]: (node, children) => <ol className="list-decimal list-inside mb-6 space-y-2">{children}</ol>,
       [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="py-6 px-8 my-6 border-l-4 border-gray-200 bg-gray-100 rounded-r-xl">{children}</blockquote>
+        <blockquote className="py-3 px-4 my-6 border-l-8 border-gray-100 bg-gray-50 rounded-r-xl">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)

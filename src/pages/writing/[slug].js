@@ -28,7 +28,7 @@ export default function Post({ post }) {
         description={description}
         publishedAt={date || firstPublishedAt}
         updatedAt={updatedAt}
-        url={`https://onur.dev/blog/${slug}`}
+        url={`https://onur.dev/writing/${slug}`}
       />
       <article>
         <div className="mb-6 space-y-2">
@@ -60,7 +60,7 @@ export async function getStaticPaths({ preview = false }) {
   const allPosts = await getAllPosts(preview)
 
   return {
-    paths: allPosts?.map(({ slug }) => `/blog/${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/writing/${slug}`) ?? [],
     fallback: false
   }
 }
