@@ -1,54 +1,24 @@
 import { forwardRef } from 'react'
 
-const commonClassNames =
-  'inline-flex appearance-none items-center transition-colors duration-200 ease-in-out select-none w-auto align-middle outline-none rounded-lg space-x-2 whitespace-nowrap cursor-pointer'
-
-export const OutlineButton = ({ as = 'button', className = '', isExternal, ...others }) => {
-  const Tag = as
+export const GhostButton = forwardRef(({ className, isExternal, ...others }, ref) => {
   return (
-    <Tag
-      className={`${commonClassNames} ${className} h-8 bg-gray-100 hover:bg-gray-200 px-3`}
-      {...(as === 'button' && {
-        type: 'button'
-      })}
+    <a
+      ref={ref}
+      className={`flex space-x-1.5 flex-none items-center justify-center cursor-pointer leading-none transition-colors font-medium px-3 py-2 md:px-4 md:py-2.5 text-sm rounded-lg text-gray-700 bg-white ${className}`}
       {...(isExternal && {
         target: '_blank',
         rel: 'noopener noreferrer'
       })}
       {...others}
+    />
+  )
+})
+
+export const OutlineButton = ({ className, ...rest }) => {
+  return (
+    <a
+      className={`flex space-x-1.5 flex-none items-center justify-center cursor-pointer leading-none transition-all font-medium px-4 py-2.5 text-sm rounded-lg text-gray-700 hover:text-gray-900 shadow-xs bg-white border border-gray-400 border-opacity-30 hover:border-opacity-50 hover:shadow-sm ${className}`}
+      {...rest}
     />
   )
 }
-
-export const GhostButton = forwardRef(({ as = 'button', className, isExternal, ...others }, ref) => {
-  const Tag = as
-  return (
-    <Tag
-      ref={ref}
-      className={`${commonClassNames} ${className} bg-transparent px-4 h-10 focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50`}
-      {...(as === 'button' && {
-        type: 'button'
-      })}
-      {...(isExternal && {
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      })}
-      {...others}
-    />
-  )
-})
-
-export const LinkButton = forwardRef(({ as = 'a', className = '', isExternal, ...others }, ref) => {
-  const Tag = as
-  return (
-    <Tag
-      ref={ref}
-      className={`${commonClassNames} ${className} leading-normal p-0 underline-under hover:underline`}
-      {...(isExternal && {
-        target: '_blank',
-        rel: 'noopener noreferrer'
-      })}
-      {...others}
-    />
-  )
-})
