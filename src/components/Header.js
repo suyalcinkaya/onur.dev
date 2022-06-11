@@ -15,7 +15,7 @@ const Header = () => {
     <>
       <header className="fixed top-0 inset-x-0 z-10 w-full bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
         <div
-          className="shadow md:shadow-none md:mx-auto h-12 py-1 px-2 md:px-12 flex items-center space-x-1"
+          className="shadow md:shadow-none md:mx-auto h-12 py-1 px-3 md:px-12 flex items-center space-x-1"
           style={{ maxWidth: LAYOUT_WIDTH }}
         >
           {navigations.header.map((headerNav) => {

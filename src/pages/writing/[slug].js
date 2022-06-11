@@ -1,15 +1,13 @@
-import dynamic from 'next/dynamic'
 import tinytime from 'tinytime'
 
 // --- Components
 import BlogSeo from 'components/BlogSeo'
 import RichText from 'components/RichText'
+import LikeButton from 'components/LikeButton'
 
 // --- Others
 
 import { getPost, getAllPosts } from 'lib/contentful'
-
-const LikeButton = dynamic(() => import('components/LikeButton'), { ssr: false })
 
 export default function Post({ post }) {
   const {
@@ -32,12 +30,14 @@ export default function Post({ post }) {
       />
       <article>
         <div className="mb-6 space-y-2">
-          <h1>{title}</h1>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-baseline justify-between space-x-2">
+            <h1>{title}</h1>
+            <LikeButton slug={slug} />
+          </div>
+          <div>
             <time dateTime={date || firstPublishedAt} className="font-light text-gray-500">
               {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
             </time>
-            <LikeButton slug={slug} />
           </div>
         </div>
         <RichText content={content} />

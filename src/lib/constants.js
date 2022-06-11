@@ -1,63 +1,32 @@
-import GithubIcon from 'components/icons/Github'
-import MediumIcon from 'components/icons/Medium'
-import LinkedinIcon from 'components/icons/Linkedin'
-import SoundcloudIcon from 'components/icons/Soundcloud'
-import TwitterIcon from 'components/icons/Twitter'
-import YoutubeIcon from 'components/icons/Youtube'
-
 export const LAYOUT_WIDTH = 'max(24vw, 768px)'
 
 export const profiles = {
   github: {
     title: 'GitHub',
-    url: 'https://github.com/suyalcinkaya/',
-    icon: <GithubIcon />
+    url: 'https://github.com/suyalcinkaya/'
   },
   twitter: {
     title: 'Twitter',
     username: 'onurshu_',
-    url: 'https://twitter.com/onurshu_',
-    icon: <TwitterIcon />
+    url: 'https://twitter.com/onurschu'
   },
   linkedin: {
     title: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/suyalcinkaya/',
-    icon: <LinkedinIcon />
+    url: 'https://www.linkedin.com/in/suyalcinkaya/'
   },
   medium: {
     title: 'Medium',
-    url: 'https://suyalcinkaya.medium.com',
-    icon: <MediumIcon />
+    url: 'https://suyalcinkaya.medium.com'
   },
   soundcloud: {
     title: 'Soundcloud',
-    url: 'https://soundcloud.com/jagerman',
-    icon: <SoundcloudIcon />
+    url: 'https://soundcloud.com/jagerman'
   },
   youtube: {
     title: 'YouTube',
-    url: 'https://www.youtube.com/c/jagermanmusic',
-    icon: <YoutubeIcon />
+    url: 'https://www.youtube.com/c/jagermanmusic'
   }
 }
-
-export const mixtapes = [
-  {
-    title: 'Summer Sax',
-    description: '11M+ plays ∙ 55K+ likes',
-    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0'
-  },
-  {
-    title: 'Sax On Fire',
-    description: '1.5M+ plays ∙ 35K+ likes',
-    url: 'https://soundcloud.com/jagerman/saxonfire'
-  },
-  {
-    title: 'Casablanca',
-    description: '120K+ plays ∙ 3K+ likes',
-    url: 'https://soundcloud.com/jagerman/casablanca'
-  }
-]
 
 export const navigations = {
   header: [
@@ -83,6 +52,24 @@ export const navigations = {
     }
   ]
 }
+
+export const mixtapes = [
+  {
+    title: 'Summer Sax',
+    description: '11M+ plays ∙ 55K+ likes',
+    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0'
+  },
+  {
+    title: 'Sax On Fire',
+    description: '1.5M+ plays ∙ 35K+ likes',
+    url: 'https://soundcloud.com/jagerman/saxonfire'
+  },
+  {
+    title: 'Casablanca',
+    description: '120K+ plays ∙ 3K+ likes',
+    url: 'https://soundcloud.com/jagerman/casablanca'
+  }
+]
 
 export const projects = [
   {
