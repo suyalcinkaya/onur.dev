@@ -25,30 +25,28 @@ const Header = () => {
   const { pathname, query } = router
   const isWritingSlug = pathname === '/writing/[slug]'
 
-  const handleScroll = () => {
-    if (window.pageYOffset > scrollThreshold) {
-      setTranslateY(Math.max(130 - window.pageYOffset, 0))
-      setOpacity(
-        Math.min(
-          (
-            (window.pageYOffset - scrollThreshold * (scrollThreshold / (Math.pow(window.pageYOffset, 2) / 100))) /
-            100
-          ).toFixed(2),
-          1
-        )
-      )
-    } else {
-      setTranslateY(reset.translateY)
-      setOpacity(reset.opacity)
-    }
-  }
-
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
+    const handleScroll = () => {
+      if (window.pageYOffset > scrollThreshold) {
+        setTranslateY(Math.max(130 - window.pageYOffset, 0))
+        setOpacity(
+          Math.min(
+            (
+              (window.pageYOffset - scrollThreshold * (scrollThreshold / (Math.pow(window.pageYOffset, 2) / 100))) /
+              100
+            ).toFixed(3),
+            1
+          )
+        )
+      } else {
+        setTranslateY(reset.translateY)
+        setOpacity(reset.opacity)
+      }
     }
+
+    window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
