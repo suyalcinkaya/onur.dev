@@ -7,7 +7,7 @@ export const profiles = {
   },
   twitter: {
     title: 'Twitter',
-    username: 'onurshu_',
+    username: 'onurschu',
     url: 'https://twitter.com/onurschu'
   },
   linkedin: {

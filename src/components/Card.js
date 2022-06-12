@@ -16,11 +16,9 @@ const Wrapper = ({ url, isExternal, children, ...rest }) => {
   }
 
   return (
-    <div>
-      <NextLink href={url}>
-        <a {...rest}>{children}</a>
-      </NextLink>
-    </div>
+    <NextLink href={url}>
+      <a {...rest}>{children}</a>
+    </NextLink>
   )
 }
 
