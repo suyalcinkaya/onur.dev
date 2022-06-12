@@ -16,18 +16,20 @@ function options(links) {
       [MARKS.BOLD]: (text) => <span className="font-semibold text-black">{text}</span>,
       [MARKS.ITALIC]: (text) => <span className="italic">{text}</span>,
       [MARKS.CODE]: (text) => (
-        <code className="font-mono not-italic text-sm px-1.5 py-1 rounded-md bg-gray-100">{text}</code>
+        <code className="inline-block font-mono not-italic text-sm px-1.5 py-1 rounded-md bg-gray-100">{text}</code>
       )
     },
     renderNode: {
       [BLOCKS.HEADING_2]: (node, children) => <h2 className="font-semibold mt-8 mb-2">{children}</h2>,
       [BLOCKS.HEADING_3]: (node, children) => <h3 className="font-semibold mt-8 mb-2">{children}</h3>,
       [BLOCKS.PARAGRAPH]: (node, children) => <p className="mb-4 last:mb-0">{children}</p>,
-      [BLOCKS.UL_LIST]: (node, children) => <ul className="list-circle list-inside mb-6 space-y-2">{children}</ul>,
+      [BLOCKS.UL_LIST]: (node, children) => <ul className="list-disc pl-6 mb-6 space-y-2">{children}</ul>,
       [BLOCKS.OL_LIST]: (node, children) => <ol className="list-decimal list-inside mb-6 space-y-2">{children}</ol>,
-      [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
+      [BLOCKS.LIST_ITEM]: (node, children) => <li className="pl-2">{children}</li>,
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="py-3 px-4 my-6 border-l-8 border-gray-100 bg-gray-50 rounded-r-xl">{children}</blockquote>
+        <blockquote className="py-3 px-4 my-6 border-l-8 border-gray-100 bg-gray-50 rounded-r-xl">
+          {children}
+        </blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)

@@ -17,5 +17,6 @@ module.exports = {
         circle: 'circle'
       }
     }
-  }
+  },
+  plugins: [require('@tailwindcss/line-clamp')]
 }

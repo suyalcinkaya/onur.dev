@@ -1,15 +1,16 @@
+import { memo, useEffect } from 'react'
 import tinytime from 'tinytime'
 
 // --- Components
 import BlogSeo from 'components/BlogSeo'
 import RichText from 'components/RichText'
-import LikeButton from 'components/LikeButton'
 
 // --- Others
-
+import { useHeaderTitleContext } from 'providers/HeaderTitleProvider'
 import { getPost, getAllPosts } from 'lib/contentful'
 
-export default function Post({ post }) {
+const Post = memo(({ post }) => {
+  const { setHeaderTitle } = useHeaderTitleContext()
   const {
     title,
     description,
@@ -18,6 +19,10 @@ export default function Post({ post }) {
     content,
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = post
+
+  useEffect(() => {
+    setHeaderTitle(title)
+  }, [setHeaderTitle])
 
   return (
     <>
@@ -30,21 +35,16 @@ export default function Post({ post }) {
       />
       <article>
         <div className="mb-6 space-y-2">
-          <div className="flex items-baseline justify-between space-x-2">
-            <h1>{title}</h1>
-            <LikeButton slug={slug} />
-          </div>
-          <div>
-            <time dateTime={date || firstPublishedAt} className="font-light text-gray-500">
-              {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
-            </time>
-          </div>
+          <h1>{title}</h1>
+          <time dateTime={date || firstPublishedAt} className="block font-light text-gray-500">
+            {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+          </time>
         </div>
         <RichText content={content} />
       </article>
     </>
   )
-}
+})
 
 export async function getStaticProps({ params, preview = false }) {
   const data = await getPost(params.slug, preview)
@@ -64,3 +64,5 @@ export async function getStaticPaths({ preview = false }) {
     fallback: false
   }
 }
+
+export default Post
