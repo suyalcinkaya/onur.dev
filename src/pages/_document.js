@@ -16,24 +16,17 @@ class MyDocument extends Document {
             <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" sizes="180x180" />
             <link rel="manifest" href="/favicons/manifest.webmanifest" />
 
-            {/* Analytics */}
-            {process.env.NODE_ENV === 'production' && (
-              <>
-                <link rel="preconnect" href="https://www.googletagmanager.com" />
-                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-                <script defer src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`} />
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${process.env.GA_TRACKING_ID}');
-                  `
-                  }}
-                />
-              </>
-            )}
+            <script
+              data-partytown-config
+              dangerouslySetInnerHTML={{
+                __html: `
+                partytown = {
+                  lib: "/_next/static/~partytown/",
+                  forward: ["gtag"]
+                };
+              `
+              }}
+            />
           </Head>
         </>
         <body>

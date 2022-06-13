@@ -74,6 +74,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@builder.io/partytown@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.6.1.tgz#3bbb60e8e0773540633325c34f9e6933a704e537"
+  integrity sha512-B8LKn01yBHazSdvELpkM+xAZlw2Nxon9ozp9C6/gbbKzAIWOMFsvZY9NxP9OpTxKL9L4SgKh4ynvz+TsTM+SyQ==
+
 "@contentful/rich-text-react-renderer@^15.10.1":
   version "15.10.1"
   resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.10.1.tgz#8df19732d93f7c87e8ce430a39ec2e994dc73e83"

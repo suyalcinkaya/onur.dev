@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Head from 'next/head'
+import Script from 'next/script'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
 import smoothscroll from 'smoothscroll-polyfill'
@@ -37,10 +37,21 @@ function App({ Component, pageProps }) {
 
   return (
     <>
-      <Head>
-        {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-      </Head>
+      {/* Google Analytics with Partytown (Web Worker) */}
+      <Script strategy="worker" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`} />
+      <script
+        type="text/partytown"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `
+        }}
+      />
       <DefaultSeo {...SEO} />
       <HeaderTitleProvider>
         <Header />

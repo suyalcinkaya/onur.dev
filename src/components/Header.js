@@ -28,11 +28,11 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset > scrollThreshold) {
-        setTranslateY(Math.max(140 - window.pageYOffset, 0))
+        setTranslateY(Math.max(148 - window.pageYOffset, 0))
         setOpacity(
           Math.min(
             (
-              (window.pageYOffset - scrollThreshold * (scrollThreshold / (Math.pow(window.pageYOffset, 2) / 100))) /
+              (window.pageYOffset - scrollThreshold * (scrollThreshold / (window.pageYOffset ** 2 / 100))) /
               100
             ).toFixed(3),
             1

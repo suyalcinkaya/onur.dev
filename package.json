@@ -26,6 +26,7 @@
     "find:unused": "next-unused"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.6.1",
     "@contentful/rich-text-react-renderer": "^15.10.1",
     "@supabase/supabase-js": "^1.29.1",
     "@tailwindcss/line-clamp": "^0.4.0",
