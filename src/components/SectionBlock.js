@@ -13,7 +13,7 @@ const SectionBlock = ({ title, url, children, ...rest }) => {
   return (
     <div className="bg-gray-50 p-6 rounded-lg">
       <div className="flex items-center justify-between">
-        <h3>{title}</h3>
+        <h2 className="text-lg md:text-xl">{title}</h2>
         {url &&
           (isExternal ? (
             <OutlineButton href={url}>

@@ -2,7 +2,7 @@ import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-const ControlPlaceholder = () => <div className="w-4 h-4 bg-gray-200 rounded-full" />
+const ControlPlaceholder = () => <span className="w-4 h-4 bg-gray-200 rounded-full" />
 
 export default function CodeBlock({ title, language, code }) {
   const resetDefaultStyle = { backgroundColor: '' }
@@ -10,14 +10,14 @@ export default function CodeBlock({ title, language, code }) {
   return (
     <>
       {title && (
-        <div className="code-header">
-          <div className="inline-flex items-center space-x-1.5">
+        <span className="code-header">
+          <span className="inline-flex items-center space-x-1.5">
             <ControlPlaceholder />
             <ControlPlaceholder />
             <ControlPlaceholder />
-          </div>
+          </span>
           <span className="text-sm font-medium">{title}</span>
-        </div>
+        </span>
       )}
       <SyntaxHighlighter
         language={language}

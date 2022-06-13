@@ -1,22 +1,11 @@
 {
   "name": "onur.dev",
   "description": "My personal website.",
-  "version": "1.0.0",
   "author": {
     "name": "Onur Şuyalçınkaya",
     "url": "https://onur.dev"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suyalcinkaya/onur.dev.git"
-  },
-  "browserslist": [
-    ">0.3%",
-    "not ie 11",
-    "not dead",
-    "not op_mini all"
-  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -30,12 +19,11 @@
     "@contentful/rich-text-react-renderer": "^15.10.1",
     "@supabase/supabase-js": "^1.29.1",
     "@tailwindcss/line-clamp": "^0.4.0",
-    "copy-to-clipboard": "^3.3.1",
-    "cssnano": "^5.0.14",
+    "cssnano": "^5.1.11",
     "framer-motion": "^6.3.11",
     "markdown-to-jsx": "^7.1.5",
-    "next": "^12.0.7",
-    "next-seo": "^4.24.0",
+    "next": "^12.1.6",
+    "next-seo": "^5.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-syntax-highlighter": "^15.4.5",
@@ -44,10 +32,10 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "^10.4.7",
     "next-unused": "^0.0.3",
-    "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.7"
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.2"
   },
   "next-unused": {
     "debug": true,

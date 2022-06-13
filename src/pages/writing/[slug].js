@@ -2,7 +2,7 @@ import { memo, useEffect } from 'react'
 import tinytime from 'tinytime'
 
 // --- Components
-import BlogSeo from 'components/BlogSeo'
+import WritingSeo from 'components/WritingSeo'
 import RichText from 'components/RichText'
 
 // --- Others
@@ -26,7 +26,7 @@ const Post = memo(({ post }) => {
 
   return (
     <>
-      <BlogSeo
+      <WritingSeo
         title={title}
         description={description}
         publishedAt={date || firstPublishedAt}

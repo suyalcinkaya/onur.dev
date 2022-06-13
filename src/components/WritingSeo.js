@@ -3,7 +3,7 @@ import { NextSeo, ArticleJsonLd } from 'next-seo'
 // --- Others
 import { ogImageUrl } from 'lib/helper'
 
-const BlogSeo = ({ title, description, publishedAt, updatedAt, url }) => {
+const WritingSeo = ({ title, description, publishedAt, updatedAt, url }) => {
   const publishedDate = new Date(publishedAt).toISOString()
   const featuredImage = {
     url: ogImageUrl(title),
@@ -44,4 +44,4 @@ const BlogSeo = ({ title, description, publishedAt, updatedAt, url }) => {
   )
 }
 
-export default BlogSeo
+export default WritingSeo
