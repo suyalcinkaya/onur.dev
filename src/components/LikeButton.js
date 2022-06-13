@@ -5,6 +5,8 @@ import { handleViews, incrementLikes } from 'lib/supabase'
 import { OutlineButton } from 'components/Button'
 
 const LikeButton = ({ slug }) => {
+  if (!slug) return null
+
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [supabaseData, setSupabaseData] = useState({ likes: null, views: null })
 
@@ -16,7 +18,7 @@ const LikeButton = ({ slug }) => {
       views: data.views
     })
     setSupabaseDataLoading(false)
-  }, [slug])
+  }, [])
 
   async function incrementLikeCount() {
     setSupabaseDataLoading(true)

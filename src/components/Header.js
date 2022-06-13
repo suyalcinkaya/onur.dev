@@ -1,14 +1,17 @@
 import { Fragment, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 // --- Components
 import { GhostButton } from 'components/Button'
-import LikeButton from 'components/LikeButton'
+// import LikeButton from 'components/LikeButton'
 
 // --- Others
 import { useHeaderTitleContext } from 'providers/HeaderTitleProvider'
 import { LAYOUT_WIDTH, navigations } from 'lib/constants'
+
+const LikeButton = dynamic(() => import('components/LikeButton'), { ssr: false })
 
 const scrollThreshold = 80
 const reset = {
