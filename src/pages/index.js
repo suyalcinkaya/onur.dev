@@ -29,7 +29,7 @@ export default function Home({ recentPosts }) {
         <Link href={profiles.medium.url}>writer</Link>, and minimalist, living in Berlin, Germany. I'm currently
         developing things at <Link href="https://hey.car">heycar</Link>.
       </p>
-      <div className="space-y-8 mt-12">
+      <div className="flex flex-col gap-y-8 mt-12">
         <SectionBlock title="Recent Posts" url="/writing">
           {recentPosts.map((post) => {
             const {

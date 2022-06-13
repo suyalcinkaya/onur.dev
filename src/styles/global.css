@@ -136,7 +136,7 @@ pre {
 }
 
 .code-header {
-  @apply flex items-center space-x-4 py-2.5 px-4 rounded-t-lg bg-gray-50 border border-gray-200;
+  @apply flex items-center gap-x-4 py-2.5 px-4 rounded-t-lg bg-gray-50 border border-gray-200;
 }
 
 .code-header + pre {

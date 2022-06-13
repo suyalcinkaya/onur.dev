@@ -43,7 +43,7 @@ const SectionBlock = ({ title, url, children, ...rest }) => {
             </NextLink>
           ))}
       </div>
-      <div className="space-y-3 mt-6">{children}</div>
+      <div className="flex flex-col gap-y-6 mt-6">{children}</div>
     </div>
   )
 }

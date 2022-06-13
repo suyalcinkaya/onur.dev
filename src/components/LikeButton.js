@@ -56,7 +56,7 @@ const LikeButton = ({ slug }) => {
   return (
     <OutlineButton
       title="Like"
-      className="px-3 py-1.5 space-x-2"
+      className="flex items-center gap-x-2 px-3 py-1.5"
       disabled={supabaseDataLoading}
       onClick={() => !supabaseDataLoading && incrementLikeCount()}
     >

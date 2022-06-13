@@ -11,7 +11,7 @@ export default function CodeBlock({ title, language, code }) {
     <>
       {title && (
         <span className="code-header">
-          <span className="inline-flex items-center space-x-1.5">
+          <span className="inline-flex items-center gap-x-1.5">
             <ControlPlaceholder />
             <ControlPlaceholder />
             <ControlPlaceholder />

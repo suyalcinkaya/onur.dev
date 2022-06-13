@@ -62,8 +62,8 @@ const Header = () => {
           style={{ maxWidth: LAYOUT_WIDTH }}
         >
           {isWritingSlug ? (
-            <div className="flex items-center justify-between w-full space-x-2">
-              <div className="flex items-center space-x-2 w-full">
+            <div className="flex items-center justify-between gap-x-2 w-full">
+              <div className="flex items-center gap-x-2 w-full">
                 <NextLink href="/writing" passHref>
                   <GhostButton className="px-2 py-2 md:px-2 md:py-2 hover:bg-gray-100">
                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +86,7 @@ const Header = () => {
               <LikeButton slug={query?.slug} />
             </div>
           ) : (
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center gap-x-1">
               {navigations.header.map((headerNav) => {
                 const { title, url } = headerNav
 

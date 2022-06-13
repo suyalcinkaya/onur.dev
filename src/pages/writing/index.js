@@ -17,7 +17,7 @@ export default function Blog({ allPosts, page }) {
       <PageSeo title={title} {...rest} />
       <PageTitle title={title || 'Writing'} />
       {content && <RichText content={content} />}
-      <div className="space-y-3">
+      <div className="flex flex-col gap-y-6">
         {allPosts.map((post) => {
           const {
             title,
