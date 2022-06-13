@@ -55,14 +55,14 @@ export default function Home({ recentPosts }) {
           })}
         </SectionBlock>
 
-        <SectionBlock title="Popular Mixtapes" url={profiles.soundcloud.url}>
+        <SectionBlock title="Popular Mixtapes" url={`${profiles.soundcloud.url}?ref=onur.dev`}>
           {mixtapes.map((mixtape) => {
             const { title, description, url } = mixtape
             return <Card key={`mixtape_${url}`} title={title} description={description} url={url} />
           })}
         </SectionBlock>
 
-        <SectionBlock title="Some Projects" url={profiles.github.url}>
+        <SectionBlock title="Some Projects" url={`${profiles.github.url}?ref=onur.dev`}>
           {projects.map((project) => {
             const { title, description, url } = project
             return <Card key={`project_${url}`} title={title} description={description} url={url} />

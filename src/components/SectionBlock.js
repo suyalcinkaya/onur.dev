@@ -16,7 +16,7 @@ const SectionBlock = ({ title, url, children, ...rest }) => {
         <h2 className="text-lg md:text-xl">{title}</h2>
         {url &&
           (isExternal ? (
-            <OutlineButton href={url}>
+            <OutlineButton href={url} isExternal>
               <span>View all</span>
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
