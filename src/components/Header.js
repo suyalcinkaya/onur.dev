@@ -5,13 +5,11 @@ import { useRouter } from 'next/router'
 
 // --- Components
 import { GhostButton } from 'components/Button'
-// import LikeButton from 'components/LikeButton'
+import LikeButton from 'components/LikeButton'
 
 // --- Others
 import { useHeaderTitleContext } from 'providers/HeaderTitleProvider'
 import { LAYOUT_WIDTH, navigations } from 'lib/constants'
-
-const LikeButton = dynamic(() => import('components/LikeButton'), { ssr: false })
 
 const scrollThreshold = 80
 const reset = {
@@ -31,7 +29,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset > scrollThreshold) {
-        setTranslateY(Math.max(148 - window.pageYOffset, 0))
+        setTranslateY(Math.max(110 - window.pageYOffset, 0))
         setOpacity(
           Math.min(
             (
