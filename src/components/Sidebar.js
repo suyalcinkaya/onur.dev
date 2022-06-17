@@ -111,12 +111,12 @@ const Sidebar = () => {
           </div>
         </div>
       </nav>
-      {isSidebarOpen && (
-        <div
-          className="fixed w-screen inset-0 z-20 bg-black bg-opacity-10 transition duration-200 ease-in-out pointer-events-auto opacity-100"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
+      <div
+        className={`bg-black bg-opacity-10 transition duration-200 ease-in-out pointer-events-auto ${
+          isSidebarOpen ? 'fixed inset-0 z-20 opacity-100 w-screen' : 'opacity-0'
+        }`}
+        onClick={() => setIsSidebarOpen(false)}
+      />
     </>
   )
 }
