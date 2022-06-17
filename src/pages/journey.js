@@ -7,8 +7,7 @@ import PageSeo from 'components/PageSeo'
 // --- Others
 import { getAllLogbook, getPageSeo } from 'lib/contentful'
 
-const Journey = ({ allLogbook, pageSeo }) => {
-  const { title, ...rest } = pageSeo
+const Journey = ({ allLogbook, pageSeo: { title, ...rest } }) => {
   return (
     <>
       <PageSeo title={title} {...rest} />
@@ -66,7 +65,7 @@ export async function getStaticProps({ preview = false }) {
   })
 
   return {
-    props: { allLogbook: mappedLogbook, pageSeo }
+    props: { allLogbook: mappedLogbook, pageSeo, headerTitle: pageSeo?.title || 'Journey' }
   }
 }
 

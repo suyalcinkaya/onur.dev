@@ -7,9 +7,10 @@ import smoothscroll from 'smoothscroll-polyfill'
 // --- Components
 import Header from 'components/Header'
 import PageLayout from 'layouts/PageLayout'
+import Sidebar from 'components/Sidebar'
 
 // --- Others
-import { HeaderTitleProvider } from 'providers/HeaderTitleProvider'
+import { ContextProvider } from 'providers/ContextProvider'
 import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
 
@@ -17,6 +18,8 @@ import SEO from '../../next-seo.config'
 import 'styles/global.css'
 
 function App({ Component, pageProps }) {
+  console.log('pageProps', pageProps)
+  const { headerTitle, ...rest } = pageProps
   const nextRouter = useRouter()
 
   useEffect(() => {
@@ -53,12 +56,13 @@ function App({ Component, pageProps }) {
         }}
       />
       <DefaultSeo {...SEO} />
-      <HeaderTitleProvider>
-        <Header />
+      <ContextProvider>
+        <Header headerTitle={headerTitle} />
+        <Sidebar />
         <PageLayout>
-          <Component {...pageProps} />
+          <Component {...rest} />
         </PageLayout>
-      </HeaderTitleProvider>
+      </ContextProvider>
     </>
   )
 }

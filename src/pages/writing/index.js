@@ -9,9 +9,7 @@ import RichText from 'components/RichText'
 // --- Others
 import { getAllPosts, getPage } from 'lib/contentful'
 
-export default function Blog({ allPosts, page }) {
-  const { title, content, ...rest } = page
-
+export default function Writing({ allPosts, page: { title, content, ...rest } }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
@@ -50,6 +48,6 @@ export async function getStaticProps({ preview = false }) {
   const page = (await getPage('blog', preview)) ?? {}
 
   return {
-    props: { allPosts, page }
+    props: { allPosts, page, headerTitle: page?.title || 'Writing' }
   }
 }
