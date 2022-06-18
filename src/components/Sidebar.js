@@ -26,11 +26,13 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (isSidebarOpen && window) {
-      window.document.body.style.overflow = 'hidden'
+      window.document.documentElement.classList.add('overflow-hidden', 'h-full')
+      window.document.body.classList.add('overflow-hidden', 'h-full')
     }
 
     return () => {
-      window.document.body.style.overflow = ''
+      window.document.documentElement.classList.remove('overflow-hidden', 'h-full')
+      window.document.body.classList.remove('overflow-hidden', 'h-full')
     }
   }, [isSidebarOpen])
 
