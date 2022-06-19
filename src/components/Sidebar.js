@@ -39,7 +39,7 @@ const Sidebar = () => {
   return (
     <>
       <nav
-        className={`fixed md:hidden shadow-lg z-30 flex flex-none w-1/2 h-full min-h-screen max-h-screen transform flex-col overflow-y-auto border-r border-gray-150 bg-white transition duration-200 ease-in-out ${
+        className={`fixed md:hidden shadow-lg z-30 flex flex-none w-3/4 h-full min-h-screen max-h-screen transform flex-col overflow-y-auto border-r border-gray-150 bg-white transition duration-200 ease-in-out ${
           isSidebarOpen ? 'inset-y-0 left-0 translate-x-0' : '-translate-x-full'
         }`}
       >
