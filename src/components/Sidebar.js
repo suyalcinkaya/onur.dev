@@ -39,12 +39,12 @@ const Sidebar = () => {
   return (
     <>
       <nav
-        className={`fixed md:hidden shadow-lg z-30 flex flex-none w-3/4 h-full min-h-screen max-h-screen transform flex-col overflow-y-auto border-r border-gray-150 bg-white transition duration-200 ease-in-out ${
+        className={`fixed md:hidden z-30 flex flex-none flex-col w-3/4 h-full min-h-screen max-h-screen bg-white shadow-lg transform overflow-y-auto border-r border-gray-200 transition-transform duration-200 ease-in-out ${
           isSidebarOpen ? 'inset-y-0 left-0 translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col gap-y-2 h-full text-sm">
-          <div className="flex items-center gap-x-2 h-12 px-3">
+          <div className="flex items-center gap-x-2 px-3 h-12">
             <GhostButton
               title="Close"
               className="px-2 py-2 md:px-2 md:py-2 hover:bg-gray-100"

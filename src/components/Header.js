@@ -11,7 +11,7 @@ import LikeButton from 'components/LikeButton'
 import { useContextProvider } from 'providers/ContextProvider'
 import { LAYOUT_WIDTH, navigations } from 'lib/constants'
 
-const scrollThreshold = 80
+const scrollThreshold = 60
 const reset = {
   translateY: -100,
   opacity: 0
@@ -54,9 +54,7 @@ const Header = memo(({ headerTitle = '' }) => {
     <>
       <header className="fixed top-0 inset-x-0 z-10 w-full bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
         <div
-          className={`flex items-center shadow md:shadow-none md:mx-auto h-12 py-1 px-3 ${
-            isWritingSlug ? 'md:px-16' : 'md:px-12'
-          }`}
+          className="flex items-center shadow md:shadow-none md:mx-auto h-12 py-1 px-3 md:px-16"
           style={{ maxWidth: LAYOUT_WIDTH }}
         >
           {isWritingSlug ? (
@@ -126,7 +124,7 @@ const Header = memo(({ headerTitle = '' }) => {
           )}
         </div>
       </header>
-      <div className="h-16" />
+      <div className="h-12" />
     </>
   )
 })
