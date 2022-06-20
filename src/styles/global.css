@@ -116,7 +116,7 @@ img {
 code[class*='language-'],
 pre[class*='language-'],
 pre {
-  @apply text-sm w-full text-left break-normal rounded-lg;
+  @apply text-sm leading-relaxed w-full text-left break-normal rounded-lg;
 }
 
 /* Code blocks */
