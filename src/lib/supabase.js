@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
-const tableName = 'pages'
+export const tableName = 'pages'
 
 export async function handleViews(slug) {
   const { data } = await supabase.from(tableName).select('id, view_count, like_count').eq('slug', slug)

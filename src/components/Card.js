@@ -35,7 +35,7 @@ const Card = ({ title, description, url, ...rest }) => {
           rel: 'noopener noreferrer',
           target: '_blank'
         })}
-        className={`flex flex-col gap-y-1 rounded-lg p-3 -m-3 transition-colors ${
+        className={`flex flex-col gap-y-1 rounded-lg p-2.5 -m-2.5 transition-colors ${
           url ? 'hover:bg-gray-100 cursor-pointer' : ''
         }`}
         {...rest}

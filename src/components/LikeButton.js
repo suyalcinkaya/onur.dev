@@ -1,16 +1,30 @@
 import { useEffect, useState } from 'react'
-import { handleViews, incrementLikes } from 'lib/supabase'
+import { incrementLikes } from 'lib/supabase'
+import useSWR from 'swr'
 
 // --- Components
 import { OutlineButton } from 'components/Button'
+
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
 const LikeButton = ({ slug }) => {
   if (!slug) return null
 
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [supabaseData, setSupabaseData] = useState({ likes: null, views: null })
+  const { data } = useSWR(`/api/handleViews?slug=${slug}`, fetcher)
 
-  useEffect(async () => {
+  useEffect(() => {
+    if (data) {
+      setSupabaseData({
+        likes: data.likes,
+        views: data.views
+      })
+      setSupabaseDataLoading(false)
+    }
+  }, [data])
+
+  /* useEffect(async () => {
     const data = await handleViews(slug)
 
     setSupabaseData({
@@ -18,7 +32,7 @@ const LikeButton = ({ slug }) => {
       views: data.views
     })
     setSupabaseDataLoading(false)
-  }, [])
+  }, []) */
 
   async function incrementLikeCount() {
     setSupabaseDataLoading(true)

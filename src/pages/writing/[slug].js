@@ -28,7 +28,7 @@ const Post = memo(({ post }) => {
         url={`https://onur.dev/writing/${slug}`}
       />
       <article>
-        <div className="flex flex-col gap-y-2 mb-6">
+        <div className="flex flex-col gap-y-3 mb-6">
           <h1>{title}</h1>
           <time dateTime={date || firstPublishedAt} className="block font-light text-gray-500">
             {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}

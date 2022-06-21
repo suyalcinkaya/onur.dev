@@ -28,7 +28,7 @@ const Header = memo(({ headerTitle = '' }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > scrollThreshold) {
+      if (window.pageYOffset > scrollThreshold && headerTitle) {
         setTranslateY(Math.max(110 - window.pageYOffset, 0))
         setOpacity(
           Math.min(
@@ -48,13 +48,13 @@ const Header = memo(({ headerTitle = '' }) => {
     window.removeEventListener('scroll', handleScroll)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [headerTitle])
 
   return (
     <>
-      <header className="fixed top-0 inset-x-0 z-10 w-full bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
+      <header className="fixed top-0 inset-x-0 z-10 w-full h-12 bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
         <div
-          className="flex items-center shadow md:shadow-none md:mx-auto h-12 py-1 px-3 md:px-16"
+          className="flex items-center h-full shadow md:shadow-none md:mx-auto py-1 px-3 md:px-16"
           style={{ maxWidth: LAYOUT_WIDTH }}
         >
           {isWritingSlug ? (
@@ -72,12 +72,14 @@ const Header = memo(({ headerTitle = '' }) => {
                     </svg>
                   </GhostButton>
                 </NextLink>
-                <span
-                  className="text-sm font-bold line-clamp-1"
-                  style={{ transform: `translateY(${translateY}%)`, opacity: opacity }}
-                >
-                  {headerTitle}
-                </span>
+                {headerTitle && (
+                  <span
+                    className="text-sm font-bold line-clamp-1"
+                    style={{ transform: `translateY(${translateY}%)`, opacity: opacity }}
+                  >
+                    {headerTitle}
+                  </span>
+                )}
               </div>
               <LikeButton slug={query?.slug} />
             </div>
@@ -97,12 +99,14 @@ const Header = memo(({ headerTitle = '' }) => {
                   ></path>
                 </svg>
               </GhostButton>
-              <span
-                className="text-sm font-bold line-clamp-1 md:hidden"
-                style={{ transform: `translateY(${translateY}%)`, opacity: opacity }}
-              >
-                {headerTitle}
-              </span>
+              {headerTitle && (
+                <span
+                  className="text-sm font-bold line-clamp-1 md:hidden"
+                  style={{ transform: `translateY(${translateY}%)`, opacity: opacity }}
+                >
+                  {headerTitle}
+                </span>
+              )}
               <div className="hidden md:flex items-center gap-x-1">
                 {navigations.header.map((headerNav) => {
                   const { title, url } = headerNav
