@@ -11,7 +11,7 @@ import LikeButton from 'components/LikeButton'
 import { useContextProvider } from 'providers/ContextProvider'
 import { LAYOUT_WIDTH, navigations } from 'lib/constants'
 
-const scrollThreshold = 60
+const scrollThreshold = 52
 const reset = {
   translateY: -100,
   opacity: 0

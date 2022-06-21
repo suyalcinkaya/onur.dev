@@ -28,7 +28,7 @@ function options(links) {
       [BLOCKS.HEADING_2]: (_, children) => {
         const id = dasherize(children)
         return (
-          <h2 id={`h2-${id}`} className="font-semibold mt-8 mb-2">
+          <h2 id={`h2-${id}`} className="mt-8 mb-2">
             <a href={`#h2-${id}`}>{children}</a>
           </h2>
         )
@@ -36,17 +36,17 @@ function options(links) {
       [BLOCKS.HEADING_3]: (_, children) => {
         const id = dasherize(children)
         return (
-          <h3 id={`h3-${id}`} className="font-semibold mt-8 mb-2">
+          <h3 id={`h3-${id}`} className="mt-6 mb-2">
             <a href={`#h3-${id}`}>{children}</a>
           </h3>
         )
       },
       [BLOCKS.PARAGRAPH]: (_, children) => <p className="mb-4 last:mb-0">{children}</p>,
-      [BLOCKS.UL_LIST]: (_, children) => <ul className="list-disc pl-6 mb-6 space-y-2">{children}</ul>,
-      [BLOCKS.OL_LIST]: (_, children) => <ol className="list-decimal list-inside mb-6 space-y-2">{children}</ol>,
+      [BLOCKS.UL_LIST]: (_, children) => <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>,
+      [BLOCKS.OL_LIST]: (_, children) => <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>,
       [BLOCKS.LIST_ITEM]: (_, children) => <li className="pl-2">{children}</li>,
       [BLOCKS.QUOTE]: (_, children) => (
-        <blockquote className="px-4 mb-6 border-l-4 border-gray-200 rounded-r-lg font-medium">{children}</blockquote>
+        <blockquote className="px-4 mb-4 border-l-4 border-gray-200 rounded-r-lg font-medium">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)

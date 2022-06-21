@@ -59,6 +59,10 @@ h3 {
   @apply text-lg md:text-xl;
 }
 
+h2 + h3 {
+  @apply mt-0 !important;
+}
+
 button,
 a {
   @apply outline-none cursor-pointer;
