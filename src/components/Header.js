@@ -1,4 +1,4 @@
-import { Fragment, memo, useEffect, useState } from 'react'
+import { Fragment, memo, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -26,9 +26,10 @@ const Header = memo(({ headerTitle = '' }) => {
   const { pathname, query } = router
   const isWritingSlug = pathname === '/writing/[slug]'
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.pageYOffset > scrollThreshold && headerTitle) {
+  const handleScroll = useCallback(() => {
+    // setState optimization threshold
+    if (window.pageYOffset < 800) {
+      if (window.pageYOffset > scrollThreshold) {
         setTranslateY(Math.max(110 - window.pageYOffset, 0))
         setOpacity(
           Math.min(
@@ -39,15 +40,22 @@ const Header = memo(({ headerTitle = '' }) => {
             1
           )
         )
-      } else {
+      } else if (window.pageYOffset >= -10) {
+        // to reset to setState optimization threshold
         setTranslateY(reset.translateY)
         setOpacity(reset.opacity)
       }
     }
+  })
 
-    window.removeEventListener('scroll', handleScroll)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+  useEffect(() => {
+    const opts = { passive: true }
+    window.removeEventListener('scroll', handleScroll, opts)
+    if (headerTitle) window.addEventListener('scroll', handleScroll, opts)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll, opts)
+    }
   }, [headerTitle])
 
   return (

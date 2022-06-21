@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { incrementLikes } from 'lib/supabase'
 import useSWR from 'swr'
 
 // --- Components
 import { OutlineButton } from 'components/Button'
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+// --- Others
+import { incrementLikes } from 'lib/supabase'
+import { fetcher } from 'lib/helper'
 
 const LikeButton = ({ slug }) => {
   if (!slug) return null
