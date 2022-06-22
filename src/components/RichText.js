@@ -42,11 +42,13 @@ function options(links) {
         )
       },
       [BLOCKS.PARAGRAPH]: (_, children) => <p className="mb-4 last:mb-0">{children}</p>,
-      [BLOCKS.UL_LIST]: (_, children) => <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>,
-      [BLOCKS.OL_LIST]: (_, children) => <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>,
+      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-2 list-disc pl-6 mb-4">{children}</ul>,
+      [BLOCKS.OL_LIST]: (_, children) => (
+        <ol className="flex flex-col gap-y-2 list-decimal list-inside mb-4">{children}</ol>
+      ),
       [BLOCKS.LIST_ITEM]: (_, children) => <li className="pl-2">{children}</li>,
       [BLOCKS.QUOTE]: (_, children) => (
-        <blockquote className="px-4 mb-4 border-l-4 border-gray-200 rounded-r-lg font-medium">{children}</blockquote>
+        <blockquote className="px-4 mb-4 border-l-2 border-gray-200 rounded-r-lg font-medium">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)

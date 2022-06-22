@@ -62,7 +62,7 @@ const Sidebar = () => {
             <span className="font-bold">Onur Şuyalçınkaya</span>
           </div>
           <div className="flex flex-col gap-y-6 px-3">
-            <div className="flex flex-col gap-y-1">
+            <div className="flex flex-col gap-y-1.5">
               {navigations.header.map((nav) => {
                 const { title, url, icon } = nav
 
@@ -81,7 +81,7 @@ const Sidebar = () => {
                 )
               })}
             </div>
-            <div className="flex flex-col gap-y-1">
+            <div className="flex flex-col gap-y-1.5">
               <span className="text-gray-400 text-xs pl-2">Online</span>
               {Object.values(profiles).map((profile) => {
                 const { title, url, icon } = profile
