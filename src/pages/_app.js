@@ -58,12 +58,12 @@ function App({ Component, pageProps }) {
       />
       <DefaultSeo {...SEO} />
       <ContextProvider>
-        <Header headerTitle={headerTitle} />
-        <Sidebar />
-        <PageLayout>
-          <Component {...rest} />
-        </PageLayout>
+        <Header headerTitle={headerTitle} router={nextRouter} />
+        <Sidebar router={nextRouter} />
       </ContextProvider>
+      <PageLayout>
+        <Component {...rest} />
+      </PageLayout>
     </>
   )
 }

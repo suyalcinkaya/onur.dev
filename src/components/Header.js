@@ -1,6 +1,5 @@
 import { Fragment, memo, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
 
 // --- Components
 import { GhostButton } from 'components/Button'
@@ -16,12 +15,11 @@ const reset = {
   opacity: 0
 }
 
-const Header = memo(({ headerTitle = '' }) => {
+const Header = memo(({ headerTitle = '', router }) => {
   const { setIsSidebarOpen } = useContextProvider()
   const [translateY, setTranslateY] = useState(reset.translateY)
   const [opacity, setOpacity] = useState(reset.opacity)
 
-  const router = useRouter()
   const { pathname, query } = router
   const isWritingSlug = pathname === '/writing/[slug]'
 
@@ -50,12 +48,10 @@ const Header = memo(({ headerTitle = '' }) => {
   })
 
   useEffect(() => {
-    const opts = { passive: true }
-    window.removeEventListener('scroll', handleScroll, opts)
-    if (headerTitle) window.addEventListener('scroll', handleScroll, opts)
+    if (headerTitle) window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
-      window.removeEventListener('scroll', handleScroll, opts)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [headerTitle])
 

@@ -1,6 +1,5 @@
 import { Fragment, useEffect } from 'react'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
 
 // --- Components
 import { GhostButton } from 'components/Button'
@@ -9,8 +8,7 @@ import { GhostButton } from 'components/Button'
 import { useContextProvider } from 'providers/ContextProvider'
 import { navigations, profiles } from 'lib/constants'
 
-const Sidebar = () => {
-  const router = useRouter()
+const Sidebar = ({ router }) => {
   const { isSidebarOpen, setIsSidebarOpen } = useContextProvider()
 
   useEffect(() => {
