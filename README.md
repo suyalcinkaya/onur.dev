@@ -5,9 +5,8 @@
 <br>
 <br>
 
-My portfolio has transformed over the years - from a static HTML site, to `Create React App`, to `GatsbyJS`, to
-`Next.js + Chakra UI + MDX` combo and finally to `Next.js + Tailwind CSS + Contentful` combo. My personal slice of the
-internet provides a platform for my writing and to showcase my latest work.
+My personal website has transformed over the years - from a static HTML site, to `Create React App`, to `GatsbyJS`, to
+`Next.js + Chakra UI + MDX` combo and finally to `Next.js + Tailwind CSS + Contentful` combo. It provides a platform for my writing and to showcase my journey.
 
 ## Overview
 
@@ -15,7 +14,7 @@ internet provides a platform for my writing and to showcase my latest work.
 - `pages/writing/[slug]` - Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
 - `pages/about` - About page.
 - `pages/journey` - Journey page.
-- `pages/snippets/[slug]` - Static pre-rendered code snippet pages using [Contentful](https://www.contentful.com).
+- `pages/stack` - Stack page.
 
 ## Running Locally
 
@@ -26,9 +25,12 @@ $ yarn
 $ yarn dev
 ```
 
+Create a `.env` file similar to [`.env.example`](https://github.com/suyalcinkaya/onur.dev/blob/master/.env.example).
+
 ## Built With
 
-- [Vercel](https://vercel.com)
 - [Next.js](https://nextjs.org)
 - [Contentful](https://www.contentful.com)
 - [Tailwind CSS](https://tailwindcss.com)
+- [Vercel](https://vercel.com)
+- [Supabase](https://supabase.com/)
