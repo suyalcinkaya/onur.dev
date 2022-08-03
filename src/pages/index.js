@@ -77,6 +77,6 @@ export async function getStaticProps({ preview = false }) {
   const recentPosts = (await getLast3Posts(preview)) ?? []
 
   return {
-    props: { recentPosts }
+    props: { recentPosts, headerTitle: 'Home' }
   }
 }
