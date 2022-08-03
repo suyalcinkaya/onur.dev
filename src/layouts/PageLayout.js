@@ -18,7 +18,7 @@ const PageLayout = ({ children, ...rest }) => {
       style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
       {...rest}
     >
-      <div className="py-4 px-4 sm:px-6 md:px-16 mx-auto overflow-hidden" style={{ maxWidth: LAYOUT_WIDTH }}>
+      <div className="py-4 px-4 md:px-16 mx-auto overflow-hidden" style={{ maxWidth: LAYOUT_WIDTH }}>
         <AnimatePresence exitBeforeEnter>
           <motion.div
             key={uniqueId}

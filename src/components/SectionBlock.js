@@ -11,7 +11,7 @@ const SectionBlock = ({ title, url, children, ...rest }) => {
   if (url) isExternal = isExternalLink(url)
 
   return (
-    <div className="bg-gray-50 p-6 rounded-lg">
+    <div className="bg-gray-50 p-6 rounded-lg" {...rest}>
       <div className="flex items-center justify-between">
         <h2 className="text-lg md:text-xl">{title}</h2>
         {url &&

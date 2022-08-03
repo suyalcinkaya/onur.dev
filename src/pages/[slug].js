@@ -6,9 +6,7 @@ import RichText from 'components/RichText'
 // --- Others
 import { getAllPages, getPage } from 'lib/contentful'
 
-export default function Page({ page }) {
-  const { title, content, url, ...rest } = page
-
+export default function Page({ page: { title, content, url, ...rest } }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
@@ -22,7 +20,7 @@ export async function getStaticProps({ params: { slug }, preview = false }) {
   const page = (await getPage(slug, preview)) ?? {}
 
   return {
-    props: { page }
+    props: { page, headerTitle: page?.title || '' }
   }
 }
 

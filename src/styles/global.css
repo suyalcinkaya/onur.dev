@@ -34,7 +34,7 @@ html {
 }
 
 body {
-  @apply font-sans subpixel-antialiased bg-white text-base text-gray-700;
+  @apply font-sans antialiased bg-white text-base text-gray-700;
 }
 
 #__next {
@@ -44,7 +44,7 @@ body {
 h1,
 h2,
 h3 {
-  @apply font-bold text-black;
+  @apply font-bold text-black scroll-mt-16;
 }
 
 h1 {
@@ -59,9 +59,19 @@ h3 {
   @apply text-lg md:text-xl;
 }
 
+h2 + h3 {
+  @apply mt-0 !important;
+}
+
 button,
 a {
   @apply outline-none cursor-pointer;
+}
+
+h1 a,
+h2 a,
+h3 a {
+  @apply underline-under hover:underline;
 }
 
 button:focus {
@@ -74,7 +84,7 @@ button[disabled] {
 }
 
 p {
-  @apply leading-slacker;
+  @apply leading-slacker mb-6;
 }
 
 li p {
@@ -107,15 +117,10 @@ img {
  * Codes
  */
 
-.prose img {
-  /* Don't apply styles to next/image */
-  @apply m-0;
-}
-
 code[class*='language-'],
 pre[class*='language-'],
 pre {
-  @apply text-xs leading-slack w-full text-left break-normal rounded-lg;
+  @apply text-sm leading-relaxed w-full text-left break-normal rounded-lg;
 }
 
 /* Code blocks */

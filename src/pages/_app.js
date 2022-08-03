@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
 import smoothscroll from 'smoothscroll-polyfill'
@@ -7,9 +8,11 @@ import smoothscroll from 'smoothscroll-polyfill'
 // --- Components
 import Header from 'components/Header'
 import PageLayout from 'layouts/PageLayout'
+// import Sidebar from 'components/Sidebar'
+const Sidebar = dynamic(() => import('components/Sidebar'))
 
 // --- Others
-import { HeaderTitleProvider } from 'providers/HeaderTitleProvider'
+import { ContextProvider } from 'providers/ContextProvider'
 import { trackPageview } from 'lib/gtag'
 import SEO from '../../next-seo.config'
 
@@ -17,6 +20,7 @@ import SEO from '../../next-seo.config'
 import 'styles/global.css'
 
 function App({ Component, pageProps }) {
+  const { headerTitle, ...rest } = pageProps
   const nextRouter = useRouter()
 
   useEffect(() => {
@@ -53,12 +57,13 @@ function App({ Component, pageProps }) {
         }}
       />
       <DefaultSeo {...SEO} />
-      <HeaderTitleProvider>
-        <Header />
-        <PageLayout>
-          <Component {...pageProps} />
-        </PageLayout>
-      </HeaderTitleProvider>
+      <ContextProvider>
+        <Header headerTitle={headerTitle} router={nextRouter} />
+        <Sidebar router={nextRouter} />
+      </ContextProvider>
+      <PageLayout>
+        <Component {...rest} />
+      </PageLayout>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 import tinytime from 'tinytime'
 
 // --- Components
@@ -6,11 +6,9 @@ import WritingSeo from 'components/WritingSeo'
 import RichText from 'components/RichText'
 
 // --- Others
-import { useHeaderTitleContext } from 'providers/HeaderTitleProvider'
 import { getPost, getAllPosts } from 'lib/contentful'
 
 const Post = memo(({ post }) => {
-  const { setHeaderTitle } = useHeaderTitleContext()
   const {
     title,
     description,
@@ -19,10 +17,6 @@ const Post = memo(({ post }) => {
     content,
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = post
-
-  useEffect(() => {
-    setHeaderTitle(title)
-  }, [setHeaderTitle])
 
   return (
     <>
@@ -34,7 +28,7 @@ const Post = memo(({ post }) => {
         url={`https://onur.dev/writing/${slug}`}
       />
       <article>
-        <div className="flex flex-col gap-y-2 mb-6">
+        <div className="flex flex-col gap-y-3 mb-6">
           <h1>{title}</h1>
           <time dateTime={date || firstPublishedAt} className="block font-light text-gray-500">
             {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
@@ -51,7 +45,8 @@ export async function getStaticProps({ params, preview = false }) {
 
   return {
     props: {
-      post: data?.post ?? null
+      post: data?.post ?? null,
+      headerTitle: data?.post?.title ?? ''
     }
   }
 }
