@@ -44,6 +44,7 @@ const Sidebar = ({ router }) => {
         <div className="flex flex-col gap-y-2 h-full text-sm">
           <div className="flex items-center gap-x-2 px-3 h-12">
             <GhostButton
+              as="button"
               title="Close"
               className="px-2 py-2 md:px-2 md:py-2 hover:bg-gray-100"
               onClick={() => setIsSidebarOpen(false)}

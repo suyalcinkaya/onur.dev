@@ -2,10 +2,10 @@ import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+const LazyLoad = dynamic(() => import('react-lazyload'))
 
 // --- Components
-// import Link from 'components/Link'
-const DynamicCodeBlock = dynamic(() => import('components/CodeBlock'))
+const CodeBlock = dynamic(() => import('components/CodeBlock'))
 const Link = dynamic(() => import('components/Link'))
 
 const dasherize = (str) => String(str).replace(/ +/g, '-').toLowerCase()
@@ -79,49 +79,36 @@ function options(links) {
             switch (type) {
               case 'Video': {
                 return (
-                  <figure>
-                    <iframe
-                      src={embedUrl}
-                      title={title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full aspect-video rounded-lg shadow-lg"
-                    />
-                    <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
-                  </figure>
+                  <LazyLoad once>
+                    <figure>
+                      <iframe
+                        src={embedUrl}
+                        title={title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full aspect-video rounded-lg shadow-lg"
+                      />
+                      <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
+                    </figure>
+                  </LazyLoad>
                 )
               }
               case 'SoundCloud': {
                 return (
-                  <figure>
-                    <iframe
-                      src={embedUrl}
-                      title={title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full rounded-lg shadow-lg"
-                    />
-                    <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
-                  </figure>
-                )
-              }
-              case 'Tweet': {
-                return (
-                  <figure>
-                    <iframe
-                      src={embedUrl}
-                      height="460"
-                      width="640"
-                      title={title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full rounded-lg"
-                    />
-                    <figcaption className="text-sm text-gray-500 text-center mt-1">{title}</figcaption>
-                  </figure>
+                  <LazyLoad once>
+                    <figure>
+                      <iframe
+                        src={embedUrl}
+                        title={title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full rounded-lg shadow-lg"
+                      />
+                      <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
+                    </figure>
+                  </LazyLoad>
                 )
               }
               default:
@@ -129,7 +116,11 @@ function options(links) {
             }
           }
           case 'CodeBlock': {
-            return <DynamicCodeBlock {...entry} />
+            return (
+              <LazyLoad once offset={50}>
+                <CodeBlock {...entry} />
+              </LazyLoad>
+            )
           }
           default:
             return null

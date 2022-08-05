@@ -9,7 +9,7 @@ import LikeButton from 'components/LikeButton'
 import { useContextProvider } from 'providers/ContextProvider'
 import { LAYOUT_WIDTH, navigations } from 'lib/constants'
 
-const scrollThreshold = 52
+const scrollThreshold = 64
 const reset = {
   translateY: -100,
   opacity: 0
@@ -48,7 +48,7 @@ const Header = memo(({ headerTitle = '', router }) => {
   })
 
   useEffect(() => {
-    if (headerTitle) window.addEventListener('scroll', handleScroll, { passive: true })
+    if (headerTitle) window.addEventListener('scroll', handleScroll)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -113,6 +113,7 @@ const Header = memo(({ headerTitle = '', router }) => {
           ) : (
             <div className="flex items-center gap-x-3">
               <GhostButton
+                as="button"
                 title="Open Sidebar"
                 className="md:hidden px-2 py-2 md:px-2 md:py-2 hover:bg-gray-100"
                 onClick={() => setIsSidebarOpen(true)}

@@ -14,7 +14,7 @@ const PageLayout = ({ children, ...rest }) => {
 
   return (
     <main
-      className="flex-1 py-12 md:py-16 overflow-hidden"
+      className="flex-1 py-14 overflow-hidden"
       style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
       {...rest}
     >
