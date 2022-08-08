@@ -8,7 +8,6 @@ import smoothscroll from 'smoothscroll-polyfill'
 // --- Components
 import Header from 'components/Header'
 import PageLayout from 'layouts/PageLayout'
-// import Sidebar from 'components/Sidebar'
 const Sidebar = dynamic(() => import('components/Sidebar'))
 
 // --- Others

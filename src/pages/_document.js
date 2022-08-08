@@ -15,7 +15,6 @@ class MyDocument extends Document {
             <link rel="icon" href="/favicons/icon.svg" type="image/svg+xml" />
             <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" sizes="180x180" />
             <link rel="manifest" href="/favicons/manifest.webmanifest" />
-
             <script
               data-partytown-config
               dangerouslySetInnerHTML={{

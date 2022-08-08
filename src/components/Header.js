@@ -1,15 +1,16 @@
 import { Fragment, memo, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
+import dynamic from 'next/dynamic'
 
 // --- Components
 import { GhostButton } from 'components/Button'
-import LikeButton from 'components/LikeButton'
+const LikeButton = dynamic(() => import('components/LikeButton'))
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
 import { LAYOUT_WIDTH, navigations } from 'lib/constants'
 
-const scrollThreshold = 64
+const scrollThreshold = 52
 const reset = {
   translateY: -100,
   opacity: 0
@@ -17,8 +18,8 @@ const reset = {
 
 const Header = memo(({ headerTitle = '', router }) => {
   const { setIsSidebarOpen } = useContextProvider()
-  const [translateY, setTranslateY] = useState(reset.translateY)
-  const [opacity, setOpacity] = useState(reset.opacity)
+  const [translateY, setTranslateY] = useState(0)
+  const [opacity, setOpacity] = useState(1)
 
   const { pathname, query } = router
   const isWritingSlug = pathname === '/writing/[slug]'
@@ -27,7 +28,7 @@ const Header = memo(({ headerTitle = '', router }) => {
     // setState optimization threshold
     if (window.pageYOffset < 1500) {
       if (window.pageYOffset > scrollThreshold) {
-        setTranslateY(Math.max(90 - window.pageYOffset, 0))
+        setTranslateY(Math.max(110 - window.pageYOffset, 0))
         setOpacity(
           Math.min(
             Math.max(
@@ -46,6 +47,10 @@ const Header = memo(({ headerTitle = '', router }) => {
       }
     }
   })
+
+  useEffect(() => {
+    handleScroll()
+  }, [])
 
   useEffect(() => {
     if (headerTitle) window.addEventListener('scroll', handleScroll)
@@ -138,13 +143,12 @@ const Header = memo(({ headerTitle = '', router }) => {
               <div className="hidden md:flex items-center gap-x-1">
                 {navigations.header.map((headerNav) => {
                   const { title, url } = headerNav
+                  const isActive = router.asPath === url
 
                   return (
                     <Fragment key={`headerNav_${url}`}>
                       <NextLink href={url} passHref>
-                        <GhostButton
-                          className={`${router.asPath === url ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
-                        >
+                        <GhostButton className={`${isActive ? 'bg-black text-white' : 'hover:bg-gray-100'}`}>
                           {title}
                         </GhostButton>
                       </NextLink>

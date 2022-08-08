@@ -1,7 +1,7 @@
-import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+const NextImage = dynamic(() => import('next/image'))
 const LazyLoad = dynamic(() => import('react-lazyload'))
 
 // --- Components
@@ -41,7 +41,8 @@ function options(links) {
           </h3>
         )
       },
-      [BLOCKS.PARAGRAPH]: (_, children) => <p className="mb-4 last:mb-0">{children}</p>,
+      // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
+      [BLOCKS.PARAGRAPH]: (_, children) => <div className="leading-slacker mb-4 last:mb-0">{children}</div>,
       [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-2 list-disc pl-6 mb-4">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
         <ol className="flex flex-col gap-y-2 list-decimal list-inside mb-4">{children}</ol>
@@ -131,7 +132,7 @@ function options(links) {
 }
 
 const RichText = ({ content }) => {
-  return documentToReactComponents(content?.json, options(content?.links))
+  return documentToReactComponents(content.json, options(content.links))
 }
 
 export default RichText

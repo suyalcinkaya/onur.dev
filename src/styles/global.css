@@ -34,7 +34,7 @@ html {
 }
 
 body {
-  @apply font-sans antialiased bg-white text-base text-gray-700;
+  @apply font-sans antialiased bg-white text-base text-gray-600;
 }
 
 #__next {
@@ -110,7 +110,7 @@ ul > li::marker {
 }
 
 img {
-  @apply rounded-xl;
+  @apply rounded-xl animate-reveal;
 }
 
 /**
@@ -120,7 +120,7 @@ img {
 code[class*='language-'],
 pre[class*='language-'],
 pre {
-  @apply text-sm leading-relaxed w-full text-left break-normal rounded-lg;
+  @apply text-xs leading-relaxed w-full text-left break-normal rounded-lg;
 }
 
 /* Code blocks */

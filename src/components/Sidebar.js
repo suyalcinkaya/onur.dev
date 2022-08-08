@@ -42,7 +42,7 @@ const Sidebar = ({ router }) => {
         }`}
       >
         <div className="flex flex-col gap-y-2 h-full text-sm">
-          <div className="flex items-center gap-x-2 px-3 h-12">
+          <div className="flex items-center gap-x-2 px-2 h-12">
             <GhostButton
               as="button"
               title="Close"
@@ -60,7 +60,7 @@ const Sidebar = ({ router }) => {
             </GhostButton>
             <span className="font-bold">Onur Şuyalçınkaya</span>
           </div>
-          <div className="flex flex-col gap-y-6 px-3">
+          <div className="flex flex-col gap-y-6 px-2">
             <div className="flex flex-col gap-y-1.5">
               {navigations.header.map((nav) => {
                 const { title, url, icon } = nav
@@ -69,11 +69,10 @@ const Sidebar = ({ router }) => {
                   <Fragment key={`sidebarNav_${url}`}>
                     <NextLink href={url} passHref>
                       <GhostButton className={`${router.asPath === url ? 'bg-black text-white' : 'hover:bg-gray-100'}`}>
-                        <span className="flex items-center gap-x-3">
+                        <span className="flex items-center gap-x-2">
                           {icon ?? ''}
                           {title}
                         </span>
-                        <span />
                       </GhostButton>
                     </NextLink>
                   </Fragment>
@@ -88,7 +87,7 @@ const Sidebar = ({ router }) => {
                 return (
                   <Fragment key={`sidebarProfile_${url}`}>
                     <GhostButton className="gap-x-3 hover:bg-gray-100" href={url}>
-                      <span className="flex items-center gap-x-3">
+                      <span className="flex items-center gap-x-2">
                         {icon ?? ''}
                         {title}
                       </span>
