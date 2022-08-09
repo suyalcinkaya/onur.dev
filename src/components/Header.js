@@ -20,8 +20,8 @@ const reset = {
 
 const Header = memo(({ headerTitle = '', router }) => {
   const { setIsSidebarOpen } = useContextProvider()
-  const [translateY, setTranslateY] = useState(0)
-  const [opacity, setOpacity] = useState(1)
+  const [translateY, setTranslateY] = useState(reset.translateY)
+  const [opacity, setOpacity] = useState(reset.opacity)
 
   const { pathname, query } = router
   const isWritingSlug = pathname === '/writing/[slug]'

@@ -42,7 +42,7 @@ const Sidebar = ({ router }) => {
         }`}
       >
         <div className="flex flex-col gap-y-2 h-full text-sm">
-          <div className="flex items-center gap-x-2 px-2 h-12">
+          <div className="flex items-center gap-x-2 px-3 h-12">
             <GhostButton
               as="button"
               title="Close"
