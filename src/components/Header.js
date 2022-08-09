@@ -4,7 +4,9 @@ import dynamic from 'next/dynamic'
 
 // --- Components
 import { GhostButton } from 'components/Button'
-const LikeButton = dynamic(() => import('components/LikeButton'))
+const LikeButton = dynamic(() => import('components/LikeButton'), {
+  ssr: false
+})
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
