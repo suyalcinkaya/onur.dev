@@ -17,7 +17,16 @@ export default function Document() {
                 partytown = {
                   lib: "/_next/static/~partytown/",
                   forward: ["gtag", "dataLayer"],
-                  debug: true,
+                  debug: ${process.env.NODE_ENV === 'development'},
+                  resolveUrl: function (url, location, type) {
+                    if (type === 'script') {
+                      const proxyUrl = new URL('https://cdn.builder.codes/api/v1/js-proxy');
+                      proxyUrl.searchParams.append('url', url.href);
+                      proxyUrl.searchParams.append('apiKey', ${process.env.NEXT_PUBLIC_BUILDER_PUBLIC_API_KEY});
+                      return proxyUrl;
+                    }
+                    return url;
+                  },
                 };
               `
             }}
