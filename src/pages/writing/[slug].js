@@ -1,5 +1,4 @@
 import { memo, Suspense } from 'react'
-import tinytime from 'tinytime'
 
 // --- Components
 import WritingSeo from 'components/WritingSeo'
@@ -7,6 +6,7 @@ import RichText from 'components/RichText'
 
 // --- Others
 import { getPost, getAllPosts } from 'lib/contentful'
+import { dateTemplate } from 'lib/constants'
 
 const Post = memo(({ post }) => {
   const {
@@ -31,7 +31,7 @@ const Post = memo(({ post }) => {
         <div className="flex flex-col gap-y-3 mb-6">
           <h1>{title}</h1>
           <time dateTime={date || firstPublishedAt} className="block font-light text-gray-500">
-            {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+            {dateTemplate.render(new Date(date || firstPublishedAt))}
           </time>
         </div>
         <Suspense fallback={null}>

@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import tinytime from 'tinytime'
 
 // --- Components
 import PageTitle from 'components/PageTitle'
@@ -9,6 +8,7 @@ import RichText from 'components/RichText'
 
 // --- Others
 import { getAllPosts, getPage } from 'lib/contentful'
+import { dateTemplate } from 'lib/constants'
 
 export default function Writing({ allPosts, page: { title, content, ...rest } }) {
   return (
@@ -33,7 +33,7 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
                 title={title}
                 description={
                   <time dateTime={date || firstPublishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                    {dateTemplate.render(new Date(date || firstPublishedAt))}
                   </time>
                 }
                 url={`/writing/${slug}`}

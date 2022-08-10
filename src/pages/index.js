@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import tinytime from 'tinytime'
 
 // --- Components
 import Card from 'components/Card'
@@ -9,7 +8,7 @@ import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
-import { mixtapes, projects, profiles } from 'lib/constants'
+import { dateTemplate, mixtapes, projects, profiles } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
   return (
@@ -47,7 +46,7 @@ export default function Home({ recentPosts }) {
                 title={title}
                 description={
                   <time dateTime={date || firstPublishedAt}>
-                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                    {dateTemplate.render(new Date(date || firstPublishedAt))}
                   </time>
                 }
                 url={`/writing/${slug}`}

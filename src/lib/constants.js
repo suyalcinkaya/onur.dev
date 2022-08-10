@@ -1,3 +1,7 @@
+import tinytime from 'tinytime'
+
+export const dateTemplate = tinytime('{MMMM} {DD}, {YYYY}')
+
 export const profiles = {
   github: {
     title: 'GitHub',
