@@ -7,16 +7,17 @@
     text-underline-position: under;
   }
 
-  /* .slashed-zero {
-    font-variant-numeric: slashed-zero;
-  } */
-
   .word-break {
     word-break: break-word;
   }
 
   .list-square {
     list-style-type: square;
+  }
+
+  .px-safe {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 }
 
@@ -34,7 +35,7 @@ html {
 }
 
 body {
-  @apply font-sans antialiased bg-white text-base text-gray-700;
+  @apply font-sans antialiased bg-white text-base text-gray-600;
 }
 
 #__next {
@@ -110,17 +111,23 @@ ul > li::marker {
 }
 
 img {
-  @apply rounded-xl;
+  @apply rounded-xl animate-reveal;
 }
 
 /**
  * Codes
  */
 
+code,
+kbd,
+pre {
+  @apply font-mono;
+}
+
 code[class*='language-'],
 pre[class*='language-'],
 pre {
-  @apply text-sm leading-relaxed w-full text-left break-normal rounded-lg;
+  @apply text-xs leading-relaxed w-full text-left text-gray-800 break-normal rounded-lg;
 }
 
 /* Code blocks */
@@ -148,10 +155,6 @@ pre {
   @apply rounded-t-none border-t-0 mt-0;
 }
 
-.react-syntax-highlighter-line-number {
-  @apply mr-5 text-gray-400 font-light !important;
-}
-
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -159,13 +162,9 @@ pre {
   @apply text-gray-400;
 }
 
-/* .token.script.language-javascript,
-.language-javascript .token.punctuation,
-.token.script-punctuation,
-.token.operator,
-.token.arrow.operator {
-  @apply text-gray-500;
-} */
+.react-syntax-highlighter-line-number {
+  @apply mr-5 text-gray-400 font-light !important;
+}
 
 .token.namespace {
   @apply opacity-70;
@@ -176,7 +175,6 @@ pre {
 }
 
 .token.property,
-.token.boolean,
 .token.symbol,
 .token.deleted,
 .token.keyword.null {
@@ -186,9 +184,9 @@ pre {
 .token.atrule,
 .token.keyword,
 .token.class,
-.token.spread.operator,
-.token.dom.variable {
-  color: #ff0078;
+/*.token.dom.variable,*/
+.token.spread.operator {
+  @apply text-[#ff0078] font-bold;
 }
 
 .token.tag,
@@ -196,9 +194,9 @@ pre {
 .token.function-variable,
 .token.function:not(.function-variable),
 .token.number,
-.token.property-access
-/* .token.maybe-class-name */ {
-  color: #0076ff;
+.token.property-access,
+.token.maybe-class-name:not(.imports) {
+  color: #0070f3;
 }
 
 .token.entity,
@@ -218,7 +216,11 @@ pre {
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: #2cb092;
+  color: #028265;
+}
+
+.token.boolean {
+  color: #36acaa;
 }
 
 .token.constant {

@@ -1,12 +1,13 @@
-import NextLink from 'next/link'
+import dynamic from 'next/dynamic'
 
 // --- Others
 import { isExternalLink } from 'lib/helper'
 
-const className = 'underline-under hover:underline -mb-px pb-px self-start text-blue-600'
+const className = 'underline underline-under hover:no-underline self-start'
 
 const Link = (props) => {
   const { href = '#', ...rest } = props
+  const NextLink = dynamic(() => import('next/link'))
 
   if (!isExternalLink(href)) {
     return (
@@ -16,7 +17,7 @@ const Link = (props) => {
     )
   }
 
-  return <a target="_blank" href={`${href}?ref=onur.dev`} rel="noopener noreferrer" className={className} {...rest} />
+  return <a href={`${href}?ref=onur.dev`} target="_blank" rel="noopener noreferrer" className={className} {...rest} />
 }
 
 export default Link

@@ -8,8 +8,6 @@ import smoothscroll from 'smoothscroll-polyfill'
 // --- Components
 import Header from 'components/Header'
 import PageLayout from 'layouts/PageLayout'
-// import Sidebar from 'components/Sidebar'
-const Sidebar = dynamic(() => import('components/Sidebar'))
 
 // --- Others
 import { ContextProvider } from 'providers/ContextProvider'
@@ -22,6 +20,8 @@ import 'styles/global.css'
 function App({ Component, pageProps }) {
   const { headerTitle, ...rest } = pageProps
   const nextRouter = useRouter()
+  const isSidebarAvailable = nextRouter.pathname !== '/writing/[slug]'
+  const Sidebar = dynamic(() => import('components/Sidebar'))
 
   useEffect(() => {
     smoothscroll.polyfill()
@@ -42,7 +42,7 @@ function App({ Component, pageProps }) {
   return (
     <>
       {/* Google Analytics with Partytown (Web Worker) */}
-      <Script strategy="worker" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`} />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`} strategy="worker" />
       <script
         type="text/partytown"
         dangerouslySetInnerHTML={{
@@ -59,7 +59,7 @@ function App({ Component, pageProps }) {
       <DefaultSeo {...SEO} />
       <ContextProvider>
         <Header headerTitle={headerTitle} router={nextRouter} />
-        <Sidebar router={nextRouter} />
+        {isSidebarAvailable && <Sidebar router={nextRouter} />}
       </ContextProvider>
       <PageLayout>
         <Component {...rest} />

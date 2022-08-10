@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 // --- Components
 import PageTitle from 'components/PageTitle'
 import PageSeo from 'components/PageSeo'
@@ -11,7 +13,9 @@ export default function Page({ page: { title, content, url, ...rest } }) {
     <>
       <PageSeo title={title} {...rest} />
       <PageTitle title={title} />
-      <RichText content={content} />
+      <Suspense fallback={null}>
+        <RichText content={content} />
+      </Suspense>
     </>
   )
 }

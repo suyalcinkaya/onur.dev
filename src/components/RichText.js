@@ -1,12 +1,10 @@
-import NextImage from 'next/image'
 import dynamic from 'next/dynamic'
+import NextImage from 'next/image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-const LazyLoad = dynamic(() => import('react-lazyload'))
 
 // --- Components
-const CodeBlock = dynamic(() => import('components/CodeBlock'))
-const Link = dynamic(() => import('components/Link'))
+import Link from 'components/Link'
 
 const dasherize = (str) => String(str).replace(/ +/g, '-').toLowerCase()
 
@@ -41,7 +39,8 @@ function options(links) {
           </h3>
         )
       },
-      [BLOCKS.PARAGRAPH]: (_, children) => <p className="mb-4 last:mb-0">{children}</p>,
+      // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
+      [BLOCKS.PARAGRAPH]: (_, children) => <div className="leading-slacker mb-4 last:mb-0">{children}</div>,
       [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-2 list-disc pl-6 mb-4">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
         <ol className="flex flex-col gap-y-2 list-decimal list-inside mb-4">{children}</ol>
@@ -71,6 +70,8 @@ function options(links) {
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
+        const LazyLoad = dynamic(() => import('react-lazyload'))
+        const CodeBlock = dynamic(() => import('components/CodeBlock'))
 
         switch (entry.__typename) {
           case 'ContentEmbed': {
@@ -131,7 +132,8 @@ function options(links) {
 }
 
 const RichText = ({ content }) => {
-  return documentToReactComponents(content?.json, options(content?.links))
+  if (!content) return null
+  return documentToReactComponents(content.json, options(content.links))
 }
 
 export default RichText

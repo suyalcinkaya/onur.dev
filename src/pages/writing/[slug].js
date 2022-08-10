@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, Suspense } from 'react'
 import tinytime from 'tinytime'
 
 // --- Components
@@ -34,7 +34,9 @@ const Post = memo(({ post }) => {
             {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
           </time>
         </div>
-        <RichText content={content} />
+        <Suspense fallback={null}>
+          <RichText content={content} />
+        </Suspense>
       </article>
     </>
   )
