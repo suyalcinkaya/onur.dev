@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
 
 export default function Document() {
   return (
@@ -31,10 +30,6 @@ export default function Document() {
                 };
               `
             }}
-          />
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-            strategy="worker"
           />
           <script
             type="text/partytown"

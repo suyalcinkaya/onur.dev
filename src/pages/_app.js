@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
 import smoothscroll from 'smoothscroll-polyfill'
 
@@ -40,6 +41,10 @@ function App({ Component, pageProps }) {
 
   return (
     <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+        strategy="worker"
+      />
       <DefaultSeo {...SEO} />
       <ContextProvider>
         <Header headerTitle={headerTitle} router={nextRouter} />
