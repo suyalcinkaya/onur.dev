@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 export default function Document() {
   return (
@@ -17,17 +18,34 @@ export default function Document() {
                 partytown = {
                   lib: "/_next/static/~partytown/",
                   forward: ["gtag", "dataLayer"],
-                  debug: ${process.env.NODE_ENV === 'development'},
+                  debug: ${process.env.NODE_ENV !== 'production'},
                   resolveUrl: function (url, location, type) {
                     if (type === 'script') {
                       const proxyUrl = new URL('https://cdn.builder.codes/api/v1/js-proxy');
                       proxyUrl.searchParams.append('url', url.href);
-                      proxyUrl.searchParams.append('apiKey', ${process.env.NEXT_PUBLIC_BUILDER_PUBLIC_API_KEY});
+                      proxyUrl.searchParams.append('apiKey', "${process.env.NEXT_PUBLIC_BUILDER_PUBLIC_API_KEY}");
                       return proxyUrl;
                     }
                     return url;
                   },
                 };
+              `
+            }}
+          />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+            strategy="worker"
+          />
+          <script
+            type="text/partytown"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
               `
             }}
           />

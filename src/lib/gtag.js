@@ -1,6 +1,6 @@
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const trackPageview = (url) => {
-  window.gtag('config', process.env.GA_TRACKING_ID, {
+  window.gtag('config', process.env.NEXT_PUBLIC_BUILDER_PUBLIC_API_KEY, {
     page_path: url
   })
 }

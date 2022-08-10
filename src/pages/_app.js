@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
@@ -41,21 +40,6 @@ function App({ Component, pageProps }) {
 
   return (
     <>
-      {/* Google Analytics with Partytown (Web Worker) */}
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TRACKING_ID}`} strategy="worker" />
-      <script
-        type="text/partytown"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `
-        }}
-      />
       <DefaultSeo {...SEO} />
       <ContextProvider>
         <Header headerTitle={headerTitle} router={nextRouter} />
