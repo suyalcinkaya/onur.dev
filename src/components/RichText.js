@@ -1,12 +1,10 @@
 import dynamic from 'next/dynamic'
+import NextImage from 'next/image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-const NextImage = dynamic(() => import('next/image'))
-const LazyLoad = dynamic(() => import('react-lazyload'))
 
 // --- Components
-const CodeBlock = dynamic(() => import('components/CodeBlock'))
-const Link = dynamic(() => import('components/Link'))
+import Link from 'components/Link'
 
 const dasherize = (str) => String(str).replace(/ +/g, '-').toLowerCase()
 
@@ -72,6 +70,8 @@ function options(links) {
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
+        const LazyLoad = dynamic(() => import('react-lazyload'))
+        const CodeBlock = dynamic(() => import('components/CodeBlock'))
 
         switch (entry.__typename) {
           case 'ContentEmbed': {
@@ -132,6 +132,7 @@ function options(links) {
 }
 
 const RichText = ({ content }) => {
+  if (!content) return null
   return documentToReactComponents(content.json, options(content.links))
 }
 

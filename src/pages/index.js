@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import tinytime from 'tinytime'
 
 // --- Components
@@ -12,7 +13,7 @@ import { mixtapes, projects, profiles } from 'lib/constants'
 
 export default function Home({ recentPosts }) {
   return (
-    <>
+    <Suspense fallback={null}>
       <PageTitle
         title={
           <>
@@ -67,7 +68,7 @@ export default function Home({ recentPosts }) {
           })}
         </SectionBlock>
       </div>
-    </>
+    </Suspense>
   )
 }
 

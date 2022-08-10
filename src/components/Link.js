@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-const NextLink = dynamic(() => import('next/link'))
 
 // --- Others
 import { isExternalLink } from 'lib/helper'
@@ -8,6 +7,7 @@ const className = 'underline underline-under hover:no-underline self-start'
 
 const Link = (props) => {
   const { href = '#', ...rest } = props
+  const NextLink = dynamic(() => import('next/link'))
 
   if (!isExternalLink(href)) {
     return (

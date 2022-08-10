@@ -1,5 +1,3 @@
-export const LAYOUT_WIDTH = 'max(24vw, 768px)'
-
 export const profiles = {
   github: {
     title: 'GitHub',

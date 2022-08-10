@@ -1,4 +1,7 @@
 module.exports = {
+  experimental: {
+    nextScriptWorkers: true
+  },
   reactStrictMode: true,
   trailingSlash: false,
   images: {

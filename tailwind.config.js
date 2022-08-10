@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ['./src/**/*.js'],
   theme: {
@@ -11,6 +13,9 @@ module.exports = {
     extend: {
       animation: {
         reveal: 'reveal 1s ease-in-out'
+      },
+      fontFamily: {
+        mono: ['Menlo', ...defaultTheme.fontFamily.mono]
       },
       keyframes: {
         reveal: {

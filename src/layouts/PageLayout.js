@@ -1,19 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { v4 as uuid } from 'uuid'
 
-// --- Others
-import { LAYOUT_WIDTH } from 'lib/constants'
-
 const PageLayout = ({ children, ...rest }) => {
   const uniqueId = uuid()
 
   return (
-    <main
-      className="flex-1 py-16 overflow-hidden"
-      style={{ paddingLeft: 'env(safe-area-inset-left)', paddingRight: 'env(safe-area-inset-right)' }}
-      {...rest}
-    >
-      <div className="px-4 md:px-16 mx-auto" style={{ maxWidth: LAYOUT_WIDTH }}>
+    <main className="flex-1 pb-16 pt-32 overflow-hidden px-safe" {...rest}>
+      <div className="px-4 md:px-16 mx-auto max-w-screen-md">
         <AnimatePresence initial={false} exitBeforeEnter>
           <motion.div
             key={uniqueId}

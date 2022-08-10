@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import tinytime from 'tinytime'
 
 // --- Components
@@ -14,31 +15,33 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
     <>
       <PageSeo title={title} {...rest} />
       <PageTitle title={title || 'Writing'} />
-      {content && <RichText content={content} />}
-      <div className="flex flex-col gap-y-6">
-        {allPosts.map((post) => {
-          const {
-            title,
-            // description,
-            date,
-            slug,
-            sys: { firstPublishedAt }
-          } = post
+      <Suspense fallback={null}>
+        <RichText content={content} />
+        <div className="flex flex-col gap-y-6">
+          {allPosts.map((post) => {
+            const {
+              title,
+              // description,
+              date,
+              slug,
+              sys: { firstPublishedAt }
+            } = post
 
-          return (
-            <Card
-              key={`post_${slug}`}
-              title={title}
-              description={
-                <time dateTime={date || firstPublishedAt}>
-                  {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
-                </time>
-              }
-              url={`/writing/${slug}`}
-            />
-          )
-        })}
-      </div>
+            return (
+              <Card
+                key={`post_${slug}`}
+                title={title}
+                description={
+                  <time dateTime={date || firstPublishedAt}>
+                    {tinytime('{MMMM} {DD}, {YYYY}').render(new Date(date || firstPublishedAt))}
+                  </time>
+                }
+                url={`/writing/${slug}`}
+              />
+            )
+          })}
+        </div>
+      </Suspense>
     </>
   )
 }
