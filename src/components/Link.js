@@ -17,7 +17,7 @@ const Link = (props) => {
     )
   }
 
-  return <a href={`${href}?ref=onur.dev`} target="_blank" rel="noopener noreferrer" className={className} {...rest} />
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className} {...rest} />
 }
 
 export default Link

@@ -40,7 +40,6 @@ export async function getLast3Posts(preview = false) {
       postCollection(order: date_DESC, preview: ${preview}, limit: 3) {
         items {
           title
-          description
           slug
           date
           sys {

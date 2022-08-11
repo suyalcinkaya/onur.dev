@@ -19,8 +19,8 @@ import 'styles/global.css'
 
 function App({ Component, pageProps }) {
   const { headerTitle, ...rest } = pageProps
-  const nextRouter = useRouter()
-  const isSidebarAvailable = nextRouter.pathname !== '/writing/[slug]'
+  const router = useRouter()
+  const isSidebarAvailable = router.pathname !== '/writing/[slug]'
   const Sidebar = dynamic(() => import('components/Sidebar'))
 
   useEffect(() => {
@@ -30,14 +30,14 @@ function App({ Component, pageProps }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       process.env.NODE_ENV === 'production' && trackPageview(url)
-      window.scrollTo({ top: 0, behavior: 'smooth' }) // because nextRouter.push(...) doesn't scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' }) // because router.push(...) doesn't scroll to top
     }
-    nextRouter.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {
-      nextRouter.events.off('routeChangeComplete', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [nextRouter.events])
+  }, [router.events])
 
   return (
     <>
@@ -47,8 +47,8 @@ function App({ Component, pageProps }) {
       />
       <DefaultSeo {...SEO} />
       <ContextProvider>
-        <Header headerTitle={headerTitle} router={nextRouter} />
-        {isSidebarAvailable && <Sidebar router={nextRouter} />}
+        <Header headerTitle={headerTitle} router={router} />
+        {isSidebarAvailable && <Sidebar router={router} />}
       </ContextProvider>
       <PageLayout>
         <Component {...rest} />

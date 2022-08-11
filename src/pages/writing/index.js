@@ -31,7 +31,7 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
               <Card
                 key={`post_${slug}`}
                 title={title}
-                description={
+                subtitle={
                   <time dateTime={date || firstPublishedAt}>
                     {dateTemplate.render(new Date(date || firstPublishedAt))}
                   </time>

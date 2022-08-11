@@ -36,7 +36,7 @@ const Journey = ({ allLogbook, pageSeo: { title, ...rest } }) => {
                       </span>
                     </div>
                     <div className="flex-grow pl-4">
-                      <Card title={log.title} description={<Markdown>{log.description}</Markdown>} />
+                      <Card title={log.title} subtitle={<Markdown>{log.description}</Markdown>} />
                     </div>
                   </div>
                 ))}

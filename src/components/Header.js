@@ -9,18 +9,21 @@ import { GhostButton } from 'components/Button'
 import { useContextProvider } from 'providers/ContextProvider'
 import { navigations } from 'lib/constants'
 
-const scrollThreshold = 80 // 8rem (pt-32 from PageLayout) - 3rem (header height) = 5rem (80px)
+const scrollThreshold = 76 // 8rem (pt-32 from PageLayout) - 3rem (header height) - 4px (threshold) = 5rem (80px)
 const reset = {
   translateY: -100,
   opacity: 0
 }
 
 const Header = memo(({ headerTitle = '', router }) => {
-  const { setIsSidebarOpen } = useContextProvider()
   const [translateY, setTranslateY] = useState(reset.translateY)
   const [opacity, setOpacity] = useState(reset.opacity)
 
-  const { pathname, query } = router
+  const { setIsSidebarOpen } = useContextProvider()
+  const {
+    pathname,
+    query: { slug }
+  } = router
   const isWritingSlug = pathname === '/writing/[slug]'
   const LikeButton = dynamic(() => import('components/LikeButton'), {
     ssr: false
@@ -100,7 +103,7 @@ const Header = memo(({ headerTitle = '', router }) => {
                 </span>
               )}
             </div>
-            <LikeButton slug={query?.slug} />
+            <LikeButton slug={slug} />
             {/* <OutlineButton className="px-3 py-1.5" onClick={share}>
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -141,7 +144,7 @@ const Header = memo(({ headerTitle = '', router }) => {
             <div className="hidden md:flex items-center gap-x-1">
               {navigations.header.map((headerNav) => {
                 const { title, url } = headerNav
-                const isActive = router.asPath === url
+                const isActive = (slug ? `/${slug}` : pathname) === url
 
                 return (
                   <Fragment key={`headerNav_${url}`}>

@@ -9,18 +9,11 @@ import { useContextProvider } from 'providers/ContextProvider'
 import { navigations, profiles } from 'lib/constants'
 
 const Sidebar = ({ router }) => {
+  const {
+    pathname,
+    query: { slug }
+  } = router
   const { isSidebarOpen, setIsSidebarOpen } = useContextProvider()
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setIsSidebarOpen(false)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
 
   useEffect(() => {
     if (isSidebarOpen && window) {
@@ -64,11 +57,15 @@ const Sidebar = ({ router }) => {
             <div className="flex flex-col gap-y-1.5">
               {navigations.header.map((nav) => {
                 const { title, url, icon } = nav
+                const isActive = (slug ? `/${slug}` : pathname) === url
 
                 return (
                   <Fragment key={`sidebarNav_${url}`}>
                     <NextLink href={url} passHref>
-                      <GhostButton className={`${router.asPath === url ? 'bg-black text-white' : 'hover:bg-gray-100'}`}>
+                      <GhostButton
+                        className={`${isActive ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
+                        onClick={() => setIsSidebarOpen(false)}
+                      >
                         <span className="flex items-center gap-x-2">
                           {icon ?? ''}
                           {title}
@@ -86,7 +83,7 @@ const Sidebar = ({ router }) => {
 
                 return (
                   <Fragment key={`sidebarProfile_${url}`}>
-                    <GhostButton className="gap-x-3 hover:bg-gray-100" href={url}>
+                    <GhostButton className="gap-x-3 hover:bg-gray-100" href={url} isExternal>
                       <span className="flex items-center gap-x-2">
                         {icon ?? ''}
                         {title}

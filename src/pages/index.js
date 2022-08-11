@@ -34,7 +34,6 @@ export default function Home({ recentPosts }) {
           {recentPosts.map((post) => {
             const {
               title,
-              // description,
               date,
               slug,
               sys: { firstPublishedAt }
@@ -44,7 +43,7 @@ export default function Home({ recentPosts }) {
               <Card
                 key={`post_${slug}`}
                 title={title}
-                description={
+                subtitle={
                   <time dateTime={date || firstPublishedAt}>
                     {dateTemplate.render(new Date(date || firstPublishedAt))}
                   </time>
@@ -54,16 +53,16 @@ export default function Home({ recentPosts }) {
             )
           })}
         </SectionBlock>
-        <SectionBlock title="Popular Mixtapes" url={`${profiles.soundcloud.url}?ref=onur.dev`}>
+        <SectionBlock title="Popular Mixtapes" url={profiles.soundcloud.url}>
           {mixtapes.map((mixtape) => {
             const { title, description, url } = mixtape
-            return <Card key={`mixtape_${url}`} title={title} description={description} url={url} />
+            return <Card key={`mixtape_${url}`} title={title} subtitle={description} url={url} />
           })}
         </SectionBlock>
-        <SectionBlock title="Some Projects" url={`${profiles.github.url}?ref=onur.dev`}>
+        <SectionBlock title="Some Projects" url={profiles.github.url}>
           {projects.map((project) => {
             const { title, description, url } = project
-            return <Card key={`project_${url}`} title={title} description={description} url={url} />
+            return <Card key={`project_${url}`} title={title} subtitle={description} url={url} />
           })}
         </SectionBlock>
       </div>
