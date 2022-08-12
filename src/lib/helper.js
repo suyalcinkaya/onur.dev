@@ -10,9 +10,9 @@ export const fetcher = (url) => fetch(url).then((res) => res.json())
 
 export const getDateString = (date) => {
   const dateObj = new Date(date)
-  return dateObj.toLocaleDateString('en-US', {
+  return Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  })
+  }).format(dateObj)
 }
