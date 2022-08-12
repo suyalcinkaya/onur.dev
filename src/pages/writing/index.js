@@ -21,7 +21,6 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
           {allPosts.map((post) => {
             const {
               title,
-              // description,
               date,
               slug,
               sys: { firstPublishedAt }

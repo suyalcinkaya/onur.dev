@@ -1,4 +1,4 @@
-import { Suspense /* useEffect */ } from 'react'
+import { Suspense } from 'react'
 
 // --- Components
 import Card from 'components/Card'
@@ -8,7 +8,8 @@ import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
-import { /* dateTemplate */ mixtapes, projects, profiles } from 'lib/constants'
+import { mixtapes, projects, profiles } from 'lib/constants'
+import { getDateString } from 'lib/helper'
 
 export default function Home({ recentPosts }) {
   return (
@@ -34,20 +35,19 @@ export default function Home({ recentPosts }) {
           {recentPosts.map((post) => {
             const {
               title,
-              // date,
-              slug
-              // sys: { firstPublishedAt }
+              date,
+              slug,
+              sys: { firstPublishedAt }
             } = post
+
+            const postDate = date || firstPublishedAt
+            const dateString = getDateString(postDate)
 
             return (
               <Card
                 key={`post_${slug}`}
                 title={title}
-                // subtitle={
-                //   <time dateTime={date || firstPublishedAt}>
-                //     {dateTemplate.render(new Date(date || firstPublishedAt))}
-                //   </time>
-                // }
+                subtitle={<time dateTime={postDate}>{dateString}</time>}
                 url={`/writing/${slug}`}
               />
             )
