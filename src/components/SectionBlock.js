@@ -6,17 +6,17 @@ import { OutlineButton } from 'components/Button'
 // --- Others
 import { isExternalLink } from 'lib/helper'
 
-const SectionBlock = ({ title, url, children, ...rest }) => {
+const SectionBlock = ({ title, href, children, ...rest }) => {
   let isExternal = false
-  if (url) isExternal = isExternalLink(url)
+  if (href) isExternal = isExternalLink(href)
 
   return (
-    <div className="bg-gray-50 p-6 rounded-lg" {...rest}>
+    <div className="bg-gray-50 p-6 rounded-xl" {...rest}>
       <div className="flex items-center justify-between">
         <h2 className="text-lg md:text-xl">{title}</h2>
-        {url &&
+        {href &&
           (isExternal ? (
-            <OutlineButton href={url} isExternal>
+            <OutlineButton href={href} isExternal>
               <span>View all</span>
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -28,7 +28,7 @@ const SectionBlock = ({ title, url, children, ...rest }) => {
               </svg>
             </OutlineButton>
           ) : (
-            <NextLink href={url} passHref>
+            <NextLink href={href} passHref>
               <OutlineButton>
                 <span>View all</span>
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
