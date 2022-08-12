@@ -8,7 +8,7 @@ import RichText from 'components/RichText'
 
 // --- Others
 import { getAllPosts, getPage } from 'lib/contentful'
-import { dateTemplate } from 'lib/constants'
+import { getDateString } from 'lib/helper'
 
 export default function Writing({ allPosts, page: { title, content, ...rest } }) {
   return (
@@ -26,15 +26,14 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
               sys: { firstPublishedAt }
             } = post
 
+            const postDate = date || firstPublishedAt
+            const dateString = getDateString(postDate)
+
             return (
               <Card
                 key={`post_${slug}`}
                 title={title}
-                subtitle={
-                  <time dateTime={date || firstPublishedAt}>
-                    {dateTemplate.render(new Date(date || firstPublishedAt))}
-                  </time>
-                }
+                subtitle={<time dateTime={postDate}>{dateString}</time>}
                 url={`/writing/${slug}`}
               />
             )
