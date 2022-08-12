@@ -5,12 +5,10 @@ import WritingSeo from 'components/WritingSeo'
 import RichText from 'components/RichText'
 
 // --- Others
-import { useHasMounted } from 'hooks/useHasMounted'
 import { getPost, getAllPosts } from 'lib/contentful'
-import { getDateString } from 'lib/helper'
+import { getDateTimeFormat } from 'lib/helper'
 
 const Post = memo(({ post }) => {
-  const hasMounted = useHasMounted()
   const {
     title,
     description,
@@ -21,7 +19,7 @@ const Post = memo(({ post }) => {
   } = post
 
   const postDate = date || firstPublishedAt
-  const dateString = getDateString(postDate)
+  const dateString = getDateTimeFormat(postDate)
 
   return (
     <>
@@ -35,13 +33,9 @@ const Post = memo(({ post }) => {
       <article>
         <div className="flex flex-col gap-y-3 mb-6">
           <h1>{title}</h1>
-          {hasMounted ? (
-            <time dateTime={postDate} className="block font-light text-gray-500">
-              {dateString}
-            </time>
-          ) : (
-            <div className="text-gray-500">—</div>
-          )}
+          <time dateTime={postDate} className="block font-light text-gray-500">
+            {dateString}
+          </time>
         </div>
         <Suspense fallback={null}>
           <RichText content={content} />

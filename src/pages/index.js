@@ -9,7 +9,7 @@ import PageTitle from 'components/PageTitle'
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
 import { mixtapes, projects, profiles } from 'lib/constants'
-import { getDateString } from 'lib/helper'
+import { getDateTimeFormat } from 'lib/helper'
 
 export default function Home({ recentPosts }) {
   return (
@@ -41,7 +41,7 @@ export default function Home({ recentPosts }) {
             } = post
 
             const postDate = date || firstPublishedAt
-            const dateString = getDateString(postDate)
+            const dateString = getDateTimeFormat(postDate)
 
             return (
               <Card

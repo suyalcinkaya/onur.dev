@@ -50,7 +50,7 @@ function App({ Component, pageProps }) {
         <Header headerTitle={headerTitle} router={router} />
         {isSidebarAvailable && <Sidebar router={router} />}
       </ContextProvider>
-      <PageLayout>
+      <PageLayout router={router}>
         <Component {...rest} />
       </PageLayout>
     </>

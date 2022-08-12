@@ -8,7 +8,7 @@ export const isExternalLink = (href) => {
 
 export const fetcher = (url) => fetch(url).then((res) => res.json())
 
-export const getDateString = (date) => {
+export const getDateTimeFormat = (date) => {
   const dateObj = new Date(date)
   return Intl.DateTimeFormat('en-US', {
     year: 'numeric',

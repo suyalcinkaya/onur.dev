@@ -7,13 +7,10 @@ import PageSeo from 'components/PageSeo'
 import RichText from 'components/RichText'
 
 // --- Others
-import { useHasMounted } from 'hooks/useHasMounted'
 import { getAllPosts, getPage } from 'lib/contentful'
-import { getDateString } from 'lib/helper'
+import { getDateTimeFormat } from 'lib/helper'
 
 export default function Writing({ allPosts, page: { title, content, ...rest } }) {
-  const hasMounted = useHasMounted()
-
   return (
     <>
       <PageSeo title={title} {...rest} />
@@ -30,13 +27,13 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
             } = post
 
             const postDate = date || firstPublishedAt
-            const dateString = getDateString(postDate)
+            const dateString = getDateTimeFormat(postDate)
 
             return (
               <Card
                 key={`post_${slug}`}
                 title={title}
-                subtitle={hasMounted ? <time dateTime={postDate}>{dateString}</time> : '—'}
+                subtitle={<time dateTime={postDate}>{dateString}</time>}
                 url={`/writing/${slug}`}
               />
             )
