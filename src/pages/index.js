@@ -40,17 +40,9 @@ export default function Home({ recentPosts }) {
               sys: { firstPublishedAt }
             } = post
 
-            const postDate = date || firstPublishedAt
-            const dateString = getDateString(postDate)
+            const dateString = getDateString(date || firstPublishedAt)
 
-            return (
-              <Card
-                key={`post_${slug}`}
-                title={title}
-                subtitle={<time dateTime={postDate}>{dateString}</time>}
-                url={`/writing/${slug}`}
-              />
-            )
+            return <Card key={`post_${slug}`} title={title} subtitle={dateString} url={`/writing/${slug}`} />
           })}
         </SectionBlock>
         <SectionBlock title="Popular Mixtapes" href={profiles.soundcloud.url}>
