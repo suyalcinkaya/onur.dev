@@ -7,11 +7,14 @@ import Link from 'components/Link'
 import PageTitle from 'components/PageTitle'
 
 // --- Others
+import { useHasMounted } from 'hooks/useHasMounted'
 import { getLast3Posts } from 'lib/contentful'
 import { mixtapes, projects, profiles } from 'lib/constants'
-// import { getDateString } from 'lib/helper'
+import { getDateString } from 'lib/helper'
 
 export default function Home({ recentPosts }) {
+  const hasMounted = useHasMounted()
+
   return (
     <Suspense fallback={null}>
       <PageTitle
@@ -35,19 +38,19 @@ export default function Home({ recentPosts }) {
           {recentPosts.map((post) => {
             const {
               title,
-              // date,
-              slug
-              // sys: { firstPublishedAt }
+              date,
+              slug,
+              sys: { firstPublishedAt }
             } = post
 
-            // const postDate = date || firstPublishedAt
-            // const dateString = getDateString(postDate)
+            const postDate = date || firstPublishedAt
+            const dateString = getDateString(postDate)
 
             return (
               <Card
                 key={`post_${slug}`}
                 title={title}
-                // subtitle={<time dateTime={postDate}>{dateString}</time>}
+                subtitle={hasMounted ? <time dateTime={postDate}>{dateString}</time> : '—'}
                 url={`/writing/${slug}`}
               />
             )
