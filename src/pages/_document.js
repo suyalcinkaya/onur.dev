@@ -16,7 +16,7 @@ export default function Document() {
               __html: `
                 partytown = {
                   lib: "/_next/static/~partytown/",
-                  forward: ["gtag", "dataLayer"],
+                  forward: ["gtag", "dataLayer.push"],
                   debug: ${process.env.NODE_ENV !== 'production'},
                   resolveUrl: function (url, location, type) {
                     if (type === 'script') {
