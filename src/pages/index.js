@@ -9,7 +9,7 @@ import PageTitle from 'components/PageTitle'
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
 import { mixtapes, projects, profiles } from 'lib/constants'
-import { getDateString } from 'lib/helper'
+// import { getDateString } from 'lib/helper'
 
 export default function Home({ recentPosts }) {
   return (
@@ -35,14 +35,22 @@ export default function Home({ recentPosts }) {
           {recentPosts.map((post) => {
             const {
               title,
-              date,
-              slug,
-              sys: { firstPublishedAt }
+              // date,
+              slug
+              // sys: { firstPublishedAt }
             } = post
 
-            const dateString = getDateString(date || firstPublishedAt)
+            // const postDate = date || firstPublishedAt
+            // const dateString = getDateString(postDate)
 
-            return <Card key={`post_${slug}`} title={title} subtitle={dateString} url={`/writing/${slug}`} />
+            return (
+              <Card
+                key={`post_${slug}`}
+                title={title}
+                // subtitle={<time dateTime={postDate}>{dateString}</time>}
+                url={`/writing/${slug}`}
+              />
+            )
           })}
         </SectionBlock>
         <SectionBlock title="Popular Mixtapes" href={profiles.soundcloud.url}>
