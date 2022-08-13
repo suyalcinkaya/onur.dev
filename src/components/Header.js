@@ -24,10 +24,8 @@ const Header = memo(({ headerTitle = '', router }) => {
     pathname,
     query: { slug }
   } = router
-  const isWritingSlug = pathname === '/writing/[slug]'
-  const LikeButton = dynamic(() => import('components/LikeButton'), {
-    ssr: false
-  })
+  const isWritingSlug = slug && pathname === '/writing/[slug]'
+  const LikeButton = dynamic(() => import('components/LikeButton'))
 
   const handleScroll = useCallback(() => {
     // setState optimization threshold

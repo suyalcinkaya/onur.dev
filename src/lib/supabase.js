@@ -48,12 +48,12 @@ export async function handleViews(slug) {
   } */
 }
 
-export async function incrementLikes(slug) {
+export async function incrementLikes({ slug, likeAmount = 0 }) {
   const { data: latestData } = await supabase.from(tableName).select().eq('slug', slug).single()
 
   const { data: updatedData } = await supabase
     .from(tableName)
-    .update({ like_count: latestData.like_count + 1, like_count_updated_at: new Date() })
+    .update({ like_count: latestData.like_count + likeAmount, like_count_updated_at: new Date() })
     .match({ id: latestData.id, slug: latestData.slug })
 
   return {

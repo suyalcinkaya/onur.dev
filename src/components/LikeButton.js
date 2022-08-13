@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
+import debounce from 'lodash.debounce'
 
 // --- Components
 import { OutlineButton } from 'components/Button'
@@ -9,8 +10,8 @@ import { incrementLikes } from 'lib/supabase'
 import { fetcher } from 'lib/helper'
 
 const LikeButton = ({ slug }) => {
-  if (!slug) return null
-
+  const [liked, setLiked] = useState(false)
+  const [likeAmount, setLikeAmount] = useState(0)
   const [supabaseDataLoading, setSupabaseDataLoading] = useState(true)
   const [supabaseData, setSupabaseData] = useState({ likes: null, views: null })
   const { data } = useSWR(`/api/handleViews?slug=${slug}`, fetcher)
@@ -25,24 +26,29 @@ const LikeButton = ({ slug }) => {
     }
   }, [data])
 
-  /* useEffect(async () => {
-    const data = await handleViews(slug)
+  useEffect(() => {
+    if (likeAmount > 0 && liked) debouncedIncrementLikeCount(likeAmount)
+  }, [likeAmount, liked])
 
-    setSupabaseData({
-      likes: data.likes,
-      views: data.views
-    })
-    setSupabaseDataLoading(false)
-  }, []) */
-
-  async function incrementLikeCount() {
+  const incrementLikeCount = async (likeAmountProp) => {
     setSupabaseDataLoading(true)
-    const data = await incrementLikes(slug)
-    setSupabaseData((prevState) => ({
-      ...prevState,
-      likes: data.likes
+    const latestData = await incrementLikes({ slug, likeAmount: likeAmountProp })
+    setSupabaseData((prevSupabaseDataState) => ({
+      ...prevSupabaseDataState,
+      likes: latestData.likes
     }))
+    setLikeAmount(0) // reset like amount
     setSupabaseDataLoading(false)
+  }
+
+  const debouncedIncrementLikeCount = useCallback(
+    debounce((likeAmountProp) => incrementLikeCount(likeAmountProp), 1000),
+    []
+  )
+
+  const handleLike = () => {
+    setLikeAmount((prevLikeAmountState) => prevLikeAmountState + 1)
+    if (!liked) setLiked(true)
   }
 
   if (!supabaseData?.likes && supabaseData?.likes !== 0) {
@@ -53,18 +59,23 @@ const LikeButton = ({ slug }) => {
     <OutlineButton
       as="button"
       title="Like"
-      className="flex items-center gap-x-2 px-3 py-1.5"
+      className="!justify-center !px-3 !py-1.5"
       disabled={supabaseDataLoading}
-      onClick={() => !supabaseDataLoading && incrementLikeCount()}
+      onClick={() => !supabaseDataLoading && handleLike()}
     >
-      <svg width="16" height="16" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M22 8.86222C22 10.4087 21.4062 11.8941 20.3458 12.9929C17.9049 15.523 15.5374 18.1613 13.0053 20.5997C12.4249 21.1505 11.5042 21.1304 10.9488 20.5547L3.65376 12.9929C1.44875 10.7072 1.44875 7.01723 3.65376 4.73157C5.88044 2.42345 9.50794 2.42345 11.7346 4.73157L11.9998 5.00642L12.2648 4.73173C13.3324 3.6245 14.7864 3 16.3053 3C17.8242 3 19.2781 3.62444 20.3458 4.73157C21.4063 5.83045 22 7.31577 22 8.86222Z"
-          stroke="currentColor"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span>{supabaseData?.likes}</span>
+      {liked ? (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" className="fill-rose-600">
+          <path fill="none" d="M0 0H24V24H0z" />
+          <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228z" />
+        </svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+          <path fill="none" d="M0 0H24V24H0z" />
+          <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
+        </svg>
+      )}
+
+      <span>{supabaseData.likes + likeAmount}</span>
     </OutlineButton>
   )
 }
