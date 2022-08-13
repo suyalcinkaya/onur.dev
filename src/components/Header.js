@@ -15,7 +15,7 @@ const reset = {
   opacity: 0
 }
 
-const Header = memo(({ headerTitle = '', router }) => {
+const Header = memo(({ headerTitle = null, router }) => {
   const [translateY, setTranslateY] = useState(reset.translateY)
   const [opacity, setOpacity] = useState(reset.opacity)
 
