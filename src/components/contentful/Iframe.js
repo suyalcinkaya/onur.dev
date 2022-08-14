@@ -1,8 +1,9 @@
-import LazyLoad from 'react-lazyload'
+// --- Components
+import ShowInView from 'components/ShowInView'
 
 export default function Iframe({ embedUrl, title, className, ...rest }) {
   return (
-    <LazyLoad once>
+    <ShowInView>
       <figure>
         <iframe
           src={embedUrl}
@@ -14,6 +15,6 @@ export default function Iframe({ embedUrl, title, className, ...rest }) {
         />
         <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
       </figure>
-    </LazyLoad>
+    </ShowInView>
   )
 }

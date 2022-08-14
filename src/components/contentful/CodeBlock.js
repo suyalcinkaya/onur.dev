@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import LazyLoad from 'react-lazyload'
 import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 // --- Components
+import ShowInView from 'components/ShowInView'
 import { OutlineButton } from 'components/Button'
 
 const ControlPlaceholder = () => <span className="w-4 h-4 bg-gray-200 rounded-full" />
@@ -20,7 +20,7 @@ export default function CodeBlock({ title, language, code }) {
   }
 
   return (
-    <LazyLoad once offset={50}>
+    <ShowInView rootMargin="50px">
       <div className="code-header">
         {title ? (
           <div className="flex items-center gap-x-4">
@@ -69,6 +69,6 @@ export default function CodeBlock({ title, language, code }) {
       >
         {code}
       </SyntaxHighlighter>
-    </LazyLoad>
+    </ShowInView>
   )
 }
