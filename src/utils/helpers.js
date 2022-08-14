@@ -16,3 +16,5 @@ export const getDateTimeFormat = (date) => {
     day: 'numeric'
   }).format(dateObj)
 }
+
+export const dasherize = (str) => String(str).replace(/ +/g, '-').toLowerCase()

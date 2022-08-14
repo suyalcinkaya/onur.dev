@@ -39,7 +39,7 @@ body {
 }
 
 #__next {
-  @apply flex flex-col min-h-screen;
+  @apply min-h-screen;
 }
 
 h1,
@@ -81,7 +81,7 @@ button:focus {
 
 button:disabled,
 button[disabled] {
-  @apply cursor-not-allowed;
+  @apply bg-gray-100 cursor-not-allowed;
 }
 
 p {
@@ -142,7 +142,7 @@ pre {
 }
 
 .code-header {
-  @apply flex items-center gap-x-4 py-2.5 px-4 rounded-t-lg bg-gray-50 border border-gray-200;
+  @apply flex items-center justify-between py-1.5 pl-4 pr-2.5 rounded-t-lg bg-gray-50 border border-gray-200;
 }
 
 .code-header + pre {

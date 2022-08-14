@@ -7,7 +7,7 @@ import { OutlineButton } from 'components/Button'
 
 // --- Others
 import { incrementLikes } from 'lib/supabase'
-import { fetcher } from 'lib/helper'
+import { fetcher } from 'utils/helpers'
 
 const LikeButton = ({ slug }) => {
   const [liked, setLiked] = useState(false)

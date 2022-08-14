@@ -6,7 +6,8 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 // --- Components
 import Link from 'components/Link'
 
-const dasherize = (str) => String(str).replace(/ +/g, '-').toLowerCase()
+// --- Others
+import { dasherize } from 'utils/helpers'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
@@ -70,58 +71,33 @@ function options(links) {
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
-        const LazyLoad = dynamic(() => import('react-lazyload'))
-        const CodeBlock = dynamic(() => import('components/CodeBlock'))
+        const Iframe = dynamic(() => import('components/contentful/Iframe'))
+        const CodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
 
         switch (entry.__typename) {
           case 'ContentEmbed': {
-            const { title, embedUrl, type } = entry
+            const { embedUrl, title, type } = entry
 
             switch (type) {
               case 'Video': {
                 return (
-                  <LazyLoad once>
-                    <figure>
-                      <iframe
-                        src={embedUrl}
-                        title={title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full aspect-video rounded-lg shadow-lg"
-                      />
-                      <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
-                    </figure>
-                  </LazyLoad>
+                  <Iframe
+                    embedUrl={embedUrl}
+                    title={title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    className="aspect-video"
+                  />
                 )
               }
               case 'SoundCloud': {
-                return (
-                  <LazyLoad once>
-                    <figure>
-                      <iframe
-                        src={embedUrl}
-                        title={title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full rounded-lg shadow-lg"
-                      />
-                      <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
-                    </figure>
-                  </LazyLoad>
-                )
+                return <Iframe embedUrl={embedUrl} title={title} scrolling="no" className="h-[166px]" />
               }
               default:
                 return null
             }
           }
           case 'CodeBlock': {
-            return (
-              <LazyLoad once offset={50}>
-                <CodeBlock {...entry} />
-              </LazyLoad>
-            )
+            return <CodeBlock {...entry} />
           }
           default:
             return null

@@ -4,11 +4,11 @@ import { Suspense } from 'react'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 import PageSeo from 'components/PageSeo'
-import RichText from 'components/RichText'
+import RichText from 'components/contentful/RichText'
 
 // --- Others
 import { getAllPosts, getPage } from 'lib/contentful'
-import { getDateTimeFormat } from 'lib/helper'
+import { getDateTimeFormat } from 'utils/helpers'
 
 export default function Writing({ allPosts, page: { title, content, ...rest } }) {
   return (

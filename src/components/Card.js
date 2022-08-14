@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import NextLink from 'next/link'
 
 // --- Others
-import { isExternalLink } from 'lib/helper'
+import { isExternalLink } from 'utils/helpers'
 
 const Wrapper = ({ url, isExternal, children, ...rest }) => {
   if (!url) return <div {...rest}>{children}</div>

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
 // --- Others
-import { isExternalLink } from 'lib/helper'
+import { isExternalLink } from 'utils/helpers'
 
 const className = 'underline underline-under hover:no-underline self-start'
 

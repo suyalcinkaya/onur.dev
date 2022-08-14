@@ -8,8 +8,8 @@ import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
-import { mixtapes, projects, profiles } from 'lib/constants'
-import { getDateTimeFormat } from 'lib/helper'
+import { mixtapes, projects, profiles } from 'utils/data'
+import { getDateTimeFormat } from 'utils/helpers'
 
 export default function Home({ recentPosts }) {
   return (

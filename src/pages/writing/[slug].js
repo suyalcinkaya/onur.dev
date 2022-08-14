@@ -2,11 +2,11 @@ import { memo, Suspense } from 'react'
 
 // --- Components
 import WritingSeo from 'components/WritingSeo'
-import RichText from 'components/RichText'
+import RichText from 'components/contentful/RichText'
 
 // --- Others
 import { getPost, getAllPosts } from 'lib/contentful'
-import { getDateTimeFormat } from 'lib/helper'
+import { getDateTimeFormat } from 'utils/helpers'
 
 const Post = memo(({ post }) => {
   const {

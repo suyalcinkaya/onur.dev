@@ -6,7 +6,7 @@ import { GhostButton } from 'components/Button'
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
-import { navigations, profiles } from 'lib/constants'
+import { navigations, profiles } from 'utils/data'
 
 const Sidebar = ({ router }) => {
   const {

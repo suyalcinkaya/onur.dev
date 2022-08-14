@@ -1,0 +1,74 @@
+import { useState } from 'react'
+import LazyLoad from 'react-lazyload'
+import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+const { spacing } = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
+
+// --- Components
+import { OutlineButton } from 'components/Button'
+
+const ControlPlaceholder = () => <span className="w-4 h-4 bg-gray-200 rounded-full" />
+const resetDefaultStyle = { backgroundColor: '' }
+
+export default function CodeBlock({ title, language, code }) {
+  const [copied, setCopied] = useState(false)
+
+  const onCopy = () => {
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  return (
+    <LazyLoad once offset={50}>
+      <div className="code-header">
+        {title ? (
+          <div className="flex items-center gap-x-4">
+            <span className="inline-flex items-center gap-x-1.5">
+              <ControlPlaceholder />
+              <ControlPlaceholder />
+              <ControlPlaceholder />
+            </span>
+            <p className="m-0 text-sm font-medium">{title}</p>
+          </div>
+        ) : (
+          <span />
+        )}
+        <CopyToClipboard text={code} onCopy={!copied && onCopy}>
+          <OutlineButton as="button" className="!py-1.5 !px-2.5" disabled={copied}>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              />
+            </svg>
+            {copied ? 'Copied' : 'Copy'}
+          </OutlineButton>
+        </CopyToClipboard>
+      </div>
+      <SyntaxHighlighter
+        language={language}
+        showLineNumbers
+        wrapLongLines={false} // white-space: pre
+        customStyle={resetDefaultStyle}
+        lineNumberStyle={{
+          minWidth: spacing[4],
+          paddingRight: 0,
+          marginRight: spacing[6],
+          color: colors.gray[400]
+        }}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </LazyLoad>
+  )
+}

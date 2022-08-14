@@ -27,9 +27,6 @@ module.exports = {
       lineHeight: {
         slack: '1.7',
         slacker: '1.75'
-      },
-      listStyleType: {
-        circle: 'circle'
       }
     }
   },

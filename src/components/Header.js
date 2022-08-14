@@ -7,7 +7,7 @@ import { GhostButton } from 'components/Button'
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
-import { navigations } from 'lib/constants'
+import { navigations } from 'utils/data'
 
 const scrollThreshold = 76 // 8rem (pt-32 from PageLayout) - 3rem (header height) - 4px (threshold) = 5rem (80px)
 const reset = {
@@ -147,9 +147,7 @@ const Header = memo(({ headerTitle = null, router }) => {
                 return (
                   <Fragment key={`headerNav_${url}`}>
                     <NextLink href={url} passHref>
-                      <GhostButton className={`${isActive ? 'bg-black text-white' : 'hover:bg-gray-100'}`}>
-                        {title}
-                      </GhostButton>
+                      <GhostButton className={`${isActive ? 'bg-gray-100' : 'hover:bg-gray-100'}`}>{title}</GhostButton>
                     </NextLink>
                   </Fragment>
                 )
