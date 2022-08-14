@@ -141,14 +141,6 @@ pre {
   @apply rounded-b-lg bg-white border border-gray-200 text-inherit;
 }
 
-.code-header {
-  @apply flex items-center justify-between py-1.5 pl-4 pr-2.5 rounded-t-lg bg-gray-50 border border-gray-200;
-}
-
-.code-header + pre {
-  @apply rounded-t-none border-t-0 mt-0;
-}
-
 .token.comment,
 .token.prolog,
 .token.doctype,

@@ -7,7 +7,7 @@ const ShowInView = ({ children, rootMargin = '0px', triggerOnce = true, ...rest 
   })
 
   return (
-    <div ref={ref} {...rest}>
+    <div ref={ref} data-role="intersection-observer" {...rest}>
       {inView && children}
     </div>
   )

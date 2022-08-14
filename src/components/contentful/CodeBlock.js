@@ -21,7 +21,7 @@ export default function CodeBlock({ title, language, code }) {
 
   return (
     <ShowInView rootMargin="50px">
-      <div className="code-header">
+      <div className="flex items-center justify-between py-1.5 pl-4 pr-2 rounded-t-lg bg-gray-50 border border-gray-200">
         {title ? (
           <div className="flex items-center gap-x-4">
             <span className="inline-flex items-center gap-x-1.5">
@@ -35,10 +35,10 @@ export default function CodeBlock({ title, language, code }) {
           <span />
         )}
         <CopyToClipboard text={code} onCopy={!copied && onCopy}>
-          <OutlineButton as="button" className="!py-1.5 !px-2.5" disabled={copied}>
+          <OutlineButton as="button" className="!py-1 !px-2 !text-xs !gap-x-1" disabled={copied}>
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -55,20 +55,27 @@ export default function CodeBlock({ title, language, code }) {
           </OutlineButton>
         </CopyToClipboard>
       </div>
-      <SyntaxHighlighter
-        language={language}
-        showLineNumbers
-        wrapLongLines={false} // white-space: pre
-        customStyle={resetDefaultStyle}
-        lineNumberStyle={{
-          minWidth: spacing[4],
-          paddingRight: 0,
-          marginRight: spacing[6],
-          color: colors.gray[400]
-        }}
-      >
-        {code}
-      </SyntaxHighlighter>
+      <div className="relative">
+        <SyntaxHighlighter
+          language={language}
+          showLineNumbers
+          wrapLongLines={false} // white-space: pre
+          customStyle={resetDefaultStyle}
+          lineNumberStyle={{
+            minWidth: spacing[4],
+            paddingRight: 0,
+            marginRight: spacing[6],
+            color: colors.gray[400]
+          }}
+          className="rounded-t-none border-t-0 mt-0 pr-16"
+        >
+          {code}
+        </SyntaxHighlighter>
+        <div
+          className="absolute top-px bottom-px right-px rounded-br-lg w-24"
+          style={{ background: 'linear-gradient(90deg, hsla(0,0%,100%,0), #fff)' }}
+        />
+      </div>
     </ShowInView>
   )
 }

@@ -52,7 +52,11 @@ const LikeButton = ({ slug }) => {
   }
 
   if (!supabaseData?.likes && supabaseData?.likes !== 0) {
-    return <div className="w-20 h-7 rounded-lg animate-pulse bg-slate-200" />
+    return (
+      <div role="status" className="w-20 h-7 rounded-lg animate-pulse bg-slate-200">
+        <span className="sr-only">Loading</span>
+      </div>
+    )
   }
 
   return (
