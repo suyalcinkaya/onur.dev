@@ -67,7 +67,6 @@ export default function CodeBlock({ title, language, code }) {
             marginRight: spacing[6],
             color: colors.gray[400]
           }}
-          className="rounded-t-none border-t-0 mt-0 pr-16"
         >
           {code}
         </SyntaxHighlighter>
