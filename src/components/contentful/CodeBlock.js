@@ -55,7 +55,7 @@ export default function CodeBlock({ title, language, code }) {
           </OutlineButton>
         </CopyToClipboard>
       </div>
-      <div className="relative">
+      <div className="pre-code">
         <SyntaxHighlighter
           language={language}
           showLineNumbers
@@ -70,10 +70,6 @@ export default function CodeBlock({ title, language, code }) {
         >
           {code}
         </SyntaxHighlighter>
-        <div
-          className="absolute top-px bottom-px right-px rounded-br-lg w-24"
-          style={{ background: 'linear-gradient(90deg, hsla(0,0%,100%,0), #fff)' }}
-        />
       </div>
     </ShowInView>
   )

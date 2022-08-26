@@ -66,10 +66,6 @@
     @apply hover:underline;
   }
 
-  /* ul ul {
-    @apply pl-6 pt-2 mb-2.5 list-square !important;
-  } */
-
   ul > li::marker {
     @apply text-gray-300;
   }
@@ -94,7 +90,7 @@
   }
 
   pre {
-    @apply py-3 pl-3 pr-16 overflow-x-auto rounded-b-lg bg-white border-x border-b border-gray-200 text-xs leading-relaxed text-left break-normal;
+    @apply py-3 pl-3 pr-[15%] overflow-x-auto rounded-b-lg bg-white border-x border-b border-gray-200 text-xs leading-slacker text-left break-normal;
   }
 }
 
@@ -105,6 +101,10 @@
 
   .link {
     @apply underline underline-under hover:no-underline self-start;
+  }
+
+  .pre-code {
+    @apply relative after:content-[''] after:absolute after:inset-y-3 after:right-px after:bg-r-shadow-gradient after:rounded-br-lg after:w-1/5 after:pointer-events-none;
   }
 
   .inline-code {
@@ -139,7 +139,7 @@
   .token.symbol,
   .token.deleted,
   .token.keyword.null {
-    color: #d9931e;
+    @apply text-[#d9931e];
   }
 
   .token.atrule,
@@ -157,7 +157,7 @@
   .token.number,
   .token.property-access,
   .token.maybe-class-name:not(.imports) {
-    color: #0070f3;
+    @apply text-[#0070f3];
   }
 
   .token.entity,
@@ -168,7 +168,7 @@
   .token.regex,
   .token.important,
   .token.variable:not(.dom) {
-    color: #d9931e;
+    @apply text-[#d9931e];
   }
 
   .token.attr-value,
@@ -177,11 +177,11 @@
   .token.char,
   .token.builtin,
   .token.inserted {
-    color: #028265;
+    @apply text-[#028265];
   }
 
   .token.boolean {
-    color: #36acaa;
+    @apply text-[#36acaa];
   }
 
   .token.constant {
@@ -189,7 +189,7 @@
   }
 
   .token.spread .token.punctuation {
-    color: #ff0078;
+    @apply text-[#ff0078];
   }
 
   .token.spread .token.attr-value {
@@ -201,25 +201,20 @@
   */
 
   .language-css {
-    color: #028265;
+    @apply text-[#028265];
   }
-
-  /* .language-css .token.property,
-  .language-css .token.punctuation {
-    @apply text-white;
-  } */
 
   .language-css .token.atrule {
     @apply text-gray-700;
   }
 
   .language-css .token.rule {
-    color: #ff0078;
+    @apply text-[#ff0078];
   }
 
   .language-css .token.number,
   .language-css .token.unit {
-    color: #60a7fa;
+    @apply text-[#60a7fa];
   }
 
   /**
@@ -227,7 +222,7 @@
   */
 
   code.language-bash .token.function {
-    color: #028265;
+    @apply text-[#028265];
   }
 }
 
@@ -240,20 +235,19 @@
     word-break: break-word;
   }
 
-  .list-square {
-    list-style-type: square;
-  }
-
   .px-safe {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
-}
 
-/**
-* Custom styles
-*/
+  .bg-r-shadow-gradient {
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+  }
 
-.linenumber {
-  @apply !mr-5 !text-gray-400 font-light !important;
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
 }
