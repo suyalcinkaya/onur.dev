@@ -4,7 +4,7 @@
 
 @layer base {
   ::selection {
-    @apply bg-blue-100;
+    @apply bg-gray-100;
   }
 
   html {
@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply font-sans antialiased bg-white text-base text-gray-600;
+    @apply font-sans antialiased bg-white text-base text-zinc-900;
   }
 
   #__next {
@@ -24,9 +24,9 @@
     @apply leading-slacker mb-6;
   }
 
-  button,
-  a {
-    @apply outline-none cursor-pointer underline-under;
+  a,
+  button {
+    @apply outline-none cursor-pointer;
   }
 
   button:focus {
@@ -100,7 +100,7 @@
   }
 
   .link {
-    @apply underline underline-under hover:no-underline self-start;
+    @apply underline underline-offset-4 decoration-zinc-300 hover:decoration-current self-start;
   }
 
   .pre-code {
@@ -227,8 +227,8 @@
 }
 
 @layer utilities {
-  .underline-under {
-    text-underline-position: under;
+  .underline-offset-4 {
+    text-underline-offset: 4px;
   }
 
   .word-break {

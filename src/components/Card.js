@@ -17,8 +17,8 @@ const Wrapper = ({ url, isExternal, children, ...rest }) => {
 
   return (
     <Fragment>
-      <NextLink href={url}>
-        <a {...rest}>{children}</a>
+      <NextLink href={url} {...rest}>
+        {children}
       </NextLink>
     </Fragment>
   )
