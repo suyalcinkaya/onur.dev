@@ -38,11 +38,11 @@ function options(links) {
       },
       // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
       [BLOCKS.PARAGRAPH]: (_, children) => <div className="leading-slacker mb-4 last:mb-0">{children}</div>,
-      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-2 list-disc pl-6 mb-4">{children}</ul>,
+      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-2 list-disc pl-4 mb-4">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
-        <ol className="flex flex-col gap-y-2 list-decimal list-inside mb-4">{children}</ol>
+        <ol className="flex flex-col gap-y-2 list-inside list-[decimal-leading-zero] mb-4">{children}</ol>
       ),
-      [BLOCKS.LIST_ITEM]: (_, children) => <li className="pl-2">{children}</li>,
+      [BLOCKS.LIST_ITEM]: (_, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (_, children) => (
         <blockquote className="px-4 mb-4 border-l-2 border-gray-200 rounded-r-lg font-medium">{children}</blockquote>
       ),

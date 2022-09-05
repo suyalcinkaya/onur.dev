@@ -66,8 +66,12 @@
     @apply hover:underline;
   }
 
-  ul > li::marker {
-    @apply text-gray-300;
+  ol > li::marker {
+    @apply font-semibold;
+  }
+
+  ul > li {
+    @apply pl-2;
   }
 
   li div {
@@ -96,7 +100,7 @@
 
 @layer components {
   .btn {
-    @apply flex flex-none items-center justify-between gap-x-1.5 text-sm leading-none font-medium text-gray-700 bg-white rounded-lg cursor-pointer;
+    @apply flex flex-none items-center justify-between gap-x-1.5 text-sm leading-none font-medium bg-white rounded-lg cursor-pointer;
   }
 
   .link {
@@ -131,9 +135,9 @@
     @apply opacity-70;
   }
 
-  .token.script {
+  /* .token.script {
     @apply text-gray-700;
-  }
+  } */
 
   .token.property,
   .token.symbol,
@@ -204,9 +208,9 @@
     @apply text-[#028265];
   }
 
-  .language-css .token.atrule {
+  /* .language-css .token.atrule {
     @apply text-gray-700;
-  }
+  } */
 
   .language-css .token.rule {
     @apply text-[#ff0078];
