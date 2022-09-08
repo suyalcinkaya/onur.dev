@@ -1,7 +1,7 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
 // --- Others
-import { ogImageUrl } from 'lib/helper'
+import { ogImageUrl } from 'utils/helpers'
 
 const WritingSeo = ({ title, description, publishedAt, updatedAt, url }) => {
   const publishedDate = new Date(publishedAt).toISOString()

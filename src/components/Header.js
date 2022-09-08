@@ -1,4 +1,4 @@
-import { Fragment, memo, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
 import dynamic from 'next/dynamic'
 
@@ -7,7 +7,7 @@ import { GhostButton } from 'components/Button'
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
-import { navigations } from 'lib/constants'
+import { navigations } from 'utils/data'
 
 const scrollThreshold = 76 // 8rem (pt-32 from PageLayout) - 3rem (header height) - 4px (threshold) = 5rem (80px)
 const reset = {
@@ -15,7 +15,7 @@ const reset = {
   opacity: 0
 }
 
-const Header = memo(({ headerTitle = '', router }) => {
+const Header = memo(({ headerTitle = null, router }) => {
   const [translateY, setTranslateY] = useState(reset.translateY)
   const [opacity, setOpacity] = useState(reset.opacity)
 
@@ -24,10 +24,8 @@ const Header = memo(({ headerTitle = '', router }) => {
     pathname,
     query: { slug }
   } = router
-  const isWritingSlug = pathname === '/writing/[slug]'
-  const LikeButton = dynamic(() => import('components/LikeButton'), {
-    ssr: false
-  })
+  const isWritingSlug = slug && pathname === '/writing/[slug]'
+  const LikeButton = dynamic(() => import('components/LikeButton'))
 
   const handleScroll = useCallback(() => {
     // setState optimization threshold
@@ -82,18 +80,21 @@ const Header = memo(({ headerTitle = '', router }) => {
         {isWritingSlug ? (
           <div className="flex items-center justify-between gap-x-2 w-full">
             <div className="flex items-center gap-x-3 w-full">
-              <NextLink href="/writing" passHref>
-                <GhostButton title="Back" className="px-2 py-2 md:px-2 md:py-2 hover:bg-gray-100">
-                  <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </GhostButton>
-              </NextLink>
+              <GhostButton
+                as={NextLink}
+                href="/writing"
+                title="Back"
+                className="px-2 py-2 md:px-2 md:py-2 hover:bg-gray-100"
+              >
+                <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </GhostButton>
               {headerTitle && (
                 <span
                   className="text-sm font-bold line-clamp-1"
@@ -147,13 +148,14 @@ const Header = memo(({ headerTitle = '', router }) => {
                 const isActive = (slug ? `/${slug}` : pathname) === url
 
                 return (
-                  <Fragment key={`headerNav_${url}`}>
-                    <NextLink href={url} passHref>
-                      <GhostButton className={`${isActive ? 'bg-black text-white' : 'hover:bg-gray-100'}`}>
-                        {title}
-                      </GhostButton>
-                    </NextLink>
-                  </Fragment>
+                  <GhostButton
+                    key={`headerNav_${url}`}
+                    as={NextLink}
+                    href={url}
+                    className={`${isActive ? 'bg-gray-100' : 'hover:bg-gray-100'}`}
+                  >
+                    {title}
+                  </GhostButton>
                 )
               })}
             </div>

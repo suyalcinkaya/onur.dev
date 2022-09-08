@@ -4,11 +4,11 @@ import { Suspense } from 'react'
 import PageTitle from 'components/PageTitle'
 import Card from 'components/Card'
 import PageSeo from 'components/PageSeo'
-import RichText from 'components/RichText'
+import RichText from 'components/contentful/RichText'
 
 // --- Others
 import { getAllPosts, getPage } from 'lib/contentful'
-import { dateTemplate } from 'lib/constants'
+import { getDateTimeFormat } from 'utils/helpers'
 
 export default function Writing({ allPosts, page: { title, content, ...rest } }) {
   return (
@@ -21,21 +21,19 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
           {allPosts.map((post) => {
             const {
               title,
-              // description,
               date,
               slug,
               sys: { firstPublishedAt }
             } = post
 
+            const postDate = date || firstPublishedAt
+            const dateString = getDateTimeFormat(postDate)
+
             return (
               <Card
                 key={`post_${slug}`}
                 title={title}
-                subtitle={
-                  <time dateTime={date || firstPublishedAt}>
-                    {dateTemplate.render(new Date(date || firstPublishedAt))}
-                  </time>
-                }
+                subtitle={<time dateTime={postDate}>{dateString}</time>}
                 url={`/writing/${slug}`}
               />
             )

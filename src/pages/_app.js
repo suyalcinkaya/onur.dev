@@ -12,7 +12,7 @@ import PageLayout from 'layouts/PageLayout'
 // --- Others
 import { ContextProvider } from 'providers/ContextProvider'
 import { trackPageview } from 'lib/gtag'
-import SEO from '../../next-seo.config'
+import { defaultSEO } from 'utils/seo'
 
 // --- Styles
 import 'styles/global.css'
@@ -45,12 +45,12 @@ function App({ Component, pageProps }) {
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
         strategy="worker"
       />
-      <DefaultSeo {...SEO} />
+      <DefaultSeo {...defaultSEO} />
       <ContextProvider>
         <Header headerTitle={headerTitle} router={router} />
         {isSidebarAvailable && <Sidebar router={router} />}
       </ContextProvider>
-      <PageLayout>
+      <PageLayout router={router}>
         <Component {...rest} />
       </PageLayout>
     </>

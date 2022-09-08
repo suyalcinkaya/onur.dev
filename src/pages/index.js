@@ -8,7 +8,8 @@ import PageTitle from 'components/PageTitle'
 
 // --- Others
 import { getLast3Posts } from 'lib/contentful'
-import { dateTemplate, mixtapes, projects, profiles } from 'lib/constants'
+import { mixtapes, projects, profiles } from 'utils/data'
+import { getDateTimeFormat } from 'utils/helpers'
 
 export default function Home({ recentPosts }) {
   return (
@@ -30,7 +31,7 @@ export default function Home({ recentPosts }) {
         things at <Link href="https://hey.car">heycar</Link>.
       </p>
       <div className="flex flex-col gap-y-8 mt-12">
-        <SectionBlock title="Recent Posts" url="/writing">
+        <SectionBlock title="Recent Posts" href="/writing">
           {recentPosts.map((post) => {
             const {
               title,
@@ -39,27 +40,26 @@ export default function Home({ recentPosts }) {
               sys: { firstPublishedAt }
             } = post
 
+            const postDate = date || firstPublishedAt
+            const dateString = getDateTimeFormat(postDate)
+
             return (
               <Card
                 key={`post_${slug}`}
                 title={title}
-                subtitle={
-                  <time dateTime={date || firstPublishedAt}>
-                    {dateTemplate.render(new Date(date || firstPublishedAt))}
-                  </time>
-                }
+                subtitle={<time dateTime={postDate}>{dateString}</time>}
                 url={`/writing/${slug}`}
               />
             )
           })}
         </SectionBlock>
-        <SectionBlock title="Popular Mixtapes" url={profiles.soundcloud.url}>
+        <SectionBlock title="Popular Mixtapes" href={profiles.soundcloud.url}>
           {mixtapes.map((mixtape) => {
             const { title, description, url } = mixtape
             return <Card key={`mixtape_${url}`} title={title} subtitle={description} url={url} />
           })}
         </SectionBlock>
-        <SectionBlock title="Some Projects" url={profiles.github.url}>
+        <SectionBlock title="Some Projects" href={profiles.github.url}>
           {projects.map((project) => {
             const { title, description, url } = project
             return <Card key={`project_${url}`} title={title} subtitle={description} url={url} />

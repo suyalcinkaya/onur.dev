@@ -1,12 +1,12 @@
-import { profiles } from 'lib/constants'
-import { ogImageUrl } from 'lib/helper'
+import { profiles } from 'utils/data'
+import { ogImageUrl } from 'utils/helpers'
 
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
 const url = 'https://onur.dev'
 const twitterUsername = `@${profiles.twitter.username}`
 
-const SEO = {
+export const defaultSEO = {
   title,
   description,
   canonical: url,
@@ -33,5 +33,3 @@ const SEO = {
     cardType: 'summary_large_image'
   }
 }
-
-export default SEO

@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 // --- Components
 import PageTitle from 'components/PageTitle'
 import PageSeo from 'components/PageSeo'
-import RichText from 'components/RichText'
+import RichText from 'components/contentful/RichText'
 
 // --- Others
 import { getAllPages, getPage } from 'lib/contentful'

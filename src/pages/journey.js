@@ -50,8 +50,7 @@ const Journey = ({ allLogbook, pageSeo: { title, ...rest } }) => {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allLogbook = (await getAllLogbook(preview)) ?? []
-  const pageSeo = (await getPageSeo('journey', preview)) ?? {}
+  const [allLogbook, pageSeo] = await Promise.all([getAllLogbook(preview), getPageSeo('journey', preview)])
 
   const mappedLogbook = []
   allLogbook.map((log) => {
