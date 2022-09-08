@@ -3,6 +3,7 @@ module.exports = {
     newNextLinkBehavior: true,
     nextScriptWorkers: true
   },
+  swcMinify: true,
   reactStrictMode: true,
   trailingSlash: false,
   images: {
