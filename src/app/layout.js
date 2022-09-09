@@ -14,7 +14,7 @@ import { trackPageview } from 'lib/gtag'
 import { defaultSEO } from 'utils/seo'
 
 // --- Styles
-import 'styles/global.css'
+import 'global.css'
 
 export default function RootLayout({ children }) {
   const router = useRouter()
