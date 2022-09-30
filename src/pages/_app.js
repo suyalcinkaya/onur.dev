@@ -28,10 +28,7 @@ function App({ Component, pageProps }) {
   }, [])
 
   useEffect(() => {
-    const handleRouteChange = (url) => {
-      process.env.NODE_ENV === 'production' && trackPageview(url)
-      window.scrollTo({ top: 0, behavior: 'smooth' }) // because router.push(...) doesn't scroll to top
-    }
+    const handleRouteChange = (url) => process.env.NODE_ENV === 'production' && trackPageview(url)
     router.events.on('routeChangeComplete', handleRouteChange)
 
     return () => {

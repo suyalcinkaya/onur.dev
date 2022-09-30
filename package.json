@@ -19,7 +19,7 @@
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "@supabase/supabase-js": "^1.35.6",
     "cssnano": "^5.1.11",
-    "framer-motion": "^7.0.0",
+    "framer-motion": "^7.3.2",
     "lodash.debounce": "^4.0.8",
     "markdown-to-jsx": "^7.1.5",
     "next": "^12.3.0",
