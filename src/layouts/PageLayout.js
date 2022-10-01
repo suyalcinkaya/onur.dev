@@ -9,7 +9,12 @@ const PageLayout = ({ router, children, ...rest }) => {
   return (
     <main className="flex min-h-screen pb-16 pt-32 overflow-hidden px-safe" {...rest}>
       <div className="px-4 md:px-16 mx-auto w-full max-w-screen-md">
-        <AnimatePresence initial={false} exitBeforeEnter>
+        <AnimatePresence
+          exitBeforeEnter
+          initial={false}
+          // because router.push(...) doesn't scroll to top
+          onExitComplete={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           <motion.div
             key={slug ? `${pathname}/${slug}` : pathname}
             initial={{ y: 10, opacity: 0 }}

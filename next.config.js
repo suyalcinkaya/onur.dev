@@ -14,7 +14,12 @@ module.exports = {
     return [
       {
         source: '/turkiyeden-gitmek-berline-uzanan-bir-goc-hikayesi-bolum-1-nedenler',
-        destination: '/writing/bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler',
+        destination: '/writing/bir-yazilimci-olarak-turkiyeden-gitmek',
+        permanent: true
+      },
+      {
+        source: '/writing/bir-yazilimci-olarak-turkiyeden-gitmek-bolum-1-nedenler',
+        destination: '/writing/bir-yazilimci-olarak-turkiyeden-gitmek',
         permanent: true
       },
       {
