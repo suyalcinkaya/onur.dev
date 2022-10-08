@@ -8,6 +8,7 @@ import smoothscroll from 'smoothscroll-polyfill'
 // --- Components
 import Header from 'components/Header'
 import PageLayout from 'layouts/PageLayout'
+const Sidebar = dynamic(() => import('components/Sidebar'))
 
 // --- Others
 import { ContextProvider } from 'providers/ContextProvider'
@@ -21,7 +22,6 @@ function App({ Component, pageProps }) {
   const { headerTitle, ...rest } = pageProps
   const router = useRouter()
   const isSidebarAvailable = router.pathname !== '/writing/[slug]'
-  const Sidebar = dynamic(() => import('components/Sidebar'))
 
   useEffect(() => {
     smoothscroll.polyfill()

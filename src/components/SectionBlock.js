@@ -4,11 +4,11 @@ import NextLink from 'next/link'
 import { OutlineButton } from 'components/Button'
 
 // --- Others
-import { isExternalLink } from 'utils/helpers'
+import { cachedIsExternalLink } from 'utils/helpers'
 
 const SectionBlock = ({ title, href, children, ...rest }) => {
   let isExternal = false
-  if (href) isExternal = isExternalLink(href)
+  if (href) isExternal = cachedIsExternalLink(href)
 
   return (
     <div className="bg-gray-50 p-6 rounded-xl" {...rest}>

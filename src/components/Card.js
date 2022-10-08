@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import NextLink from 'next/link'
 
 // --- Others
-import { isExternalLink } from 'utils/helpers'
+import { cachedIsExternalLink } from 'utils/helpers'
 
 const Wrapper = ({ url, isExternal, children, ...rest }) => {
   if (!url) return <div {...rest}>{children}</div>
@@ -26,7 +26,7 @@ const Wrapper = ({ url, isExternal, children, ...rest }) => {
 
 const Card = ({ title, subtitle, url, ...rest }) => {
   let isExternal = false
-  if (url) isExternal = isExternalLink(url)
+  if (url) isExternal = cachedIsExternalLink(url)
 
   return (
     <Wrapper

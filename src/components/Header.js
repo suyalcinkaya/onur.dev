@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 
 // --- Components
 import { GhostButton } from 'components/Button'
+const LikeButton = dynamic(() => import('components/LikeButton'))
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
@@ -25,7 +26,6 @@ const Header = memo(({ headerTitle = null, router }) => {
     query: { slug }
   } = router
   const isWritingSlug = slug && pathname === '/writing/[slug]'
-  const LikeButton = dynamic(() => import('components/LikeButton'))
 
   const handleScroll = useCallback(() => {
     // setState optimization threshold
@@ -66,9 +66,8 @@ const Header = memo(({ headerTitle = null, router }) => {
   /* const share = async () => {
     try {
       await navigator.share({ url: `https://onur.dev${asPath}` })
-    } catch (e) {
-      console.log('e', e)
-      if (e.toString().includes('AbortError')) {
+    } catch (error) {
+      if (error.toString().includes('AbortError')) {
         return true
       }
     }
