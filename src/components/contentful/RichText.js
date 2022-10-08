@@ -5,8 +5,8 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 // --- Components
 import Link from 'components/Link'
-const Iframe = dynamic(() => import('components/contentful/Iframe'))
-const CodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
+const DynamicIframe = dynamic(() => import('components/contentful/Iframe'))
+const DynamicCodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
 
 // --- Others
 import { cachedDasherize } from 'utils/helpers'
@@ -77,7 +77,7 @@ function options(links) {
             switch (type) {
               case 'Video': {
                 return (
-                  <Iframe
+                  <DynamicIframe
                     embedUrl={embedUrl}
                     title={title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -86,14 +86,14 @@ function options(links) {
                 )
               }
               case 'SoundCloud': {
-                return <Iframe embedUrl={embedUrl} title={title} scrolling="no" className="h-[166px]" />
+                return <DynamicIframe embedUrl={embedUrl} title={title} scrolling="no" className="h-[166px]" />
               }
               default:
                 return null
             }
           }
           case 'CodeBlock': {
-            return <CodeBlock {...entry} />
+            return <DynamicCodeBlock {...entry} />
           }
           default:
             return null
