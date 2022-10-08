@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/prism-async-light'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
@@ -9,7 +9,6 @@ import ShowInView from 'components/ShowInView'
 import { OutlineButton } from 'components/Button'
 
 const ControlPlaceholder = () => <span className="w-4 h-4 bg-gray-200 rounded-full" />
-const resetDefaultStyle = { backgroundColor: '' }
 
 export default function CodeBlock({ title, language, code }) {
   const [copied, setCopied] = useState(false)
@@ -60,7 +59,7 @@ export default function CodeBlock({ title, language, code }) {
           language={language}
           showLineNumbers
           wrapLongLines={false} // white-space: pre
-          customStyle={resetDefaultStyle}
+          customStyle={{ backgroundColor: '' }}
           lineNumberStyle={{
             minWidth: spacing[4],
             paddingRight: 0,

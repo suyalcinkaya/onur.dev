@@ -1,16 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
-const PageLayout = ({ router, children, ...rest }) => {
-  const {
-    pathname,
-    query: { slug }
-  } = router
-
+const PageLayout = ({ pathname, slug, children, ...rest }) => {
   return (
     <main className="flex min-h-screen pb-16 pt-32 overflow-hidden px-safe" {...rest}>
       <div className="px-4 md:px-16 mx-auto w-full max-w-screen-md">
         <AnimatePresence
-          exitBeforeEnter
+          mode="wait"
           initial={false}
           // because router.push(...) doesn't scroll to top
           onExitComplete={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 
 // --- Components
 import { GhostButton } from 'components/Button'
-const LikeButton = dynamic(() => import('components/LikeButton'))
+const DynamicLikeButton = dynamic(() => import('components/LikeButton'))
 
 // --- Others
 import { useContextProvider } from 'providers/ContextProvider'
@@ -16,15 +16,11 @@ const reset = {
   opacity: 0
 }
 
-const Header = memo(({ headerTitle = null, router }) => {
+const Header = memo(({ headerTitle = null, pathname, slug }) => {
   const [translateY, setTranslateY] = useState(reset.translateY)
   const [opacity, setOpacity] = useState(reset.opacity)
 
   const { setIsSidebarOpen } = useContextProvider()
-  const {
-    pathname,
-    query: { slug }
-  } = router
   const isWritingSlug = slug && pathname === '/writing/[slug]'
 
   const handleScroll = useCallback(() => {
@@ -103,7 +99,7 @@ const Header = memo(({ headerTitle = null, router }) => {
                 </span>
               )}
             </div>
-            <LikeButton slug={slug} />
+            <DynamicLikeButton slug={slug} />
             {/* <OutlineButton className="px-3 py-1.5" onClick={share}>
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
