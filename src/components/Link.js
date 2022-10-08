@@ -1,13 +1,13 @@
 import dynamic from 'next/dynamic'
+const NextLink = dynamic(() => import('next/link'))
 
 // --- Others
-import { isExternalLink } from 'utils/helpers'
+import { cachedIsExternalLink } from 'utils/helpers'
 
 const Link = (props) => {
   const { href = '#', ...rest } = props
-  const NextLink = dynamic(() => import('next/link'))
 
-  if (!isExternalLink(href)) {
+  if (!cachedIsExternalLink(href)) {
     return <NextLink href={href} className="link" {...rest} />
   }
 

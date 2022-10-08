@@ -5,9 +5,11 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 // --- Components
 import Link from 'components/Link'
+const Iframe = dynamic(() => import('components/contentful/Iframe'))
+const CodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
 
 // --- Others
-import { dasherize } from 'utils/helpers'
+import { cachedDasherize } from 'utils/helpers'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
@@ -21,7 +23,7 @@ function options(links) {
     },
     renderNode: {
       [BLOCKS.HEADING_2]: (_, children) => {
-        const id = dasherize(children)
+        const id = cachedDasherize(children)
         return (
           <h2 id={`h2-${id}`} className="mt-8 mb-2">
             <a href={`#h2-${id}`}>{children}</a>
@@ -29,7 +31,7 @@ function options(links) {
         )
       },
       [BLOCKS.HEADING_3]: (_, children) => {
-        const id = dasherize(children)
+        const id = cachedDasherize(children)
         return (
           <h3 id={`h3-${id}`} className="mt-6 mb-2">
             <a href={`#h3-${id}`}>{children}</a>
@@ -67,8 +69,6 @@ function options(links) {
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
-        const Iframe = dynamic(() => import('components/contentful/Iframe'))
-        const CodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
 
         switch (entry.__typename) {
           case 'ContentEmbed': {
