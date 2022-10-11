@@ -19,7 +19,7 @@ export default async function handler(req) {
     return new ImageResponse(
       (
         <div tw="flex w-full h-full items-center justify-center bg-white" style={{ fontFamily: 'SF Pro' }}>
-          <div tw="flex absolute top-8 left-8 bg-black text-white p-2">
+          <div tw="flex absolute top-12 left-12 bg-black text-white py-2 px-3">
             <span tw="text-4xl">{url}</span>
           </div>
           <div tw="flex mx-24 text-center">

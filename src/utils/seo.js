@@ -20,8 +20,8 @@ export const defaultSEO = {
       {
         url: getOgImageUrl({ title }),
         alt: title,
-        width: 1024,
-        height: 1024,
+        width: 1200,
+        height: 630,
         type: 'image/png'
       }
     ],
