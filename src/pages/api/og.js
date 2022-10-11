@@ -20,12 +20,10 @@ export default async function handler(req) {
       (
         <div tw="flex w-full h-full items-center justify-center bg-white" style={{ fontFamily: 'SF Pro' }}>
           <div tw="flex absolute top-8 left-8 bg-black text-white p-2">
-            <span tw="text-3xl">{url}</span>
+            <span tw="text-4xl">{url}</span>
           </div>
-          <div tw="flex p-6 mx-48 text-center">
-            <h1 tw="text-7xl" style={{ lineHeight: 1.15 }}>
-              {titleParam}
-            </h1>
+          <div tw="flex mx-24 text-center">
+            <h1 tw="text-8xl">{titleParam}</h1>
           </div>
         </div>
       ),
