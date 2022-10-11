@@ -46,7 +46,7 @@ export default function Writing({ allPosts, page: { title, content, ...rest } })
 
 export async function getStaticProps({ preview = false }) {
   const allPosts = (await getAllPosts(preview)) ?? []
-  const page = (await getPage('blog', preview)) ?? {}
+  const page = (await getPage('writing', preview)) ?? {}
 
   return {
     props: { allPosts, page, headerTitle: page?.title || 'Writing' }

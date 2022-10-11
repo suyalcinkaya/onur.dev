@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 
 // --- Others
-import { cachedGenerateOgImageUrl } from 'utils/helpers'
+import { getOgImageUrl } from 'utils/helpers'
 
 const PageSeo = ({ title, url, seoTitle, seoDescription }) => {
   return (
@@ -15,9 +15,9 @@ const PageSeo = ({ title, url, seoTitle, seoDescription }) => {
         description: seoDescription,
         images: [
           {
-            url: cachedGenerateOgImageUrl(title),
+            url: getOgImageUrl({ title, url }),
             alt: title,
-            type: 'image/jpeg'
+            type: 'png'
           }
         ]
       }}

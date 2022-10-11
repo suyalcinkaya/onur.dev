@@ -1,12 +1,12 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo'
 
 // --- Others
-import { cachedGenerateOgImageUrl } from 'utils/helpers'
+import { getOgImageUrl } from 'utils/helpers'
 
 const WritingSeo = ({ title, description, publishedAt, updatedAt, url }) => {
   const publishedDate = new Date(publishedAt).toISOString()
   const featuredImage = {
-    url: cachedGenerateOgImageUrl(title),
+    url: getOgImageUrl({ title }),
     alt: title
   }
 

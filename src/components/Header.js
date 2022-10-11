@@ -93,7 +93,7 @@ const Header = memo(({ headerTitle = null, pathname, slug }) => {
               {headerTitle && (
                 <span
                   className="text-sm font-bold line-clamp-1"
-                  style={{ transform: `translateY(${translateY}%)`, opacity: opacity }}
+                  style={{ transform: `translateY(${translateY}%)`, opacity }}
                 >
                   {headerTitle}
                 </span>
@@ -132,7 +132,7 @@ const Header = memo(({ headerTitle = null, pathname, slug }) => {
             {headerTitle && (
               <span
                 className="text-sm font-bold line-clamp-1 md:hidden"
-                style={{ transform: `translateY(${translateY}%)`, opacity: opacity }}
+                style={{ transform: `translateY(${translateY}%)`, opacity }}
               >
                 {headerTitle}
               </span>
@@ -147,7 +147,7 @@ const Header = memo(({ headerTitle = null, pathname, slug }) => {
                     key={`headerNav_${url}`}
                     as={NextLink}
                     href={url}
-                    className={`${isActive ? 'bg-gray-100' : 'hover:bg-gray-100'}`}
+                    className={isActive ? 'bg-gray-100' : 'hover:bg-gray-100'}
                   >
                     {title}
                   </GhostButton>
