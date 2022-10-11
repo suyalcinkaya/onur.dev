@@ -1,13 +1,9 @@
-const generateOgImageUrl = (title) => {
-  return `https://og-image-onur.vercel.app/${encodeURIComponent(title)}.png?md=0&fontSize=125px`
-}
-const generateOgImageUrlCache = {}
-export const cachedGenerateOgImageUrl = (title) => {
-  if (generateOgImageUrlCache[title]) {
-    return generateOgImageUrlCache[title]
-  }
-
-  return (generateOgImageUrlCache[title] = generateOgImageUrl(title))
+export const getOgImageUrl = ({ title, url }) => {
+  let ogImageUrl = `${process.env.SITE_URL ? 'https://' + process.env.SITE_URL : ''}/api/og?title=${encodeURIComponent(
+    title
+  )}`
+  if (url) ogImageUrl += `&url=${url}`
+  return ogImageUrl
 }
 
 const isExternalLink = (href) => {

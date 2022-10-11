@@ -1,5 +1,5 @@
 import { profiles } from 'utils/data'
-import { cachedGenerateOgImageUrl } from 'utils/helpers'
+import { getOgImageUrl } from 'utils/helpers'
 
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
@@ -18,7 +18,7 @@ export const defaultSEO = {
     locale: 'en_IE',
     images: [
       {
-        url: cachedGenerateOgImageUrl(title),
+        url: getOgImageUrl({ title }),
         alt: title,
         width: 1024,
         height: 1024,
