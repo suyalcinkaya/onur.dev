@@ -32,7 +32,7 @@ const Card = ({ title, subtitle, url, ...rest }) => {
     <Wrapper
       url={url}
       isExternal={isExternal}
-      className={`flex flex-col gap-y-1 rounded-md p-2.5 -m-2.5 transition-colors ${
+      className={`flex flex-col gap-y-1 rounded-lg p-2.5 -m-2.5 transition-colors duration-300 ${
         url ? 'hover:bg-gray-100 cursor-pointer' : ''
       }`}
       {...rest}

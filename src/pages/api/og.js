@@ -11,7 +11,6 @@ export default async function handler(req) {
 
   try {
     const { searchParams } = new URL(req.url)
-
     const titleParam = searchParams.get('title')
     const urlParam = searchParams.get('url')
     const url = `onur.dev${urlParam ? `/${urlParam}` : ''}`
@@ -23,7 +22,9 @@ export default async function handler(req) {
             <span tw="text-4xl">{url}</span>
           </div>
           <div tw="flex mx-24 text-center">
-            <h1 tw="text-8xl">{titleParam}</h1>
+            <h1 tw="text-8xl" style={{ lineHeight: 1.1, letterSpacing: '-0.015em' }}>
+              {titleParam}
+            </h1>
           </div>
         </div>
       ),
