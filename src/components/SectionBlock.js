@@ -11,7 +11,7 @@ const SectionBlock = ({ title, href, children, ...rest }) => {
   if (href) isExternal = cachedIsExternalLink(href)
 
   return (
-    <div className="bg-gray-50 p-6 rounded-xl" {...rest}>
+    <div className="border p-6 rounded-xl" {...rest}>
       <div className="flex items-center justify-between">
         <h2 className="text-lg md:text-xl">{title}</h2>
         {href &&

@@ -14,10 +14,16 @@
 
   body {
     @apply font-sans antialiased bg-white text-base text-zinc-900;
+    letter-spacing: 0.005em;
+    word-spacing: -0.04em;
   }
 
   #__next {
     @apply min-h-screen;
+  }
+
+  article {
+    @apply flex flex-col;
   }
 
   p {
@@ -42,6 +48,7 @@
   h2,
   h3 {
     @apply font-bold text-black scroll-mt-16;
+    letter-spacing: -0.015em;
   }
 
   h1 {

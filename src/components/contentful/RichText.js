@@ -25,7 +25,7 @@ function options(links) {
       [BLOCKS.HEADING_2]: (_, children) => {
         const id = cachedDasherize(children)
         return (
-          <h2 id={`h2-${id}`} className="mt-8 mb-2">
+          <h2 id={`h2-${id}`} className="mt-6 mb-2">
             <a href={`#h2-${id}`}>{children}</a>
           </h2>
         )
