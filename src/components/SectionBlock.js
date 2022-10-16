@@ -1,10 +1,7 @@
 import NextLink from 'next/link'
 
-// --- Components
-import { OutlineButton } from 'components/Button'
-
-// --- Others
-import { cachedIsExternalLink } from 'utils/helpers'
+import { OutlineButton } from '@/components/Button'
+import { cachedIsExternalLink } from '@/lib/utils'
 
 const SectionBlock = ({ title, href, children, ...rest }) => {
   let isExternal = false

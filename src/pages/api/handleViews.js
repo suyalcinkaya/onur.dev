@@ -1,4 +1,4 @@
-import { supabase, tableName } from 'lib/supabase'
+import { supabase, tableName } from '@/lib/supabase'
 
 export default async function handleViews(req, res) {
   const { slug } = req.query

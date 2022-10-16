@@ -1,20 +1,17 @@
 import { Suspense } from 'react'
 
-// --- Components
-import PageTitle from 'components/PageTitle'
-import Card from 'components/Card'
-import PageSeo from 'components/PageSeo'
-import RichText from 'components/contentful/RichText'
+import PageTitle from '@/components/PageTitle'
+import Card from '@/components/Card'
+import PageSeo from '@/components/PageSeo'
+import RichText from '@/components/contentful/RichText'
+import { getAllPosts, getPage } from '@/lib/contentful'
+import { getDateTimeFormat } from '@/lib/utils'
 
-// --- Others
-import { getAllPosts, getPage } from 'lib/contentful'
-import { getDateTimeFormat } from 'utils/helpers'
-
-export default function Writing({ allPosts, page: { title, content, ...rest } }) {
+export default function Writing({ allPosts, page: { title = 'Writing', content, ...rest } }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageTitle title={title || 'Writing'} />
+      <PageTitle title={title} />
       <Suspense fallback={null}>
         <RichText content={content} />
         <div className="flex flex-col gap-y-6">

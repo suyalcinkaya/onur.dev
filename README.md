@@ -1,12 +1,13 @@
 # onur.dev
 
-<img src="onurdev.png" />
+<img src="onurdev.png" alt="onur.dev og image" />
 
 <br>
 <br>
 
 My personal website has transformed over the years - from a static HTML site, to `Create React App`, to `GatsbyJS`, to
-`Next.js + Chakra UI + MDX` combo and finally to `Next.js + Tailwind CSS + Contentful` combo. It provides a platform for my writing and to showcase my journey.
+`Next.js + Chakra UI + MDX` combo and finally to `Next.js + Tailwind CSS + Contentful` combo. It provides a platform for
+my writing and to showcase my journey.
 
 ## Overview
 

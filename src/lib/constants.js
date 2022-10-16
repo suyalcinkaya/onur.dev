@@ -1,4 +1,4 @@
-export const profiles = {
+export const PROFILES = {
   github: {
     title: 'GitHub',
     url: 'https://github.com/suyalcinkaya/',
@@ -72,7 +72,7 @@ export const profiles = {
   }
 }
 
-export const navigations = {
+export const NAVIGATIONS = {
   header: [
     {
       title: 'Home',
@@ -166,7 +166,7 @@ export const navigations = {
   ]
 }
 
-export const mixtapes = [
+export const MIXTAPES = [
   {
     title: 'Summer Sax',
     description: '11M+ plays ∙ 55K+ likes',
@@ -184,16 +184,16 @@ export const mixtapes = [
   }
 ]
 
-export const projects = [
+export const PROJECTS = [
   {
     title: 'Notebook',
     description: 'My personal notebook.',
     url: 'https://github.com/suyalcinkaya/notebook'
   },
   {
-    title: 'Notiful',
-    description: 'An open source minimal and clean taking notes extension for Chrome.',
-    url: 'https://github.com/suyalcinkaya/notiful'
+    title: 'onur.dev',
+    description: 'Source code of this website.',
+    url: 'https://github.com/suyalcinkaya/onur.dev'
   },
   {
     title: 'Koalazily',
@@ -201,3 +201,6 @@ export const projects = [
     url: 'https://github.com/suyalcinkaya/koalazily'
   }
 ]
+
+// 8rem (pt-32 from PageLayout) - 3rem (header height) - 10px (threshold) = 70px
+export const SCROLL_THRESHOLD = 70

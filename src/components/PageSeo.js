@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo'
 
-// --- Others
-import { getOgImageUrl } from 'utils/helpers'
+import { getOgImageUrl } from '@/lib/utils'
 
 const PageSeo = ({ title, url, seoTitle, seoDescription }) => {
   return (

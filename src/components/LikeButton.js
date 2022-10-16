@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import useSWR from 'swr'
+import { AnimatePresence, motion } from 'framer-motion'
 import debounce from 'lodash.debounce'
 
-// --- Components
-import { OutlineButton } from 'components/Button'
-
-// --- Others
-import { incrementLikes } from 'lib/supabase'
-import { fetcher } from 'utils/helpers'
+import { OutlineButton } from '@/components/Button'
+import { incrementLikes } from '@/lib/supabase'
+import { fetcher } from '@/lib/utils'
 
 const LikeButton = ({ slug }) => {
   const [liked, setLiked] = useState(false)
@@ -32,11 +30,15 @@ const LikeButton = ({ slug }) => {
 
   const incrementLikeCount = async (likeAmountProp) => {
     setSupabaseDataLoading(true)
-    const latestData = await incrementLikes({ slug, likeAmount: likeAmountProp })
-    setSupabaseData((prevSupabaseDataState) => ({
-      ...prevSupabaseDataState,
-      likes: latestData.likes
-    }))
+    if (process.env.NODE_ENV === 'production') {
+      const latestData = await incrementLikes({ slug, likeAmount: likeAmountProp })
+      setSupabaseData((prevSupabaseDataState) => ({
+        ...prevSupabaseDataState,
+        likes: latestData.likes
+      }))
+    } else {
+      await new Promise((res) => setTimeout(res, 2000))
+    }
     setLikeAmount(0) // reset like amount
     setSupabaseDataLoading(false)
   }
@@ -78,7 +80,24 @@ const LikeButton = ({ slug }) => {
           <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228zm6.826 1.641c-1.5-1.502-3.92-1.563-5.49-.153l-1.335 1.198-1.336-1.197c-1.575-1.412-3.99-1.35-5.494.154-1.49 1.49-1.565 3.875-.192 5.451L12 18.654l7.02-7.03c1.374-1.577 1.299-3.959-.193-5.454z" />
         </svg>
       )}
-      <span>{supabaseDataLoading && liked ? 'Thanks!' : `${supabaseData.likes + likeAmount}`}</span>
+      <AnimatePresence mode="wait">
+        {supabaseDataLoading && liked ? (
+          <motion.div
+            key="thanks"
+            initial={{ opacity: 0, x: -3 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -3 }}
+          >
+            Thanks!
+          </motion.div>
+        ) : (
+          <motion.div key="likes" initial={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 3 }}>
+            {supabaseData.likes + likeAmount}
+          </motion.div>
+        )}
+
+        {/* <span>{supabaseDataLoading && liked ? 'Thanks!' : `${supabaseData.likes + likeAmount}`}</span> */}
+      </AnimatePresence>
     </OutlineButton>
   )
 }

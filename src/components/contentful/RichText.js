@@ -3,13 +3,10 @@ import NextImage from 'next/future/image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-// --- Components
-import Link from 'components/Link'
-const DynamicIframe = dynamic(() => import('components/contentful/Iframe'))
-const DynamicCodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
-
-// --- Others
-import { cachedDasherize } from 'utils/helpers'
+import Link from '@/components/Link'
+const DynamicIframe = dynamic(() => import('@/components/contentful/Iframe'))
+const DynamicCodeBlock = dynamic(() => import('@/components/contentful/CodeBlock'))
+import { cachedDasherize } from '@/lib/utils'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)

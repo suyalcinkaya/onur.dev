@@ -26,10 +26,10 @@
     "next": "^12.3.0",
     "next-seo": "^5.5.0",
     "react": "^18.2.0",
-    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.0",
     "react-syntax-highlighter": "^15.4.5",
+    "scroll-data-hook": "^1.0.4",
     "smoothscroll-polyfill": "^0.4.4",
     "swr": "^1.3.0"
   },

@@ -5,18 +5,13 @@ import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
 import smoothscroll from 'smoothscroll-polyfill'
 
-// --- Components
-import Header from 'components/Header'
-import PageLayout from 'layouts/PageLayout'
-const DynamicSidebar = dynamic(() => import('components/Sidebar'))
-
-// --- Others
-import { ContextProvider } from 'providers/ContextProvider'
-import { trackPageview } from 'lib/gtag'
-import { defaultSEO } from 'utils/seo'
-
-// --- Styles
-import 'styles/global.css'
+import Header from '@/components/Header'
+import PageLayout from '@/components/layouts/PageLayout'
+const DynamicSidebar = dynamic(() => import('@/components/Sidebar'))
+import { ContextProvider } from '@/components/providers/ContextProvider'
+import { trackPageview } from '@/lib/gtag'
+import { defaultSEO } from '@/lib/seo'
+import '@/styles/global.css'
 
 function App({ Component, pageProps }) {
   const { headerTitle, ...rest } = pageProps
