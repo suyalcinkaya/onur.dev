@@ -8,11 +8,6 @@ const DynamicLikeButton = dynamic(() => import('@/components/LikeButton'))
 import { useContextProvider } from '@/components/providers/ContextProvider'
 import { NAVIGATIONS, SCROLL_THRESHOLD } from '@/lib/constants'
 
-const reset = {
-  translateY: -100,
-  opacity: 0
-}
-
 const Header = memo(({ headerTitle = null, pathname, slug }) => {
   const {
     position: { y: scrollY }
@@ -20,19 +15,11 @@ const Header = memo(({ headerTitle = null, pathname, slug }) => {
   const { setIsSidebarOpen } = useContextProvider()
   const isWritingSlug = slug && pathname === '/writing/[slug]'
 
-  let translateY = reset.translateY
-  let opacity = reset.opacity
-
-  if (scrollY > SCROLL_THRESHOLD) {
-    translateY = Math.max(110 - scrollY, 0)
-    opacity = Math.min(
-      Math.max(((scrollY - SCROLL_THRESHOLD * (SCROLL_THRESHOLD / (scrollY ** 2 / 100))) / 100).toFixed(2), 0),
-      1
-    )
-  } else {
-    translateY = reset.translateY
-    opacity = reset.opacity
-  }
+  const translateY = Math.max(110 - scrollY, 0)
+  const opacity = Math.min(
+    Math.max(((scrollY - SCROLL_THRESHOLD * (SCROLL_THRESHOLD / (scrollY ** 2 / 100))) / 100).toFixed(2), 0),
+    1
+  )
 
   return (
     <header className="fixed top-0 inset-x-0 z-10 w-full h-12 bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
