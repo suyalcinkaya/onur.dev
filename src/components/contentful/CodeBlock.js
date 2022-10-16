@@ -1,6 +1,7 @@
 import { Suspense, useState } from 'react'
 import dynamic from 'next/dynamic'
 const DynamicSyntaxHighlighter = dynamic(() => import('react-syntax-highlighter/dist/cjs/prism-async-light'))
+import { AnimatePresence, motion } from 'framer-motion'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
@@ -48,7 +49,22 @@ export default function CodeBlock({ title, language, code }) {
                 d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
               />
             </svg>
-            {copied ? 'Copied' : 'Copy'}
+            <AnimatePresence mode="wait">
+              {copied ? (
+                <motion.span
+                  key="copied"
+                  initial={{ opacity: 0, x: -2 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -2 }}
+                >
+                  Copied
+                </motion.span>
+              ) : (
+                <motion.span key="copy" initial={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 2 }}>
+                  Copy
+                </motion.span>
+              )}
+            </AnimatePresence>
           </OutlineButton>
         </div>
         <div className="pre-code">

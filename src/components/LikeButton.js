@@ -82,21 +82,19 @@ const LikeButton = ({ slug }) => {
       )}
       <AnimatePresence mode="wait">
         {supabaseDataLoading && liked ? (
-          <motion.div
+          <motion.span
             key="thanks"
             initial={{ opacity: 0, x: -3 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -3 }}
           >
             Thanks!
-          </motion.div>
+          </motion.span>
         ) : (
-          <motion.div key="likes" initial={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 3 }}>
+          <motion.span key="likes" initial={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 3 }}>
             {supabaseData.likes + likeAmount}
-          </motion.div>
+          </motion.span>
         )}
-
-        {/* <span>{supabaseDataLoading && liked ? 'Thanks!' : `${supabaseData.likes + likeAmount}`}</span> */}
       </AnimatePresence>
     </OutlineButton>
   )
