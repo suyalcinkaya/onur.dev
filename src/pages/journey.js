@@ -1,19 +1,16 @@
 import { Suspense } from 'react'
 
-// --- Components
-import Card from 'components/Card'
-import Markdown from 'components/Markdown'
-import PageTitle from 'components/PageTitle'
-import PageSeo from 'components/PageSeo'
+import Card from '@/components/Card'
+import Markdown from '@/components/Markdown'
+import PageTitle from '@/components/PageTitle'
+import PageSeo from '@/components/PageSeo'
+import { getAllLogbook, getPageSeo } from '@/lib/contentful'
 
-// --- Others
-import { getAllLogbook, getPageSeo } from 'lib/contentful'
-
-const Journey = ({ allLogbook, pageSeo: { title, ...rest } }) => {
+const Journey = ({ allLogbook, pageSeo: { title = 'Journey', ...rest } }) => {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageTitle title={title || 'Journey'} />
+      <PageTitle title={title} />
       <Suspense fallback={null}>
         <div className="flex flex-col gap-y-12 items-stretch">
           {allLogbook.map((item, itemIndex) => (

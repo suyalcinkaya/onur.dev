@@ -1,7 +1,6 @@
 import ReactMarkdown from 'markdown-to-jsx'
 
-// --- Components
-import Link from 'components/Link'
+import Link from '@/components/Link'
 
 export default function Markdown(props) {
   return (

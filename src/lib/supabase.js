@@ -28,7 +28,7 @@ export const tableName = 'pages'
   }
 } */
 
-export async function incrementLikes({ slug, likeAmount = 0 }) {
+/* export async function incrementLikes({ slug, likeAmount = 0 }) {
   const { data: latestData } = await supabase.from(tableName).select().eq('slug', slug).single()
 
   const { data: updatedData } = await supabase
@@ -40,4 +40,4 @@ export async function incrementLikes({ slug, likeAmount = 0 }) {
     likes: updatedData[0].like_count,
     views: updatedData[0].view_count
   }
-}
+} */

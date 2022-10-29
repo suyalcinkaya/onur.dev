@@ -1,7 +1,6 @@
 import { NextSeo } from 'next-seo'
 
-// --- Components
-import { OutlineButton } from 'components/Button'
+import { OutlineButton } from '@/components/Button'
 
 const title = '404: Page not found'
 
@@ -27,7 +26,9 @@ export default function Custom404() {
         <p className="m-0">
           This link might be broken, deleted, or moved. Nevertheless, there’s nothing to see here...
         </p>
-        <OutlineButton href="/" className="w-fit">Go home</OutlineButton>
+        <OutlineButton href="/" className="w-fit">
+          Go home
+        </OutlineButton>
       </div>
     </>
   )

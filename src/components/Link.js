@@ -1,8 +1,7 @@
 import dynamic from 'next/dynamic'
 const DynamicNextLink = dynamic(() => import('next/link'))
 
-// --- Others
-import { cachedIsExternalLink } from 'utils/helpers'
+import { cachedIsExternalLink } from '@/lib/utils'
 
 const Link = (props) => {
   const { href = '#', ...rest } = props

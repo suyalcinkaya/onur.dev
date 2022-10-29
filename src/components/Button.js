@@ -5,7 +5,7 @@ export const GhostButton = forwardRef(({ as = 'a', className, isExternal, ...res
   return (
     <As
       ref={ref}
-      className={`btn transition-colors px-3 py-2 md:px-4 md:py-2.5 ${className}`}
+      className={`btn transition-colors duration-300 px-3 py-2 md:px-4 md:py-2.5 ${className}`}
       {...(isExternal && {
         target: '_blank',
         rel: 'noopener noreferrer'

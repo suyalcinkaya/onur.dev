@@ -1,10 +1,10 @@
-import { profiles } from 'utils/data'
-import { getOgImageUrl } from 'utils/helpers'
+import { PROFILES } from '@/lib/constants'
+import { getOgImageUrl } from '@/lib/utils'
 
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
 const url = 'https://onur.dev'
-const twitterUsername = `@${profiles.twitter.username}`
+const twitterUsername = `@${PROFILES.twitter.username}`
 
 export const defaultSEO = {
   title,

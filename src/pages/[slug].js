@@ -1,12 +1,9 @@
 import { Suspense } from 'react'
 
-// --- Components
-import PageTitle from 'components/PageTitle'
-import PageSeo from 'components/PageSeo'
-import RichText from 'components/contentful/RichText'
-
-// --- Others
-import { getAllPages, getPage } from 'lib/contentful'
+import PageTitle from '@/components/PageTitle'
+import PageSeo from '@/components/PageSeo'
+import RichText from '@/components/contentful/RichText'
+import { getAllPages, getPage } from '@/lib/contentful'
 
 export default function Page({ page: { title, content, url, ...rest } }) {
   return (

@@ -1,15 +1,12 @@
 import { Suspense } from 'react'
 
-// --- Components
-import Card from 'components/Card'
-import SectionBlock from 'components/SectionBlock'
-import Link from 'components/Link'
-import PageTitle from 'components/PageTitle'
-
-// --- Others
-import { getLast3Posts } from 'lib/contentful'
-import { mixtapes, projects, profiles } from 'utils/data'
-import { getDateTimeFormat } from 'utils/helpers'
+import Card from '@/components/Card'
+import SectionBlock from '@/components/SectionBlock'
+import Link from '@/components/Link'
+import PageTitle from '@/components/PageTitle'
+import { getLast3Posts } from '@/lib/contentful'
+import { MIXTAPES, PROJECTS, PROFILES } from '@/lib/constants'
+import { getDateTimeFormat } from '@/lib/utils'
 
 export default function Home({ recentPosts }) {
   return (
@@ -25,9 +22,9 @@ export default function Home({ recentPosts }) {
         }
       />
       <p>
-        B. 1992, Ankara, Turkey. I am a <Link href={profiles.linkedin.url}>software engineer</Link>,{' '}
-        <Link href={profiles.github.url}>javascript enthusiast</Link>, <Link href={profiles.soundcloud.url}>dj</Link>,{' '}
-        <Link href={profiles.medium.url}>writer</Link>, and minimalist. Currently living in Berlin, Germany and crafting
+        B. 1992, Ankara, Turkey. I am a <Link href={PROFILES.linkedin.url}>software engineer</Link>,{' '}
+        <Link href={PROFILES.github.url}>javascript enthusiast</Link>, <Link href={PROFILES.soundcloud.url}>dj</Link>,{' '}
+        <Link href={PROFILES.medium.url}>writer</Link>, and minimalist. Currently living in Berlin, Germany and crafting
         things at <Link href="https://hey.car">heycar</Link>.
       </p>
       <div className="flex flex-col gap-y-8 mt-12">
@@ -53,14 +50,14 @@ export default function Home({ recentPosts }) {
             )
           })}
         </SectionBlock>
-        <SectionBlock title="Popular Mixtapes" href={profiles.soundcloud.url}>
-          {mixtapes.map((mixtape) => {
+        <SectionBlock title="Popular Mixtapes" href={PROFILES.soundcloud.url}>
+          {MIXTAPES.map((mixtape) => {
             const { title, description, url } = mixtape
             return <Card key={`mixtape_${url}`} title={title} subtitle={description} url={url} />
           })}
         </SectionBlock>
-        <SectionBlock title="Some Projects" href={profiles.github.url}>
-          {projects.map((project) => {
+        <SectionBlock title="Personal Projects" href={PROFILES.github.url}>
+          {PROJECTS.map((project) => {
             const { title, description, url } = project
             return <Card key={`project_${url}`} title={title} subtitle={description} url={url} />
           })}

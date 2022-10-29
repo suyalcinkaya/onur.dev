@@ -19,7 +19,22 @@ export const cachedIsExternalLink = (href) => {
   return (isExternalLinkCache[href] = isExternalLink(href))
 }
 
-export const fetcher = (url) => fetch(url).then((res) => res.json())
+export async function fetcher(input, init) {
+  const res = await fetch(input, init)
+
+  if (!res.ok) {
+    const json = await res.json()
+    if (json.error) {
+      const error = new Error(json.error)
+      error.status = res.status
+      throw error
+    } else {
+      throw new Error('An unexpected error occurred')
+    }
+  }
+
+  return res.json()
+}
 
 export const getDateTimeFormat = (date) => {
   const dateObj = new Date(date)

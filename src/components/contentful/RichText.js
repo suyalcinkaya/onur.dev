@@ -3,13 +3,10 @@ import NextImage from 'next/future/image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-// --- Components
-import Link from 'components/Link'
-const DynamicIframe = dynamic(() => import('components/contentful/Iframe'))
-const DynamicCodeBlock = dynamic(() => import('components/contentful/CodeBlock'))
-
-// --- Others
-import { cachedDasherize } from 'utils/helpers'
+import Link from '@/components/Link'
+const DynamicIframe = dynamic(() => import('@/components/contentful/Iframe'))
+const DynamicCodeBlock = dynamic(() => import('@/components/contentful/CodeBlock'))
+import { cachedDasherize } from '@/lib/utils'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
@@ -52,7 +49,7 @@ function options(links) {
         const asset = findAsset(node.data.target.sys.id)
 
         return (
-          <figure className="mb-6">
+          <figure className="flex flex-col gap-y-2 mb-6">
             <NextImage
               src={asset.url}
               height={asset.height || 300}
@@ -60,7 +57,7 @@ function options(links) {
               alt={asset.description}
             />
             {asset.description && (
-              <figcaption className="text-xs text-gray-500 text-center font-light mt-2">{asset.description}</figcaption>
+              <figcaption className="text-xs text-gray-500 text-center font-light">{asset.description}</figcaption>
             )}
           </figure>
         )

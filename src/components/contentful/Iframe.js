@@ -1,5 +1,4 @@
-// --- Components
-import ShowInView from 'components/ShowInView'
+import ShowInView from '@/components/ShowInView'
 
 export default function Iframe({ embedUrl, title, className, ...rest }) {
   return (

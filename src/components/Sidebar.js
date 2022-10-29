@@ -1,12 +1,9 @@
 import { useEffect } from 'react'
 import NextLink from 'next/link'
 
-// --- Components
-import { GhostButton } from 'components/Button'
-
-// --- Others
-import { useContextProvider } from 'providers/ContextProvider'
-import { navigations, profiles } from 'utils/data'
+import { GhostButton } from '@/components/Button'
+import { useContextProvider } from '@/components/providers/ContextProvider'
+import { NAVIGATIONS, PROFILES } from '@/lib/constants'
 
 const Sidebar = ({ pathname, slug }) => {
   const { isSidebarOpen, setIsSidebarOpen } = useContextProvider()
@@ -51,7 +48,7 @@ const Sidebar = ({ pathname, slug }) => {
           </div>
           <div className="flex flex-col gap-y-6 px-2">
             <div className="flex flex-col gap-y-1.5">
-              {navigations.header.map((nav) => {
+              {NAVIGATIONS.header.map((nav) => {
                 const { title, url, icon } = nav
                 const isActive = (slug ? `/${slug}` : pathname) === url
 
@@ -60,7 +57,7 @@ const Sidebar = ({ pathname, slug }) => {
                     key={`sidebarNav_${url}`}
                     as={NextLink}
                     href={url}
-                    className={`${isActive ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
+                    className={isActive ? 'bg-black text-white' : 'hover:bg-gray-100'}
                     onClick={() => setIsSidebarOpen(false)}
                   >
                     <span className="flex items-center gap-x-2">
@@ -73,7 +70,7 @@ const Sidebar = ({ pathname, slug }) => {
             </div>
             <div className="flex flex-col gap-y-1.5">
               <span className="text-gray-400 text-xs pl-2">Online</span>
-              {Object.values(profiles).map((profile) => {
+              {Object.values(PROFILES).map((profile) => {
                 const { title, url, icon } = profile
 
                 return (
