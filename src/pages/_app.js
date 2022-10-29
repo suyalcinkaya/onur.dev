@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
+import { Analytics } from '@vercel/analytics/react'
 import smoothscroll from 'smoothscroll-polyfill'
 
 import Header from '@/components/Header'
@@ -50,6 +51,7 @@ function App({ Component, pageProps }) {
       <PageLayout pathname={pathname} slug={slug}>
         <Component {...rest} />
       </PageLayout>
+      <Analytics />
     </>
   )
 }

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useScrollData } from 'scroll-data-hook'
 
 import { GhostButton } from '@/components/Button'
-const DynamicLikeButton = dynamic(() => import('@/components/LikeButton'))
+const DynamicViews = dynamic(() => import('@/components/Views'))
 import { useContextProvider } from '@/components/providers/ContextProvider'
 import { NAVIGATIONS, SCROLL_THRESHOLD } from '@/lib/constants'
 
@@ -26,7 +26,7 @@ const Header = memo(({ headerTitle = null, pathname, slug }) => {
       <div className="flex items-center h-full max-w-screen-md shadow md:shadow-none md:mx-auto py-1 px-3 md:px-16">
         {isWritingSlug ? (
           <div className="flex items-center justify-between gap-x-2 w-full">
-            <div className="flex items-center gap-x-3 w-full">
+            <div className="flex items-center gap-x-3">
               <GhostButton
                 as={NextLink}
                 href="/writing"
@@ -51,7 +51,7 @@ const Header = memo(({ headerTitle = null, pathname, slug }) => {
                 </span>
               )}
             </div>
-            <DynamicLikeButton slug={slug} />
+            <DynamicViews slug={slug} />
           </div>
         ) : (
           <div className="flex items-center gap-x-3">
