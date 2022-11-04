@@ -1,3 +1,5 @@
+'use client'
+
 import { memo, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
 import dynamic from 'next/dynamic'

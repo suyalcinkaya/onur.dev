@@ -32,7 +32,7 @@ export default function Home({ recentPosts }) {
       </p>
       <div className="flex flex-col gap-y-8 mt-12">
         <SectionBlock title="Recent Posts" href="/writing">
-          {recentPosts.map((post) => {
+          {recentPosts?.map((post) => {
             const {
               title,
               date,
@@ -70,10 +70,11 @@ export default function Home({ recentPosts }) {
   )
 }
 
-export async function getStaticProps({ preview = false }) {
+/* export async function generateStaticParams({ preview = false }) {
   const recentPosts = (await getLast3Posts(preview)) ?? []
 
   return {
-    props: { recentPosts, headerTitle: 'Home' }
+    recentPosts,
+    headerTitle: 'Home'
   }
-}
+} */

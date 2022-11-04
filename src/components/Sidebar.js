@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import NextLink from 'next/link'
 
