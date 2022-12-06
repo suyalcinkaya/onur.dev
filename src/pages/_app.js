@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { DefaultSeo } from 'next-seo'
@@ -8,8 +7,6 @@ import smoothscroll from 'smoothscroll-polyfill'
 
 import Header from '@/components/Header'
 import PageLayout from '@/components/layouts/PageLayout'
-const DynamicSidebar = dynamic(() => import('@/components/Sidebar'))
-import { ContextProvider } from '@/components/providers/ContextProvider'
 import { trackPageview } from '@/lib/gtag'
 import { defaultSEO } from '@/lib/seo'
 import '@/styles/global.css'
@@ -21,8 +18,6 @@ function App({ Component, pageProps }) {
     pathname,
     query: { slug }
   } = router
-
-  const isSidebarAvailable = pathname !== '/writing/[slug]'
 
   useEffect(() => {
     smoothscroll.polyfill()
@@ -44,10 +39,7 @@ function App({ Component, pageProps }) {
         strategy="worker"
       />
       <DefaultSeo {...defaultSEO} />
-      <ContextProvider>
-        <Header headerTitle={headerTitle} pathname={pathname} slug={slug} />
-        {isSidebarAvailable && <DynamicSidebar pathname={pathname} slug={slug} />}
-      </ContextProvider>
+      <Header headerTitle={headerTitle} pathname={pathname} slug={slug} router={router} />
       <PageLayout pathname={pathname} slug={slug}>
         <Component {...rest} />
       </PageLayout>

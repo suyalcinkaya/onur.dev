@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import NextLink from 'next/link'
 
-import { cachedIsExternalLink } from '@/lib/utils'
+import { isExternalLink } from '@/lib/utils'
 
 const Wrapper = ({ url, isExternal, children, ...rest }) => {
   if (!url) return <div {...rest}>{children}</div>
@@ -23,9 +23,9 @@ const Wrapper = ({ url, isExternal, children, ...rest }) => {
   )
 }
 
-const Card = ({ title, subtitle, url, ...rest }) => {
+const Card = ({ title, subtitle, more, url, ...rest }) => {
   let isExternal = false
-  if (url) isExternal = cachedIsExternalLink(url)
+  if (url) isExternal = isExternalLink(url)
 
   return (
     <Wrapper
@@ -38,6 +38,7 @@ const Card = ({ title, subtitle, url, ...rest }) => {
     >
       <p className="m-0 font-medium word-break">{title}</p>
       {subtitle && <p className="m-0 text-sm font-light text-gray-500 word-break">{subtitle}</p>}
+      {more && <p className="m-0 text-gray-400 word-break tabular-nums">{more}</p>}
     </Wrapper>
   )
 }

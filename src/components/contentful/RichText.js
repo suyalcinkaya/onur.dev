@@ -6,7 +6,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Link from '@/components/Link'
 const DynamicIframe = dynamic(() => import('@/components/contentful/Iframe'))
 const DynamicCodeBlock = dynamic(() => import('@/components/contentful/CodeBlock'))
-import { cachedDasherize } from '@/lib/utils'
+import { dasherize } from '@/lib/utils'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
@@ -20,7 +20,7 @@ function options(links) {
     },
     renderNode: {
       [BLOCKS.HEADING_2]: (_, children) => {
-        const id = cachedDasherize(children)
+        const id = dasherize(children)
         return (
           <h2 id={`h2-${id}`} className="mt-6 mb-2">
             <a href={`#h2-${id}`}>{children}</a>
@@ -28,7 +28,7 @@ function options(links) {
         )
       },
       [BLOCKS.HEADING_3]: (_, children) => {
-        const id = cachedDasherize(children)
+        const id = dasherize(children)
         return (
           <h3 id={`h3-${id}`} className="mt-6 mb-2">
             <a href={`#h3-${id}`}>{children}</a>
@@ -37,7 +37,7 @@ function options(links) {
       },
       // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
       [BLOCKS.PARAGRAPH]: (_, children) => <div className="leading-slacker mb-4 last:mb-0">{children}</div>,
-      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-2 list-disc pl-4 mb-4">{children}</ul>,
+      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-0.5 list-disc pl-6 mb-4">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
         <ol className="flex flex-col gap-y-2 list-inside list-[decimal-leading-zero] mb-4">{children}</ol>
       ),
@@ -62,7 +62,7 @@ function options(links) {
           </figure>
         )
       },
-      [BLOCKS.HR]: () => <hr className="my-12 w-1/5" />,
+      [BLOCKS.HR]: () => <hr className="my-12" />,
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)

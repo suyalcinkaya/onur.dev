@@ -55,6 +55,22 @@ export async function getLast3Posts(preview = false) {
   return entries?.data?.postCollection?.items
 }
 
+export async function getRandomPosts(exemptedSlug = '', preview = false) {
+  const items = await getAllPosts(preview)
+
+  // Generate a random number between 4 and 8
+  const randomCount = Math.floor(Math.random() * 5) + 4
+
+  // Filter out the exempted slug and sort the array randomly
+  const randomPosts = items
+    .filter((item) => item.slug !== exemptedSlug)
+    .sort(() => 0.5 - Math.random())
+    .slice(0, randomCount)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+
+  return randomPosts
+}
+
 export async function getPost(slug, preview = false) {
   const entry = await fetchGraphQL(
     `query {
