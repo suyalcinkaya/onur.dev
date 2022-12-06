@@ -20,7 +20,7 @@ const Header = memo(({ headerTitle = null, pathname, slug, router }) => {
 
   return (
     <header className="fixed top-0 inset-x-0 z-10 w-full h-12 bg-white mx-auto md:border-b md:border-gray-200 shadow-sm">
-      <div className="flex items-center h-full max-w-screen-md shadow md:shadow-none md:mx-auto py-1 px-6 md:px-16">
+      <div className="flex items-center h-full content shadow md:shadow-none">
         {isWritingSlug ? (
           <div className="flex items-center justify-between gap-x-2 w-full">
             <div className="flex items-center gap-x-3">

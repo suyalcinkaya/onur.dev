@@ -5,15 +5,16 @@ import { isExternalLink } from '@/lib/utils'
 const SectionBlock = ({ title, href, children, ...rest }) => {
   let isExternal = false
   if (href) isExternal = isExternalLink(href)
+
   return (
     <div className="flex flex-col gap-4" {...rest}>
       {href ? (
         isExternal ? (
-          <a href={href} target="_blank" className="text-gray-500">
+          <a href={href} target="_blank" className="self-start text-gray-500">
             {title}
           </a>
         ) : (
-          <NextLink href={href} className="text-gray-500">
+          <NextLink href={href} className="self-start text-gray-500">
             {title}
           </NextLink>
         )

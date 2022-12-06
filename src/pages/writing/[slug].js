@@ -33,9 +33,7 @@ const Post = memo(({ post, randomPosts }) => {
         <article className="content">
           <div className="flex flex-col gap-y-3 mb-6">
             <h1>{title}</h1>
-            <time dateTime={postDate} className="block font-light text-gray-500">
-              {dateString}
-            </time>
+            <time dateTime={postDate}>{dateString}</time>
           </div>
           <Suspense fallback={null}>
             <RichText content={content} />
@@ -61,7 +59,9 @@ const Post = memo(({ post, randomPosts }) => {
                     <Fragment key={`post_${slug}`}>
                       <NextLink href={`/writing/${slug}`} className="tabular-nums">
                         <span className="flex items-baseline gap-4">
-                          <span className="shrink whitespace-nowrap text-gray-400">{dateString}</span>
+                          <time dateTime={postDate} className="shrink whitespace-nowrap">
+                            {dateString}
+                          </time>
                           <span className="underline underline-offset-4">{title}</span>
                         </span>
                       </NextLink>

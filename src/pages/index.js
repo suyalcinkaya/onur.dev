@@ -30,7 +30,9 @@ export default function Home({ allPosts }) {
               <Fragment key={`mixtape_${url}`}>
                 <a href={url} target="_blank" className="tabular-nums">
                   <span className="flex items-baseline">
-                    <span className="shrink whitespace-nowrap text-gray-400 pr-4">{dateString}</span>
+                    <time dateTime={date} className="shrink whitespace-nowrap pr-4">
+                      {dateString}
+                    </time>
                     <span className="flex items-center underline underline-offset-4">
                       {title}
                       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +67,9 @@ export default function Home({ allPosts }) {
               <Fragment key={`post_${slug}`}>
                 <NextLink href={`/writing/${slug}`} className="tabular-nums">
                   <span className="flex items-baseline gap-4">
-                    <span className="shrink whitespace-nowrap text-gray-400">{dateString}</span>
+                    <time dateTime={postDate} className="shrink whitespace-nowrap">
+                      {dateString}
+                    </time>
                     <span className="underline underline-offset-4">{title}</span>
                   </span>
                 </NextLink>
