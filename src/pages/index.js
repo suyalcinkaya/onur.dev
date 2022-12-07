@@ -17,7 +17,7 @@ export default function Home({ allPosts }) {
         <SectionBlock title="Latest" href={`/writing/${latestPost.slug}`}>
           <NextLink href={`/writing/${latestPost.slug}`} className="flex flex-col gap-1">
             <h2>{latestPost.title}</h2>
-            <p className="m-0 text-gray-400">{latestPostString}</p>
+            <time dateTime={latestPostDate}>{latestPostString}</time>
           </NextLink>
         </SectionBlock>
         <hr />

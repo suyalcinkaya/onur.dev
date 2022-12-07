@@ -54,12 +54,15 @@
   }
 
   h2 {
-    @apply text-xl;
-    letter-spacing: -0.015em;
+    @apply text-lg md:text-xl;
   }
 
   h3 {
-    @apply text-lg md:text-xl;
+    @apply md:text-lg;
+  }
+
+  h2,
+  h3 {
     letter-spacing: -0.015em;
   }
 
@@ -73,16 +76,16 @@
     @apply hover:underline;
   }
 
-  li::marker {
-    @apply text-gray-400;
-  }
-
   ol > li::marker {
     @apply font-semibold;
   }
 
   ul > li {
     @apply pl-2;
+  }
+
+  ul > li::marker {
+    @apply text-gray-400;
   }
 
   li div {

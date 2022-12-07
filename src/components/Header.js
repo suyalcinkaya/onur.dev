@@ -50,7 +50,7 @@ const Header = memo(({ headerTitle = null, pathname, slug, router }) => {
             <NextLink href="/" className="font-medium">
               Onur Şuyalçınkaya
             </NextLink>
-            <div className="flex gap-6 text-gray-500">
+            <div className="flex gap-4 md:gap-6 text-gray-500">
               <NextLink href="/about">About</NextLink>
               <NextLink href="/journey">Journey</NextLink>
             </div>
