@@ -16,7 +16,7 @@ const Link = (props) => {
   }
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="link underline underline-offset-4" {...rest}>
+    <a href={href} target="_blank" rel="noopener noreferrer" className="link" {...rest}>
       <span className="inline-flex items-center">
         {children}
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">

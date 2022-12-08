@@ -1,9 +1,9 @@
-import { Fragment, memo, Suspense } from 'react'
-import NextLink from 'next/link'
+import { memo, Suspense } from 'react'
 
 import WritingSeo from '@/components/WritingSeo'
 import RichText from '@/components/contentful/RichText'
 import SectionBlock from '@/components/SectionBlock'
+import WritingCard from '@/components/WritingCard'
 import { getPost, getAllPosts, getRandomPosts } from '@/lib/contentful'
 import { getDateTimeFormat, dateToISOString } from '@/lib/utils'
 
@@ -52,20 +52,17 @@ const Post = memo(({ post, randomPosts }) => {
                     sys: { firstPublishedAt }
                   } = post
 
-                  const postDate = date || firstPublishedAt
-                  const dateString = dateToISOString(postDate)
+                  const dateTime = date || firstPublishedAt
+                  const dateString = dateToISOString(dateTime)
 
                   return (
-                    <Fragment key={`post_${slug}`}>
-                      <NextLink href={`/writing/${slug}`} className="tabular-nums">
-                        <span className="flex items-baseline gap-4">
-                          <time dateTime={postDate} className="shrink whitespace-nowrap">
-                            {dateString}
-                          </time>
-                          <span className="underline underline-offset-4">{title}</span>
-                        </span>
-                      </NextLink>
-                    </Fragment>
+                    <WritingCard
+                      key={`writing_${slug}`}
+                      slug={slug}
+                      title={title}
+                      dateTime={dateTime}
+                      dateString={dateString}
+                    />
                   )
                 })}
               </SectionBlock>

@@ -1,8 +1,7 @@
-import { Fragment, Suspense } from 'react'
-import NextLink from 'next/link'
+import { Suspense } from 'react'
 
 import PageTitle from '@/components/PageTitle'
-import Card from '@/components/Card'
+import WritingCard from '@/components/WritingCard'
 import PageSeo from '@/components/PageSeo'
 import RichText from '@/components/contentful/RichText'
 import { getAllPosts, getPage } from '@/lib/contentful'
@@ -25,18 +24,17 @@ export default function Writing({ allPosts, page: { title = 'Writing', content, 
                 sys: { firstPublishedAt }
               } = post
 
-              const postDate = date || firstPublishedAt
-              const dateString = dateToISOString(postDate)
+              const dateTime = date || firstPublishedAt
+              const dateString = dateToISOString(dateTime)
 
               return (
-                <Fragment key={`post_${slug}`}>
-                  <NextLink href={`/writing/${slug}`} className="tabular-nums">
-                    <span className="flex items-baseline gap-4">
-                      <span className="shrink whitespace-nowrap text-gray-400">{dateString}</span>
-                      <span className="underline underline-offset-4">{title}</span>
-                    </span>
-                  </NextLink>
-                </Fragment>
+                <WritingCard
+                  key={`writing_${slug}`}
+                  slug={slug}
+                  title={title}
+                  dateTime={dateTime}
+                  dateString={dateString}
+                />
               )
             })}
           </div>

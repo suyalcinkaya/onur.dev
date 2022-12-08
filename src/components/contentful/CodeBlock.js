@@ -20,7 +20,7 @@ export default function CodeBlock({ title, language, code }) {
   return (
     <ShowInView rootMargin="50px">
       <Suspense fallback={null}>
-        <div className="flex items-center justify-between py-1.5 pl-4 pr-2 rounded-t-lg bg-gray-50 border border-gray-200">
+        <div className="flex items-center justify-between flex-wrap gap-2 py-1.5 pl-4 pr-2 rounded-t-lg bg-gray-50 border border-gray-200">
           {title ? (
             <div className="flex items-center gap-x-4">
               <span className="inline-flex items-center gap-x-1.5">

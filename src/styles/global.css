@@ -73,7 +73,7 @@
   h1 a,
   h2 a,
   h3 a {
-    @apply hover:underline;
+    @apply underline-offset-4 hover:underline;
   }
 
   ol > li::marker {
@@ -126,7 +126,7 @@
   }
 
   .link {
-    @apply underline underline-offset-4 decoration-zinc-300 hover:decoration-current self-start;
+    @apply underline underline-offset-4 self-start;
   }
 
   .pre-code {

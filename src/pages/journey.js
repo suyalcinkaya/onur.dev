@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import Card from '@/components/Card'
+import JourneyCard from '@/components/JourneyCard'
 import Markdown from '@/components/Markdown'
 import PageTitle from '@/components/PageTitle'
 import PageSeo from '@/components/PageSeo'
@@ -34,7 +34,7 @@ const Journey = ({ allLogbook, pageSeo: { title = 'Journey', ...rest } }) => {
                         </span>
                       </div>
                       <div className="flex-grow pl-4">
-                        <Card title={log.title} subtitle={<Markdown>{log.description}</Markdown>} />
+                        <JourneyCard title={log.title} subtitle={<Markdown>{log.description}</Markdown>} />
                       </div>
                     </div>
                   ))}
