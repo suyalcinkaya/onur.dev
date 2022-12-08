@@ -1,35 +1,48 @@
 import { Suspense } from 'react'
+import NextLink from 'next/link'
 
-import Card from '@/components/Card'
 import SectionBlock from '@/components/SectionBlock'
+import WritingCard from '@/components/WritingCard'
 import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
-import { getLast3Posts } from '@/lib/contentful'
-import { MIXTAPES, PROJECTS, PROFILES } from '@/lib/constants'
-import { getDateTimeFormat } from '@/lib/utils'
+import { getAllPosts } from '@/lib/contentful'
+import { MIXTAPES, PROFILES } from '@/lib/constants'
+import { getDateTimeFormat, dateToISOString } from '@/lib/utils'
 
-export default function Home({ recentPosts }) {
+export default function Home({ allPosts }) {
+  const latestPost = allPosts[0]
+  const latestPostDate = latestPost.date || latestPost.firstPublishedAt
+  const latestPostString = getDateTimeFormat(latestPostDate)
+
   return (
     <Suspense fallback={null}>
-      <PageTitle
-        title={
-          <>
-            <span role="img" aria-label="Waving Hand" className="mr-4">
-              👋🏼
-            </span>
-            Hey, I'm Onur
-          </>
-        }
-      />
-      <p>
-        B. 1992, Ankara, Turkey. I am a <Link href={PROFILES.linkedin.url}>software engineer</Link>,{' '}
-        <Link href={PROFILES.github.url}>javascript enthusiast</Link>, <Link href={PROFILES.soundcloud.url}>dj</Link>,{' '}
-        <Link href={PROFILES.medium.url}>writer</Link>, and minimalist. Currently living in Berlin, Germany and crafting
-        things at <Link href="https://hey.car">heycar</Link>.
-      </p>
-      <div className="flex flex-col gap-y-8 mt-12">
-        <SectionBlock title="Recent Posts" href="/writing">
-          {recentPosts.map((post) => {
+      <div className="flex flex-col gap-y-4 content">
+        <SectionBlock title="Latest" href={`/writing/${latestPost.slug}`}>
+          <NextLink href={`/writing/${latestPost.slug}`} className="flex flex-col gap-1">
+            <h2>{latestPost.title}</h2>
+            <time dateTime={latestPostDate}>{latestPostString}</time>
+          </NextLink>
+        </SectionBlock>
+        <hr />
+        <SectionBlock title="Popular Mixtapes" href={PROFILES.soundcloud.url}>
+          {MIXTAPES.map((mixtape) => {
+            const { title, date, url } = mixtape
+            const dateString = dateToISOString(date)
+
+            return (
+              <Link key={`mixtape_${url}`} href={url} className="tabular-nums">
+                <span className="flex items-baseline">
+                  <time dateTime={date} className="shrink whitespace-nowrap pr-4">
+                    {dateString}
+                  </time>
+                  <span className="underline underline-offset-4">{title}</span>
+                </span>
+              </Link>
+            )
+          })}
+        </SectionBlock>
+        <hr />
+        <SectionBlock title="Writing" href="/writing">
+          {allPosts.map((post) => {
             const {
               title,
               date,
@@ -37,29 +50,18 @@ export default function Home({ recentPosts }) {
               sys: { firstPublishedAt }
             } = post
 
-            const postDate = date || firstPublishedAt
-            const dateString = getDateTimeFormat(postDate)
+            const dateTime = date || firstPublishedAt
+            const dateString = dateToISOString(dateTime)
 
             return (
-              <Card
-                key={`post_${slug}`}
+              <WritingCard
+                key={`writing_${slug}`}
+                slug={slug}
                 title={title}
-                subtitle={<time dateTime={postDate}>{dateString}</time>}
-                url={`/writing/${slug}`}
+                dateTime={dateTime}
+                dateString={dateString}
               />
             )
-          })}
-        </SectionBlock>
-        <SectionBlock title="Popular Mixtapes" href={PROFILES.soundcloud.url}>
-          {MIXTAPES.map((mixtape) => {
-            const { title, description, url } = mixtape
-            return <Card key={`mixtape_${url}`} title={title} subtitle={description} url={url} />
-          })}
-        </SectionBlock>
-        <SectionBlock title="Personal Projects" href={PROFILES.github.url}>
-          {PROJECTS.map((project) => {
-            const { title, description, url } = project
-            return <Card key={`project_${url}`} title={title} subtitle={description} url={url} />
           })}
         </SectionBlock>
       </div>
@@ -68,9 +70,9 @@ export default function Home({ recentPosts }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const recentPosts = (await getLast3Posts(preview)) ?? []
+  const allPosts = (await getAllPosts(preview)) ?? []
 
   return {
-    props: { recentPosts, headerTitle: 'Home' }
+    props: { allPosts, headerTitle: 'Home' }
   }
 }

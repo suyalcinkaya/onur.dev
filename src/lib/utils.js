@@ -6,17 +6,9 @@ export const getOgImageUrl = ({ title, url }) => {
   return ogImageUrl
 }
 
-const isExternalLink = (href) => {
+export const isExternalLink = (href) => {
   if (!href) return false
   return !href.startsWith('/') && !href.startsWith('#')
-}
-const isExternalLinkCache = {}
-export const cachedIsExternalLink = (href) => {
-  if (isExternalLinkCache[href]) {
-    return isExternalLinkCache[href]
-  }
-
-  return (isExternalLinkCache[href] = isExternalLink(href))
 }
 
 export async function fetcher(input, init) {
@@ -36,21 +28,18 @@ export async function fetcher(input, init) {
   return res.json()
 }
 
+export const dateToISOString = (date) => {
+  const dateObj = new Date(date)
+  return dateObj.toISOString().split('T')[0]
+}
+
 export const getDateTimeFormat = (date) => {
   const dateObj = new Date(date)
   return Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: '2-digit'
   }).format(dateObj)
 }
 
-const dasherize = (text) => String(text).replace(/ +/g, '-').toLowerCase()
-const dasherizeCache = {}
-export const cachedDasherize = (text) => {
-  if (dasherizeCache[text]) {
-    return dasherizeCache[text]
-  }
-
-  return (dasherizeCache[text] = dasherize(text))
-}
+export const dasherize = (text) => String(text).replace(/ +/g, '-').toLowerCase()

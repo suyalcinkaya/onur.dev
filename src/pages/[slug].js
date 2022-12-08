@@ -9,10 +9,12 @@ export default function Page({ page: { title, content, url, ...rest } }) {
   return (
     <>
       <PageSeo title={title} url={url} {...rest} />
-      <PageTitle title={title} />
-      <Suspense fallback={null}>
-        <RichText content={content} />
-      </Suspense>
+      <div className="content">
+        <PageTitle title={title} />
+        <Suspense fallback={null}>
+          <RichText content={content} />
+        </Suspense>
+      </div>
     </>
   )
 }

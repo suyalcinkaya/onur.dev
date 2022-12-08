@@ -2,10 +2,12 @@ import { memo, Suspense } from 'react'
 
 import WritingSeo from '@/components/WritingSeo'
 import RichText from '@/components/contentful/RichText'
-import { getPost, getAllPosts } from '@/lib/contentful'
-import { getDateTimeFormat } from '@/lib/utils'
+import SectionBlock from '@/components/SectionBlock'
+import WritingCard from '@/components/WritingCard'
+import { getPost, getAllPosts, getRandomPosts } from '@/lib/contentful'
+import { getDateTimeFormat, dateToISOString } from '@/lib/utils'
 
-const Post = memo(({ post }) => {
+const Post = memo(({ post, randomPosts }) => {
   const {
     title,
     description,
@@ -27,28 +29,59 @@ const Post = memo(({ post }) => {
         updatedAt={updatedAt}
         url={`https://onur.dev/writing/${slug}`}
       />
-      <article>
-        <div className="flex flex-col gap-y-3 mb-6">
-          <h1>{title}</h1>
-          <time dateTime={postDate} className="block font-light text-gray-500">
-            {dateString}
-          </time>
-        </div>
-        <Suspense fallback={null}>
-          <RichText content={content} />
-        </Suspense>
-      </article>
+      <div className="flex flex-col gap-12">
+        <article className="content">
+          <div className="flex flex-col gap-y-3 mb-6">
+            <h1>{title}</h1>
+            <time dateTime={postDate}>{dateString}</time>
+          </div>
+          <Suspense fallback={null}>
+            <RichText content={content} />
+          </Suspense>
+        </article>
+        {randomPosts.length > 0 && (
+          <>
+            <hr />
+            <div className="content">
+              <SectionBlock title="You might also enjoy">
+                {randomPosts.map((post) => {
+                  const {
+                    title,
+                    date,
+                    slug,
+                    sys: { firstPublishedAt }
+                  } = post
+
+                  const dateTime = date || firstPublishedAt
+                  const dateString = dateToISOString(dateTime)
+
+                  return (
+                    <WritingCard
+                      key={`writing_${slug}`}
+                      slug={slug}
+                      title={title}
+                      dateTime={dateTime}
+                      dateString={dateString}
+                    />
+                  )
+                })}
+              </SectionBlock>
+            </div>
+          </>
+        )}
+      </div>
     </>
   )
 })
 
 export async function getStaticProps({ params, preview = false }) {
-  const data = await getPost(params.slug, preview)
+  const [data, randomPosts] = await Promise.all([getPost(params.slug, preview), getRandomPosts(params.slug, preview)])
 
   return {
     props: {
       post: data?.post ?? null,
-      headerTitle: data?.post?.title ?? ''
+      headerTitle: data?.post?.title ?? '',
+      randomPosts: randomPosts ?? []
     }
   }
 }

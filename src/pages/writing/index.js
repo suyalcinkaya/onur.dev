@@ -1,42 +1,45 @@
 import { Suspense } from 'react'
 
 import PageTitle from '@/components/PageTitle'
-import Card from '@/components/Card'
+import WritingCard from '@/components/WritingCard'
 import PageSeo from '@/components/PageSeo'
 import RichText from '@/components/contentful/RichText'
 import { getAllPosts, getPage } from '@/lib/contentful'
-import { getDateTimeFormat } from '@/lib/utils'
+import { dateToISOString } from '@/lib/utils'
 
 export default function Writing({ allPosts, page: { title = 'Writing', content, ...rest } }) {
   return (
     <>
       <PageSeo title={title} {...rest} />
-      <PageTitle title={title} />
-      <Suspense fallback={null}>
-        <RichText content={content} />
-        <div className="flex flex-col gap-y-6">
-          {allPosts.map((post) => {
-            const {
-              title,
-              date,
-              slug,
-              sys: { firstPublishedAt }
-            } = post
+      <div className="content">
+        <PageTitle title={title} />
+        <Suspense fallback={null}>
+          <RichText content={content} />
+          <div className="flex flex-col gap-2">
+            {allPosts.map((post) => {
+              const {
+                title,
+                date,
+                slug,
+                sys: { firstPublishedAt }
+              } = post
 
-            const postDate = date || firstPublishedAt
-            const dateString = getDateTimeFormat(postDate)
+              const dateTime = date || firstPublishedAt
+              const dateString = dateToISOString(dateTime)
 
-            return (
-              <Card
-                key={`post_${slug}`}
-                title={title}
-                subtitle={<time dateTime={postDate}>{dateString}</time>}
-                url={`/writing/${slug}`}
-              />
-            )
-          })}
-        </div>
-      </Suspense>
+              return (
+                <WritingCard
+                  key={`writing_${slug}`}
+                  slug={slug}
+                  title={title}
+                  dateTime={dateTime}
+                  dateString={dateString}
+                />
+              )
+            })}
+          </div>
+        </Suspense>
+      </div>
     </>
   )
 }

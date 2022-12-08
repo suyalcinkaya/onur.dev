@@ -13,9 +13,7 @@
   }
 
   body {
-    @apply font-sans antialiased bg-white text-base text-zinc-900;
-    letter-spacing: 0.005em;
-    word-spacing: -0.04em;
+    @apply font-sans antialiased bg-white text-base text-[#1a1a1a];
   }
 
   #__next {
@@ -47,20 +45,25 @@
   h1,
   h2,
   h3 {
-    @apply font-bold text-black scroll-mt-16;
-    letter-spacing: -0.015em;
+    @apply font-medium text-black scroll-mt-16;
   }
 
   h1 {
     @apply text-2xl md:text-3xl;
+    letter-spacing: -0.02em;
   }
 
   h2 {
-    @apply text-xl;
+    @apply text-lg md:text-xl;
   }
 
   h3 {
-    @apply text-lg md:text-xl;
+    @apply md:text-lg;
+  }
+
+  h2,
+  h3 {
+    letter-spacing: -0.015em;
   }
 
   h2 + h3 {
@@ -70,7 +73,7 @@
   h1 a,
   h2 a,
   h3 a {
-    @apply hover:underline;
+    @apply underline-offset-4 hover:underline;
   }
 
   ol > li::marker {
@@ -79,6 +82,10 @@
 
   ul > li {
     @apply pl-2;
+  }
+
+  ul > li::marker {
+    @apply text-gray-400;
   }
 
   li div {
@@ -103,15 +110,23 @@
   pre {
     @apply py-3 pl-3 pr-[15%] overflow-x-auto rounded-b-lg bg-white border-x border-b border-gray-200 text-xs leading-slacker text-left break-normal;
   }
+
+  time {
+    @apply text-gray-400;
+  }
 }
 
 @layer components {
+  .content {
+    @apply px-6 md:px-16 mx-auto w-full max-w-screen-md;
+  }
+
   .btn {
     @apply flex flex-none items-center justify-between gap-x-1.5 text-sm leading-none font-medium bg-white rounded-lg cursor-pointer;
   }
 
   .link {
-    @apply underline underline-offset-4 decoration-zinc-300 hover:decoration-current self-start;
+    @apply underline underline-offset-4 self-start;
   }
 
   .pre-code {

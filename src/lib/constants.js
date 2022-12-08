@@ -72,115 +72,24 @@ export const PROFILES = {
   }
 }
 
-export const NAVIGATIONS = {
-  header: [
-    {
-      title: 'Home',
-      url: '/',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path d="M21 20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.49a1 1 0 0 1 .386-.79l8-6.222a1 1 0 0 1 1.228 0l8 6.222a1 1 0 0 1 .386.79V20zm-2-1V9.978l-7-5.444-7 5.444V19h14z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Writing',
-      url: '/writing',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path d="M6.94 14.036c-.233.624-.43 1.2-.606 1.783.96-.697 2.101-1.139 3.418-1.304 2.513-.314 4.746-1.973 5.876-4.058l-1.456-1.455 1.413-1.415 1-1.001c.43-.43.915-1.224 1.428-2.368-5.593.867-9.018 4.292-11.074 9.818zM17 9.001L18 10c-1 3-4 6-8 6.5-2.669.334-4.336 2.167-5.002 5.5H3C4 16 6 2 21 2c-1 2.997-1.998 4.996-2.997 5.997L17 9.001z" />
-        </svg>
-      )
-    },
-    {
-      title: 'About',
-      url: '/about',
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      )
-    },
-    {
-      title: 'Journey',
-      url: '/journey',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-          <path fill="none" d="M0 0h24v24H0z" />
-          <path d="M3 18h18a.5.5 0 0 1 .4.8l-2.1 2.8a1 1 0 0 1-.8.4h-13a1 1 0 0 1-.8-.4l-2.1-2.8A.5.5 0 0 1 3 18zm4.161-4H13V6.702L7.161 14zM15 2.425V15a1 1 0 0 1-1 1H4.04a.5.5 0 0 1-.39-.812L14.11 2.113a.5.5 0 0 1 .89.312z" />
-        </svg>
-      )
-    },
-    {
-      title: 'Stack',
-      url: '/stack',
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-          />
-        </svg>
-      )
-    }
-    /* {
-      title: 'Bookmarks',
-      url: '/bookmarks',
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-        </svg>
-      )
-    } */
-  ]
-}
-
 export const MIXTAPES = [
   {
     title: 'Summer Sax',
     description: '11M+ plays ∙ 55K+ likes',
-    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0'
+    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0',
+    date: '2015-11-02'
   },
   {
     title: 'Sax On Fire',
     description: '1.7M+ plays ∙ 40K+ likes',
-    url: 'https://soundcloud.com/jagerman/saxonfire'
+    url: 'https://soundcloud.com/jagerman/saxonfire',
+    date: '2014-04-21'
   },
   {
     title: 'Casablanca',
     description: '130K+ plays ∙ 3K+ likes',
-    url: 'https://soundcloud.com/jagerman/casablanca'
+    url: 'https://soundcloud.com/jagerman/casablanca',
+    date: '2013-12-31'
   }
 ]
 
