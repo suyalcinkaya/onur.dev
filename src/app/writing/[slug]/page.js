@@ -23,7 +23,7 @@ export async function generateStaticParams() {
   const allPosts = (await getAllPosts()) ?? []
 
   return allPosts.map((post) => ({
-    slug: `/writing/${post.slug}`
+    slug: post.slug
   }))
 }
 

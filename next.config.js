@@ -1,7 +1,5 @@
 module.exports = {
   experimental: {
-    newNextLinkBehavior: true,
-    nextScriptWorkers: true,
     appDir: true
   },
   swcMinify: true,

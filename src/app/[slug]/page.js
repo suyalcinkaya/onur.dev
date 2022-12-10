@@ -64,6 +64,6 @@ export async function generateStaticParams() {
   return allPages
     .filter((page) => !Boolean(page.hasCustomPage))
     .map((page) => ({
-      slug: `/${page.url}`
+      slug: page.url
     }))
 }
