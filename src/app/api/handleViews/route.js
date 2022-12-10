@@ -1,7 +1,12 @@
+import { NextResponse } from 'next/server'
 import { supabase, tableName } from '@/lib/supabase'
 
-export default async function handleViews(req, res) {
-  const { slug } = req.query
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const slug = searchParams.get('slug');
+
+
+  // const { slug } = req.query
   const { data } = await supabase.from(tableName).select('id, view_count, like_count').eq('slug', slug)
   const latestData = data[0]
 
@@ -14,13 +19,13 @@ export default async function handleViews(req, res) {
       view_count_updated_at: new Date()
     })
 
-    return res.status(200).json({
+    return NextResponse.json({
       likes: newOrUpdatedData[0].like_count,
       views: newOrUpdatedData[0].view_count
     })
   }
 
-  return res.status(200).json({
+  return NextResponse.json({
     likes: latestData?.like_count || 0,
     views: latestData?.view_count || 0
   })

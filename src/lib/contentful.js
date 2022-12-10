@@ -131,6 +131,28 @@ export async function getPost(slug, preview = false) {
   }
 }
 
+export async function getPostSeo(slug, preview = false) {
+  const entry = await fetchGraphQL(
+    `query {
+      postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
+        items {
+          title
+          description
+          slug
+          date
+          sys {
+            firstPublishedAt
+            publishedAt
+          }
+        }
+      }
+    }`,
+    preview
+  )
+
+  return entry?.data?.postCollection?.items?.[0]
+}
+
 export async function getAllCodeSnippets(preview = false) {
   const entries = await fetchGraphQL(
     `query {

@@ -1,5 +1,7 @@
+'use client'
+
 import dynamic from 'next/dynamic'
-import NextImage from 'next/future/image'
+import NextImage from 'next/image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 

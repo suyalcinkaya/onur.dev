@@ -1,4 +1,4 @@
-export default async function exit(_, res) {
+export async function GET(_, res) {
   // Exit from "Preview Mode".
   res.clearPreviewData()
 

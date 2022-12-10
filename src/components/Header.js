@@ -1,4 +1,7 @@
+'use client'
+
 import { memo } from 'react'
+import { usePathname } from 'next/navigation'
 import NextLink from 'next/link'
 import dynamic from 'next/dynamic'
 import { useScrollData } from 'scroll-data-hook'
@@ -6,12 +9,14 @@ import { useScrollData } from 'scroll-data-hook'
 const DynamicViews = dynamic(() => import('@/components/Views'))
 import { SCROLL_THRESHOLD } from '@/lib/constants'
 
-const Header = memo(({ headerTitle = null, pathname, slug, router }) => {
+const Header = memo(({ headerTitle = null }) => {
+  const pathname = usePathname()
+  const slug = pathname?.split?.('/')?.pop()
+  const isWritingSlug = slug && pathname.startsWith('/writing/')
+
   const {
     position: { y: scrollY }
   } = useScrollData()
-  const isWritingSlug = slug && pathname === '/writing/[slug]'
-
   const translateY = Math.max(110 - scrollY, 0)
   const opacity = Math.min(
     Math.max(((scrollY - SCROLL_THRESHOLD * (SCROLL_THRESHOLD / (scrollY ** 2 / 100))) / 100).toFixed(2), 0),

@@ -8,7 +8,8 @@ import { getAllPosts } from '@/lib/contentful'
 import { MIXTAPES, PROFILES } from '@/lib/constants'
 import { getDateTimeFormat, dateToISOString } from '@/lib/utils'
 
-export default function Home({ allPosts }) {
+export default async function Home() {
+  const { allPosts } = await fetchData()
   const latestPost = allPosts[0]
   const latestPostDate = latestPost.date || latestPost.firstPublishedAt
   const latestPostString = getDateTimeFormat(latestPostDate)
@@ -30,8 +31,8 @@ export default function Home({ allPosts }) {
 
             return (
               <Link key={`mixtape_${url}`} href={url} className="tabular-nums">
-                <span className="flex items-baseline">
-                  <time dateTime={date} className="shrink whitespace-nowrap pr-4">
+                <span className="flex items-baseline gap-4">
+                  <time dateTime={date} className="shrink whitespace-nowrap">
                     {dateString}
                   </time>
                   <span className="underline underline-offset-4">{title}</span>
@@ -69,10 +70,7 @@ export default function Home({ allPosts }) {
   )
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPosts(preview)) ?? []
-
-  return {
-    props: { allPosts, headerTitle: 'Home' }
-  }
+async function fetchData() {
+  const allPosts = (await getAllPosts()) ?? []
+  return { allPosts, headerTitle: 'Home' }
 }

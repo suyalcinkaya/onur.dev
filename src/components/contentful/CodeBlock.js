@@ -1,3 +1,5 @@
+'use client'
+
 import { Suspense, useState } from 'react'
 import dynamic from 'next/dynamic'
 const DynamicSyntaxHighlighter = dynamic(() => import('react-syntax-highlighter/dist/cjs/prism-async-light'))

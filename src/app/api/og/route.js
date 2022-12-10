@@ -4,13 +4,13 @@ export const config = {
   runtime: 'experimental-edge'
 }
 
-const font = fetch(new URL('../../assets/SFProDisplay-Bold.ttf', import.meta.url)).then((res) => res.arrayBuffer())
+const font = fetch(new URL('@/assets/SFProDisplay-Bold.ttf', import.meta.url)).then((res) => res.arrayBuffer())
 
-export default async function handler(req) {
+export async function GET(request) {
   const fontData = await font
 
   try {
-    const { searchParams } = new URL(req.url)
+    const { searchParams } = new URL(request.url)
     const titleParam = searchParams.get('title')
     const urlParam = searchParams.get('url')
     const url = `onur.dev${urlParam ? `/${urlParam}` : ''}`

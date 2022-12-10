@@ -1,7 +1,5 @@
 export const getOgImageUrl = ({ title, url }) => {
-  let ogImageUrl = `${process.env.SITE_URL ? 'https://' + process.env.SITE_URL : ''}/api/og?title=${encodeURIComponent(
-    title
-  )}`
+  let ogImageUrl = `${process.env.SITE_URL}/api/og?title=${encodeURIComponent(title)}`
   if (url) ogImageUrl += `&url=${url}`
   return ogImageUrl
 }
