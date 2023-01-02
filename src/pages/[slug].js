@@ -22,6 +22,12 @@ export default function Page({ page: { title, content, url, ...rest } }) {
 export async function getStaticProps({ params: { slug }, preview = false }) {
   const page = (await getPage(slug, preview)) ?? {}
 
+  if (!page) {
+    return {
+      notFound: true
+    }
+  }
+
   return {
     props: { page, headerTitle: page?.title || '' }
   }

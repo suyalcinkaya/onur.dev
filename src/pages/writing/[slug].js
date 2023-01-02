@@ -77,10 +77,16 @@ const Post = memo(({ post, randomPosts }) => {
 export async function getStaticProps({ params, preview = false }) {
   const [data, randomPosts] = await Promise.all([getPost(params.slug, preview), getRandomPosts(params.slug, preview)])
 
+  if (!data?.post) {
+    return {
+      notFound: true
+    }
+  }
+
   return {
     props: {
-      post: data?.post ?? null,
-      headerTitle: data?.post?.title ?? '',
+      post: data.post,
+      headerTitle: data.post.title ?? '',
       randomPosts: randomPosts ?? []
     }
   }
