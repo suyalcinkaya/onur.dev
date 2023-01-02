@@ -104,7 +104,7 @@
   }
 
   img {
-    @apply rounded-xl animate-reveal;
+    @apply rounded-xl motion-safe:animate-reveal;
   }
 
   pre {

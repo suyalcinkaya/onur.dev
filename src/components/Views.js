@@ -11,7 +11,7 @@ const Views = ({ slug }) => {
 
   if (!data) {
     return (
-      <div role="status" className="w-14 h-4 rounded-lg animate-pulse bg-slate-200">
+      <div role="status" className="w-14 h-4 rounded-lg motion-safe:animate-pulse bg-slate-200">
         <span className="sr-only">Loading</span>
       </div>
     )

@@ -44,8 +44,8 @@ export default async function PageSlug({ params }) {
 
   return (
     <div className="content">
-      <PageTitle title={title} />
       <Suspense fallback={null}>
+        <PageTitle title={title} />
         <RichText content={content} />
       </Suspense>
     </div>
@@ -61,9 +61,11 @@ async function fetchData(slug) {
 export async function generateStaticParams() {
   const allPages = (await getAllPages()) ?? []
 
-  return allPages
-    .filter((page) => !Boolean(page.hasCustomPage))
-    .map((page) => ({
-      slug: page.url
-    }))
+  return allPages.length > 0
+    ? allPages
+        .filter((page) => !Boolean(page.hasCustomPage))
+        .map((page) => ({
+          slug: page.url
+        }))
+    : []
 }
