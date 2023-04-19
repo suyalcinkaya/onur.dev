@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = seoData
 
-  const url = `https://onur.dev/writing/${postSlug}`
+  const siteUrl = `/writing/${postSlug}`
   const postDate = date || firstPublishedAt
   const publishedTime = new Date(postDate).toISOString()
   const modifiedTime = new Date(updatedAt).toISOString()
@@ -63,10 +63,10 @@ export async function generateMetadata({ params }) {
       ...(updatedAt && {
         modifiedTime
       }),
-      url
+      url: siteUrl
     },
     alternates: {
-      canonical: url
+      canonical: siteUrl
     }
   }
 }

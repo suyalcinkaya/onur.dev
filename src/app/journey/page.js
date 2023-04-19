@@ -12,7 +12,7 @@ export async function generateMetadata() {
   if (!seoData) return null
 
   const { title, url, seoTitle, seoDescription } = seoData
-  const siteUrl = `https://onur.dev/${url}`
+  const siteUrl = `/${url}`
 
   return {
     title: seoTitle,

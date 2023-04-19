@@ -8,9 +8,9 @@ import '@/styles/global.css'
 
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
-const url = 'https://onur.dev'
 
 export const metadata = {
+  metadataBase: new URL('https://onur.dev'),
   robots: {
     index: true,
     follow: true
@@ -28,12 +28,12 @@ export const metadata = {
     ],
     alt: title,
     type: 'website',
-    url,
+    url: '/',
     siteName: title,
     locale: 'en_IE'
   },
   alternates: {
-    canonical: url
+    canonical: '/'
   },
   viewport: {
     width: 'device-width',
