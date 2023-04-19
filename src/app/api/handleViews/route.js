@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server'
 import { supabase, tableName } from '@/lib/supabase'
 
+export const config = {
+  runtime: 'edge'
+}
+
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const slug = searchParams.get('slug');
+  const { searchParams } = new URL(request.url)
+  const slug = searchParams.get('slug')
 
-
-  // const { slug } = req.query
   const { data } = await supabase.from(tableName).select('id, view_count, like_count').eq('slug', slug)
   const latestData = data[0]
 
