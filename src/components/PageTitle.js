@@ -1,7 +1,12 @@
-const PageTitle = ({ title, ...rest }) => {
+import Balancer from 'react-wrap-balancer'
+
+const PageTitle = ({ title, subtitle, className = 'mb-6', ...rest }) => {
   return (
-    <div className="mb-6">
-      <h1 {...rest}>{title}</h1>
+    <div className={className}>
+      <h1 {...rest}>
+        <Balancer>{title}</Balancer>
+      </h1>
+      {subtitle}
     </div>
   )
 }

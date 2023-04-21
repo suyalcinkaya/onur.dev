@@ -39,9 +39,9 @@ function options(links) {
       },
       // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
       [BLOCKS.PARAGRAPH]: (_, children) => <div className="leading-slacker mb-4 last:mb-0">{children}</div>,
-      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-y-0.5 list-disc pl-6 mb-4">{children}</ul>,
+      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-0.5 list-disc pl-6 mb-4">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
-        <ol className="flex flex-col gap-y-2 list-inside list-[decimal-leading-zero] mb-4">{children}</ol>
+        <ol className="flex flex-col gap-2 list-inside list-[decimal-leading-zero] mb-4">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (_, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (_, children) => (
@@ -51,7 +51,7 @@ function options(links) {
         const asset = findAsset(node.data.target.sys.id)
 
         return (
-          <figure className="flex flex-col gap-y-2 mb-6">
+          <figure className="flex flex-col gap-2 mb-6">
             <NextImage
               src={asset.url}
               height={asset.height || 300}

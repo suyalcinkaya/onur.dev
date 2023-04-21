@@ -4,7 +4,7 @@ import PageLayout from '@/layouts/PageLayout'
 import { getOgImageUrl } from '@/lib/utils'
 import { PROFILES } from '@/lib/constants'
 import { sharedOpenGraphImage } from '@/app/shared-metadata'
-import '@/styles/global.css'
+import '@/app/globals.css'
 
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
@@ -48,16 +48,14 @@ export const metadata = {
   }
 }
 
-export default function RootLayout({ headerTitle, children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header headerTitle={headerTitle} />
-        <main className="flex min-h-screen py-32 overflow-hidden px-safe">
-          <PageLayout>
-            <>{children}</>
-          </PageLayout>
-        </main>
+        <Header />
+        <PageLayout>
+          <>{children}</>
+        </PageLayout>
         <Analytics />
       </body>
     </html>

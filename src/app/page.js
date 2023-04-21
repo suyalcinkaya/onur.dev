@@ -8,6 +8,11 @@ import { getAllPosts } from '@/lib/contentful'
 import { MIXTAPES, PROFILES } from '@/lib/constants'
 import { getDateTimeFormat, dateToISOString } from '@/lib/utils'
 
+async function fetchData() {
+  const allPosts = (await getAllPosts()) ?? []
+  return { allPosts, headerTitle: 'Home' }
+}
+
 export default async function Home() {
   const { allPosts } = await fetchData()
   const latestPost = allPosts[0]
@@ -15,33 +20,35 @@ export default async function Home() {
   const latestPostString = getDateTimeFormat(latestPostDate)
 
   return (
-    <Suspense fallback={null}>
-      <div className="flex flex-col gap-y-4 content">
+    <div className="flex flex-col gap-4 content">
+      <Suspense fallback={null}>
         <SectionBlock title="Latest" href={`/writing/${latestPost.slug}`}>
           <NextLink href={`/writing/${latestPost.slug}`} className="flex flex-col gap-1">
             <h2>{latestPost.title}</h2>
             <time dateTime={latestPostDate}>{latestPostString}</time>
           </NextLink>
         </SectionBlock>
-        <hr />
-        <SectionBlock title="Popular Mixtapes" href={PROFILES.soundcloud.url}>
-          {MIXTAPES.map((mixtape) => {
-            const { title, date, url } = mixtape
-            const dateString = dateToISOString(date)
+      </Suspense>
+      <hr />
+      <SectionBlock title="Popular Mixtapes" href={PROFILES.soundcloud.url}>
+        {MIXTAPES.map((mixtape) => {
+          const { title, date, url } = mixtape
+          const dateString = dateToISOString(date)
 
-            return (
-              <Link key={`mixtape_${url}`} href={url} className="tabular-nums">
-                <span className="flex items-baseline gap-4">
-                  <time dateTime={date} className="shrink whitespace-nowrap">
-                    {dateString}
-                  </time>
-                  <span className="underline underline-offset-4">{title}</span>
-                </span>
-              </Link>
-            )
-          })}
-        </SectionBlock>
-        <hr />
+          return (
+            <Link key={`mixtape_${url}`} href={url} className="tabular-nums">
+              <span className="flex items-baseline gap-4">
+                <time dateTime={date} className="shrink whitespace-nowrap">
+                  {dateString}
+                </time>
+                <span className="underline underline-offset-4">{title}</span>
+              </span>
+            </Link>
+          )
+        })}
+      </SectionBlock>
+      <hr />
+      <Suspense fallback={null}>
         <SectionBlock title="Writing" href="/writing">
           {allPosts.map((post) => {
             const {
@@ -65,12 +72,7 @@ export default async function Home() {
             )
           })}
         </SectionBlock>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   )
-}
-
-async function fetchData() {
-  const allPosts = (await getAllPosts()) ?? []
-  return { allPosts, headerTitle: 'Home' }
 }

@@ -1,12 +1,9 @@
-'use client'
-
 import useSWR from 'swr'
 
 import { fetcher } from '@/lib/utils'
 
 const Views = ({ slug }) => {
   const { data, error } = useSWR(`/api/handleViews?slug=${slug}`, fetcher)
-
   if (error) return null
 
   if (!data) {

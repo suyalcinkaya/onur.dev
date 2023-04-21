@@ -2,30 +2,11 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import RichText from '@/components/contentful/RichText'
-import SectionBlock from '@/components/SectionBlock'
-import WritingCard from '@/components/WritingCard'
+import PageTitle from '@/components/PageTitle'
+import { RandomPosts } from '@/components/RandomPosts'
 import { getAllPosts, getPost, getRandomPosts, getPostSeo } from '@/lib/contentful'
-import { getDateTimeFormat, dateToISOString, getOgImageUrl } from '@/lib/utils'
+import { getDateTimeFormat, getOgImageUrl, fetcher } from '@/lib/utils'
 import { sharedOpenGraphImage } from '@/app/shared-metadata'
-
-async function fetchData(slug) {
-  const [data, randomPosts] = await Promise.all([getPost(slug), getRandomPosts(slug)])
-  if (!data?.post) notFound()
-
-  return {
-    post: data.post,
-    headerTitle: data.post.title ?? '',
-    randomPosts: randomPosts ?? []
-  }
-}
-
-export async function generateStaticParams() {
-  const allPosts = (await getAllPosts()) ?? []
-
-  return allPosts.map((post) => ({
-    slug: post.slug
-  }))
-}
 
 export async function generateMetadata({ params }) {
   const { slug } = params
@@ -71,6 +52,22 @@ export async function generateMetadata({ params }) {
   }
 }
 
+export async function generateStaticParams() {
+  const allPosts = (await getAllPosts()) ?? []
+  return allPosts.map((post) => ({ slug: post.slug }))
+}
+
+async function fetchData(slug) {
+  const [data, randomPosts] = await Promise.all([getPost(slug), getRandomPosts(slug)])
+  if (!data?.post) notFound()
+
+  return {
+    post: data.post,
+    headerTitle: data.post.title ?? '',
+    randomPosts: randomPosts ?? []
+  }
+}
+
 export default async function WritingSlug({ params }) {
   const { slug } = params
   const { post, randomPosts } = await fetchData(slug)
@@ -92,58 +89,38 @@ export default async function WritingSlug({ params }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    title,
+    headline: title,
     description,
     datePublished,
     dateModified,
-    authorName: 'Onur Şuyalçınkaya',
-    image: [getOgImageUrl({ title })],
+    author: {
+      '@type': 'Person',
+      name: 'Onur Şuyalçınkaya'
+    },
+    image: {
+      '@type': 'ImageObject',
+      height: '630',
+      width: '1200',
+      url: getOgImageUrl({ title })
+    },
     url: `https://onur.dev/writing/${slug}`
   }
 
   return (
     <>
-      <div className="flex flex-col gap-12">
+      <Suspense fallback={null}>
         <article className="content">
-          <div className="flex flex-col gap-y-3 mb-6">
-            <h1>{title}</h1>
-            <time dateTime={postDate}>{dateString}</time>
-          </div>
-          <Suspense fallback={null}>
-            <RichText content={content} />
-          </Suspense>
+          <PageTitle
+            title={title}
+            subtitle={<time dateTime={postDate}>{dateString}</time>}
+            className="flex flex-col gap-3 mb-6"
+          />
+          <RichText content={content} />
         </article>
-        {randomPosts.length > 0 && (
-          <>
-            <hr />
-            <div className="content">
-              <SectionBlock title="You might also enjoy">
-                {randomPosts.map((post) => {
-                  const {
-                    title,
-                    date,
-                    slug,
-                    sys: { firstPublishedAt }
-                  } = post
-
-                  const dateTime = date || firstPublishedAt
-                  const dateString = dateToISOString(dateTime)
-
-                  return (
-                    <WritingCard
-                      key={`writing_${slug}`}
-                      slug={slug}
-                      title={title}
-                      dateTime={dateTime}
-                      dateString={dateString}
-                    />
-                  )
-                })}
-              </SectionBlock>
-            </div>
-          </>
-        )}
-      </div>
+      </Suspense>
+      <Suspense fallback={null}>
+        <RandomPosts randomPosts={randomPosts} />
+      </Suspense>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>
   )

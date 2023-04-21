@@ -36,6 +36,24 @@ export async function generateMetadata({ params }) {
   }
 }
 
+export async function generateStaticParams() {
+  const allPages = (await getAllPages()) ?? []
+
+  return allPages.length > 0
+    ? allPages
+        .filter((page) => !Boolean(page.hasCustomPage))
+        .map((page) => ({
+          slug: page.url
+        }))
+    : []
+}
+
+async function fetchData(slug) {
+  const page = (await getPage(slug)) ?? null
+  if (!page) notFound()
+  return { page, headerTitle: page?.title || '' }
+}
+
 export default async function PageSlug({ params }) {
   const { slug } = params
   const {
@@ -50,22 +68,4 @@ export default async function PageSlug({ params }) {
       </Suspense>
     </div>
   )
-}
-
-async function fetchData(slug) {
-  const page = (await getPage(slug)) ?? null
-  if (!page) notFound()
-  return { page, headerTitle: page?.title || '' }
-}
-
-export async function generateStaticParams() {
-  const allPages = (await getAllPages()) ?? []
-
-  return allPages.length > 0
-    ? allPages
-        .filter((page) => !Boolean(page.hasCustomPage))
-        .map((page) => ({
-          slug: page.url
-        }))
-    : []
 }
