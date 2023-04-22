@@ -57,6 +57,7 @@ function options(links) {
               height={asset.height || 300}
               width={asset.width || 400}
               alt={asset.description}
+              className="border border-gray-100"
             />
             {asset.description && (
               <figcaption className="text-xs text-gray-500 text-center font-light">{asset.description}</figcaption>

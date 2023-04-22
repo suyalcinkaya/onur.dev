@@ -49,7 +49,7 @@
   h1,
   h2,
   h3 {
-    @apply font-medium text-black scroll-mt-16;
+    @apply font-semibold text-black scroll-mt-16;
   }
 
   h1 {

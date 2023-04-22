@@ -23,9 +23,8 @@ const PageLayout = ({ children, ...rest }) => {
             exit={{ y: 15, opacity: 0 }}
             className="h-full w-full"
             // transition={{ duration: 0.3 }}
-            // transition={{ duration: 0.3, ease: [0.175, 0.85, 0.42, 0.96] }}
           >
-            <>{children}</>
+            {children}
           </motion.div>
         </>
       </AnimatePresence>
