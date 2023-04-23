@@ -23,17 +23,19 @@ function options(links) {
     renderNode: {
       [BLOCKS.HEADING_2]: (_, children) => {
         const id = dasherize(children)
+        const url = `h2-${id}`
         return (
-          <h2 id={`h2-${id}`} className="mt-6 mb-2">
-            <a href={`#h2-${id}`}>{children}</a>
+          <h2 id={url} className="mt-6 mb-2">
+            <a href={`#${url}`}>{children}</a>
           </h2>
         )
       },
       [BLOCKS.HEADING_3]: (_, children) => {
         const id = dasherize(children)
+        const url = `h3-${id}`
         return (
-          <h3 id={`h3-${id}`} className="mt-6 mb-2">
-            <a href={`#h3-${id}`}>{children}</a>
+          <h3 id={url} className="mt-6 mb-2">
+            <a href={`#${url}`}>{children}</a>
           </h3>
         )
       },

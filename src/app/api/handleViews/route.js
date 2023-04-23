@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server'
 import { supabase, tableName } from '@/lib/supabase'
 
-export const config = {
-  runtime: 'edge'
-}
+export const runtime = 'edge'
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url)

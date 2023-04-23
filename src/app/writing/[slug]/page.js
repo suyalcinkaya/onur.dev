@@ -5,7 +5,7 @@ import RichText from '@/components/contentful/RichText'
 import PageTitle from '@/components/PageTitle'
 import { RandomPosts } from '@/components/RandomPosts'
 import { getAllPosts, getPost, getRandomPosts, getPostSeo } from '@/lib/contentful'
-import { getDateTimeFormat, getOgImageUrl, fetcher } from '@/lib/utils'
+import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { sharedOpenGraphImage } from '@/app/shared-metadata'
 
 export async function generateMetadata({ params }) {
