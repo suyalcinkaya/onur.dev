@@ -53,9 +53,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header />
-        <PageLayout>
-          <>{children}</>
-        </PageLayout>
+        <PageLayout>{children}</PageLayout>
         <Analytics />
       </body>
     </html>

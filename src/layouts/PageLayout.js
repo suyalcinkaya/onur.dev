@@ -1,10 +1,15 @@
 'use client'
 
+import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const PageLayout = ({ children, ...rest }) => {
+const PageLayout = ({ children }) => {
   const pathname = usePathname()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [pathname])
 
   return (
     <main className="flex min-h-screen py-32 overflow-hidden px-safe">
@@ -12,8 +17,7 @@ const PageLayout = ({ children, ...rest }) => {
         mode="wait"
         initial={false}
         // because router.push(...) doesn't scroll to top
-        onExitComplete={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        {...rest}
+        // onExitComplete={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >
         <>
           <motion.div
@@ -22,7 +26,6 @@ const PageLayout = ({ children, ...rest }) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 15, opacity: 0 }}
             className="h-full w-full"
-            // transition={{ duration: 0.3 }}
           >
             {children}
           </motion.div>

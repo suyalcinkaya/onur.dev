@@ -50,14 +50,21 @@ export default function CodeBlock({ title, language, code }) {
             {copied ? (
               <motion.span
                 key="copied"
-                initial={{ opacity: 0, x: -2 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -2 }}
+                initial={{ opacity: 0, y: 2 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -2 }}
+                className="w-10"
               >
                 Copied
               </motion.span>
             ) : (
-              <motion.span key="copy" initial={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 2 }}>
+              <motion.span
+                key="copy"
+                initial={{ opacity: 0, y: 2 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -2 }}
+                className="w-10"
+              >
                 Copy
               </motion.span>
             )}
