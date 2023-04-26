@@ -5,7 +5,7 @@ import PageTitle from '@/components/PageTitle'
 import RichText from '@/components/contentful/RichText'
 import { getAllPages, getPage, getPageSeo } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
-import { sharedOpenGraphImage } from '@/app/shared-metadata'
+import { openGraphImage } from '@/app/shared-metadata'
 
 export async function generateMetadata({ params }) {
   const { slug } = params
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
       description: seoDescription,
       images: [
         {
-          ...sharedOpenGraphImage,
+          ...openGraphImage,
           url: getOgImageUrl({ title, url }),
           alt: title
         }

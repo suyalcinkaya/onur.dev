@@ -1,9 +1,9 @@
 import Analytics from '@/app/analytics'
+import { openGraphImage } from '@/app/shared-metadata'
 import Header from '@/components/Header'
 import PageLayout from '@/layouts/PageLayout'
 import { getOgImageUrl } from '@/lib/utils'
 import { PROFILES } from '@/lib/constants'
-import { sharedOpenGraphImage } from '@/app/shared-metadata'
 import '@/app/globals.css'
 
 const title = 'Onur Şuyalçınkaya'
@@ -22,7 +22,7 @@ export const metadata = {
     description,
     images: [
       {
-        ...sharedOpenGraphImage,
+        ...openGraphImage,
         url: getOgImageUrl({ title })
       }
     ],
