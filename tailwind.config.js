@@ -14,7 +14,7 @@ module.exports = {
         reveal: 'reveal 1s ease-in-out'
       },
       fontFamily: {
-        mono: ['Menlo', ...defaultTheme.fontFamily.mono]
+        mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono]
       },
       keyframes: {
         reveal: {

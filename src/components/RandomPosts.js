@@ -6,7 +6,7 @@ export const RandomPosts = ({ randomPosts = [] }) => {
   if (randomPosts.length === 0) return null
 
   return (
-    <div className="mt-12">
+    <>
       <hr />
       <div className="content">
         <SectionBlock title="You might also enjoy">
@@ -33,6 +33,6 @@ export const RandomPosts = ({ randomPosts = [] }) => {
           })}
         </SectionBlock>
       </div>
-    </div>
+    </>
   )
 }

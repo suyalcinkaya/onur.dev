@@ -1,3 +1,7 @@
+import { JetBrains_Mono } from 'next/font/google'
+
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'swap' })
+
 import Analytics from '@/app/analytics'
 import { openGraphImage } from '@/app/shared-metadata'
 import Header from '@/components/Header'
@@ -50,7 +54,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={jetbrainsMono.variable}>
       <body>
         <Header />
         <PageLayout>{children}</PageLayout>

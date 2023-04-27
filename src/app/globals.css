@@ -112,7 +112,7 @@
   }
 
   pre {
-    @apply py-3 pl-3 pr-[15%] overflow-x-auto rounded-b-lg bg-white border-x border-b border-gray-200 text-xs leading-slacker text-left break-normal;
+    @apply font-[450] py-3 pl-3 pr-[15%] overflow-x-auto rounded-b-lg bg-white border-x border-b border-gray-200 text-xs leading-slacker text-left break-normal;
   }
 
   time {

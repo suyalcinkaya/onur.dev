@@ -108,19 +108,21 @@ export default async function WritingSlug({ params }) {
 
   return (
     <>
-      <Suspense fallback={null}>
-        <article className="content">
-          <PageTitle
-            title={title}
-            subtitle={<time dateTime={postDate}>{dateString}</time>}
-            className="flex flex-col gap-3 mb-6"
-          />
-          <RichText content={content} />
-        </article>
-      </Suspense>
-      <Suspense fallback={null}>
-        <RandomPosts randomPosts={randomPosts} />
-      </Suspense>
+      <div className="flex flex-col gap-12">
+        <Suspense fallback={null}>
+          <article className="content">
+            <PageTitle
+              title={title}
+              subtitle={<time dateTime={postDate}>{dateString}</time>}
+              className="flex flex-col gap-3 mb-6"
+            />
+            <RichText content={content} />
+          </article>
+        </Suspense>
+        <Suspense fallback={null}>
+          <RandomPosts randomPosts={randomPosts} />
+        </Suspense>
+      </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>
   )
