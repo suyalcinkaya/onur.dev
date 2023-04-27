@@ -4,7 +4,7 @@ import PageTitle from '@/components/PageTitle'
 import WritingCard from '@/components/WritingCard'
 import { getAllPosts, getPageSeo } from '@/lib/contentful'
 import { dateToISOString, getOgImageUrl } from '@/lib/utils'
-import { sharedOpenGraphImage } from '@/app/shared-metadata'
+import { openGraphImage } from '@/app/shared-metadata'
 
 export async function generateMetadata() {
   const seoData = (await getPageSeo('writing')) ?? null
@@ -21,7 +21,7 @@ export async function generateMetadata() {
       description: seoDescription,
       images: [
         {
-          ...sharedOpenGraphImage,
+          ...openGraphImage,
           url: getOgImageUrl({ title, url }),
           alt: title
         }
