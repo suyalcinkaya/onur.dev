@@ -26,6 +26,7 @@ const PageLayout = ({ children }) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 15, opacity: 0 }}
             className="h-full w-full"
+            // transition={{ duration: 0.3 }}
           >
             {children}
           </motion.div>

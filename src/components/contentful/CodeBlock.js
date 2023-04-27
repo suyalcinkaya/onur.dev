@@ -54,6 +54,7 @@ export default function CodeBlock({ title, language, code }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -2 }}
                 className="w-10"
+                // transition={{ duration: 0.3 }}
               >
                 Copied
               </motion.span>
@@ -64,6 +65,7 @@ export default function CodeBlock({ title, language, code }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -2 }}
                 className="w-10"
+                // transition={{ duration: 0.3 }}
               >
                 Copy
               </motion.span>
