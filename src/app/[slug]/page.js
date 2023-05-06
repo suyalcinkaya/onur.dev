@@ -51,7 +51,7 @@ export async function generateStaticParams() {
 async function fetchData(slug) {
   const page = (await getPage(slug)) ?? null
   if (!page) notFound()
-  return { page, headerTitle: page?.title || '' }
+  return { page }
 }
 
 export default async function PageSlug({ params }) {

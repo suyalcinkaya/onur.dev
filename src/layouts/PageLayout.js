@@ -12,7 +12,7 @@ const PageLayout = ({ children }) => {
   }, [pathname])
 
   return (
-    <main className="flex min-h-screen py-32 overflow-hidden px-safe">
+    <main className="flex min-h-screen pt-36 pb-24 overflow-hidden px-safe">
       <AnimatePresence
         mode="wait"
         initial={false}

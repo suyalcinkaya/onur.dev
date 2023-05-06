@@ -1,7 +1,7 @@
 module.exports = {
-  experimental: {
-    appDir: true
-  },
+  /* experimental: {
+    serverActions: true,
+  }, */
   swcMinify: true,
   reactStrictMode: true,
   trailingSlash: false,

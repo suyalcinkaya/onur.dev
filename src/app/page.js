@@ -4,13 +4,14 @@ import NextLink from 'next/link'
 import SectionBlock from '@/components/SectionBlock'
 import WritingCard from '@/components/WritingCard'
 import Link from '@/components/Link'
+import { List } from '@/components/List'
 import { getAllPosts } from '@/lib/contentful'
 import { MIXTAPES, PROFILES } from '@/lib/constants'
 import { getDateTimeFormat, dateToISOString } from '@/lib/utils'
 
 async function fetchData() {
   const allPosts = (await getAllPosts()) ?? []
-  return { allPosts, headerTitle: 'Home' }
+  return { allPosts }
 }
 
 export default async function Home() {
@@ -21,7 +22,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-4 content">
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <SectionBlock title="Latest" href={`/writing/${latestPost.slug}`}>
           <NextLink href={`/writing/${latestPost.slug}`} className="flex flex-col gap-1">
             <h2>{latestPost.title}</h2>
@@ -29,7 +30,11 @@ export default async function Home() {
           </NextLink>
         </SectionBlock>
       </Suspense>
-      <hr />
+      <hr /> */}
+      <Suspense fallback={null}>
+        <List items={allPosts} header="Writing" />
+      </Suspense>
+      {/* <hr />
       <SectionBlock title="Popular Mixtapes" href={PROFILES.soundcloud.url}>
         {MIXTAPES.map((mixtape) => {
           const { title, date, url } = mixtape
@@ -46,8 +51,8 @@ export default async function Home() {
             </Link>
           )
         })}
-      </SectionBlock>
-      <hr />
+      </SectionBlock> */}
+      {/* <hr />
       <Suspense fallback={null}>
         <SectionBlock title="Writing" href="/writing">
           {allPosts.map((post) => {
@@ -72,7 +77,7 @@ export default async function Home() {
             )
           })}
         </SectionBlock>
-      </Suspense>
+      </Suspense> */}
     </div>
   )
 }

@@ -53,7 +53,7 @@ async function fetchData() {
     }
   })
 
-  return { allLogbook: mappedLogbook, headerTitle: 'Journey' }
+  return { allLogbook: mappedLogbook }
 }
 
 export default async function Journey() {

@@ -28,7 +28,10 @@ export async function fetcher(input, init) {
 
 export const dateToISOString = (date) => {
   const dateObj = new Date(date)
-  return dateObj.toISOString().split('T')[0]
+  return Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: '2-digit'
+  }).format(dateObj)
 }
 
 export const getDateTimeFormat = (date) => {

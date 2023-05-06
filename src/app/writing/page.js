@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 
 import PageTitle from '@/components/PageTitle'
-import WritingCard from '@/components/WritingCard'
+import { List } from '@/components/List'
 import { getAllPosts, getPageSeo } from '@/lib/contentful'
-import { dateToISOString, getOgImageUrl } from '@/lib/utils'
+import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
 export async function generateMetadata() {
@@ -36,7 +36,7 @@ export async function generateMetadata() {
 
 async function fetchData() {
   const allPosts = (await getAllPosts()) ?? []
-  return { allPosts, headerTitle: 'Writing' }
+  return { allPosts }
 }
 
 export default async function Writing() {
@@ -46,29 +46,7 @@ export default async function Writing() {
     <div className="content">
       <PageTitle title="Writing" />
       <Suspense fallback={null}>
-        <div className="flex flex-col gap-2">
-          {allPosts.map((post) => {
-            const {
-              title,
-              date,
-              slug,
-              sys: { firstPublishedAt }
-            } = post
-
-            const dateTime = date || firstPublishedAt
-            const dateString = dateToISOString(dateTime)
-
-            return (
-              <WritingCard
-                key={`writing_${slug}`}
-                slug={slug}
-                title={title}
-                dateTime={dateTime}
-                dateString={dateString}
-              />
-            )
-          })}
-        </div>
+        <List items={allPosts} />
       </Suspense>
     </div>
   )

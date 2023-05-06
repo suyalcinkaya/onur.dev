@@ -63,7 +63,6 @@ async function fetchData(slug) {
 
   return {
     post: data.post,
-    headerTitle: data.post.title ?? '',
     randomPosts: randomPosts ?? []
   }
 }
@@ -113,15 +112,19 @@ export default async function WritingSlug({ params }) {
           <article className="content">
             <PageTitle
               title={title}
-              subtitle={<time dateTime={postDate}>{dateString}</time>}
+              subtitle={
+                <time dateTime={postDate} className="text-gray-400">
+                  {dateString}
+                </time>
+              }
               className="flex flex-col gap-3 mb-6"
             />
             <RichText content={content} />
           </article>
         </Suspense>
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <RandomPosts randomPosts={randomPosts} />
-        </Suspense>
+        </Suspense> */}
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>
