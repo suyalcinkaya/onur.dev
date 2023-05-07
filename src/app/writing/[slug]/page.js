@@ -3,8 +3,7 @@ import { notFound } from 'next/navigation'
 
 import RichText from '@/components/contentful/RichText'
 import PageTitle from '@/components/PageTitle'
-import { RandomPosts } from '@/components/RandomPosts'
-import { getAllPosts, getPost, getRandomPosts, getPostSeo } from '@/lib/contentful'
+import { getAllPosts, getPost, getPostSeo } from '@/lib/contentful'
 import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
@@ -58,18 +57,17 @@ export async function generateStaticParams() {
 }
 
 async function fetchData(slug) {
-  const [data, randomPosts] = await Promise.all([getPost(slug), getRandomPosts(slug)])
+  const data = await getPost(slug)
   if (!data?.post) notFound()
 
   return {
-    post: data.post,
-    randomPosts: randomPosts ?? []
+    post: data.post
   }
 }
 
 export default async function WritingSlug({ params }) {
   const { slug } = params
-  const { post, randomPosts } = await fetchData(slug)
+  const { post } = await fetchData(slug)
 
   const {
     title,
@@ -122,9 +120,6 @@ export default async function WritingSlug({ params }) {
             <RichText content={content} />
           </article>
         </Suspense>
-        {/* <Suspense fallback={null}>
-          <RandomPosts randomPosts={randomPosts} />
-        </Suspense> */}
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>

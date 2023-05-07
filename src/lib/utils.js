@@ -1,5 +1,5 @@
 export const getOgImageUrl = ({ title, url }) => {
-  let ogImageUrl = `${process.env.SITE_URL}/api/og?title=${encodeURIComponent(title)}`
+  let ogImageUrl = `/api/og?title=${encodeURIComponent(title)}`
   if (url) ogImageUrl += `&url=${url}`
   return ogImageUrl
 }
@@ -26,14 +26,7 @@ export async function fetcher(input, init) {
   return res.json()
 }
 
-export const dateToISOString = (date) => {
-  const dateObj = new Date(date)
-  return Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: '2-digit'
-  }).format(dateObj)
-}
-
+// June 23, 1992
 export const getDateTimeFormat = (date) => {
   const dateObj = new Date(date)
   return Intl.DateTimeFormat('en-US', {

@@ -79,7 +79,7 @@ export const List = ({ items }) => {
                           </time>
                         </span>
                         <span className="col-span-2 md:col-span-6 line-clamp-4">{title}</span>
-                        <span className="col-span-1 text-right">{data && formattedViews}</span>
+                        <span className="col-span-1 text-right">{!error && data ? formattedViews : null}</span>
                       </span>
                     </Link>
                   </li>
