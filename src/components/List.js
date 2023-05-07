@@ -69,7 +69,7 @@ export const List = ({ items }) => {
                       {itemIndex === 0 ? year : ''}
                     </span>
                     <Link href={`/writing/${slug}`} className="col-span-6 md:col-span-5 hover:text-black">
-                      <span className="grid grid-cols-4 md:grid-cols-8 gap-4 items-center py-3 border-t border-gray-200">
+                      <span className="grid grid-cols-4 md:grid-cols-8 gap-2 items-center py-3 border-t border-gray-200">
                         <span className="col-span-1 text-left">
                           <time dateTime={date} className="hidden md:block">
                             {dateWithDayAndMonth}
@@ -78,7 +78,7 @@ export const List = ({ items }) => {
                             {dateWithMonthAndYear}
                           </time>
                         </span>
-                        <span className="col-span-2 md:col-span-6">{title}</span>
+                        <span className="col-span-2 md:col-span-6 line-clamp-4">{title}</span>
                         <span className="col-span-1 text-right">{data && formattedViews}</span>
                       </span>
                     </Link>

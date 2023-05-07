@@ -1,3 +1,5 @@
+import { PROFILES } from '@/lib/constants'
+
 export const Footer = () => {
   return (
     <footer className="text-sm">
@@ -5,17 +7,17 @@ export const Footer = () => {
         <span>
           Onur Şuyalçınkaya (
           <a
-            href="https://twitter.com/onurschu"
+            href={PROFILES.twitter.url}
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-4"
           >
-            @onurschu
+            @{PROFILES.twitter.username}
           </a>
           )
         </span>
         <a
-          href="https://github.com/suyalcinkaya/onur.dev"
+          href={`${PROFILES.github.url}/onur.dev`}
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-4"

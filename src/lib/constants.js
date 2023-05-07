@@ -1,7 +1,7 @@
 export const PROFILES = {
   github: {
     title: 'GitHub',
-    url: 'https://github.com/suyalcinkaya/',
+    url: 'https://github.com/suyalcinkaya',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
         <path fill="none" d="M0 0h24v24H0z" />
@@ -22,7 +22,7 @@ export const PROFILES = {
   },
   linkedin: {
     title: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/suyalcinkaya/',
+    url: 'https://www.linkedin.com/in/suyalcinkaya',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
         <path fill="none" d="M0 0h24v24H0z" />
@@ -42,7 +42,7 @@ export const PROFILES = {
   },
   instagram: {
     title: 'Instagram',
-    url: 'https://www.instagram.com/jgrmn/',
+    url: 'https://www.instagram.com/jgrmn',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
         <path fill="none" d="M0 0h24v24H0z" />
@@ -111,5 +111,5 @@ export const PROJECTS = [
   }
 ]
 
-// 8rem (pt-32 from PageLayout) - 3rem (header height) - 10px (threshold) = 70px
-export const SCROLL_THRESHOLD = 70
+// 9rem (pt-36 from PageLayout) - 3rem (header height) = 6rem (96px)
+export const SCROLL_THRESHOLD = 96

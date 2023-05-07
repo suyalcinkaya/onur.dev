@@ -43,14 +43,8 @@ async function fetchData() {
     const year = new Date(log.date).getFullYear()
     const existingYear = mappedLogbook.find((item) => item?.year === year)
 
-    if (!existingYear) {
-      mappedLogbook.push({
-        year,
-        logs: [log]
-      })
-    } else {
-      existingYear.logs.push(log)
-    }
+    if (!existingYear) mappedLogbook.push({ year, logs: [log] })
+    else existingYear.logs.push(log)
   })
 
   return { allLogbook: mappedLogbook }
