@@ -5,8 +5,8 @@ import Analytics from '@/app/analytics'
 import { openGraphImage } from '@/app/shared-metadata'
 import Header from '@/components/Header'
 import { Footer } from '@/components/Footer'
-import PageLayout from '@/layouts/PageLayout'
-import { getAllPosts } from '@/lib/contentful'
+import PageLayout from '@/app/_components/PageLayout'
+import { getAllPosts, getAllLogbook } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { PROFILES } from '@/lib/constants'
 import '@/app/globals.css'
@@ -60,13 +60,13 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const allPosts = await fetchData()
+  const { allPosts, journeyEntryCount } = await fetchData()
 
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <body>
         <Suspense fallback={null}>
-          <Header allPosts={allPosts} />
+          <Header allPosts={allPosts} journeyEntryCount={journeyEntryCount} />
         </Suspense>
         <PageLayout>{children}</PageLayout>
         <Footer />
@@ -77,6 +77,7 @@ export default async function RootLayout({ children }) {
 }
 
 async function fetchData() {
-  const allPosts = (await getAllPosts()) ?? []
-  return allPosts
+  // const allPosts = (await getAllPosts()) ?? []
+  const [allPosts, journalPosts] = await Promise.all([getAllPosts(), getAllLogbook()])
+  return { allPosts, journeyEntryCount: journalPosts.length }
 }

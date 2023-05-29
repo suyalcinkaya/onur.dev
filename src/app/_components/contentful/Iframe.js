@@ -1,4 +1,5 @@
 import ShowInView from '@/components/ShowInView'
+import cx from '@/lib/cx'
 
 export default function Iframe({ embedUrl, title, className, ...rest }) {
   return (
@@ -9,7 +10,7 @@ export default function Iframe({ embedUrl, title, className, ...rest }) {
           title={title}
           frameBorder="0"
           allowFullScreen
-          className={`w-full rounded shadow-lg ${className}`}
+          className={cx('w-full rounded shadow-lg', className)}
           {...rest}
         />
         <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>

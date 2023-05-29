@@ -117,6 +117,10 @@
 }
 
 @layer components {
+  .link-card {
+    @apply bg-transparent hover:bg-gray-100 transition-colors duration-300 -mx-1.5 px-1.5 -my-1 py-1 rounded;
+  }
+
   .content {
     @apply px-6 md:px-16 mx-auto w-full max-w-screen-md;
   }
@@ -268,19 +272,5 @@
 
   .bg-r-shadow-gradient {
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
-  }
-
-  .line-clamp-1 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-  }
-
-  .line-clamp-4 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
   }
 }

@@ -3,7 +3,18 @@
 import Link from 'next/link'
 import useSWR from 'swr'
 
+import cx from '@/lib/cx'
 import { fetcher } from '@/lib/utils'
+
+const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
+  day: '2-digit',
+  month: '2-digit'
+})
+
+const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
+  month: '2-digit',
+  year: 'numeric'
+})
 
 export const List = ({ items }) => {
   const { data, error } = useSWR('/api/getViews', fetcher, {
@@ -26,7 +37,7 @@ export const List = ({ items }) => {
 
   return (
     <div className="text-sm">
-      <header className="grid grid-cols-6 text-gray-500 py-3">
+      <header className="grid grid-cols-6 text-gray-500 py-4">
         <span className="hidden md:grid col-span-1 text-left">Year</span>
         <span className="col-span-6 md:col-span-5">
           <span className="grid grid-cols-4 md:grid-cols-8 items-center">
@@ -46,15 +57,9 @@ export const List = ({ items }) => {
               {itemsArr.map((item, itemIndex) => {
                 const { title, slug, date } = item
 
-                const dateWithDayAndMonth = Intl.DateTimeFormat('tr-TR', {
-                  day: '2-digit',
-                  month: '2-digit'
-                }).format(new Date(date))
-
-                const dateWithMonthAndYear = Intl.DateTimeFormat('en-US', {
-                  month: '2-digit',
-                  year: 'numeric'
-                }).format(new Date(date))
+                const dateObj = new Date(date)
+                const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
+                const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
                 const views = data?.find((item) => item.slug === slug)?.view_count || 0
                 const formattedViews = new Intl.NumberFormat('en-US').format(views)
@@ -62,14 +67,15 @@ export const List = ({ items }) => {
                 return (
                   <li key={slug} className="grid grid-cols-6 p-0 group-hover:text-gray-300">
                     <span
-                      className={`hidden md:grid col-span-1 items-center text-gray-500 pointer-events-none ${
-                        itemIndex === 0 ? 'border-t border-gray-200' : ''
-                      }`}
+                      className={cx(
+                        'hidden md:grid col-span-1 items-center text-gray-500 pointer-events-none',
+                        itemIndex === 0 && 'border-t border-gray-200'
+                      )}
                     >
                       {itemIndex === 0 ? year : ''}
                     </span>
                     <Link href={`/writing/${slug}`} className="col-span-6 md:col-span-5 hover:text-black">
-                      <span className="grid grid-cols-4 md:grid-cols-8 gap-2 items-center py-3 border-t border-gray-200">
+                      <span className="grid grid-cols-4 md:grid-cols-8 gap-2 items-center py-4 border-t border-gray-200">
                         <span className="col-span-1 text-left">
                           <time dateTime={date} className="hidden md:block">
                             {dateWithDayAndMonth}

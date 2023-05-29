@@ -111,5 +111,5 @@ export const PROJECTS = [
   }
 ]
 
-// 9rem (pt-36 from PageLayout) - 3rem (header height) = 6rem (96px)
-export const SCROLL_THRESHOLD = 96
+// 9rem (pt-36 from PageLayout) - 4rem (header height) = 5rem (80px)
+export const SCROLL_THRESHOLD = 80

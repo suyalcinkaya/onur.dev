@@ -1,8 +1,10 @@
 import Balancer from 'react-wrap-balancer'
 
-const PageTitle = ({ title, subtitle, className = 'mb-6', ...rest }) => {
+import cx from '@/lib/cx'
+
+const PageTitle = ({ title, subtitle, className, ...rest }) => {
   return (
-    <div className={className}>
+    <div className={cx('mb-6', className)}>
       <h1 {...rest}>
         <Balancer>{title}</Balancer>
       </h1>
