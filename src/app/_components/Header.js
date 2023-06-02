@@ -5,12 +5,10 @@ import { usePathname, useParams } from 'next/navigation'
 import NextLink from 'next/link'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { AnimatePresence, motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
 import { useScrollData } from 'scroll-data-hook'
 
 const DynamicViews = dynamic(() => import('@/components/Views'))
-import cx from '@/lib/cx'
 import { SCROLL_THRESHOLD, PROFILES } from '@/lib/constants'
 import me from '@/assets/me.jpg'
 
@@ -23,9 +21,9 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
   useEffect(() => {
     if (isWritingSlug) {
       const post = allPosts.find((post) => post.slug === slug)
-      if (post?.title) setHeaderTitle(post.title)
+      if (post?.title !== headerTitle) setHeaderTitle(post.title)
     }
-  }, [slug])
+  }, [isWritingSlug])
 
   const {
     position: { y: scrollY }
@@ -39,72 +37,55 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
   return (
     <header className="fixed top-0 inset-x-0 z-10 w-full h-16 bg-white mx-auto md:border-b md:border-gray-200 shadow-sm font-medium">
       <div className="flex items-center h-full content shadow text-sm md:shadow-none">
-        <AnimatePresence mode="wait">
-          {isWritingSlug ? (
-            <motion.div
-              key="writing-slug"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="flex items-center justify-between gap-2 w-full"
-            >
-              <div className="flex items-center gap-3">
-                <NextLink href="/" title="Go back" className="link-card">
-                  <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
-                      fill="currentColor"
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </NextLink>
-                {headerTitle && (
-                  <Balancer ratio="0.35">
-                    <span
-                      className="font-bold line-clamp-2"
-                      style={{ transform: `translateY(${translateY}%)`, opacity }}
-                    >
-                      {headerTitle}
-                    </span>
-                  </Balancer>
-                )}
-              </div>
-              <DynamicViews slug={slug} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="non-writing-slug"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="flex items-center justify-between w-full gap-1"
-            >
-              <NextLink href="/" className="link-card flex items-center gap-3">
-                <Image
-                  src={me}
-                  alt="Onur Şuyalçınkaya"
-                  width={40}
-                  height={40}
-                  className="rounded-full shadow-sm border"
-                  quality={100}
-                />
-                <div className="flex flex-col leading-tight">
-                  <span>Onur Şuyalçınkaya</span>
-                  <span className="text-gray-500">Software Engineer</span>
-                </div>
+        {isWritingSlug ? (
+          <div className="flex items-center justify-between gap-2 w-full">
+            <div className="flex items-center gap-3">
+              <NextLink href="/" title="Go back" className="link-card">
+                <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
               </NextLink>
-              <div className="flex items-center gap-3 md:gap-6">
-                <NextLink href="/about" className="link-card leading-snug">
-                  About
-                  <span className="block text-gray-500">Est. 1992</span>
-                </NextLink>
-                <NextLink href="/journey" className="link-card leading-snug">
-                  Journey
-                  <span className="block text-gray-500">{journeyEntryCount} entries</span>
-                </NextLink>
+              {headerTitle && (
+                <Balancer ratio="0.35">
+                  <span className="font-bold line-clamp-2" style={{ transform: `translateY(${translateY}%)`, opacity }}>
+                    {headerTitle}
+                  </span>
+                </Balancer>
+              )}
+            </div>
+            <DynamicViews slug={slug} />
+          </div>
+        ) : (
+          <div className="flex items-center justify-between w-full gap-1">
+            <NextLink href="/" className="link-card flex items-center gap-3">
+              <Image
+                src={me}
+                alt="Onur Şuyalçınkaya"
+                width={40}
+                height={40}
+                className="rounded-full shadow-sm border"
+                quality={100}
+              />
+              <div className="flex flex-col leading-tight">
+                <span>Onur Şuyalçınkaya</span>
+                <span className="hidden xs:block text-gray-500">Software Engineer</span>
+              </div>
+            </NextLink>
+            <div className="flex items-center gap-3 md:gap-6">
+              <NextLink href="/about" className="link-card leading-snug">
+                About
+                <span className="hidden xs:block text-gray-500">Est. 1992</span>
+              </NextLink>
+              <NextLink href="/journey" className="link-card leading-snug">
+                Journey
+                <span className="hidden xs:block text-gray-500">{journeyEntryCount} entries</span>
+              </NextLink>
+              <div className="flex gap-2">
                 <a
                   href={PROFILES.twitter.url}
                   target="_blank"
@@ -142,9 +123,9 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
                   </svg>
                 </a>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   )
