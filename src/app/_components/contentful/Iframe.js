@@ -13,7 +13,7 @@ export default function Iframe({ embedUrl, title, className, ...rest }) {
           className={cx('w-full rounded shadow-lg', className)}
           {...rest}
         />
-        <figcaption className="text-sm text-gray-500 text-center mt-2">{title}</figcaption>
+        <figcaption className="mt-2 text-center text-sm text-gray-500">{title}</figcaption>
       </figure>
     </ShowInView>
   )

@@ -1,8 +1,8 @@
 const JourneyCard = ({ title, subtitle }) => {
   return (
     <div>
-      <span className="font-medium word-break">{title}</span>
-      {subtitle && <div className="m-0 text-gray-500 word-break">{subtitle}</div>}
+      <span className="word-break font-medium">{title}</span>
+      {subtitle && <div className="word-break m-0 text-gray-500">{subtitle}</div>}
     </div>
   )
 }

@@ -115,7 +115,7 @@ export default async function WritingSlug({ params }) {
                   {dateString}
                 </time>
               }
-              className="flex flex-col gap-3 mb-6"
+              className="mb-6 flex flex-col gap-3"
             />
             <RichText content={content} />
           </article>

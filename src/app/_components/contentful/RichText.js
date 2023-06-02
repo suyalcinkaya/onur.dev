@@ -25,8 +25,13 @@ function options(links) {
         const id = dasherize(children)
         const url = `h2-${id}`
         return (
-          <h2 id={url} className="mt-6 mb-2">
-            <a href={`#${url}`}>{children}</a>
+          <h2
+            id={url}
+            className="group relative mb-2 mt-6 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']"
+          >
+            <a href={`#${url}`} className="group-hover:underline group-hover:underline-offset-4">
+              {children}
+            </a>
           </h2>
         )
       },
@@ -34,26 +39,31 @@ function options(links) {
         const id = dasherize(children)
         const url = `h3-${id}`
         return (
-          <h3 id={url} className="mt-6 mb-2">
-            <a href={`#${url}`}>{children}</a>
+          <h3
+            id={url}
+            className="group relative mb-2 mt-6 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']"
+          >
+            <a href={`#${url}`} className="group-hover:underline group-hover:underline-offset-4">
+              {children}
+            </a>
           </h3>
         )
       },
       // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
-      [BLOCKS.PARAGRAPH]: (_, children) => <div className="leading-slacker mb-4 last:mb-0">{children}</div>,
-      [BLOCKS.UL_LIST]: (_, children) => <ul className="flex flex-col gap-0.5 list-disc pl-6 mb-4">{children}</ul>,
+      [BLOCKS.PARAGRAPH]: (_, children) => <div className="mb-4 leading-slacker last:mb-0">{children}</div>,
+      [BLOCKS.UL_LIST]: (_, children) => <ul className="mb-4 flex list-disc flex-col gap-0.5 pl-6">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
-        <ol className="flex flex-col gap-2 list-inside list-[decimal-leading-zero] mb-4">{children}</ol>
+        <ol className="mb-4 flex list-inside list-[decimal-leading-zero] flex-col gap-2">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (_, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (_, children) => (
-        <blockquote className="px-4 mb-4 border-l-2 border-gray-200 rounded-r-lg font-medium">{children}</blockquote>
+        <blockquote className="mb-4 rounded-r-lg border-l-2 border-gray-200 px-4 font-medium">{children}</blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)
 
         return (
-          <figure className="flex flex-col gap-2 mb-6">
+          <figure className="mb-6 flex flex-col gap-2">
             <NextImage
               src={asset.url}
               height={asset.height || 300}
@@ -62,7 +72,7 @@ function options(links) {
               className="border border-gray-100"
             />
             {asset.description && (
-              <figcaption className="text-xs text-gray-500 text-center font-light">{asset.description}</figcaption>
+              <figcaption className="text-center text-xs font-light text-gray-500">{asset.description}</figcaption>
             )}
           </figure>
         )

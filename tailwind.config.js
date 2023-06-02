@@ -26,6 +26,9 @@ module.exports = {
       },
       lineHeight: {
         slacker: '1.75'
+      },
+      colors: {
+        body: '#1a1a1a'
       }
     }
   },

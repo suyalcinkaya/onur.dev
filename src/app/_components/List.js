@@ -37,10 +37,10 @@ export const List = ({ items }) => {
 
   return (
     <div className="text-sm">
-      <header className="grid grid-cols-6 text-gray-500 py-4">
-        <span className="hidden md:grid col-span-1 text-left">Year</span>
+      <header className="grid grid-cols-6 py-4 text-gray-500">
+        <span className="col-span-1 hidden text-left md:grid">Year</span>
         <span className="col-span-6 md:col-span-5">
-          <span className="grid grid-cols-4 md:grid-cols-8 items-center">
+          <span className="grid grid-cols-4 items-center md:grid-cols-8">
             <span className="col-span-1 text-left">Date</span>
             <span className="col-span-2 md:col-span-6">Title</span>
             <span className="col-span-1 text-right">Views</span>
@@ -68,14 +68,14 @@ export const List = ({ items }) => {
                   <li key={slug} className="grid grid-cols-6 p-0 group-hover:text-gray-300">
                     <span
                       className={cx(
-                        'hidden md:grid col-span-1 items-center text-gray-500 pointer-events-none',
+                        'pointer-events-none col-span-1 hidden items-center text-gray-500 md:grid',
                         itemIndex === 0 && 'border-t border-gray-200'
                       )}
                     >
                       {itemIndex === 0 ? year : ''}
                     </span>
-                    <Link href={`/writing/${slug}`} className="col-span-6 md:col-span-5 hover:text-black">
-                      <span className="grid grid-cols-4 md:grid-cols-8 gap-2 items-center py-4 border-t border-gray-200">
+                    <Link href={`/writing/${slug}`} className="col-span-6 hover:text-black md:col-span-5">
+                      <span className="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                         <span className="col-span-1 text-left">
                           <time dateTime={date} className="hidden md:block">
                             {dateWithDayAndMonth}
@@ -84,7 +84,7 @@ export const List = ({ items }) => {
                             {dateWithMonthAndYear}
                           </time>
                         </span>
-                        <span className="col-span-2 md:col-span-6 line-clamp-4">{title}</span>
+                        <span className="col-span-2 line-clamp-4 md:col-span-6">{title}</span>
                         <span className="col-span-1 text-right">{!error && data ? formattedViews : null}</span>
                       </span>
                     </Link>

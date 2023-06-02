@@ -57,22 +57,22 @@ export default async function Journey() {
     <div className="content">
       <PageTitle title="Journey" />
       <Suspense fallback={null}>
-        <div className="flex flex-col gap-12 items-stretch">
+        <div className="flex flex-col items-stretch gap-12">
           {allLogbook.map((item, itemIndex) => (
             <div key={`data_${itemIndex}`} className="flex flex-col gap-6">
               <div className="flex items-center">
                 <h2>{item.year}</h2>
-                <hr className="border-dashed border-gray-200 flex-1 ml-4 my-0" />
+                <hr className="my-0 ml-4 flex-1 border-dashed border-gray-200" />
               </div>
               <section>
                 {item.logs.map((log, logIndex) => (
-                  <div key={`data_${itemIndex}_log_${logIndex}`} className="flex relative pb-8 last:pb-0">
+                  <div key={`data_${itemIndex}_log_${logIndex}`} className="relative flex pb-8 last:pb-0">
                     {logIndex !== item.logs.length - 1 && (
-                      <div className="w-10 absolute inset-x-0 inset-y-2.5 mt-10 flex items-center justify-center">
-                        <div className="border-l-2 border-gray-200 h-full w-px pointer-events-none"></div>
+                      <div className="absolute inset-x-0 inset-y-2.5 mt-10 flex w-10 items-center justify-center">
+                        <div className="pointer-events-none h-full w-px border-l-2 border-gray-200"></div>
                       </div>
                     )}
-                    <div className="flex items-center justify-center align-middle flex-shrink-0 w-10 h-10 bg-gray-100 rounded-full z-0">
+                    <div className="z-0 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 align-middle">
                       <span role="img" aria-label={log.title}>
                         {log.emoji}
                       </span>

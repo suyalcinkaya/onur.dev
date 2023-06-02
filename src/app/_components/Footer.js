@@ -3,7 +3,7 @@ import { PROFILES } from '@/lib/constants'
 export const Footer = () => {
   return (
     <footer className="text-sm">
-      <div className="flex items-center justify-between content py-8">
+      <div className="content flex items-center justify-between py-8">
         <span>
           Onur Şuyalçınkaya (
           <a
