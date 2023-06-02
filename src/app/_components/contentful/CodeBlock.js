@@ -30,7 +30,7 @@ export default function CodeBlock({ title, language, code }) {
           </span>
           {title && <p className="m-0 text-sm font-medium">{title}</p>}
         </div>
-        <OutlineButton as="button" className="!py-1 !px-2 !text-xs !gap-1" disabled={copied} onClick={onCopy}>
+        <OutlineButton as="button" className="py-1 px-2 text-xs gap-0.5" disabled={copied} onClick={onCopy}>
           <svg
             width="14"
             height="14"
