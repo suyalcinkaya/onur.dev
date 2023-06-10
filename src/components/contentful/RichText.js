@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import NextImage from 'next/future/image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
@@ -50,11 +49,12 @@ function options(links) {
 
         return (
           <figure className="flex flex-col gap-y-2 mb-6">
-            <NextImage
+            <img
               src={asset.url}
-              height={asset.height || 300}
-              width={asset.width || 400}
               alt={asset.description}
+              width={asset.width || 400}
+              height={asset.height || 300}
+              loading="lazy"
             />
             {asset.description && (
               <figcaption className="text-xs text-gray-500 text-center font-light">{asset.description}</figcaption>
