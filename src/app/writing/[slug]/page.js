@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
-import RichText from '@/components/contentful/RichText'
-import PageTitle from '@/components/PageTitle'
+import RichText from '@/app/_components/contentful/RichText'
+import PageTitle from '@/app/_components/PageTitle'
 import { getAllPosts, getPost, getPostSeo } from '@/lib/contentful'
 import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
@@ -105,8 +105,8 @@ export default async function WritingSlug({ params }) {
 
   return (
     <>
-      <div className="flex flex-col gap-12">
-        <Suspense fallback={null}>
+      <Suspense fallback={null}>
+        <div className="content-wrapper">
           <article className="content">
             <PageTitle
               title={title}
@@ -119,8 +119,8 @@ export default async function WritingSlug({ params }) {
             />
             <RichText content={content} />
           </article>
-        </Suspense>
-      </div>
+        </div>
+      </Suspense>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>
   )

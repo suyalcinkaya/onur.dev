@@ -1,5 +1,5 @@
-import PageTitle from '@/components/PageTitle'
-import { OutlineButton } from '@/components/Button'
+import PageTitle from '@/app/_components/PageTitle'
+import { OutlineButton } from '@/app/_components/Button'
 
 export default function NotFound() {
   return (

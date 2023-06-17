@@ -1,8 +1,4 @@
-import { Suspense } from 'react'
-
-import PageTitle from '@/components/PageTitle'
-import { List } from '@/components/List'
-import { getAllPosts, getPageSeo } from '@/lib/contentful'
+import { getPageSeo } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
@@ -34,20 +30,6 @@ export async function generateMetadata() {
   }
 }
 
-async function fetchData() {
-  const allPosts = (await getAllPosts()) ?? []
-  return { allPosts }
-}
-
 export default async function Writing() {
-  const { allPosts } = await fetchData()
-
-  return (
-    <div className="content">
-      <PageTitle title="Writing" />
-      <Suspense fallback={null}>
-        <List items={allPosts} />
-      </Suspense>
-    </div>
-  )
+  return <div className="content"></div>
 }

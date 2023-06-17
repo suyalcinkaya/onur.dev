@@ -1,4 +1,4 @@
-async function fetchGraphQL(query, preview = false) {
+async function fetchGraphQL(query, preview = process.env.NODE_ENV === 'development') {
   return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
     headers: {

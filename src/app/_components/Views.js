@@ -1,21 +1,34 @@
-import useSWR from 'swr'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-import { fetcher } from '@/lib/utils'
+import { upsertViewCount, getViewCount } from '@/lib/supabase'
 
-const Views = ({ slug }) => {
-  const { data, error } = useSWR(`/api/handleViews?slug=${slug}`, fetcher)
-  if (error) return null
+const Views = ({ slug, isWritingSlug }) => {
+  const [viewData, setViewData] = useState(null)
 
-  if (!data) {
+  useEffect(() => {
+    const upsert = async () => {
+      const upsertViewCountData = await upsertViewCount(slug)
+      setViewData(upsertViewCountData)
+    }
+
+    const getView = async () => {
+      const getViewCountData = await getViewCount(slug)
+      setViewData(getViewCountData)
+    }
+
+    if (slug) isWritingSlug ? upsert() : getView()
+  }, [isWritingSlug, slug])
+
+  if (!viewData?.view_count) {
     return <motion.span key="loading" />
   }
 
   return (
     <motion.div
-      key="loaded"
+      key={`${slug}-views-loaded`}
       className="flex items-center gap-1 text-sm"
-      title={`${data.views} views`}
+      title={`${viewData?.view_count ?? 0} views`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -39,7 +52,7 @@ const Views = ({ slug }) => {
           strokeWidth="1.5"
         ></circle>
       </svg>
-      <span>{data.views}</span>
+      <span>{viewData?.view_count ?? 0}</span>
     </motion.div>
   )
 }

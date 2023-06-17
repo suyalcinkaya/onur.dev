@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
-import PageTitle from '@/components/PageTitle'
-import RichText from '@/components/contentful/RichText'
+import PageTitle from '@/app/_components/PageTitle'
+import RichText from '@/app/_components/contentful/RichText'
 import { getAllPages, getPage, getPageSeo } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 
   return allPages.length > 0
     ? allPages
-        .filter((page) => !Boolean(page.hasCustomPage))
+        .filter((page) => !page.hasCustomPage)
         .map((page) => ({
           slug: page.url
         }))
@@ -61,11 +61,13 @@ export default async function PageSlug({ params }) {
   } = await fetchData(slug)
 
   return (
-    <div className="content">
-      <Suspense fallback={null}>
-        <PageTitle title={title} />
-        <RichText content={content} />
-      </Suspense>
+    <div className="content-wrapper">
+      <div className="content">
+        <Suspense fallback={null}>
+          <PageTitle title={title} />
+          <RichText content={content} />
+        </Suspense>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useEffect, useState } from 'react'
+import { memo, useState } from 'react'
 import { usePathname, useParams } from 'next/navigation'
 import NextLink from 'next/link'
 import dynamic from 'next/dynamic'
@@ -8,31 +8,33 @@ import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 import { useScrollData } from 'scroll-data-hook'
 
-const DynamicViews = dynamic(() => import('@/components/Views'))
+const DynamicViews = dynamic(() => import('@/app/_components/Views'))
 import { SCROLL_THRESHOLD, PROFILES } from '@/lib/constants'
 import me from '@/assets/me.jpg'
 
+// eslint-disable-next-line react/display-name
 const Header = memo(({ allPosts, journeyEntryCount }) => {
   const [headerTitle, setHeaderTitle] = useState(null)
-  const pathname = usePathname()
-  const { slug } = useParams()
-  const isWritingSlug = slug && pathname.startsWith('/writing/')
-
-  useEffect(() => {
-    if (isWritingSlug) {
-      const post = allPosts.find((post) => post.slug === slug)
-      if (post?.title !== headerTitle) setHeaderTitle(post.title)
-    }
-  }, [isWritingSlug])
-
   const {
     position: { y: scrollY }
   } = useScrollData()
+  const pathname = usePathname()
+  const { slug } = useParams()
+
+  const isWritingSlug = slug && pathname.startsWith('/writing/')
+  if (isWritingSlug) {
+    const post = allPosts.find((post) => post.slug === slug)
+    if (post?.title !== headerTitle) setHeaderTitle(post.title)
+  }
+
   const translateY = Math.max(130 - scrollY, 0)
   const opacity = Math.min(
     Math.max(((scrollY - SCROLL_THRESHOLD * (SCROLL_THRESHOLD / (scrollY ** 2 / 100))) / 100).toFixed(4), 0),
     1
   )
+
+  console.log('scrollY', scrollY)
+  console.log('headerTitle', headerTitle)
 
   return (
     <header className="fixed inset-x-0 top-0 z-10 mx-auto h-16 w-full bg-white font-medium shadow-sm md:border-b md:border-gray-200">
@@ -58,7 +60,7 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
                 </Balancer>
               )}
             </div>
-            <DynamicViews slug={slug} />
+            <DynamicViews slug={slug} isWritingSlug />
           </div>
         ) : (
           <div className="flex w-full items-center justify-between gap-1">
@@ -89,7 +91,7 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
                 <a
                   href={PROFILES.twitter.url}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   title="Follow me on Twitter"
                   className="hidden hover:text-[#1d9bf0] sm:block"
                 >
@@ -107,7 +109,7 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
                 <a
                   href={PROFILES.github.url}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   title="Check out my GitHub profile"
                   className="hidden hover:text-black sm:block"
                 >

@@ -7,8 +7,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-import ShowInView from '@/components/ShowInView'
-import { OutlineButton } from '@/components/Button'
+import ShowInView from '@/app/_components/ShowInView'
+import { OutlineButton } from '@/app/_components/Button'
 
 export default function CodeBlock({ title, language, code }) {
   const [copied, setCopied] = useState(false)
@@ -42,33 +42,37 @@ export default function CodeBlock({ title, language, code }) {
             >
               {copied ? (
                 <>
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M5.75 12.8665L8.33995 16.4138C9.15171 17.5256 10.8179 17.504 11.6006 16.3715L18.25 6.75"
-                    ></path>
-                  </svg>
-                  Copied
-                </>
-              ) : (
-                <>
                   <svg
+                    xmlns="http://www.w3.org/2000/svg"
                     width="14"
                     height="14"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    xmlns="http://www.w3.org/2000/svg"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                    />
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Copied
+                </>
+              ) : (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-0.5"
+                  >
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
                   </svg>
                   Copy
                 </>
@@ -81,8 +85,8 @@ export default function CodeBlock({ title, language, code }) {
         <DynamicSyntaxHighlighter
           language={language}
           showLineNumbers
-          wrapLongLines={false} // white-space: pre
-          customStyle={{ backgroundColor: '' }}
+          // wrapLongLines={false} // white-space: pre
+          customStyle={{ backgroundColor: '', whiteSpace: 'pre-wrap' }}
           lineNumberStyle={{
             minWidth: spacing[4],
             paddingRight: 0,

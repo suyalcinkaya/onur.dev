@@ -1,10 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import useSWR from 'swr'
 
 import cx from '@/lib/cx'
-import { fetcher } from '@/lib/utils'
 
 const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
   day: '2-digit',
@@ -16,12 +14,7 @@ const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
   year: 'numeric'
 })
 
-export const List = ({ items }) => {
-  const { data, error } = useSWR('/api/getViews', fetcher, {
-    keepPreviousData: true,
-    refreshInterval: 1000 * 60 // 1 minute
-  })
-
+export const WritingList = ({ items, viewCounts }) => {
   const itemsEntriesByYear = items.reduce((acc, item) => {
     const year = new Date(item.date).getFullYear()
 
@@ -49,19 +42,21 @@ export const List = ({ items }) => {
       </header>
 
       <div className="group">
-        {itemsEntriesByYear.map((customItems, index) => {
+        {itemsEntriesByYear.map((customItems) => {
           const [year, itemsArr] = customItems
 
           return (
             <ul className="list-none" key={year}>
               {itemsArr.map((item, itemIndex) => {
                 const { title, slug, date } = item
+                console.log('slug', slug)
 
                 const dateObj = new Date(date)
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
-                const views = data?.find((item) => item.slug === slug)?.view_count || 0
+                // const views = data?.find((item) => item.slug === slug)?.view_count || 0
+                const views = viewCounts?.find((item) => item.slug === slug)?.view_count || 0
                 const formattedViews = new Intl.NumberFormat('en-US').format(views)
 
                 return (
@@ -85,7 +80,7 @@ export const List = ({ items }) => {
                           </time>
                         </span>
                         <span className="col-span-2 line-clamp-4 md:col-span-6">{title}</span>
-                        <span className="col-span-1 text-right">{!error && data ? formattedViews : null}</span>
+                        <span className="col-span-1 text-right">{formattedViews ?? null}</span>
                       </span>
                     </Link>
                   </li>
