@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
-import PageTitle from '@/components/PageTitle'
-import { List } from '@/components/List'
+import PageTitle from '@/app/_components/PageTitle'
+import { List } from '@/app/_components/List'
 import { getAllPosts, getPageSeo } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'

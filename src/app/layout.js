@@ -1,10 +1,10 @@
 import { Suspense } from 'react'
-import { JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 
 import Analytics from '@/app/analytics'
 import { openGraphImage } from '@/app/shared-metadata'
-import Header from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import Header from '@/app/_components/Header'
+import { Footer } from '@/app/_components/Footer'
 import PageLayout from '@/app/_components/PageLayout'
 import { getAllPosts, getAllLogbook } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
@@ -17,6 +17,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
   weight: ['variable']
 })
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
 
@@ -63,7 +70,7 @@ export default async function RootLayout({ children }) {
   const { allPosts, journeyEntryCount } = await fetchData()
 
   return (
-    <html lang="en" className={jetbrainsMono.variable}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
         <Suspense fallback={null}>
           <Header allPosts={allPosts} journeyEntryCount={journeyEntryCount} />

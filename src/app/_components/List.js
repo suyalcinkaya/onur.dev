@@ -18,8 +18,8 @@ const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
 
 export const List = ({ items }) => {
   const { data, error } = useSWR('/api/getViews', fetcher, {
-    keepPreviousData: true,
-    refreshInterval: 1000 * 60 // 1 minute
+    keepPreviousData: true
+    // refreshInterval: 1000 * 60 // 1 minute
   })
 
   const itemsEntriesByYear = items.reduce((acc, item) => {
@@ -49,7 +49,7 @@ export const List = ({ items }) => {
       </header>
 
       <div className="group">
-        {itemsEntriesByYear.map((customItems, index) => {
+        {itemsEntriesByYear.map((customItems) => {
           const [year, itemsArr] = customItems
 
           return (

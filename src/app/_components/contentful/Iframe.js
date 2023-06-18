@@ -1,4 +1,4 @@
-import ShowInView from '@/components/ShowInView'
+import ShowInView from '@/app/_components/ShowInView'
 import cx from '@/lib/cx'
 
 export default function Iframe({ embedUrl, title, className, ...rest }) {

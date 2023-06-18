@@ -305,3 +305,15 @@ export async function getPageSeo(url, preview = false) {
 
   return entry?.data?.pageCollection?.items?.[0]
 }
+
+export const checkPreviewMode = (headers) => {
+  if (!headers?.get('referer')) return { isPreview: false }
+
+  const url = new URL(headers.get('referer'))
+  const params = new URLSearchParams(url.search)
+  return {
+    isPreview:
+      params.get(process.env.CONTENTFUL_PREVIEW_FLAG) === 'true' ||
+      params.get(process.env.CONTENTFUL_PREVIEW_FLAG) === ''
+  }
+}

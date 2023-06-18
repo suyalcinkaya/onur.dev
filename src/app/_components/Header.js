@@ -8,10 +8,11 @@ import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 import { useScrollData } from 'scroll-data-hook'
 
-const DynamicViews = dynamic(() => import('@/components/Views'))
+const DynamicViews = dynamic(() => import('@/app/_components/Views'))
 import { SCROLL_THRESHOLD, PROFILES } from '@/lib/constants'
 import me from '@/assets/me.jpg'
 
+// eslint-disable-next-line react/display-name
 const Header = memo(({ allPosts, journeyEntryCount }) => {
   const [headerTitle, setHeaderTitle] = useState(null)
   const pathname = usePathname()
@@ -23,7 +24,7 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
       const post = allPosts.find((post) => post.slug === slug)
       if (post?.title !== headerTitle) setHeaderTitle(post.title)
     }
-  }, [isWritingSlug])
+  }, [allPosts, headerTitle, isWritingSlug, slug])
 
   const {
     position: { y: scrollY }
@@ -89,7 +90,7 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
                 <a
                   href={PROFILES.twitter.url}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   title="Follow me on Twitter"
                   className="hidden hover:text-[#1d9bf0] sm:block"
                 >
@@ -107,7 +108,7 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
                 <a
                   href={PROFILES.github.url}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   title="Check out my GitHub profile"
                   className="hidden hover:text-black sm:block"
                 >

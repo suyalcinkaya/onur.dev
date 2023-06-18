@@ -1,9 +1,10 @@
 import { Suspense } from 'react'
+import { headers } from 'next/headers'
 
-import JourneyCard from '@/components/JourneyCard'
-import Markdown from '@/components/Markdown'
-import PageTitle from '@/components/PageTitle'
-import { getAllLogbook, getPageSeo } from '@/lib/contentful'
+import JourneyCard from '@/app/_components/JourneyCard'
+import Markdown from '@/app/_components/Markdown'
+import PageTitle from '@/app/_components/PageTitle'
+import { getAllLogbook, getPageSeo, checkPreviewMode } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
@@ -35,8 +36,8 @@ export async function generateMetadata() {
   }
 }
 
-async function fetchData() {
-  const allLogbook = (await getAllLogbook()) ?? []
+async function fetchData(isPreview = false) {
+  const allLogbook = (await getAllLogbook(isPreview)) ?? []
 
   const mappedLogbook = []
   allLogbook.map((log) => {
@@ -51,10 +52,18 @@ async function fetchData() {
 }
 
 export default async function Journey() {
-  const { allLogbook } = await fetchData()
+  const headerList = headers()
+  const { isPreview } = checkPreviewMode(headerList)
+  const { allLogbook } = await fetchData(isPreview)
 
   return (
     <div className="content">
+      {isPreview && (
+        <div className="border-l-4 border-yellow-500 bg-yellow-100 p-4 text-yellow-700" role="alert">
+          <p className="font-bold">Preview Mode</p>
+          <p>Preview mode is enabled. This page is not visible to the public.</p>
+        </div>
+      )}
       <PageTitle title="Journey" />
       <Suspense fallback={null}>
         <div className="flex flex-col items-stretch gap-12">

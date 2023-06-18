@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply bg-white font-sans text-base text-body antialiased;
+    @apply bg-white font-sans text-base text-gray-700 antialiased;
   }
 
   #__next {
@@ -106,7 +106,7 @@
 
 @layer components {
   .link-card {
-    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 text-body transition-colors duration-300 hover:bg-gray-100;
+    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 text-gray-700 transition-colors duration-300 hover:bg-gray-100;
   }
 
   .content {

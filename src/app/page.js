@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { List } from '@/components/List'
+import { List } from '@/app/_components/List'
 import { getAllPosts } from '@/lib/contentful'
 
 async function fetchData() {

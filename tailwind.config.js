@@ -15,6 +15,7 @@ module.exports = {
         reveal: 'reveal 1s ease-in-out'
       },
       fontFamily: {
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
         mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono]
       },
       keyframes: {
@@ -26,9 +27,6 @@ module.exports = {
       },
       lineHeight: {
         slacker: '1.75'
-      },
-      colors: {
-        body: '#1a1a1a'
       }
     }
   },

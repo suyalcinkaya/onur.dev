@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
-import RichText from '@/components/contentful/RichText'
-import PageTitle from '@/components/PageTitle'
+import RichText from '@/app/_components/contentful/RichText'
+import PageTitle from '@/app/_components/PageTitle'
 import { getAllPosts, getPost, getPostSeo } from '@/lib/contentful'
 import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
