@@ -1,7 +1,7 @@
 import ReactMarkdown from 'markdown-to-jsx'
 import Image from 'next/image'
 
-import Link from '@/app/_components/Link'
+import { Link } from '@/app/_components/Link'
 
 export default function Markdown({ options, ...rest }) {
   console.log('options', options)

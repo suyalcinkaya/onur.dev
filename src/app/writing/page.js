@@ -1,5 +1,8 @@
-import { getPageSeo } from '@/lib/contentful'
-import { getOgImageUrl } from '@/lib/utils'
+import Link from 'next/link'
+
+import FloatingHeader from '@/app/_components/FloatingHeader'
+import { getPageSeo, getAllPosts } from '@/lib/contentful'
+import { getOgImageUrl, getDateTimeFormat } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
 export async function generateMetadata() {
@@ -31,5 +34,30 @@ export async function generateMetadata() {
 }
 
 export default async function Writing() {
-  return <div className="content"></div>
+  const { allPosts } = await fetchData()
+
+  return (
+    <div className="w-full text-sm lg:hidden">
+      <FloatingHeader initialTitle="Writing" />
+      <div className="">
+        {allPosts.map((post) => {
+          const date = getDateTimeFormat(post.date)
+          return (
+            <Link
+              key={post.slug}
+              href={`/writing/${post.slug}`}
+              className="flex flex-col gap-1 border-b p-3 hover:bg-gray-200"
+            >
+              <span className="font-medium">{post.title}</span>
+              <span className="text-slate-500">{date}</span>
+            </Link>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+async function fetchData() {
+  const allPosts = (await getAllPosts()) ?? []
+  return { allPosts }
 }

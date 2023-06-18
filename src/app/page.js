@@ -15,10 +15,12 @@ export default async function Home() {
   console.log('viewCounts', viewCounts)
 
   return (
-    <div className="content">
-      <Suspense fallback={null}>
-        <WritingList items={allPosts} viewCounts={viewCounts} header="Writing" />
-      </Suspense>
+    <div className="content-wrapper">
+      <div className="content">
+        <Suspense fallback={null}>
+          <WritingList items={allPosts} viewCounts={viewCounts} header="Writing" />
+        </Suspense>
+      </div>
     </div>
   )
 }

@@ -1,11 +1,6 @@
-// 'use client'
-
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
-
 import { SideMenu } from '@/app/_components/SideMenu'
+import { WritingLink } from '@/app/writing/_components/WritingLink'
 import { getAllPosts } from '@/lib/contentful'
-import { getDateTimeFormat } from '@/lib/utils'
 
 export default async function WritingLayout({ children }) {
   const { allPosts } = await fetchData()
@@ -15,17 +10,7 @@ export default async function WritingLayout({ children }) {
       <SideMenu className="lg:w-96" title="Writing">
         <div className="flex flex-col gap-1 text-sm">
           {allPosts.map((post) => {
-            const date = getDateTimeFormat(post.date)
-            return (
-              <Link
-                key={post.slug}
-                href={`/writing/${post.slug}`}
-                className="flex flex-col gap-1 rounded-lg p-2 hover:bg-slate-200"
-              >
-                <span className="font-medium">{post.title}</span>
-                <span className="text-slate-500">{date}</span>
-              </Link>
-            )
+            return <WritingLink key={post.slug} post={post} />
           })}
         </div>
       </SideMenu>

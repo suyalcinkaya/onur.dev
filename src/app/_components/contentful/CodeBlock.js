@@ -85,8 +85,8 @@ export default function CodeBlock({ title, language, code }) {
         <DynamicSyntaxHighlighter
           language={language}
           showLineNumbers
-          // wrapLongLines={false} // white-space: pre
-          customStyle={{ backgroundColor: '', whiteSpace: 'pre-wrap' }}
+          wrapLongLines={false} // white-space: pre
+          customStyle={{ backgroundColor: '' }}
           lineNumberStyle={{
             minWidth: spacing[4],
             paddingRight: 0,

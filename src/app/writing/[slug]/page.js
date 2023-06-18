@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 
 import RichText from '@/app/_components/contentful/RichText'
 import PageTitle from '@/app/_components/PageTitle'
+import FloatingHeader from '@/app/_components/FloatingHeader'
 import { getAllPosts, getPost, getPostSeo } from '@/lib/contentful'
 import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
@@ -106,19 +107,22 @@ export default async function WritingSlug({ params }) {
   return (
     <>
       <Suspense fallback={null}>
-        <div className="content-wrapper">
-          <article className="content">
-            <PageTitle
-              title={title}
-              subtitle={
-                <time dateTime={postDate} className="text-gray-400">
-                  {dateString}
-                </time>
-              }
-              className="mb-6 flex flex-col gap-3"
-            />
-            <RichText content={content} />
-          </article>
+        <div className="relative flex w-full flex-col">
+          <FloatingHeader initialTitle={title} backLink="/writing" />
+          <div className="content-wrapper" id={`writing-${slug}`}>
+            <article className="content">
+              <PageTitle
+                title={title}
+                subtitle={
+                  <time dateTime={postDate} className="text-gray-400">
+                    {dateString}
+                  </time>
+                }
+                className="mb-6 flex flex-col gap-3"
+              />
+              <RichText content={content} />
+            </article>
+          </div>
         </div>
       </Suspense>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />

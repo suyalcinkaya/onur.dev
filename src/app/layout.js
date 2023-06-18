@@ -6,9 +6,7 @@ import { SparklesIcon, Edit3Icon, NavigationIcon, UserCircle2Icon } from 'lucide
 
 import Analytics from '@/app/analytics'
 import { openGraphImage } from '@/app/shared-metadata'
-import Header from '@/app/_components/Header'
-import { Footer } from '@/app/_components/Footer'
-import PageLayout from '@/app/_components/PageLayout'
+import { NavigationLink } from '@/app/_components/NavigationLink'
 import { SideMenu } from '@/app/_components/SideMenu'
 import { getAllPosts, getAllLogbook } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
@@ -65,8 +63,34 @@ export const metadata = {
     card: 'summary_large_image',
     site: `@${PROFILES.twitter.username}`,
     creator: `@${PROFILES.twitter.username}`
+  },
+  other: {
+    pinterest: 'nopin'
   }
 }
+
+const links = [
+  {
+    href: '/',
+    label: 'Home',
+    icon: <SparklesIcon size={16} />
+  },
+  {
+    href: '/writing',
+    label: 'Writing',
+    icon: <Edit3Icon size={16} />
+  },
+  {
+    href: '/journey',
+    label: 'Journey',
+    icon: <NavigationIcon size={16} />
+  },
+  {
+    href: '/about',
+    label: 'About',
+    icon: <UserCircle2Icon size={16} />
+  }
+]
 
 export default async function RootLayout({ children }) {
   const { allPosts, journeyEntryCount } = await fetchData()
@@ -75,29 +99,16 @@ export default async function RootLayout({ children }) {
     <html lang="en" className={`${interFont.variable} ${jetbrainsMono.variable}`}>
       <body>
         <div className="lg:flex">
-          <SideMenu>
-            <div className="flex flex-col gap-1 text-sm">
+          <SideMenu className="hidden lg:flex">
+            <div className="flex w-full flex-col gap-1 text-sm">
               <div className="flex flex-col gap-4">
                 <Link href="/" className="p-2">
                   <span className="font-semibold">Onur Şuyalçınkaya</span>
                 </Link>
                 <div className="flex flex-col gap-1">
-                  <Link href="/" className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-200">
-                    <SparklesIcon size={16} />
-                    <span className="font-medium">Home</span>
-                  </Link>
-                  <Link href="/writing" className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-200">
-                    <Edit3Icon size={16} />
-                    <span className="font-medium">Writing</span>
-                  </Link>
-                  <Link href="/journey" className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-200">
-                    <NavigationIcon size={16} />
-                    <span className="font-medium">Journey</span>
-                  </Link>
-                  <Link href="/about" className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-200">
-                    <UserCircle2Icon size={16} />
-                    <span className="font-medium">About</span>
-                  </Link>
+                  {links.map((link) => (
+                    <NavigationLink key={link.href} href={link.href} label={link.label} icon={link.icon} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -107,7 +118,7 @@ export default async function RootLayout({ children }) {
               <Header allPosts={allPosts} journeyEntryCount={journeyEntryCount} />
             </div>
           </Suspense> */}
-          {children}
+          <div className="flex flex-1">{children}</div>
         </div>
 
         <Analytics />

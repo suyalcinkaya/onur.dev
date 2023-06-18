@@ -4,16 +4,16 @@
 
 @layer base {
   ::selection {
-    @apply bg-gray-100;
+    @apply bg-black text-white;
   }
 
   html {
-    @apply overflow-hidden scroll-smooth;
+    @apply overflow-hidden scroll-smooth antialiased;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-white font-sans text-base text-gray-700 antialiased;
+    @apply bg-white font-sans text-base text-gray-700;
   }
 
   #__next {
@@ -49,7 +49,7 @@
   h1,
   h2,
   h3 {
-    @apply scroll-mt-20 font-semibold tracking-tight text-black;
+    @apply scroll-mt-20 font-semibold tracking-tighter text-black;
   }
 
   h1 {
@@ -102,6 +102,10 @@
   pre {
     @apply overflow-x-auto break-normal rounded-b-lg border-x border-b border-gray-200 bg-white py-3 pl-3 pr-[15%] text-left text-xs font-[450] leading-slacker;
   }
+
+  code {
+    @apply whitespace-pre-wrap;
+  }
 }
 
 @layer components {
@@ -110,7 +114,7 @@
   }
 
   .content-wrapper {
-    @apply h-full max-h-screen min-h-screen w-full overflow-y-auto px-6 py-24 md:px-12;
+    @apply h-full max-h-screen min-h-screen w-full overflow-y-auto px-6 py-24 md:px-8;
   }
 
   .content {
@@ -126,7 +130,7 @@
   }
 
   .pre-code {
-    @apply after:bg-r-shadow-gradient relative after:pointer-events-none after:absolute after:inset-y-3 after:right-px after:w-1/5 after:rounded-br-lg after:content-[''];
+    @apply after:bg-r-shadow-gradient relative grid overflow-x-auto after:pointer-events-none after:absolute after:inset-y-3 after:right-px after:w-1/5 after:rounded-br-lg after:content-[''];
   }
 
   .inline-code {
