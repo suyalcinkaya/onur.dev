@@ -24,8 +24,6 @@ const FloatingHeader = ({ initialTitle, title, backLink = '/' }) => {
     1
   )
 
-  console.log('scrollY', scrollY)
-
   return (
     <header className="sticky inset-x-0 top-0 z-10 mx-auto h-12 w-full bg-white font-medium shadow-sm md:border-b md:border-gray-200 lg:hidden">
       <div className="flex h-full items-center px-3 text-sm shadow-sm md:shadow-none lg:px-8">

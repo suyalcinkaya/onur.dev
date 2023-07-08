@@ -2,8 +2,9 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import PageTitle from '@/app/_components/PageTitle'
+import FloatingHeader from '@/app/_components/FloatingHeader'
 import RichText from '@/app/_components/contentful/RichText'
-import { getAllPages, getPage, getPageSeo } from '@/lib/contentful'
+import { getPage, getPageSeo } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
@@ -36,18 +37,6 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export async function generateStaticParams() {
-  const allPages = (await getAllPages()) ?? []
-
-  return allPages.length > 0
-    ? allPages
-        .filter((page) => !page.hasCustomPage)
-        .map((page) => ({
-          slug: page.url
-        }))
-    : []
-}
-
 async function fetchData(slug) {
   const page = (await getPage(slug)) ?? null
   if (!page) notFound()
@@ -61,12 +50,15 @@ export default async function PageSlug({ params }) {
   } = await fetchData(slug)
 
   return (
-    <div className="content-wrapper">
-      <div className="content">
-        <Suspense fallback={null}>
-          <PageTitle title={title} />
-          <RichText content={content} />
-        </Suspense>
+    <div className="relative flex w-full flex-col">
+      <FloatingHeader initialTitle={title} />
+      <div className="content-wrapper">
+        <div className="content">
+          <Suspense fallback={null}>
+            <PageTitle title={title} />
+            <RichText content={content} />
+          </Suspense>
+        </div>
       </div>
     </div>
   )

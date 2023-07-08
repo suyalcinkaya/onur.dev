@@ -8,7 +8,6 @@ import { getDateTimeFormat } from '@/lib/utils'
 
 export const WritingLink = ({ post }) => {
   const pathname = usePathname()
-
   const isActive = pathname === `/writing/${post.slug}`
   const date = getDateTimeFormat(post.date)
 

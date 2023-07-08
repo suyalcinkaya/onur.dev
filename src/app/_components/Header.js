@@ -4,7 +4,6 @@ import { memo, useState } from 'react'
 import { usePathname, useParams } from 'next/navigation'
 import NextLink from 'next/link'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 import { useScrollData } from 'scroll-data-hook'
 
@@ -65,13 +64,13 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
         ) : (
           <div className="flex w-full items-center justify-between gap-1">
             <NextLink href="/" className="link-card flex items-center gap-3">
-              <Image
+              <img
                 src={me}
                 alt="Onur Şuyalçınkaya"
                 width={40}
                 height={40}
+                loading="eager"
                 className="rounded-full border shadow-sm"
-                quality={100}
               />
               <div className="flex flex-col leading-tight">
                 <span>Onur Şuyalçınkaya</span>
