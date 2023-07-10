@@ -1,53 +1,34 @@
-import PageTitle from '@/app/_components/PageTitle'
+import Link from 'next/link'
+
 import { getPageSeo } from '@/lib/contentful'
-import { fetchRaindropBookmarks } from '@/lib/raindrop'
+import FloatingHeader from '@/app/_components/FloatingHeader'
 import { getOgImageUrl } from '@/lib/utils'
+import { COLLECTIONS } from '@/lib/constants'
 import { openGraphImage } from '@/app/shared-metadata'
 
-export const revalidate = 60 * 60 * 24 * 7 // 1 week
-
-async function fetchData() {
-  const raindropBookmarks = (await fetchRaindropBookmarks()) ?? []
-  return { raindropBookmarks }
-}
-
 export default async function Writing() {
-  const { raindropBookmarks } = await fetchData()
-
   return (
-    <div className="content-wrapper">
-      <div className="content">
-        <PageTitle title="Bookmarks" />
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {raindropBookmarks?.items?.map((bookmark) => {
-            console.log('bookmark', bookmark)
-            return (
-              <a
-                key={bookmark._id}
-                className="flex cursor-pointer flex-col gap-4 rounded-lg border border-gray-200 p-4 shadow-sm transition-colors duration-200 hover:border-gray-300 hover:bg-gray-100"
-                href={bookmark.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {bookmark.cover && (
-                  <img
-                    src={bookmark.cover}
-                    alt={bookmark.title}
-                    width={300}
-                    height={200}
-                    loading="lazy"
-                    className="h-auto w-full"
-                  />
-                )}
-                <h3 className="line-clamp-2">{bookmark.title}</h3>
-                <span className="line-clamp-4 text-sm">{bookmark.excerpt}</span>
-              </a>
-            )
-          })}
-        </div>
+    <div className="w-full text-sm lg:hidden">
+      <FloatingHeader initialTitle="Bookmarks" />
+      <div>
+        {COLLECTIONS.map((collection) => {
+          return (
+            <Link
+              key={collection.id}
+              href={`/bookmarks/${collection.id}`}
+              className="flex flex-col gap-1 border-b p-3 hover:bg-gray-200"
+            >
+              <span className="font-medium">{collection.name}</span>
+            </Link>
+          )
+        })}
       </div>
     </div>
   )
+}
+
+export async function generateStaticParams() {
+  return COLLECTIONS.map((collection) => ({ id: collection.id }))
 }
 
 export async function generateMetadata() {

@@ -15,12 +15,12 @@ export async function GET(request) {
 
     return new ImageResponse(
       (
-        <div tw="flex w-full h-full items-center justify-center bg-white" style={{ fontFamily: 'SF Pro' }}>
-          <div tw="flex absolute top-12 left-12 bg-black text-white py-2 px-3">
-            <span tw="text-4xl">{url}</span>
+        <div className="flex h-full w-full items-center justify-center bg-white" style={{ fontFamily: 'SF Pro' }}>
+          <div className="absolute left-12 top-12 flex bg-black px-3 py-2 text-white">
+            <span className="text-4xl">{url}</span>
           </div>
-          <div tw="flex mx-24 text-center">
-            <h1 tw="text-8xl" style={{ lineHeight: 1.1, letterSpacing: '-0.015em' }}>
+          <div className="mx-24 flex text-center">
+            <h1 className="text-8xl" style={{ lineHeight: 1.1, letterSpacing: '-0.015em' }}>
               {titleParam}
             </h1>
           </div>

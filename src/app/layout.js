@@ -1,7 +1,7 @@
 import '@/app/globals.css'
 import Link from 'next/link'
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { SparklesIcon, Edit3Icon, NavigationIcon, Wand2Icon, BookmarkIcon } from 'lucide-react'
+import { SparklesIcon, Edit3Icon, NavigationIcon, Wand2Icon, BookmarkIcon, StarIcon } from 'lucide-react'
 
 import Analytics from '@/app/analytics'
 import { openGraphImage } from '@/app/shared-metadata'
@@ -50,6 +50,11 @@ const links = [
     href: '/bookmarks',
     label: 'Bookmarks',
     icon: <BookmarkIcon size={16} />
+  },
+  {
+    href: '/stars',
+    label: 'GitHub Stars',
+    icon: <StarIcon size={16} />
   }
 ]
 
@@ -61,7 +66,7 @@ export default async function RootLayout({ children }) {
           <SideMenu className="hidden lg:flex">
             <div className="flex w-full flex-col gap-6 text-sm">
               <div className="flex flex-col gap-4">
-                <Link href="/" className="inline-flex items-center gap-2 p-2">
+                <Link href="/" className="link-card inline-flex items-center gap-2 p-2">
                   <img
                     src="/assets/me.jpg"
                     alt="Onur Şuyalçınkaya"

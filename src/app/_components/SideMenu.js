@@ -5,7 +5,7 @@ export const SideMenu = ({ children, className, title }) => {
     <div className="hidden lg:flex">
       <div
         className={cx(
-          'relative h-full max-h-screen min-h-screen w-56 flex-none overflow-y-auto border-r bg-gray-50 p-3',
+          'relative h-full max-h-dynamic-screen min-h-dynamic-screen w-56 flex-none overflow-y-auto border-r bg-gray-50 p-3',
           className
         )}
       >

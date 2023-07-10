@@ -3,7 +3,6 @@ import ReactMarkdown from 'markdown-to-jsx'
 import { Link } from '@/app/_components/Link'
 
 export default function Markdown({ options, ...rest }) {
-  console.log('options', options)
   return (
     <ReactMarkdown
       options={{
@@ -17,7 +16,7 @@ export default function Markdown({ options, ...rest }) {
               src={`https:${src}`}
               width={400}
               height={300}
-              className="mt-2 w-full max-w-md"
+              className="mt-2 w-full object-cover"
               loading="lazy"
             />
           )

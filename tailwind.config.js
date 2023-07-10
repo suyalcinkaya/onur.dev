@@ -12,7 +12,7 @@ module.exports = {
     },
     extend: {
       animation: {
-        reveal: 'reveal 1s ease-in-out'
+        reveal: 'reveal 0.6s ease-in-out'
       },
       fontFamily: {
         sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
@@ -27,9 +27,22 @@ module.exports = {
       },
       lineHeight: {
         slacker: '1.75'
+      },
+      gridTemplateRows: {
+        'max-1': 'repeat(1, minmax(0, max-content))'
+      },
+      height: {
+        'dynamic-screen': '100dvh'
+      },
+      minHeight: {
+        'dynamic-screen': '100dvh'
+      },
+      maxHeight: {
+        'dynamic-screen': '100dvh'
       }
     }
   },
+  plugins: [require('@tailwindcss/container-queries')],
   future: {
     hoverOnlyWhenSupported: true
   }

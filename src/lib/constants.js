@@ -1,4 +1,4 @@
-import { GithubIcon, TwitterIcon, LinkedinIcon, AtSignIcon, InstagramIcon, YoutubeIcon } from 'lucide-react'
+import { GithubIcon, TwitterIcon, LinkedinIcon, InstagramIcon, YoutubeIcon } from 'lucide-react'
 
 export const PROFILES = {
   twitter: {
@@ -19,8 +19,7 @@ export const PROFILES = {
   },
   medium: {
     title: 'Medium',
-    url: 'https://suyalcinkaya.medium.com',
-    icon: <AtSignIcon size={16} />
+    url: 'https://suyalcinkaya.medium.com'
   },
   instagram: {
     title: 'Instagram',
@@ -29,8 +28,7 @@ export const PROFILES = {
   },
   soundcloud: {
     title: 'Soundcloud',
-    url: 'https://soundcloud.com/jagerman',
-    icon: <AtSignIcon size={16} />
+    url: 'https://soundcloud.com/jagerman'
   },
   youtube: {
     title: 'YouTube',
@@ -39,23 +37,15 @@ export const PROFILES = {
   },
   bluesky: {
     title: 'Bluesky',
-    url: 'https://staging.bsky.app/profile/onur.dev',
-    icon: <AtSignIcon size={16} />
+    url: 'https://staging.bsky.app/profile/onur.dev'
   },
   readcv: {
     title: 'Read.cv',
-    url: 'https://read.cv/onur',
-    icon: <AtSignIcon size={16} />
-  },
-  bento: {
-    title: 'Bento',
-    url: 'https://bento.me/onur',
-    icon: <AtSignIcon size={16} />
+    url: 'https://read.cv/onur'
   },
   pinterest: {
     title: 'Pinterest',
-    url: 'https://nl.pinterest.com/onurschu',
-    icon: <AtSignIcon size={16} />
+    url: 'https://nl.pinterest.com/onurschu'
   }
 }
 
@@ -100,3 +90,38 @@ export const PROJECTS = [
 
 // 9rem (pt-36 from PageLayout) - 4rem (header height) = 5rem (80px)
 export const SCROLL_THRESHOLD = 80
+
+export const COLLECTIONS = [
+  {
+    id: 18259129,
+    name: 'Apps'
+  },
+  {
+    id: 15968768,
+    name: 'Design'
+  },
+  {
+    id: 23598938,
+    name: 'Fonts'
+  },
+  {
+    id: 16949672,
+    name: 'Frontend'
+  },
+  {
+    id: 15807896,
+    name: 'Personal Websites'
+  },
+  {
+    id: 15807897,
+    name: 'Reading List'
+  },
+  {
+    id: 15969648,
+    name: 'VS Code'
+  },
+  {
+    id: 16338467,
+    name: 'Websites'
+  }
+]

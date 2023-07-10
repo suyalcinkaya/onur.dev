@@ -1,7 +1,6 @@
 import Markdown from '@/app/_components/Markdown'
 
 const JourneyCard = ({ title, subtitle }) => {
-  console.log('subtitle', subtitle)
   return (
     <div>
       <span className="word-break font-medium">{title}</span>

@@ -17,7 +17,7 @@
   }
 
   #__next {
-    @apply min-h-screen;
+    @apply min-h-dynamic-screen;
   }
 
   article {
@@ -34,7 +34,7 @@
   }
 
   a {
-    @apply transition-colors duration-300;
+    @apply transition-colors duration-200;
   }
 
   button:focus {
@@ -95,7 +95,7 @@
     @apply my-6 border-gray-200;
   }
 
-  img {
+  img, object {
     @apply animate-reveal rounded-xl;
   }
 
@@ -110,15 +110,15 @@
 
 @layer components {
   .link-card {
-    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 text-gray-700 transition-colors duration-300 hover:bg-gray-100;
+    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 transition-colors duration-200 hover:bg-gray-200;
   }
 
   .content-wrapper {
-    @apply h-full max-h-screen min-h-screen w-full overflow-y-auto px-6 py-24 md:px-8;
+    @apply h-full max-h-dynamic-screen min-h-dynamic-screen w-full overflow-y-auto px-6 py-24 md:px-8;
   }
 
   .content {
-    @apply mx-auto h-full w-full max-w-3xl;
+    @apply mx-auto w-full max-w-3xl;
   }
 
   .btn {

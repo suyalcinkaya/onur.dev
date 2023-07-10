@@ -13,8 +13,6 @@ async function fetchData() {
 export default async function Home() {
   const { allPosts, viewCounts } = await fetchData()
 
-  console.log('viewCounts', viewCounts)
-
   return (
     <div className="content-wrapper">
       <div className="content">
