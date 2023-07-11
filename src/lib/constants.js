@@ -94,7 +94,7 @@ export const SCROLL_THRESHOLD = 80
 export const COLLECTIONS = [
   {
     id: 18259129,
-    name: 'Apps'
+    name: 'Apps & Tools'
   },
   {
     id: 15968768,
@@ -123,5 +123,9 @@ export const COLLECTIONS = [
   {
     id: 16338467,
     name: 'Websites'
+  },
+  {
+    id: 15896982,
+    name: 'Tweets'
   }
 ]

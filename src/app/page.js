@@ -33,15 +33,3 @@ export default async function Home() {
     </div>
   )
 }
-
-export async function generateStaticParams() {
-  const allPages = (await getAllPages()) ?? []
-
-  return allPages.length > 0
-    ? allPages
-        .filter((page) => !page.hasCustomPage)
-        .map((page) => ({
-          slug: page.url
-        }))
-    : []
-}

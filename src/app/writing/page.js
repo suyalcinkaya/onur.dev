@@ -35,11 +35,6 @@ async function fetchData() {
   return { allPosts }
 }
 
-export async function generateStaticParams() {
-  const allPosts = (await getAllPosts()) ?? []
-  return allPosts.map((post) => ({ slug: post.slug }))
-}
-
 export async function generateMetadata() {
   const seoData = (await getPageSeo('writing')) ?? null
   if (!seoData) return null

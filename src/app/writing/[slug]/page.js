@@ -1,10 +1,9 @@
-import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import RichText from '@/app/_components/contentful/RichText'
 import PageTitle from '@/app/_components/PageTitle'
 import FloatingHeader from '@/app/_components/FloatingHeader'
-import { getPost, getPostSeo } from '@/lib/contentful'
+import { getPost, getPostSeo, getAllPosts } from '@/lib/contentful'
 import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
@@ -57,7 +56,7 @@ async function fetchData(slug) {
   if (!data?.post) notFound()
 
   return {
-    post: data.post
+    post: data?.post
   }
 }
 
@@ -121,4 +120,9 @@ export default async function WritingSlug({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>
   )
+}
+
+export async function generateStaticParams() {
+  const allPosts = (await getAllPosts()) ?? []
+  return allPosts.map((post) => ({ slug: post.slug }))
 }

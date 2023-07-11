@@ -11,7 +11,7 @@ export default async function BookmarksLayout({ children }) {
 
   return (
     <div className="flex w-full">
-      <SideMenu className="lg:w-96" title="Bookmarks">
+      <SideMenu title="Bookmarks" isInner>
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
             {collections.map((collection) => {
@@ -21,7 +21,7 @@ export default async function BookmarksLayout({ children }) {
                   key={collection._id}
                   path={`/bookmarks/${collection._id}`}
                   title={title}
-                  description={collection.count}
+                  description={`${collection.count} items`}
                 />
               )
             })}

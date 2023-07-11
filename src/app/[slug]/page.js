@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import PageTitle from '@/app/_components/PageTitle'
 import FloatingHeader from '@/app/_components/FloatingHeader'
 import RichText from '@/app/_components/contentful/RichText'
-import { getPage, getPageSeo } from '@/lib/contentful'
+import { getPage, getPageSeo, getAllPages } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
 
@@ -62,4 +62,16 @@ export default async function PageSlug({ params }) {
       </div>
     </div>
   )
+}
+
+export async function generateStaticParams() {
+  const allPages = (await getAllPages()) ?? []
+
+  return allPages.length > 0
+    ? allPages
+        .filter((page) => !page.hasCustomPage)
+        .map((page) => ({
+          slug: page.url
+        }))
+    : []
 }

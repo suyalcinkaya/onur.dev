@@ -9,6 +9,7 @@ import { NavigationLink } from '@/app/_components/NavigationLink'
 import { SideMenu } from '@/app/_components/SideMenu'
 import { getOgImageUrl } from '@/lib/utils'
 import { PROFILES } from '@/lib/constants'
+import { getAllPosts, getAllPages } from '@/lib/contentful'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -50,12 +51,12 @@ const links = [
     href: '/bookmarks',
     label: 'Bookmarks',
     icon: <BookmarkIcon size={16} />
-  },
-  {
+  }
+  /* {
     href: '/stars',
     label: 'GitHub Stars',
     icon: <StarIcon size={16} />
-  }
+  } */
 ]
 
 export default async function RootLayout({ children }) {

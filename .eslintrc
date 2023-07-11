@@ -7,6 +7,7 @@
     "plugin:react/jsx-runtime",
     "plugin:import/recommended"
   ],
+  "include": ["jsconfig.json", "next.config.js"],
   "env": {
     "node": true,
     "browser": true,

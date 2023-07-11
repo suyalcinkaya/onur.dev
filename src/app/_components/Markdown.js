@@ -10,7 +10,7 @@ export default function Markdown({ options, ...rest }) {
         overrides: {
           // Ignore `className` prop to make Link component work properly
           a: ({ className, ...rest }) => <Link {...rest} />,
-          img: ({ alt, src }) => (
+          img: ({ alt, src, width, height }) => (
             <img
               alt={alt}
               src={`https:${src}`}

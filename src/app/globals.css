@@ -114,7 +114,7 @@
   }
 
   .content-wrapper {
-    @apply h-full max-h-dynamic-screen min-h-dynamic-screen w-full overflow-y-auto px-6 py-24 md:px-8;
+    @apply h-full max-h-dynamic-screen min-h-dynamic-screen w-full overflow-y-auto px-6 py-12 md:py-24 md:px-8;
   }
 
   .content {

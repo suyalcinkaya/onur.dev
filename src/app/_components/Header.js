@@ -32,9 +32,6 @@ const Header = memo(({ allPosts, journeyEntryCount }) => {
     1
   )
 
-  console.log('scrollY', scrollY)
-  console.log('headerTitle', headerTitle)
-
   return (
     <header className="fixed inset-x-0 top-0 z-10 mx-auto h-16 w-full bg-white font-medium shadow-sm md:border-b md:border-gray-200">
       <div className="content flex h-full items-center text-sm shadow md:shadow-none">

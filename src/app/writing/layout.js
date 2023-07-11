@@ -10,7 +10,7 @@ export default async function WritingLayout({ children }) {
 
   return (
     <div className="flex w-full">
-      <SideMenu className="lg:w-96" title="Writing">
+      <SideMenu title="Writing" isInner>
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
             {allPosts.map((post) => {

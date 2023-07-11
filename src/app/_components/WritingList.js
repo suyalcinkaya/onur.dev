@@ -49,8 +49,6 @@ export const WritingList = ({ items, viewCounts }) => {
             <ul className="list-none" key={year}>
               {itemsArr.map((item, itemIndex) => {
                 const { title, slug, date } = item
-                console.log('slug', slug)
-
                 const dateObj = new Date(date)
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
