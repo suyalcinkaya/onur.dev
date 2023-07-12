@@ -7,7 +7,6 @@
     "plugin:react/jsx-runtime",
     "plugin:import/recommended"
   ],
-  "include": ["jsconfig.json", "next.config.js"],
   "env": {
     "node": true,
     "browser": true,
@@ -23,7 +22,8 @@
     "react/prop-types": 0,
     "react/display-name": 0,
     "@next/next/no-img-element": 0,
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "import/no-unresolved": [2, { "caseSensitive": false }]
   },
   "settings": {
     "import/resolver": {

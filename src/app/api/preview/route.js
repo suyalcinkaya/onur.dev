@@ -1,4 +1,4 @@
-import { getPost } from '@/lib/contentful.js'
+import { getPost } from '@/lib/contentful'
 
 export default async function preview(req, res) {
   // Check the secret and next parameters

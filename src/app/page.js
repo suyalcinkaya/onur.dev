@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { WritingList } from '@/app/_components/WritingList'
 import PageTitle from '@/app/_components/PageTitle'
-import { getAllPosts, getAllPages } from '@/lib/contentful'
+import { getAllPosts } from '@/lib/contentful'
 import { getViewCounts } from '@/lib/supabase'
 
 async function fetchData() {
@@ -18,8 +18,8 @@ export default async function Home() {
       <div className="content">
         <PageTitle title="Home" />
         <p>
-          I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
-          The Netherlands.
+          {`I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
+          The Netherlands.`}
         </p>
         <p>
           I develop things as a Senior Frontend Software Engineer at Bitvavo. Previously, I worked as a Senior Frontend

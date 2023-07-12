@@ -10,7 +10,7 @@ const SectionBlock = ({ title, href, children, ...rest }) => {
     <div className="flex flex-col gap-4" {...rest}>
       {href ? (
         isExternal ? (
-          <a href={href} target="_blank" className="self-start text-gray-500">
+          <a href={href} target="_blank" rel="noreferrer" className="self-start text-gray-500">
             {title}
           </a>
         ) : (

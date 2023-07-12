@@ -14,9 +14,12 @@
     "clear-cache": "rm -rf .next",
     "unused": "next-unused"
   },
+  "engines": {
+    "node": ">= 18.x"
+  },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
-    "@supabase/supabase-js": "^2.21.0",
+    "@supabase/supabase-js": "^2.26.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@vercel/analytics": "^1.0.1",
     "@vercel/og": "^0.5.6",

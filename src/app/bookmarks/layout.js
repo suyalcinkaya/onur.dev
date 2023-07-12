@@ -34,7 +34,7 @@ export default async function BookmarksLayout({ children }) {
 }
 
 async function fetchData() {
-  const collections = (await getCollections()) ?? []
+  const collections = await getCollections()
 
   const filteredAndSortedCollections = collections.items
     .filter((collection) => {

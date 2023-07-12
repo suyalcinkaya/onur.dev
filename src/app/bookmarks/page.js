@@ -8,9 +8,9 @@ import { getCollections } from '@/lib/raindrop'
 import { openGraphImage } from '@/app/shared-metadata'
 
 async function fetchData() {
-  const collections = (await getCollections()) ?? []
+  const collections = await getCollections()
 
-  const filteredAndSortedCollections = collections.items
+  const filteredAndSortedCollections = collections?.items
     .filter((collection) => {
       return COLLECTIONS.some((c) => c.id === collection._id)
     })
