@@ -12,7 +12,7 @@ module.exports = {
     },
     extend: {
       animation: {
-        reveal: 'reveal 0.6s ease-in-out'
+        reveal: 'reveal 0.7s ease-in-out'
       },
       fontFamily: {
         sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
@@ -20,9 +20,9 @@ module.exports = {
       },
       keyframes: {
         reveal: {
-          '0%': { opacity: 0, filter: 'brightness(1) blur(20px)' },
-          '10%': { opacity: 1, filter: 'brightness(2) blur(10px)' },
-          '100%': { opacity: 1, filter: 'brightness(1) blur(0)' }
+          '0%': { opacity: 0, filter: 'brightness(1) blur(15px)', scale: '1.1' },
+          '10%': { opacity: 1, filter: 'brightness(1.25) blur(10px)' },
+          '100%': { opacity: 1, filter: 'brightness(1) blur(0)', scale: '1' }
         }
       },
       lineHeight: {
@@ -42,7 +42,7 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/container-queries')],
+  plugins: [require('@tailwindcss/container-queries'), require('tailwindcss-animate')],
   future: {
     hoverOnlyWhenSupported: true
   }

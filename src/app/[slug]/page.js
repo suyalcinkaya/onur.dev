@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import PageTitle from '@/app/_components/PageTitle'
@@ -7,6 +6,43 @@ import RichText from '@/app/_components/contentful/RichText'
 import { getPage, getPageSeo, getAllPages } from '@/lib/contentful'
 import { getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
+
+async function fetchData(slug) {
+  const page = (await getPage(slug)) ?? null
+  if (!page) notFound()
+  return { page }
+}
+
+export default async function PageSlug({ params }) {
+  const { slug } = params
+  const {
+    page: { title, content }
+  } = await fetchData(slug)
+
+  return (
+    <div className="relative flex w-full flex-col">
+      <FloatingHeader initialTitle={title} />
+      <div className="content-wrapper">
+        <div className="content">
+          <PageTitle title={title} />
+          <RichText content={content} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export async function generateStaticParams() {
+  const allPages = (await getAllPages()) ?? []
+
+  return allPages.length > 0
+    ? allPages
+        .filter((page) => !page.hasCustomPage)
+        .map((page) => ({
+          slug: page.url
+        }))
+    : []
+}
 
 export async function generateMetadata({ params }) {
   const { slug } = params
@@ -35,43 +71,4 @@ export async function generateMetadata({ params }) {
       canonical: siteUrl
     }
   }
-}
-
-async function fetchData(slug) {
-  const page = (await getPage(slug)) ?? null
-  if (!page) notFound()
-  return { page }
-}
-
-export default async function PageSlug({ params }) {
-  const { slug } = params
-  const {
-    page: { title, content }
-  } = await fetchData(slug)
-
-  return (
-    <div className="relative flex w-full flex-col">
-      <FloatingHeader initialTitle={title} />
-      <div className="content-wrapper">
-        <div className="content">
-          <Suspense fallback={null}>
-            <PageTitle title={title} />
-            <RichText content={content} />
-          </Suspense>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export async function generateStaticParams() {
-  const allPages = (await getAllPages()) ?? []
-
-  return allPages.length > 0
-    ? allPages
-        .filter((page) => !page.hasCustomPage)
-        .map((page) => ({
-          slug: page.url
-        }))
-    : []
 }

@@ -9,7 +9,7 @@ export default async function WritingLayout({ children }) {
   const { allPosts } = await fetchData()
 
   return (
-    <div className="flex w-full">
+    <>
       <SideMenu title="Writing" isInner>
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
@@ -19,8 +19,8 @@ export default async function WritingLayout({ children }) {
           </div>
         </Suspense>
       </SideMenu>
-      {children}
-    </div>
+      <div className="bg-dots flex-1">{children}</div>
+    </>
   )
 }
 

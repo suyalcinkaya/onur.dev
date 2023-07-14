@@ -1,9 +1,11 @@
+'use client'
+
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-import { upsertViewCount, getViewCount } from '@/lib/supabase'
+import { upsertViewCount } from '@/lib/supabase'
 
-const Views = ({ slug, isWritingSlug }) => {
+const Views = ({ slug }) => {
   const [viewData, setViewData] = useState(null)
 
   useEffect(() => {
@@ -12,13 +14,8 @@ const Views = ({ slug, isWritingSlug }) => {
       setViewData(upsertViewCountData)
     }
 
-    const getView = async () => {
-      const getViewCountData = await getViewCount(slug)
-      setViewData(getViewCountData)
-    }
-
-    if (slug) isWritingSlug ? upsert() : getView()
-  }, [isWritingSlug, slug])
+    if (slug) upsert()
+  }, [slug])
 
   if (!viewData?.view_count) {
     return <motion.span key="loading" />

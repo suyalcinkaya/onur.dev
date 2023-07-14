@@ -8,17 +8,19 @@ export default function Markdown({ options, ...rest }) {
       options={{
         ...options,
         overrides: {
-          // Ignore `className` prop to make Link component work properly
+          // Extract `className` prop to make Link component work properly
           a: ({ className, ...rest }) => <Link {...rest} />,
-          img: ({ alt, src, width, height }) => (
-            <img
-              alt={alt}
-              src={`https:${src}`}
-              width={400}
-              height={300}
-              className="mt-2 w-full object-cover"
-              loading="lazy"
-            />
+          img: ({ alt, src }) => (
+            <span className="mt-2 flex overflow-hidden rounded-xl">
+              <img
+                alt={alt}
+                src={`https:${src}`}
+                width={400}
+                height={300}
+                className="aspect-auto w-full animate-reveal object-cover"
+                loading="lazy"
+              />
+            </span>
           )
         }
       }}

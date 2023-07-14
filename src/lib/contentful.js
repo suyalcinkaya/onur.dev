@@ -205,6 +205,13 @@ export async function getAllLogbook(preview = false) {
           date
           emoji
           description
+          image {
+            url
+            title
+            description
+            width
+            height
+          }
         }
       }
     }`,

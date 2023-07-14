@@ -95,8 +95,9 @@
     @apply my-6 border-gray-200;
   }
 
-  img, object {
-    @apply animate-reveal rounded-xl;
+  img,
+  object {
+    @apply rounded-xl;
   }
 
   pre {
@@ -114,11 +115,11 @@
   }
 
   .content-wrapper {
-    @apply h-full max-h-dynamic-screen min-h-dynamic-screen w-full overflow-y-auto px-6 py-12 md:py-24 md:px-8;
+    @apply h-full max-h-dynamic-screen min-h-dynamic-screen w-full overflow-y-auto px-6 py-12 md:px-8 md:py-24;
   }
 
   .content {
-    @apply mx-auto w-full max-w-3xl;
+    @apply mx-auto w-full max-w-4xl;
   }
 
   .btn {
@@ -257,7 +258,7 @@
     text-underline-offset: 4px;
   }
 
-  .word-break {
+  .word-break-word {
     word-break: break-word;
   }
 
@@ -268,5 +269,28 @@
 
   .bg-r-shadow-gradient {
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+  }
+
+  .bg-top-gradient {
+    --gradient-from: 247 185 85;
+    --gradient-to: 255 0 128;
+    --geist-background: #fff;
+    background: linear-gradient(to top, var(--geist-background) 0, hsla(0, 0%, 100%, 0) 100%),
+      linear-gradient(
+        to right,
+        rgb(var(--gradient-from, 192.5 192.5 192.5) / 0.08) 0,
+        rgb(var(--gradient-to, 192.5 192.5 192.5) / 0.08) 100%
+      );
+    background-size: 100% 100%, 100% 100%, 1440px 1px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+
+  .bg-dots {
+    @apply bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];
+  }
+
+  .bg-grid {
+    @apply bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px];
   }
 }

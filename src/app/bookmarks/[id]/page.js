@@ -90,35 +90,37 @@ export default async function CollectionPage({ params }) {
           <div className="grid gap-4 @lg:grid-cols-2">
             {chunks.map((chunk, chunkIndex) => {
               return (
-                <div key={`chunk_${chunkIndex}`} className="space-y-4">
+                <div key={`chunk_${chunkIndex}`} className="grid place-content-start gap-4">
                   {chunk.map((bookmark) => {
                     return (
                       <a
                         key={bookmark._id}
-                        className="flex min-w-0 cursor-pointer flex-col gap-4 rounded-lg border border-gray-200 p-4 shadow-sm transition-colors duration-200 hover:border-gray-300 hover:bg-gray-100"
+                        className="flex min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-colors duration-200 hover:border-gray-300 hover:bg-gray-100"
                         href={bookmark.link}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {bookmark.cover && (
-                          <object
-                            data={bookmark.cover}
-                            name={bookmark.title}
-                            width={300}
-                            height={240}
-                            type="image/png"
-                            className="h-auto min-h-[160px] w-full overflow-hidden rounded-md border object-cover @lg:aspect-video"
-                          >
-                            <img
-                              src="/assets/fallback.webp"
-                              alt={bookmark.title}
+                        <span className="overflow-hidden rounded-md">
+                          {bookmark.cover && (
+                            <object
+                              data={bookmark.cover}
+                              name={bookmark.title}
                               width={300}
                               height={240}
-                              loading="lazy"
-                              className="aspect-video h-full w-full rounded-none object-cover"
-                            />
-                          </object>
-                        )}
+                              type="image/png"
+                              className="aspect-auto h-auto min-h-[120px] w-full animate-reveal overflow-hidden rounded-md border object-cover"
+                            >
+                              <img
+                                src="/assets/fallback.webp"
+                                alt={bookmark.title}
+                                width={300}
+                                height={240}
+                                loading="lazy"
+                                className="aspect-video h-full w-full rounded-none object-cover"
+                              />
+                            </object>
+                          )}
+                        </span>
                         <div className="flex flex-col gap-1">
                           <h3>{bookmark.title}</h3>
                           <span className="line-clamp-6 text-sm">{bookmark.excerpt}</span>

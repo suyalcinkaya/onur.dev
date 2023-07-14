@@ -62,14 +62,14 @@ function options(links) {
         const asset = findAsset(node.data.target.sys.id)
 
         return (
-          <figure className="mb-6 flex flex-col gap-2">
+          <figure className="mb-6 flex flex-col gap-2 overflow-hidden rounded-xl">
             <img
               src={asset.url}
               height={asset.height || 300}
               width={asset.width || 400}
               alt={asset.description}
               loading="lazy"
-              className="border border-gray-100"
+              className="animate-reveal border border-gray-100"
             />
             {asset.description && (
               <figcaption className="text-center text-xs font-light text-gray-500">{asset.description}</figcaption>

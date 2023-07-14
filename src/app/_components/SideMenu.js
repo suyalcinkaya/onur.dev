@@ -5,7 +5,7 @@ export const SideMenu = ({ children, title, isInner }) => {
     <div className="hidden lg:flex">
       <div
         className={cx(
-          'relative h-full max-h-dynamic-screen min-h-dynamic-screen flex-none overflow-y-auto border-r bg-gray-50 p-3',
+          'relative h-full max-h-dynamic-screen min-h-dynamic-screen flex-none overflow-y-auto border-r bg-zinc-50 p-3',
           isInner ? 'w-96' : 'w-72'
         )}
       >

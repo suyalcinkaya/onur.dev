@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { PlusIcon } from 'lucide-react'
 
 import JourneyCard from '@/app/_components/JourneyCard'
 import FloatingHeader from '@/app/_components/FloatingHeader'
@@ -55,13 +55,13 @@ export default async function Journey() {
 
   return (
     <div className="relative flex w-full flex-col">
-      {/* <FloatingHeader initialTitle="Journey" /> */}
+      <FloatingHeader initialTitle="Journey" />
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title="Journey" />
           <div className="flex flex-col items-stretch gap-12">
             {allLogbook.map((item, itemIndex) => (
-              <div key={`data_${itemIndex}`} className="flex flex-col gap-6">
+              <div key={`data_${itemIndex}`} className="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">
                 <div className="flex items-center">
                   <h2>{item.year}</h2>
                   <hr className="my-0 ml-4 flex-1 border-dashed border-gray-200" />
@@ -70,17 +70,15 @@ export default async function Journey() {
                   {item.logs.map((log, logIndex) => (
                     <div key={`data_${itemIndex}_log_${logIndex}`} className="relative flex pb-8 last:pb-0">
                       {logIndex !== item.logs.length - 1 && (
-                        <div className="absolute inset-x-0 inset-y-2.5 mt-10 flex w-10 items-center justify-center">
-                          <div className="pointer-events-none h-full w-px border-l-2 border-gray-200"></div>
+                        <div className="absolute inset-0 flex w-6 items-center justify-center">
+                          <div className="pointer-events-none h-full w-px border-l-[1px] border-gray-200"></div>
                         </div>
                       )}
-                      <div className="z-0 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 align-middle">
-                        <span role="img" aria-label={log.title}>
-                          {log.emoji}
-                        </span>
+                      <div className="z-0 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
+                        <PlusIcon size={16} />
                       </div>
-                      <div className="flex-grow pl-4">
-                        <JourneyCard title={log.title} subtitle={log.description} />
+                      <div className="flex-grow pl-6">
+                        <JourneyCard {...log} />
                       </div>
                     </div>
                   ))}

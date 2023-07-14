@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import RichText from '@/app/_components/contentful/RichText'
 import PageTitle from '@/app/_components/PageTitle'
 import FloatingHeader from '@/app/_components/FloatingHeader'
+import Views from '@/app/_components/Views'
 import { getPost, getPostSeo, getAllPosts } from '@/lib/contentful'
 import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
 import { openGraphImage } from '@/app/shared-metadata'
@@ -100,8 +101,10 @@ export default async function WritingSlug({ params }) {
 
   return (
     <>
-      <div className="relative flex w-full flex-col">
-        <FloatingHeader initialTitle={title} backLink="/writing" />
+      <div className="relative flex w-full flex-col bg-white">
+        <FloatingHeader initialTitle={title} backLink="/writing">
+          <Views slug={slug} />
+        </FloatingHeader>
         <div className="content-wrapper">
           <article className="content">
             <PageTitle

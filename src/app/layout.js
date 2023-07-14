@@ -1,15 +1,15 @@
 import '@/app/globals.css'
 import Link from 'next/link'
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { SparklesIcon, Edit3Icon, NavigationIcon, Wand2Icon, BookmarkIcon, StarIcon } from 'lucide-react'
+import { SparklesIcon, Edit3Icon, NavigationIcon, Wand2Icon, BookmarkIcon } from 'lucide-react'
 
 import Analytics from '@/app/analytics'
+
 import { openGraphImage } from '@/app/shared-metadata'
 import { NavigationLink } from '@/app/_components/NavigationLink'
 import { SideMenu } from '@/app/_components/SideMenu'
 import { getOgImageUrl } from '@/lib/utils'
 import { PROFILES } from '@/lib/constants'
-import { getAllPosts, getAllPages } from '@/lib/contentful'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
