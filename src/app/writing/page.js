@@ -1,9 +1,8 @@
 import Link from 'next/link'
 
-import FloatingHeader from '@/app/_components/FloatingHeader'
+import { FloatingHeader } from '@/app/_components/FloatingHeader'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
-import { getOgImageUrl, getDateTimeFormat } from '@/lib/utils'
-import { openGraphImage } from '@/app/shared-metadata'
+import { getDateTimeFormat } from '@/lib/utils'
 
 export default async function Writing() {
   const { allPosts } = await fetchData()
@@ -39,7 +38,7 @@ export async function generateMetadata() {
   const seoData = (await getPageSeo('writing')) ?? null
   if (!seoData) return null
 
-  const { title, url, seoTitle, seoDescription } = seoData
+  const { url, seoTitle, seoDescription } = seoData
   const siteUrl = `/${url}`
 
   return {
@@ -48,13 +47,6 @@ export async function generateMetadata() {
     openGraph: {
       title: seoTitle,
       description: seoDescription,
-      images: [
-        {
-          ...openGraphImage,
-          url: getOgImageUrl({ title, url }),
-          alt: title
-        }
-      ],
       url: siteUrl
     },
     alternates: {

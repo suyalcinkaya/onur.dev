@@ -1,46 +1,13 @@
 import { memo } from 'react'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
-import { ArrowLeftIcon, MenuIcon, SparklesIcon, Edit3Icon, NavigationIcon, Wand2Icon, BookmarkIcon } from 'lucide-react'
+import { ArrowLeftIcon, MenuIcon } from 'lucide-react'
 
 import { NavigationLink } from '@/app/_components/NavigationLink'
 import { Sheet, SheetContent, SheetTrigger } from '@/app/_components/ui/sheet.jsx'
-import { PROFILES } from '@/lib/constants'
+import { PROFILES, LINKS } from '@/lib/constants'
 
-const links = [
-  {
-    href: '/',
-    label: 'Home',
-    icon: <SparklesIcon size={16} />
-  },
-  {
-    href: '/writing',
-    label: 'Writing',
-    icon: <Edit3Icon size={16} />
-  },
-  {
-    href: '/journey',
-    label: 'Journey',
-    icon: <NavigationIcon size={16} />
-  },
-  {
-    href: '/stack',
-    label: 'Stack',
-    icon: <Wand2Icon size={16} />
-  },
-  {
-    href: '/bookmarks',
-    label: 'Bookmarks',
-    icon: <BookmarkIcon size={16} />
-  }
-  /* {
-    href: '/stars',
-    label: 'GitHub Stars',
-    icon: <StarIcon size={16} />
-  } */
-]
-
-const FloatingHeader = ({ initialTitle, title, backLink, children }) => {
+export const FloatingHeader = memo(({ initialTitle, title, backLink, children }) => {
   return (
     <header className="sticky inset-x-0 top-0 z-10 mx-auto h-12 w-full border-b bg-white text-sm font-medium lg:hidden">
       <div className="flex h-full items-center px-5">
@@ -73,13 +40,13 @@ const FloatingHeader = ({ initialTitle, title, backLink, children }) => {
                         </div>
                       </Link>
                       <div className="flex flex-col gap-1">
-                        {links.map((link) => (
+                        {LINKS.map((link) => (
                           <NavigationLink key={link.href} href={link.href} label={link.label} icon={link.icon} />
                         ))}
                       </div>
                     </div>
                     <div className="flex flex-col gap-1 text-sm">
-                      <span className="text-xs font-medium text-gray-400">Online</span>
+                      <span className="text-xs font-medium text-gray-400 px-2">Online</span>
                       <div className="flex flex-col gap-1">
                         {Object.values(PROFILES).map((profile) => (
                           <NavigationLink
@@ -107,6 +74,4 @@ const FloatingHeader = ({ initialTitle, title, backLink, children }) => {
       </div>
     </header>
   )
-}
-
-export default memo(FloatingHeader)
+})

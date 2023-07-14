@@ -1,6 +1,6 @@
-import Markdown from '@/app/_components/Markdown'
+import { Markdown } from '@/app/_components/Markdown'
 
-const JourneyCard = ({ title, description, image }) => {
+export const JourneyCard = ({ title, description, image }) => {
   return (
     <div className="flex flex-col gap-2">
       <span className="word-break-word font-semibold">{title}</span>
@@ -19,5 +19,3 @@ const JourneyCard = ({ title, description, image }) => {
     </div>
   )
 }
-
-export default JourneyCard

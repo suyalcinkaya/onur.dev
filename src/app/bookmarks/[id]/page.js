@@ -1,56 +1,16 @@
 import { notFound } from 'next/navigation'
+import { Link2Icon } from 'lucide-react'
 
-import PageTitle from '@/app/_components/PageTitle'
-import FloatingHeader from '@/app/_components/FloatingHeader'
+import { PageTitle } from '@/app/_components/PageTitle'
+import { FloatingHeader } from '@/app/_components/FloatingHeader'
 import { getCollection } from '@/lib/raindrop'
 import { COLLECTIONS } from '@/lib/constants'
-import { openGraphImage } from '@/app/shared-metadata'
-
-/* export async function generateMetadata({ params }) {
-  const { slug } = params
-  const seoData = (await getPostSeo(slug)) ?? null
-  if (!seoData) return null
-
-  const {
-    title,
-    description,
-    date,
-    slug: postSlug,
-    sys: { firstPublishedAt, publishedAt: updatedAt }
-  } = seoData
-
-  const siteUrl = `/writing/${postSlug}`
-  const postDate = date || firstPublishedAt
-  const publishedTime = new Date(postDate).toISOString()
-  const modifiedTime = new Date(updatedAt).toISOString()
-
-  return {
-    title: `${title} — Onur Şuyalçınkaya`,
-    description,
-    openGraph: {
-      title: `${title} — Onur Şuyalçınkaya`,
-      description,
-      images: [
-        {
-          ...openGraphImage,
-          url: getOgImageUrl({ title }),
-          alt: title
-        }
-      ],
-      type: 'article',
-      publishedTime,
-      ...(updatedAt && {
-        modifiedTime
-      }),
-      url: siteUrl
-    },
-    alternates: {
-      canonical: siteUrl
-    }
-  }
-} */
 
 export const revalidate = 60 * 60 * 24 * 7 // 1 week
+
+export async function generateStaticParams() {
+  return COLLECTIONS.map((collection) => ({ id: String(collection.id) }))
+}
 
 async function fetchData(id) {
   const collection = await getCollection(id)
@@ -76,10 +36,6 @@ export default async function CollectionPage({ params }) {
     }
   })
   const chunks = [[...chunk1of2], [...chunk2of2]]
-
-  /* const chunk1of3 = array.filter((_, index) => index % 3 === 0)
-  const chunk2of3 = array.filter((_, index) => index % 3 === 1)
-  const chunk3of3 = array.filter((_, index) => index % 3 === 2) */
 
   return (
     <div className="relative flex w-full flex-col">
@@ -108,7 +64,7 @@ export default async function CollectionPage({ params }) {
                               width={300}
                               height={240}
                               type="image/png"
-                              className="aspect-auto h-auto min-h-[120px] w-full animate-reveal overflow-hidden rounded-md border object-cover"
+                              className="pointer-events-none aspect-auto h-auto min-h-[120px] w-full animate-reveal overflow-hidden rounded-md border object-cover"
                             >
                               <img
                                 src="/assets/fallback.webp"
@@ -123,7 +79,11 @@ export default async function CollectionPage({ params }) {
                         </span>
                         <div className="flex flex-col gap-1">
                           <h3>{bookmark.title}</h3>
-                          <span className="line-clamp-6 text-sm">{bookmark.excerpt}</span>
+                          <span className="inline-flex items-center gap-1 text-sm text-gray-500">
+                            <Link2Icon size={16} />
+                            {bookmark.domain}
+                          </span>
+                          <span className="line-clamp-6 text-sm">{bookmark.excerpt || bookmark.note}</span>
                         </div>
                       </a>
                     )
@@ -138,6 +98,23 @@ export default async function CollectionPage({ params }) {
   )
 }
 
-export async function generateStaticParams() {
-  return COLLECTIONS.map((collection) => ({ id: String(collection.id) }))
+export async function generateMetadata({ params }) {
+  const { id } = params
+  const collection = COLLECTIONS.find((collection) => collection.id === Number(id))
+  const siteUrl = `/bookmarks/${collection.id}`
+  const seoTitle = `${collection.name} — Bookmarks`
+  const seoDescription = `${collection.name} — Bookmarks`
+
+  return {
+    title: seoTitle,
+    description: seoDescription,
+    openGraph: {
+      title: seoTitle,
+      description: seoDescription,
+      url: siteUrl
+    },
+    alternates: {
+      canonical: siteUrl
+    }
+  }
 }

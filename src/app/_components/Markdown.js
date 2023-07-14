@@ -2,7 +2,7 @@ import ReactMarkdown from 'markdown-to-jsx'
 
 import { Link } from '@/app/_components/Link'
 
-export default function Markdown({ options, ...rest }) {
+export const Markdown = ({ options, ...rest }) => {
   return (
     <ReactMarkdown
       options={{

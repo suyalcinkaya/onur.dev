@@ -1,11 +1,9 @@
 import Link from 'next/link'
 
 import { getPageSeo } from '@/lib/contentful'
-import FloatingHeader from '@/app/_components/FloatingHeader'
-import { getOgImageUrl } from '@/lib/utils'
+import { FloatingHeader } from '@/app/_components/FloatingHeader'
 import { COLLECTIONS } from '@/lib/constants'
 import { getCollections } from '@/lib/raindrop'
-import { openGraphImage } from '@/app/shared-metadata'
 
 async function fetchData() {
   const collections = await getCollections()
@@ -52,7 +50,7 @@ export async function generateMetadata() {
   const seoData = (await getPageSeo('bookmarks')) ?? null
   if (!seoData) return null
 
-  const { title, url, seoTitle, seoDescription } = seoData
+  const { url, seoTitle, seoDescription } = seoData
   const siteUrl = `/${url}`
 
   return {
@@ -61,13 +59,6 @@ export async function generateMetadata() {
     openGraph: {
       title: seoTitle,
       description: seoDescription,
-      images: [
-        {
-          ...openGraphImage,
-          url: getOgImageUrl({ title, url }),
-          alt: title
-        }
-      ],
       url: siteUrl
     },
     alternates: {

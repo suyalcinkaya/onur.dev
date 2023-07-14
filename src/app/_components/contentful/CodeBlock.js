@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-import ShowInView from '@/app/_components/ShowInView'
+import { ShowInView } from '@/app/_components/ShowInView'
 import { OutlineButton } from '@/app/_components/Button'
 
 export default function CodeBlock({ title, language, code }) {

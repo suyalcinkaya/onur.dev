@@ -1,15 +1,11 @@
 import '@/app/globals.css'
 import Link from 'next/link'
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { SparklesIcon, Edit3Icon, NavigationIcon, Wand2Icon, BookmarkIcon } from 'lucide-react'
 
 import Analytics from '@/app/analytics'
-
-import { openGraphImage } from '@/app/shared-metadata'
 import { NavigationLink } from '@/app/_components/NavigationLink'
 import { SideMenu } from '@/app/_components/SideMenu'
-import { getOgImageUrl } from '@/lib/utils'
-import { PROFILES } from '@/lib/constants'
+import { PROFILES, LINKS } from '@/lib/constants'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -25,39 +21,6 @@ const interFont = Inter({
 })
 const title = 'Onur Şuyalçınkaya'
 const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
-
-const links = [
-  {
-    href: '/',
-    label: 'Home',
-    icon: <SparklesIcon size={16} />
-  },
-  {
-    href: '/writing',
-    label: 'Writing',
-    icon: <Edit3Icon size={16} />
-  },
-  {
-    href: '/journey',
-    label: 'Journey',
-    icon: <NavigationIcon size={16} />
-  },
-  {
-    href: '/stack',
-    label: 'Stack',
-    icon: <Wand2Icon size={16} />
-  },
-  {
-    href: '/bookmarks',
-    label: 'Bookmarks',
-    icon: <BookmarkIcon size={16} />
-  }
-  /* {
-    href: '/stars',
-    label: 'GitHub Stars',
-    icon: <StarIcon size={16} />
-  } */
-]
 
 export default async function RootLayout({ children }) {
   return (
@@ -82,13 +45,13 @@ export default async function RootLayout({ children }) {
                   </div>
                 </Link>
                 <div className="flex flex-col gap-1">
-                  {links.map((link) => (
+                  {LINKS.map((link) => (
                     <NavigationLink key={link.href} href={link.href} label={link.label} icon={link.icon} />
                   ))}
                 </div>
               </div>
               <div className="flex flex-col gap-1 text-sm">
-                <span className="text-xs font-medium text-gray-400">Online</span>
+                <span className="px-2 text-xs font-medium text-gray-400">Online</span>
                 <div className="flex flex-col gap-1">
                   {Object.values(PROFILES).map((profile) => (
                     <NavigationLink key={profile.url} href={profile.url} label={profile.title} icon={profile.icon} />
@@ -116,12 +79,6 @@ export const metadata = {
   openGraph: {
     title,
     description,
-    images: [
-      {
-        ...openGraphImage,
-        url: getOgImageUrl({ title })
-      }
-    ],
     alt: title,
     type: 'website',
     url: '/',

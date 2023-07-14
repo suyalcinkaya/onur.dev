@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { SideMenu } from '@/app/_components/SideMenu'
 import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
-import { WritingLink } from '@/app/writing/_components/WritingLink'
+import { WritingLink } from '@/app/_components/WritingLink'
 import { getAllPosts } from '@/lib/contentful'
 
 export default async function WritingLayout({ children }) {
@@ -19,7 +19,7 @@ export default async function WritingLayout({ children }) {
           </div>
         </Suspense>
       </SideMenu>
-      <div className="bg-dots flex-1">{children}</div>
+      <div className="lg:bg-dots flex-1">{children}</div>
     </>
   )
 }

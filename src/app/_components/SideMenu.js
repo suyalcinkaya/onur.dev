@@ -6,7 +6,7 @@ export const SideMenu = ({ children, title, isInner }) => {
       <div
         className={cx(
           'relative h-full max-h-dynamic-screen min-h-dynamic-screen flex-none overflow-y-auto border-r bg-zinc-50 p-3',
-          isInner ? 'w-96' : 'w-72'
+          isInner ? 'lg:w-80 xl:w-96' : 'lg:w-60 xl:w-72'
         )}
       >
         {title && (

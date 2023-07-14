@@ -1,4 +1,15 @@
-import { GithubIcon, TwitterIcon, LinkedinIcon, InstagramIcon, YoutubeIcon } from 'lucide-react'
+import {
+  GithubIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  InstagramIcon,
+  YoutubeIcon,
+  SparklesIcon,
+  Edit3Icon,
+  NavigationIcon,
+  Wand2Icon,
+  BookmarkIcon
+} from 'lucide-react'
 
 export const PROFILES = {
   twitter: {
@@ -127,5 +138,33 @@ export const COLLECTIONS = [
   {
     id: 15896982,
     name: 'Tweets'
+  }
+]
+
+export const LINKS = [
+  {
+    href: '/',
+    label: 'Home',
+    icon: <SparklesIcon size={16} />
+  },
+  {
+    href: '/writing',
+    label: 'Writing',
+    icon: <Edit3Icon size={16} />
+  },
+  {
+    href: '/journey',
+    label: 'Journey',
+    icon: <NavigationIcon size={16} />
+  },
+  {
+    href: '/stack',
+    label: 'Stack',
+    icon: <Wand2Icon size={16} />
+  },
+  {
+    href: '/bookmarks',
+    label: 'Bookmarks',
+    icon: <BookmarkIcon size={16} />
   }
 ]

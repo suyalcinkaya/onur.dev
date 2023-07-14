@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/server'
 
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
+import { getPostSeo } from '@/lib/contentful'
 
 export const runtime = 'edge'
 
@@ -14,8 +15,14 @@ const font = fetch(new URL('@/assets/SFProDisplay-Bold.ttf', import.meta.url)).t
 
 export const contentType = 'image/png'
 
-export default async function Image() {
-  return new ImageResponse(<OpenGraphImage title="Onur Şuyalçınkaya" />, {
+export default async function Image({ params }) {
+  const { slug } = params
+  const seoData = (await getPostSeo(slug)) ?? null
+  if (!seoData) return null
+
+  const { title } = seoData
+
+  return new ImageResponse(<OpenGraphImage title={title} url="writing" />, {
     ...size,
     fonts: [
       {

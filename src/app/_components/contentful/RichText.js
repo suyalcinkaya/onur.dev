@@ -115,9 +115,7 @@ function options(links) {
   }
 }
 
-const RichText = ({ content }) => {
+export const RichText = ({ content }) => {
   if (!content) return null
   return documentToReactComponents(content.json, options(content.links))
 }
-
-export default RichText

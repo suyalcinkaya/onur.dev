@@ -1,55 +1,15 @@
 import { notFound } from 'next/navigation'
 
-import RichText from '@/app/_components/contentful/RichText'
-import PageTitle from '@/app/_components/PageTitle'
-import FloatingHeader from '@/app/_components/FloatingHeader'
-import Views from '@/app/_components/Views'
+import { RichText } from '@/app/_components/contentful/RichText'
+import { PageTitle } from '@/app/_components/PageTitle'
+import { FloatingHeader } from '@/app/_components/FloatingHeader'
+import { Views } from '@/app/_components/Views'
 import { getPost, getPostSeo, getAllPosts } from '@/lib/contentful'
-import { getDateTimeFormat, getOgImageUrl } from '@/lib/utils'
-import { openGraphImage } from '@/app/shared-metadata'
+import { getDateTimeFormat } from '@/lib/utils'
 
-export async function generateMetadata({ params }) {
-  const { slug } = params
-  const seoData = (await getPostSeo(slug)) ?? null
-  if (!seoData) return null
-
-  const {
-    title,
-    description,
-    date,
-    slug: postSlug,
-    sys: { firstPublishedAt, publishedAt: updatedAt }
-  } = seoData
-
-  const siteUrl = `/writing/${postSlug}`
-  const postDate = date || firstPublishedAt
-  const publishedTime = new Date(postDate).toISOString()
-  const modifiedTime = new Date(updatedAt).toISOString()
-
-  return {
-    title: `${title} — Onur Şuyalçınkaya`,
-    description,
-    openGraph: {
-      title: `${title} — Onur Şuyalçınkaya`,
-      description,
-      images: [
-        {
-          ...openGraphImage,
-          url: getOgImageUrl({ title }),
-          alt: title
-        }
-      ],
-      type: 'article',
-      publishedTime,
-      ...(updatedAt && {
-        modifiedTime
-      }),
-      url: siteUrl
-    },
-    alternates: {
-      canonical: siteUrl
-    }
-  }
+export async function generateStaticParams() {
+  const allPosts = (await getAllPosts()) ?? []
+  return allPosts.map((post) => ({ slug: post.slug }))
 }
 
 async function fetchData(slug) {
@@ -90,12 +50,6 @@ export default async function WritingSlug({ params }) {
       '@type': 'Person',
       name: 'Onur Şuyalçınkaya'
     },
-    image: {
-      '@type': 'ImageObject',
-      height: '630',
-      width: '1200',
-      url: getOgImageUrl({ title })
-    },
     url: `https://onur.dev/writing/${slug}`
   }
 
@@ -125,7 +79,39 @@ export default async function WritingSlug({ params }) {
   )
 }
 
-export async function generateStaticParams() {
-  const allPosts = (await getAllPosts()) ?? []
-  return allPosts.map((post) => ({ slug: post.slug }))
+export async function generateMetadata({ params }) {
+  const { slug } = params
+  const seoData = (await getPostSeo(slug)) ?? null
+  if (!seoData) return null
+
+  const {
+    title,
+    description,
+    date,
+    slug: postSlug,
+    sys: { firstPublishedAt, publishedAt: updatedAt }
+  } = seoData
+
+  const siteUrl = `/writing/${postSlug}`
+  const postDate = date || firstPublishedAt
+  const publishedTime = new Date(postDate).toISOString()
+  const modifiedTime = new Date(updatedAt).toISOString()
+
+  return {
+    title: `${title} — Onur Şuyalçınkaya`,
+    description,
+    openGraph: {
+      title: `${title} — Onur Şuyalçınkaya`,
+      description,
+      type: 'article',
+      publishedTime,
+      ...(updatedAt && {
+        modifiedTime
+      }),
+      url: siteUrl
+    },
+    alternates: {
+      canonical: siteUrl
+    }
+  }
 }

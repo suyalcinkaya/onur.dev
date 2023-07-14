@@ -1,7 +1,4 @@
 module.exports = {
-  /* experimental: {
-    serverActions: true,
-  }, */
   swcMinify: true,
   reactStrictMode: true,
   trailingSlash: false,

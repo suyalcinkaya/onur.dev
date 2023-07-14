@@ -1,39 +1,10 @@
 import { PlusIcon } from 'lucide-react'
 
-import JourneyCard from '@/app/_components/JourneyCard'
-import FloatingHeader from '@/app/_components/FloatingHeader'
-import PageTitle from '@/app/_components/PageTitle'
+import { JourneyCard } from '@/app/_components/JourneyCard'
+import { FloatingHeader } from '@/app/_components/FloatingHeader'
+import { PageTitle } from '@/app/_components/PageTitle'
+import { GradientBg2 } from '@/app/_components/GradientBg'
 import { getAllLogbook, getPageSeo } from '@/lib/contentful'
-import { getOgImageUrl } from '@/lib/utils'
-import { openGraphImage } from '@/app/shared-metadata'
-
-export async function generateMetadata() {
-  const seoData = (await getPageSeo('journey')) ?? null
-  if (!seoData) return null
-
-  const { title, url, seoTitle, seoDescription } = seoData
-  const siteUrl = `/${url}`
-
-  return {
-    title: seoTitle,
-    description: seoDescription,
-    openGraph: {
-      title: seoTitle,
-      description: seoDescription,
-      images: [
-        {
-          ...openGraphImage,
-          url: getOgImageUrl({ title, url }),
-          alt: title
-        }
-      ],
-      url: siteUrl
-    },
-    alternates: {
-      canonical: siteUrl
-    }
-  }
-}
 
 async function fetchData() {
   const allLogbook = (await getAllLogbook(process.env.NODE_ENV === 'development')) ?? []
@@ -55,6 +26,7 @@ export default async function Journey() {
 
   return (
     <div className="relative flex w-full flex-col">
+      <GradientBg2 />
       <FloatingHeader initialTitle="Journey" />
       <div className="content-wrapper">
         <div className="content">
@@ -90,4 +62,25 @@ export default async function Journey() {
       </div>
     </div>
   )
+}
+
+export async function generateMetadata() {
+  const seoData = (await getPageSeo('journey')) ?? null
+  if (!seoData) return null
+
+  const { url, seoTitle, seoDescription } = seoData
+  const siteUrl = `/${url}`
+
+  return {
+    title: seoTitle,
+    description: seoDescription,
+    openGraph: {
+      title: seoTitle,
+      description: seoDescription,
+      url: siteUrl
+    },
+    alternates: {
+      canonical: siteUrl
+    }
+  }
 }

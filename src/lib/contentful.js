@@ -1,4 +1,6 @@
-async function fetchGraphQL(query, preview = process.env.NODE_ENV === 'development') {
+const defaultPreviewMode = process.env.NODE_ENV === 'development'
+
+async function fetchGraphQL(query, preview = defaultPreviewMode) {
   return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
     headers: {
@@ -11,7 +13,7 @@ async function fetchGraphQL(query, preview = process.env.NODE_ENV === 'developme
   }).then((response) => response.json())
 }
 
-export async function getAllPosts(preview = false) {
+export async function getAllPosts(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       postCollection(order: date_DESC, preview: ${preview}) {
@@ -34,7 +36,7 @@ export async function getAllPosts(preview = false) {
   return entries?.data?.postCollection?.items
 }
 
-export async function getLast3Posts(preview = false) {
+export async function getLast3Posts(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       postCollection(order: date_DESC, preview: ${preview}, limit: 3) {
@@ -55,7 +57,7 @@ export async function getLast3Posts(preview = false) {
   return entries?.data?.postCollection?.items
 }
 
-export async function getRandomPosts(exemptedSlug = '', preview = false) {
+export async function getRandomPosts(exemptedSlug = '', preview = defaultPreviewMode) {
   const items = await getAllPosts(preview)
 
   // Generate a random number between 4 and 8
@@ -71,7 +73,7 @@ export async function getRandomPosts(exemptedSlug = '', preview = false) {
   return randomPosts
 }
 
-export async function getPost(slug, preview = false) {
+export async function getPost(slug, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
@@ -131,7 +133,7 @@ export async function getPost(slug, preview = false) {
   }
 }
 
-export async function getPostSeo(slug, preview = false) {
+export async function getPostSeo(slug, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
@@ -153,7 +155,7 @@ export async function getPostSeo(slug, preview = false) {
   return entry?.data?.postCollection?.items?.[0]
 }
 
-export async function getAllCodeSnippets(preview = false) {
+export async function getAllCodeSnippets(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
@@ -170,7 +172,7 @@ export async function getAllCodeSnippets(preview = false) {
   return entries?.data?.codeSnippetCollection?.items
 }
 
-export async function getCodeSnippet(slug, preview = false) {
+export async function getCodeSnippet(slug, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
@@ -196,7 +198,7 @@ export async function getCodeSnippet(slug, preview = false) {
   }
 }
 
-export async function getAllLogbook(preview = false) {
+export async function getAllLogbook(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       logbookCollection(order: date_DESC, preview: ${preview}) {
@@ -221,7 +223,7 @@ export async function getAllLogbook(preview = false) {
   return entries?.data?.logbookCollection?.items
 }
 
-export async function getAllPages(preview = false) {
+export async function getAllPages(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       pageCollection(preview: ${preview}) {
@@ -237,7 +239,7 @@ export async function getAllPages(preview = false) {
   return entries?.data?.pageCollection?.items
 }
 
-export async function getPage(url, preview = false) {
+export async function getPage(url, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {
@@ -295,7 +297,7 @@ export async function getPage(url, preview = false) {
   return entry?.data?.pageCollection?.items?.[0]
 }
 
-export async function getPageSeo(url, preview = false) {
+export async function getPageSeo(url, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {

@@ -2,8 +2,9 @@ import { Suspense } from 'react'
 
 import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
 import { WritingList } from '@/app/_components/WritingList'
-import FloatingHeader from '@/app/_components/FloatingHeader'
-import PageTitle from '@/app/_components/PageTitle'
+import { FloatingHeader } from '@/app/_components/FloatingHeader'
+import { Link } from '@/app/_components/Link'
+import { PageTitle } from '@/app/_components/PageTitle'
 import { getAllPosts } from '@/lib/contentful'
 import { getViewCounts } from '@/lib/supabase'
 
@@ -29,6 +30,12 @@ export default async function Home() {
             I develop things as a Senior Frontend Software Engineer at Bitvavo. Previously, I worked as a Senior
             Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer
             at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
+          </p>
+          <p>
+            If you’re in Amsterdam, let’s go for a walk. Reach me at{' '}
+            <Link href="https://twitter.com/onurschu" target="_blank" rel="noopener noreferrer">
+              @onurschu
+            </Link>
           </p>
           <Suspense fallback={<LoadingSpinner />}>
             <h2 className="mb-4 mt-8">Writing</h2>

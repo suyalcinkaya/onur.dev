@@ -12,7 +12,8 @@
     "start": "next start",
     "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",
     "clear-cache": "rm -rf .next",
-    "unused": "next-unused"
+    "unused": "next-unused",
+    "lint": "eslint src --ext js"
   },
   "engines": {
     "node": ">= 18.x"
@@ -32,14 +33,12 @@
     "framer-motion": "^10.12.4",
     "lucide-react": "^0.244.0",
     "markdown-to-jsx": "^7.2.1",
-    "next": "^13.4.9",
+    "next": "^13.4.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.3",
     "react-syntax-highlighter": "^15.4.5",
     "react-wrap-balancer": "^0.4.0",
-    "scroll-data-hook": "^1.0.4",
-    "swr": "^2.1.5",
     "tailwind-merge": "^1.13.2",
     "tailwindcss-animate": "^1.0.6"
   },

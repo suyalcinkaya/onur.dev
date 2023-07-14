@@ -1,6 +1,6 @@
 import { useInView } from 'react-intersection-observer'
 
-const ShowInView = ({ children, rootMargin = '0px', triggerOnce = true, ...rest }) => {
+export const ShowInView = ({ children, rootMargin = '0px', triggerOnce = true, ...rest }) => {
   const { ref, inView } = useInView({
     rootMargin,
     triggerOnce
@@ -12,5 +12,3 @@ const ShowInView = ({ children, rootMargin = '0px', triggerOnce = true, ...rest 
     </div>
   )
 }
-
-export default ShowInView

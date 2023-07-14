@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 import { upsertViewCount } from '@/lib/supabase'
 
-const Views = ({ slug }) => {
+export const Views = ({ slug }) => {
   const [viewData, setViewData] = useState(null)
 
   useEffect(() => {
@@ -53,5 +53,3 @@ const Views = ({ slug }) => {
     </motion.div>
   )
 }
-
-export default Views
