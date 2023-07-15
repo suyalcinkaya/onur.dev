@@ -93,7 +93,6 @@ export const metadata = {
     initialScale: 1,
     maximumScale: 1
   },
-  manifest: '/site.webmanifest',
   twitter: {
     card: 'summary_large_image',
     site: `@${PROFILES.twitter.username}`,

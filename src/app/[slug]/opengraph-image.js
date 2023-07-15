@@ -2,16 +2,18 @@ import { ImageResponse } from 'next/server'
 import { getPageSeo } from '@/lib/contentful'
 
 export const runtime = 'edge'
-
 export const alt = 'Onur Şuyalçınkaya'
 export const size = {
   width: 1200,
   height: 630
 }
-
-const font = fetch(new URL('@/assets/SFProDisplay-Bold.ttf', import.meta.url)).then((res) => res.arrayBuffer())
-
 export const contentType = 'image/png'
+
+const getFont = async () => {
+  const response = await fetch(new URL('@/assets/SFProDisplay-Bold.ttf', import.meta.url))
+  const font = await response.arrayBuffer()
+  return font
+}
 
 export default async function Image({ params }) {
   const { slug } = params
@@ -64,7 +66,7 @@ export default async function Image({ params }) {
       fonts: [
         {
           name: 'SF Pro',
-          data: await font,
+          data: await getFont(),
           style: 'normal',
           weight: 400
         }
