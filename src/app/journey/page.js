@@ -3,7 +3,7 @@ import { PlusIcon } from 'lucide-react'
 import { JourneyCard } from '@/app/_components/JourneyCard'
 import { FloatingHeader } from '@/app/_components/FloatingHeader'
 import { PageTitle } from '@/app/_components/PageTitle'
-import { GradientBg2 } from '@/app/_components/GradientBg'
+import { GradientBg3 } from '@/app/_components/GradientBg'
 import { getAllLogbook, getPageSeo } from '@/lib/contentful'
 
 async function fetchData() {
@@ -26,7 +26,7 @@ export default async function Journey() {
 
   return (
     <div className="relative flex w-full flex-col">
-      <GradientBg2 />
+      <GradientBg3 />
       <FloatingHeader initialTitle="Journey" />
       <div className="content-wrapper">
         <div className="content">

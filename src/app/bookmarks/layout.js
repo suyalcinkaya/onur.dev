@@ -36,9 +36,15 @@ export default async function BookmarksLayout({ children }) {
 async function fetchData() {
   const collections = await getCollections()
 
-  const filteredAndSortedCollections = collections.items.filter((collection) => {
-    return COLLECTIONS.some((c) => c.id === collection._id)
-  })
+  const filteredAndSortedCollections = collections.items
+    .filter((collection) => {
+      return COLLECTIONS.some((c) => c.id === collection._id)
+    })
+    .sort((a, b) => {
+      const aIndex = COLLECTIONS.findIndex((c) => c.id === a._id)
+      const bIndex = COLLECTIONS.findIndex((c) => c.id === b._id)
+      return aIndex - bIndex
+    })
 
   return { collections: filteredAndSortedCollections }
 }

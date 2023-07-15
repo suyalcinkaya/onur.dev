@@ -119,7 +119,7 @@
   }
 
   .content {
-    @apply mx-auto w-full max-w-4xl;
+    @apply mx-auto mb-12 w-full max-w-4xl lg:mb-0;
   }
 
   .btn {
