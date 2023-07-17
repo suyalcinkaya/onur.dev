@@ -125,7 +125,7 @@ export const COLLECTIONS = [
   },
   {
     id: 15807897,
-    name: 'Reading List'
+    name: 'Reading'
   },
   {
     id: 15969648,
@@ -138,6 +138,10 @@ export const COLLECTIONS = [
   {
     id: 15896982,
     name: 'Tweets'
+  },
+  {
+    id: 25589709,
+    name: 'Wallpapers'
   }
 ]
 

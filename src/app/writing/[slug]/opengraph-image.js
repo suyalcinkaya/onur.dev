@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/server'
 
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getPostSeo } from '@/lib/contentful'
+import { getMediumFont, getBoldFont } from '@/lib/utils'
 
 export const runtime = 'edge'
 export const alt = 'Writing'
@@ -11,12 +12,6 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-const getFont = async () => {
-  const response = await fetch(new URL('@/assets/SFProDisplay-Bold.ttf', import.meta.url))
-  const font = await response.arrayBuffer()
-  return font
-}
-
 export default async function Image({ params }) {
   const { slug } = params
   const seoData = (await getPostSeo(slug)) ?? null
@@ -24,14 +19,20 @@ export default async function Image({ params }) {
 
   const { title } = seoData
 
-  return new ImageResponse(<OpenGraphImage title={title} url="writing" />, {
+  return new ImageResponse(<OpenGraphImage title={title} description="by Onur Şuyalçınkaya" url="writing" />, {
     ...size,
     fonts: [
       {
         name: 'SF Pro',
-        data: await getFont(),
+        data: await getMediumFont(),
         style: 'normal',
-        weight: 400
+        weight: 500
+      },
+      {
+        name: 'SF Pro',
+        data: await getBoldFont(),
+        style: 'normal',
+        weight: 600
       }
     ]
   })

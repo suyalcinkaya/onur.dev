@@ -1,5 +1,8 @@
 import { ImageResponse } from 'next/server'
+
+import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getPageSeo } from '@/lib/contentful'
+import { getMediumFont, getBoldFont } from '@/lib/utils'
 
 export const runtime = 'edge'
 export const alt = 'Onur Şuyalçınkaya'
@@ -9,68 +12,57 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-const getFont = async () => {
-  const response = await fetch(new URL('@/assets/SFProDisplay-Bold.ttf', import.meta.url))
-  const font = await response.arrayBuffer()
-  return font
-}
-
 export default async function Image({ params }) {
   const { slug } = params
   const seoData = (await getPageSeo(slug)) ?? null
   const { title, seoDescription } = seoData
 
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          backgroundColor: 'white',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            height: '100%',
-            width: '100%',
-            backgroundImage:
-              'linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)',
-            backgroundSize: '24px 24px'
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: 50,
-            left: 50,
-            fontSize: 36,
-            background: 'black',
-            color: 'white',
-            padding: '0.5rem 1rem'
-          }}
+  let icon = null
+  switch (slug) {
+    case 'stack':
+      icon = (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="56"
+          height="56"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          {`onur.dev/${slug}`}
-        </div>
-        <p style={{ fontSize: 96 }}>{title}</p>
-        <p style={{ fontSize: 36, width: '50%', textAlign: 'center' }}>{seoDescription}</p>
-      </div>
-    ),
-    {
-      ...size,
-      fonts: [
-        {
-          name: 'SF Pro',
-          data: await getFont(),
-          style: 'normal',
-          weight: 400
-        }
-      ]
-    }
-  )
+          <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
+          <path d="m14 7 3 3" />
+          <path d="M5 6v4" />
+          <path d="M19 14v4" />
+          <path d="M10 2v2" />
+          <path d="M7 8H3" />
+          <path d="M21 16h-4" />
+          <path d="M11 3H9" />
+        </svg>
+      )
+      break
+    default:
+      icon = null
+      break
+  }
+
+  return new ImageResponse(<OpenGraphImage title={title} description={seoDescription} icon={icon} url={slug} />, {
+    ...size,
+    fonts: [
+      {
+        name: 'SF Pro',
+        data: await getMediumFont(),
+        style: 'normal',
+        weight: 500
+      },
+      {
+        name: 'SF Pro',
+        data: await getBoldFont(),
+        style: 'normal',
+        weight: 600
+      }
+    ]
+  })
 }

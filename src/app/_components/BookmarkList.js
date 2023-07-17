@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Link2Icon, ChevronDownIcon } from 'lucide-react'
+import { useEffect, useState, useCallback } from 'react'
+import { Link2Icon, ArrowDownIcon } from 'lucide-react'
 
 import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
-import { OutlineButton } from '@/app/_components/Button'
-import { getCollection, PER_PAGE } from '@/lib/raindrop'
+import { Button } from '@/app/_components/Button'
+import { getCollection } from '@/lib/raindrop'
 
-async function fetchData(id, pageIndex = 0) {
+async function fetchDataByPageIndex(id, pageIndex = 0) {
   const collection = await getCollection(id, pageIndex)
   return collection
 }
@@ -16,38 +16,37 @@ export const BookmarkList = ({ initialData, id }) => {
   const [data, setData] = useState(initialData.items)
   const [pageIndex, setPageIndex] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
-  const [isReachingEnd, setIsReachingEnd] = useState(initialData.count <= PER_PAGE)
 
   const handleLoadMore = () => {
-    if (!isReachingEnd) setPageIndex((prevPageIndex) => prevPageIndex + 1)
+    if (!isReachingEnd || !isLoading) setPageIndex((prevPageIndex) => prevPageIndex + 1)
   }
 
+  const fetchInfiniteData = useCallback(async () => {
+    setIsLoading(true)
+    const newData = await fetchDataByPageIndex(id, pageIndex)
+    setData((prevData) => [...prevData, ...newData.items])
+    setIsLoading(false)
+  }, [id, pageIndex])
+
   useEffect(() => {
-    const fetchInfiniteData = async () => {
-      setIsLoading(true)
-      const newData = await fetchData(id, pageIndex)
-      const finalData = [...data, ...newData.items]
-      setData(finalData)
-      setIsLoading(false)
-      setIsReachingEnd(finalData.length >= newData.count)
-    }
+    if (pageIndex > 0) fetchInfiniteData()
+  }, [pageIndex, fetchInfiniteData])
 
-    if (pageIndex > 0 && !isReachingEnd) {
-      fetchInfiniteData(id, pageIndex)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageIndex])
+  const getChunks = useCallback(() => {
+    const firstChunk = []
+    const lastChunk = []
+    data.forEach((element, index) => {
+      if (index % 2 === 0) {
+        firstChunk.push(element)
+      } else {
+        lastChunk.push(element)
+      }
+    })
+    return [[...firstChunk], [...lastChunk]]
+  }, [data])
 
-  const firstChunk = []
-  const lastChunk = []
-  data.forEach((element, index) => {
-    if (index % 2 === 0) {
-      firstChunk.push(element)
-    } else {
-      lastChunk.push(element)
-    }
-  })
-  const chunks = [[...firstChunk], [...lastChunk]]
+  const chunks = getChunks(data)
+  const isReachingEnd = data.length >= initialData.count
 
   return (
     <div>
@@ -59,31 +58,24 @@ export const BookmarkList = ({ initialData, id }) => {
                 return (
                   <a
                     key={bookmark._id}
-                    className="flex min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-colors duration-200 hover:border-gray-300 hover:bg-gray-100"
+                    className="flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-100"
                     href={bookmark.link}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <span className="overflow-hidden rounded-md">
-                      {bookmark.cover && (
-                        <object
-                          data={bookmark.cover}
-                          name={bookmark.title}
-                          width={300}
-                          height={240}
-                          type="image/png"
-                          className="pointer-events-none aspect-auto h-auto min-h-[120px] w-full animate-reveal overflow-hidden rounded-md border object-cover"
-                        >
-                          <img
-                            src="/assets/fallback.webp"
-                            alt={bookmark.title}
-                            width={300}
-                            height={180}
-                            loading="lazy"
-                            className="aspect-[240/160] h-full w-full rounded-none object-cover"
-                          />
-                        </object>
-                      )}
+                      <img
+                        src={bookmark.cover}
+                        alt={bookmark.title}
+                        width={400}
+                        height={300}
+                        loading="lazy"
+                        className="h-full w-full animate-reveal rounded-none bg-[url('/assets/fallback.webp')] bg-cover bg-center bg-no-repeat object-cover"
+                        onError={(e) => {
+                          e.target.onerror = null
+                          e.target.src = '/assets/fallback.webp'
+                        }}
+                      />
                     </span>
                     <div className="flex flex-col gap-1">
                       <h3>{bookmark.title}</h3>
@@ -100,16 +92,16 @@ export const BookmarkList = ({ initialData, id }) => {
           )
         })}
       </div>
-      <div className="mt-12 flex min-h-[4rem] items-center justify-center lg:mt-20">
+      <div className="mt-8 flex min-h-[4rem] items-center justify-center text-sm lg:mt-12">
         {!isReachingEnd ? (
           <>
             {isLoading ? (
               <LoadingSpinner />
             ) : (
-              <OutlineButton as="button" onClick={handleLoadMore} disabled={isLoading}>
-                Load More
-                <ChevronDownIcon size={16} />
-              </OutlineButton>
+              <Button as="button" onClick={handleLoadMore} disabled={isLoading} className="w-full justify-center">
+                Load more
+                <ArrowDownIcon size={16} />
+              </Button>
             )}
           </>
         ) : (

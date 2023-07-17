@@ -14,3 +14,15 @@ export const getDateTimeFormat = (date) => {
 }
 
 export const dasherize = (text) => String(text).replace(/ +/g, '-').toLowerCase()
+
+export const getMediumFont = async () => {
+  const response = await fetch(new URL('@/assets/SpaceGrotesk-Regular.ttf', import.meta.url))
+  const font = await response.arrayBuffer()
+  return font
+}
+
+export const getBoldFont = async () => {
+  const response = await fetch(new URL('@/assets/SpaceGrotesk-Medium.ttf', import.meta.url))
+  const font = await response.arrayBuffer()
+  return font
+}

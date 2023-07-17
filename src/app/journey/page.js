@@ -13,7 +13,6 @@ async function fetchData() {
   allLogbook.map((log) => {
     const year = new Date(log.date).getFullYear()
     const existingYear = mappedLogbook.find((item) => item?.year === year)
-
     if (!existingYear) mappedLogbook.push({ year, logs: [log] })
     else existingYear.logs.push(log)
   })
@@ -49,7 +48,7 @@ export default async function Journey() {
                       <div className="z-0 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
                         <PlusIcon size={16} />
                       </div>
-                      <div className="flex-grow pl-6">
+                      <div className="flex-grow pl-8">
                         <JourneyCard {...log} />
                       </div>
                     </div>
