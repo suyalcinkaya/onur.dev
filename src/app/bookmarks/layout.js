@@ -21,7 +21,7 @@ export default async function BookmarksLayout({ children }) {
                   key={collection._id}
                   path={`/bookmarks/${collection._id}`}
                   title={title}
-                  description={`${collection.count} items`}
+                  description={`${collection.count} bookmarks`}
                 />
               )
             })}

@@ -26,11 +26,11 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
           top: 60,
           left: 60,
           fontSize: '2.5rem',
-          background: '#000',
+          lineHeight: 1,
+          background: '#2563eb',
           color: '#fff',
-          padding: '0.75rem 1.5rem',
-          borderRadius: '6px',
-          fontWeight: 600
+          padding: '1rem 1.75rem',
+          borderRadius: 9999
         }}
       >
         {`onur.dev${url ? `/${url}` : ''}`}

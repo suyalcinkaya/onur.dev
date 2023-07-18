@@ -41,7 +41,9 @@ export default async function CollectionPage({ params }) {
 
 export async function generateMetadata({ params }) {
   const { id } = params
-  const collection = COLLECTIONS.find((collection) => collection.id === Number(id))
+  const collection = COLLECTIONS.find((collection) => collection.id === Number(id)) // id param is string
+  if (!collection) return null
+
   const siteUrl = `/bookmarks/${collection.id}`
   const seoTitle = `${collection.name} — Bookmarks`
   const seoDescription = `${collection.name} — Bookmarks`

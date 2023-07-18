@@ -2,12 +2,13 @@ import { ImageResponse } from 'next/server'
 
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
+import { title, description, image } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
-export const alt = 'Onur Şuyalçınkaya'
+export const alt = title
 export const size = {
-  width: 1200,
-  height: 630
+  width: image.width,
+  height: image.height
 }
 export const contentType = 'image/png'
 
@@ -21,8 +22,8 @@ export default async function Image() {
   return new ImageResponse(
     (
       <OpenGraphImage
-        title="Onur Şuyalçınkaya"
-        description="Software Engineer, DJ, writer, and minimalist, based in Amsterdam, The Netherlands"
+        title={title}
+        description={description}
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

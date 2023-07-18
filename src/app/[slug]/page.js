@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 }
 
 async function fetchData(slug) {
-  const page = (await getPage(slug)) ?? null
+  const page = await getPage(slug)
   if (!page) notFound()
   return { page }
 }
@@ -46,7 +46,7 @@ export default async function PageSlug({ params }) {
 
 export async function generateMetadata({ params }) {
   const { slug } = params
-  const seoData = (await getPageSeo(slug)) ?? null
+  const seoData = await getPageSeo(slug)
   if (!seoData) return null
 
   const { url, seoTitle, seoDescription } = seoData

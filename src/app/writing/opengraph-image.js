@@ -3,14 +3,15 @@ import { ImageResponse } from 'next/server'
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getPageSeo } from '@/lib/contentful'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
+import { image } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
 export const alt = 'Writing'
 export const size = {
-  width: 1200,
-  height: 630
+  width: image.width,
+  height: image.height
 }
-export const contentType = 'image/png'
+export const contentType = image.type
 
 export default async function Image() {
   const seoData = (await getPageSeo('writing')) ?? null

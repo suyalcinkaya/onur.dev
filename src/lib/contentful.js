@@ -1,7 +1,7 @@
 const defaultPreviewMode = process.env.NODE_ENV === 'development'
 
 async function fetchGraphQL(query, preview = defaultPreviewMode) {
-  return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
+  const res = await fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -10,7 +10,9 @@ async function fetchGraphQL(query, preview = defaultPreviewMode) {
       }`
     },
     body: JSON.stringify({ query })
-  }).then((response) => response.json())
+  })
+  if (!res.ok) return undefined
+  return res.json()
 }
 
 export async function getAllPosts(preview = defaultPreviewMode) {
@@ -55,22 +57,6 @@ export async function getLast3Posts(preview = defaultPreviewMode) {
   )
 
   return entries?.data?.postCollection?.items
-}
-
-export async function getRandomPosts(exemptedSlug = '', preview = defaultPreviewMode) {
-  const items = await getAllPosts(preview)
-
-  // Generate a random number between 4 and 8
-  const randomCount = Math.floor(Math.random() * 5) + 4
-
-  // Filter out the exempted slug and sort the array randomly
-  const randomPosts = items
-    .filter((item) => item.slug !== exemptedSlug)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, randomCount)
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-
-  return randomPosts
 }
 
 export async function getPost(slug, preview = defaultPreviewMode) {
@@ -153,49 +139,6 @@ export async function getPostSeo(slug, preview = defaultPreviewMode) {
   )
 
   return entry?.data?.postCollection?.items?.[0]
-}
-
-export async function getAllCodeSnippets(preview = defaultPreviewMode) {
-  const entries = await fetchGraphQL(
-    `query {
-      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
-        items {
-          title
-          description
-          slug
-        }
-      }
-    }`,
-    preview
-  )
-
-  return entries?.data?.codeSnippetCollection?.items
-}
-
-export async function getCodeSnippet(slug, preview = defaultPreviewMode) {
-  const entry = await fetchGraphQL(
-    `query {
-      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
-        items {
-          title
-          description
-          slug
-          code
-          language
-          sys {
-            id
-            firstPublishedAt
-            publishedAt
-          }
-        }
-      }
-    }`,
-    preview
-  )
-
-  return {
-    codeSnippet: entry?.data?.codeSnippetCollection?.items?.[0]
-  }
 }
 
 export async function getAllLogbook(preview = defaultPreviewMode) {

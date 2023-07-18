@@ -6,6 +6,7 @@ import Analytics from '@/app/analytics'
 import { NavigationLink } from '@/app/_components/NavigationLink'
 import { SideMenu } from '@/app/_components/SideMenu'
 import { PROFILES, LINKS } from '@/lib/constants'
+import { title, description } from '@/app/shared-metadata'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -19,8 +20,6 @@ const interFont = Inter({
   variable: '--font-inter',
   display: 'swap'
 })
-const title = 'Onur Şuyalçınkaya'
-const description = 'Software Engineer, JavaScript enthusiast, DJ, and writer.'
 
 export default async function RootLayout({ children }) {
   return (

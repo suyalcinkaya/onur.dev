@@ -37,7 +37,7 @@ export default async function Writing() {
               className="flex flex-col gap-1 border-b px-4 py-3 hover:bg-gray-100"
             >
               <span className="font-medium">{title}</span>
-              <span className="text-slate-500">{collection.count} items</span>
+              <span className="text-slate-500">{collection.count} bookmarks</span>
             </Link>
           )
         })}
