@@ -1,20 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
-export const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, {
-  auth: {
-    persistSession: false
-  }
-})
+export const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 export const tableName = 'pages'
-
-export async function getViewCount(slug) {
-  const { data } = await supabase.from(tableName).select('id, view_count').eq('slug', slug)
-  const latestData = data[0]
-
-  return {
-    view_count: latestData?.view_count || 0
-  }
-}
 
 export async function getViewCounts() {
   const { data } = await supabase.from(tableName).select('id, slug, view_count')

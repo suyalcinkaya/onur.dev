@@ -53,7 +53,6 @@ export const WritingList = ({ items, viewCounts }) => {
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
-                // const views = data?.find((item) => item.slug === slug)?.view_count || 0
                 const views = viewCounts?.find((item) => item.slug === slug)?.view_count || 0
                 const formattedViews = new Intl.NumberFormat('en-US').format(views)
 

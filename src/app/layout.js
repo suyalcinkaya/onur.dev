@@ -1,6 +1,8 @@
 import '@/app/globals.css'
 import Link from 'next/link'
+import { draftMode } from 'next/headers'
 import { Inter, JetBrains_Mono } from 'next/font/google'
+import { EyeIcon } from 'lucide-react'
 
 import Analytics from '@/app/analytics'
 import { NavigationLink } from '@/app/_components/NavigationLink'
@@ -22,11 +24,21 @@ const interFont = Inter({
 })
 
 export default async function RootLayout({ children }) {
+  const { isEnabled } = draftMode()
+
   return (
     <html lang="en" className={`${interFont.variable} ${jetbrainsMono.variable}`}>
       <body>
+        {isEnabled && (
+          <div className="absolute bottom-0 left-0 right-0 z-50 flex h-12 w-full items-center justify-center bg-green-500 text-center text-sm font-medium text-white">
+            <div className="flex items-center gap-2">
+              <EyeIcon size={16} />
+              <span>Draft mode is enabled</span>
+            </div>
+          </div>
+        )}
         <div className="lg:flex">
-          <SideMenu className="hidden lg:flex">
+          <SideMenu className="relative hidden lg:flex">
             <div className="flex w-full flex-col gap-6 text-sm">
               <div className="flex flex-col gap-4">
                 <Link href="/" className="link-card inline-flex items-center gap-2 p-2">

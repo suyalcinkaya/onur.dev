@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { draftMode } from 'next/headers'
 
 import { RichText } from '@/app/_components/contentful/RichText'
 import { PageTitle } from '@/app/_components/PageTitle'
@@ -13,7 +14,8 @@ export async function generateStaticParams() {
 }
 
 async function fetchData(slug) {
-  const data = await getPost(slug)
+  const { isEnabled } = draftMode()
+  const data = await getPost(slug, isEnabled)
   if (!data?.post) notFound()
 
   return {

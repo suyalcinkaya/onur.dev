@@ -5,17 +5,20 @@
 <br>
 <br>
 
-My personal website has transformed over the years - from a static HTML site, to `Create React App`, to `GatsbyJS`, to
-`Next.js + Chakra UI + MDX` combo and finally to `Next.js + Tailwind CSS + Contentful` combo. It provides a platform for
-my writing and to showcase my journey.
+My personal website has evolved over the years — from a simple static HTML page, to `Create React App`, to `GatsbyJS`,
+then to a combination of `Next.js`, `Chakra UI` and `MDX`, and finally to a combination of `Next.js`, `Tailwind CSS` and
+`Contentful`. It serves as an app-like-web platform for my writings, highlighting my journey, and showcasing my
+bookmarks.
 
 ## Overview
 
 - `/` - Home page.
-- `pages/writing/[slug]` - Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
-- `pages/about` - About page.
-- `pages/journey` - Journey page.
-- `pages/stack` - Stack page.
+- `/writing` - Writing page.
+- `/writing/[slug]` - Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
+- `/journey` - Journey page.
+- `/stack` - Stack page.
+- `/bookmarks` - Bookmarks page.
+- `/bookmarks/[id]` - Static pre-rendered bookmarks pages using [Raindrop](https://raindrop.io/).
 
 ## Running Locally
 

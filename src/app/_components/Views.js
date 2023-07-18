@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
 import { upsertViewCount } from '@/lib/supabase'
@@ -8,18 +8,16 @@ import { upsertViewCount } from '@/lib/supabase'
 export const Views = ({ slug }) => {
   const [viewData, setViewData] = useState(null)
 
-  useEffect(() => {
-    const upsert = async () => {
-      const upsertViewCountData = await upsertViewCount(slug)
-      setViewData(upsertViewCountData)
-    }
-
-    if (slug) upsert()
+  const upsert = useCallback(async () => {
+    const upsertViewCountData = await upsertViewCount(slug)
+    setViewData(upsertViewCountData)
   }, [slug])
 
-  if (!viewData?.view_count) {
-    return <motion.span key="loading" />
-  }
+  useEffect(() => {
+    upsert()
+  }, [upsert])
+
+  if (!viewData?.view_count) return <motion.span key="loading" />
 
   return (
     <motion.div

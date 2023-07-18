@@ -60,48 +60,6 @@ export const PROFILES = {
   }
 }
 
-export const MIXTAPES = [
-  {
-    title: 'Summer Sax',
-    description: '11M+ plays ∙ 55K+ likes',
-    url: 'https://www.youtube.com/watch?v=bzZupZkrjm0',
-    date: '2015-11-02'
-  },
-  {
-    title: 'Sax On Fire',
-    description: '1.7M+ plays ∙ 40K+ likes',
-    url: 'https://soundcloud.com/jagerman/saxonfire',
-    date: '2014-04-21'
-  },
-  {
-    title: 'Casablanca',
-    description: '130K+ plays ∙ 3K+ likes',
-    url: 'https://soundcloud.com/jagerman/casablanca',
-    date: '2013-12-31'
-  }
-]
-
-export const PROJECTS = [
-  {
-    title: 'Notebook',
-    description: 'My personal notebook.',
-    url: 'https://github.com/suyalcinkaya/notebook'
-  },
-  {
-    title: 'onur.dev',
-    description: 'Source code of this website.',
-    url: 'https://github.com/suyalcinkaya/onur.dev'
-  },
-  {
-    title: 'Koalazily',
-    description: 'Loading images lazily in a modern way using Intersection Observer API.',
-    url: 'https://github.com/suyalcinkaya/koalazily'
-  }
-]
-
-// 9rem (pt-36 from PageLayout) - 4rem (header height) = 5rem (80px)
-export const SCROLL_THRESHOLD = 80
-
 export const COLLECTIONS = [
   {
     id: 18259129,
