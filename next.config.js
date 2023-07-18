@@ -1,8 +1,4 @@
 module.exports = {
-  experimental: {
-    newNextLinkBehavior: true,
-    nextScriptWorkers: true
-  },
   swcMinify: true,
   reactStrictMode: true,
   trailingSlash: false,

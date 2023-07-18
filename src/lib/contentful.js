@@ -1,5 +1,7 @@
-async function fetchGraphQL(query, preview = false) {
-  return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
+const defaultPreviewMode = process.env.NODE_ENV === 'development'
+
+async function fetchGraphQL(query, preview = defaultPreviewMode) {
+  const res = await fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -8,10 +10,12 @@ async function fetchGraphQL(query, preview = false) {
       }`
     },
     body: JSON.stringify({ query })
-  }).then((response) => response.json())
+  })
+  if (!res.ok) return undefined
+  return res.json()
 }
 
-export async function getAllPosts(preview = false) {
+export async function getAllPosts(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       postCollection(order: date_DESC, preview: ${preview}) {
@@ -34,7 +38,7 @@ export async function getAllPosts(preview = false) {
   return entries?.data?.postCollection?.items
 }
 
-export async function getLast3Posts(preview = false) {
+export async function getLast3Posts(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       postCollection(order: date_DESC, preview: ${preview}, limit: 3) {
@@ -55,23 +59,7 @@ export async function getLast3Posts(preview = false) {
   return entries?.data?.postCollection?.items
 }
 
-export async function getRandomPosts(exemptedSlug = '', preview = false) {
-  const items = await getAllPosts(preview)
-
-  // Generate a random number between 4 and 8
-  const randomCount = Math.floor(Math.random() * 5) + 4
-
-  // Filter out the exempted slug and sort the array randomly
-  const randomPosts = items
-    .filter((item) => item.slug !== exemptedSlug)
-    .sort(() => 0.5 - Math.random())
-    .slice(0, randomCount)
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-
-  return randomPosts
-}
-
-export async function getPost(slug, preview = false) {
+export async function getPost(slug, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
@@ -131,35 +119,16 @@ export async function getPost(slug, preview = false) {
   }
 }
 
-export async function getAllCodeSnippets(preview = false) {
-  const entries = await fetchGraphQL(
-    `query {
-      codeSnippetCollection(order: sys_firstPublishedAt_DESC, preview: ${preview}) {
-        items {
-          title
-          description
-          slug
-        }
-      }
-    }`,
-    preview
-  )
-
-  return entries?.data?.codeSnippetCollection?.items
-}
-
-export async function getCodeSnippet(slug, preview = false) {
+export async function getPostSeo(slug, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
-      codeSnippetCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
+      postCollection(where: { slug: "${slug}" }, preview: ${preview}, limit: 1) {
         items {
           title
           description
           slug
-          code
-          language
+          date
           sys {
-            id
             firstPublishedAt
             publishedAt
           }
@@ -169,12 +138,10 @@ export async function getCodeSnippet(slug, preview = false) {
     preview
   )
 
-  return {
-    codeSnippet: entry?.data?.codeSnippetCollection?.items?.[0]
-  }
+  return entry?.data?.postCollection?.items?.[0]
 }
 
-export async function getAllLogbook(preview = false) {
+export async function getAllLogbook(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       logbookCollection(order: date_DESC, preview: ${preview}) {
@@ -183,6 +150,13 @@ export async function getAllLogbook(preview = false) {
           date
           emoji
           description
+          image {
+            url
+            title
+            description
+            width
+            height
+          }
         }
       }
     }`,
@@ -192,7 +166,7 @@ export async function getAllLogbook(preview = false) {
   return entries?.data?.logbookCollection?.items
 }
 
-export async function getAllPages(preview = false) {
+export async function getAllPages(preview = defaultPreviewMode) {
   const entries = await fetchGraphQL(
     `query {
       pageCollection(preview: ${preview}) {
@@ -208,7 +182,7 @@ export async function getAllPages(preview = false) {
   return entries?.data?.pageCollection?.items
 }
 
-export async function getPage(url, preview = false) {
+export async function getPage(url, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {
@@ -266,7 +240,7 @@ export async function getPage(url, preview = false) {
   return entry?.data?.pageCollection?.items?.[0]
 }
 
-export async function getPageSeo(url, preview = false) {
+export async function getPageSeo(url, preview = defaultPreviewMode) {
   const entry = await fetchGraphQL(
     `query {
       pageCollection(where: { url: "${url}" }, preview: ${preview}, limit: 1) {

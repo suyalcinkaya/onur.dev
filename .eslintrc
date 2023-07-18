@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:import/recommended"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "JSX": true
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "react/display-name": 0,
+    "@next/next/no-img-element": 0,
+    "no-unused-vars": "warn",
+    "import/no-unresolved": [2, { "caseSensitive": false }]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js"],
+        "map": [["@", "./src"]]
+      }
+    }
+  }
+}

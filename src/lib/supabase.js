@@ -3,15 +3,24 @@ import { createClient } from '@supabase/supabase-js'
 export const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 export const tableName = 'pages'
 
-/* export async function handleViews(slug) {
-  const { data } = await supabase.from(tableName).select('id, view_count, like_count').eq('slug', slug)
+export async function getViewCounts() {
+  const { data } = await supabase.from(tableName).select('id, slug, view_count')
+
+  return data.map(({ id, slug, view_count }) => ({
+    id,
+    slug,
+    view_count
+  }))
+}
+
+export async function upsertViewCount(slug) {
+  const { data } = await supabase.from(tableName).select('id, view_count').eq('slug', slug)
   const latestData = data[0]
 
-  // Do not upsert to db on development
-  if (process.env.NODE_ENV !== 'production') {
+  // Don't upsert view count in development or if no slug is provided
+  if (process.env.NODE_ENV !== 'production' || !slug) {
     return {
-      likes: latestData?.like_count || 0,
-      views: latestData?.view_count || 0
+      view_count: latestData?.view_count || 0
     }
   }
 
@@ -23,21 +32,6 @@ export const tableName = 'pages'
   })
 
   return {
-    likes: newOrUpdatedData[0].like_count,
-    views: newOrUpdatedData[0].view_count
+    view_count: newOrUpdatedData[0].view_count
   }
-} */
-
-/* export async function incrementLikes({ slug, likeAmount = 0 }) {
-  const { data: latestData } = await supabase.from(tableName).select().eq('slug', slug).single()
-
-  const { data: updatedData } = await supabase
-    .from(tableName)
-    .update({ like_count: latestData.like_count + likeAmount, like_count_updated_at: new Date() })
-    .match({ id: latestData.id, slug: latestData.slug })
-
-  return {
-    likes: updatedData[0].like_count,
-    views: updatedData[0].view_count
-  }
-} */
+}
