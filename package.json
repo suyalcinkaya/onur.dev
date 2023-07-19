@@ -38,6 +38,7 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.3",
     "react-syntax-highlighter": "^15.4.5",
+    "react-tweet": "^3.0.3",
     "react-wrap-balancer": "^0.4.0",
     "tailwind-merge": "^1.13.2",
     "tailwindcss-animate": "^1.0.6"
