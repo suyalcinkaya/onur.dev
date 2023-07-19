@@ -18,8 +18,8 @@ export const Markdown = ({ options, ...rest }) => {
                 src={`https:${src}`}
                 width={400}
                 height={300}
-                className="aspect-auto w-full animate-reveal object-cover"
                 loading="lazy"
+                className="aspect-auto w-full animate-reveal object-cover"
               />
             </span>
           )
