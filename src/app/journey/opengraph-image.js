@@ -3,25 +3,25 @@ import { ImageResponse } from 'next/server'
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getPageSeo } from '@/lib/contentful'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
-import { image } from '@/app/shared-metadata'
+import { sharedImage } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
 export const alt = 'Journey'
 export const size = {
-  width: image.width,
-  height: image.height
+  width: sharedImage.width,
+  height: sharedImage.height
 }
-export const contentType = image.type
+export const contentType = sharedImage.type
 
 export default async function Image() {
-  const seoData = (await getPageSeo('journey')) ?? null
-  const { title, seoDescription } = seoData
+  const seoData = (await getPageSeo('journey')) ?? {}
+  const { title, description, ogImageTitle, ogImageSubtitle } = seoData
 
   return new ImageResponse(
     (
       <OpenGraphImage
-        title={title}
-        description={seoDescription}
+        title={ogImageTitle || title}
+        description={ogImageSubtitle || description}
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

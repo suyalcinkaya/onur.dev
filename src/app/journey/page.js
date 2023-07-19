@@ -7,7 +7,7 @@ import { GradientBg3 } from '@/app/_components/GradientBg'
 import { getAllLogbook, getPageSeo } from '@/lib/contentful'
 
 async function fetchData() {
-  const allLogbook = (await getAllLogbook(process.env.NODE_ENV === 'development')) ?? []
+  const allLogbook = await getAllLogbook()
 
   const mappedLogbook = []
   allLogbook.map((log) => {
@@ -64,18 +64,20 @@ export default async function Journey() {
 }
 
 export async function generateMetadata() {
-  const seoData = (await getPageSeo('journey')) ?? null
+  const seoData = await getPageSeo('journey')
   if (!seoData) return null
 
-  const { url, seoTitle, seoDescription } = seoData
-  const siteUrl = `/${url}`
+  const {
+    seo: { title, description }
+  } = seoData
+  const siteUrl = '/journey'
 
   return {
-    title: seoTitle,
-    description: seoDescription,
+    title,
+    description,
     openGraph: {
-      title: seoTitle,
-      description: seoDescription,
+      title,
+      description,
       url: siteUrl
     },
     alternates: {

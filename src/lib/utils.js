@@ -26,3 +26,5 @@ export const getBoldFont = async () => {
   const font = await response.arrayBuffer()
   return font
 }
+
+export const isDevelopment = process.env.NODE_ENV === 'development'

@@ -3,15 +3,15 @@ import { ImageResponse } from 'next/server'
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { COLLECTIONS } from '@/lib/constants'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
-import { image } from '@/app/shared-metadata'
+import { sharedImage } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
 export const alt = 'Bookmarks'
 export const size = {
-  width: image.width,
-  height: image.height
+  width: sharedImage.width,
+  height: sharedImage.height
 }
-export const contentType = image.type
+export const contentType = sharedImage.type
 
 export default async function Image({ params }) {
   const { id } = params

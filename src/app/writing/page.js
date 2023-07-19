@@ -30,23 +30,25 @@ export default async function Writing() {
 }
 
 async function fetchData() {
-  const allPosts = (await getAllPosts()) ?? []
+  const allPosts = await getAllPosts()
   return { allPosts }
 }
 
 export async function generateMetadata() {
-  const seoData = (await getPageSeo('writing')) ?? null
+  const seoData = await getPageSeo('writing')
   if (!seoData) return null
 
-  const { url, seoTitle, seoDescription } = seoData
-  const siteUrl = `/${url}`
+  const {
+    seo: { title, description }
+  } = seoData
+  const siteUrl = '/writing'
 
   return {
-    title: seoTitle,
-    description: seoDescription,
+    title,
+    description,
     openGraph: {
-      title: seoTitle,
-      description: seoDescription,
+      title,
+      description,
       url: siteUrl
     },
     alternates: {

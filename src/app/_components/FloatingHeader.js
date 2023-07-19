@@ -31,7 +31,7 @@ export const FloatingHeader = memo(({ initialTitle, title, backLink, children })
                           alt="Onur Şuyalçınkaya"
                           width={40}
                           height={40}
-                          loading="eager"
+                          loading="lazy"
                           className="rounded-full border shadow-sm"
                         />
                         <div className="flex flex-col">

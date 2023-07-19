@@ -6,6 +6,22 @@ import { ListItem } from '@/app/_components/ListItem'
 import { getCollections } from '@/lib/raindrop'
 import { COLLECTIONS } from '@/lib/constants'
 
+async function fetchData() {
+  const collections = await getCollections()
+
+  const filteredAndSortedCollections = collections.items
+    .filter((collection) => {
+      return COLLECTIONS.some((c) => c.id === collection._id)
+    })
+    .sort((a, b) => {
+      const aIndex = COLLECTIONS.findIndex((c) => c.id === a._id)
+      const bIndex = COLLECTIONS.findIndex((c) => c.id === b._id)
+      return aIndex - bIndex
+    })
+
+  return { collections: filteredAndSortedCollections }
+}
+
 export default async function BookmarksLayout({ children }) {
   const { collections } = await fetchData()
 
@@ -31,20 +47,4 @@ export default async function BookmarksLayout({ children }) {
       <div className="lg:bg-grid flex-1">{children}</div>
     </div>
   )
-}
-
-async function fetchData() {
-  const collections = await getCollections()
-
-  const filteredAndSortedCollections = collections.items
-    .filter((collection) => {
-      return COLLECTIONS.some((c) => c.id === collection._id)
-    })
-    .sort((a, b) => {
-      const aIndex = COLLECTIONS.findIndex((c) => c.id === a._id)
-      const bIndex = COLLECTIONS.findIndex((c) => c.id === b._id)
-      return aIndex - bIndex
-    })
-
-  return { collections: filteredAndSortedCollections }
 }

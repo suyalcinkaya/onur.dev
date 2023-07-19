@@ -1,25 +1,26 @@
+import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
 import { PageTitle } from '@/app/_components/PageTitle'
 import { FloatingHeader } from '@/app/_components/FloatingHeader'
 import { GradientBg } from '@/app/_components/GradientBg'
 import { RichText } from '@/app/_components/contentful/RichText'
-import { getPage, getPageSeo, getAllPages } from '@/lib/contentful'
+import { getPage, getPageSeo, getAllPageSlugs } from '@/lib/contentful'
+import { isDevelopment } from '@/lib/utils'
 
 export async function generateStaticParams() {
-  const allPages = (await getAllPages()) ?? []
+  const allPages = await getAllPageSlugs()
 
-  return allPages.length > 0
-    ? allPages
-        .filter((page) => !page.hasCustomPage)
-        .map((page) => ({
-          slug: page.url
-        }))
-    : []
+  return allPages
+    .filter((page) => !page.hasCustomPage) // filter out pages that have custom pages, e.g. /journey
+    .map((page) => ({
+      slug: page.slug
+    }))
 }
 
 async function fetchData(slug) {
-  const page = await getPage(slug)
+  const { isEnabled } = draftMode()
+  const page = await getPage(slug, isDevelopment ? true : isEnabled)
   if (!page) notFound()
   return { page }
 }
@@ -49,15 +50,17 @@ export async function generateMetadata({ params }) {
   const seoData = await getPageSeo(slug)
   if (!seoData) return null
 
-  const { url, seoTitle, seoDescription } = seoData
-  const siteUrl = `/${url}`
+  const {
+    seo: { title, description }
+  } = seoData
+  const siteUrl = `/${slug}`
 
   return {
-    title: seoTitle,
-    description: seoDescription,
+    title,
+    description,
     openGraph: {
-      title: seoTitle,
-      description: seoDescription,
+      title,
+      description,
       url: siteUrl
     },
     alternates: {
