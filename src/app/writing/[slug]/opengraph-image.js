@@ -18,23 +18,34 @@ export default async function Image({ params }) {
   const seoData = await getWritingSeo(slug)
   if (!seoData) return null
 
-  const { title } = seoData
+  const {
+    seo: { title, ogImageTitle, ogImageSubtitle }
+  } = seoData
 
-  return new ImageResponse(<OpenGraphImage title={title} description="by Onur Şuyalçınkaya" url="writing" />, {
-    ...size,
-    fonts: [
-      {
-        name: 'SF Pro',
-        data: await getMediumFont(),
-        style: 'normal',
-        weight: 500
-      },
-      {
-        name: 'SF Pro',
-        data: await getBoldFont(),
-        style: 'normal',
-        weight: 600
-      }
-    ]
-  })
+  return new ImageResponse(
+    (
+      <OpenGraphImage
+        title={ogImageTitle || title}
+        description={ogImageSubtitle || 'by Onur Şuyalçınkaya'}
+        url="writing"
+      />
+    ),
+    {
+      ...size,
+      fonts: [
+        {
+          name: 'SF Pro',
+          data: await getMediumFont(),
+          style: 'normal',
+          weight: 500
+        },
+        {
+          name: 'SF Pro',
+          data: await getBoldFont(),
+          style: 'normal',
+          weight: 600
+        }
+      ]
+    }
+  )
 }

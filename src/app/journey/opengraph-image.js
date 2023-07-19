@@ -15,7 +15,9 @@ export const contentType = sharedImage.type
 
 export default async function Image() {
   const seoData = (await getPageSeo('journey')) ?? {}
-  const { title, description, ogImageTitle, ogImageSubtitle } = seoData
+  const {
+    seo: { title, description, ogImageTitle, ogImageSubtitle }
+  } = seoData
 
   return new ImageResponse(
     (
