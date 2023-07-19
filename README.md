@@ -13,12 +13,13 @@ and more.
 ## Overview
 
 - `/` - Home page.
+- `/[slug]` - Static pre-rendered pages using [Contentful](https://www.contentful.com). (e.g. `/stack`, `/about`)
 - `/writing` - Writing page.
 - `/writing/[slug]` - Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
 - `/journey` - Journey page.
-- `/stack` - Stack page.
 - `/bookmarks` - Bookmarks page.
 - `/bookmarks/[id]` - Static pre-rendered bookmarks pages using [Raindrop](https://raindrop.io/).
+- `/api` - API routes.
 
 ## Running Locally
 
