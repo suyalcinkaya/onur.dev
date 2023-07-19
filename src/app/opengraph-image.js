@@ -2,15 +2,15 @@ import { ImageResponse } from 'next/server'
 
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
-import { title, description, image } from '@/app/shared-metadata'
+import { sharedTitle, sharedDescription, sharedImage } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
-export const alt = title
+export const alt = sharedTitle
 export const size = {
-  width: image.width,
-  height: image.height
+  width: sharedImage.width,
+  height: sharedImage.height
 }
-export const contentType = 'image/png'
+export const contentType = sharedImage.type
 
 /* export const getImage = async () => {
   const response = await fetch(new URL('@/assets/me.jpg', import.meta.url))
@@ -22,8 +22,8 @@ export default async function Image() {
   return new ImageResponse(
     (
       <OpenGraphImage
-        title={title}
-        description={description}
+        title={sharedTitle}
+        description={sharedDescription}
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -5,6 +5,11 @@ import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
 import { WritingLink } from '@/app/_components/WritingLink'
 import { getAllPosts } from '@/lib/contentful'
 
+async function fetchData() {
+  const allPosts = await getAllPosts()
+  return { allPosts }
+}
+
 export default async function WritingLayout({ children }) {
   const { allPosts } = await fetchData()
 
@@ -22,9 +27,4 @@ export default async function WritingLayout({ children }) {
       <div className="lg:bg-dots flex-1">{children}</div>
     </>
   )
-}
-
-async function fetchData() {
-  const allPosts = (await getAllPosts()) ?? []
-  return { allPosts }
 }

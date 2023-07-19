@@ -79,7 +79,7 @@ export const COLLECTIONS = [
   },
   {
     id: 15807896,
-    name: 'Personal Websites'
+    name: 'Portfolios'
   },
   {
     id: 15807897,

@@ -47,18 +47,20 @@ export default async function Writing() {
 }
 
 export async function generateMetadata() {
-  const seoData = (await getPageSeo('bookmarks')) ?? null
+  const seoData = await getPageSeo('bookmarks')
   if (!seoData) return null
 
-  const { url, seoTitle, seoDescription } = seoData
-  const siteUrl = `/${url}`
+  const {
+    seo: { title, description }
+  } = seoData
+  const siteUrl = '/bookmarks'
 
   return {
-    title: seoTitle,
-    description: seoDescription,
+    title,
+    description,
     openGraph: {
-      title: seoTitle,
-      description: seoDescription,
+      title,
+      description,
       url: siteUrl
     },
     alternates: {

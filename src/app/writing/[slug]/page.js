@@ -1,39 +1,39 @@
-import { notFound } from 'next/navigation'
 import { draftMode } from 'next/headers'
+import { notFound } from 'next/navigation'
 
 import { RichText } from '@/app/_components/contentful/RichText'
 import { PageTitle } from '@/app/_components/PageTitle'
 import { FloatingHeader } from '@/app/_components/FloatingHeader'
 import { Views } from '@/app/_components/Views'
-import { getPost, getPostSeo, getAllPosts } from '@/lib/contentful'
-import { getDateTimeFormat } from '@/lib/utils'
+import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
+import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
 
 export async function generateStaticParams() {
-  const allPosts = (await getAllPosts()) ?? []
+  const allPosts = await getAllPostSlugs()
   return allPosts.map((post) => ({ slug: post.slug }))
 }
 
 async function fetchData(slug) {
   const { isEnabled } = draftMode()
-  const data = await getPost(slug, isEnabled)
-  if (!data?.post) notFound()
+  const data = await getPost(slug, isDevelopment ? true : isEnabled)
+  if (!data) notFound()
 
   return {
-    post: data?.post
+    data
   }
 }
 
 export default async function WritingSlug({ params }) {
   const { slug } = params
-  const { post } = await fetchData(slug)
+  const { data } = await fetchData(slug)
 
   const {
     title,
-    description,
     date,
+    seo: { title: seoTitle, description: seoDescription },
     content,
     sys: { firstPublishedAt, publishedAt: updatedAt }
-  } = post
+  } = data
 
   const postDate = date || firstPublishedAt
   const dateString = getDateTimeFormat(postDate)
@@ -44,8 +44,8 @@ export default async function WritingSlug({ params }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: title,
-    description,
+    headline: seoTitle,
+    description: seoDescription,
     datePublished,
     dateModified,
     author: {
@@ -83,27 +83,25 @@ export default async function WritingSlug({ params }) {
 
 export async function generateMetadata({ params }) {
   const { slug } = params
-  const seoData = (await getPostSeo(slug)) ?? null
+  const seoData = await getWritingSeo(slug)
   if (!seoData) return null
 
   const {
-    title,
-    description,
     date,
-    slug: postSlug,
+    seo: { title, description },
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = seoData
 
-  const siteUrl = `/writing/${postSlug}`
+  const siteUrl = `/writing/${slug}`
   const postDate = date || firstPublishedAt
   const publishedTime = new Date(postDate).toISOString()
   const modifiedTime = new Date(updatedAt).toISOString()
 
   return {
-    title: `${title} — Onur Şuyalçınkaya`,
+    title,
     description,
     openGraph: {
-      title: `${title} — Onur Şuyalçınkaya`,
+      title,
       description,
       type: 'article',
       publishedTime,

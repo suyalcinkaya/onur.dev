@@ -7,8 +7,8 @@
 
 My personal website has evolved over the years — from a simple static HTML page, to `Create React App`, to `GatsbyJS`,
 then to a combination of `Next.js`, `Chakra UI` and `MDX`, and finally to a combination of `Next.js`, `Tailwind CSS` and
-`Contentful`. It serves as an app-like-web platform for my writings, highlighting my journey, and showcasing my
-bookmarks.
+`Contentful`. It serves as an app-like-web platform for my writings, highlighting my journey, showcasing my bookmarks,
+and more.
 
 ## Overview
 
@@ -34,7 +34,9 @@ Create a `.env` file similar to [`.env.example`](https://github.com/suyalcinkaya
 ## Built With
 
 - [Next.js](https://nextjs.org)
-- [Contentful](https://www.contentful.com)
 - [Tailwind CSS](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com)
+- [Contentful](https://www.contentful.com)
+- [Raindrop](https://raindrop.io)
+- [Supabase](https://supabase.com)
 - [Vercel](https://vercel.com)
-- [Supabase](https://supabase.com/)

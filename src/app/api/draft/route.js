@@ -9,6 +9,8 @@ export async function GET(request) {
     return new Response('Invalid token', { status: 401 })
   }
 
+  const slug = searchParams.get('slug') ?? '/'
+
   draftMode().enable()
-  redirect('/')
+  redirect(slug)
 }

@@ -12,8 +12,8 @@ export async function generateStaticParams() {
   return COLLECTIONS.map((collection) => ({ id: String(collection.id) }))
 }
 
-async function fetchData(id, pageIndex = 0) {
-  const collection = await getCollection(id, pageIndex)
+async function fetchData(id) {
+  const collection = await getCollection(id)
   if (!collection?.items?.length) notFound()
 
   return {
@@ -45,8 +45,8 @@ export async function generateMetadata({ params }) {
   if (!collection) return null
 
   const siteUrl = `/bookmarks/${collection.id}`
-  const seoTitle = `${collection.name} — Bookmarks`
-  const seoDescription = `${collection.name} — Bookmarks`
+  const seoTitle = `${collection.name} | Bookmarks`
+  const seoDescription = `A curated selection of various handpicked ${collection.name.toLowerCase()} bookmarks by Onur Şuyalçınkaya`
 
   return {
     title: seoTitle,

@@ -3,25 +3,26 @@ import { ImageResponse } from 'next/server'
 import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
 import { getPageSeo } from '@/lib/contentful'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
-import { image } from '@/app/shared-metadata'
+import { sharedImage } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
 export const alt = 'Bookmarks'
 export const size = {
-  width: image.width,
-  height: image.height
+  width: sharedImage.width,
+  height: sharedImage.height
 }
-export const contentType = image.type
+export const contentType = sharedImage.type
 
 export default async function Image() {
-  const seoData = (await getPageSeo('bookmarks')) ?? null
-  const { title, seoDescription } = seoData
+  const {
+    seo: { title, description, ogImageTitle, ogImageSubtitle }
+  } = (await getPageSeo('bookmarks')) ?? {}
 
   return new ImageResponse(
     (
       <OpenGraphImage
-        title={title}
-        description={seoDescription}
+        title={ogImageTitle || title}
+        description={ogImageSubtitle || description}
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

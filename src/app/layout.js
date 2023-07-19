@@ -8,7 +8,7 @@ import Analytics from '@/app/analytics'
 import { NavigationLink } from '@/app/_components/NavigationLink'
 import { SideMenu } from '@/app/_components/SideMenu'
 import { PROFILES, LINKS } from '@/lib/constants'
-import { title, description } from '@/app/shared-metadata'
+import { sharedTitle, sharedDescription } from '@/app/shared-metadata'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -85,15 +85,21 @@ export const metadata = {
     index: true,
     follow: true
   },
-  title,
-  description,
+  title: {
+    template: `%s — ${sharedTitle}`,
+    default: sharedTitle
+  },
+  description: sharedDescription,
   openGraph: {
-    title,
-    description,
-    alt: title,
+    title: {
+      template: `%s — ${sharedTitle}`,
+      default: sharedTitle
+    },
+    description: sharedDescription,
+    alt: sharedTitle,
     type: 'website',
     url: '/',
-    siteName: title,
+    siteName: sharedTitle,
     locale: 'en_IE'
   },
   alternates: {
