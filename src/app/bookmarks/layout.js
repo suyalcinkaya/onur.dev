@@ -4,22 +4,14 @@ import { SideMenu } from '@/app/_components/SideMenu'
 import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
 import { ListItem } from '@/app/_components/ListItem'
 import { getCollections } from '@/lib/raindrop'
-import { COLLECTIONS } from '@/lib/constants'
+import { COLLECTION_IDS } from '@/lib/constants'
+import { sortByProperty } from '@/lib/utils'
 
 async function fetchData() {
   const collections = await getCollections()
-
-  const filteredAndSortedCollections = collections.items
-    .filter((collection) => {
-      return COLLECTIONS.some((c) => c.id === collection._id)
-    })
-    .sort((a, b) => {
-      const aIndex = COLLECTIONS.findIndex((c) => c.id === a._id)
-      const bIndex = COLLECTIONS.findIndex((c) => c.id === b._id)
-      return aIndex - bIndex
-    })
-
-  return { collections: filteredAndSortedCollections }
+  const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
+  const sortedCollections = sortByProperty(filteredCollections, 'title')
+  return { collections: sortedCollections }
 }
 
 export default async function BookmarksLayout({ children }) {
@@ -31,12 +23,11 @@ export default async function BookmarksLayout({ children }) {
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
             {collections.map((collection) => {
-              const title = COLLECTIONS.find((c) => c.id === collection._id)?.name
               return (
                 <ListItem
                   key={collection._id}
                   path={`/bookmarks/${collection._id}`}
-                  title={title}
+                  title={collection.title}
                   description={`${collection.count} bookmarks`}
                 />
               )

@@ -60,47 +60,8 @@ export const PROFILES = {
   }
 }
 
-export const COLLECTIONS = [
-  {
-    id: 18259129,
-    name: 'Apps & Tools'
-  },
-  {
-    id: 15968768,
-    name: 'Design'
-  },
-  {
-    id: 23598938,
-    name: 'Fonts'
-  },
-  {
-    id: 16949672,
-    name: 'Frontend'
-  },
-  {
-    id: 15807896,
-    name: 'Portfolios'
-  },
-  {
-    id: 15807897,
-    name: 'Reading'
-  },
-  {
-    id: 15969648,
-    name: 'VS Code'
-  },
-  {
-    id: 16338467,
-    name: 'Websites'
-  },
-  {
-    id: 15896982,
-    name: 'Tweets'
-  },
-  {
-    id: 25589709,
-    name: 'Wallpapers'
-  }
+export const COLLECTION_IDS = [
+  18259129, 15968768, 23598938, 16949672, 15807896, 15807897, 15969648, 16338467, 15896982, 25589709
 ]
 
 export const LINKS = [

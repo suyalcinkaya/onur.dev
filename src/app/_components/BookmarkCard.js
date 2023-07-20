@@ -11,19 +11,19 @@ export const BookmarkCard = ({ bookmark }) => {
   return (
     <a
       key={bookmark._id}
-      className="flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-100"
+      className="thumbnail-shadow group flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-300 hover:bg-gray-100"
       href={bookmark.link}
       target="_blank"
       rel="noopener noreferrer"
     >
-      <span className="overflow-hidden rounded-md">
+      <span className="overflow-hidden rounded-lg">
         <img
           src={bookmark.cover}
           alt={bookmark.title}
-          width={400}
-          height={300}
+          width={1200}
+          height={630}
           loading="lazy"
-          className="h-full w-full rounded-none bg-[url('/assets/fallback.webp')] bg-cover bg-center bg-no-repeat object-cover"
+          className="aspect-[1200/630] animate-reveal rounded-lg border bg-[url('/assets/fallback.webp')] bg-cover bg-center bg-no-repeat object-cover transition-transform group-hover:scale-105"
           onError={(e) => {
             e.target.onerror = null
             e.target.src = '/assets/fallback.webp'
@@ -32,7 +32,7 @@ export const BookmarkCard = ({ bookmark }) => {
       </span>
       <div className="flex flex-col gap-1">
         <h3>{bookmark.title}</h3>
-        <span className="inline-flex items-center gap-1 text-sm text-gray-500">
+        <span className="line-clamp-5 inline-flex items-center gap-1 text-sm text-gray-500">
           <Link2Icon size={16} />
           {bookmark.domain}
         </span>

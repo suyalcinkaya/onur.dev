@@ -34,7 +34,7 @@
   }
 
   a {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-300;
   }
 
   button:focus {
@@ -111,11 +111,11 @@
 
 @layer components {
   .link-card {
-    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 transition-colors duration-200 hover:bg-gray-200;
+    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 transition-colors duration-300 hover:bg-gray-200;
   }
 
   .content-wrapper {
-    @apply h-full max-h-dynamic-screen min-h-dynamic-screen w-full overflow-y-auto px-6 py-12 md:px-8 md:py-24;
+    @apply scrollable-container w-full px-6 py-12 md:px-8 md:py-24;
   }
 
   .content {
@@ -136,6 +136,15 @@
 
   .inline-code {
     @apply inline-block rounded-md bg-gray-100 px-0.5 py-0.5 text-sm not-italic before:content-['`'] after:content-['`'];
+  }
+
+  .thumbnail-shadow {
+    box-shadow: 0 0 0 0.5px #e2e8f0, 0 0 0 1px rgba(226, 232, 240, 0.5), 0 0 0 3px #f8fafc, 0 0 0 3.5px #f1f5f9,
+      0 10px 15px -3px rgb(59 130 246/5%), 0 4px 6px -4px rgb(59 130 246/5%);
+  }
+
+  .scrollable-container {
+    @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
   }
 
   /**

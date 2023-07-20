@@ -1,17 +1,17 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { ArrowDownIcon } from 'lucide-react'
 
 import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
 import { Button } from '@/app/_components/Button'
 import { BookmarkCard } from '@/app/_components/BookmarkCard'
-import { getCollection } from '@/lib/raindrop'
+import { getRaindrops } from '@/lib/raindrop'
 import cx from '@/lib/cx'
 
 async function fetchDataByPageIndex(id, pageIndex) {
-  const collection = await getCollection(id, pageIndex)
-  return collection
+  const raindrops = await getRaindrops(id, pageIndex)
+  return raindrops
 }
 
 export const BookmarkList = ({ initialData, id }) => {
@@ -47,7 +47,7 @@ export const BookmarkList = ({ initialData, id }) => {
     return [[...firstChunk], [...lastChunk]]
   }, [data])
 
-  const chunks = getChunks(data)
+  const chunks = useMemo(() => getChunks(), [getChunks])
   const isReachingEnd = data.length >= initialData.count
   const isTweetCollection = id === '15896982'
 

@@ -28,3 +28,18 @@ export const getBoldFont = async () => {
 }
 
 export const isDevelopment = process.env.NODE_ENV === 'development'
+
+export const sortByProperty = (arr, prop) => {
+  return arr.sort((a, b) => {
+    const itemA = a[prop].toUpperCase()
+    const itemB = b[prop].toUpperCase()
+
+    if (itemA < itemB) {
+      return -1
+    } else if (itemA > itemB) {
+      return 1
+    }
+
+    return 0
+  })
+}

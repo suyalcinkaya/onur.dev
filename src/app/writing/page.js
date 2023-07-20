@@ -10,7 +10,7 @@ export default async function Writing() {
   return (
     <div className="w-full text-sm lg:hidden">
       <FloatingHeader initialTitle="Writing" />
-      <div>
+      <div className="scrollable-container">
         {allPosts.map((post) => {
           const date = getDateTimeFormat(post.date)
           return (

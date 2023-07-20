@@ -2,23 +2,15 @@ import Link from 'next/link'
 
 import { getPageSeo } from '@/lib/contentful'
 import { FloatingHeader } from '@/app/_components/FloatingHeader'
-import { COLLECTIONS } from '@/lib/constants'
+import { COLLECTION_IDS } from '@/lib/constants'
 import { getCollections } from '@/lib/raindrop'
+import { sortByProperty } from '@/lib/utils'
 
 async function fetchData() {
   const collections = await getCollections()
-
-  const filteredAndSortedCollections = collections?.items
-    .filter((collection) => {
-      return COLLECTIONS.some((c) => c.id === collection._id)
-    })
-    .sort((a, b) => {
-      const aIndex = COLLECTIONS.findIndex((c) => c.id === a._id)
-      const bIndex = COLLECTIONS.findIndex((c) => c.id === b._id)
-      return aIndex - bIndex
-    })
-
-  return { collections: filteredAndSortedCollections }
+  const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
+  const sortedCollections = sortByProperty(filteredCollections, 'title')
+  return { collections: sortedCollections }
 }
 
 export default async function Writing() {
@@ -27,16 +19,15 @@ export default async function Writing() {
   return (
     <div className="w-full text-sm lg:hidden">
       <FloatingHeader initialTitle="Bookmarks" />
-      <div>
+      <div className="scrollable-container">
         {collections.map((collection) => {
-          const title = COLLECTIONS.find((c) => c.id === collection._id)?.name
           return (
             <Link
               key={collection._id}
               href={`/bookmarks/${collection._id}`}
               className="flex flex-col gap-1 border-b px-4 py-3 hover:bg-gray-100"
             >
-              <span className="font-medium">{title}</span>
+              <span className="font-medium">{collection.title}</span>
               <span className="text-slate-500">{collection.count} bookmarks</span>
             </Link>
           )
