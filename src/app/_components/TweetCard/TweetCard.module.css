@@ -1,7 +1,3 @@
-.tweetCard {
-  @apply thumbnail-shadow rounded-xl;
-}
-
 .tweetCard :global(.react-tweet-theme) {
   @apply min-w-full max-w-full border-0 border-none font-sans text-base;
   --tweet-container-margin: 0;
