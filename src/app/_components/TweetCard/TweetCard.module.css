@@ -1,0 +1,41 @@
+.tweetCard {
+  @apply thumbnail-shadow rounded-xl;
+}
+
+.tweetCard :global(.react-tweet-theme) {
+  @apply min-w-full max-w-full border-0 border-none font-sans text-base;
+  --tweet-container-margin: 0;
+  --tweet-body-font-size: 1rem;
+  --tweet-body-line-height: 1.5rem;
+  --tweet-actions-font-weight: 600;
+  --tweet-font-color: #334155;
+  --tweet-font-color-secondary: #64748b;
+  --tweet-bg-color-hover: #f3f4f6;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-container_article__'] {
+  @apply p-4;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-header_follow__'],
+.tweetCard :global(.react-tweet-theme) [class^='tweet-header_authorLinkText__'] {
+  @apply font-semibold;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-replies_replies__'],
+.tweetCard :global(.react-tweet-theme) [class^='tweet-info_infoLink__'],
+.tweetCard :global(.react-tweet-theme) [class^='tweet-header_authorFollow__'] {
+  @apply hidden;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-header_author__'] {
+  @apply mx-2 justify-start;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-info_info__'] {
+  @apply mb-1 mt-3;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_likeCount__'] {
+  @apply m-0;
+}

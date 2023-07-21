@@ -53,12 +53,12 @@ export const BookmarkList = ({ initialData, id }) => {
 
   return (
     <div>
-      <div className={cx('grid gap-4 @lg:grid-cols-2', isTweetCollection && '-my-6')}>
+      <div className="grid gap-4 @lg:grid-cols-2">
         {chunks.map((chunk, chunkIndex) => {
           return (
             <div
               key={`chunk_${chunkIndex}`}
-              className={cx('grid gap-4', isTweetCollection ? 'h-fit -space-y-12' : 'place-content-start')}
+              className={cx('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
             >
               {chunk.map((bookmark) => {
                 return <BookmarkCard key={bookmark._id} bookmark={bookmark} />
