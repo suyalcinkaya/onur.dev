@@ -3,7 +3,7 @@ import { draftMode } from 'next/headers'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { EyeIcon } from 'lucide-react'
 
-import { Analytics } from '@/components/analytics'
+import { VercelAnalytics } from '@/components/analytics'
 import { SideMenu } from '@/components/SideMenu'
 import { MainMenuContent } from '@/components/MainMenuContent'
 import { PROFILES } from '@/lib/constants'
@@ -45,7 +45,7 @@ export default async function RootLayout({ children }) {
           </SideMenu>
           <div className="flex flex-1">{children}</div>
         </div>
-        <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   )
