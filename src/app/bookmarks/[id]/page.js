@@ -6,8 +6,6 @@ import { BookmarkList } from '@/app/_components/BookmarkList'
 import { getCollection, getRaindrops } from '@/lib/raindrop'
 import { COLLECTION_IDS } from '@/lib/constants'
 
-export const revalidate = 60 * 60 * 24 * 2 // 2 days
-
 export async function generateStaticParams() {
   return COLLECTION_IDS.map((id) => ({ id: String(id) }))
 }

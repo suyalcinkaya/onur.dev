@@ -7,6 +7,8 @@ import { getCollections } from '@/lib/raindrop'
 import { COLLECTION_IDS } from '@/lib/constants'
 import { sortByProperty } from '@/lib/utils'
 
+export const revalidate = 60 * 60 * 24 * 2 // 2 days
+
 async function fetchData() {
   const collections = await getCollections()
   const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
