@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 
-import { PageTitle } from '@/app/_components/PageTitle'
-import { FloatingHeader } from '@/app/_components/FloatingHeader'
-import { BookmarkList } from '@/app/_components/BookmarkList'
+import { PageTitle } from '@/components/PageTitle'
+import { FloatingHeader } from '@/components/FloatingHeader'
+import { BookmarkList } from '@/components/BookmarkList'
 import { getCollection, getRaindrops } from '@/lib/raindrop'
 import { COLLECTION_IDS } from '@/lib/constants'
 

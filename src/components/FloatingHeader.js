@@ -3,8 +3,8 @@ import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 import { ArrowLeftIcon, MenuIcon } from 'lucide-react'
 
-import { Sheet, SheetContent, SheetTrigger } from '@/app/_components/ui/sheet.jsx'
-import { MainMenuContent } from '@/app/_components/MainMenuContent'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet.jsx'
+import { MainMenuContent } from '@/components/MainMenuContent'
 
 export const FloatingHeader = memo(({ initialTitle, title, backLink, children }) => {
   return (

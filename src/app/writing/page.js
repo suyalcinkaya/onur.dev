@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { FloatingHeader } from '@/app/_components/FloatingHeader'
+import { FloatingHeader } from '@/components/FloatingHeader'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
 import { getDateTimeFormat } from '@/lib/utils'
 

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/server'
 
-import { OpenGraphImage } from '@/app/_components/OpenGraphImage'
+import { OpenGraphImage } from '@/components/OpenGraphImage'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
 import { getCollection } from '@/lib/raindrop'
 import { sharedImage } from '@/app/shared-metadata'

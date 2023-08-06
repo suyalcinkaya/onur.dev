@@ -3,9 +3,9 @@
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { ArrowDownIcon } from 'lucide-react'
 
-import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
-import { Button } from '@/app/_components/Button'
-import { BookmarkCard } from '@/app/_components/BookmarkCard'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { Button } from '@/components/Button'
+import { BookmarkCard } from '@/components/BookmarkCard'
 import { getRaindrops } from '@/lib/raindrop'
 import cx from '@/lib/cx'
 

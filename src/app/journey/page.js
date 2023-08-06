@@ -1,9 +1,9 @@
 import { PlusIcon } from 'lucide-react'
 
-import { JourneyCard } from '@/app/_components/JourneyCard'
-import { FloatingHeader } from '@/app/_components/FloatingHeader'
-import { PageTitle } from '@/app/_components/PageTitle'
-import { GradientBg3 } from '@/app/_components/GradientBg'
+import { JourneyCard } from '@/components/JourneyCard'
+import { FloatingHeader } from '@/components/FloatingHeader'
+import { PageTitle } from '@/components/PageTitle'
+import { GradientBg3 } from '@/components/GradientBg'
 import { getAllLogbook, getPageSeo } from '@/lib/contentful'
 
 async function fetchData() {

@@ -1,6 +1,6 @@
 import { Link2Icon } from 'lucide-react'
 
-import { TweetCard } from '@/app/_components/TweetCard/TweetCard'
+import { TweetCard } from '@/components/TweetCard/TweetCard'
 
 export const BookmarkCard = ({ bookmark }) => {
   // Tweets collection id is 15896982
@@ -36,7 +36,9 @@ export const BookmarkCard = ({ bookmark }) => {
           <Link2Icon size={16} />
           {bookmark.domain}
         </span>
-        <span className="line-clamp-6 text-sm">{bookmark.excerpt || bookmark.note}</span>
+        <span className="line-clamp-6 text-sm">
+          {bookmark.excerpt || bookmark.note}
+        </span>
       </div>
     </a>
   )
