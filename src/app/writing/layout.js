@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 
-import { SideMenu } from '@/app/_components/SideMenu'
-import { LoadingSpinner } from '@/app/_components/LoadingSpinner'
-import { WritingLink } from '@/app/_components/WritingLink'
+import { SideMenu } from '@/components/SideMenu'
+import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { WritingLink } from '@/components/WritingLink'
 import { getAllPosts } from '@/lib/contentful'
 
 async function fetchData() {

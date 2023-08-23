@@ -1,4 +1,4 @@
-import { Markdown } from '@/app/_components/Markdown'
+import { Markdown } from '@/components/Markdown'
 
 export const JourneyCard = ({ title, description, image }) => {
   return (

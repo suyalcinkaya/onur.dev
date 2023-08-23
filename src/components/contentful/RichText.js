@@ -4,9 +4,9 @@ import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
-import { Link } from '@/app/_components/Link'
-const DynamicIframe = dynamic(() => import('@/app/_components/contentful/Iframe'))
-const DynamicCodeBlock = dynamic(() => import('@/app/_components/contentful/CodeBlock'))
+import { Link } from '@/components/Link'
+const DynamicIframe = dynamic(() => import('@/components/contentful/Iframe'))
+const DynamicCodeBlock = dynamic(() => import('@/components/contentful/CodeBlock'))
 import { dasherize } from '@/lib/utils'
 
 function options(links) {

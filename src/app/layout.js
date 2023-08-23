@@ -1,11 +1,11 @@
-import '@/app/globals.css'
+import '@/globals.css'
 import { draftMode } from 'next/headers'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { EyeIcon } from 'lucide-react'
 
-import Analytics from '@/app/analytics'
-import { SideMenu } from '@/app/_components/SideMenu'
-import { MainMenuContent } from '@/app/_components/MainMenuContent'
+import { VercelAnalytics } from '@/components/analytics'
+import { SideMenu } from '@/components/SideMenu'
+import { MainMenuContent } from '@/components/MainMenuContent'
 import { PROFILES } from '@/lib/constants'
 import { sharedTitle, sharedDescription } from '@/app/shared-metadata'
 
@@ -26,7 +26,10 @@ export default async function RootLayout({ children }) {
   const { isEnabled } = draftMode()
 
   return (
-    <html lang="en" className={`${interFont.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${interFont.variable} ${jetbrainsMono.variable}`}
+    >
       <body>
         {isEnabled && (
           <div className="absolute bottom-0 left-0 right-0 z-50 flex h-12 w-full items-center justify-center bg-green-500 text-center text-sm font-medium text-white">
@@ -42,7 +45,7 @@ export default async function RootLayout({ children }) {
           </SideMenu>
           <div className="flex flex-1">{children}</div>
         </div>
-        <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   )
