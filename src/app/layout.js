@@ -1,5 +1,6 @@
 import '@/globals.css'
 import { draftMode } from 'next/headers'
+import Script from 'next/script'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { EyeIcon } from 'lucide-react'
 
@@ -26,10 +27,7 @@ export default async function RootLayout({ children }) {
   const { isEnabled } = draftMode()
 
   return (
-    <html
-      lang="en"
-      className={`${interFont.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en" className={`${interFont.variable} ${jetbrainsMono.variable}`}>
       <body>
         {isEnabled && (
           <div className="absolute bottom-0 left-0 right-0 z-50 flex h-12 w-full items-center justify-center bg-green-500 text-center text-sm font-medium text-white">
@@ -46,6 +44,11 @@ export default async function RootLayout({ children }) {
           <div className="flex flex-1">{children}</div>
         </div>
         <VercelAnalytics />
+        <Script
+          src="https://unpkg.com/@tinybirdco/flock.js"
+          data-host="https://api.tinybird.co"
+          data-token={process.env.NEXT_PUBLIC_TINYBIRD_TOKEN}
+        />
       </body>
     </html>
   )
