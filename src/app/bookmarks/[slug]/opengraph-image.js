@@ -2,8 +2,9 @@ import { ImageResponse } from 'next/server'
 
 import { OpenGraphImage } from '@/components/OpenGraphImage'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
-import { getCollection } from '@/lib/raindrop'
+import { getCollections } from '@/lib/raindrop'
 import { sharedImage } from '@/app/shared-metadata'
+import { COLLECTION_IDS } from '@/lib/constants'
 
 export const runtime = 'edge'
 export const alt = 'Bookmarks'
@@ -14,15 +15,19 @@ export const size = {
 export const contentType = sharedImage.type
 
 export default async function Image({ params }) {
-  const { id } = params
-  const collection = await getCollection(id)
-  if (!collection?.result) return null
+  const { slug } = params
+  const collections = await getCollections()
+  const collection = collections.items
+    .filter((collection) => COLLECTION_IDS.includes(collection._id))
+    .find((collection) => collection.slug === slug)
+
+  if (!collection) return null
 
   return new ImageResponse(
     (
       <OpenGraphImage
-        title={collection.item.title}
-        description={`A curated selection of various handpicked ${collection.item.title.toLowerCase()} bookmarks by Onur Şuyalçınkaya`}
+        title={collection.title}
+        description={`A curated selection of various handpicked ${collection.title.toLowerCase()} bookmarks by Onur Şuyalçınkaya`}
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"

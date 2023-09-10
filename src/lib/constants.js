@@ -5,7 +5,7 @@ import {
   InstagramIcon,
   YoutubeIcon,
   SparklesIcon,
-  Edit3Icon,
+  PencilLineIcon,
   NavigationIcon,
   Wand2Icon,
   BookmarkIcon
@@ -73,7 +73,7 @@ export const LINKS = [
   {
     href: '/writing',
     label: 'Writing',
-    icon: <Edit3Icon size={16} />
+    icon: <PencilLineIcon size={16} />
   },
   {
     href: '/journey',

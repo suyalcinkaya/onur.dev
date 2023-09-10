@@ -28,7 +28,7 @@ export default async function BookmarksLayout({ children }) {
               return (
                 <ListItem
                   key={collection._id}
-                  path={`/bookmarks/${collection._id}`}
+                  path={`/bookmarks/${collection.slug}`}
                   title={collection.title}
                   description={`${collection.count} bookmarks`}
                 />
