@@ -8,9 +8,8 @@ export default function Iframe({ embedUrl, title, className, ...rest }) {
         <iframe
           src={embedUrl}
           title={title}
-          frameBorder="0"
           allowFullScreen
-          className={cn('w-full rounded shadow-lg', className)}
+          className={cn('w-full rounded border-0 border-none shadow-lg', className)}
           {...rest}
         />
         <figcaption className="mt-2 text-center text-sm text-gray-500">{title}</figcaption>

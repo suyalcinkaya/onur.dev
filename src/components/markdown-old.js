@@ -1,6 +1,6 @@
 import ReactMarkdown from 'markdown-to-jsx'
 
-import { Link } from '@/components/link'
+import { Link } from '@/components/link-old'
 
 export const Markdown = ({ options, ...rest }) => {
   return (
