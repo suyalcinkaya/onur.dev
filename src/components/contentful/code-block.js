@@ -7,8 +7,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 const { spacing } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-import { ShowInView } from '@/components/ShowInView'
-import { OutlineButton } from '@/components/Button'
+import { ShowInView } from '@/components/show-in-view'
+import { Button } from '@/components/ui/button.jsx'
 
 export default function CodeBlock({ title, language, code }) {
   const [copied, setCopied] = useState(false)
@@ -30,7 +30,7 @@ export default function CodeBlock({ title, language, code }) {
           </span>
           {title && <p className="m-0 text-sm font-medium">{title}</p>}
         </div>
-        <OutlineButton as="button" className="px-1 py-1 text-xs" disabled={copied} onClick={onCopy}>
+        <Button variant="outline" size="sm" disabled={copied} onClick={onCopy}>
           <AnimatePresence mode="wait">
             <motion.span
               key={copied ? 'copied' : 'copy'}
@@ -79,7 +79,7 @@ export default function CodeBlock({ title, language, code }) {
               )}
             </motion.span>
           </AnimatePresence>
-        </OutlineButton>
+        </Button>
       </div>
       <div className="pre-code">
         <DynamicSyntaxHighlighter

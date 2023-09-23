@@ -1,10 +1,10 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { RichText } from '@/components/contentful/RichText'
-import { PageTitle } from '@/components/PageTitle'
-import { FloatingHeader } from '@/components/FloatingHeader'
-import { Views } from '@/components/Views'
+import { RichText } from '@/components/contentful/rich-text'
+import { PageTitle } from '@/components/page-title'
+import { FloatingHeader } from '@/components/floating-header'
+import { Views } from '@/components/views'
 import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
 import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
 

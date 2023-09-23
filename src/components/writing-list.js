@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import cx from '@/lib/cx'
+import { cn } from '@/lib/utils'
 
 const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
   day: '2-digit',
@@ -59,7 +59,7 @@ export const WritingList = ({ items, viewCounts }) => {
                 return (
                   <li key={slug} className="grid grid-cols-6 p-0 group-hover:text-gray-300">
                     <span
-                      className={cx(
+                      className={cn(
                         'pointer-events-none col-span-1 hidden items-center text-gray-500 md:grid',
                         itemIndex === 0 && 'border-t border-gray-200'
                       )}

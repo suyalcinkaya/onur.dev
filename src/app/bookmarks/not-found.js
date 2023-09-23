@@ -1,4 +1,4 @@
-import { NotFound } from '@/components/NotFound'
+import { NotFound } from '@/components/not-found'
 
 export default function NotFoundPage() {
   return <NotFound />

@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 
-import { SideMenu } from '@/components/SideMenu'
-import { LoadingSpinner } from '@/components/LoadingSpinner'
-import { ListItem } from '@/components/ListItem'
+import { SideMenu } from '@/components/side-menu'
+import { LoadingSpinner } from '@/components/loading-spinner'
+import { ListItem } from '@/components/list-item'
 import { getCollections } from '@/lib/raindrop'
 import { COLLECTION_IDS } from '@/lib/constants'
 import { sortByProperty } from '@/lib/utils'

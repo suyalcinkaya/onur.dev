@@ -3,11 +3,11 @@
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { ArrowDownIcon } from 'lucide-react'
 
-import { LoadingSpinner } from '@/components/LoadingSpinner'
-import { Button } from '@/components/Button'
-import { BookmarkCard } from '@/components/BookmarkCard'
+import { LoadingSpinner } from '@/components/loading-spinner'
+import { Button } from '@/components/ui/button.jsx'
+import { BookmarkCard } from '@/components/bookmark-card'
 import { getRaindrops } from '@/lib/raindrop'
-import cx from '@/lib/cx'
+import { cn } from '@/lib/utils'
 
 async function fetchDataByPageIndex(id, pageIndex) {
   const raindrops = await getRaindrops(id, pageIndex)
@@ -58,7 +58,7 @@ export const BookmarkList = ({ initialData, id }) => {
           return (
             <div
               key={`chunk_${chunkIndex}`}
-              className={cx('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
+              className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
             >
               {chunk.map((bookmark) => {
                 return <BookmarkCard key={bookmark._id} bookmark={bookmark} />
@@ -73,7 +73,12 @@ export const BookmarkList = ({ initialData, id }) => {
             {isLoading ? (
               <LoadingSpinner />
             ) : (
-              <Button as="button" onClick={handleLoadMore} disabled={isLoading} className="w-full justify-center">
+              <Button
+                variant="outline"
+                onClick={handleLoadMore}
+                disabled={isLoading}
+                className="w-full justify-center bg-white"
+              >
                 Load more
                 <ArrowDownIcon size={16} />
               </Button>

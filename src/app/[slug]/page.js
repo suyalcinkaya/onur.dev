@@ -1,10 +1,10 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { PageTitle } from '@/components/PageTitle'
-import { FloatingHeader } from '@/components/FloatingHeader'
-import { GradientBg } from '@/components/GradientBg'
-import { RichText } from '@/components/contentful/RichText'
+import { PageTitle } from '@/components/page-title'
+import { FloatingHeader } from '@/components/floating-header'
+import { GradientBg } from '@/components/gradient-bg'
+import { RichText } from '@/components/contentful/rich-text'
 import { getPage, getPageSeo, getAllPageSlugs } from '@/lib/contentful'
 import { isDevelopment } from '@/lib/utils'
 

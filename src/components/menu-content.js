@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { NavigationLink } from '@/components/NavigationLink'
+import { NavigationLink } from '@/components/navigation-link'
 import { PROFILES, LINKS } from '@/lib/constants'
 
-export const MainMenuContent = () => {
+export const MenuContent = () => {
   return (
     <div className="flex w-full flex-col text-sm">
       <div className="flex flex-col gap-4">
