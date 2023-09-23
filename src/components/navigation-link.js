@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowUpRightIcon, AtSignIcon } from 'lucide-react'
 
-import cx from '@/lib/cx'
+import { cn } from '@/lib/utils'
 
 export const NavigationLink = memo(({ href, label, icon }) => {
   const pathname = usePathname()
@@ -40,10 +40,10 @@ export const NavigationLink = memo(({ href, label, icon }) => {
     <Link
       key={href}
       href={href}
-      className={cx('flex items-center gap-2 rounded-lg p-2', isActive ? 'bg-black text-white' : 'hover:bg-gray-200')}
+      className={cn('flex items-center gap-2 rounded-lg p-2', isActive ? 'bg-black text-white' : 'hover:bg-gray-200')}
     >
       {iconCmp}
-      <span className={cx('font-medium', isActive && 'text-white')}>{label}</span>
+      <span className={cn('font-medium', isActive && 'text-white')}>{label}</span>
     </Link>
   )
 })

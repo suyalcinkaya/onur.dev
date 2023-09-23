@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { getPageSeo } from '@/lib/contentful'
-import { FloatingHeader } from '@/components/FloatingHeader'
+import { FloatingHeader } from '@/components/floating-header'
 import { COLLECTION_IDS } from '@/lib/constants'
 import { getCollections } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'

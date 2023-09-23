@@ -1,3 +1,10 @@
+import { twMerge } from 'tailwind-merge'
+import { cx } from 'classix'
+
+export function cn(...args) {
+  return twMerge(cx(...args))
+}
+
 export const isExternalLink = (href) => {
   if (!href) return false
   return !href.startsWith('/') && !href.startsWith('#')

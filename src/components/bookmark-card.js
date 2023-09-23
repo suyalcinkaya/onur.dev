@@ -1,6 +1,6 @@
 import { Link2Icon } from 'lucide-react'
 
-import { TweetCard } from '@/components/TweetCard/TweetCard'
+import { TweetCard } from '@/components/tweet-card/tweet-card'
 
 export const BookmarkCard = ({ bookmark }) => {
   // Tweets collection id is 15896982

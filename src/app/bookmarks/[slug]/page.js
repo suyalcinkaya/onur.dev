@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 
-import { PageTitle } from '@/components/PageTitle'
-import { FloatingHeader } from '@/components/FloatingHeader'
-import { BookmarkList } from '@/components/BookmarkList'
+import { PageTitle } from '@/components/page-title'
+import { FloatingHeader } from '@/components/floating-header'
+import { BookmarkList } from '@/components/bookmark-list.jsx'
 import { getCollection, getRaindrops, getCollections } from '@/lib/raindrop'
 import { COLLECTION_IDS } from '@/lib/constants'
 
@@ -23,7 +23,7 @@ async function fetchData(slug) {
   const raindrops = await getRaindrops(currentCollection._id)
 
   return {
-    collection,
+    collection: collection.item,
     raindrops
   }
 }

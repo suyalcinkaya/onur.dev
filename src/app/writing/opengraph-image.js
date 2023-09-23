@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/server'
 
-import { OpenGraphImage } from '@/components/OpenGraphImage'
+import { OpenGraphImage } from '@/components/og-image'
 import { getPageSeo } from '@/lib/contentful'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
 import { sharedImage } from '@/app/shared-metadata'

@@ -1,5 +1,5 @@
-import { FloatingHeader } from '@/components/FloatingHeader'
-import { PageTitle } from '@/components/PageTitle'
+import { FloatingHeader } from '@/components/floating-header'
+import { PageTitle } from '@/components/page-title'
 
 export function NotFound() {
   return (

@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 
-import { LoadingSpinner } from '@/components/LoadingSpinner'
-import { WritingList } from '@/components/WritingList'
-import { FloatingHeader } from '@/components/FloatingHeader'
-import { PageTitle } from '@/components/PageTitle'
+import { LoadingSpinner } from '@/components/loading-spinner'
+import { WritingList } from '@/components/writing-list'
+import { FloatingHeader } from '@/components/floating-header'
+import { PageTitle } from '@/components/page-title'
 import { getAllPosts } from '@/lib/contentful'
 import { getViewCounts } from '@/lib/supabase'
 
