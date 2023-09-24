@@ -17,13 +17,13 @@ export default async function Home() {
   const { allPosts, viewCounts } = await fetchData()
 
   return (
-    <ScrollArea className="flex flex-col">
-      <FloatingHeader />
+    <ScrollArea className="flex flex-col" hasScrollTitle>
+      <FloatingHeader scrollTitle="Onur Şuyalçınkaya" />
       <div className="content-wrapper">
         <div className="content">
-          <PageTitle title="Home" />
+          <PageTitle title="Home" className="lg:hidden" />
           <p>
-            {`I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
+            {`Hi 👋 I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
           The Netherlands.`}
           </p>
           <p>

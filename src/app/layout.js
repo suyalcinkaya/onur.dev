@@ -78,6 +78,7 @@ export const metadata = {
     siteName: sharedTitle,
     locale: 'en_IE'
   },
+  themeColor: '#ffffff',
   alternates: {
     canonical: '/'
   },

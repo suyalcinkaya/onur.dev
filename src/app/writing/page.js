@@ -10,7 +10,7 @@ export default async function Writing() {
 
   return (
     <ScrollArea className="flex flex-col lg:hidden">
-      <FloatingHeader initialTitle="Writing" />
+      <FloatingHeader title="Writing" />
       <div>
         {allPosts.map((post) => {
           const date = getDateTimeFormat(post.date)
