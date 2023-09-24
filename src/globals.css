@@ -7,13 +7,18 @@
     @apply bg-black text-white;
   }
 
+  html,
+  body {
+    @apply bg-white;
+  }
+
   html {
-    @apply overflow-hidden scroll-smooth bg-white antialiased;
+    @apply overflow-hidden scroll-smooth antialiased;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-white font-sans text-base text-gray-700;
+    @apply font-sans text-base text-gray-700;
   }
 
   #__next {
@@ -115,11 +120,11 @@
   }
 
   .content-wrapper {
-    @apply scrollable-container w-full px-6 py-12 md:px-8 md:py-24;
+    @apply w-full px-6 pb-8 pt-8 md:px-8 md:pb-16 md:pt-24 z-[1];
   }
 
   .content {
-    @apply mx-auto mb-12 w-full max-w-3xl lg:mb-0;
+    @apply mx-auto w-full max-w-3xl lg:mb-0;
   }
 
   .btn {
@@ -143,7 +148,7 @@
       0 10px 15px -3px rgb(59 130 246/5%), 0 4px 6px -4px rgb(59 130 246/5%);
   }
 
-  .scrollable-container {
+  .scrollable-area {
     @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
   }
 

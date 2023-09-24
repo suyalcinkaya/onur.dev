@@ -1,5 +1,6 @@
 import { PlusIcon } from 'lucide-react'
 
+import { ScrollArea } from '@/components/scroll-area'
 import { JourneyCard } from '@/components/journey-card'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
@@ -24,7 +25,7 @@ export default async function Journey() {
   const { allLogbook } = await fetchData()
 
   return (
-    <div className="relative flex w-full flex-col">
+    <ScrollArea className="flex flex-col">
       <GradientBg3 />
       <FloatingHeader initialTitle="Journey" />
       <div className="content-wrapper">
@@ -59,7 +60,7 @@ export default async function Journey() {
           </div>
         </div>
       </div>
-    </div>
+    </ScrollArea>
   )
 }
 

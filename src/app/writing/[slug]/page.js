@@ -1,6 +1,7 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
+import { ScrollArea } from '@/components/scroll-area'
 import { RichText } from '@/components/contentful/rich-text'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
@@ -57,7 +58,7 @@ export default async function WritingSlug({ params }) {
 
   return (
     <>
-      <div className="relative flex w-full flex-col bg-white">
+      <ScrollArea className="flex flex-col bg-white">
         <FloatingHeader initialTitle={title} backLink="/writing">
           <Views slug={slug} />
         </FloatingHeader>
@@ -75,7 +76,7 @@ export default async function WritingSlug({ params }) {
             <RichText content={content} />
           </article>
         </div>
-      </div>
+      </ScrollArea>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
     </>
   )

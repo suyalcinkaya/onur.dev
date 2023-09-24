@@ -42,7 +42,7 @@ export default async function RootLayout({ children }) {
             <SideMenu className="relative hidden lg:flex">
               <MenuContent />
             </SideMenu>
-            <div className="flex min-h-screen flex-1">{children}</div>
+            <div className="flex flex-1">{children}</div>
           </div>
         </main>
         <Script

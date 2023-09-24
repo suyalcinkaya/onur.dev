@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 
+import { ScrollArea } from '@/components/scroll-area'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { WritingList } from '@/components/writing-list'
 import { FloatingHeader } from '@/components/floating-header'
@@ -16,7 +17,7 @@ export default async function Home() {
   const { allPosts, viewCounts } = await fetchData()
 
   return (
-    <div className="relative flex w-full flex-col">
+    <ScrollArea className="flex flex-col">
       <FloatingHeader />
       <div className="content-wrapper">
         <div className="content">
@@ -36,6 +37,6 @@ export default async function Home() {
           </Suspense>
         </div>
       </div>
-    </div>
+    </ScrollArea>
   )
 }

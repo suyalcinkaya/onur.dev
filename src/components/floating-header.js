@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button.jsx'
 
 export const FloatingHeader = memo(({ initialTitle, title, backLink, children }) => {
   return (
-    <header className="sticky inset-x-0 top-0 z-10 mx-auto h-12 w-full border-b bg-white text-sm font-medium lg:hidden">
+    <header className="sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center border-b bg-white text-sm font-medium lg:hidden">
       <div className="flex h-full items-center px-3">
         <div className="flex w-full items-center justify-between gap-2">
           <div className="flex flex-1 items-center gap-1">

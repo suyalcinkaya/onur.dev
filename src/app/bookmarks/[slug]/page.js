@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 
+import { ScrollArea } from '@/components/scroll-area'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
@@ -33,7 +34,7 @@ export default async function CollectionPage({ params }) {
   const { collection, raindrops } = await fetchData(slug)
 
   return (
-    <div className="relative flex w-full flex-col">
+    <ScrollArea className="flex flex-col">
       <FloatingHeader initialTitle={collection.title} backLink="/bookmarks" />
       <div className="content-wrapper">
         <div className="content @container">
@@ -41,7 +42,7 @@ export default async function CollectionPage({ params }) {
           <BookmarkList id={collection._id} initialData={raindrops} />
         </div>
       </div>
-    </div>
+    </ScrollArea>
   )
 }
 
