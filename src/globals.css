@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* --sh-class: #0070f3; */
+    /* --sh-identifier: #0070f3; */
+    --sh-keyword: #ff0078;
+    --sh-string: #028265;
+    --sh-comment: #9ca3af;
+  }
+
   ::selection {
     @apply bg-black text-white;
   }
@@ -112,6 +120,28 @@
   code {
     @apply whitespace-pre-wrap;
   }
+
+  .sh__token--break {
+    @apply whitespace-pre-wrap;
+    tab-size: 2;
+  }
+
+  .sh__token--space {
+    @apply whitespace-pre-wrap;
+  }
+
+  code .sh__line {
+    @apply mb-4;
+    margin-bottom: 1rem;
+  }
+
+  code .sh__line::before {
+    counter-increment: sh-line-number 1;
+    content: counter(sh-line-number);
+    margin-right: 24px;
+    text-align: right;
+    color: #a4a4a4;
+  }
 }
 
 @layer components {
@@ -120,11 +150,11 @@
   }
 
   .content-wrapper {
-    @apply w-full px-6 pb-8 pt-8 md:px-8 md:pb-16 md:pt-24 z-[1];
+    @apply z-[1] w-full px-6 pb-8 pt-8 lg:px-8 lg:pb-16 lg:pt-24;
   }
 
   .content {
-    @apply mx-auto w-full max-w-3xl lg:mb-0;
+    @apply mx-auto w-full lg:mb-0 lg:max-w-3xl;
   }
 
   .btn {
@@ -155,6 +185,10 @@
   /**
   * Codes: JavaScript
   */
+
+  pre code {
+    counter-reset: sh-line-number;
+  }
 
   .token.important,
   .token.bold {
