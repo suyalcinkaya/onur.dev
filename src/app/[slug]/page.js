@@ -1,6 +1,7 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
+import { ScrollArea } from '@/components/scroll-area'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { GradientBg } from '@/components/gradient-bg'
@@ -32,16 +33,16 @@ export default async function PageSlug({ params }) {
   } = await fetchData(slug)
 
   return (
-    <div className="relative flex w-full flex-col">
+    <ScrollArea className="flex flex-col" hasScrollTitle>
       <GradientBg />
-      <FloatingHeader initialTitle={title} />
+      <FloatingHeader scrollTitle={title} />
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title={title} />
           <RichText content={content} />
         </div>
       </div>
-    </div>
+    </ScrollArea>
   )
 }
 

@@ -16,7 +16,7 @@ export const BookmarkCard = ({ bookmark }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <span className="overflow-hidden rounded-lg">
+      <span className="aspect-[1200/630] overflow-hidden rounded-lg">
         <img
           src={bookmark.cover}
           alt={bookmark.title}
@@ -36,9 +36,7 @@ export const BookmarkCard = ({ bookmark }) => {
           <Link2Icon size={16} />
           {bookmark.domain}
         </span>
-        <span className="line-clamp-6 text-sm">
-          {bookmark.excerpt || bookmark.note}
-        </span>
+        <span className="line-clamp-6 text-sm">{bookmark.excerpt || bookmark.note}</span>
       </div>
     </a>
   )

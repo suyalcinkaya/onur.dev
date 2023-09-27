@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 
+import { ScrollArea } from '@/components/scroll-area'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { WritingList } from '@/components/writing-list'
 import { FloatingHeader } from '@/components/floating-header'
@@ -16,13 +17,13 @@ export default async function Home() {
   const { allPosts, viewCounts } = await fetchData()
 
   return (
-    <div className="relative flex w-full flex-col">
-      <FloatingHeader />
+    <ScrollArea className="flex flex-col" hasScrollTitle>
+      <FloatingHeader scrollTitle="Onur Şuyalçınkaya" />
       <div className="content-wrapper">
         <div className="content">
-          <PageTitle title="Home" />
+          <PageTitle title="Home" className="lg:hidden" />
           <p>
-            {`I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
+            {`Hi 👋 I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
           The Netherlands.`}
           </p>
           <p>
@@ -36,6 +37,6 @@ export default async function Home() {
           </Suspense>
         </div>
       </div>
-    </div>
+    </ScrollArea>
   )
 }

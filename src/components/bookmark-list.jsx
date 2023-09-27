@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback, useMemo } from 'react'
 import { ArrowDownIcon } from 'lucide-react'
 
-import { LoadingSpinner } from '@/components/loading-spinner'
 import { Button } from '@/components/ui/button.jsx'
 import { BookmarkCard } from '@/components/bookmark-card'
 import { getRaindrops } from '@/lib/raindrop'
@@ -20,7 +19,7 @@ export const BookmarkList = ({ initialData, id }) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleLoadMore = () => {
-    if (!isReachingEnd || !isLoading) setPageIndex((prevPageIndex) => prevPageIndex + 1)
+    if (!isReachingEnd && !isLoading) setPageIndex((prevPageIndex) => prevPageIndex + 1)
   }
 
   const fetchInfiniteData = useCallback(async () => {
@@ -53,7 +52,19 @@ export const BookmarkList = ({ initialData, id }) => {
 
   return (
     <div>
-      <div className="grid gap-4 @lg:grid-cols-2">
+      <div className="flex flex-col gap-4 @lg:hidden">
+        {data.map((bookmark, bookmarkIndex) => {
+          return (
+            <div
+              key={`bookmark_${bookmarkIndex}`}
+              className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
+            >
+              <BookmarkCard key={bookmark._id} bookmark={bookmark} />
+            </div>
+          )
+        })}
+      </div>
+      <div className="hidden @lg:grid @lg:grid-cols-2 @lg:gap-4">
         {chunks.map((chunk, chunkIndex) => {
           return (
             <div
@@ -71,7 +82,13 @@ export const BookmarkList = ({ initialData, id }) => {
         {!isReachingEnd ? (
           <>
             {isLoading ? (
-              <LoadingSpinner />
+              <div
+                className="inline-block h-4 w-4 animate-spin rounded-full border-[2px] border-current border-t-transparent text-black"
+                role="status"
+                aria-label="loading"
+              >
+                <span className="sr-only">Loading...</span>
+              </div>
             ) : (
               <Button
                 variant="outline"
@@ -85,7 +102,7 @@ export const BookmarkList = ({ initialData, id }) => {
             )}
           </>
         ) : (
-          <p>{`That's all for now. Come back later for more.`}</p>
+          <span>{`That's all for now. Come back later for more.`}</span>
         )}
       </div>
     </div>

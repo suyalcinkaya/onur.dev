@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
-import { getPageSeo } from '@/lib/contentful'
+import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
+import { getPageSeo } from '@/lib/contentful'
 import { COLLECTION_IDS } from '@/lib/constants'
 import { getCollections } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
@@ -17,15 +18,15 @@ export default async function Writing() {
   const { collections } = await fetchData()
 
   return (
-    <div className="w-full text-sm lg:hidden">
-      <FloatingHeader initialTitle="Bookmarks" />
-      <div className="scrollable-container">
+    <ScrollArea className="flex flex-col lg:hidden">
+      <FloatingHeader title="Bookmarks" />
+      <div>
         {collections.map((collection) => {
           return (
             <Link
               key={collection._id}
               href={`/bookmarks/${collection._id}`}
-              className="flex flex-col gap-1 border-b px-4 py-3 hover:bg-gray-100"
+              className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
             >
               <span className="font-medium">{collection.title}</span>
               <span className="text-slate-500">{collection.count} bookmarks</span>
@@ -33,7 +34,7 @@ export default async function Writing() {
           )
         })}
       </div>
-    </div>
+    </ScrollArea>
   )
 }
 

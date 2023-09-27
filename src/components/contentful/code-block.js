@@ -1,17 +1,15 @@
 'use client'
 
-import { useState } from 'react'
-import dynamic from 'next/dynamic'
-const DynamicSyntaxHighlighter = dynamic(() => import('react-syntax-highlighter/dist/cjs/prism-async-light'))
+import { useEffect, useState, useRef } from 'react'
+import { highlight } from 'sugar-high'
 import { AnimatePresence, motion } from 'framer-motion'
-const { spacing } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
 
-import { ShowInView } from '@/components/show-in-view'
 import { Button } from '@/components/ui/button.jsx'
 
-export default function CodeBlock({ title, language, code }) {
+export function CodeBlock({ title, code }) {
+  const codeRef = useRef(null)
   const [copied, setCopied] = useState(false)
+  const codeHTML = highlight(code)
 
   const onCopy = () => {
     setCopied(true)
@@ -19,8 +17,13 @@ export default function CodeBlock({ title, language, code }) {
     setTimeout(() => setCopied(false), 3000)
   }
 
+  useEffect(() => {
+    const codeElem = codeRef.current
+    codeElem.innerHTML = codeHTML
+  }, [codeHTML])
+
   return (
-    <ShowInView rootMargin="50px">
+    <>
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-lg border border-gray-200 bg-gray-50 py-1.5 pl-4 pr-2">
         <div className="flex items-center gap-4">
           <span className="inline-flex items-center gap-1.5">
@@ -30,7 +33,7 @@ export default function CodeBlock({ title, language, code }) {
           </span>
           {title && <p className="m-0 text-sm font-medium">{title}</p>}
         </div>
-        <Button variant="outline" size="sm" disabled={copied} onClick={onCopy}>
+        <Button variant="outline" size="sm" className="rounded-lg" disabled={copied} onClick={onCopy}>
           <AnimatePresence mode="wait">
             <motion.span
               key={copied ? 'copied' : 'copy'}
@@ -81,22 +84,11 @@ export default function CodeBlock({ title, language, code }) {
           </AnimatePresence>
         </Button>
       </div>
-      <div className="pre-code">
-        <DynamicSyntaxHighlighter
-          language={language}
-          showLineNumbers
-          wrapLongLines={false} // white-space: pre
-          customStyle={{ backgroundColor: '' }}
-          lineNumberStyle={{
-            minWidth: spacing[4],
-            paddingRight: 0,
-            marginRight: spacing[6],
-            color: colors.gray[400]
-          }}
-        >
-          {code}
-        </DynamicSyntaxHighlighter>
+      <div className="overflow-x-auto">
+        <pre>
+          <code ref={codeRef} className="sh__line" />
+        </pre>
       </div>
-    </ShowInView>
+    </>
   )
 }
