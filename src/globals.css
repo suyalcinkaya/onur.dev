@@ -114,25 +114,11 @@
   }
 
   pre {
-    @apply overflow-x-auto break-normal rounded-b-lg border-x border-b border-gray-200 bg-white py-3 pl-3 pr-[15%] text-left text-xs font-[450] leading-slacker;
+    @apply overflow-x-auto break-normal rounded-b-lg border-x border-b border-gray-200 bg-white p-3 text-left text-xs leading-slacker;
   }
 
   code {
     @apply whitespace-pre-wrap;
-  }
-
-  .sh__token--break {
-    @apply whitespace-pre-wrap;
-    tab-size: 2;
-  }
-
-  .sh__token--space {
-    @apply whitespace-pre-wrap;
-  }
-
-  code .sh__line {
-    @apply mb-4;
-    margin-bottom: 1rem;
   }
 
   code .sh__line::before {
@@ -157,16 +143,8 @@
     @apply mx-auto w-full lg:mb-0 lg:max-w-3xl;
   }
 
-  .btn {
-    @apply flex flex-none cursor-pointer items-center justify-between gap-1.5 rounded-lg bg-white text-sm font-medium leading-none;
-  }
-
   .link {
     @apply text-blue-600 hover:underline hover:underline-offset-4;
-  }
-
-  .pre-code {
-    @apply after:bg-r-shadow-gradient relative grid overflow-x-auto after:pointer-events-none after:absolute after:inset-y-3 after:right-px after:w-1/5 after:rounded-br-lg after:content-[''];
   }
 
   .inline-code {
@@ -182,15 +160,11 @@
     @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
   }
 
-  /**
-  * Codes: JavaScript
-  */
-
   pre code {
     counter-reset: sh-line-number;
   }
 
-  .token.important,
+  /* .token.important,
   .token.bold {
     @apply font-medium;
   }
@@ -206,10 +180,6 @@
     @apply opacity-70;
   }
 
-  /* .token.script {
-    @apply text-gray-700;
-  } */
-
   .token.property,
   .token.symbol,
   .token.deleted,
@@ -220,7 +190,6 @@
   .token.atrule,
   .token.keyword,
   .token.class,
-  /*.token.dom.variable,*/
   .token.spread.operator {
     @apply font-bold text-[#ff0078];
   }
@@ -271,17 +240,9 @@
     @apply text-white;
   }
 
-  /**
-  * Codes: CSS
-  */
-
   .language-css {
     @apply text-[#028265];
   }
-
-  /* .language-css .token.atrule {
-    @apply text-gray-700;
-  } */
 
   .language-css .token.rule {
     @apply text-[#ff0078];
@@ -292,13 +253,9 @@
     @apply text-[#60a7fa];
   }
 
-  /**
-  * Codes: Bash
-  */
-
   code.language-bash .token.function {
     @apply text-[#028265];
-  }
+  } */
 }
 
 @layer utilities {
@@ -315,11 +272,11 @@
     padding-right: env(safe-area-inset-right);
   }
 
-  .bg-r-shadow-gradient {
+  /* .bg-r-shadow-gradient {
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
-  }
+  } */
 
-  .bg-top-gradient {
+  /* .bg-top-gradient {
     --gradient-from: 247 185 85;
     --gradient-to: 255 0 128;
     --geist-background: #fff;
@@ -332,7 +289,7 @@
     background-size: 100% 100%, 100% 100%, 1440px 1px;
     background-position: bottom;
     background-repeat: no-repeat;
-  }
+  } */
 
   .bg-dots {
     @apply bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];

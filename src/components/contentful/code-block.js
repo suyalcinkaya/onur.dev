@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button.jsx'
 export function CodeBlock({ title, code }) {
   const codeRef = useRef(null)
   const [copied, setCopied] = useState(false)
+  const codeHTML = highlight(code)
 
   const onCopy = () => {
     setCopied(true)
@@ -17,10 +18,9 @@ export function CodeBlock({ title, code }) {
   }
 
   useEffect(() => {
-    const codeHTML = highlight(code)
     const codeElem = codeRef.current
     codeElem.innerHTML = codeHTML
-  }, [code])
+  }, [codeHTML])
 
   return (
     <>
@@ -84,9 +84,9 @@ export function CodeBlock({ title, code }) {
           </AnimatePresence>
         </Button>
       </div>
-      <div className="pre-code">
+      <div className="overflow-x-auto">
         <pre>
-          <code ref={codeRef} />
+          <code ref={codeRef} className="sh__line" />
         </pre>
       </div>
     </>
