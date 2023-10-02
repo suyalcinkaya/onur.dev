@@ -50,7 +50,7 @@ export default async function Journey() {
                         <PlusIcon size={16} />
                       </div>
                       <div className="flex-grow pl-8">
-                        <JourneyCard {...log} />
+                        <JourneyCard {...log} index={logIndex} />
                       </div>
                     </div>
                   ))}

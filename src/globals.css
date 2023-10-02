@@ -110,7 +110,7 @@
 
   img,
   object {
-    @apply rounded-xl;
+    @apply rounded-xl border;
   }
 
   pre {
