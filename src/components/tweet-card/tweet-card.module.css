@@ -4,9 +4,18 @@
   --tweet-body-font-size: 1rem;
   --tweet-body-line-height: 1.5rem;
   --tweet-actions-font-weight: 600;
-  --tweet-font-color: #334155;
-  --tweet-font-color-secondary: #64748b;
-  --tweet-bg-color-hover: #f3f4f6;
+  --tweet-bg-color: #15202b;
+  --tweet-font-color: #e7eae9;
+  --tweet-font-color-secondary: #71767b;
+  --tweet-color-blue-secondary: #1DA1F2;
+  --tweet-verified-blue-color: #e7eae9;
+}
+
+.tweetCard :global(.react-tweet-theme):hover {
+  background-color: #f7fafc;
+  --tweet-font-color: #0f1419;
+  --tweet-color-blue-secondary: #1d9bf0;
+  --tweet-verified-blue-color: #1d9bf0;
 }
 
 .tweetCard :global(.react-tweet-theme) [class^='tweet-container_article__'] {
