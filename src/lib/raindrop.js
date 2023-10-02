@@ -38,8 +38,7 @@ export async function getCollections() {
 export async function getCollection(id) {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collection/${id}`, options)
-    const collection = await response.json()
-    return collection.item
+    return await response.json()
   } catch (error) {
     console.info(error)
     return null
