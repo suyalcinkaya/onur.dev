@@ -1,7 +1,3 @@
-'use client'
-
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { Drawer } from 'vaul'
 import { CommandIcon } from 'lucide-react'
 
@@ -9,24 +5,8 @@ import { MenuContent } from '@/components/menu-content'
 import { Button } from '@/components/ui/button.jsx'
 
 export function MobileDrawer() {
-  const router = useRouter()
-
-  const resetDrawer = () => {
-    setTimeout(() => {
-      const wrapper = document.querySelector('[vaul-drawer-wrapper]')
-      if (wrapper) {
-        wrapper.style.transform = ''
-        wrapper.style.borderRadius = ''
-      }
-    }, 0)
-  }
-
-  useEffect(() => {
-    resetDrawer()
-  }, [router.pathname])
-
   return (
-    <Drawer.Root shouldScaleBackground onClose={resetDrawer}>
+    <Drawer.Root shouldScaleBackground>
       <Button variant="ghost" size="icon" title="Toggle drawer" asChild>
         <Drawer.Trigger>
           <CommandIcon size={16} />
