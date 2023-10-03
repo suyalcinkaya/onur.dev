@@ -23,19 +23,20 @@ export async function upsertViewCount(slug) {
 
   // Don't upsert view count in development or if no slug is provided
   if (process.env.NODE_ENV !== 'production' || !slug) {
-    return {
-      view_count: latestData?.view_count || 0
-    }
+    return { view_count: latestData?.view_count || 0 }
   }
 
-  const { data: newOrUpdatedData } = await supabase.from(tableName).upsert({
-    id: latestData?.id,
-    slug: slug,
-    view_count: latestData ? latestData.view_count + 1 : 1,
-    view_count_updated_at: new Date()
-  })
+  const { data: newOrUpdatedData } = await supabase
+    .from(tableName)
+    .upsert({
+      id: latestData?.id,
+      slug: slug,
+      view_count: latestData ? latestData.view_count + 1 : 1,
+      view_count_updated_at: new Date()
+    })
+    .select()
 
   return {
-    view_count: newOrUpdatedData[0].view_count
+    view_count: newOrUpdatedData[0]?.view_count || 0
   }
 }
