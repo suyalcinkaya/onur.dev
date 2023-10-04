@@ -1,12 +1,10 @@
-import { Markdown } from '@/components/markdown'
+import { MarkdownRenderer } from '@/components/markdown-renderer'
 
 export const JourneyCard = ({ title, description, image, index }) => {
   return (
-    <div className="flex flex-col">
-      <span className="word-break-word font-semibold">{title}</span>
-      {description && (
-        <Markdown className="word-break-word m-0 block w-full overflow-hidden text-sm">{description}</Markdown>
-      )}
+    <div className="word-break-word flex flex-col">
+      <span className="font-semibold">{title}</span>
+      {description && <MarkdownRenderer>{description}</MarkdownRenderer>}
       {image?.url && (
         <div className="mt-2.5 overflow-hidden rounded-xl">
           <img

@@ -1,18 +1,21 @@
-import ReactMarkdown from 'markdown-to-jsx'
+import Markdown from 'markdown-to-jsx'
 
 import { Link } from '@/components/link'
+import { TweetCard } from '@/components/tweet-card/tweet-card'
 
-export const Markdown = ({ options, ...rest }) => {
+export const MarkdownRenderer = ({ options, ...rest }) => {
   return (
-    <ReactMarkdown
+    <Markdown
       options={{
         ...options,
         overrides: {
           // Extract `className` prop to make Link component work properly
           // eslint-disable-next-line no-unused-vars
           a: ({ className, ...rest }) => <Link {...rest} />,
+          p: ({ children }) => <p className="mb-2 text-sm">{children}</p>,
+          span: ({ children }) => <span className="text-sm">{children}</span>,
           img: ({ alt, src }) => (
-            <span className="mt-2 flex overflow-hidden rounded-xl">
+            <span className="mt-2 block overflow-hidden rounded-xl border">
               <img
                 alt={alt}
                 src={`https:${src}`}
@@ -22,7 +25,8 @@ export const Markdown = ({ options, ...rest }) => {
                 className="aspect-auto w-full animate-reveal object-cover"
               />
             </span>
-          )
+          ),
+          tweet: ({ id }) => <TweetCard id={id} />
         }
       }}
       {...rest}

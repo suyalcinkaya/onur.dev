@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { BookmarkCard } from '@/components/bookmark-card'
 import { getRaindrops } from '@/lib/raindrop'
 import { cn } from '@/lib/utils'
+import { TWEETS_COLLECTION_ID } from '@/lib/constants'
 
 async function fetchDataByPageIndex(id, pageIndex) {
   const raindrops = await getRaindrops(id, pageIndex)
@@ -48,7 +49,7 @@ export const BookmarkList = ({ initialData, id }) => {
 
   const chunks = useMemo(() => getChunks(), [getChunks])
   const isReachingEnd = data.length >= initialData.count
-  const isTweetCollection = id === 15896982
+  const isTweetCollection = id === TWEETS_COLLECTION_ID
 
   return (
     <div>

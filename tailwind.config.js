@@ -20,7 +20,7 @@ module.exports = {
       },
       keyframes: {
         reveal: {
-          '0%': { opacity: 0, filter: 'brightness(1) blur(15px)', scale: '1.1' },
+          '0%': { opacity: 0, filter: 'brightness(1) blur(15px)', scale: '1.0125' },
           '10%': { opacity: 1, filter: 'brightness(1.25) blur(10px)' },
           '100%': { opacity: 1, filter: 'brightness(1) blur(0)', scale: '1' }
         }

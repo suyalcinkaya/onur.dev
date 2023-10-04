@@ -1,11 +1,13 @@
 import { Link2Icon } from 'lucide-react'
 
 import { TweetCard } from '@/components/tweet-card/tweet-card'
+import { TWEETS_COLLECTION_ID } from '@/lib/constants'
 
 export const BookmarkCard = ({ bookmark }) => {
-  // Tweets collection id is 15896982
-  if (bookmark.link && bookmark.collectionId === 15896982) {
-    return <TweetCard bookmark={bookmark} />
+  if (bookmark.link && bookmark.collectionId === TWEETS_COLLECTION_ID) {
+    const match = bookmark.link.match(/\/status\/(\d+)/) ?? []
+    const tweetId = match[1]
+    return <TweetCard id={tweetId} />
   }
 
   return (
