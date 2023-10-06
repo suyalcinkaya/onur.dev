@@ -8,6 +8,7 @@ import { Link } from '@/components/link'
 import { CodeBlock } from '@/components/contentful/code-block'
 const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'))
 import { dasherize } from '@/lib/utils'
+import { TweetCard } from '@/components/tweet-card/tweet-card'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
@@ -65,11 +66,11 @@ function options(links) {
           <figure className="mb-6 flex flex-col gap-2 overflow-hidden rounded-xl">
             <img
               src={asset.url}
-              height={asset.height || 300}
               width={asset.width || 400}
-              alt={asset.description}
+              height={asset.height || 300}
+              alt={asset.description || asset.title}
               loading="lazy"
-              className="animate-reveal border border-gray-100"
+              className="animate-reveal"
             />
             {asset.description && (
               <figcaption className="text-center text-xs font-light text-gray-500">{asset.description}</figcaption>
@@ -106,6 +107,10 @@ function options(links) {
           }
           case 'CodeBlock': {
             return <CodeBlock {...entry} />
+          }
+          case 'Tweet': {
+            const { id } = entry
+            return <TweetCard id={id} />
           }
           default:
             return null

@@ -96,8 +96,10 @@ export async function getPost(slug, preview = isDevelopment) {
                   }
                   ... on CodeBlock {
                     title
-                    language
                     code
+                  }
+                  ... on Tweet {
+                    id
                   }
                 }
               }
@@ -212,24 +214,6 @@ export async function getPage(slug, preview = isDevelopment) {
                   width
                   height
                   description
-                }
-              }
-              entries {
-                inline {
-                  sys {
-                    id
-                  }
-                  __typename
-                  ... on ContentEmbed {
-                    title
-                    embedUrl
-                    type
-                  }
-                  ... on CodeBlock {
-                    title
-                    language
-                    code
-                  }
                 }
               }
             }

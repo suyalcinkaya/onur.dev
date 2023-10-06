@@ -1,5 +1,5 @@
 .tweetCard :global(.react-tweet-theme) {
-  @apply min-w-full max-w-full border-0 border-none font-sans text-base;
+  @apply min-w-full max-w-0 border-0 border-none font-sans text-base;
   --tweet-container-margin: 0;
   --tweet-body-font-size: 1rem;
   --tweet-body-line-height: 1.5rem;
@@ -7,6 +7,8 @@
   --tweet-font-color: #334155;
   --tweet-font-color-secondary: #64748b;
   --tweet-bg-color-hover: #f3f4f6;
+  --tweet-quoted-container-margin: 0;
+  --tweet-bg-color-hover: #fff;
 }
 
 .tweetCard :global(.react-tweet-theme) [class^='tweet-container_article__'] {
@@ -34,4 +36,47 @@
 
 .tweetCard :global(.react-tweet-theme) [class^='tweet-actions_likeCount__'] {
   @apply m-0;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_actions__'] {
+  @apply flex-wrap;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_like__'],
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_reply__'] {
+  @apply mr-3;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_copy__'] {
+  @apply mr-0;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-header_avatar__'] {
+  @apply aspect-square;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-header_avatarOverflow__'] > img {
+  @apply border-none;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='quoted-tweet-container_root'] {
+  @apply mt-4;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='quoted-tweet-container_root__'] {
+  @apply p-4;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='quoted-tweet-body_root__'],
+.tweetCard :global(.react-tweet-theme) [class^='quoted-tweet-header_header___'] {
+  @apply px-0;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='quoted-tweet-header_header___'] {
+  @apply pt-0;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_replyText__'],
+.tweetCard :global(.react-tweet-theme) [class^='tweet-actions_copyText__'] {
+  @apply ml-0;
 }

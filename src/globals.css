@@ -62,7 +62,7 @@
   h1,
   h2,
   h3 {
-    @apply scroll-mt-20 font-semibold tracking-tighter text-black;
+    @apply scroll-mt-16 font-semibold tracking-tighter text-black lg:scroll-mt-8;
   }
 
   h1 {
@@ -152,8 +152,13 @@
   }
 
   .thumbnail-shadow {
-    box-shadow: 0 0 0 0.5px #e2e8f0, 0 0 0 1px rgba(226, 232, 240, 0.5), 0 0 0 3px #f8fafc, 0 0 0 3.5px #f1f5f9,
-      0 10px 15px -3px rgb(59 130 246/5%), 0 4px 6px -4px rgb(59 130 246/5%);
+    box-shadow:
+      0 0 0 0.5px #e2e8f0,
+      0 0 0 1px rgba(226, 232, 240, 0.5),
+      0 0 0 3px #f8fafc,
+      0 0 0 3.5px #f1f5f9,
+      0 10px 15px -3px rgb(59 130 246/5%),
+      0 4px 6px -4px rgb(59 130 246/5%);
   }
 
   .scrollable-area {
