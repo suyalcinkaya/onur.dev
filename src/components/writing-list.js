@@ -1,20 +1,24 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
-import { cn } from '@/lib/utils'
+import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter } from '@/lib/utils'
+import { getViewCounts } from '@/lib/supabase'
 
-const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
-  day: '2-digit',
-  month: '2-digit'
-})
+export const WritingList = ({ items }) => {
+  const [viewData, setViewData] = useState([])
 
-const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
-  month: '2-digit',
-  year: 'numeric'
-})
+  const getViews = useCallback(async () => {
+    const views = await getViewCounts()
+    setViewData(views)
+  }, [])
 
-export const WritingList = ({ items, viewCounts }) => {
+  useEffect(() => {
+    getViews()
+  }, [getViews])
+
   const itemsEntriesByYear = items.reduce((acc, item) => {
     const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear()
     const yearArr = acc.find((item) => item[0] === year)
@@ -29,7 +33,7 @@ export const WritingList = ({ items, viewCounts }) => {
 
   return (
     <div className="text-sm">
-      <header className="grid grid-cols-6 py-4 text-gray-500">
+      <div className="grid grid-cols-6 py-2 font-medium text-gray-500">
         <span className="col-span-1 hidden text-left md:grid">Year</span>
         <span className="col-span-6 md:col-span-5">
           <span className="grid grid-cols-4 items-center md:grid-cols-8">
@@ -38,14 +42,14 @@ export const WritingList = ({ items, viewCounts }) => {
             <span className="col-span-1 text-right">Views</span>
           </span>
         </span>
-      </header>
+      </div>
 
-      <div className="group">
+      <div className="group/list-wrapper">
         {itemsEntriesByYear.map((customItems) => {
           const [year, itemsArr] = customItems
 
           return (
-            <ul className="list-none" key={year}>
+            <ul className="group/list list-none" key={year}>
               {itemsArr.map((item, itemIndex) => {
                 const {
                   title,
@@ -57,20 +61,26 @@ export const WritingList = ({ items, viewCounts }) => {
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
-                const views = viewCounts?.find((item) => item.slug === slug)?.view_count || 0
-                const formattedViews = new Intl.NumberFormat('en-US').format(views)
+                const views = viewData?.find((item) => item.slug === slug)?.view_count || 0
+                const formattedViews = views ? new Intl.NumberFormat('en-US').format(views) : null
 
                 return (
-                  <li key={slug} className="grid grid-cols-6 p-0 group-hover:text-gray-300">
+                  <li
+                    key={slug}
+                    className="group/list-item grid grid-cols-6 p-0 group-hover/list-wrapper:text-gray-300"
+                  >
                     <span
                       className={cn(
-                        'pointer-events-none col-span-1 hidden items-center text-gray-500 md:grid',
+                        'pointer-events-none col-span-1 hidden items-center transition-colors group-hover/list:text-gray-700 md:grid',
                         itemIndex === 0 && 'border-t border-gray-200'
                       )}
                     >
                       {itemIndex === 0 ? year : ''}
                     </span>
-                    <Link href={`/writing/${slug}`} className="col-span-6 hover:text-black md:col-span-5">
+                    <Link
+                      href={`/writing/${slug}`}
+                      className="col-span-6 group-hover/list-item:text-gray-700 md:col-span-5"
+                    >
                       <span className="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                         <span className="col-span-1 text-left">
                           <time dateTime={date} className="hidden md:block">
@@ -81,7 +91,23 @@ export const WritingList = ({ items, viewCounts }) => {
                           </time>
                         </span>
                         <span className="col-span-2 line-clamp-4 md:col-span-6">{title}</span>
-                        <span className="col-span-1 text-right">{formattedViews ?? null}</span>
+                        <span className="col-span-1">
+                          {formattedViews ? (
+                            <motion.span
+                              key={`${slug}-views`}
+                              className="flex justify-end"
+                              title={`${formattedViews} views`}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              {formattedViews}
+                            </motion.span>
+                          ) : (
+                            <motion.span key={`${slug}-views-loading`} />
+                          )}
+                        </span>
                       </span>
                     </Link>
                   </li>

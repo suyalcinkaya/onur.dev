@@ -6,16 +6,15 @@ import { WritingList } from '@/components/writing-list'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { getAllPosts } from '@/lib/contentful'
-import { getViewCounts } from '@/lib/supabase'
 import { getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {
-  const [allPosts, viewCounts] = await Promise.all([getAllPosts(), getViewCounts()])
-  return { allPosts, viewCounts }
+  const allPosts = await getAllPosts()
+  return { allPosts }
 }
 
 export default async function Home() {
-  const { allPosts, viewCounts } = await fetchData()
+  const { allPosts } = await fetchData()
   const sortedPosts = getSortedPosts(allPosts)
 
   return (
@@ -35,7 +34,7 @@ export default async function Home() {
           </p>
           <Suspense fallback={<LoadingSpinner />}>
             <h2 className="mb-4 mt-8">Writing</h2>
-            <WritingList items={sortedPosts} viewCounts={viewCounts} header="Writing" />
+            <WritingList items={sortedPosts} header="Writing" />
           </Suspense>
         </div>
       </div>

@@ -114,3 +114,23 @@ export const getSortedPosts = (posts) => {
     return new Date(dateB) - new Date(dateA)
   })
 }
+
+/**
+ * Creates an instance of the DateTimeFormat object with 'en-US' locale,
+ * specifying the format to include the month and year in a two-digit and numeric format, respectively.
+ * This formatter can be used to format date objects into a string representation with only the month and year.
+ */
+export const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
+  month: '2-digit',
+  year: 'numeric'
+})
+
+/**
+ * Creates an instance of the DateTimeFormat object with 'tr-TR' locale,
+ * specifying the format to include the day and month in a two-digit format.
+ * This formatter can be used to format date objects into a string representation with the day and month included.
+ */
+export const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
+  day: '2-digit',
+  month: '2-digit'
+})
