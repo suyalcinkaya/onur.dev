@@ -16,8 +16,7 @@ const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
 
 export const WritingList = ({ items, viewCounts }) => {
   const itemsEntriesByYear = items.reduce((acc, item) => {
-    const year = new Date(item.date).getFullYear()
-
+    const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear()
     const yearArr = acc.find((item) => item[0] === year)
     if (!yearArr) {
       acc.push([year, [item]])
@@ -48,8 +47,13 @@ export const WritingList = ({ items, viewCounts }) => {
           return (
             <ul className="list-none" key={year}>
               {itemsArr.map((item, itemIndex) => {
-                const { title, slug, date } = item
-                const dateObj = new Date(date)
+                const {
+                  title,
+                  slug,
+                  date,
+                  sys: { firstPublishedAt }
+                } = item
+                const dateObj = new Date(date || firstPublishedAt)
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 

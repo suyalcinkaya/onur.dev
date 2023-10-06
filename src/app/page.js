@@ -7,6 +7,7 @@ import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { getAllPosts } from '@/lib/contentful'
 import { getViewCounts } from '@/lib/supabase'
+import { getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {
   const [allPosts, viewCounts] = await Promise.all([getAllPosts(), getViewCounts()])
@@ -15,6 +16,7 @@ async function fetchData() {
 
 export default async function Home() {
   const { allPosts, viewCounts } = await fetchData()
+  const sortedPosts = getSortedPosts(allPosts)
 
   return (
     <ScrollArea className="flex flex-col" hasScrollTitle>
@@ -33,7 +35,7 @@ export default async function Home() {
           </p>
           <Suspense fallback={<LoadingSpinner />}>
             <h2 className="mb-4 mt-8">Writing</h2>
-            <WritingList items={allPosts} viewCounts={viewCounts} header="Writing" />
+            <WritingList items={sortedPosts} viewCounts={viewCounts} header="Writing" />
           </Suspense>
         </div>
       </div>

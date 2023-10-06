@@ -3,22 +3,17 @@ import Link from 'next/link'
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
-import { getDateTimeFormat } from '@/lib/utils'
+import { getSortedPosts, getDateTimeFormat } from '@/lib/utils'
 
 export default async function Writing() {
   const { allPosts } = await fetchData()
-
-  const sortedAllPosts = allPosts.sort((a, b) => {
-    const dateA = a.date || a.sys.firstPublishedAt
-    const dateB = b.date || b.sys.firstPublishedAt
-    return new Date(dateB) - new Date(dateA)
-  })
+  const sortedPosts = getSortedPosts(allPosts)
 
   return (
     <ScrollArea className="flex flex-col lg:hidden">
       <FloatingHeader title="Writing" />
       <div>
-        {sortedAllPosts.map((post) => {
+        {sortedPosts.map((post) => {
           const date = post.date || post.sys.firstPublishedAt
           const formattedDate = getDateTimeFormat(date)
           return (

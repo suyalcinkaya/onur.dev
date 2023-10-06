@@ -99,3 +99,18 @@ export const sortByProperty = (arr, prop) => {
     return 0
   })
 }
+
+/**
+ * Sorts an array of blog post objects based on their date field (only for old blog posts) or publication dates in descending order.
+ * The function compares the 'date' property of each post or 'firstPublishedAt' property from the 'sys' object.
+ * The posts are sorted by creating Date objects from the publication dates and comparing them.
+ * @param posts The array of blog post objects to be sorted.
+ * @returns The sorted array of blog posts in descending order based on their publication dates.
+ */
+export const getSortedPosts = (posts) => {
+  return posts.sort((a, b) => {
+    const dateA = a.date || a.sys.firstPublishedAt
+    const dateB = b.date || b.sys.firstPublishedAt
+    return new Date(dateB) - new Date(dateA)
+  })
+}
