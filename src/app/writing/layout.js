@@ -13,12 +13,18 @@ async function fetchData() {
 export default async function WritingLayout({ children }) {
   const { allPosts } = await fetchData()
 
+  const sortedAllPosts = allPosts.sort((a, b) => {
+    const dateA = a.date || a.sys.firstPublishedAt || new Date()
+    const dateB = b.date || b.sys.firstPublishedAt || new Date()
+    return new Date(dateB) - new Date(dateA)
+  })
+
   return (
     <>
       <SideMenu title="Writing" isInner>
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
-            {allPosts.map((post) => {
+            {sortedAllPosts.map((post) => {
               return <WritingLink key={post.slug} post={post} />
             })}
           </div>

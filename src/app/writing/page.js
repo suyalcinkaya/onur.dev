@@ -8,12 +8,19 @@ import { getDateTimeFormat } from '@/lib/utils'
 export default async function Writing() {
   const { allPosts } = await fetchData()
 
+  const sortedAllPosts = allPosts.sort((a, b) => {
+    const dateA = a.date || a.sys.firstPublishedAt
+    const dateB = b.date || b.sys.firstPublishedAt
+    return new Date(dateB) - new Date(dateA)
+  })
+
   return (
     <ScrollArea className="flex flex-col lg:hidden">
       <FloatingHeader title="Writing" />
       <div>
-        {allPosts.map((post) => {
-          const date = getDateTimeFormat(post.date)
+        {sortedAllPosts.map((post) => {
+          const date = post.date || post.sys.firstPublishedAt
+          const formattedDate = getDateTimeFormat(date)
           return (
             <Link
               key={post.slug}
@@ -21,7 +28,7 @@ export default async function Writing() {
               className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
             >
               <span className="font-medium">{post.title}</span>
-              <span className="text-slate-500">{date}</span>
+              <span className="text-slate-500">{formattedDate}</span>
             </Link>
           )
         })}

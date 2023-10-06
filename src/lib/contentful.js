@@ -18,7 +18,7 @@ async function fetchGraphQL(query, preview = isDevelopment) {
 export async function getAllPosts(preview = isDevelopment) {
   const entries = await fetchGraphQL(
     `query {
-      postCollection(order: date_DESC, preview: ${preview}) {
+      postCollection(preview: ${preview}) {
         items {
           title
           slug
