@@ -1,26 +1,19 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
-import { highlight } from 'sugar-high'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { Button } from '@/components/ui/button.jsx'
+import { CodeHighlighter } from '@/components/contentful/code-highlighter'
 
-export function CodeBlock({ title, code }) {
-  const codeRef = useRef(null)
+export function CodeBlock({ title, code, language }) {
   const [copied, setCopied] = useState(false)
-  const codeHTML = highlight(code)
 
   const onCopy = () => {
     setCopied(true)
     navigator.clipboard.writeText(code)
     setTimeout(() => setCopied(false), 3000)
   }
-
-  useEffect(() => {
-    const codeElem = codeRef.current
-    codeElem.innerHTML = codeHTML
-  }, [codeHTML])
 
   return (
     <>
@@ -85,9 +78,7 @@ export function CodeBlock({ title, code }) {
         </Button>
       </div>
       <div className="overflow-x-auto">
-        <pre>
-          <code ref={codeRef} className="sh__line" />
-        </pre>
+        <CodeHighlighter language={language} code={code}></CodeHighlighter>
       </div>
     </>
   )

@@ -37,10 +37,10 @@
     "react-intersection-observer": "^9.4.3",
     "react-tweet": "^3.0.3",
     "react-wrap-balancer": "^0.4.0",
-    "sugar-high": "^0.5.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.6",
-    "vaul": "^0.6.5"
+    "vaul": "^0.6.5",
+    "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
