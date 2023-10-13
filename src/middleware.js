@@ -12,14 +12,18 @@ export const middleware = async (req, event) => {
         ? 'https://onur.dev/api/increment-views'
         : 'http://localhost:3000/api/increment-views'
 
-    const res = await fetch(`${URL}?slug=${slug}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    try {
+      const res = await fetch(`${URL}?slug=${slug}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
 
-    if (res.status !== 200) console.error('Failed to send analytics', res)
+      if (res.status !== 200) console.error('Failed to send analytics', res)
+    } catch (error) {
+      console.error('Error sending analytics', error)
+    }
   }
 
   /**
