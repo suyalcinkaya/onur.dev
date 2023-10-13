@@ -21,21 +21,21 @@ export const useViewData = (slug) => {
     getViewData()
   }, [slug])
 
-  const handleRealtimeChange = (payload) => {
-    if (payload?.new?.slug) {
-      setViewData((prev) => {
-        const index = prev.findIndex((item) => item.slug === payload.new.slug)
-        if (index !== -1) {
-          prev[index] = payload.new
-        } else {
-          prev.push(payload.new)
-        }
-        return [...prev]
-      })
-    }
-  }
-
   useEffect(() => {
+    const handleRealtimeChange = (payload) => {
+      if (payload?.new?.slug) {
+        setViewData((prev) => {
+          const index = prev.findIndex((item) => item.slug === payload.new.slug)
+          if (index !== -1) {
+            prev[index] = payload.new
+          } else {
+            prev.push(payload.new)
+          }
+          return [...prev]
+        })
+      }
+    }
+
     const channel = supabase
       .channel('supabase_realtime')
       .on(

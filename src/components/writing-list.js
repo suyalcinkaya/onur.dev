@@ -51,8 +51,8 @@ export const WritingList = ({ items }) => {
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
-                const views = viewData?.find((item) => item.slug === slug)?.view_count ?? 0
-                const formattedViews = new Intl.NumberFormat('en-US').format(views)
+                const { view_count } = viewData?.find((item) => item.slug === slug) ?? {}
+                const formattedViewCount = view_count ? new Intl.NumberFormat('en-US').format(view_count) : null
 
                 return (
                   <li
@@ -82,17 +82,17 @@ export const WritingList = ({ items }) => {
                         </span>
                         <span className="col-span-2 line-clamp-4 md:col-span-6">{title}</span>
                         <span className="col-span-1">
-                          {formattedViews ? (
+                          {formattedViewCount ? (
                             <motion.span
                               key={`${slug}-views`}
                               className="flex justify-end"
-                              title={`${formattedViews} views`}
+                              title={`${formattedViewCount} views`}
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}
                               transition={{ duration: 0.3 }}
                             >
-                              {formattedViews}
+                              {formattedViewCount}
                             </motion.span>
                           ) : (
                             <motion.span key={`${slug}-views-loading`} />
