@@ -89,5 +89,8 @@ module.exports = {
         permanent: true
       }
     ]
+  },
+  experimental: {
+    optimizePackageImports: ['framer-motion', '@supabase/supabase-js', 'react-tweet']
   }
 }
