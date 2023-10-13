@@ -5,7 +5,7 @@ import { ScrollArea } from '@/components/scroll-area'
 import { RichText } from '@/components/contentful/rich-text'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
-import { Views } from '@/components/views'
+import { WritingViews } from '@/components/writing-views'
 import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
 import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
 
@@ -60,7 +60,7 @@ export default async function WritingSlug({ params }) {
     <>
       <ScrollArea className="flex flex-col bg-white" hasScrollTitle>
         <FloatingHeader scrollTitle={title} goBackLink="/writing">
-          <Views slug={slug} />
+          <WritingViews slug={slug} />
         </FloatingHeader>
         <div className="content-wrapper">
           <article className="content">

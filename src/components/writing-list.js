@@ -1,25 +1,15 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
+import { useViewData } from '@/app/hooks/useViewData'
 import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter } from '@/lib/utils'
-import { getViewCounts } from '@/lib/supabase'
 
 export const WritingList = ({ items }) => {
-  const [viewData, setViewData] = useState([])
+  const viewData = useViewData()
 
-  const getViews = useCallback(async () => {
-    const views = await getViewCounts()
-    setViewData(views)
-  }, [])
-
-  useEffect(() => {
-    getViews()
-  }, [getViews])
-
-  const itemsEntriesByYear = items.reduce((acc, item) => {
+  const itemsByYear = items.reduce((acc, item) => {
     const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear()
     const yearArr = acc.find((item) => item[0] === year)
     if (!yearArr) {
@@ -45,8 +35,8 @@ export const WritingList = ({ items }) => {
       </div>
 
       <div className="group/list-wrapper">
-        {itemsEntriesByYear.map((customItems) => {
-          const [year, itemsArr] = customItems
+        {itemsByYear.map((item) => {
+          const [year, itemsArr] = item
 
           return (
             <ul className="group/list list-none" key={year}>
@@ -61,8 +51,8 @@ export const WritingList = ({ items }) => {
                 const dateWithDayAndMonth = dateWithDayAndMonthFormatter.format(dateObj)
                 const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
-                const views = viewData?.find((item) => item.slug === slug)?.view_count || 0
-                const formattedViews = views ? new Intl.NumberFormat('en-US').format(views) : null
+                const views = viewData?.find((item) => item.slug === slug)?.view_count ?? 0
+                const formattedViews = new Intl.NumberFormat('en-US').format(views)
 
                 return (
                   <li
