@@ -4,20 +4,52 @@ import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
+import supabase from '@/lib/supabase/public'
 import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter } from '@/lib/utils'
-import { getViewCounts } from '@/lib/supabase'
+import { SUPABASE_TABLE_NAME } from '@/lib/constants'
 
 export const WritingList = ({ items }) => {
   const [viewData, setViewData] = useState([])
 
   const getViews = useCallback(async () => {
-    const views = await getViewCounts()
-    setViewData(views)
+    const { data } = await supabase.from(SUPABASE_TABLE_NAME).select('slug, view_count')
+    setViewData(data)
   }, [])
 
   useEffect(() => {
     getViews()
   }, [getViews])
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('supabase_realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: SUPABASE_TABLE_NAME
+        },
+        (payload) => {
+          if (payload.new) {
+            setViewData((prev) => {
+              const index = prev.findIndex((item) => item.slug === payload.new.slug)
+              if (index !== -1) {
+                prev[index] = payload.new
+              } else {
+                prev.push(payload.new)
+              }
+              return [...prev]
+            })
+          }
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [])
 
   const itemsEntriesByYear = items.reduce((acc, item) => {
     const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear()
