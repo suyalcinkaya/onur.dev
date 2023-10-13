@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-import { useViewData } from '@/app/hooks/useViewData'
+import { useViewData } from '@/hooks/useViewData'
 
 export const WritingViews = ({ slug }) => {
   const viewData = useViewData(slug)
