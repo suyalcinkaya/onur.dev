@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 
-export const middleware = async (req, event) => {
-  const pathname = req.nextUrl.pathname
+export function middleware(request, event) {
+  const pathname = request.nextUrl.pathname
 
   const sendAnalytics = async () => {
-    const slug = pathname.match(/\/writing\/(.*)/)?.[1]
-    if (!slug) return
+    const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
+    if (!writingSlug) return
 
     const URL =
       process.env.NODE_ENV === 'production'
@@ -13,7 +13,7 @@ export const middleware = async (req, event) => {
         : 'http://localhost:3000/api/increment-views'
 
     try {
-      const res = await fetch(`${URL}?slug=${slug}`, {
+      const res = await fetch(`${URL}?slug=${writingSlug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
