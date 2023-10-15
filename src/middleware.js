@@ -2,11 +2,9 @@ import { NextResponse } from 'next/server'
 
 export function middleware(request, event) {
   const pathname = request.nextUrl.pathname
+  const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
 
   const sendAnalytics = async () => {
-    const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
-    if (!writingSlug) return
-
     const URL =
       process.env.NODE_ENV === 'production'
         ? 'https://onur.dev/api/increment-views'
@@ -31,7 +29,7 @@ export function middleware(request, event) {
    * It enables the response to proceed without waiting for the completion of `sendAnalytics()`.
    * This ensures that the user experience remains uninterrupted and free from unnecessary delays.
    */
-  event.waitUntil(sendAnalytics())
+  if (writingSlug) event.waitUntil(sendAnalytics())
   return NextResponse.next()
 }
 

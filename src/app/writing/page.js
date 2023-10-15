@@ -5,6 +5,11 @@ import { FloatingHeader } from '@/components/floating-header'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
 import { getSortedPosts, getDateTimeFormat } from '@/lib/utils'
 
+async function fetchData() {
+  const allPosts = await getAllPosts()
+  return { allPosts }
+}
+
 export default async function Writing() {
   const { allPosts } = await fetchData()
   const sortedPosts = getSortedPosts(allPosts)
@@ -30,11 +35,6 @@ export default async function Writing() {
       </div>
     </ScrollArea>
   )
-}
-
-async function fetchData() {
-  const allPosts = await getAllPosts()
-  return { allPosts }
 }
 
 export async function generateMetadata() {
