@@ -1,19 +1,17 @@
 import { NextResponse } from 'next/server'
 
-export const middleware = async (req, event) => {
-  const pathname = req.nextUrl.pathname
+export function middleware(request, event) {
+  const pathname = request.nextUrl.pathname
+  const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
 
   const sendAnalytics = async () => {
-    const slug = pathname.match(/\/writing\/(.*)/)?.[1]
-    if (!slug) return
-
     const URL =
       process.env.NODE_ENV === 'production'
         ? 'https://onur.dev/api/increment-views'
         : 'http://localhost:3000/api/increment-views'
 
     try {
-      const res = await fetch(`${URL}?slug=${slug}`, {
+      const res = await fetch(`${URL}?slug=${writingSlug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -31,7 +29,7 @@ export const middleware = async (req, event) => {
    * It enables the response to proceed without waiting for the completion of `sendAnalytics()`.
    * This ensures that the user experience remains uninterrupted and free from unnecessary delays.
    */
-  event.waitUntil(sendAnalytics())
+  if (writingSlug) event.waitUntil(sendAnalytics())
   return NextResponse.next()
 }
 

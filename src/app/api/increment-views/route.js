@@ -1,16 +1,18 @@
+import { NextResponse } from 'next/server'
+
 import supabase from '@/lib/supabase/private'
 
+export const runtime = 'edge'
+
 export async function POST(request) {
-  const { searchParams } = new URL(request.url)
+  const searchParams = request.nextUrl.searchParams
   const slug = searchParams.get('slug')
-  if (!slug) return new Response('Missing slug parameter', { status: 400 })
+  if (!slug) return NextResponse.json({ error: 'Missing slug parameter' }, { status: 400 })
 
   try {
     await supabase.rpc('increment_view_count', { page_slug: slug })
-    return new Response(JSON.stringify({ message: 'View count incremented successfully' }), {
-      headers: { 'Content-Type': 'application/json' }
-    })
+    return NextResponse.json({ messsage: `View count incremented successfully for slug: ${slug}` }, { status: 200 })
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 })
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

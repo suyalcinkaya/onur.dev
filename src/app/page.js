@@ -1,10 +1,12 @@
 import { Suspense } from 'react'
+import Link from 'next/link'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { WritingList } from '@/components/writing-list'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
+import { Button } from '@/components/ui/button.jsx'
 import { getAllPosts } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'
 
@@ -32,8 +34,12 @@ export default async function Home() {
             Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer
             at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
           </p>
+          <Button asChild variant="link" className="inline px-0">
+            <Link href="/writing">
+              <h2 className="mb-4 mt-8">Writing</h2>
+            </Link>
+          </Button>
           <Suspense fallback={<LoadingSpinner />}>
-            <h2 className="mb-4 mt-8">Writing</h2>
             <WritingList items={sortedPosts} header="Writing" />
           </Suspense>
         </div>
