@@ -62,7 +62,7 @@ export const WritingList = ({ items }) => {
                     >
                       <span
                         className={cn(
-                          'pointer-events-none col-span-1 hidden items-center transition-colors group-hover/list:text-gray-700 md:grid',
+                          'pointer-events-none col-span-1 hidden items-center transition-colors duration-300 group-hover/list:text-gray-700 md:grid',
                           itemIndex === 0 && 'border-t border-gray-200'
                         )}
                       >
