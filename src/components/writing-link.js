@@ -4,13 +4,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
-import { cn, getDateTimeFormat } from '@/lib/utils'
+import { cn, getDateTimeFormat, viewCountFormatter } from '@/lib/utils'
 
 export const WritingLink = ({ post, viewCount, isMobile }) => {
   const pathname = usePathname()
   const isActive = pathname === `/writing/${post.slug}`
   const date = post.date || post.sys.firstPublishedAt
   const formattedDate = getDateTimeFormat(date)
+  const formattedViewCount = viewCount ? viewCountFormatter.format(viewCount) : null
 
   return (
     <LazyMotion features={domAnimation}>
@@ -27,7 +28,7 @@ export const WritingLink = ({ post, viewCount, isMobile }) => {
         <span className={cn(isActive ? 'text-slate-400' : 'text-slate-500')}>
           <span>{formattedDate}</span>{' '}
           <span>
-            {viewCount ? (
+            {formattedViewCount ? (
               <m.span
                 key={`${post.slug}-views-loaded`}
                 initial={{ opacity: 0 }}
@@ -35,7 +36,7 @@ export const WritingLink = ({ post, viewCount, isMobile }) => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                &middot; {viewCount} {viewCount === 1 ? 'view' : 'views'}
+                &middot; {formattedViewCount} {formattedViewCount === 1 ? 'view' : 'views'}
               </m.span>
             ) : (
               <m.span key={`${post.slug}-views-loading`} />

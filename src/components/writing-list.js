@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { useViewData } from '@/hooks/useViewData'
-import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter } from '@/lib/utils'
+import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter, viewCountFormatter } from '@/lib/utils'
 
 export const WritingList = ({ items }) => {
   const viewData = useViewData()
@@ -53,7 +53,7 @@ export const WritingList = ({ items }) => {
                   const dateWithMonthAndYear = dateWithMonthAndYearFormatter.format(dateObj)
 
                   const { view_count } = viewData?.find((item) => item.slug === slug) ?? {}
-                  const formattedViewCount = view_count ? new Intl.NumberFormat('en-US').format(view_count) : null
+                  const formattedViewCount = view_count ? viewCountFormatter.format(view_count) : null
 
                   return (
                     <li

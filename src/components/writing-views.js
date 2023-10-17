@@ -3,18 +3,20 @@
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { useViewData } from '@/hooks/useViewData'
+import { viewCountFormatter } from '@/lib/utils'
 
 export const WritingViews = ({ slug }) => {
   const viewData = useViewData(slug)
   const { view_count } = viewData?.[0] ?? {}
   if (!view_count) return <m.span key={`${slug}-views-loading`} />
+  const formattedViewCount = viewCountFormatter.format(view_count)
 
   return (
     <LazyMotion features={domAnimation}>
       <m.div
         key={`${slug}-views-loaded`}
         className="flex items-center gap-1 text-sm"
-        title={`${view_count} ${view_count === 1 ? 'view' : 'views'}`}
+        title={`${formattedViewCount} ${formattedViewCount === 1 ? 'view' : 'views'}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -38,7 +40,7 @@ export const WritingViews = ({ slug }) => {
             strokeWidth="1.5"
           ></circle>
         </svg>
-        <span>{view_count}</span>
+        <span>{formattedViewCount}</span>
       </m.div>
     </LazyMotion>
   )
