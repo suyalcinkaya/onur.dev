@@ -1,11 +1,9 @@
 import { getAllPosts, getAllPageSlugs } from '@/lib/contentful'
 import { getCollections } from '@/lib/raindrop'
 import { getSortedPosts } from '@/lib/utils'
-import { COLLECTION_IDS } from '@/lib/constants'
 
 export default async function sitemap() {
   const [allPosts, collections, allPages] = await Promise.all([getAllPosts(), getCollections(), getAllPageSlugs()])
-  const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
 
   const sortedWritings = getSortedPosts(allPosts)
   const writings = sortedWritings.map((post) => {
@@ -17,7 +15,7 @@ export default async function sitemap() {
     }
   })
 
-  const bookmarks = filteredCollections.map((collection) => {
+  const bookmarks = collections.map((collection) => {
     return {
       url: `https://onur.dev/bookmarks/${collection.slug}`,
       lastModified: new Date(),

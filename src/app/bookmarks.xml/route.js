@@ -1,11 +1,9 @@
 import { Feed } from 'feed'
 
 import { getCollections, getRaindrops } from '@/lib/raindrop'
-import { COLLECTION_IDS } from '@/lib/constants'
 
 export async function GET() {
   const collections = await getCollections()
-  const filteredCollections = collections?.items?.filter((collection) => COLLECTION_IDS.includes(collection._id))
   const date = new Date()
   const siteURL = 'https://onur.dev'
   const author = {
@@ -15,7 +13,7 @@ export async function GET() {
 
   const feed = new Feed({
     title: `Bookmarks RSS feed by ${author.name}`,
-    description: 'Stay up to date with my latest bookmarks',
+    description: 'Stay up to date with my latest selection of various handpicked bookmarks',
     id: siteURL,
     link: `${siteURL}/bookmarks`,
     language: 'en',
@@ -27,7 +25,7 @@ export async function GET() {
   })
 
   const bookmarkList = []
-  for (const collection of filteredCollections) {
+  for (const collection of collections) {
     const raindrops = await getRaindrops(collection._id)
     const { items = [] } = raindrops ?? {}
 
