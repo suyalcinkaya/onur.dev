@@ -3,14 +3,12 @@ import Link from 'next/link'
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
 import { getPageSeo } from '@/lib/contentful'
-import { COLLECTION_IDS } from '@/lib/constants'
 import { getCollections } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
 async function fetchData() {
   const collections = await getCollections()
-  const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
-  const sortedCollections = sortByProperty(filteredCollections, 'title')
+  const sortedCollections = sortByProperty(collections, 'title')
   return { collections: sortedCollections }
 }
 

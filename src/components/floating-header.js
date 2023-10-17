@@ -1,15 +1,19 @@
 'use client'
 
 import { memo, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
-import { ArrowLeftIcon } from 'lucide-react'
+import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
 
 import { MobileDrawer } from '@/components/drawer'
 import { Button } from '@/components/ui/button.jsx'
 import { SCROLL_AREA_ID, MOBILE_SCROLL_THRESHOLD } from '@/lib/constants'
 
 export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, children }) => {
+  const pathname = usePathname()
+  const isWritingPath = pathname === '/writing'
+  const isBookmarksPath = pathname === '/bookmarks'
   const [transformValues, setTransformValues] = useState({ translateY: 0, opacity: scrollTitle ? 0 : 1 })
 
   useEffect(() => {
@@ -52,21 +56,36 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, children }
             ) : (
               <MobileDrawer />
             )}
-            {scrollTitle && (
-              <span
-                className="line-clamp-2 font-bold"
-                style={{ transform: `translateY(${transformValues.translateY}%)`, opacity: transformValues.opacity }}
-              >
-                {scrollTitle}
-              </span>
-            )}
-            {title && (
-              <Balancer ratio={0.35}>
-                <span className="line-clamp-2 font-bold">{title}</span>
-              </Balancer>
-            )}
+            <div className="flex flex-1 items-center justify-between">
+              {scrollTitle && (
+                <span
+                  className="line-clamp-2 font-bold"
+                  style={{ transform: `translateY(${transformValues.translateY}%)`, opacity: transformValues.opacity }}
+                >
+                  {scrollTitle}
+                </span>
+              )}
+              {title && (
+                <Balancer ratio={0.35}>
+                  <span className="line-clamp-2 font-bold">{title}</span>
+                </Balancer>
+              )}
+              {(isWritingPath || isBookmarksPath) && (
+                <Button variant="outline" size="xs" asChild>
+                  <Link
+                    href={isWritingPath ? '/writing.xml' : '/bookmarks.xml'}
+                    title="RSS feed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <RadioIcon size={16} className="mr-2" />
+                    RSS feed
+                  </Link>
+                </Button>
+              )}
+            </div>
           </div>
-          <div className="flex min-w-[50px] justify-end">{children}</div>
+          {scrollTitle && <div className="flex min-w-[50px] justify-end">{children}</div>}
         </div>
       </div>
     </header>

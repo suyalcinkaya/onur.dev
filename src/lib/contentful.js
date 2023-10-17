@@ -170,6 +170,11 @@ export async function getAllPageSlugs(preview = isDevelopment) {
         items {
           slug
           hasCustomPage
+          sys {
+            id
+            firstPublishedAt
+            publishedAt
+          }
         }
       }
     }`,

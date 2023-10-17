@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { highlight } from 'sugar-high'
-import { AnimatePresence, motion } from 'framer-motion'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { Button } from '@/components/ui/button.jsx'
 
@@ -33,15 +33,15 @@ export function CodeBlock({ title, code }) {
           </span>
           {title && <p className="m-0 text-sm font-medium">{title}</p>}
         </div>
-        <Button variant="outline" size="sm" className="rounded-lg" disabled={copied} onClick={onCopy}>
-          <AnimatePresence mode="wait">
-            <motion.span
+        <Button variant="outline" size="xs" className="rounded-lg" disabled={copied} onClick={onCopy}>
+          <LazyMotion features={domAnimation}>
+            <m.span
               key={copied ? 'copied' : 'copy'}
               initial={{ opacity: 0, y: 2 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -2 }}
-              className="inline-flex w-16 items-center justify-center gap-0.5"
-              // transition={{ duration: 0.3 }}
+              className="inline-flex w-14 items-center justify-center gap-0.5"
+              transition={{ duration: 0.3 }}
             >
               {copied ? (
                 <>
@@ -55,6 +55,7 @@ export function CodeBlock({ title, code }) {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="shrink-0"
                   >
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
@@ -80,8 +81,8 @@ export function CodeBlock({ title, code }) {
                   Copy
                 </>
               )}
-            </motion.span>
-          </AnimatePresence>
+            </m.span>
+          </LazyMotion>
         </Button>
       </div>
       <div className="overflow-x-auto">

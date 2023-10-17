@@ -134,3 +134,14 @@ export const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
   day: '2-digit',
   month: '2-digit'
 })
+
+/**
+ * Initializes an instance of `Intl.NumberFormat` named `viewCountFormatter`
+ * with the 'nl-NL' locale for formatting view counts.
+ *
+ * Example usage:
+ * const count = 1000000;
+ * const formattedCount = viewCountFormatter.format(count);
+ * console.log(formattedCount); // Output: "1.000.000"
+ */
+export const viewCountFormatter = new Intl.NumberFormat('nl-NL')

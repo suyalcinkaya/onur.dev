@@ -1,3 +1,5 @@
+import { COLLECTION_IDS } from '@/lib/constants'
+
 const options = {
   method: 'GET',
   headers: {
@@ -28,7 +30,9 @@ export async function getRaindrops(id, pageIndex = 0) {
 export async function getCollections() {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options)
-    return await response.json()
+    const collections = await response.json()
+    const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
+    return filteredCollections
   } catch (error) {
     console.info(error)
     return null
