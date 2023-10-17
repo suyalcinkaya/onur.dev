@@ -73,7 +73,9 @@ function options(links) {
               className="animate-reveal"
             />
             {asset.description && (
-              <figcaption className="text-center text-xs font-light text-gray-500">{asset.description}</figcaption>
+              <figcaption className="break-all text-center text-xs font-light text-gray-500">
+                {asset.description}
+              </figcaption>
             )}
           </figure>
         )
