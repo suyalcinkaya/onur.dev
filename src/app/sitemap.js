@@ -1,12 +1,14 @@
 import { getAllPosts, getAllPageSlugs } from '@/lib/contentful'
 import { getCollections } from '@/lib/raindrop'
+import { getSortedPosts } from '@/lib/utils'
 import { COLLECTION_IDS } from '@/lib/constants'
 
 export default async function sitemap() {
   const [allPosts, collections, allPages] = await Promise.all([getAllPosts(), getCollections(), getAllPageSlugs()])
   const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
 
-  const writings = allPosts.map((post) => {
+  const sortedWritings = getSortedPosts(allPosts)
+  const writings = sortedWritings.map((post) => {
     return {
       url: `https://onur.dev/writing/${post.slug}`,
       lastModified: post.sys.publishedAt,
