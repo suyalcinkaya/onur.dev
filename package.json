@@ -26,7 +26,6 @@
     "class-variance-authority": "^0.7.0",
     "classix": "^2.1.34",
     "cssnano": "^6.0.1",
-    "encoding": "^0.1.13",
     "eslint-config-next": "^13.5.5",
     "feed": "^4.2.2",
     "framer-motion": "^10.16.4",
@@ -58,6 +57,9 @@
   },
   "next-unused": {
     "debug": true,
+    "include": [
+      "src"
+    ],
     "entrypoints": [
       "src"
     ]
