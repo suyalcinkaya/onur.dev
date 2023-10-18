@@ -46,7 +46,7 @@ export default async function Journey() {
                           <div className="pointer-events-none h-full w-px border-l-[1px] border-gray-200"></div>
                         </div>
                       )}
-                      <div className="z-0 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
+                      <div className="z-0 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
                         <PlusIcon size={16} />
                       </div>
                       <div className="flex-grow pl-8">
