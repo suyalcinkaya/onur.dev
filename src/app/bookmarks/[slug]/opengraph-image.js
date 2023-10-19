@@ -4,7 +4,6 @@ import { OpenGraphImage } from '@/components/og-image'
 import { getMediumFont, getBoldFont } from '@/lib/utils'
 import { getCollections } from '@/lib/raindrop'
 import { sharedImage } from '@/app/shared-metadata'
-import { COLLECTION_IDS } from '@/lib/constants'
 
 export const runtime = 'edge'
 export const alt = 'Bookmarks'
@@ -17,9 +16,7 @@ export const contentType = sharedImage.type
 export default async function Image({ params }) {
   const { slug } = params
   const collections = await getCollections()
-  const collection = collections.items
-    .filter((collection) => COLLECTION_IDS.includes(collection._id))
-    .find((collection) => collection.slug === slug)
+  const collection = collections.find((collection) => collection.slug === slug)
 
   if (!collection) return null
 

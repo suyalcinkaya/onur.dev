@@ -1,9 +1,11 @@
-import Link from 'next/link'
+import { Suspense } from 'react'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
+import { LoadingSpinner } from '@/components/loading-spinner'
+import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
-import { getSortedPosts, getDateTimeFormat } from '@/lib/utils'
+import { getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {
   const allPosts = await getAllPosts()
@@ -17,22 +19,9 @@ export default async function Writing() {
   return (
     <ScrollArea className="flex flex-col lg:hidden">
       <FloatingHeader title="Writing" />
-      <div>
-        {sortedPosts.map((post) => {
-          const date = post.date || post.sys.firstPublishedAt
-          const formattedDate = getDateTimeFormat(date)
-          return (
-            <Link
-              key={post.slug}
-              href={`/writing/${post.slug}`}
-              className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
-            >
-              <span className="font-medium">{post.title}</span>
-              <span className="text-slate-500">{formattedDate}</span>
-            </Link>
-          )
-        })}
-      </div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <WritingListLayout list={sortedPosts} isMobile />
+      </Suspense>
     </ScrollArea>
   )
 }

@@ -22,15 +22,12 @@ export const useViewData = (slug) => {
   }, [slug])
 
   useEffect(() => {
-    const handleRealtimeChange = (payload) => {
+    function handleRealtimeChange(payload) {
       if (payload?.new?.slug) {
         setViewData((prev) => {
+          if (!prev) return null
           const index = prev.findIndex((item) => item.slug === payload.new.slug)
-          if (index !== -1) {
-            prev[index] = payload.new
-          } else {
-            prev.push(payload.new)
-          }
+          if (index) index !== -1 ? (prev[index] = payload.new) : prev.push(payload.new)
           return [...prev]
         })
       }

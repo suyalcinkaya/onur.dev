@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
 
 export function middleware(request, event) {
-  const pathname = request.nextUrl.pathname
+  const { pathname } = request.nextUrl
   const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
 
-  const sendAnalytics = async () => {
+  async function sendAnalytics() {
     const URL =
       process.env.NODE_ENV === 'production'
         ? 'https://onur.dev/api/increment-views'

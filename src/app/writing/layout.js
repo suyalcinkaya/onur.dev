@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { SideMenu } from '@/components/side-menu'
 import { LoadingSpinner } from '@/components/loading-spinner'
-import { WritingLink } from '@/components/writing-link'
+import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getAllPosts } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'
 
@@ -17,13 +17,9 @@ export default async function WritingLayout({ children }) {
 
   return (
     <>
-      <SideMenu title="Writing" isInner>
+      <SideMenu title="Writing" href="/writing" isInner>
         <Suspense fallback={<LoadingSpinner />}>
-          <div className="flex flex-col gap-1 text-sm">
-            {sortedPosts.map((post) => {
-              return <WritingLink key={post.slug} post={post} />
-            })}
-          </div>
+          <WritingListLayout list={sortedPosts} />
         </Suspense>
       </SideMenu>
       <div className="lg:bg-dots flex-1">{children}</div>

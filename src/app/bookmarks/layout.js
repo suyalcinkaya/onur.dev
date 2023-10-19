@@ -4,15 +4,13 @@ import { SideMenu } from '@/components/side-menu'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { ListItem } from '@/components/list-item'
 import { getCollections } from '@/lib/raindrop'
-import { COLLECTION_IDS } from '@/lib/constants'
 import { sortByProperty } from '@/lib/utils'
 
 export const revalidate = 60 * 60 * 24 * 2 // 2 days
 
 async function fetchData() {
   const collections = await getCollections()
-  const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
-  const sortedCollections = sortByProperty(filteredCollections, 'title')
+  const sortedCollections = sortByProperty(collections, 'title')
   return { collections: sortedCollections }
 }
 
@@ -21,7 +19,7 @@ export default async function BookmarksLayout({ children }) {
 
   return (
     <div className="flex w-full">
-      <SideMenu title="Bookmarks" isInner>
+      <SideMenu title="Bookmarks" href="/bookmarks" isInner>
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
             {collections.map((collection) => {

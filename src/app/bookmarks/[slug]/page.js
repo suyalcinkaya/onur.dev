@@ -5,19 +5,15 @@ import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
 import { getCollection, getRaindrops, getCollections } from '@/lib/raindrop'
-import { COLLECTION_IDS } from '@/lib/constants'
 
 export async function generateStaticParams() {
   const collections = await getCollections()
-  const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
-  return filteredCollections.map((collection) => ({ slug: collection.slug }))
+  return collections.map((collection) => ({ slug: collection.slug }))
 }
 
 async function fetchData(slug) {
   const collections = await getCollections()
-  const currentCollection = collections.items
-    .filter((collection) => COLLECTION_IDS.includes(collection._id))
-    .find((collection) => collection.slug === slug)
+  const currentCollection = collections.find((collection) => collection.slug === slug)
 
   const collection = await getCollection(currentCollection._id)
   if (!collection) notFound()
@@ -49,9 +45,7 @@ export default async function CollectionPage({ params }) {
 export async function generateMetadata({ params }) {
   const { slug } = params
   const collections = await getCollections()
-  const collection = collections.items
-    .filter((collection) => COLLECTION_IDS.includes(collection._id))
-    .find((collection) => collection.slug === slug)
+  const collection = collections.find((collection) => collection.slug === slug)
   if (!collection) return null
 
   const siteUrl = `/bookmarks/${collection._id}`
