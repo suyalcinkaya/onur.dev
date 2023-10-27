@@ -4,7 +4,7 @@ export const JourneyCard = ({ title, description, image, index }) => {
   return (
     <div className="word-break-word flex flex-col">
       <span className="font-semibold">{title}</span>
-      {description && <MarkdownRenderer>{description}</MarkdownRenderer>}
+      {description && <MarkdownRenderer className="text-sm">{description}</MarkdownRenderer>}
       {image?.url && (
         <div className="mt-2.5 overflow-hidden rounded-xl">
           <img

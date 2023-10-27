@@ -13,7 +13,6 @@ export const MarkdownRenderer = ({ options, ...rest }) => {
           // eslint-disable-next-line no-unused-vars
           a: ({ className, ...rest }) => <Link {...rest} />,
           p: ({ children }) => <p className="mb-2 text-sm">{children}</p>,
-          span: ({ children }) => <span className="text-sm">{children}</span>,
           img: ({ alt, src }) => (
             <span className="mt-2 block overflow-hidden rounded-xl border">
               <img
