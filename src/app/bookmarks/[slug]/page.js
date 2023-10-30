@@ -14,6 +14,7 @@ export async function generateStaticParams() {
 async function fetchData(slug) {
   const collections = await getCollections()
   const currentCollection = collections.find((collection) => collection.slug === slug)
+  if (!currentCollection) notFound()
 
   const collection = await getCollection(currentCollection._id)
   if (!collection) notFound()

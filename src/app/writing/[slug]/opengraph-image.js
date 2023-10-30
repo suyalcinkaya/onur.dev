@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server'
+import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
 import { getWritingSeo } from '@/lib/contentful'
