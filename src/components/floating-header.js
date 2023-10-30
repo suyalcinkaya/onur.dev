@@ -59,7 +59,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, children }
             <div className="flex flex-1 items-center justify-between">
               {scrollTitle && (
                 <span
-                  className="line-clamp-2 font-bold"
+                  className="line-clamp-2 font-semibold tracking-tight"
                   style={{ transform: `translateY(${transformValues.translateY}%)`, opacity: transformValues.opacity }}
                 >
                   {scrollTitle}
@@ -67,7 +67,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, children }
               )}
               {title && (
                 <Balancer ratio={0.35}>
-                  <span className="line-clamp-2 font-bold">{title}</span>
+                  <span className="line-clamp-2 font-semibold tracking-tight">{title}</span>
                 </Balancer>
               )}
               {(isWritingPath || isBookmarksPath) && (

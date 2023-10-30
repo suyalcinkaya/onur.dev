@@ -19,7 +19,7 @@ export const SideMenu = ({ children, title, href, isInner }) => {
       {title && (
         <div className="sticky top-0 z-10 border-b bg-zinc-50 px-5 py-3">
           <div className="flex items-center justify-between">
-            <div className="text-sm font-semibold">
+            <div className="text-sm font-semibold tracking-tight">
               {href ? <Link href={href}>{title}</Link> : <span>{title}</span>}
             </div>
             {(isWritingHref || isBookmarksHref) && (

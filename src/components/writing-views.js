@@ -15,7 +15,7 @@ export const WritingViews = ({ slug }) => {
     <LazyMotion features={domAnimation}>
       <m.div
         key={`${slug}-views-loaded`}
-        className="flex items-center gap-1 text-sm"
+        className="flex items-center text-sm"
         title={`${formattedViewCount} ${formattedViewCount === 1 ? 'view' : 'views'}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

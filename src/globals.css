@@ -22,11 +22,12 @@
 
   html {
     @apply overflow-hidden scroll-smooth antialiased;
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply font-sans text-base text-gray-700;
+    @apply font-sans text-base text-gray-900;
   }
 
   #__next {
@@ -62,7 +63,7 @@
   h1,
   h2,
   h3 {
-    @apply scroll-mt-16 font-semibold tracking-tighter text-black lg:scroll-mt-8;
+    @apply scroll-mt-16 font-semibold slashed-zero tracking-tighter text-black lg:scroll-mt-8;
   }
 
   h1 {
