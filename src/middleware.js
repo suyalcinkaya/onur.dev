@@ -5,6 +5,8 @@ export function middleware(request, event) {
   const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
 
   async function sendAnalytics() {
+    if (!writingSlug) return
+
     const URL =
       process.env.NODE_ENV === 'production'
         ? 'https://onur.dev/api/increment-views'

@@ -1,7 +1,8 @@
 import '@/globals.css'
 import { draftMode } from 'next/headers'
 import Script from 'next/script'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { GeistSans } from 'geist/font'
+import { JetBrains_Mono } from 'next/font/google'
 import { EyeIcon } from 'lucide-react'
 
 import { SideMenu } from '@/components/side-menu'
@@ -16,17 +17,11 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ['variable']
 })
 
-const interFont = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap'
-})
-
 export default async function RootLayout({ children }) {
   const { isEnabled } = draftMode()
 
   return (
-    <html lang="en" className={`${interFont.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${GeistSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         {/* eslint-disable-next-line react/no-unknown-property */}
         <main vaul-drawer-wrapper="" className="min-h-screen bg-white">
@@ -78,14 +73,8 @@ export const metadata = {
     siteName: sharedTitle,
     locale: 'en_IE'
   },
-  themeColor: '#ffffff',
   alternates: {
     canonical: '/'
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1
   },
   twitter: {
     card: 'summary_large_image',
@@ -95,4 +84,12 @@ export const metadata = {
   other: {
     pinterest: 'nopin'
   }
+}
+
+export const viewport = {
+  themeColor: 'white',
+  colorScheme: 'only light',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1
 }
