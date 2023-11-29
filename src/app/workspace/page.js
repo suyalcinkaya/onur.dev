@@ -17,14 +17,20 @@ export default async function Workspace() {
           <div className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-6 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:pb-0">
             <EmptyPlaceholder />
             <img
-              src="/assets/setup-2.jpg"
-              alt="Workspace | 2"
-              className="w-2/3 snap-center md:w-full md:snap-align-none"
+              src="/assets/workspace-1.webp"
+              alt="Workspace | 1"
+              className="aspect-[6048/8064] w-2/3 snap-center md:w-full md:snap-align-none"
+              width={756}
+              height={1008}
+              loading="eager"
             />
             <img
-              src="/assets/setup-1.jpg"
-              alt="Workspace | 1"
-              className="w-2/3 snap-center md:w-full md:snap-align-none"
+              src="/assets/workspace-2.webp"
+              alt="Workspace | 2"
+              className="aspect-[6048/8064] w-2/3 snap-center md:w-full md:snap-align-none"
+              width={756}
+              height={1008}
+              loading="eager"
             />
             <EmptyPlaceholder />
           </div>
