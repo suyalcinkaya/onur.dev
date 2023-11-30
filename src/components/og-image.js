@@ -41,7 +41,7 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
           flexDirection: 'column',
           gap: '0.5rem',
           position: 'absolute',
-          bottom: 60,
+          bottom: 100,
           left: 60,
           width: '80%'
         }}
