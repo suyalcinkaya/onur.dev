@@ -52,7 +52,7 @@ export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
       {shortcutNumber && (
         <span
           className={cn(
-            'grid h-5 w-5 place-content-center rounded border border-gray-200 bg-gray-100 text-xs font-medium text-gray-500 transition-colors duration-200 group-hover:border-gray-300',
+            'hidden h-5 w-5 place-content-center rounded border border-gray-200 bg-gray-100 text-xs font-medium text-gray-500 transition-colors duration-200 group-hover:border-gray-300 lg:grid',
             isActive && 'border-gray-600 bg-gray-700 text-gray-200 group-hover:border-gray-600'
           )}
           title={`Shortcut key: ${shortcutNumber}`}
