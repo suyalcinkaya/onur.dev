@@ -19,7 +19,7 @@ export default async function Workspace() {
             <img
               src="/assets/workspace-1.webp"
               alt="Workspace | 1"
-              className="aspect-[6048/8064] w-2/3 snap-center md:w-full md:snap-align-none"
+              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
               width={756}
               height={1008}
               loading="eager"
@@ -27,7 +27,7 @@ export default async function Workspace() {
             <img
               src="/assets/workspace-2.webp"
               alt="Workspace | 2"
-              className="aspect-[6048/8064] w-2/3 snap-center md:w-full md:snap-align-none"
+              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
               width={756}
               height={1008}
               loading="eager"
