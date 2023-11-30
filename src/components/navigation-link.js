@@ -7,7 +7,7 @@ import { ArrowUpRightIcon, AtSignIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-export const NavigationLink = memo(({ href, label, icon }) => {
+export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
   const pathname = usePathname()
   const iconCmp = icon ?? <AtSignIcon size={16} />
 
@@ -40,10 +40,26 @@ export const NavigationLink = memo(({ href, label, icon }) => {
     <Link
       key={href}
       href={href}
-      className={cn('flex items-center gap-2 rounded-lg p-2', isActive ? 'bg-black text-white' : 'hover:bg-gray-200')}
+      className={cn(
+        'group flex items-center justify-between rounded-lg p-2',
+        isActive ? 'bg-black text-white' : 'hover:bg-gray-200'
+      )}
     >
-      {iconCmp}
-      <span className={cn('font-medium', isActive && 'text-white')}>{label}</span>
+      <span className="flex items-center gap-2">
+        {iconCmp}
+        <span className={cn('font-medium', isActive && 'text-white')}>{label}</span>
+      </span>
+      {shortcutNumber && (
+        <span
+          className={cn(
+            'grid h-5 w-5 place-content-center rounded border border-gray-200 bg-gray-100 text-xs font-medium text-gray-500 transition-colors duration-200 group-hover:border-gray-300',
+            isActive && 'border-gray-600 bg-gray-700 text-gray-200 group-hover:border-gray-600'
+          )}
+          title={`Shortcut key: ${shortcutNumber}`}
+        >
+          {shortcutNumber}
+        </span>
+      )}
     </Link>
   )
 })

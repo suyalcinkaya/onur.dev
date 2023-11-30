@@ -55,7 +55,7 @@ export const dasherize = (text) => String(text).replace(/ +/g, '-').toLowerCase(
  * @returns A Promise resolving to the SpaceGrotesk-Medium font file as an array buffer.
  */
 export const getMediumFont = async () => {
-  const response = await fetch(new URL('@/assets/SpaceGrotesk-Medium.ttf', import.meta.url))
+  const response = await fetch(new URL('@/assets/fonts/SpaceGrotesk-Medium.ttf', import.meta.url))
   const font = await response.arrayBuffer()
   return font
 }
@@ -66,7 +66,7 @@ export const getMediumFont = async () => {
  * @returns A Promise resolving to the SpaceGrotesk-SemiBold font file as an array buffer.
  */
 export const getBoldFont = async () => {
-  const response = await fetch(new URL('@/assets/SpaceGrotesk-SemiBold.ttf', import.meta.url))
+  const response = await fetch(new URL('@/assets/fonts/SpaceGrotesk-SemiBold.ttf', import.meta.url))
   const font = await response.arrayBuffer()
   return font
 }
