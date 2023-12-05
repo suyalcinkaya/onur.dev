@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
   const collection = collections.find((collection) => collection.slug === slug)
   if (!collection) return null
 
-  const siteUrl = `/bookmarks/${collection._id}`
+  const siteUrl = `/bookmarks/${collection.slug}`
   const seoTitle = `${collection.title} | Bookmarks`
   const seoDescription = `A curated selection of various handpicked ${collection.title.toLowerCase()} bookmarks by Onur Şuyalçınkaya`
 

@@ -23,7 +23,7 @@ export default async function Writing() {
           return (
             <Link
               key={collection._id}
-              href={`/bookmarks/${collection._id}`}
+              href={`/bookmarks/${collection.slug}`}
               className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
             >
               <span className="font-medium">{collection.title}</span>
