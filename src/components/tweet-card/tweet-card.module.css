@@ -9,6 +9,7 @@
   --tweet-bg-color-hover: #f3f4f6;
   --tweet-quoted-container-margin: 0;
   --tweet-bg-color: #fff;
+  --tweet-bg-color-hover: #fff;
 }
 
 .tweetCard :global(.react-tweet-theme) [class^='tweet-container_article__'] {
