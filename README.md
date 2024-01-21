@@ -1,4 +1,4 @@
-# onur.dev
+# LOISPSQ HOMEPAGE
 
 <img src="onurdev.png" alt="onur.dev — Onur Şuyalçınkaya" style="border-radius: 12px; border: 1px solid #e5e7eb" />
 
