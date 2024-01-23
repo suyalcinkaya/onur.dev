@@ -38,10 +38,10 @@ export function middleware(request, event) {
 export const config = {
   matcher: [
     {
-      source: "/writing/:path/",
+      source: '/writing/:path/',
       missing: [
-        { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" },
+      { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
       ],
     },
   ],
