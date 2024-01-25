@@ -27,7 +27,7 @@ export const useViewData = (slug) => {
         setViewData((prev) => {
           if (!prev) return null
           const index = prev.findIndex((item) => item.slug === payload.new.slug)
-          if (index) index !== -1 ? (prev[index] = payload.new) : prev.push(payload.new)
+          index !== -1 ? (prev[index] = payload.new) : prev.push(payload.new)
           return [...prev]
         })
       }
