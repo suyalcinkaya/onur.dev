@@ -31,7 +31,7 @@ export default async function CollectionPage({ params }) {
   const { collection, raindrops } = await fetchData(slug)
 
   return (
-    <ScrollArea className="flex flex-col" hasScrollTitle>
+    <ScrollArea className="bg-grid flex flex-col" hasScrollTitle>
       <FloatingHeader scrollTitle={collection.title} goBackLink="/bookmarks" />
       <div className="content-wrapper">
         <div className="content @container">
