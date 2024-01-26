@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
@@ -14,9 +16,9 @@ export default async function Workspace() {
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title="Workspace" />
-          <div className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-6 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:pb-0">
+          <div className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-4 mb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-x-auto md:pb-0">
             <EmptyPlaceholder />
-            <img
+            <Image
               src="/assets/workspace-1.webp"
               alt="Workspace | 1"
               className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
@@ -24,7 +26,7 @@ export default async function Workspace() {
               height={1008}
               loading="eager"
             />
-            <img
+            <Image
               src="/assets/workspace-2.webp"
               alt="Workspace | 2"
               className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"

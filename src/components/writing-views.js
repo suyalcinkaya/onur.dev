@@ -40,7 +40,7 @@ export const WritingViews = ({ slug }) => {
             strokeWidth="1.5"
           ></circle>
         </svg>
-        <span>{formattedViewCount}</span>
+        <span className="tabular-nums">{formattedViewCount}</span>
       </m.div>
     </LazyMotion>
   )

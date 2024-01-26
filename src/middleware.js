@@ -36,7 +36,10 @@ export function middleware(request, event) {
 }
 
 export const config = {
-  matcher: [
+  matcher: '/writing/:path/'
+  // The below solution also filters out the user navigations which is not desired:
+  // See: https://github.com/vercel/next.js/discussions/37736#discussioncomment-7886601
+  /* matcher: [
     {
       source: '/writing/:path/',
       missing: [
@@ -44,5 +47,5 @@ export const config = {
         { type: 'header', key: 'purpose', value: 'prefetch' }
       ]
     }
-  ]
+  ] */
 }
