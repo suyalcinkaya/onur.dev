@@ -29,7 +29,7 @@
     "eslint-config-next": "^14.0.2",
     "feed": "^4.2.2",
     "framer-motion": "^10.16.4",
-    "geist": "^1.0.0",
+    "geist": "^1.2.2",
     "lucide-react": "^0.284.0",
     "markdown-to-jsx": "^7.3.2",
     "next": "^14.0.2",
