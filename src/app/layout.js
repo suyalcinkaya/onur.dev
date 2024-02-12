@@ -1,7 +1,7 @@
 import '@/globals.css'
 import { draftMode } from 'next/headers'
 import Script from 'next/script'
-import { GeistSans } from 'geist/font'
+import { GeistSans } from 'geist/font/sans'
 import { JetBrains_Mono } from 'next/font/google'
 import { EyeIcon } from 'lucide-react'
 
