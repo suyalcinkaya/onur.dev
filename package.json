@@ -37,7 +37,7 @@
     "react-intersection-observer": "^9.5.2",
     "react-tweet": "^3.2.0",
     "react-wrap-balancer": "^1.1.0",
-    "sugar-high": "^0.5.2",
+    "sugar-high": "^0.6.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.0"
