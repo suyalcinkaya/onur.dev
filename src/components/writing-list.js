@@ -86,7 +86,7 @@ export const WritingList = ({ items }) => {
                             {formattedViewCount ? (
                               <m.span
                                 key={`${slug}-views`}
-                                className="flex justify-end"
+                                className="flex justify-end tabular-nums"
                                 title={`${formattedViewCount} views`}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}

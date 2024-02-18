@@ -3,8 +3,7 @@ module.exports = {
   reactStrictMode: true,
   trailingSlash: false,
   images: {
-    domains: ['images.ctfassets.net', 'assets.ctfassets.net'],
-    deviceSizes: [320, 375, 768, 1024, 1280]
+    deviceSizes: [390, 435, 768, 1024, 1280]
   },
   async redirects() {
     return [

@@ -35,6 +35,7 @@ export const WritingLink = ({ post, viewCount, isMobile }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                className="tabular-nums"
               >
                 &middot; {formattedViewCount} {formattedViewCount === 1 ? 'view' : 'views'}
               </m.span>
