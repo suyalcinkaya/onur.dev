@@ -29,7 +29,7 @@
     "feed": "^4.2.2",
     "framer-motion": "^10.16.4",
     "geist": "^1.2.2",
-    "lucide-react": "^0.284.0",
+    "lucide-react": "^0.331.0",
     "markdown-to-jsx": "^7.3.2",
     "next": "^14.1.0",
     "react": "^18.2.0",
