@@ -22,7 +22,7 @@ export default async function BookmarksLayout({ children }) {
       <SideMenu title="Bookmarks" href="/bookmarks" isInner>
         <Suspense fallback={<LoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
-            {collections.map((collection) => {
+            {collections?.map((collection) => {
               return (
                 <ListItem
                   key={collection._id}

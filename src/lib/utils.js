@@ -86,7 +86,7 @@ export const isDevelopment = process.env.NODE_ENV === 'development'
  * @returns The sorted array in ascending order based on the specified property.
  */
 export const sortByProperty = (arr, prop) => {
-  return arr.sort((a, b) => {
+  return arr?.sort((a, b) => {
     const itemA = a[prop].toUpperCase()
     const itemB = b[prop].toUpperCase()
 
