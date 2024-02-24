@@ -72,8 +72,8 @@ export const BookmarkList = ({ initialData, id }) => {
               key={`chunk_${chunkIndex}`}
               className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
             >
-              {chunk.map((bookmark) => {
-                return <BookmarkCard key={bookmark._id} bookmark={bookmark} />
+              {chunk.map((bookmark, bookmarkIndex) => {
+                return <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
               })}
             </div>
           )
