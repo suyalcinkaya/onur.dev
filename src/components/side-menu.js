@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { RadioIcon } from 'lucide-react'
 
@@ -8,26 +8,24 @@ import { Button } from '@/components/ui/button.jsx'
 import { useKeyPress } from '@/hooks/useKeyPress'
 import { cn } from '@/lib/utils'
 
+const keyCodePathnameMapping = {
+  Digit1: '/',
+  Digit2: '/writing',
+  Digit3: '/journey',
+  Digit4: '/stack',
+  Digit5: '/workspace',
+  Digit6: '/bookmarks'
+}
+
 export const SideMenu = ({ children, title, href, isInner }) => {
   const router = useRouter()
-  useKeyPress(onKeyPress, ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6'])
+  const pathname = usePathname()
+  useKeyPress(onKeyPress, Object.keys(keyCodePathnameMapping))
 
   function onKeyPress(event) {
-    event.preventDefault()
-
-    if (event.code === 'Digit1') {
-      router.push('/')
-    } else if (event.code === 'Digit2') {
-      router.push('/writing')
-    } else if (event.code === 'Digit3') {
-      router.push('/journey')
-    } else if (event.code === 'Digit4') {
-      router.push('/stack')
-    } else if (event.code === 'Digit5') {
-      router.push('/workspace')
-    } else if (event.code === 'Digit6') {
-      router.push('/bookmarks')
-    }
+    const key = event.code
+    const targetPathname = keyCodePathnameMapping[key]
+    if (targetPathname && targetPathname !== pathname) router.push(targetPathname)
   }
 
   const isWritingHref = href === '/writing'

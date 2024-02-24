@@ -8,7 +8,7 @@ export function useKeyPress(callback, keyCodes) {
       }
     }
 
-    window.addEventListener('keydown', handler)
+    window.addEventListener('keydown', handler, { passive: true })
     return () => {
       window.removeEventListener('keydown', handler)
     }

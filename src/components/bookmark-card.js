@@ -3,7 +3,7 @@ import { Link2Icon } from 'lucide-react'
 import { TweetCard } from '@/components/tweet-card/tweet-card'
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'
 
-export const BookmarkCard = ({ bookmark }) => {
+export const BookmarkCard = ({ bookmark, order }) => {
   if (bookmark.link && bookmark.collectionId === TWEETS_COLLECTION_ID) {
     const match = bookmark.link.match(/\/status\/(\d+)/) ?? []
     const tweetId = match[1]
@@ -17,15 +17,16 @@ export const BookmarkCard = ({ bookmark }) => {
       href={bookmark.link}
       target="_blank"
       rel="noopener noreferrer"
+      data-bookmark-order={order}
     >
       <span className="aspect-[1200/630] overflow-hidden rounded-lg">
         <img
-          src={bookmark.cover}
+          src={bookmark.cover || '/assets/fallback.webp'}
           alt={bookmark.title}
           width={1200}
           height={630}
-          loading="lazy"
-          className="aspect-[1200/630] animate-reveal rounded-lg border bg-[url('/assets/fallback.webp')] bg-cover bg-center bg-no-repeat object-cover"
+          loading={order < 2 ? 'eager' : 'lazy'}
+          className="aspect-[1200/630] animate-reveal rounded-lg border bg-cover bg-center bg-no-repeat object-cover"
           onError={(e) => {
             e.target.onerror = null
             e.target.src = '/assets/fallback.webp'
@@ -33,8 +34,8 @@ export const BookmarkCard = ({ bookmark }) => {
         />
       </span>
       <div className="flex flex-col gap-1">
-        <h3>{bookmark.title}</h3>
-        <span className="line-clamp-5 inline-flex items-center gap-1 text-sm text-gray-500">
+        <h2 className="line-clamp-4 text-lg leading-snug">{bookmark.title}</h2>
+        <span className="line-clamp-4 inline-flex items-center gap-1 text-sm text-gray-500">
           <Link2Icon size={16} />
           {bookmark.domain}
         </span>
