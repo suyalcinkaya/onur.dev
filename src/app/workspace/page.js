@@ -16,7 +16,7 @@ export default async function Workspace() {
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title="Workspace" />
-          <div className="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-4 mb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-x-auto md:pb-0">
+          <div className="-mx-6 mb-4 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-x-auto md:pb-0">
             <EmptyPlaceholder />
             <Image
               src="/assets/workspace-1.webp"
@@ -25,6 +25,7 @@ export default async function Workspace() {
               width={756}
               height={1008}
               loading="eager"
+              priority
             />
             <Image
               src="/assets/workspace-2.webp"
@@ -33,6 +34,7 @@ export default async function Workspace() {
               width={756}
               height={1008}
               loading="eager"
+              priority
             />
             <EmptyPlaceholder />
           </div>

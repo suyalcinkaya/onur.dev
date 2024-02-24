@@ -60,7 +60,7 @@ export const BookmarkList = ({ initialData, id }) => {
               key={`bookmark_${bookmarkIndex}`}
               className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
             >
-              <BookmarkCard key={bookmark._id} bookmark={bookmark} />
+              <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
             </div>
           )
         })}
