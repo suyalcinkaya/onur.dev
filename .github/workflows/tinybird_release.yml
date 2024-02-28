@@ -1,0 +1,25 @@
+
+    ##################################################
+    ###   Visit https://github.com/tinybirdco/ci   ###
+    ###   for more details or custom CI/CD         ###
+    ##################################################
+
+    name: Tinybird - Releases Workflow
+
+    on:
+      workflow_dispatch:
+        inputs:
+          job_to_run:
+            description: 'Select the job to run manually'
+            required: true
+            default: 'promote'
+
+    jobs:
+      cd:  # manage releases for workspace 'joshkennedy_me'
+        uses: tinybirdco/ci/.github/workflows/release.yml@v3.1.0
+        with:
+          job_to_run: ${{ inputs.job_to_run }}
+          data_project_dir: .
+        secrets:
+          tb_admin_token: ${{ secrets.TB_ADMIN_TOKEN }}  # set the Workspace admin token in GitHub secrets
+          tb_host: https://ui.us-east.aws.tinybird.co
