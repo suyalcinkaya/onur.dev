@@ -5,6 +5,7 @@ import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
 import { getCollection, getRaindrops, getCollections } from '@/lib/raindrop'
+import { sortByProperty } from '@/lib/utils'
 
 export async function generateStaticParams() {
   const collections = await getCollections()
@@ -13,6 +14,7 @@ export async function generateStaticParams() {
 
 async function fetchData(slug) {
   const collections = await getCollections()
+  const sortedCollections = sortByProperty(collections, 'title')
   const currentCollection = collections.find((collection) => collection.slug === slug)
   if (!currentCollection) notFound()
 
@@ -21,6 +23,7 @@ async function fetchData(slug) {
   const raindrops = await getRaindrops(currentCollection._id)
 
   return {
+    sortedCollections,
     collection: collection.item,
     raindrops
   }
@@ -28,11 +31,16 @@ async function fetchData(slug) {
 
 export default async function CollectionPage({ params }) {
   const { slug } = params
-  const { collection, raindrops } = await fetchData(slug)
+  const { sortedCollections, collection, raindrops } = await fetchData(slug)
 
   return (
     <ScrollArea className="bg-grid flex flex-col" hasScrollTitle>
-      <FloatingHeader scrollTitle={collection.title} goBackLink="/bookmarks" />
+      <FloatingHeader
+        scrollTitle={collection.title}
+        goBackLink="/bookmarks"
+        bookmarkCollections={sortedCollections}
+        currentBookmarkCollection={collection}
+      />
       <div className="content-wrapper">
         <div className="content @container">
           <PageTitle title={collection.title} />

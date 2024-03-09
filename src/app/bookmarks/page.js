@@ -17,7 +17,7 @@ export default async function Writing() {
 
   return (
     <ScrollArea className="flex flex-col lg:hidden">
-      <FloatingHeader title="Bookmarks" />
+      <FloatingHeader title="Bookmarks" bookmarkCollections={collections} />
       <div>
         {collections?.map((collection) => {
           return (
