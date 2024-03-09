@@ -41,7 +41,13 @@ export default async function RootLayout({ children }) {
             <div className="flex flex-1">{children}</div>
           </div>
         </main>
-        <Toaster />
+        <Toaster
+          closeButton
+          richColors
+          toastOptions={{
+            duration: 5000
+          }}
+        />
         <Script
           src="https://unpkg.com/@tinybirdco/flock.js"
           data-host="https://api.tinybird.co"

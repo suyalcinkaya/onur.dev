@@ -4,11 +4,13 @@ import { toast } from 'sonner'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormDescription, FormMessage } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
+import { submitBookmark } from '@/app/actions'
 import { cn } from '@/lib/utils'
 
 const formSchema = z.object({
@@ -31,19 +33,34 @@ export function SubmitBookmarkForm({ className, setFormOpen, bookmarkCollections
       type: currentBookmarkCollection?.title ?? ''
     }
   })
+  const {
+    formState: { isSubmitting, errors },
+    setError
+  } = form
+  const hasErrors = Object.keys(errors).length > 0
 
-  function onSubmit(values) {
-    setFormOpen(false)
+  async function onSubmit(values) {
+    try {
+      await submitBookmark(values)
 
-    const { hostname } = new URL(values.url)
-    toast('Bookmark submitted!', {
-      type: 'success',
-      description: (
-        <span>
-          <span className="underline underline-offset-4">{hostname}</span> has been submitted. Thank you!
-        </span>
-      )
-    })
+      const { hostname } = new URL(values.url)
+      toast('Bookmark submitted!', {
+        type: 'success',
+        description: (
+          <span>
+            <span className="underline underline-offset-4">{hostname}</span> has been submitted. Thank you!
+          </span>
+        )
+      })
+    } catch (error) {
+      setError('api.limitError', {
+        type: 'manual',
+        message: error.message
+      })
+      toast.error(error.message)
+    } finally {
+      setFormOpen(false)
+    }
   }
 
   return (
@@ -69,7 +86,7 @@ export function SubmitBookmarkForm({ className, setFormOpen, bookmarkCollections
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="john@doe.com" {...field} />
+                <Input placeholder="johndoe@gmail.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,8 +117,22 @@ export function SubmitBookmarkForm({ className, setFormOpen, bookmarkCollections
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Submit
+        <Button type="submit" className="w-full" disabled={isSubmitting || errors?.api?.limitError}>
+          {hasErrors ? (
+            'Submit'
+          ) : (
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isSubmitting ? 'summitting' : 'submit'}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.15 }}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </motion.span>
+            </AnimatePresence>
+          )}
         </Button>
       </form>
     </Form>

@@ -57,7 +57,7 @@
 
   button:disabled,
   button[disabled] {
-    @apply cursor-not-allowed bg-gray-100;
+    @apply cursor-not-allowed;
   }
 
   h1,
