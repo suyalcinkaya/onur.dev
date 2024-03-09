@@ -5,7 +5,6 @@
     "name": "Onur Şuyalçınkaya",
     "url": "https://onur.dev"
   },
-  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
