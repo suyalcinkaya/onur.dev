@@ -8,5 +8,6 @@ module.exports = {
   bracketSpacing: true,
   jsxBracketSameLine: false,
   proseWrap: 'always',
-  plugins: ['prettier-plugin-tailwindcss']
+  plugins: ['prettier-plugin-tailwindcss'],
+  tailwindFunctions: ['cn'] // Also sorting classes in cn function
 }

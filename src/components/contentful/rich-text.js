@@ -4,9 +4,10 @@ import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
+import { LoadingSpinner } from '@/components/loading-spinner'
 import { Link } from '@/components/link'
 import { CodeBlock } from '@/components/contentful/code-block'
-const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'))
+const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'), { loading: () => <LoadingSpinner /> })
 import { dasherize } from '@/lib/utils'
 import { TweetCard } from '@/components/tweet-card/tweet-card'
 
