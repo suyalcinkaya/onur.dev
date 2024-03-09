@@ -9,7 +9,7 @@ on:
 
 jobs:
   eslint:
-    name: Lint code
+    name: Lint Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
