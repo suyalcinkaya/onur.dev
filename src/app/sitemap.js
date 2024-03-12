@@ -1,9 +1,9 @@
 import { getAllPosts, getAllPageSlugs } from '@/lib/contentful'
-import { getCollections } from '@/lib/raindrop'
+import { getBookmarks } from '@/lib/raindrop'
 import { getSortedPosts } from '@/lib/utils'
 
 export default async function sitemap() {
-  const [allPosts, collections, allPages] = await Promise.all([getAllPosts(), getCollections(), getAllPageSlugs()])
+  const [allPosts, bookmarks, allPages] = await Promise.all([getAllPosts(), getBookmarks(), getAllPageSlugs()])
 
   const sortedWritings = getSortedPosts(allPosts)
   const writings = sortedWritings.map((post) => {
@@ -15,9 +15,9 @@ export default async function sitemap() {
     }
   })
 
-  const bookmarks = collections.map((collection) => {
+  const mappedBookmarks = bookmarks.map((bookmark) => {
     return {
-      url: `https://onur.dev/bookmarks/${collection.slug}`,
+      url: `https://onur.dev/bookmarks/${bookmark.slug}`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1
@@ -53,6 +53,6 @@ export default async function sitemap() {
     },
     ...pages,
     ...writings,
-    ...bookmarks
+    ...mappedBookmarks
   ]
 }

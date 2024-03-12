@@ -9,5 +9,5 @@ module.exports = {
   jsxBracketSameLine: false,
   proseWrap: 'always',
   plugins: ['prettier-plugin-tailwindcss'],
-  tailwindFunctions: ['cn'] // Also sorting classes in cn function
+  tailwindFunctions: ['cn', 'cva']
 }

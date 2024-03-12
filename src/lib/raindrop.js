@@ -10,7 +10,7 @@ const options = {
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1'
 
-export async function getRaindrops(id, pageIndex = 0) {
+export async function getBookmarkItems(id, pageIndex = 0) {
   try {
     const response = await fetch(
       `${RAINDROP_API_URL}/raindrops/${id}?` +
@@ -27,19 +27,19 @@ export async function getRaindrops(id, pageIndex = 0) {
   }
 }
 
-export async function getCollections() {
+export async function getBookmarks() {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options)
-    const collections = await response.json()
-    const filteredCollections = collections.items.filter((collection) => COLLECTION_IDS.includes(collection._id))
-    return filteredCollections
+    const bookmarks = await response.json()
+    const filteredBookmarks = bookmarks.items.filter((bookmark) => COLLECTION_IDS.includes(bookmark._id))
+    return filteredBookmarks
   } catch (error) {
     console.info(error)
     return null
   }
 }
 
-export async function getCollection(id) {
+export async function getBookmark(id) {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collection/${id}`, options)
     return await response.json()

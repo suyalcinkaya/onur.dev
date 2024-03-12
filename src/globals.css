@@ -57,7 +57,7 @@
 
   button:disabled,
   button[disabled] {
-    @apply cursor-not-allowed bg-gray-100;
+    @apply cursor-not-allowed;
   }
 
   h1,
@@ -265,10 +265,6 @@
 }
 
 @layer utilities {
-  .underline-offset-4 {
-    text-underline-offset: 4px;
-  }
-
   .word-break-word {
     word-break: break-word;
   }

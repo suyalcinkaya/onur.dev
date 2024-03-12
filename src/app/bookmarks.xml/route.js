@@ -1,9 +1,9 @@
 import { Feed } from 'feed'
 
-import { getCollections, getRaindrops } from '@/lib/raindrop'
+import { getBookmarks, getBookmarkItems } from '@/lib/raindrop'
 
 export async function GET() {
-  const collections = await getCollections()
+  const bookmarks = await getBookmarks()
   const date = new Date()
   const siteURL = 'https://onur.dev'
   const author = {
@@ -25,9 +25,9 @@ export async function GET() {
   })
 
   const bookmarkList = []
-  for (const collection of collections) {
-    const raindrops = await getRaindrops(collection._id)
-    const { items = [] } = raindrops ?? {}
+  for (const bookmark of bookmarks) {
+    const bookmarkItems = await getBookmarkItems(bookmark._id)
+    const { items = [] } = bookmarkItems ?? {}
 
     items?.slice(0, 10).forEach((bookmark) => {
       bookmarkList.push({

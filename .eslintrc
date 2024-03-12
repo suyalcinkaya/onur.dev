@@ -20,7 +20,8 @@
     "react/display-name": 0,
     "@next/next/no-img-element": 0,
     "no-unused-vars": "warn",
-    "import/no-unresolved": [2, { "caseSensitive": false }]
+    "import/no-unresolved": [2, { "caseSensitive": false }],
+    "react/no-unescaped-entities": 0
   },
   "settings": {
     "import/resolver": {

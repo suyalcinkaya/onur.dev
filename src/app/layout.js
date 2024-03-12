@@ -7,6 +7,7 @@ import { EyeIcon } from 'lucide-react'
 
 import { SideMenu } from '@/components/side-menu'
 import { MenuContent } from '@/components/menu-content'
+import { Toaster } from '@/components/ui/sonner'
 import { PROFILES } from '@/lib/constants'
 import { sharedTitle, sharedDescription } from '@/app/shared-metadata'
 
@@ -40,6 +41,13 @@ export default async function RootLayout({ children }) {
             <div className="flex flex-1">{children}</div>
           </div>
         </main>
+        <Toaster
+          closeButton
+          richColors
+          toastOptions={{
+            duration: 5000
+          }}
+        />
         <Script
           src="https://unpkg.com/@tinybirdco/flock.js"
           data-host="https://api.tinybird.co"
