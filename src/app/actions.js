@@ -29,7 +29,7 @@ export async function submitBookmark(formData) {
           fields: {
             URL: new URL(formData.url).origin,
             Email: formData.email,
-            Date: new Date().toLocaleString('en-IE'),
+            Date: new Date().toISOString(),
             Type: formData.type || 'Other'
           }
         })
