@@ -23,14 +23,14 @@ const formSchema = z.object({
   type: z.string().optional()
 })
 
-export function SubmitBookmarkForm({ className, setFormOpen, bookmarkCollections, currentBookmarkCollection }) {
+export function SubmitBookmarkForm({ className, setFormOpen, bookmarks, currentBookmark }) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     // mode: 'onChange',
     defaultValues: {
       url: '',
       email: '',
-      type: currentBookmarkCollection?.title ?? ''
+      type: currentBookmark?.title ?? ''
     }
   })
   const {
@@ -105,9 +105,9 @@ export function SubmitBookmarkForm({ className, setFormOpen, bookmarkCollections
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {bookmarkCollections.map((collection) => (
-                    <SelectItem key={collection.slug} value={collection.title}>
-                      {collection.title}
+                  {bookmarks.map((bookmark) => (
+                    <SelectItem key={bookmark.slug} value={bookmark.title}>
+                      {bookmark.title}
                     </SelectItem>
                   ))}
                 </SelectContent>

@@ -2,6 +2,7 @@
 
 import { cookies } from 'next/headers'
 
+import { getBookmarkItems } from '@/lib/raindrop'
 import { MAX_BOOKMARK_SUBMISSIONS_PER_DAY, BOOKMARK_SUBMISSION_COUNT_COOKIE_NAME } from '@/lib/constants'
 
 export async function submitBookmark(formData) {
@@ -48,4 +49,8 @@ export async function submitBookmark(formData) {
     console.info(error)
     throw new Error('Failed to submit bookmark')
   }
+}
+
+export async function fetchDataByPageIndex(id, pageIndex) {
+  return await getBookmarkItems(id, pageIndex)
 }

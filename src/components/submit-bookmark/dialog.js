@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { SubmitBookmarkForm } from '@/components/submit-bookmark/form'
 import { SUBMIT_BOOKMARK_FORM_TITLE, SUBMIT_BOOKMARK_FORM_DESCRIPTION } from '@/lib/constants'
 
-export const SubmitBookmarkDialog = ({ bookmarkCollections }) => {
+export const SubmitBookmarkDialog = ({ bookmarks, currentBookmark }) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -35,7 +35,7 @@ export const SubmitBookmarkDialog = ({ bookmarkCollections }) => {
           <DialogTitle>{SUBMIT_BOOKMARK_FORM_TITLE}</DialogTitle>
           <DialogDescription>{SUBMIT_BOOKMARK_FORM_DESCRIPTION}</DialogDescription>
         </DialogHeader>
-        <SubmitBookmarkForm setFormOpen={setOpen} bookmarkCollections={bookmarkCollections} />
+        <SubmitBookmarkForm setFormOpen={setOpen} bookmarks={bookmarks} currentBookmark={currentBookmark} />
       </DialogContent>
     </Dialog>
   )

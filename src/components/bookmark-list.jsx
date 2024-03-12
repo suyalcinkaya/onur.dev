@@ -5,14 +5,9 @@ import { ArrowDownIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button.jsx'
 import { BookmarkCard } from '@/components/bookmark-card'
-import { getRaindrops } from '@/lib/raindrop'
+import { fetchDataByPageIndex } from '@/app/actions'
 import { cn } from '@/lib/utils'
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'
-
-async function fetchDataByPageIndex(id, pageIndex) {
-  const raindrops = await getRaindrops(id, pageIndex)
-  return raindrops
-}
 
 export const BookmarkList = ({ initialData, id }) => {
   const [data, setData] = useState(initialData?.result ? initialData?.items : [])

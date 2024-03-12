@@ -5,31 +5,31 @@ import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { getPageSeo } from '@/lib/contentful'
-import { getCollections } from '@/lib/raindrop'
+import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
 async function fetchData() {
-  const collections = await getCollections()
-  const sortedCollections = sortByProperty(collections, 'title')
-  return { collections: sortedCollections }
+  const bookmarks = await getBookmarks()
+  const sortedBookmarks = sortByProperty(bookmarks, 'title')
+  return { bookmarks: sortedBookmarks }
 }
 
 export default async function Writing() {
-  const { collections } = await fetchData()
+  const { bookmarks } = await fetchData()
 
   return (
     <ScrollArea className="flex flex-col lg:hidden">
-      <FloatingHeader title="Bookmarks" bookmarkCollections={collections} />
+      <FloatingHeader title="Bookmarks" bookmarks={bookmarks} />
       <Suspense fallback={<LoadingSpinner />}>
-        {collections?.map((collection) => {
+        {bookmarks?.map((bookmark) => {
           return (
             <Link
-              key={collection._id}
-              href={`/bookmarks/${collection.slug}`}
+              key={bookmark._id}
+              href={`/bookmarks/${bookmark.slug}`}
               className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
             >
-              <span className="font-medium">{collection.title}</span>
-              <span className="text-slate-500">{collection.count} bookmarks</span>
+              <span className="font-medium">{bookmark.title}</span>
+              <span className="text-slate-500">{bookmark.count} bookmarks</span>
             </Link>
           )
         })}

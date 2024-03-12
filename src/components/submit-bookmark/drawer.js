@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { SubmitBookmarkForm } from '@/components/submit-bookmark/form'
 import { SUBMIT_BOOKMARK_FORM_TITLE, SUBMIT_BOOKMARK_FORM_DESCRIPTION } from '@/lib/constants'
 
-export const SubmitBookmarkDrawer = ({ bookmarkCollections, currentBookmarkCollection }) => {
+export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -37,8 +37,8 @@ export const SubmitBookmarkDrawer = ({ bookmarkCollections, currentBookmarkColle
         </DrawerHeader>
         <SubmitBookmarkForm
           setFormOpen={setOpen}
-          bookmarkCollections={bookmarkCollections}
-          currentBookmarkCollection={currentBookmarkCollection}
+          bookmarks={bookmarks}
+          currentBookmark={currentBookmark}
           className="py-8"
         />
       </DrawerContent>

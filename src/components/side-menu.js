@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter, usePathname } from 'next/navigation'
-import Link from 'next/link'
 import { RadioIcon } from 'lucide-react'
 
 import { ScrollArea } from '@/components/scroll-area'
@@ -19,7 +18,7 @@ const keyCodePathnameMapping = {
   Digit6: '/bookmarks'
 }
 
-export const SideMenu = ({ children, title, href, bookmarkCollections, isInner }) => {
+export const SideMenu = ({ children, title, bookmarks = [], isInner }) => {
   const router = useRouter()
   const pathname = usePathname()
   useKeyPress(onKeyPress, Object.keys(keyCodePathnameMapping))
@@ -30,8 +29,9 @@ export const SideMenu = ({ children, title, href, bookmarkCollections, isInner }
     if (targetPathname && targetPathname !== pathname) router.push(targetPathname)
   }
 
-  const isWritingHref = href === '/writing'
-  const isBookmarksHref = href === '/bookmarks'
+  const isWritingPath = pathname.startsWith('/writing')
+  const isBookmarksPath = pathname.startsWith('/bookmarks')
+  const currentBookmark = bookmarks.find((bookmark) => `/bookmarks/${bookmark.slug}` === pathname)
 
   return (
     <ScrollArea
@@ -43,14 +43,12 @@ export const SideMenu = ({ children, title, href, bookmarkCollections, isInner }
       {title && (
         <div className="sticky top-0 z-10 border-b bg-zinc-50 px-5 py-3">
           <div className="flex items-center justify-between">
-            <div className="text-sm font-semibold tracking-tight">
-              {href ? <Link href={href}>{title}</Link> : <span>{title}</span>}
-            </div>
+            <span className="text-sm font-semibold tracking-tight">{title}</span>
             <div className="flex items-center gap-2">
-              {(isWritingHref || isBookmarksHref) && (
+              {(isWritingPath || isBookmarksPath) && (
                 <Button variant="outline" size="xs" asChild>
                   <a
-                    href={isWritingHref ? '/writing.xml' : '/bookmarks.xml'}
+                    href={isWritingPath ? '/writing.xml' : '/bookmarks.xml'}
                     title="RSS feed"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -60,7 +58,7 @@ export const SideMenu = ({ children, title, href, bookmarkCollections, isInner }
                   </a>
                 </Button>
               )}
-              {isBookmarksHref && <SubmitBookmarkDialog bookmarkCollections={bookmarkCollections} />}
+              {isBookmarksPath && <SubmitBookmarkDialog bookmarks={bookmarks} currentBookmark={currentBookmark} />}
             </div>
           </div>
         </div>

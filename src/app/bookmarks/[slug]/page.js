@@ -6,48 +6,48 @@ import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
-import { getCollection, getRaindrops, getCollections } from '@/lib/raindrop'
+import { getBookmark, getBookmarkItems, getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
 export async function generateStaticParams() {
-  const collections = await getCollections()
-  return collections.map((collection) => ({ slug: collection.slug }))
+  const bookmarks = await getBookmarks()
+  return bookmarks.map((bookmark) => ({ slug: bookmark.slug }))
 }
 
 async function fetchData(slug) {
-  const collections = await getCollections()
-  const sortedCollections = sortByProperty(collections, 'title')
-  const currentCollection = collections.find((collection) => collection.slug === slug)
-  if (!currentCollection) notFound()
+  const bookmarks = await getBookmarks()
+  const sortedBookmarks = sortByProperty(bookmarks, 'title')
+  const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
+  if (!currentBookmark) notFound()
 
-  const collection = await getCollection(currentCollection._id)
-  if (!collection) notFound()
-  const raindrops = await getRaindrops(currentCollection._id)
+  const bookmark = await getBookmark(currentBookmark._id)
+  if (!bookmark) notFound()
+  const bookmarkItems = await getBookmarkItems(currentBookmark._id)
 
   return {
-    sortedCollections,
-    collection: collection.item,
-    raindrops
+    bookmarks: sortedBookmarks,
+    currentBookmark: bookmark.item,
+    bookmarkItems
   }
 }
 
 export default async function CollectionPage({ params }) {
   const { slug } = params
-  const { sortedCollections, collection, raindrops } = await fetchData(slug)
+  const { bookmarks, currentBookmark, bookmarkItems } = await fetchData(slug)
 
   return (
     <ScrollArea className="bg-grid flex flex-col" hasScrollTitle>
       <FloatingHeader
-        scrollTitle={collection.title}
+        scrollTitle={currentBookmark.title}
         goBackLink="/bookmarks"
-        bookmarkCollections={sortedCollections}
-        currentBookmarkCollection={collection}
+        bookmarks={bookmarks}
+        currentBookmark={currentBookmark}
       />
       <div className="content-wrapper">
         <div className="content @container">
-          <PageTitle title={collection.title} />
+          <PageTitle title={currentBookmark.title} />
           <Suspense fallback={<LoadingSpinner />}>
-            <BookmarkList id={collection._id} initialData={raindrops} />
+            <BookmarkList id={currentBookmark._id} initialData={bookmarkItems} />
           </Suspense>
         </div>
       </div>
@@ -57,13 +57,13 @@ export default async function CollectionPage({ params }) {
 
 export async function generateMetadata({ params }) {
   const { slug } = params
-  const collections = await getCollections()
-  const collection = collections.find((collection) => collection.slug === slug)
-  if (!collection) return null
+  const bookmarks = await getBookmarks()
+  const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
+  if (!currentBookmark) return null
 
-  const siteUrl = `/bookmarks/${collection.slug}`
-  const seoTitle = `${collection.title} | Bookmarks`
-  const seoDescription = `A curated selection of various handpicked ${collection.title.toLowerCase()} bookmarks by Onur Şuyalçınkaya`
+  const siteUrl = `/bookmarks/${currentBookmark.slug}`
+  const seoTitle = `${currentBookmark.title} | Bookmarks`
+  const seoDescription = `A curated selection of various handpicked ${currentBookmark.title.toLowerCase()} bookmarks by Onur Şuyalçınkaya`
 
   return {
     title: seoTitle,
