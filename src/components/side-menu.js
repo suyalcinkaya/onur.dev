@@ -49,7 +49,7 @@ export const SideMenu = ({ children, title, href, bookmarkCollections, isInner }
             <div className="flex items-center gap-2">
               {(isWritingHref || isBookmarksHref) && (
                 <Button variant="outline" size="xs" asChild>
-                  <Link
+                  <a
                     href={isWritingHref ? '/writing.xml' : '/bookmarks.xml'}
                     title="RSS feed"
                     target="_blank"
@@ -57,7 +57,7 @@ export const SideMenu = ({ children, title, href, bookmarkCollections, isInner }
                   >
                     <RadioIcon size={16} className="mr-2" />
                     RSS feed
-                  </Link>
+                  </a>
                 </Button>
               )}
               {isBookmarksHref && <SubmitBookmarkDialog bookmarkCollections={bookmarkCollections} />}

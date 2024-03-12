@@ -80,7 +80,7 @@ export const FloatingHeader = memo(
                 <div className="flex items-center gap-2">
                   {(isWritingIndexPage || isBookmarksIndexPage) && (
                     <Button variant="outline" size="xs" asChild>
-                      <Link
+                      <a
                         href={isWritingIndexPage ? '/writing.xml' : '/bookmarks.xml'}
                         title="RSS feed"
                         target="_blank"
@@ -88,7 +88,7 @@ export const FloatingHeader = memo(
                       >
                         <RadioIcon size={16} className="mr-2" />
                         RSS feed
-                      </Link>
+                      </a>
                     </Button>
                   )}
                   {isBookmarkPath && (
