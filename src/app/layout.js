@@ -98,5 +98,6 @@ export const viewport = {
   themeColor: 'white',
   colorScheme: 'only light',
   width: 'device-width',
-  initialScale: 1
+  initialScale: 1,
+  maximumScale: 1,
 }
