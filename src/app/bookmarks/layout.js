@@ -39,3 +39,8 @@ export default async function BookmarksLayout({ children }) {
     </div>
   )
 }
+
+export const viewport = {
+  //  To fix the zoom issue on mobile for the bookmark submit form
+  maximumScale: 1
+}
