@@ -52,6 +52,6 @@ export async function submitBookmark(formData) {
   }
 }
 
-export async function fetchDataByPageIndex(id, pageIndex) {
+export async function getBookmarkItemsByPageIndex(id, pageIndex) {
   return await getBookmarkItems(id, pageIndex)
 }
