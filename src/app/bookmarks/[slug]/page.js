@@ -1,8 +1,10 @@
+import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
+import { LoadingSpinner } from '@/components/loading-spinner'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
 import { getCollection, getRaindrops, getCollections } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
@@ -44,7 +46,9 @@ export default async function CollectionPage({ params }) {
       <div className="content-wrapper">
         <div className="content @container">
           <PageTitle title={collection.title} />
-          <BookmarkList id={collection._id} initialData={raindrops} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <BookmarkList id={collection._id} initialData={raindrops} />
+          </Suspense>
         </div>
       </div>
     </ScrollArea>

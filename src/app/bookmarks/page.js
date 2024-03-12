@@ -1,7 +1,9 @@
+import { Suspense } from 'react'
 import Link from 'next/link'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
+import { LoadingSpinner } from '@/components/loading-spinner'
 import { getPageSeo } from '@/lib/contentful'
 import { getCollections } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
@@ -18,7 +20,7 @@ export default async function Writing() {
   return (
     <ScrollArea className="flex flex-col lg:hidden">
       <FloatingHeader title="Bookmarks" bookmarkCollections={collections} />
-      <div>
+      <Suspense fallback={<LoadingSpinner />}>
         {collections?.map((collection) => {
           return (
             <Link
@@ -31,7 +33,7 @@ export default async function Writing() {
             </Link>
           )
         })}
-      </div>
+      </Suspense>
     </ScrollArea>
   )
 }

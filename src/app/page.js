@@ -26,8 +26,8 @@ export default async function Home() {
         <div className="content">
           <PageTitle title="Home" className="lg:hidden" />
           <p>
-            {`Hi 👋 I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in Amsterdam,
-          The Netherlands.`}
+            Hi 👋 I'm Onur (meaning "Honour" in English), a software engineer, dj, writer, and minimalist based in
+            Amsterdam, The Netherlands.
           </p>
           <p>
             I develop things as a Senior Frontend Software Engineer at Bitvavo. Previously, I worked as a Senior
