@@ -5,10 +5,14 @@ import { CONTENT_TYPES } from '@/lib/constants'
 export const runtime = 'edge'
 export const dynamic = 'auto'
 
+const secret = `${process.env.NEXT_REVALIDATE_SECRET}`
+
 export async function POST(request) {
+  const payload = await request.json()
+
   const requestHeaders = new Headers(request.headers)
-  const secret = requestHeaders.get('x-revalidate-secret')
-  if (secret !== process.env.NEXT_REVALIDATE_SECRET) {
+  const revalidateSecret = requestHeaders.get('x-revalidate-secret')
+  if (revalidateSecret !== secret) {
     return Response.json(
       {
         revalidated: false,
@@ -19,47 +23,41 @@ export async function POST(request) {
     )
   }
 
-  const payload = await request.json()
-  const contentTypeId = payload.contentTypeId
+  const { contentTypeId, slug } = payload
 
   switch (contentTypeId) {
-    case CONTENT_TYPES.PAGE: {
-      const path = payload.slug
-      if (path) {
-        revalidatePath(`/${path}`)
+    case CONTENT_TYPES.PAGE:
+      if (slug) {
+        revalidatePath(`/${slug}`)
       } else {
         return Response.json(
           {
             revalidated: false,
             now: Date.now(),
-            message: 'Missing page path to revalidate'
+            message: 'Missing page slug to revalidate'
           },
           { status: 400 }
         )
       }
       break
-    }
-    case CONTENT_TYPES.POST: {
-      const path = payload.slug
-      if (path) {
-        revalidatePath(`/writing/${path}`)
+    case CONTENT_TYPES.POST:
+      if (slug) {
+        revalidatePath(`/writing/${slug}`)
         revalidatePath('/writing')
       } else {
         return Response.json(
           {
             revalidated: false,
             now: Date.now(),
-            message: 'Missing writing path to revalidate'
+            message: 'Missing writing slug to revalidate'
           },
           { status: 400 }
         )
       }
       break
-    }
-    case CONTENT_TYPES.LOGBOOK: {
+    case CONTENT_TYPES.LOGBOOK:
       revalidatePath('/journey')
       break
-    }
     default:
       return Response.json(
         {
