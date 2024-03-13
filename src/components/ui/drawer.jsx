@@ -27,12 +27,12 @@ const DrawerContent = forwardRef(({ className, children, ...props }, ref) => (
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950',
+        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-gray-200 bg-white',
         className
       )}
       {...props}
     >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-gray-100 dark:bg-gray-800" />
+      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-gray-100" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
@@ -59,11 +59,7 @@ const DrawerTitle = forwardRef(({ className, ...props }, ref) => (
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName
 
 const DrawerDescription = forwardRef(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Description
-    ref={ref}
-    className={cn('text-sm text-gray-500 dark:text-gray-400', className)}
-    {...props}
-  />
+  <DrawerPrimitive.Description ref={ref} className={cn('text-sm text-gray-500', className)} {...props} />
 ))
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName
 
