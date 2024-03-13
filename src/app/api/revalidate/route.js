@@ -4,7 +4,7 @@ import { CONTENT_TYPES } from '@/lib/constants'
 
 export const runtime = 'edge'
 
-export async function GET(request) {
+export async function POST(request) {
   const requestHeaders = new Headers(request.headers)
   const secret = requestHeaders.get('x-revalidate-secret')
   if (secret !== process.env.NEXT_REVALIDATE_SECRET) {
@@ -18,12 +18,12 @@ export async function GET(request) {
     )
   }
 
-  const response = await request.json()
-  const contentTypeId = response.contentTypeId
+  const payload = await request.text()
+  const contentTypeId = payload.contentTypeId
 
   switch (contentTypeId) {
     case CONTENT_TYPES.PAGE: {
-      const path = response.slug
+      const path = payload.slug
       if (path) {
         revalidatePath(`/${path}`)
       } else {
@@ -39,7 +39,7 @@ export async function GET(request) {
       break
     }
     case CONTENT_TYPES.POST: {
-      const path = response.slug
+      const path = payload.slug
       if (path) {
         revalidatePath(`/writing/${path}`)
         revalidatePath('/writing')
