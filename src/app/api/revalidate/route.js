@@ -5,7 +5,8 @@ import { CONTENT_TYPES } from '@/lib/constants'
 export const runtime = 'edge'
 
 export async function GET(request) {
-  const secret = request.headers['x-revalidate-secret']
+  const requestHeaders = new Headers(request.headers)
+  const secret = requestHeaders.get('x-revalidate-secret')
   if (secret !== process.env.NEXT_REVALIDATE_SECRET) {
     return Response.json(
       {
