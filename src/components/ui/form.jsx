@@ -56,14 +56,7 @@ FormItem.displayName = 'FormItem'
 const FormLabel = forwardRef(({ className, ...props }, ref) => {
   const { error, formItemId } = useFormField()
 
-  return (
-    <Label
-      ref={ref}
-      className={cn(error && 'text-red-500 dark:text-red-900', className)}
-      htmlFor={formItemId}
-      {...props}
-    />
-  )
+  return <Label ref={ref} className={cn(error && 'text-red-500', className)} htmlFor={formItemId} {...props} />
 })
 FormLabel.displayName = 'FormLabel'
 
@@ -85,14 +78,7 @@ FormControl.displayName = 'FormControl'
 const FormDescription = forwardRef(({ className, ...props }, ref) => {
   const { formDescriptionId } = useFormField()
 
-  return (
-    <p
-      ref={ref}
-      id={formDescriptionId}
-      className={cn('text-[0.8rem] text-gray-500 dark:text-gray-400', className)}
-      {...props}
-    />
-  )
+  return <p ref={ref} id={formDescriptionId} className={cn('text-[0.8rem] text-gray-500', className)} {...props} />
 })
 FormDescription.displayName = 'FormDescription'
 
@@ -105,12 +91,7 @@ const FormMessage = forwardRef(({ className, children, ...props }, ref) => {
   }
 
   return (
-    <p
-      ref={ref}
-      id={formMessageId}
-      className={cn('text-[0.8rem] font-medium text-red-500 dark:text-red-900', className)}
-      {...props}
-    >
+    <p ref={ref} id={formMessageId} className={cn('text-[0.8rem] font-medium text-red-500', className)} {...props}>
       {body}
     </p>
   )

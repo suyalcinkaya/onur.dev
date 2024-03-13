@@ -1,20 +1,73 @@
-import { NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 
+import { CONTENT_TYPES } from '@/lib/constants'
+
 export const runtime = 'edge'
+export const dynamic = 'auto'
 
-export async function GET(request) {
-  const searchParams = request.nextUrl.searchParams
-  const secret = searchParams.get('secret')
+const secret = `${process.env.NEXT_REVALIDATE_SECRET}`
 
-  if (secret !== process.env.NEXT_REVALIDATE_SECRET) {
-    return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
+export async function POST(request) {
+  const payload = await request.json()
+
+  const requestHeaders = new Headers(request.headers)
+  const revalidateSecret = requestHeaders.get('x-revalidate-secret')
+  if (revalidateSecret !== secret) {
+    return Response.json(
+      {
+        revalidated: false,
+        now: Date.now(),
+        message: 'Invalid secret'
+      },
+      { status: 401 }
+    )
   }
 
-  const path = searchParams.get('path') || '/'
-  revalidatePath(path)
-  return NextResponse.json(
-    { revalidated: true, message: `Revalidation request for path: ${path} is successful`, now: Date.now() },
-    { status: 200 }
-  )
+  const { contentTypeId, slug } = payload
+
+  switch (contentTypeId) {
+    case CONTENT_TYPES.PAGE:
+      if (slug) {
+        revalidatePath(`/${slug}`)
+      } else {
+        return Response.json(
+          {
+            revalidated: false,
+            now: Date.now(),
+            message: 'Missing page slug to revalidate'
+          },
+          { status: 400 }
+        )
+      }
+      break
+    case CONTENT_TYPES.POST:
+      if (slug) {
+        revalidatePath(`/writing/${slug}`)
+        revalidatePath('/writing')
+      } else {
+        return Response.json(
+          {
+            revalidated: false,
+            now: Date.now(),
+            message: 'Missing writing slug to revalidate'
+          },
+          { status: 400 }
+        )
+      }
+      break
+    case CONTENT_TYPES.LOGBOOK:
+      revalidatePath('/journey')
+      break
+    default:
+      return Response.json(
+        {
+          revalidated: false,
+          now: Date.now(),
+          message: 'Invalid content type'
+        },
+        { status: 400 }
+      )
+  }
+
+  return Response.json({ revalidated: true, now: Date.now() })
 }
