@@ -18,7 +18,7 @@ export async function POST(request) {
     )
   }
 
-  const payload = await request.text()
+  const payload = await request.json()
   const contentTypeId = payload.contentTypeId
 
   switch (contentTypeId) {
