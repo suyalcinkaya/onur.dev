@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache'
 import { CONTENT_TYPES } from '@/lib/constants'
 
 export const runtime = 'edge'
+export const dynamic = 'auto'
 
 export async function POST(request) {
   const requestHeaders = new Headers(request.headers)
