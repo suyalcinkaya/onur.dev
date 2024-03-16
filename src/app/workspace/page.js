@@ -10,7 +10,7 @@ import { WORKSPACE_ITEMS } from '@/lib/constants'
 
 export default async function Workspace() {
   return (
-    <ScrollArea className="flex flex-col">
+    <ScrollArea>
       <GradientBg4 />
       <FloatingHeader title="Workspace" />
       <div className="content-wrapper">

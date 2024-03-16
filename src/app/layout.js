@@ -8,6 +8,7 @@ import { EyeIcon } from 'lucide-react'
 import { SideMenu } from '@/components/side-menu'
 import { MenuContent } from '@/components/menu-content'
 import { Toaster } from '@/components/ui/sonner'
+import { preloadGetAllPosts } from '@/lib/contentful'
 import { PROFILES } from '@/lib/constants'
 import { sharedTitle, sharedDescription } from '@/app/shared-metadata'
 
@@ -20,6 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export default async function RootLayout({ children }) {
   const { isEnabled } = draftMode()
+  preloadGetAllPosts(isEnabled)
 
   return (
     <html lang="en" className={`${GeistSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
@@ -52,6 +54,7 @@ export default async function RootLayout({ children }) {
           src="https://unpkg.com/@tinybirdco/flock.js"
           data-host="https://api.tinybird.co"
           data-token={process.env.NEXT_PUBLIC_TINYBIRD_TOKEN}
+          strategy="lazyOnload"
         />
       </body>
     </html>

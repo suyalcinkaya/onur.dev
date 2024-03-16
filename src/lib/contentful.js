@@ -24,6 +24,10 @@ const fetchGraphQL = cache(async (query, preview = isDevelopment) => {
   }
 })
 
+export const preloadGetAllPosts = (preview = isDevelopment) => {
+  void getAllPosts(preview)
+}
+
 export const getAllPosts = cache(async (preview = isDevelopment) => {
   try {
     const entries = await fetchGraphQL(

@@ -18,7 +18,7 @@ export default async function Writing() {
   const { bookmarks } = await fetchData()
 
   return (
-    <ScrollArea className="flex flex-col lg:hidden">
+    <ScrollArea className="lg:hidden">
       <FloatingHeader title="Bookmarks" bookmarks={bookmarks} />
       <Suspense fallback={<LoadingSpinner />}>
         {bookmarks?.map((bookmark) => {

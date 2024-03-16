@@ -17,7 +17,7 @@ export default async function Writing() {
   const { sortedPosts } = await fetchData()
 
   return (
-    <ScrollArea className="flex flex-col lg:hidden">
+    <ScrollArea className="lg:hidden">
       <FloatingHeader title="Writing" />
       <Suspense fallback={<LoadingSpinner />}>
         <WritingListLayout list={sortedPosts} isMobile />
