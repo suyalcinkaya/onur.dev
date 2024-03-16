@@ -6,7 +6,7 @@ export const JourneyCard = ({ title, description, image, index }) => {
       <span className="font-semibold tracking-tight">{title}</span>
       {description && <MarkdownRenderer className="text-sm">{description}</MarkdownRenderer>}
       {image?.url && (
-        <div className="mt-2.5 overflow-hidden rounded-xl">
+        <div className="mt-2.5 overflow-hidden rounded-xl bg-white">
           <img
             src={image.url}
             alt={image.title || image.description}

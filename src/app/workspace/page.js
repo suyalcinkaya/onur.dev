@@ -38,8 +38,7 @@ export default async function Workspace() {
             />
             <EmptyPlaceholder />
           </div>
-
-          <div className="mt-2 overflow-hidden rounded-lg border md:mt-8">
+          <div className="mt-2 overflow-hidden rounded-lg border bg-white md:mt-8">
             <Table>
               <TableHeader>
                 <TableRow>
