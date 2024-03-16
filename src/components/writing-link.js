@@ -1,14 +1,9 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { cn, getDateTimeFormat, viewCountFormatter } from '@/lib/utils'
 
-export const WritingLink = ({ post, viewCount, isMobile }) => {
-  const pathname = usePathname()
-  const isActive = pathname === `/writing/${post.slug}`
+export const WritingLink = ({ post, viewCount, isMobile, isActive }) => {
   const date = post.date || post.sys.firstPublishedAt
   const formattedDate = getDateTimeFormat(date)
   const formattedViewCount = viewCount ? viewCountFormatter.format(viewCount) : null

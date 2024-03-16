@@ -9,7 +9,7 @@ export async function submitBookmark(formData) {
   const cookieStore = cookies()
 
   // Fake promise to simulate submitting the form
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  await new Promise((resolve) => setTimeout(resolve, 2000))
 
   const formSubmissionCountCookie = cookieStore.get(BOOKMARK_SUBMISSION_COUNT_COOKIE_NAME)
   if (formSubmissionCountCookie?.value >= MAX_BOOKMARK_SUBMISSIONS_PER_DAY) {
@@ -27,7 +27,7 @@ export async function submitBookmark(formData) {
         },
         body: JSON.stringify({
           fields: {
-            URL: new URL(formData.url).origin,
+            URL: formData.url,
             Email: formData.email,
             Date: new Date().toISOString(),
             Type: formData.type || 'Other'

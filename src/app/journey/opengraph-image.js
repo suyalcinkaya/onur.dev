@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
 import { getPageSeo } from '@/lib/contentful'
-import { getMediumFont, getBoldFont } from '@/lib/utils'
+import { getMediumFont, getBoldFont } from '@/lib/fonts'
 import { sharedImage } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
@@ -14,10 +14,12 @@ export const size = {
 export const contentType = sharedImage.type
 
 export default async function Image() {
-  const seoData = (await getPageSeo('journey')) ?? {}
-  const {
-    seo: { title, description, ogImageTitle, ogImageSubtitle }
-  } = seoData
+  const [seoData = {}, mediumFontData, boldFontData] = await Promise.all([
+    getPageSeo('journey'),
+    getMediumFont(),
+    getBoldFont()
+  ])
+  const { seo: { title, description, ogImageTitle, ogImageSubtitle } = {} } = seoData
 
   return new ImageResponse(
     (
@@ -47,13 +49,13 @@ export default async function Image() {
       fonts: [
         {
           name: 'SF Pro',
-          data: await getMediumFont(),
+          data: mediumFontData,
           style: 'normal',
           weight: 500
         },
         {
           name: 'SF Pro',
-          data: await getBoldFont(),
+          data: boldFontData,
           style: 'normal',
           weight: 600
         }
