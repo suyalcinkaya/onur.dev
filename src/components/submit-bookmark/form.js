@@ -43,12 +43,11 @@ export function SubmitBookmarkForm({ className, setFormOpen, bookmarks, currentB
     try {
       await submitBookmark(values)
 
-      const { hostname } = new URL(values.url)
       toast('Bookmark submitted!', {
         type: 'success',
         description: (
           <span>
-            <span className="underline underline-offset-4">{hostname}</span> has been submitted. Thank you!
+            <span className="underline underline-offset-4">{values.url}</span> has been submitted. Thank you!
           </span>
         )
       })

@@ -8,12 +8,12 @@ import { getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {
   const allPosts = await getAllPosts()
-  return { allPosts }
+  const sortedPosts = getSortedPosts(allPosts)
+  return { sortedPosts }
 }
 
 export default async function WritingLayout({ children }) {
-  const { allPosts } = await fetchData()
-  const sortedPosts = getSortedPosts(allPosts)
+  const { sortedPosts } = await fetchData()
 
   return (
     <>

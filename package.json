@@ -41,6 +41,7 @@
     "react-intersection-observer": "^9.5.2",
     "react-tweet": "^3.2.0",
     "react-wrap-balancer": "^1.1.0",
+    "server-only": "^0.0.1",
     "sonner": "^1.4.3",
     "sugar-high": "^0.6.0",
     "tailwind-merge": "^2.2.1",

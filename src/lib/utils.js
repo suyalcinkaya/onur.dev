@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { cx } from 'classix'
 
@@ -50,28 +51,6 @@ export const getDateTimeFormat = (date) => {
 export const dasherize = (text) => String(text).replace(/ +/g, '-').toLowerCase()
 
 /**
- * Retrieves the SpaceGrotesk-Medium font file asynchronously.
- * It returns a Promise that resolves to the font file's array buffer.
- * @returns A Promise resolving to the SpaceGrotesk-Medium font file as an array buffer.
- */
-export const getMediumFont = async () => {
-  const response = await fetch(new URL('@/assets/fonts/SpaceGrotesk-Medium.ttf', import.meta.url))
-  const font = await response.arrayBuffer()
-  return font
-}
-
-/**
- * Retrieves the SpaceGrotesk-SemiBold font file asynchronously.
- * It returns a Promise that resolves to the font file's array buffer.
- * @returns A Promise resolving to the SpaceGrotesk-SemiBold font file as an array buffer.
- */
-export const getBoldFont = async () => {
-  const response = await fetch(new URL('@/assets/fonts/SpaceGrotesk-SemiBold.ttf', import.meta.url))
-  const font = await response.arrayBuffer()
-  return font
-}
-
-/**
  * Checks if the current environment is set to development mode.
  * The function compares the value of the `NODE_ENV` environment variable with 'development'.
  * @returns A boolean value indicating whether the current environment is set to development mode.
@@ -85,7 +64,7 @@ export const isDevelopment = process.env.NODE_ENV === 'development'
  * @param prop The property name used for sorting the objects.
  * @returns The sorted array in ascending order based on the specified property.
  */
-export const sortByProperty = (arr, prop) => {
+export const sortByProperty = cache((arr, prop) => {
   return arr?.sort((a, b) => {
     const itemA = a[prop].toUpperCase()
     const itemB = b[prop].toUpperCase()
@@ -98,7 +77,7 @@ export const sortByProperty = (arr, prop) => {
 
     return 0
   })
-}
+})
 
 /**
  * Sorts an array of blog post objects based on their date field (only for old blog posts) or publication dates in descending order.
@@ -107,13 +86,13 @@ export const sortByProperty = (arr, prop) => {
  * @param posts The array of blog post objects to be sorted.
  * @returns The sorted array of blog posts in descending order based on their publication dates.
  */
-export const getSortedPosts = (posts) => {
+export const getSortedPosts = cache((posts) => {
   return posts.sort((a, b) => {
     const dateA = a.date || a.sys.firstPublishedAt
     const dateB = b.date || b.sys.firstPublishedAt
     return new Date(dateB) - new Date(dateA)
   })
-}
+})
 
 /**
  * Creates an instance of the DateTimeFormat object with 'en-US' locale,

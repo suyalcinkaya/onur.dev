@@ -6,7 +6,7 @@ import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
-import { getBookmark, getBookmarkItems, getBookmarks } from '@/lib/raindrop'
+import { getBookmarkItems, getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
 export async function generateStaticParams() {
@@ -20,13 +20,11 @@ async function fetchData(slug) {
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
   if (!currentBookmark) notFound()
 
-  const bookmark = await getBookmark(currentBookmark._id)
-  if (!bookmark) notFound()
   const bookmarkItems = await getBookmarkItems(currentBookmark._id)
 
   return {
     bookmarks: sortedBookmarks,
-    currentBookmark: bookmark.item,
+    currentBookmark,
     bookmarkItems
   }
 }

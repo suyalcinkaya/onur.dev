@@ -27,7 +27,7 @@ export async function submitBookmark(formData) {
         },
         body: JSON.stringify({
           fields: {
-            URL: new URL(formData.url).origin,
+            URL: formData.url,
             Email: formData.email,
             Date: new Date().toISOString(),
             Type: formData.type || 'Other'
