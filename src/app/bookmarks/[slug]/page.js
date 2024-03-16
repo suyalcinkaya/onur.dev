@@ -16,10 +16,10 @@ export async function generateStaticParams() {
 
 async function fetchData(slug) {
   const bookmarks = await getBookmarks()
-  const sortedBookmarks = sortByProperty(bookmarks, 'title')
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
   if (!currentBookmark) notFound()
 
+  const sortedBookmarks = sortByProperty(bookmarks, 'title')
   const bookmarkItems = await getBookmarkItems(currentBookmark._id)
 
   return {
