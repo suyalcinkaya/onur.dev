@@ -24,6 +24,11 @@ const fetchGraphQL = cache(async (query, preview = isDevelopment) => {
   }
 })
 
+// https://nextjs.org/docs/app/building-your-application/data-fetching/patterns#preloading-data
+export const preloadGetAllPosts = (preview = isDevelopment) => {
+  void getAllPosts(preview)
+}
+
 export const getAllPosts = cache(async (preview = isDevelopment) => {
   try {
     const entries = await fetchGraphQL(

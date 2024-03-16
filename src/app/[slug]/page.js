@@ -35,7 +35,7 @@ export default async function PageSlug({ params }) {
   } = await fetchData(slug)
 
   return (
-    <ScrollArea className="flex flex-col" hasScrollTitle>
+    <ScrollArea useScrollAreaId>
       <GradientBg />
       <FloatingHeader scrollTitle={title} />
       <div className="content-wrapper">

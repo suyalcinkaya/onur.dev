@@ -34,7 +34,7 @@ export default async function CollectionPage({ params }) {
   const { bookmarks, currentBookmark, bookmarkItems } = await fetchData(slug)
 
   return (
-    <ScrollArea className="bg-grid flex flex-col" hasScrollTitle>
+    <ScrollArea className="bg-grid" useScrollAreaId>
       <FloatingHeader
         scrollTitle={currentBookmark.title}
         goBackLink="/bookmarks"

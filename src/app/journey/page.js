@@ -27,7 +27,7 @@ export default async function Journey() {
   const { allLogbook } = await fetchData()
 
   return (
-    <ScrollArea className="flex flex-col" hasScrollTitle>
+    <ScrollArea useScrollAreaId>
       <GradientBg3 />
       <FloatingHeader scrollTitle="Journey" />
       <div className="content-wrapper">

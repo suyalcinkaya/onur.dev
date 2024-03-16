@@ -4,7 +4,7 @@ import { PageTitle } from '@/components/page-title'
 
 export function NotFound() {
   return (
-    <ScrollArea className="flex flex-col" hasScrollTitle>
+    <ScrollArea useScrollAreaId>
       <FloatingHeader scrollTitle="Not found" />
       <div className="content-wrapper">
         <div className="content">
