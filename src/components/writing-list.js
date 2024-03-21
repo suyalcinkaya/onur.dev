@@ -9,18 +9,6 @@ import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter, viewCo
 export const WritingList = ({ items }) => {
   const viewData = useViewData()
 
-  const itemsByYear = items.reduce((acc, item) => {
-    const year = new Date(item.date || item.sys.firstPublishedAt).getFullYear()
-    const yearArr = acc.find((item) => item[0] === year)
-    if (!yearArr) {
-      acc.push([year, [item]])
-    } else {
-      yearArr[1].push(item)
-    }
-
-    return acc
-  }, [])
-
   return (
     <LazyMotion features={domAnimation}>
       <div className="text-sm">
@@ -36,7 +24,7 @@ export const WritingList = ({ items }) => {
         </div>
 
         <div className="group/list-wrapper">
-          {itemsByYear.map((item) => {
+          {items.map((item) => {
             const [year, itemsArr] = item
 
             return (
@@ -74,10 +62,10 @@ export const WritingList = ({ items }) => {
                       >
                         <span className="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                           <span className="col-span-1 text-left tabular-nums">
-                            <time dateTime={date} className="hidden md:block">
+                            <time dateTime={date} className="hidden md:block" suppressHydrationWarning>
                               {dateWithDayAndMonth}
                             </time>
-                            <time dateTime={date} className="md:hidden">
+                            <time dateTime={date} className="md:hidden" suppressHydrationWarning>
                               {dateWithMonthAndYear}
                             </time>
                           </span>

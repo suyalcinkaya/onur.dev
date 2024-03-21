@@ -1,15 +1,15 @@
-'use client'
-
 import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { YouTubeEmbed } from '@next/third-parties/google'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { Link } from '@/components/link'
 import { CodeBlock } from '@/components/contentful/code-block'
+import { TweetCard } from '@/components/tweet-card/tweet-card'
+import { ShowInView } from '@/components/show-in-view'
 const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'), { loading: () => <LoadingSpinner /> })
 import { dasherize } from '@/lib/utils'
-import { TweetCard } from '@/components/tweet-card/tweet-card'
 
 function options(links) {
   const findAsset = (id) => links?.assets.block.find((item) => item.sys.id === id)
@@ -92,13 +92,17 @@ function options(links) {
 
             switch (type) {
               case 'Video': {
+                const videoId = embedUrl.split('/embed/')[1]
+
                 return (
-                  <DynamicIframe
-                    embedUrl={embedUrl}
-                    title={title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    className="aspect-video"
-                  />
+                  <ShowInView>
+                    <YouTubeEmbed
+                      videoid={videoId}
+                      playlabel={title}
+                      params="fs=0;controls=0"
+                      className="aspect-video"
+                    />
+                  </ShowInView>
                 )
               }
               case 'SoundCloud': {

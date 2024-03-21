@@ -1,6 +1,9 @@
 module.exports = {
-  swcMinify: true,
-  reactStrictMode: true,
+  compiler: {
+    removeConsole: {
+      exclude: ['error', 'info']
+    }
+  },
   trailingSlash: false,
   images: {
     deviceSizes: [390, 435, 768, 1024, 1280]
@@ -90,6 +93,7 @@ module.exports = {
     ]
   },
   experimental: {
-    optimizePackageImports: ['framer-motion', '@supabase/supabase-js', 'react-tweet']
+    optimizePackageImports: ['framer-motion', '@supabase/supabase-js', 'react-tweet'],
+    webVitalsAttribution: ['FCP', 'LCP', 'CLS', 'FID', 'TTFB', 'INP']
   }
 }

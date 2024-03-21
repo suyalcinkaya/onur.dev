@@ -3,6 +3,7 @@ import { draftMode } from 'next/headers'
 import Script from 'next/script'
 import { GeistSans } from 'geist/font/sans'
 import { JetBrains_Mono } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { EyeIcon } from 'lucide-react'
 
 import { SideMenu } from '@/components/side-menu'
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }) {
             <div className="flex flex-1">{children}</div>
           </div>
         </main>
+        <SpeedInsights />
         <Toaster
           closeButton
           richColors
@@ -54,6 +56,7 @@ export default async function RootLayout({ children }) {
           src="https://unpkg.com/@tinybirdco/flock.js"
           data-host="https://api.tinybird.co"
           data-token={process.env.NEXT_PUBLIC_TINYBIRD_TOKEN}
+          strategy="lazyOnload"
         />
       </body>
     </html>

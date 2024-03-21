@@ -8,16 +8,17 @@ import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { Button } from '@/components/ui/button.jsx'
 import { getAllPosts } from '@/lib/contentful'
-import { getSortedPosts } from '@/lib/utils'
+import { getSortedPosts, getItemsByYear } from '@/lib/utils'
 
 async function fetchData() {
   const allPosts = await getAllPosts()
   const sortedPosts = getSortedPosts(allPosts)
-  return { sortedPosts }
+  const items = getItemsByYear(sortedPosts)
+  return { items }
 }
 
 export default async function Home() {
-  const { sortedPosts } = await fetchData()
+  const { items } = await fetchData()
 
   return (
     <ScrollArea useScrollAreaId>
@@ -34,13 +35,13 @@ export default async function Home() {
             Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer
             at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
           </p>
+          <Button asChild variant="link" className="inline px-0">
+            <Link href="/writing">
+              <h2 className="mb-4 mt-8">Writing</h2>
+            </Link>
+          </Button>
           <Suspense fallback={<LoadingSpinner />}>
-            <Button asChild variant="link" className="inline px-0">
-              <Link href="/writing">
-                <h2 className="mb-4 mt-8">Writing</h2>
-              </Link>
-            </Button>
-            <WritingList items={sortedPosts} header="Writing" />
+            <WritingList items={items} header="Writing" />
           </Suspense>
         </div>
       </div>
