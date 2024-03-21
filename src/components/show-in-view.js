@@ -1,3 +1,5 @@
+'use client'
+
 import { useInView } from 'react-intersection-observer'
 
 export const ShowInView = ({ children, rootMargin = '0px', triggerOnce = true, ...rest }) => {

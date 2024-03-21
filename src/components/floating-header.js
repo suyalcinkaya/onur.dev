@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
 
-import { MobileDrawer } from '@/components/drawer'
+import { MobileDrawer } from '@/components/mobile-drawer'
 import { Button } from '@/components/ui/button.jsx'
 import { SubmitBookmarkDrawer } from '@/components/submit-bookmark/drawer'
 import { SCROLL_AREA_ID, MOBILE_SCROLL_THRESHOLD } from '@/lib/constants'

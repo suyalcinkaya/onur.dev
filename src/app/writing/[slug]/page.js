@@ -38,7 +38,6 @@ export default async function WritingSlug({ params }) {
 
   const postDate = date || firstPublishedAt
   const dateString = getDateTimeFormat(postDate)
-
   const datePublished = new Date(postDate).toISOString()
   const dateModified = new Date(updatedAt).toISOString()
 
@@ -67,7 +66,7 @@ export default async function WritingSlug({ params }) {
             <PageTitle
               title={title}
               subtitle={
-                <time dateTime={postDate} className="text-gray-400">
+                <time dateTime={postDate} className="text-gray-400" suppressHydrationWarning>
                   {dateString}
                 </time>
               }
