@@ -2,7 +2,6 @@ import { revalidatePath } from 'next/cache'
 
 import { CONTENT_TYPES } from '@/lib/constants'
 
-export const runtime = 'edge'
 export const dynamic = 'auto' // https://www.reddit.com/r/nextjs/comments/14iu6td/revalidatepath_not_updating_generatestaticparams/
 
 const secret = `${process.env.NEXT_REVALIDATE_SECRET}`
