@@ -12,7 +12,7 @@ export function MobileDrawer() {
           <CommandIcon size={16} />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="h-[80%]">
+      <DrawerContent className="h-4/5">
         <div className="overflow-y-auto p-4">
           <MenuContent />
         </div>

@@ -46,13 +46,13 @@ export default async function Journey() {
                       <div key={`data_${itemIndex}_log_${logIndex}`} className="relative flex pb-8 last:pb-0">
                         {logIndex !== item.logs.length - 1 && (
                           <div className="absolute inset-0 flex w-6 items-center justify-center">
-                            <div className="pointer-events-none h-full w-px border-l-[1px] border-gray-200"></div>
+                            <div className="pointer-events-none h-full w-px border-l border-gray-200"></div>
                           </div>
                         )}
-                        <div className="z-0 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
+                        <div className="z-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
                           <PlusIcon size={16} />
                         </div>
-                        <div className="flex-grow pl-8">
+                        <div className="grow pl-8">
                           <JourneyCard {...log} index={logIndex} />
                         </div>
                       </div>
