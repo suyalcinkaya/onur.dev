@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
-import { getMediumFont, getBoldFont } from '@/lib/fonts'
+import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { sharedTitle, sharedDescription, sharedImage } from '@/app/shared-metadata'
 
 export const runtime = 'edge'
@@ -19,7 +19,7 @@ export const contentType = sharedImage.type
 } */
 
 export default async function Image() {
-  const [mediumFontData, boldFontData] = await Promise.all([getMediumFont(), getBoldFont()])
+  const [regularFontData, boldFontData] = await Promise.all([getRegularFont(), getBoldFont()])
 
   return new ImageResponse(
     (
@@ -52,7 +52,7 @@ export default async function Image() {
       fonts: [
         {
           name: 'SF Pro',
-          data: mediumFontData,
+          data: regularFontData,
           style: 'normal',
           weight: 500
         },

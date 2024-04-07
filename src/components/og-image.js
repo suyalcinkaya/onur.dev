@@ -27,7 +27,7 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
           left: 60,
           fontSize: '2.5rem',
           lineHeight: 1,
-          background: '#2563eb',
+          background: '#000',
           color: '#fff',
           padding: '1rem 1.75rem',
           borderRadius: 9999
@@ -50,7 +50,7 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
           {icon}
           <span
             style={{
-              fontSize: '5.25rem',
+              fontSize: '5rem',
               lineHeight: 1,
               fontWeight: 600
             }}
@@ -58,7 +58,9 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
             {title}
           </span>
         </div>
-        {description && <span style={{ fontSize: '2.5rem', lineHeight: '2.75rem' }}>{description}</span>}
+        {description && (
+          <span style={{ fontSize: '2.5rem', lineHeight: '3rem', marginTop: '1rem' }}>{description}</span>
+        )}
       </span>
     </div>
   )

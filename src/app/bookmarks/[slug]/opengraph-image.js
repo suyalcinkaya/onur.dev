@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
-import { getMediumFont, getBoldFont } from '@/lib/fonts'
+import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { getBookmarks } from '@/lib/raindrop'
 import { sharedImage } from '@/app/shared-metadata'
 
@@ -15,7 +15,7 @@ export const contentType = sharedImage.type
 
 export default async function Image({ params }) {
   const { slug } = params
-  const [bookmarks, mediumFontData, boldFontData] = await Promise.all([getBookmarks(), getMediumFont(), getBoldFont()])
+  const [bookmarks, regularFontData, boldFontData] = await Promise.all([getBookmarks(), getRegularFont(), getBoldFont()])
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
   if (!currentBookmark) return null
 
@@ -47,7 +47,7 @@ export default async function Image({ params }) {
       fonts: [
         {
           name: 'SF Pro',
-          data: mediumFontData,
+          data: regularFontData,
           style: 'normal',
           weight: 500
         },

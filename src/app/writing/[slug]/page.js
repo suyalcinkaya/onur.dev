@@ -6,6 +6,7 @@ import { RichText } from '@/components/contentful/rich-text'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { WritingViews } from '@/components/writing-views'
+import { ClientOnly } from '@/components/client-only'
 import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
 import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
 
@@ -66,9 +67,11 @@ export default async function WritingSlug({ params }) {
             <PageTitle
               title={title}
               subtitle={
-                <time dateTime={postDate} className="text-gray-400" suppressHydrationWarning>
-                  {dateString}
-                </time>
+                <ClientOnly>
+                  <time dateTime={postDate} className="text-gray-400">
+                    {dateString}
+                  </time>
+                </ClientOnly>
               }
               className="mb-6 flex flex-col gap-3"
             />
@@ -76,7 +79,9 @@ export default async function WritingSlug({ params }) {
           </article>
         </div>
       </ScrollArea>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
+      <ClientOnly>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
+      </ClientOnly>
     </>
   )
 }
