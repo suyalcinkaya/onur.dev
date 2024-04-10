@@ -66,6 +66,13 @@ export async function generateMetadata({ params }) {
   return {
     title: seoTitle,
     description: seoDescription,
+    keywords: [
+      currentBookmark.title,
+      'bookmarks',
+      `${currentBookmark.title} bookmarks`,
+      'collection',
+      `${currentBookmark.title} collection`
+    ],
     openGraph: {
       title: seoTitle,
       description: seoDescription,

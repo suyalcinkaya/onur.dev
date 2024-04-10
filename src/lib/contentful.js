@@ -134,6 +134,7 @@ export const getWritingSeo = cache(async (slug, preview = isDevelopment) => {
               description
               ogImageTitle
               ogImageSubtitle
+              keywords
             }
             sys {
               firstPublishedAt
@@ -163,6 +164,7 @@ export const getPageSeo = cache(async (slug, preview = isDevelopment) => {
               description
               ogImageTitle
               ogImageSubtitle
+              keywords
             }
           }
         }

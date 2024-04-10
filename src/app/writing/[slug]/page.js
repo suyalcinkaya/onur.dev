@@ -91,7 +91,7 @@ export async function generateMetadata({ params }) {
 
   const {
     date,
-    seo: { title, description },
+    seo: { title, description, keywords },
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = seoData
 
@@ -103,6 +103,7 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    keywords,
     openGraph: {
       title,
       description,
