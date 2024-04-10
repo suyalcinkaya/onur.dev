@@ -41,7 +41,8 @@ export const getDateTimeFormat = (date) => {
   return Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long',
-    day: '2-digit'
+    day: '2-digit',
+    timeZone: 'UTC'
   }).format(dateObj)
 }
 
@@ -107,7 +108,8 @@ export const getSortedPosts = cache((posts) => {
  */
 export const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
   month: '2-digit',
-  year: 'numeric'
+  year: 'numeric',
+  timeZone: 'UTC'
 })
 
 /**
@@ -117,7 +119,8 @@ export const dateWithMonthAndYearFormatter = Intl.DateTimeFormat('en-US', {
  */
 export const dateWithDayAndMonthFormatter = Intl.DateTimeFormat('tr-TR', {
   day: '2-digit',
-  month: '2-digit'
+  month: '2-digit',
+  timeZone: 'UTC'
 })
 
 /**

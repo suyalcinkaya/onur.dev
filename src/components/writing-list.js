@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
-import { ClientOnly } from '@/components/client-only'
 import { useViewData } from '@/hooks/useViewData'
 import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter, viewCountFormatter } from '@/lib/utils'
 
@@ -63,14 +62,12 @@ export const WritingList = ({ items }) => {
                       >
                         <span className="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                           <span className="col-span-1 text-left tabular-nums">
-                            <ClientOnly>
-                              <time dateTime={date} className="hidden md:block">
-                                {dateWithDayAndMonth}
-                              </time>
-                              <time dateTime={date} className="md:hidden">
-                                {dateWithMonthAndYear}
-                              </time>
-                            </ClientOnly>
+                            <time dateTime={date} className="hidden md:block">
+                              {dateWithDayAndMonth}
+                            </time>
+                            <time dateTime={date} className="md:hidden">
+                              {dateWithMonthAndYear}
+                            </time>
                           </span>
                           <span className="col-span-2 line-clamp-4 md:col-span-6">{title}</span>
                           <span className="col-span-1">

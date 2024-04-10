@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
-import { ClientOnly } from '@/components/client-only'
 import { cn, getDateTimeFormat, viewCountFormatter } from '@/lib/utils'
 
 export const WritingLink = ({ post, viewCount, isMobile, isActive }) => {
@@ -22,9 +21,7 @@ export const WritingLink = ({ post, viewCount, isMobile, isActive }) => {
       >
         <span className="font-medium">{post.title}</span>
         <span className={cn('transition-colors duration-300', isActive ? 'text-slate-400' : 'text-slate-500')}>
-          <ClientOnly>
-            <time dateTime={date}>{formattedDate}</time>
-          </ClientOnly>{' '}
+          <time dateTime={date}>{formattedDate}</time>{' '}
           <span>
             {formattedViewCount ? (
               <m.span

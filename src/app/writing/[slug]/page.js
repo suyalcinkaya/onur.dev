@@ -67,11 +67,9 @@ export default async function WritingSlug({ params }) {
             <PageTitle
               title={title}
               subtitle={
-                <ClientOnly>
-                  <time dateTime={postDate} className="text-gray-400">
-                    {dateString}
-                  </time>
-                </ClientOnly>
+                <time dateTime={postDate} className="text-gray-400">
+                  {dateString}
+                </time>
               }
               className="mb-6 flex flex-col gap-3"
             />
