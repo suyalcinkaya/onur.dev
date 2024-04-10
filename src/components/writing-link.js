@@ -21,9 +21,7 @@ export const WritingLink = ({ post, viewCount, isMobile, isActive }) => {
       >
         <span className="font-medium">{post.title}</span>
         <span className={cn('transition-colors duration-300', isActive ? 'text-slate-400' : 'text-slate-500')}>
-          <time dateTime={date} suppressHydrationWarning>
-            {formattedDate}
-          </time>{' '}
+          <time dateTime={date}>{formattedDate}</time>{' '}
           <span>
             {formattedViewCount ? (
               <m.span

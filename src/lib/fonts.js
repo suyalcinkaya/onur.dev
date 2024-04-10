@@ -2,23 +2,23 @@ import { cache } from 'react'
 import 'server-only'
 
 /**
- * Retrieves the SpaceGrotesk-Medium font file asynchronously.
+ * Retrieves the regular font file asynchronously.
  * It returns a Promise that resolves to the font file's array buffer.
- * @returns A Promise resolving to the SpaceGrotesk-Medium font file as an array buffer.
+ * @returns A Promise resolving to the regular font file as an array buffer.
  */
-export const getMediumFont = cache(async () => {
-  const response = await fetch(new URL('@/assets/fonts/SpaceGrotesk-Medium.ttf', import.meta.url))
+export const getRegularFont = cache(async () => {
+  const response = await fetch(new URL('@/assets/fonts/Geist-Regular.otf', import.meta.url))
   const font = await response.arrayBuffer()
   return font
 })
 
 /**
- * Retrieves the SpaceGrotesk-SemiBold font file asynchronously.
+ * Retrieves the bold font file asynchronously.
  * It returns a Promise that resolves to the font file's array buffer.
- * @returns A Promise resolving to the SpaceGrotesk-SemiBold font file as an array buffer.
+ * @returns A Promise resolving to the bold font file as an array buffer.
  */
 export const getBoldFont = cache(async () => {
-  const response = await fetch(new URL('@/assets/fonts/SpaceGrotesk-SemiBold.ttf', import.meta.url))
+  const response = await fetch(new URL('@/assets/fonts/Geist-Medium.otf', import.meta.url))
   const font = await response.arrayBuffer()
   return font
 })

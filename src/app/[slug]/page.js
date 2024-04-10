@@ -56,13 +56,14 @@ export async function generateMetadata({ params }) {
   if (!seoData) return null
 
   const {
-    seo: { title, description }
+    seo: { title, description, keywords }
   } = seoData
   const siteUrl = `/${slug}`
 
   return {
     title,
     description,
+    keywords,
     openGraph: {
       title,
       description,

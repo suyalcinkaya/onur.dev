@@ -6,6 +6,7 @@ import { RichText } from '@/components/contentful/rich-text'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
 import { WritingViews } from '@/components/writing-views'
+import { ClientOnly } from '@/components/client-only'
 import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
 import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
 
@@ -66,7 +67,7 @@ export default async function WritingSlug({ params }) {
             <PageTitle
               title={title}
               subtitle={
-                <time dateTime={postDate} className="text-gray-400" suppressHydrationWarning>
+                <time dateTime={postDate} className="text-gray-400">
                   {dateString}
                 </time>
               }
@@ -76,7 +77,9 @@ export default async function WritingSlug({ params }) {
           </article>
         </div>
       </ScrollArea>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
+      <ClientOnly>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 2) }} />
+      </ClientOnly>
     </>
   )
 }
@@ -88,7 +91,7 @@ export async function generateMetadata({ params }) {
 
   const {
     date,
-    seo: { title, description },
+    seo: { title, description, keywords },
     sys: { firstPublishedAt, publishedAt: updatedAt }
   } = seoData
 
@@ -100,6 +103,7 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
+    keywords,
     openGraph: {
       title,
       description,

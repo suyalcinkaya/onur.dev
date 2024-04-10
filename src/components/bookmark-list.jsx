@@ -75,12 +75,12 @@ export const BookmarkList = ({ initialData, id }) => {
         })}
       </div>
       {data.length > 0 ? (
-        <div className="mt-8 flex min-h-[4rem] items-center justify-center text-sm lg:mt-12">
+        <div className="mt-8 flex min-h-16 items-center justify-center text-sm lg:mt-12">
           {!isReachingEnd ? (
             <>
               {isLoading ? (
                 <div
-                  className="inline-block h-4 w-4 animate-spin rounded-full border-[2px] border-current border-t-transparent text-black"
+                  className="inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent text-black"
                   role="status"
                   aria-label="loading"
                 >

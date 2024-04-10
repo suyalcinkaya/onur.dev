@@ -62,10 +62,10 @@ export const WritingList = ({ items }) => {
                       >
                         <span className="grid grid-cols-4 items-center gap-2 border-t border-gray-200 py-4 md:grid-cols-8">
                           <span className="col-span-1 text-left tabular-nums">
-                            <time dateTime={date} className="hidden md:block" suppressHydrationWarning>
+                            <time dateTime={date} className="hidden md:block">
                               {dateWithDayAndMonth}
                             </time>
-                            <time dateTime={date} className="md:hidden" suppressHydrationWarning>
+                            <time dateTime={date} className="md:hidden">
                               {dateWithMonthAndYear}
                             </time>
                           </span>
