@@ -1,4 +1,7 @@
-module.exports = {
+import million from 'million/compiler'
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   compiler: {
     removeConsole: {
       exclude: ['error', 'info']
@@ -97,3 +100,11 @@ module.exports = {
     webVitalsAttribution: ['FCP', 'LCP', 'CLS', 'FID', 'TTFB', 'INP']
   }
 }
+
+const millionConfig = {
+  auto: {
+    rsc: true
+  }
+}
+
+export default million.next(nextConfig, millionConfig)
