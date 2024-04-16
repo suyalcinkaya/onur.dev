@@ -8,10 +8,12 @@ import Balancer from 'react-wrap-balancer'
 import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button.jsx'
+import { LoadingSpinner } from '@/components/loading-spinner'
 const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
 const SubmitBookmarkDrawer = dynamic(
   () => import('@/components/submit-bookmark/drawer').then((mod) => mod.SubmitBookmarkDrawer),
   {
+    loading: () => <LoadingSpinner />,
     ssr: false
   }
 )
