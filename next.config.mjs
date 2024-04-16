@@ -104,7 +104,9 @@ const nextConfig = {
 const millionConfig = {
   auto: {
     rsc: true
-  }
+  },
+  server: true,
+  rsc: true
 }
 
 export default million.next(nextConfig, millionConfig)

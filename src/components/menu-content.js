@@ -15,6 +15,8 @@ export const MenuContent = () => {
             height={40}
             loading="lazy"
             className="rounded-full border shadow-sm"
+            // eslint-disable-next-line react/no-unknown-property
+            nopin="nopin"
           />
           <div className="flex flex-col">
             <span className="font-semibold tracking-tight">Onur Şuyalçınkaya</span>

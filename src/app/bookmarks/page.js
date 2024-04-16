@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { getPageSeo } from '@/lib/contentful'
 import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
@@ -20,7 +20,7 @@ export default async function Writing() {
   return (
     <ScrollArea className="lg:hidden">
       <FloatingHeader title="Bookmarks" bookmarks={bookmarks} />
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<ScreenLoadingSpinner />}>
         {bookmarks?.map((bookmark) => {
           return (
             <Link

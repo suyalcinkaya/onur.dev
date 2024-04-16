@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { ScrollArea } from '@/components/scroll-area'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
 import { getBookmarkItems, getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
@@ -44,7 +44,7 @@ export default async function CollectionPage({ params }) {
       <div className="content-wrapper">
         <div className="content @container">
           <PageTitle title={currentBookmark.title} />
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<ScreenLoadingSpinner />}>
             <BookmarkList id={currentBookmark._id} initialData={bookmarkItems} />
           </Suspense>
         </div>
