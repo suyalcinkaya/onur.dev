@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
 import { SideMenu } from '@/components/side-menu'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { ListItem } from '@/components/list-item'
 import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
@@ -21,7 +21,7 @@ export default async function BookmarksLayout({ children }) {
   return (
     <div className="flex w-full">
       <SideMenu title="Bookmarks" bookmarks={bookmarks} isInner>
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense fallback={<ScreenLoadingSpinner />}>
           <div className="flex flex-col gap-1 text-sm">
             {bookmarks?.map((bookmark) => {
               return (

@@ -4,7 +4,7 @@ import { PlusIcon } from 'lucide-react'
 import { ScrollArea } from '@/components/scroll-area'
 import { JourneyCard } from '@/components/journey-card'
 import { FloatingHeader } from '@/components/floating-header'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { PageTitle } from '@/components/page-title'
 import { GradientBg3 } from '@/components/gradient-bg'
 import { getAllLogbook, getPageSeo } from '@/lib/contentful'
@@ -33,7 +33,7 @@ export default async function Journey() {
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title="Journey" />
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<ScreenLoadingSpinner />}>
             <div className="flex flex-col items-stretch gap-12">
               {allLogbook.map((item, itemIndex) => (
                 <div key={`data_${itemIndex}`} className="flex flex-col items-baseline gap-6 md:flex-row md:gap-12">

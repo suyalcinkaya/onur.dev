@@ -1,14 +1,14 @@
 import dynamic from 'next/dynamic'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { YouTubeEmbed } from '@next/third-parties/google'
 
-import { LoadingSpinner } from '@/components/loading-spinner'
 import { Link } from '@/components/link'
-import { CodeBlock } from '@/components/contentful/code-block'
-import { TweetCard } from '@/components/tweet-card/tweet-card'
+const CodeBlock = dynamic(() => import('@/components/contentful/code-block').then((mod) => mod.CodeBlock))
+const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
 import { ShowInView } from '@/components/show-in-view'
-const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'), { loading: () => <LoadingSpinner /> })
+const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'), {
+  ssr: false
+})
 import { dasherize } from '@/lib/utils'
 
 function options(links) {
@@ -72,6 +72,8 @@ function options(links) {
               alt={asset.description || asset.title}
               loading="lazy"
               className="animate-reveal"
+              // eslint-disable-next-line react/no-unknown-property
+              nopin="nopin"
             />
             {asset.description && (
               <figcaption className="break-all text-center text-xs font-light text-gray-500">
@@ -83,7 +85,7 @@ function options(links) {
       },
       [BLOCKS.HR]: () => <hr className="my-12" />,
       [INLINES.HYPERLINK]: (node, children) => <Link href={node.data.uri}>{children}</Link>,
-      [INLINES.EMBEDDED_ENTRY]: (node) => {
+      [INLINES.EMBEDDED_ENTRY]: async (node) => {
         const entry = findInlineEntry(node.data.target.sys.id)
 
         switch (entry.__typename) {
@@ -92,6 +94,7 @@ function options(links) {
 
             switch (type) {
               case 'Video': {
+                const YouTubeEmbed = await import('@next/third-parties/google').then((mod) => mod.YouTubeEmbed)
                 const videoId = embedUrl.split('/embed/')[1]
 
                 return (

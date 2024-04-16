@@ -22,6 +22,8 @@ export const MarkdownRenderer = ({ options, ...rest }) => {
                 height={300}
                 loading="lazy"
                 className="aspect-auto w-full animate-reveal object-cover"
+                // eslint-disable-next-line react/no-unknown-property
+                nopin="nopin"
               />
             </span>
           ),

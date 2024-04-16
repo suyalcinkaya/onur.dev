@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
 import { SideMenu } from '@/components/side-menu'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getAllPosts } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'
@@ -18,7 +18,7 @@ export default async function WritingLayout({ children }) {
   return (
     <>
       <SideMenu title="Writing" isInner>
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense fallback={<ScreenLoadingSpinner />}>
           <WritingListLayout list={sortedPosts} />
         </Suspense>
       </SideMenu>

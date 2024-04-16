@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import { ScrollArea } from '@/components/scroll-area'
 import { PageTitle } from '@/components/page-title'
 import { FloatingHeader } from '@/components/floating-header'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { GradientBg } from '@/components/gradient-bg'
 import { RichText } from '@/components/contentful/rich-text'
 import { getPage, getPageSeo, getAllPageSlugs } from '@/lib/contentful'
@@ -41,7 +41,7 @@ export default async function PageSlug({ params }) {
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title={title} />
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<ScreenLoadingSpinner />}>
             <RichText content={content} />
           </Suspense>
         </div>

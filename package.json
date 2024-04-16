@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,mjs}\"",
+    "prettier": "prettier --write \"**/*.{html,js,jsx,json,md,mdx,mjs}\"",
     "clear-cache": "rm -rf .next",
     "unused": "next-unused",
     "lint": "eslint . --ext .js,.jsx"

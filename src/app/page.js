@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 
 import { ScrollArea } from '@/components/scroll-area'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { WritingList } from '@/components/writing-list'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
@@ -40,7 +40,7 @@ export default async function Home() {
               <h2 className="mb-4 mt-8">Writing</h2>
             </Link>
           </Button>
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<ScreenLoadingSpinner />}>
             <WritingList items={items} header="Writing" />
           </Suspense>
         </div>

@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useState } from 'react'
 import { highlight } from 'sugar-high'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { Button } from '@/components/ui/button.jsx'
 
 export function CodeBlock({ title, code }) {
-  const codeRef = useRef(null)
   const [copied, setCopied] = useState(false)
   const codeHTML = highlight(code)
 
@@ -16,11 +15,6 @@ export function CodeBlock({ title, code }) {
     navigator.clipboard.writeText(code)
     setTimeout(() => setCopied(false), 3000)
   }
-
-  useEffect(() => {
-    const codeElem = codeRef.current
-    codeElem.innerHTML = codeHTML
-  }, [codeHTML])
 
   return (
     <>
@@ -87,7 +81,7 @@ export function CodeBlock({ title, code }) {
       </div>
       <div className="overflow-x-auto">
         <pre>
-          <code ref={codeRef} className="sh__line" />
+          <code dangerouslySetInnerHTML={{ __html: codeHTML }} />
         </pre>
       </div>
     </>

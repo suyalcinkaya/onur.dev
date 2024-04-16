@@ -1,11 +1,19 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useRouter, usePathname } from 'next/navigation'
 import { RadioIcon } from 'lucide-react'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { Button } from '@/components/ui/button.jsx'
-import { SubmitBookmarkDialog } from '@/components/submit-bookmark/dialog'
+import { LoadingSpinner } from '@/components/loading-spinner'
+const SubmitBookmarkDialog = dynamic(
+  () => import('@/components/submit-bookmark/dialog').then((mod) => mod.SubmitBookmarkDialog),
+  {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }
+)
 import { useKeyPress } from '@/hooks/useKeyPress'
 import { cn } from '@/lib/utils'
 

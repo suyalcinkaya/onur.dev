@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 
 import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
-import { LoadingSpinner } from '@/components/loading-spinner'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getPageSeo, getAllPosts } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'
@@ -19,7 +19,7 @@ export default async function Writing() {
   return (
     <ScrollArea className="lg:hidden">
       <FloatingHeader title="Writing" />
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<ScreenLoadingSpinner />}>
         <WritingListLayout list={sortedPosts} isMobile />
       </Suspense>
     </ScrollArea>

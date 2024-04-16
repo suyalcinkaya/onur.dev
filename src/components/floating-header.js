@@ -1,14 +1,22 @@
 'use client'
 
 import { memo, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
 
-import { MobileDrawer } from '@/components/mobile-drawer'
 import { Button } from '@/components/ui/button.jsx'
-import { SubmitBookmarkDrawer } from '@/components/submit-bookmark/drawer'
+import { LoadingSpinner } from '@/components/loading-spinner'
+const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
+const SubmitBookmarkDrawer = dynamic(
+  () => import('@/components/submit-bookmark/drawer').then((mod) => mod.SubmitBookmarkDrawer),
+  {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }
+)
 import { SCROLL_AREA_ID, MOBILE_SCROLL_THRESHOLD } from '@/lib/constants'
 
 export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks, currentBookmark, children }) => {

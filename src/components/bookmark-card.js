@@ -1,6 +1,7 @@
+import dynamic from 'next/dynamic'
 import { Link2Icon } from 'lucide-react'
 
-import { TweetCard } from '@/components/tweet-card/tweet-card'
+const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'
 
 export const BookmarkCard = ({ bookmark, order }) => {
@@ -31,6 +32,8 @@ export const BookmarkCard = ({ bookmark, order }) => {
             e.target.onerror = null
             e.target.src = '/assets/fallback.webp'
           }}
+          // eslint-disable-next-line react/no-unknown-property
+          nopin="nopin"
         />
       </span>
       <div className="flex flex-col gap-1">

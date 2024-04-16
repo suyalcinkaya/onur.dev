@@ -81,3 +81,11 @@
 .tweetCard :global(.react-tweet-theme) [class^='tweet-actions_copyText__'] {
   @apply ml-0;
 }
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-not-found_root'] {
+  @apply pb-0;
+}
+
+.tweetCard :global(.react-tweet-theme) [class^='tweet-not-found_root'] > p {
+  @apply mb-0;
+}
