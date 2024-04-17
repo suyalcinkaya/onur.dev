@@ -76,7 +76,10 @@ export const getPost = cache(async (slug, preview = isDevelopment) => {
                     sys {
                       id
                     }
-                    url
+                    url(transform: {
+                      format: AVIF,
+                      quality: 50
+                    })
                     title
                     width
                     height
@@ -241,7 +244,10 @@ export const getPage = cache(async (slug, preview = isDevelopment) => {
                     sys {
                       id
                     }
-                    url
+                    url(transform: {
+                      format: AVIF,
+                      quality: 50
+                    })
                     title
                     width
                     height
@@ -278,7 +284,10 @@ export const getAllLogbook = cache(async (preview = isDevelopment) => {
             date
             description
             image {
-              url
+              url(transform: {
+                format: AVIF,
+                quality: 50
+              })
               title
               description
               width

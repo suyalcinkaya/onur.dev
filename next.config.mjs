@@ -9,7 +9,8 @@ const nextConfig = {
   },
   trailingSlash: false,
   images: {
-    deviceSizes: [390, 435, 768, 1024, 1280]
+    deviceSizes: [390, 435, 768, 1024, 1280],
+    formats: ['image/avif']
   },
   async redirects() {
     return [

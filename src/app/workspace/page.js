@@ -19,7 +19,7 @@ export default async function Workspace() {
           <div className="-mx-6 mb-4 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-x-auto md:pb-0">
             <EmptyPlaceholder />
             <Image
-              src="/assets/workspace-1.webp"
+              src="/assets/workspace-1.avif"
               alt="Workspace | 1"
               className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
               width={756}
@@ -28,7 +28,7 @@ export default async function Workspace() {
               priority
             />
             <Image
-              src="/assets/workspace-2.webp"
+              src="/assets/workspace-2.avif"
               alt="Workspace | 2"
               className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
               width={756}
