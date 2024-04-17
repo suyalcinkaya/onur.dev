@@ -8,7 +8,7 @@ export const MenuContent = () => (
     <div className="flex flex-col gap-4">
       <Link href="/" className="link-card inline-flex items-center gap-2 p-2">
         <img
-          src="/assets/me.webp"
+          src="/assets/me.avif"
           alt="Onur Şuyalçınkaya"
           width={40}
           height={40}
