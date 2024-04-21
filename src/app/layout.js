@@ -86,7 +86,6 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: sharedMetadata.title,
     site: `@${PROFILES.twitter.username}`,
     creator: `@${PROFILES.twitter.username}`
   },
