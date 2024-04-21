@@ -6,12 +6,12 @@ import { JetBrains_Mono } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { EyeIcon } from 'lucide-react'
 
+import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { SideMenu } from '@/components/side-menu'
 import { MenuContent } from '@/components/menu-content'
-import { Toaster } from '@/components/ui/sonner'
 import { preloadGetAllPosts } from '@/lib/contentful'
 import { PROFILES } from '@/lib/constants'
-import { sharedTitle, sharedDescription } from '@/app/shared-metadata'
+import { sharedMetadata } from '@/app/shared-metadata'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
   preloadGetAllPosts(isEnabled)
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <body>
         {/* eslint-disable-next-line react/no-unknown-property */}
         <main vaul-drawer-wrapper="" className="min-h-screen bg-white">
@@ -44,14 +44,8 @@ export default async function RootLayout({ children }) {
             <div className="flex flex-1">{children}</div>
           </div>
         </main>
+        <TailwindIndicator />
         <SpeedInsights />
-        <Toaster
-          closeButton
-          richColors
-          toastOptions={{
-            duration: 5000
-          }}
-        />
         <Script
           src="https://unpkg.com/@tinybirdco/flock.js"
           data-host="https://api.tinybird.co"
@@ -70,20 +64,21 @@ export const metadata = {
     follow: true
   },
   title: {
-    template: `%s — ${sharedTitle}`,
-    default: sharedTitle
+    default: sharedMetadata.title,
+    template: `%s — ${sharedMetadata.title}`
   },
-  description: sharedDescription,
+  description: sharedMetadata.description,
+  keywords: ['Onur Şuyalçınkaya', 'Onur Suyalcinkaya', 'onur dev', 'onur.dev'],
   openGraph: {
     title: {
-      template: `%s — ${sharedTitle}`,
-      default: sharedTitle
+      default: sharedMetadata.title,
+      template: `%s — ${sharedMetadata.title}`
     },
-    description: sharedDescription,
-    alt: sharedTitle,
+    description: sharedMetadata.description,
+    alt: sharedMetadata.title,
     type: 'website',
-    url: '/',
-    siteName: sharedTitle,
+    url: 'https://onur.dev',
+    siteName: sharedMetadata.title,
     locale: 'en_IE'
   },
   alternates: {

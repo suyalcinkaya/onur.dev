@@ -3,15 +3,14 @@ import { ImageResponse } from 'next/og'
 import { OpenGraphImage } from '@/components/og-image'
 import { getPageSeo } from '@/lib/contentful'
 import { getRegularFont, getBoldFont } from '@/lib/fonts'
-import { sharedImage } from '@/app/shared-metadata'
+import { sharedMetadata } from '@/app/shared-metadata'
 
-export const runtime = 'edge'
 export const alt = 'Journey'
 export const size = {
-  width: sharedImage.width,
-  height: sharedImage.height
+  width: sharedMetadata.ogImage.width,
+  height: sharedMetadata.ogImage.height
 }
-export const contentType = sharedImage.type
+export const contentType = sharedMetadata.ogImage.type
 
 export default async function Image() {
   const [seoData = {}, regularFontData, boldFontData] = await Promise.all([

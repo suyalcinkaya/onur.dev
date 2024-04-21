@@ -3,10 +3,12 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { Link } from '@/components/link'
-const CodeBlock = dynamic(() => import('@/components/contentful/code-block').then((mod) => mod.CodeBlock))
-const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
 import { ShowInView } from '@/components/show-in-view'
-const DynamicIframe = dynamic(() => import('@/components/contentful/iframe'), {
+const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
+const CodeBlock = dynamic(() => import('@/components/contentful/code-block').then((mod) => mod.CodeBlock), {
+  ssr: false
+})
+const DynamicIframe = dynamic(() => import('@/components/contentful/iframe').then((mod) => mod.Iframe), {
   ssr: false
 })
 import { dasherize } from '@/lib/utils'

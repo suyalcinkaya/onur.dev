@@ -1,21 +1,27 @@
 import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
-import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { getBookmarks } from '@/lib/raindrop'
-import { sharedImage } from '@/app/shared-metadata'
+import { getRegularFont, getBoldFont } from '@/lib/fonts'
+import { sharedMetadata } from '@/app/shared-metadata'
 
-export const runtime = 'edge'
-export const alt = 'Bookmarks'
 export const size = {
-  width: sharedImage.width,
-  height: sharedImage.height
+  width: sharedMetadata.ogImage.width,
+  height: sharedMetadata.ogImage.height
 }
-export const contentType = sharedImage.type
 
-export default async function Image({ params }) {
+export async function generateStaticParams() {
+  const bookmarks = await getBookmarks()
+  return bookmarks.map((bookmark) => ({ slug: bookmark.slug }))
+}
+
+export async function GET(_, { params }) {
   const { slug } = params
-  const [bookmarks, regularFontData, boldFontData] = await Promise.all([getBookmarks(), getRegularFont(), getBoldFont()])
+  const [bookmarks, regularFontData, boldFontData] = await Promise.all([
+    getBookmarks(),
+    getRegularFont(),
+    getBoldFont()
+  ])
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
   if (!currentBookmark) return null
 

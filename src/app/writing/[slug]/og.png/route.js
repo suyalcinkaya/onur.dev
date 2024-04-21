@@ -1,19 +1,21 @@
 import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
-import { getWritingSeo } from '@/lib/contentful'
+import { getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
 import { getRegularFont, getBoldFont } from '@/lib/fonts'
-import { sharedImage } from '@/app/shared-metadata'
+import { sharedMetadata } from '@/app/shared-metadata'
 
-export const runtime = 'edge'
-export const alt = 'Writing'
 export const size = {
-  width: sharedImage.width,
-  height: sharedImage.height
+  width: sharedMetadata.ogImage.width,
+  height: sharedMetadata.ogImage.height
 }
-export const contentType = sharedImage.type
 
-export default async function Image({ params }) {
+export async function generateStaticParams() {
+  const allPosts = await getAllPostSlugs()
+  return allPosts.map((post) => ({ slug: post.slug }))
+}
+
+export async function GET(_, { params }) {
   const { slug } = params
   const [seoData, regularFontData, boldFontData] = await Promise.all([
     getWritingSeo(slug),

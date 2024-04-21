@@ -1,7 +1,7 @@
 import { ShowInView } from '@/components/show-in-view'
 import { cn } from '@/lib/utils'
 
-export default function Iframe({ embedUrl, title, className, ...rest }) {
+export function Iframe({ embedUrl, title, className, ...rest }) {
   return (
     <ShowInView>
       <figure>
