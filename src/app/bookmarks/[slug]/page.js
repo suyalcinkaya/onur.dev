@@ -76,7 +76,8 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: seoTitle,
       description: seoDescription,
-      url: siteUrl
+      url: siteUrl,
+      images: siteUrl + '/og.png'
     },
     alternates: {
       canonical: siteUrl

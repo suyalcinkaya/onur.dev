@@ -32,7 +32,8 @@ export async function submitBookmark(formData) {
             Date: new Date().toISOString(),
             Type: formData.type || 'Other'
           }
-        })
+        }),
+        signal: AbortSignal.timeout(5000)
       }
     )
 

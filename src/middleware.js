@@ -15,7 +15,8 @@ export function middleware(request, event) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        signal: AbortSignal.timeout(5000)
       })
 
       if (res.status !== 200) console.error('Failed to send analytics', res)

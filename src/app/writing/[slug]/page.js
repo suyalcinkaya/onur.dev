@@ -112,7 +112,8 @@ export async function generateMetadata({ params }) {
       ...(updatedAt && {
         modifiedTime
       }),
-      url: siteUrl
+      url: siteUrl,
+      images: siteUrl + '/og.png'
     },
     alternates: {
       canonical: siteUrl

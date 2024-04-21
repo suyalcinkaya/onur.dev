@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server'
 
 import supabase from '@/lib/supabase/private'
 
-export const runtime = 'edge'
-
 export async function POST(request) {
   const searchParams = request.nextUrl.searchParams
   const slug = searchParams.get('slug')

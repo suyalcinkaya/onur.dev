@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import { SideMenu } from '@/components/side-menu'
 import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { ListItem } from '@/components/list-item'
+import { Toaster } from '@/components/ui/sonner'
 import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
@@ -19,25 +20,34 @@ export default async function BookmarksLayout({ children }) {
   const { bookmarks } = await fetchData()
 
   return (
-    <div className="flex w-full">
-      <SideMenu title="Bookmarks" bookmarks={bookmarks} isInner>
-        <Suspense fallback={<ScreenLoadingSpinner />}>
-          <div className="flex flex-col gap-1 text-sm">
-            {bookmarks?.map((bookmark) => {
-              return (
-                <ListItem
-                  key={bookmark._id}
-                  path={`/bookmarks/${bookmark.slug}`}
-                  title={bookmark.title}
-                  description={`${bookmark.count} bookmarks`}
-                />
-              )
-            })}
-          </div>
-        </Suspense>
-      </SideMenu>
-      <div className="lg:bg-grid flex-1">{children}</div>
-    </div>
+    <>
+      <div className="flex w-full">
+        <SideMenu title="Bookmarks" bookmarks={bookmarks} isInner>
+          <Suspense fallback={<ScreenLoadingSpinner />}>
+            <div className="flex flex-col gap-1 text-sm">
+              {bookmarks?.map((bookmark) => {
+                return (
+                  <ListItem
+                    key={bookmark._id}
+                    path={`/bookmarks/${bookmark.slug}`}
+                    title={bookmark.title}
+                    description={`${bookmark.count} bookmarks`}
+                  />
+                )
+              })}
+            </div>
+          </Suspense>
+        </SideMenu>
+        <div className="lg:bg-grid flex-1">{children}</div>
+      </div>
+      <Toaster
+        closeButton
+        richColors
+        toastOptions={{
+          duration: 5000
+        }}
+      />
+    </>
   )
 }
 

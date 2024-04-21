@@ -1,19 +1,26 @@
 import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
-import { getPageSeo } from '@/lib/contentful'
+import { getPageSeo, getAllPageSlugs } from '@/lib/contentful'
 import { getRegularFont, getBoldFont } from '@/lib/fonts'
-import { sharedTitle, sharedImage } from '@/app/shared-metadata'
+import { sharedMetadata } from '@/app/shared-metadata'
 
-export const runtime = 'edge'
-export const alt = sharedTitle
 export const size = {
-  width: sharedImage.width,
-  height: sharedImage.height
+  width: sharedMetadata.ogImage.width,
+  height: sharedMetadata.ogImage.height
 }
-export const contentType = sharedImage.type
 
-export default async function Image({ params }) {
+export async function generateStaticParams() {
+  const allPages = await getAllPageSlugs()
+
+  return allPages
+    .filter((page) => !page.hasCustomPage) // filter out pages that have custom pages, e.g. /journey
+    .map((page) => ({
+      slug: page.slug
+    }))
+}
+
+export async function GET(_, { params }) {
   const { slug } = params
   const [seoData = {}, regularFontData, boldFontData] = await Promise.all([
     getPageSeo(slug),
