@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
+export const fetchCache = 'force-no-store'
 // Revalidate all routes every 2 days
 export const revalidate = 60 * 60 * 24 * 2 // 2 days
 
