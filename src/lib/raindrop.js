@@ -8,7 +8,8 @@ const options = {
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_RAINDROP_ACCESS_TOKEN}`
-  }
+  },
+  next: { cache: 'no-store' }
 }
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1'

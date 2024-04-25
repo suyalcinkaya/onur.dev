@@ -25,6 +25,7 @@ export async function submitBookmark(formData) {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN}`
         },
+        next: { cache: 'no-store' },
         body: JSON.stringify({
           fields: {
             URL: formData.url,
