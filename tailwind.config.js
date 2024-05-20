@@ -17,7 +17,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
-        mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono]
+        mono: ['var(--font-geist-mono)', ...defaultTheme.fontFamily.mono]
       },
       keyframes: {
         reveal: {

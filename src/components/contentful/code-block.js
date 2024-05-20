@@ -13,21 +13,21 @@ export function CodeBlock({ title, code }) {
   const onCopy = () => {
     setCopied(true)
     navigator.clipboard.writeText(code)
-    setTimeout(() => setCopied(false), 3000)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-lg border border-gray-200 bg-gray-50 py-1.5 pl-4 pr-2">
-        <div className="flex items-center gap-4">
-          <span className="inline-flex items-center gap-1.5">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-t-lg border border-gray-200 bg-gray-50 px-4 py-2">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1">
             <span className="size-4 rounded-full bg-gray-200" />
             <span className="size-4 rounded-full bg-gray-200" />
             <span className="size-4 rounded-full bg-gray-200" />
           </span>
-          {title && <p className="m-0 text-sm font-medium">{title}</p>}
+          {title && <p className="m-0 text-sm">{title}</p>}
         </div>
-        <Button variant="outline" size="xs" className="rounded-lg" disabled={copied} onClick={onCopy}>
+        <Button variant="outline" size="xs" className="rounded-lg text-xs" disabled={copied} onClick={onCopy}>
           <LazyMotion features={domAnimation}>
             <m.span
               key={copied ? 'copied' : 'copy'}
@@ -80,9 +80,13 @@ export function CodeBlock({ title, code }) {
         </Button>
       </div>
       <div className="overflow-x-auto">
-        <pre>
-          <code dangerouslySetInnerHTML={{ __html: codeHTML }} />
-        </pre>
+        <div className="flex size-full flex-col overflow-x-auto overflow-y-hidden rounded-b-lg border-x border-b border-gray-200">
+          <div className="horizontal-scroll-area">
+            <pre>
+              <code dangerouslySetInnerHTML={{ __html: codeHTML }} />
+            </pre>
+          </div>
+        </div>
       </div>
     </>
   )

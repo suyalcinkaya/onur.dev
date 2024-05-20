@@ -2,6 +2,11 @@ import million from 'million/compiler'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  logging: {
+    fetches: {
+      fullUrl: process.env.NODE_ENV === 'development'
+    }
+  },
   compiler: {
     removeConsole: {
       exclude: ['error', 'info']

@@ -84,6 +84,11 @@ export const getPost = cache(async (slug, preview = isDevelopment) => {
                     width
                     height
                     description
+                    contentfulMetadata {
+                      tags {
+                        name
+                      }
+                    }
                   }
                 }
                 entries {
@@ -103,6 +108,18 @@ export const getPost = cache(async (slug, preview = isDevelopment) => {
                     }
                     ... on Tweet {
                       id
+                    }
+                    ... on Carousel {
+                      imagesCollection {
+                        items {
+                          title
+                          description
+                          url(transform: {
+                            format: AVIF,
+                            quality: 50
+                          })
+                        }
+                      }
                     }
                   }
                 }
