@@ -5,7 +5,9 @@ import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { GradientBg4 } from '@/components/gradient-bg'
+import { Link } from '@/components/link'
 import { getPageSeo } from '@/lib/contentful'
+import { isExternalLink } from '@/lib/utils'
 import { WORKSPACE_ITEMS } from '@/lib/constants'
 
 export default async function Workspace() {
@@ -16,28 +18,18 @@ export default async function Workspace() {
       <div className="content-wrapper">
         <div className="content">
           <PageTitle title="Workspace" />
-          <div className="-mx-6 mb-4 flex snap-x snap-mandatory gap-6 overflow-x-scroll pb-4 md:mx-0 md:grid md:snap-none md:grid-cols-2 md:overflow-x-auto md:pb-0">
-            <EmptyPlaceholder />
+          <figure>
             <Image
-              src="/assets/workspace-1.avif"
-              alt="Workspace | 1"
-              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
-              width={756}
-              height={1008}
+              src="/assets/workspace.avif"
+              alt="Workspace"
+              className="w-full object-cover"
+              width={766}
+              height={901}
               loading="eager"
               priority
             />
-            <Image
-              src="/assets/workspace-2.avif"
-              alt="Workspace | 2"
-              className="w-2/3 snap-center object-cover md:w-full md:snap-align-none"
-              width={756}
-              height={1008}
-              loading="eager"
-              priority
-            />
-            <EmptyPlaceholder />
-          </div>
+            <figcaption className="mt-2 break-all text-center text-xs font-light text-gray-500">Workspace</figcaption>
+          </figure>
           <div className="mt-2 overflow-hidden rounded-lg border bg-white md:mt-8">
             <Table>
               <TableHeader>
@@ -48,25 +40,22 @@ export default async function Workspace() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {WORKSPACE_ITEMS.map((item, itemIndex) => (
-                  <TableRow key={`workspace-item-${itemIndex}`}>
-                    <TableCell className="px-4 py-3 font-medium">{item.title}</TableCell>
-                    <TableCell className="px-4 py-3">{item.specs}</TableCell>
-                    <TableCell className="px-4 py-3 font-medium">
-                      <a
-                        href={item.url}
-                        className="link break-words after:content-['_↗']"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Buy
-                      </a>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {WORKSPACE_ITEMS.map((item, itemIndex) => {
+                  const isExternal = isExternalLink(item.url)
+
+                  return (
+                    <TableRow key={`workspace-item-${itemIndex}`}>
+                      <TableCell className="px-4 py-3 font-medium">{item.title}</TableCell>
+                      <TableCell className="px-4 py-3">{item.specs}</TableCell>
+                      <TableCell className="px-4 py-3 font-medium">
+                        <Link href={item.url}>{isExternal ? 'Buy' : 'Read'}</Link>
+                      </TableCell>
+                    </TableRow>
+                  )
+                })}
               </TableBody>
               <TableCaption className="py-3">
-                For other cool stuff, don&lsquo;t forget to check{' '}
+                For other cool stuff, check{' '}
                 <a
                   href="https://some.wtf"
                   className="link break-words after:content-['_↗']"

@@ -150,6 +150,11 @@ export const WORKSPACE_ITEMS = [
     specs: 'Space Gray, M2, 16GB RAM, 256GB SSD'
   },
   {
+    title: 'TE Computer-1 Mini-IPX PC',
+    url: '/writing/mini-itx-teenage-engineering-computer-1',
+    specs: 'Orange, AMD Ryzen 5 7600, 32GB RAM, 2TB SSD'
+  },
+  {
     title: 'Apple Magic Trackpad',
     url: 'https://www.apple.com/nl/shop/product/MK2D3Z/A/magic-trackpad-wit-multi%E2%80%91touch-oppervlak',
     specs: 'White'
@@ -168,6 +173,11 @@ export const WORKSPACE_ITEMS = [
     title: 'Dyson Solarcycle Morph',
     url: 'https://www.dyson.nl/verlichting/bureaulamp/solarcycle-morph-cd06/wit-zilver',
     specs: 'White/Silver'
+  },
+  {
+    title: 'Oakywood MagSafe iPhone Stand',
+    url: 'https://oakywood.shop/products/magsafe-iphone-stand',
+    specs: 'Oak'
   },
   {
     title: 'Apple Airpods Max',
