@@ -56,8 +56,6 @@ Create a `.env` file similar to [`.env.example`](https://github.com/suyalcinkaya
 
 No complicated licensing. Be kind and help others learn.
 
-
-
 > You can use the same license with: https://github.com/superkhau/lice
 
 ```bash
