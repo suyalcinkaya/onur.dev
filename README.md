@@ -12,15 +12,16 @@ and more.
 
 ## Overview
 
-- `/` - Home page.
-- `/[slug]` - Static pre-rendered pages using [Contentful](https://www.contentful.com). (e.g. `/stack`, `/about`)
-- `/writing` - Writing page.
-- `/writing/[slug]` - Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
-- `/journey` - Journey page.
-- `/workspace` - Workspace page.
-- `/bookmarks` - Bookmarks page.
-- `/bookmarks/[id]` - Static pre-rendered bookmarks pages using [Raindrop](https://raindrop.io/).
-- `/api` - API routes.
+- `/` — Home page.
+- `/[slug]` — Static pre-rendered pages using [Contentful](https://www.contentful.com). (e.g. `/stack`)
+- `/writing` — Writing page.
+- `/writing/[slug]` — Static pre-rendered writing pages using [Contentful](https://www.contentful.com).
+- `/journey` — Journey page.
+- `/workspace` — Workspace page.
+- `/bookmarks` — Bookmarks page.
+- `/bookmarks/[slug]` — Static pre-rendered bookmarks pages using [Raindrop](https://raindrop.io/).
+- `/bookmarks.xml` — Bookmarks XML feed.
+- `/api` — API routes.
 
 ## Running Locally
 
@@ -45,7 +46,7 @@ Create a `.env` file similar to [`.env.example`](https://github.com/suyalcinkaya
 
 ## Repo Activity
 
-![Alt](https://repobeats.axiom.co/api/embed/2d43636ebc156829d3e99c6f8c2b68d5aa6ebf93.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/2d43636ebc156829d3e99c6f8c2b68d5aa6ebf93.svg 'Repobeats analytics image')
 
 ## License
 
@@ -54,3 +55,10 @@ Create a `.env` file similar to [`.env.example`](https://github.com/suyalcinkaya
 3. Crediting the author is appreciated.
 
 No complicated licensing. Be kind and help others learn.
+
+> You can use the same license with: https://github.com/superkhau/lice
+
+```bash
+npm install -g lice
+lice -l onur_dev
+```
