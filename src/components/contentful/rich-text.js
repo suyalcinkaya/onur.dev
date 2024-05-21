@@ -53,17 +53,23 @@ function options(links) {
         )
       },
       // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
-      [BLOCKS.PARAGRAPH]: (_, children) => <div className="mb-4 leading-slacker last:mb-0">{children}</div>,
+      [BLOCKS.PARAGRAPH]: (_, children) => (
+        <div className="mb-4 leading-slacker last:mb-0 [&:has(+ul)]:mb-1">{children}</div>
+      ),
       [BLOCKS.UL_LIST]: (_, children) => <ul className="mb-4 flex list-disc flex-col gap-0.5 pl-6">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
         <ol className="mb-4 flex list-inside list-[decimal-leading-zero] flex-col gap-2">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (_, children) => <li>{children}</li>,
       [BLOCKS.QUOTE]: (_, children) => (
-        <blockquote className="mb-4 rounded-r-lg border-l-2 border-gray-200 px-4 font-medium">{children}</blockquote>
+        <blockquote className="mb-4 rounded-r-lg border-l-2 border-gray-200 px-4 font-medium text-gray-500">
+          {children}
+        </blockquote>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = findAsset(node.data.target.sys.id)
+        if (!asset) return null
+        const isEagerLoading = asset.contentfulMetadata?.tags?.some((tag) => tag.name === 'Eager Loading')
 
         return (
           <figure className="mb-6 flex flex-col gap-2 overflow-hidden rounded-xl">
@@ -72,7 +78,7 @@ function options(links) {
               width={asset.width || 400}
               height={asset.height || 300}
               alt={asset.description || asset.title}
-              loading="lazy"
+              loading={isEagerLoading ? 'eager' : 'lazy'}
               className="animate-reveal"
               // eslint-disable-next-line react/no-unknown-property
               nopin="nopin"
@@ -104,9 +110,10 @@ function options(links) {
                     <YouTubeEmbed
                       videoid={videoId}
                       playlabel={title}
-                      params="fs=0;controls=0"
+                      params="fs=0;controls=0&mute=1"
                       className="aspect-video"
                     />
+                    {title && <div className="py-2 text-center text-xs font-light text-gray-500">{title}</div>}
                   </ShowInView>
                 )
               }
@@ -123,6 +130,10 @@ function options(links) {
           case 'Tweet': {
             const { id } = entry
             return <TweetCard id={id} />
+          }
+          case 'Carousel': {
+            const Carousel = await import('@/components/contentful/carousel').then((mod) => mod.CarouselCmp)
+            return <Carousel images={entry.imagesCollection?.items} />
           }
           default:
             return null

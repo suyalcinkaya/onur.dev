@@ -62,7 +62,7 @@ export default async function WritingSlug({ params }) {
         <FloatingHeader scrollTitle={title} goBackLink="/writing">
           <WritingViews slug={slug} />
         </FloatingHeader>
-        <div className="content-wrapper">
+        <div className="content-wrapper @container/writing">
           <article className="content">
             <PageTitle
               title={title}

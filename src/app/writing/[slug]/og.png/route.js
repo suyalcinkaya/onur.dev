@@ -1,9 +1,11 @@
+import { draftMode } from 'next/headers'
 import { ImageResponse } from 'next/og'
 
 import { OpenGraphImage } from '@/components/og-image'
 import { getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
 import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { sharedMetadata } from '@/app/shared-metadata'
+import { isDevelopment } from '@/lib/utils'
 
 export const size = {
   width: sharedMetadata.ogImage.width,
@@ -16,9 +18,10 @@ export async function generateStaticParams() {
 }
 
 export async function GET(_, { params }) {
+  const { isEnabled } = draftMode()
   const { slug } = params
   const [seoData, regularFontData, boldFontData] = await Promise.all([
-    getWritingSeo(slug),
+    getWritingSeo(slug, isDevelopment ? true : isEnabled),
     getRegularFont(),
     getBoldFont()
   ])
@@ -39,16 +42,16 @@ export async function GET(_, { params }) {
       ...size,
       fonts: [
         {
-          name: 'SF Pro',
+          name: 'Geist Sans',
           data: regularFontData,
           style: 'normal',
-          weight: 500
+          weight: 400
         },
         {
-          name: 'SF Pro',
+          name: 'Geist Sans',
           data: boldFontData,
           style: 'normal',
-          weight: 600
+          weight: 500
         }
       ]
     }

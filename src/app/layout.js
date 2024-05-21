@@ -2,7 +2,7 @@ import '@/globals.css'
 import { draftMode } from 'next/headers'
 import Script from 'next/script'
 import { GeistSans } from 'geist/font/sans'
-import { JetBrains_Mono } from 'next/font/google'
+import { GeistMono } from 'geist/font/mono'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { EyeIcon } from 'lucide-react'
 
@@ -13,20 +13,13 @@ import { preloadGetAllPosts } from '@/lib/contentful'
 import { PROFILES } from '@/lib/constants'
 import { sharedMetadata } from '@/app/shared-metadata'
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-  weight: ['variable']
-})
-
 export default async function RootLayout({ children }) {
   const { isEnabled } = draftMode()
   preloadGetAllPosts(isEnabled)
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         {/* eslint-disable-next-line react/no-unknown-property */}
         <main vaul-drawer-wrapper="" className="min-h-screen bg-white">
           {isEnabled && (

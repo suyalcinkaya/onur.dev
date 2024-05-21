@@ -25,11 +25,11 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
           position: 'absolute',
           top: 60,
           left: 60,
-          fontSize: '2.5rem',
+          fontSize: '2rem',
           lineHeight: 1,
           background: '#000',
           color: '#fff',
-          padding: '1rem 1.75rem',
+          padding: '0.75rem 1.25rem',
           borderRadius: 9999
         }}
       >
@@ -50,7 +50,7 @@ export const OpenGraphImage = ({ title, description, icon, url }) => {
           {icon}
           <span
             style={{
-              fontSize: '5rem',
+              fontSize: '4.75rem',
               lineHeight: 1,
               fontWeight: 600
             }}

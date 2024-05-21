@@ -2,6 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: ['src/app/**/*.{js,ts,jsx,tsx,mdx,json}', 'src/components/**/*.{js,ts,jsx,tsx,mdx,json}'],
+  safelist: ['sh__line'],
   theme: {
     darkMode: 'selector',
     screens: {
@@ -17,7 +18,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', ...defaultTheme.fontFamily.sans],
-        mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono]
+        mono: ['var(--font-geist-mono)', ...defaultTheme.fontFamily.mono]
       },
       keyframes: {
         reveal: {

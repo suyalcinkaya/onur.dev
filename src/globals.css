@@ -4,11 +4,14 @@
 
 @layer base {
   :root {
-    /* --sh-class: #0070f3; */
-    /* --sh-identifier: #0070f3; */
-    --sh-keyword: #ff0078;
-    --sh-string: #028265;
-    --sh-comment: #9ca3af;
+    --sh-identifier: #171717;
+    --sh-sign: #8996a3;
+    --sh-property: hsl(278.93deg 100% 36.12%);
+    --sh-entity: hsl(210.8deg 100% 38.9%);
+    --sh-jsxliterals: #6266d1;
+    --sh-string: hsl(138.58deg 77.94% 27.65%);
+    --sh-keyword: rgb(215, 58, 73);
+    --sh-comment: #a19595;
   }
 
   ::selection {
@@ -23,6 +26,7 @@
   html {
     @apply overflow-hidden scroll-smooth antialiased;
     text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
   }
 
@@ -82,16 +86,20 @@
     @apply !mt-0;
   }
 
-  ol > li::marker {
-    @apply font-semibold;
+  ol {
+    li::marker {
+      @apply font-semibold;
+    }
   }
 
-  ul > li {
-    @apply pl-2;
-  }
+  ul {
+    li {
+      @apply pl-2;
 
-  ul > li::marker {
-    @apply text-gray-400;
+      &::marker {
+        @apply text-gray-400;
+      }
+    }
   }
 
   li div {
@@ -115,19 +123,26 @@
   }
 
   pre {
-    @apply overflow-x-auto break-normal rounded-b-lg border-x border-b border-gray-200 bg-white p-3 text-left text-xs leading-slacker;
+    @apply bg-white px-0 py-5 text-[13px];
+
+    code {
+      @apply grid whitespace-pre break-normal text-left font-mono text-[13px];
+      counter-reset: sh-line-number;
+
+      .sh__line {
+        @apply relative min-w-max px-4;
+
+        &:before {
+          @apply mr-6 inline-block w-5 text-right tabular-nums text-gray-400;
+          counter-increment: sh-line-number 1;
+          content: counter(sh-line-number);
+        }
+      }
+    }
   }
 
-  code {
-    @apply whitespace-pre-wrap;
-  }
-
-  code .sh__line::before {
-    counter-increment: sh-line-number 1;
-    content: counter(sh-line-number);
-    margin-right: 24px;
-    text-align: right;
-    color: #a4a4a4;
+  lite-youtube {
+    @apply !max-w-full overflow-hidden rounded-xl;
   }
 }
 
@@ -166,102 +181,9 @@
     @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
   }
 
-  pre code {
-    counter-reset: sh-line-number;
+  .horizontal-scroll-area {
+    @apply block w-fit min-w-full grow;
   }
-
-  /* .token.important,
-  .token.bold {
-    @apply font-medium;
-  }
-
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    @apply text-gray-400;
-  }
-
-  .token.namespace {
-    @apply opacity-70;
-  }
-
-  .token.property,
-  .token.symbol,
-  .token.deleted,
-  .token.keyword.null {
-    @apply text-[#d9931e];
-  }
-
-  .token.atrule,
-  .token.keyword,
-  .token.class,
-  .token.spread.operator {
-    @apply font-bold text-[#ff0078];
-  }
-
-  .token.tag,
-  .token.class-name,
-  .token.function-variable,
-  .token.function:not(.function-variable),
-  .token.number,
-  .token.property-access,
-  .token.maybe-class-name:not(.imports) {
-    @apply text-[#0070f3];
-  }
-
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string,
-  .token.attr-name,
-  .token.regex,
-  .token.important,
-  .token.variable:not(.dom) {
-    @apply text-[#d9931e];
-  }
-
-  .token.attr-value,
-  .token.selector,
-  .token.string,
-  .token.char,
-  .token.builtin,
-  .token.inserted {
-    @apply text-[#028265];
-  }
-
-  .token.boolean {
-    @apply text-[#36acaa];
-  }
-
-  .token.constant {
-    color: inherit;
-  }
-
-  .token.spread .token.punctuation {
-    @apply text-[#ff0078];
-  }
-
-  .token.spread .token.attr-value {
-    @apply text-white;
-  }
-
-  .language-css {
-    @apply text-[#028265];
-  }
-
-  .language-css .token.rule {
-    @apply text-[#ff0078];
-  }
-
-  .language-css .token.number,
-  .language-css .token.unit {
-    @apply text-[#60a7fa];
-  }
-
-  code.language-bash .token.function {
-    @apply text-[#028265];
-  } */
 }
 
 @layer utilities {
@@ -273,25 +195,6 @@
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
-
-  /* .bg-r-shadow-gradient {
-    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
-  } */
-
-  /* .bg-top-gradient {
-    --gradient-from: 247 185 85;
-    --gradient-to: 255 0 128;
-    --geist-background: #fff;
-    background: linear-gradient(to top, var(--geist-background) 0, hsla(0, 0%, 100%, 0) 100%),
-      linear-gradient(
-        to right,
-        rgb(var(--gradient-from, 192.5 192.5 192.5) / 0.08) 0,
-        rgb(var(--gradient-to, 192.5 192.5 192.5) / 0.08) 100%
-      );
-    background-size: 100% 100%, 100% 100%, 1440px 1px;
-    background-position: bottom;
-    background-repeat: no-repeat;
-  } */
 
   .bg-dots {
     @apply bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];

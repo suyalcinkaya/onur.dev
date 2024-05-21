@@ -47,16 +47,16 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'SF Pro',
+          name: 'Geist Sans',
           data: regularFontData,
           style: 'normal',
-          weight: 500
+          weight: 400
         },
         {
-          name: 'SF Pro',
+          name: 'Geist Sans',
           data: boldFontData,
           style: 'normal',
-          weight: 600
+          weight: 500
         }
       ]
     }
