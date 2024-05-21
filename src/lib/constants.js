@@ -175,6 +175,11 @@ export const WORKSPACE_ITEMS = [
     specs: 'White/Silver'
   },
   {
+    title: 'Oakywood MagSafe iPhone Stand',
+    url: 'https://oakywood.shop/products/magsafe-iphone-stand',
+    specs: 'Oak'
+  },
+  {
     title: 'Apple Airpods Max',
     url: 'https://www.apple.com/nl/airpods-max/',
     specs: 'Space Gray'
