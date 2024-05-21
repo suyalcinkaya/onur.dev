@@ -23,8 +23,8 @@ export default async function Workspace() {
               src="/assets/workspace.avif"
               alt="Workspace"
               className="w-full object-cover"
-              width={4250}
-              height={4950}
+              width={766}
+              height={901}
               loading="eager"
               priority
             />
