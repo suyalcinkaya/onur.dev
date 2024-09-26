@@ -48,7 +48,7 @@
     "sonner": "^1.4.3",
     "sugar-high": "^0.6.0",
     "tailwind-merge": "^2.2.1",
-    "vaul": "^0.9.0",
+    "vaul": "^1.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
