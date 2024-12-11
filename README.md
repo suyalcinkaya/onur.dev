@@ -59,6 +59,6 @@ No complicated licensing. Be kind and help others learn.
 > You can use the same license with: https://github.com/superkhau/lice
 
 ```bash
-npm install -g lice
-lice -l onur_dev
+$ npm install -g lice
+$ lice -l onur_dev
 ```
