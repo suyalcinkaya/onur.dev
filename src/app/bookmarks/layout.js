@@ -7,9 +7,6 @@ import { Toaster } from '@/components/ui/sonner'
 import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
-// Revalidate all routes every 2 days
-export const revalidate = 60 * 60 * 24 * 2 // 2 days
-
 async function fetchData() {
   const bookmarks = await getBookmarks()
   const sortedBookmarks = sortByProperty(bookmarks, 'title')
