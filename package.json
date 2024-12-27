@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .js,.jsx"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.18.0",
