@@ -16,7 +16,7 @@
     "lint:fix": "eslint --fix"
   },
   "engines": {
-    "node": "22.x"
+    "node": "20.x"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.18.0",
