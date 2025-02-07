@@ -22,7 +22,7 @@ export default async function Workspace() {
             <Image
               src="/assets/workspace.avif"
               alt="Workspace"
-              className="w-full object-cover"
+              className="animate-reveal w-full object-cover"
               width={766}
               height={901}
               loading="eager"
