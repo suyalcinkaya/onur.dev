@@ -1,11 +1,11 @@
 'use client'
 
 import { ArrowDownIcon } from 'lucide-react'
-import { useCallback, useEffect, useMemo,useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { getBookmarkItemsByPageIndex } from '@/app/actions'
 import { BookmarkCard } from '@/components/bookmark-card'
-import { Button } from '@/components/ui/button.jsx'
+import { Button } from '@/components/ui/button'
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 

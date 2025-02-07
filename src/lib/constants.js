@@ -8,7 +8,8 @@ import {
   PencilLineIcon,
   SparklesIcon,
   Wand2Icon,
-  YoutubeIcon} from 'lucide-react'
+  YoutubeIcon
+} from 'lucide-react'
 
 export const PROFILES = {
   twitter: {

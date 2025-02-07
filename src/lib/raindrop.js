@@ -1,10 +1,9 @@
 import 'server-only'
 
-import { cache } from 'react'
-
 import { COLLECTION_IDS } from '@/lib/constants'
 
 const options = {
+  cache: 'force-cache',
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -17,7 +16,7 @@ const options = {
 
 const RAINDROP_API_URL = 'https://api.raindrop.io/rest/v1'
 
-export const getBookmarkItems = cache(async (id, pageIndex = 0) => {
+export const getBookmarkItems = async (id, pageIndex = 0) => {
   try {
     const response = await fetch(
       `${RAINDROP_API_URL}/raindrops/${id}?` +
@@ -32,9 +31,9 @@ export const getBookmarkItems = cache(async (id, pageIndex = 0) => {
     console.info(error)
     return null
   }
-})
+}
 
-export const getBookmarks = cache(async () => {
+export const getBookmarks = async () => {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collections`, options)
     const bookmarks = await response.json()
@@ -44,9 +43,9 @@ export const getBookmarks = cache(async () => {
     console.info(error)
     return null
   }
-})
+}
 
-export const getBookmark = cache(async (id) => {
+export const getBookmark = async (id) => {
   try {
     const response = await fetch(`${RAINDROP_API_URL}/collection/${id}`, options)
     return await response.json()
@@ -54,4 +53,4 @@ export const getBookmark = cache(async (id) => {
     console.info(error)
     return null
   }
-})
+}

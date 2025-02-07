@@ -8,7 +8,7 @@ import { memo, useEffect, useState } from 'react'
 import Balancer from 'react-wrap-balancer'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
-import { Button } from '@/components/ui/button.jsx'
+import { Button } from '@/components/ui/button'
 
 const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
 const SubmitBookmarkDrawer = dynamic(

@@ -6,12 +6,8 @@ import { Link } from '@/components/link'
 import { ShowInView } from '@/components/show-in-view'
 
 const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
-const CodeBlock = dynamic(() => import('@/components/contentful/code-block').then((mod) => mod.CodeBlock), {
-  ssr: false
-})
-const DynamicIframe = dynamic(() => import('@/components/contentful/iframe').then((mod) => mod.Iframe), {
-  ssr: false
-})
+const CodeBlock = dynamic(() => import('@/components/contentful/code-block').then((mod) => mod.CodeBlock))
+const DynamicIframe = dynamic(() => import('@/components/contentful/iframe').then((mod) => mod.Iframe))
 import { dasherize } from '@/lib/utils'
 
 function options(links) {
@@ -31,7 +27,7 @@ function options(links) {
         return (
           <h2
             id={url}
-            className="group relative mb-2 mt-6 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']"
+            className="group relative mt-6 mb-2 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']"
           >
             <a href={`#${url}`} className="group-hover:underline group-hover:underline-offset-4">
               {children}
@@ -45,7 +41,7 @@ function options(links) {
         return (
           <h3
             id={url}
-            className="group relative mb-2 mt-6 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']"
+            className="group relative mt-6 mb-2 w-fit cursor-pointer before:absolute before:-left-4 hover:before:content-['#']"
           >
             <a href={`#${url}`} className="group-hover:underline group-hover:underline-offset-4">
               {children}
@@ -55,7 +51,7 @@ function options(links) {
       },
       // Must be a <div> instead of <p> to avoid descendant issue, hence to avoid mismatching UI between server and client on hydration.
       [BLOCKS.PARAGRAPH]: (_, children) => (
-        <div className="mb-4 leading-slacker last:mb-0 [&:has(+ul)]:mb-1">{children}</div>
+        <div className="leading-slacker mb-4 last:mb-0 [&:has(+ul)]:mb-1">{children}</div>
       ),
       [BLOCKS.UL_LIST]: (_, children) => <ul className="mb-4 flex list-disc flex-col gap-0.5 pl-6">{children}</ul>,
       [BLOCKS.OL_LIST]: (_, children) => (
@@ -85,7 +81,7 @@ function options(links) {
               nopin="nopin"
             />
             {asset.description && (
-              <figcaption className="break-all text-center text-xs font-light text-gray-500">
+              <figcaption className="text-center text-xs font-light break-all text-gray-500">
                 {asset.description}
               </figcaption>
             )}

@@ -1,4 +1,4 @@
-import MillionLint from '@million/lint'
+import { next } from '@million/lint'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -99,7 +99,10 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js', 'react-tweet'],
     webVitalsAttribution: ['FCP', 'LCP', 'CLS', 'FID', 'TTFB', 'INP']
+  },
+  eslint: {
+    ignoreDuringBuilds: true
   }
 }
 
-export default MillionLint.next({ rsc: true })(nextConfig)
+export default next({ rsc: true })(nextConfig)

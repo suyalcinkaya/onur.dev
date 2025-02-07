@@ -2,11 +2,11 @@
 
 import { RadioIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
-import { usePathname,useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { ScrollArea } from '@/components/scroll-area'
-import { Button } from '@/components/ui/button.jsx'
+import { Button } from '@/components/ui/button'
 
 const SubmitBookmarkDialog = dynamic(
   () => import('@/components/submit-bookmark/dialog').then((mod) => mod.SubmitBookmarkDialog),

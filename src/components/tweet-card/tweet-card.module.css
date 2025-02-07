@@ -1,5 +1,7 @@
+@reference '../../globals.css';
+
 .tweetCard :global(.react-tweet-theme) {
-  @apply min-w-full max-w-0 border-0 border-none font-sans text-base;
+  @apply max-w-0 min-w-full border-0 border-none font-sans text-base;
   --tweet-container-margin: 0;
   --tweet-body-font-size: 1rem;
   --tweet-body-line-height: 1.5rem;
@@ -32,7 +34,7 @@
 }
 
 .tweetCard :global(.react-tweet-theme) [class^='tweet-info_info__'] {
-  @apply mb-1 mt-3;
+  @apply mt-3 mb-1;
 }
 
 .tweetCard :global(.react-tweet-theme) [class^='tweet-actions_likeCount__'] {

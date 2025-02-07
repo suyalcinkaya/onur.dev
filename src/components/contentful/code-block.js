@@ -4,7 +4,7 @@ import { domAnimation, LazyMotion, m } from 'framer-motion'
 import { useState } from 'react'
 import { highlight } from 'sugar-high'
 
-import { Button } from '@/components/ui/button.jsx'
+import { Button } from '@/components/ui/button'
 
 export function CodeBlock({ title, code }) {
   const [copied, setCopied] = useState(false)
