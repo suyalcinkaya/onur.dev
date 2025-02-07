@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { NavigationLink } from '@/components/navigation-link'
-import { PROFILES, LINKS } from '@/lib/constants'
+import { LINKS,PROFILES } from '@/lib/constants'
 
 export const MenuContent = () => (
   <div className="flex w-full flex-col text-sm">

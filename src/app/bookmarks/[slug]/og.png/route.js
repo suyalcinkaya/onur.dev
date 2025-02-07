@@ -1,9 +1,9 @@
 import { ImageResponse } from 'next/og'
 
-import { OpenGraphImage } from '@/components/og-image'
-import { getBookmarks } from '@/lib/raindrop'
-import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { sharedMetadata } from '@/app/shared-metadata'
+import { OpenGraphImage } from '@/components/og-image'
+import { getBoldFont, getRegularFont } from '@/lib/fonts'
+import { getBookmarks } from '@/lib/raindrop'
 
 export const size = {
   width: sharedMetadata.ogImage.width,

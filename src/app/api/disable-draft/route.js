@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
 import { draftMode } from 'next/headers'
+import { NextResponse } from 'next/server'
 
 export async function GET(request) {
   const searchParams = request.nextUrl.searchParams

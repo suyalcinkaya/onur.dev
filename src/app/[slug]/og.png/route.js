@@ -1,9 +1,9 @@
 import { ImageResponse } from 'next/og'
 
-import { OpenGraphImage } from '@/components/og-image'
-import { getPageSeo, getAllPageSlugs } from '@/lib/contentful'
-import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { sharedMetadata } from '@/app/shared-metadata'
+import { OpenGraphImage } from '@/components/og-image'
+import { getAllPageSlugs, getPageSeo } from '@/lib/contentful'
+import { getBoldFont, getRegularFont } from '@/lib/fonts'
 
 export const size = {
   width: sharedMetadata.ogImage.width,

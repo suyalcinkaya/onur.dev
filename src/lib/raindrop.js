@@ -1,5 +1,6 @@
-import { cache } from 'react'
 import 'server-only'
+
+import { cache } from 'react'
 
 import { COLLECTION_IDS } from '@/lib/constants'
 

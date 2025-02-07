@@ -1,15 +1,14 @@
 import {
-  GithubIcon,
-  LinkedinIcon,
-  InstagramIcon,
-  YoutubeIcon,
-  SparklesIcon,
-  PencilLineIcon,
-  NavigationIcon,
-  Wand2Icon,
+  ArmchairIcon,
   BookmarkIcon,
-  ArmchairIcon
-} from 'lucide-react'
+  GithubIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  NavigationIcon,
+  PencilLineIcon,
+  SparklesIcon,
+  Wand2Icon,
+  YoutubeIcon} from 'lucide-react'
 
 export const PROFILES = {
   twitter: {

@@ -1,14 +1,15 @@
 'use client'
 
-import { memo, useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
-import Balancer from 'react-wrap-balancer'
 import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { memo, useEffect, useState } from 'react'
+import Balancer from 'react-wrap-balancer'
 
-import { Button } from '@/components/ui/button.jsx'
 import { LoadingSpinner } from '@/components/loading-spinner'
+import { Button } from '@/components/ui/button.jsx'
+
 const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
 const SubmitBookmarkDrawer = dynamic(
   () => import('@/components/submit-bookmark/drawer').then((mod) => mod.SubmitBookmarkDrawer),
@@ -17,7 +18,7 @@ const SubmitBookmarkDrawer = dynamic(
     ssr: false
   }
 )
-import { SCROLL_AREA_ID, MOBILE_SCROLL_THRESHOLD } from '@/lib/constants'
+import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from '@/lib/constants'
 
 export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks, currentBookmark, children }) => {
   const [transformValues, setTransformValues] = useState({ translateY: 0, opacity: scrollTitle ? 0 : 1 })
@@ -109,3 +110,4 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
     </header>
   )
 })
+FloatingHeader.displayName = 'FloatingHeader'

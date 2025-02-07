@@ -1,13 +1,13 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { ScrollArea } from '@/components/scroll-area'
-import { RichText } from '@/components/contentful/rich-text'
-import { PageTitle } from '@/components/page-title'
-import { FloatingHeader } from '@/components/floating-header'
-import { WritingViews } from '@/components/writing-views'
 import { ClientOnly } from '@/components/client-only'
-import { getPost, getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
+import { RichText } from '@/components/contentful/rich-text'
+import { FloatingHeader } from '@/components/floating-header'
+import { PageTitle } from '@/components/page-title'
+import { ScrollArea } from '@/components/scroll-area'
+import { WritingViews } from '@/components/writing-views'
+import { getAllPostSlugs, getPost, getWritingSeo } from '@/lib/contentful'
 import { getDateTimeFormat, isDevelopment } from '@/lib/utils'
 
 export async function generateStaticParams() {

@@ -1,8 +1,8 @@
 'use client'
 
-import { createContext, forwardRef, useCallback, useContext, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
+import { createContext, forwardRef, useCallback, useContext, useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -194,4 +194,4 @@ const CarouselNext = forwardRef(({ className, variant = 'outline', size = 'icon'
 })
 CarouselNext.displayName = 'CarouselNext'
 
-export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext }
+export { Carousel, CarouselContent, CarouselItem, CarouselNext,CarouselPrevious }

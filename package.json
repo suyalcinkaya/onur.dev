@@ -12,7 +12,8 @@
     "prettier": "prettier --write \"**/*.{html,js,jsx,json,md,mdx,mjs}\"",
     "clear-cache": "rm -rf .next",
     "unused": "next-unused",
-    "lint": "eslint . --ext .js,.jsx"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js,.jsx ."
   },
   "engines": {
     "node": "18.x"
@@ -20,6 +21,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.18.0",
     "@hookform/resolvers": "^3.3.4",
+    "@million/lint": "^1.0.14",
     "@next/third-parties": "^14.1.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
@@ -36,7 +38,7 @@
     "geist": "^1.2.2",
     "lucide-react": "^0.354.0",
     "markdown-to-jsx": "^7.3.2",
-    "million": "^3.0.6",
+    "million": "^3.1.11",
     "next": "^14.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -55,12 +57,13 @@
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.1.1",
     "cssnano-preset-advanced": "^6.1.1",
-    "eslint": "^8.50.0",
+    "eslint": "^8",
     "eslint-config-next": "^14.2.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-tailwindcss": "^3.15.1",
     "next-unused": "^0.0.6",
     "postcss": "^8.4.31",

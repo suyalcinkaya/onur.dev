@@ -1,9 +1,9 @@
 import { ImageResponse } from 'next/og'
 
+import { sharedMetadata } from '@/app/shared-metadata'
 import { OpenGraphImage } from '@/components/og-image'
 import { getPageSeo } from '@/lib/contentful'
-import { getRegularFont, getBoldFont } from '@/lib/fonts'
-import { sharedMetadata } from '@/app/shared-metadata'
+import { getBoldFont, getRegularFont } from '@/lib/fonts'
 
 export const alt = 'Bookmarks'
 export const size = {

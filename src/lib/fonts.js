@@ -1,5 +1,6 @@
-import { cache } from 'react'
 import { readFile } from 'node:fs/promises'
+
+import { cache } from 'react'
 
 /**
  * Retrieves the regular font file asynchronously.

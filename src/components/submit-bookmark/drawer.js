@@ -1,19 +1,19 @@
 'use client'
 
-import { useState } from 'react'
 import { SendIcon } from 'lucide-react'
+import { useState } from 'react'
 
+import { SubmitBookmarkForm } from '@/components/submit-bookmark/form'
+import { Button } from '@/components/ui/button.jsx'
 import {
   Drawer,
   DrawerContent,
-  DrawerHeader,
   DrawerDescription,
+  DrawerHeader,
   DrawerTitle,
   DrawerTrigger
 } from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button.jsx'
-import { SubmitBookmarkForm } from '@/components/submit-bookmark/form'
-import { SUBMIT_BOOKMARK_FORM_TITLE, SUBMIT_BOOKMARK_FORM_DESCRIPTION } from '@/lib/constants'
+import { SUBMIT_BOOKMARK_FORM_DESCRIPTION, SUBMIT_BOOKMARK_FORM_TITLE } from '@/lib/constants'
 
 export const SubmitBookmarkDrawer = ({ bookmarks, currentBookmark }) => {
   const [open, setOpen] = useState(false)

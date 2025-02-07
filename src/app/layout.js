@@ -1,17 +1,18 @@
 import '@/globals.css'
+
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+import { EyeIcon } from 'lucide-react'
 import { draftMode } from 'next/headers'
 import Script from 'next/script'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { EyeIcon } from 'lucide-react'
 
-import { TailwindIndicator } from '@/components/tailwind-indicator'
-import { SideMenu } from '@/components/side-menu'
-import { MenuContent } from '@/components/menu-content'
-import { preloadGetAllPosts } from '@/lib/contentful'
-import { PROFILES } from '@/lib/constants'
 import { sharedMetadata } from '@/app/shared-metadata'
+import { MenuContent } from '@/components/menu-content'
+import { SideMenu } from '@/components/side-menu'
+import { TailwindIndicator } from '@/components/tailwind-indicator'
+import { PROFILES } from '@/lib/constants'
+import { preloadGetAllPosts } from '@/lib/contentful'
 
 export default async function RootLayout({ children }) {
   const { isEnabled } = draftMode()

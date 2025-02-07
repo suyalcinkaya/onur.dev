@@ -1,4 +1,4 @@
-import { getAllPosts, getAllPageSlugs } from '@/lib/contentful'
+import { getAllPageSlugs, getAllPosts } from '@/lib/contentful'
 import { getBookmarks } from '@/lib/raindrop'
 import { getSortedPosts } from '@/lib/utils'
 
