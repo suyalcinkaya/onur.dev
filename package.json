@@ -19,7 +19,7 @@
     "node": "18.x"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.18.0",
+    "@contentful/rich-text-react-renderer": "^16.0.0",
     "@hookform/resolvers": "^3.3.4",
     "@million/lint": "^1.0.14",
     "@next/third-parties": "^14.1.4",
