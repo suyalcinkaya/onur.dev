@@ -1,11 +1,11 @@
-import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
-import { ScrollArea } from '@/components/scroll-area'
-import { PageTitle } from '@/components/page-title'
-import { FloatingHeader } from '@/components/floating-header'
-import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
 import { BookmarkList } from '@/components/bookmark-list.jsx'
+import { FloatingHeader } from '@/components/floating-header'
+import { PageTitle } from '@/components/page-title'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
+import { ScrollArea } from '@/components/scroll-area'
 import { getBookmarkItems, getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 

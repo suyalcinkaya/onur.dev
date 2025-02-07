@@ -1,7 +1,7 @@
 'use client'
 
+import { domAnimation, LazyMotion, m } from 'framer-motion'
 import Link from 'next/link'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { useViewData } from '@/hooks/useViewData'
 import { cn, dateWithDayAndMonthFormatter, dateWithMonthAndYearFormatter, viewCountFormatter } from '@/lib/utils'

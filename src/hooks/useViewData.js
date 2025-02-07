@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useEffect,useState } from 'react'
 
-import supabase from '@/lib/supabase/public'
 import { SUPABASE_TABLE_NAME } from '@/lib/constants'
+import supabase from '@/lib/supabase/public'
 
 export const useViewData = (slug) => {
   const [viewData, setViewData] = useState(null)

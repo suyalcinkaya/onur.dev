@@ -1,6 +1,6 @@
 'use client'
 
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { domAnimation, LazyMotion, m } from 'framer-motion'
 
 import { useViewData } from '@/hooks/useViewData'
 import { viewCountFormatter } from '@/lib/utils'

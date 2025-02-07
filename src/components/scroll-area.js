@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import { SCROLL_AREA_ID } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 export const ScrollArea = ({ useScrollAreaId = false, className, ...rest }) => (
   <div

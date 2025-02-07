@@ -1,10 +1,10 @@
 import { draftMode } from 'next/headers'
 import { ImageResponse } from 'next/og'
 
-import { OpenGraphImage } from '@/components/og-image'
-import { getWritingSeo, getAllPostSlugs } from '@/lib/contentful'
-import { getRegularFont, getBoldFont } from '@/lib/fonts'
 import { sharedMetadata } from '@/app/shared-metadata'
+import { OpenGraphImage } from '@/components/og-image'
+import { getAllPostSlugs, getWritingSeo } from '@/lib/contentful'
+import { getBoldFont, getRegularFont } from '@/lib/fonts'
 import { isDevelopment } from '@/lib/utils'
 
 export const size = {

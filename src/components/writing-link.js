@@ -1,5 +1,5 @@
+import { domAnimation, LazyMotion, m } from 'framer-motion'
 import Link from 'next/link'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { cn, getDateTimeFormat, viewCountFormatter } from '@/lib/utils'
 

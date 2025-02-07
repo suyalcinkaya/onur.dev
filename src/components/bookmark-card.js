@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
 import { Link2Icon } from 'lucide-react'
+import dynamic from 'next/dynamic'
 
 const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'

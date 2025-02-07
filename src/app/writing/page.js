@@ -1,10 +1,10 @@
 import { Suspense } from 'react'
 
-import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
 import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
+import { ScrollArea } from '@/components/scroll-area'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
-import { getPageSeo, getAllPosts } from '@/lib/contentful'
+import { getAllPosts, getPageSeo } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {

@@ -1,8 +1,8 @@
 'use client'
 
+import { domAnimation, LazyMotion, m } from 'framer-motion'
 import { useState } from 'react'
 import { highlight } from 'sugar-high'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 import { Button } from '@/components/ui/button.jsx'
 

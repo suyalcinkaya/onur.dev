@@ -1,14 +1,14 @@
 import Image from 'next/image'
 
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
-import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
-import { PageTitle } from '@/components/page-title'
 import { GradientBg4 } from '@/components/gradient-bg'
 import { Link } from '@/components/link'
+import { PageTitle } from '@/components/page-title'
+import { ScrollArea } from '@/components/scroll-area'
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
+import { WORKSPACE_ITEMS } from '@/lib/constants'
 import { getPageSeo } from '@/lib/contentful'
 import { isExternalLink } from '@/lib/utils'
-import { WORKSPACE_ITEMS } from '@/lib/constants'
 
 export default async function Workspace() {
   return (
@@ -72,12 +72,6 @@ export default async function Workspace() {
     </ScrollArea>
   )
 }
-
-const EmptyPlaceholder = () => (
-  <div className="shrink-0 snap-center md:hidden">
-    <div className="w-px shrink-0" />
-  </div>
-)
 
 export async function generateMetadata() {
   const seoData = await getPageSeo('workspace')

@@ -2,8 +2,8 @@
 
 import { cookies } from 'next/headers'
 
+import { BOOKMARK_SUBMISSION_COUNT_COOKIE_NAME, MAX_BOOKMARK_SUBMISSIONS_PER_DAY } from '@/lib/constants'
 import { getBookmarkItems } from '@/lib/raindrop'
-import { MAX_BOOKMARK_SUBMISSIONS_PER_DAY, BOOKMARK_SUBMISSION_COUNT_COOKIE_NAME } from '@/lib/constants'
 
 export async function submitBookmark(formData) {
   const cookieStore = cookies()

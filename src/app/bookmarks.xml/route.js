@@ -1,6 +1,6 @@
 import { Feed } from 'feed'
 
-import { getBookmarks, getBookmarkItems } from '@/lib/raindrop'
+import { getBookmarkItems, getBookmarks } from '@/lib/raindrop'
 
 export async function GET() {
   const bookmarks = await getBookmarks()

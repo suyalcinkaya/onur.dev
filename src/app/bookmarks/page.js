@@ -1,9 +1,9 @@
-import { Suspense } from 'react'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
-import { ScrollArea } from '@/components/scroll-area'
 import { FloatingHeader } from '@/components/floating-header'
 import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
+import { ScrollArea } from '@/components/scroll-area'
 import { getPageSeo } from '@/lib/contentful'
 import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'

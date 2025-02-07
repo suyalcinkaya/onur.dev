@@ -1,14 +1,14 @@
-import { Suspense } from 'react'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
-import { ScrollArea } from '@/components/scroll-area'
-import { PageTitle } from '@/components/page-title'
-import { FloatingHeader } from '@/components/floating-header'
-import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
-import { GradientBg } from '@/components/gradient-bg'
 import { RichText } from '@/components/contentful/rich-text'
-import { getPage, getPageSeo, getAllPageSlugs } from '@/lib/contentful'
+import { FloatingHeader } from '@/components/floating-header'
+import { GradientBg } from '@/components/gradient-bg'
+import { PageTitle } from '@/components/page-title'
+import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
+import { ScrollArea } from '@/components/scroll-area'
+import { getAllPageSlugs, getPage, getPageSeo } from '@/lib/contentful'
 import { isDevelopment } from '@/lib/utils'
 
 export async function generateStaticParams() {

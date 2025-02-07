@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 
-import { SideMenu } from '@/components/side-menu'
 import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
+import { SideMenu } from '@/components/side-menu'
 import { WritingListLayout } from '@/components/writing/writing-list-layout'
 import { getAllPosts } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'

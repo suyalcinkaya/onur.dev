@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import { Card, CardContent } from '@/components/ui/card'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 
 export function CarouselCmp({ images = [] }) {
   const [api, setApi] = useState()
