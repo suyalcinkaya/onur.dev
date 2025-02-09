@@ -21,7 +21,12 @@ export default async function RootLayout({ children }) {
   preloadGetAllPosts(isEnabled)
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body suppressHydrationWarning>
         {/* eslint-disable-next-line react/no-unknown-property */}
         <main vaul-drawer-wrapper="" className="min-h-screen bg-white">

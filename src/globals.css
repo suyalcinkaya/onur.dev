@@ -1,6 +1,46 @@
 @import 'tailwindcss';
 
-@config '../tailwind.config.js';
+@plugin '@tailwindcss/container-queries';
+@plugin 'tailwindcss-animate';
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --breakpoint-xs: 390px;
+  --breakpoint-sm: 435px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --animate-reveal: reveal 0.7s ease-in-out;
+
+  --sh-identifier: #171717;
+  --sh-sign: #8996a3;
+  --sh-property: hsl(278.93deg 100% 36.12%);
+  --sh-entity: hsl(210.8deg 100% 38.9%);
+  --sh-jsxliterals: #6266d1;
+  --sh-string: hsl(138.58deg 77.94% 27.65%);
+  --sh-keyword: rgb(215, 58, 73);
+  --sh-comment: #a19595;
+
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      filter: brightness(1) blur(15px);
+      scale: 1.0125;
+    }
+    10% {
+      opacity: 1;
+      filter: brightness(1.25) blur(10px);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1) blur(0);
+      scale: 1;
+    }
+  }
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -17,17 +57,6 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
-  }
-
-  :root {
-    --sh-identifier: #171717;
-    --sh-sign: #8996a3;
-    --sh-property: hsl(278.93deg 100% 36.12%);
-    --sh-entity: hsl(210.8deg 100% 38.9%);
-    --sh-jsxliterals: #6266d1;
-    --sh-string: hsl(138.58deg 77.94% 27.65%);
-    --sh-keyword: rgb(215, 58, 73);
-    --sh-comment: #a19595;
   }
 
   ::selection {
@@ -51,7 +80,7 @@
   }
 
   #__next {
-    @apply min-h-dynamic-screen;
+    @apply min-h-dvh;
   }
 
   article {
@@ -59,7 +88,7 @@
   }
 
   p {
-    @apply leading-slacker mb-6;
+    @apply mb-6 leading-[1.75];
   }
 
   a,
@@ -193,7 +222,7 @@
 }
 
 @utility scrollable-area {
-  @apply max-h-dynamic-screen min-h-dynamic-screen h-full overflow-x-hidden overflow-y-auto;
+  @apply h-full max-h-dvh min-h-dvh overflow-x-hidden overflow-y-auto;
 }
 
 @utility horizontal-scroll-area {

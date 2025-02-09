@@ -4,29 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { z } from 'zod'
 
-import { submitBookmark } from '@/app/actions'
+import { formSchema } from '@/components/submit-bookmark/utils'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
 
-const formSchema = z.object({
-  url: z.string().url({
-    message: 'Invalid URL.'
-  }),
-  email: z.string().email({
-    message: 'Invalid email address.'
-  }),
-  type: z.string().optional()
-})
-
 export function SubmitBookmarkForm({ className, setFormOpen, bookmarks, currentBookmark }) {
   const form = useForm({
     resolver: zodResolver(formSchema),
-    // mode: 'onChange',
+    mode: 'onChange',
     defaultValues: {
       url: '',
       email: '',
@@ -34,28 +23,34 @@ export function SubmitBookmarkForm({ className, setFormOpen, bookmarks, currentB
     }
   })
   const {
-    formState: { isSubmitting, errors },
-    setError
+    formState: { isSubmitting, errors }
   } = form
   const hasErrors = Object.keys(errors).length > 0
 
   async function onSubmit(values) {
     try {
-      await submitBookmark(values)
+      const response = await fetch('/api/submit-bookmark', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...values })
+      })
 
-      toast('Bookmark submitted!', {
-        type: 'success',
+      if (!response.ok) {
+        throw new Error('Error submitting bookmark.')
+      }
+
+      form.reset()
+      toast('Bookmark submitted', {
         description: (
           <span>
-            <span className="underline underline-offset-4">{values.url}</span> has been submitted. Thank you!
+            <span className="underline underline-offset-4">{values.url}</span> has been submitted. Thank you for your
+            contribution!
           </span>
         )
       })
     } catch (error) {
-      setError('api.limitError', {
-        type: 'manual',
-        message: error.message
-      })
       toast.error(error.message)
     } finally {
       setFormOpen(false)
