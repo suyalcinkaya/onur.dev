@@ -20,14 +20,14 @@ export const BookmarkCard = ({ bookmark, order }) => {
       rel="noopener noreferrer"
       data-bookmark-order={order}
     >
-      <span className="aspect-[1200/630] overflow-hidden rounded-lg">
+      <span className="aspect-1200/630 overflow-hidden rounded-lg">
         <img
           src={bookmark.cover || '/assets/fallback.avif'}
           alt={bookmark.title}
           width={1200}
           height={630}
           loading={order < 2 ? 'eager' : 'lazy'}
-          className="aspect-[1200/630] animate-reveal rounded-lg border bg-cover bg-center bg-no-repeat object-cover"
+          className="animate-reveal aspect-1200/630 rounded-lg border bg-cover bg-center bg-no-repeat object-cover"
           onError={(e) => {
             e.target.onerror = null
             e.target.src = '/assets/fallback.avif'

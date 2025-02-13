@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 }
 
 async function fetchData(slug) {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   const data = await getPost(slug, isDevelopment ? true : isEnabled)
   if (!data) notFound()
 
@@ -25,7 +25,8 @@ async function fetchData(slug) {
   }
 }
 
-export default async function WritingSlug({ params }) {
+export default async function WritingSlug(props) {
+  const params = await props.params
   const { slug } = params
   const { data } = await fetchData(slug)
 
@@ -84,7 +85,8 @@ export default async function WritingSlug({ params }) {
   )
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
   const { slug } = params
   const seoData = await getWritingSeo(slug)
   if (!seoData) return null

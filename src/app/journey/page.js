@@ -52,7 +52,7 @@ export default async function Journey() {
                         <div className="z-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-black align-middle text-white">
                           <PlusIcon size={16} />
                         </div>
-                        <div className="grow pl-8">
+                        <div className="grow pl-4 lg:pl-8">
                           <JourneyCard {...log} index={logIndex} />
                         </div>
                       </div>

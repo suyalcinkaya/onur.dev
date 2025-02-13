@@ -4,11 +4,11 @@ import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import Balancer from 'react-wrap-balancer'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
-import { Button } from '@/components/ui/button.jsx'
+import { Button } from '@/components/ui/button'
 
 const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
 const SubmitBookmarkDrawer = dynamic(
@@ -27,6 +27,8 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
   const isWritingPath = pathname.startsWith('/writing')
   const isBookmarksIndexPage = pathname === '/bookmarks'
   const isBookmarkPath = pathname.startsWith('/bookmarks')
+
+  const memoizedMobileDrawer = useMemo(() => <MobileDrawer />, [])
 
   useEffect(() => {
     const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`)
@@ -54,6 +56,20 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
     return () => scrollAreaElem?.removeEventListener('scroll', onScroll)
   }, [scrollTitle])
 
+  const memoizedSubmitBookmarkDrawer = useMemo(
+    () => <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />,
+    [bookmarks, currentBookmark]
+  )
+
+  const memoizedBalancer = useMemo(
+    () => (
+      <Balancer ratio={0.35}>
+        <span className="line-clamp-2 font-semibold tracking-tight">{title}</span>
+      </Balancer>
+    ),
+    [title]
+  )
+
   return (
     <header className="sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-white text-sm font-medium lg:hidden">
       <div className="flex size-full items-center px-3">
@@ -66,7 +82,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                 </Link>
               </Button>
             ) : (
-              <MobileDrawer />
+              memoizedMobileDrawer
             )}
             <div className="flex flex-1 items-center justify-between">
               {scrollTitle && (
@@ -80,11 +96,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                   {scrollTitle}
                 </span>
               )}
-              {title && (
-                <Balancer ratio={0.35}>
-                  <span className="line-clamp-2 font-semibold tracking-tight">{title}</span>
-                </Balancer>
-              )}
+              {title && memoizedBalancer}
               <div className="flex items-center gap-2">
                 {(isWritingIndexPage || isBookmarksIndexPage) && (
                   <Button variant="outline" size="xs" asChild>
@@ -99,7 +111,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                     </a>
                   </Button>
                 )}
-                {isBookmarkPath && <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />}
+                {isBookmarkPath && memoizedSubmitBookmarkDrawer}
               </div>
             </div>
           </div>

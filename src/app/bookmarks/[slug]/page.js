@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
-import { BookmarkList } from '@/components/bookmark-list.jsx'
+import { BookmarkList } from '@/components/bookmark-list'
 import { FloatingHeader } from '@/components/floating-header'
 import { PageTitle } from '@/components/page-title'
 import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'
@@ -29,7 +29,8 @@ async function fetchData(slug) {
   }
 }
 
-export default async function CollectionPage({ params }) {
+export default async function CollectionPage(props) {
+  const params = await props.params
   const { slug } = params
   const { bookmarks, currentBookmark, bookmarkItems } = await fetchData(slug)
 
@@ -53,7 +54,8 @@ export default async function CollectionPage({ params }) {
   )
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
   const { slug } = params
   const bookmarks = await getBookmarks()
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)

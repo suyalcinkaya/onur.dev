@@ -5,6 +5,8 @@ import { OpenGraphImage } from '@/components/og-image'
 import { getBoldFont, getRegularFont } from '@/lib/fonts'
 import { getBookmarks } from '@/lib/raindrop'
 
+export const dynamic = 'force-static'
+
 export const size = {
   width: sharedMetadata.ogImage.width,
   height: sharedMetadata.ogImage.height
@@ -15,7 +17,8 @@ export async function generateStaticParams() {
   return bookmarks.map((bookmark) => ({ slug: bookmark.slug }))
 }
 
-export async function GET(_, { params }) {
+export async function GET(_, props) {
+  const params = await props.params
   const { slug } = params
   const [bookmarks, regularFontData, boldFontData] = await Promise.all([
     getBookmarks(),

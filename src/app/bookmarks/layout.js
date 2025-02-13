@@ -39,7 +39,6 @@ export default async function BookmarksLayout({ children }) {
       </div>
       <Toaster
         closeButton
-        richColors
         toastOptions={{
           duration: 5000
         }}

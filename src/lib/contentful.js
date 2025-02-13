@@ -7,6 +7,7 @@ import { isDevelopment } from '@/lib/utils'
 const fetchGraphQL = cache(async (query, preview = isDevelopment) => {
   try {
     const res = await fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
+      cache: 'force-cache',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

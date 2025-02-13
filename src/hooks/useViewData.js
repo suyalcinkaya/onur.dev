@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { SUPABASE_TABLE_NAME } from '@/lib/constants'
 import supabase from '@/lib/supabase/public'

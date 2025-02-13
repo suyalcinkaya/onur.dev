@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { NavigationLink } from '@/components/navigation-link'
-import { LINKS,PROFILES } from '@/lib/constants'
+import { LINKS, PROFILES } from '@/lib/constants'
 
 export const MenuContent = () => (
   <div className="flex w-full flex-col text-sm">
@@ -13,7 +13,7 @@ export const MenuContent = () => (
           width={40}
           height={40}
           loading="lazy"
-          className="rounded-full border shadow-sm"
+          className="rounded-full border shadow-xs"
           // eslint-disable-next-line react/no-unknown-property
           nopin="nopin"
         />
@@ -36,7 +36,7 @@ export const MenuContent = () => (
     </div>
     <hr />
     <div className="flex flex-col gap-2 text-sm">
-      <span className="px-2 text-xs font-medium leading-relaxed text-gray-600">Online</span>
+      <span className="px-2 text-xs leading-relaxed font-medium text-gray-600">Online</span>
       <div className="flex flex-col gap-1">
         {Object.values(PROFILES).map((profile) => (
           <NavigationLink key={profile.url} href={profile.url} label={profile.title} icon={profile.icon} />

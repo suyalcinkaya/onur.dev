@@ -5,6 +5,8 @@ import { OpenGraphImage } from '@/components/og-image'
 import { getAllPageSlugs, getPageSeo } from '@/lib/contentful'
 import { getBoldFont, getRegularFont } from '@/lib/fonts'
 
+export const dynamic = 'force-static'
+
 export const size = {
   width: sharedMetadata.ogImage.width,
   height: sharedMetadata.ogImage.height
@@ -20,7 +22,8 @@ export async function generateStaticParams() {
     }))
 }
 
-export async function GET(_, { params }) {
+export async function GET(_, props) {
+  const params = await props.params
   const { slug } = params
   const [seoData = {}, regularFontData, boldFontData] = await Promise.all([
     getPageSeo(slug),

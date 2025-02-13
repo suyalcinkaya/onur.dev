@@ -8,7 +8,8 @@ import {
   PencilLineIcon,
   SparklesIcon,
   Wand2Icon,
-  YoutubeIcon} from 'lucide-react'
+  YoutubeIcon
+} from 'lucide-react'
 
 export const PROFILES = {
   twitter: {
@@ -212,8 +213,6 @@ export const SUPABASE_TABLE_NAME = 'pages'
 export const SUBMIT_BOOKMARK_FORM_TITLE = 'Submit a bookmark'
 export const SUBMIT_BOOKMARK_FORM_DESCRIPTION =
   "Send me a website you like and if I like it too, you'll see it in the bookmarks list. With respect, please do not submit more than 5 websites a day."
-export const MAX_BOOKMARK_SUBMISSIONS_PER_DAY = 5
-export const BOOKMARK_SUBMISSION_COUNT_COOKIE_NAME = 'formSubmissionCount'
 
 export const CONTENT_TYPES = {
   PAGE: 'page',

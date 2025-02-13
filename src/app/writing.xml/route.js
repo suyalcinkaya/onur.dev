@@ -3,6 +3,8 @@ import { Feed } from 'feed'
 import { getAllPosts } from '@/lib/contentful'
 import { getSortedPosts } from '@/lib/utils'
 
+export const dynamic = 'force-static'
+
 export async function GET() {
   const allPosts = await getAllPosts()
   const sortedPosts = getSortedPosts(allPosts)
