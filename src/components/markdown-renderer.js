@@ -27,7 +27,7 @@ export const MarkdownRenderer = ({ options, ...rest }) => {
               />
             </span>
           ),
-          tweet: ({ id }) => <TweetCard id={id} />
+          tweet: ({ id }) => <TweetCard id={id} className="mt-2" />
         }
       }}
       {...rest}

@@ -2,26 +2,29 @@
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { XIcon } from 'lucide-react'
+import { memo } from 'react'
 
 import { cn } from '@/lib/utils'
 
-function Dialog({ ...props }) {
+const Dialog = memo(({ ...props }) => {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
-}
+})
+Dialog.displayName = 'Dialog'
 
 function DialogTrigger({ ...props }) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
 }
 
-function DialogPortal({ ...props }) {
+const DialogPortal = memo(({ ...props }) => {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
-}
+})
+DialogPortal.displayName = 'DialogPortal'
 
 function DialogClose({ ...props }) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
 }
 
-function DialogOverlay({ className, ...props }) {
+const DialogOverlay = memo(({ className, ...props }) => {
   return (
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
@@ -32,9 +35,10 @@ function DialogOverlay({ className, ...props }) {
       {...props}
     />
   )
-}
+})
+DialogOverlay.displayName = 'DialogOverlay'
 
-function DialogContent({ className, children, ...props }) {
+const DialogContent = memo(({ className, children, ...props }) => {
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -54,7 +58,8 @@ function DialogContent({ className, children, ...props }) {
       </DialogPrimitive.Content>
     </DialogPortal>
   )
-}
+})
+DialogContent.displayName = 'DialogContent'
 
 function DialogHeader({ className, ...props }) {
   return (
@@ -86,7 +91,7 @@ function DialogTitle({ className, ...props }) {
   )
 }
 
-function DialogDescription({ className, ...props }) {
+const DialogDescription = memo(({ className, ...props }) => {
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
@@ -94,7 +99,8 @@ function DialogDescription({ className, ...props }) {
       {...props}
     />
   )
-}
+})
+DialogDescription.displayName = 'DialogDescription'
 
 export {
   Dialog,

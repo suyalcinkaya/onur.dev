@@ -4,6 +4,15 @@
 @plugin 'tailwindcss-animate';
 
 @theme {
+  --sh-identifier: #171717;
+  --sh-sign: #8996a3;
+  --sh-property: hsl(278.93deg 100% 36.12%);
+  --sh-entity: hsl(210.8deg 100% 38.9%);
+  --sh-jsxliterals: #6266d1;
+  --sh-string: hsl(138.58deg 77.94% 27.65%);
+  --sh-keyword: rgb(215, 58, 73);
+  --sh-comment: #a19595;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
@@ -14,15 +23,6 @@
   --breakpoint-xl: 1280px;
 
   --animate-reveal: reveal 0.7s ease-in-out;
-
-  --sh-identifier: #171717;
-  --sh-sign: #8996a3;
-  --sh-property: hsl(278.93deg 100% 36.12%);
-  --sh-entity: hsl(210.8deg 100% 38.9%);
-  --sh-jsxliterals: #6266d1;
-  --sh-string: hsl(138.58deg 77.94% 27.65%);
-  --sh-keyword: rgb(215, 58, 73);
-  --sh-comment: #a19595;
 
   @keyframes reveal {
     0% {

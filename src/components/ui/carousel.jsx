@@ -2,7 +2,7 @@
 
 import useEmblaCarousel from 'embla-carousel-react'
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
-import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { createContext, memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -19,12 +19,15 @@ function useCarousel() {
   return context
 }
 
-function Carousel({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }) {
+const Carousel = memo(({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }) => {
   const [carouselRef, api] = useEmblaCarousel(
-    {
-      ...opts,
-      axis: orientation === 'horizontal' ? 'x' : 'y'
-    },
+    useMemo(
+      () => ({
+        ...opts,
+        axis: orientation === 'horizontal' ? 'x' : 'y'
+      }),
+      [opts, orientation]
+    ),
     plugins
   )
   const [canScrollPrev, setCanScrollPrev] = useState(false)
@@ -78,23 +81,27 @@ function Carousel({ orientation = 'horizontal', opts, setApi, plugins, className
     api.on('select', onSelect)
 
     return () => {
-      api?.off('select', onSelect)
+      api.off('reInit', onSelect)
+      api.off('select', onSelect)
     }
   }, [api, onSelect])
 
+  const memoizedContextValue = useMemo(
+    () => ({
+      carouselRef,
+      api,
+      opts: opts,
+      orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+      scrollPrev,
+      scrollNext,
+      canScrollPrev,
+      canScrollNext
+    }),
+    [carouselRef, api, opts, orientation, scrollPrev, scrollNext, canScrollPrev, canScrollNext]
+  )
+
   return (
-    <CarouselContext.Provider
-      value={{
-        carouselRef,
-        api: api,
-        opts,
-        orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
-        scrollPrev,
-        scrollNext,
-        canScrollPrev,
-        canScrollNext
-      }}
-    >
+    <CarouselContext.Provider value={memoizedContextValue}>
       <div
         onKeyDownCapture={handleKeyDown}
         className={cn('relative', className)}
@@ -106,9 +113,10 @@ function Carousel({ orientation = 'horizontal', opts, setApi, plugins, className
       </div>
     </CarouselContext.Provider>
   )
-}
+})
+Carousel.displayName = 'Carousel'
 
-function CarouselContent({ className, ...props }) {
+const CarouselContent = memo(({ className, ...props }) => {
   const { carouselRef, orientation } = useCarousel()
 
   return (
@@ -116,9 +124,10 @@ function CarouselContent({ className, ...props }) {
       <div className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)} {...props} />
     </div>
   )
-}
+})
+CarouselContent.displayName = 'CarouselContent'
 
-function CarouselItem({ className, ...props }) {
+const CarouselItem = memo(({ className, ...props }) => {
   const { orientation } = useCarousel()
 
   return (
@@ -129,9 +138,10 @@ function CarouselItem({ className, ...props }) {
       {...props}
     />
   )
-}
+})
+CarouselItem.displayName = 'CarouselItem'
 
-function CarouselPrevious({ className, variant = 'outline', size = 'icon', ...props }) {
+const CarouselPrevious = memo(({ className, variant = 'outline', size = 'icon', ...props }) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
   return (
@@ -153,9 +163,10 @@ function CarouselPrevious({ className, variant = 'outline', size = 'icon', ...pr
       <span className="sr-only">Previous slide</span>
     </Button>
   )
-}
+})
+CarouselPrevious.displayName = 'CarouselPrevious'
 
-function CarouselNext({ className, variant = 'outline', size = 'icon', ...props }) {
+const CarouselNext = memo(({ className, variant = 'outline', size = 'icon', ...props }) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
 
   return (
@@ -173,10 +184,11 @@ function CarouselNext({ className, variant = 'outline', size = 'icon', ...props 
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRightIcon className="size-4" />
+      <ArrowRightIcon size={16} className="shrink-0" />
       <span className="sr-only">Next slide</span>
     </Button>
   )
-}
+})
+CarouselNext.displayName = 'CarouselNext'
 
 export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious }

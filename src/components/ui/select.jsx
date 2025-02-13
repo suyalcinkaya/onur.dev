@@ -2,6 +2,7 @@
 
 import * as SelectPrimitive from '@radix-ui/react-select'
 import { CheckIcon, ChevronDownIcon, ChevronsUpDownIcon, ChevronUpIcon } from 'lucide-react'
+import { memo } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -28,7 +29,7 @@ function SelectTrigger({ className, children, ...props }) {
   )
 }
 
-function SelectScrollUpButton({ className, ...props }) {
+const SelectScrollUpButton = memo(({ className, ...props }) => {
   return (
     <SelectPrimitive.ScrollUpButton
       className={cn('flex cursor-default items-center justify-center py-1', className)}
@@ -37,9 +38,10 @@ function SelectScrollUpButton({ className, ...props }) {
       <ChevronUpIcon size={16} />
     </SelectPrimitive.ScrollUpButton>
   )
-}
+})
+SelectScrollUpButton.displayName = 'SelectScrollUpButton'
 
-function SelectScrollDownButton({ className, ...props }) {
+const SelectScrollDownButton = memo(({ className, ...props }) => {
   return (
     <SelectPrimitive.ScrollDownButton
       className={cn('flex cursor-default items-center justify-center py-1', className)}
@@ -48,7 +50,8 @@ function SelectScrollDownButton({ className, ...props }) {
       <ChevronDownIcon size={16} />
     </SelectPrimitive.ScrollDownButton>
   )
-}
+})
+SelectScrollDownButton.displayName = 'SelectScrollDownButton'
 
 function SelectContent({ className, children, position = 'popper', ...props }) {
   return (

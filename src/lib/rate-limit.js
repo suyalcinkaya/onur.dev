@@ -7,23 +7,35 @@ export default function rateLimit(options) {
   })
 
   return {
-    check: (limit, token) =>
-      new Promise((resolve, reject) => {
-        const tokenCount = tokenCache.get(token) || [0]
-        if (tokenCount[0] === 0) {
-          tokenCache.set(token, tokenCount)
-        }
-        tokenCount[0] += 1
+    check: (limit, token) => {
+      if (!token) {
+        return Promise.reject(new Error('Token is required'))
+      }
 
-        const currentUsage = tokenCount[0]
-        const isRateLimited = currentUsage >= limit
+      const tokenCount = tokenCache.get(token) || [0]
+      if (tokenCount[0] === 0) {
+        tokenCache.set(token, tokenCount)
+      }
+      tokenCount[0] += 1
 
-        /* console.info('Limit for:', token)
-        console.info('Current usage:', currentUsage)
-        console.info('Remaining:', limit - currentUsage)
-        console.info('Is rate limited:', isRateLimited) */
+      const currentUsage = tokenCount[0]
+      const isRateLimited = currentUsage >= limit
+      const remaining = Math.max(0, limit - currentUsage)
 
-        return isRateLimited ? reject() : resolve()
-      })
+      return isRateLimited
+        ? Promise.reject({
+            error: 'Rate limit exceeded',
+            limit,
+            currentUsage,
+            remaining,
+            timeWindow: options?.interval || 60000
+          })
+        : Promise.resolve({
+            limit,
+            currentUsage,
+            remaining,
+            timeWindow: options?.interval || 60000
+          })
+    }
   }
 }

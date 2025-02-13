@@ -7,7 +7,7 @@ function Card({ className, ...props }) {
 }
 
 function CardHeader({ className, ...props }) {
-  return <div className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />
+  return <div className={cn('flex flex-col gap-1.5 p-6', className)} {...props} />
 }
 
 function CardTitle({ className, ...props }) {

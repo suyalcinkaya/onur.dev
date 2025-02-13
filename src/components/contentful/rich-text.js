@@ -129,7 +129,7 @@ function options(links) {
             return <TweetCard id={id} />
           }
           case 'Carousel': {
-            const Carousel = await import('@/components/contentful/carousel').then((mod) => mod.CarouselCmp)
+            const Carousel = await import('@/components/contentful/carousel').then((mod) => mod.Carousel)
             return <Carousel images={entry.imagesCollection?.items} />
           }
           default:

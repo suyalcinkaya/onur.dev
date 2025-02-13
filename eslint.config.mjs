@@ -1,21 +1,20 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat'
 import { FlatCompat } from '@eslint/eslintrc'
-import js from '@eslint/js'
+import eslint from '@eslint/js'
 import _import from 'eslint-plugin-import'
-import prettierConfigRecommended from 'eslint-plugin-prettier/recommended'
+import prettier from 'eslint-plugin-prettier'
 import react from 'eslint-plugin-react'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
+  recommendedConfig: eslint.configs.recommended,
+  allConfig: eslint.configs.all
 })
 
 const patchedConfig = [
@@ -25,15 +24,17 @@ const patchedConfig = [
       'next/core-web-vitals',
       'eslint:recommended',
       'plugin:react/recommended',
-      'prettier',
+      'plugin:prettier/recommended',
       'plugin:import/recommended'
     )
   ),
   {
+    files: ['**/*.js?(x)'],
     plugins: {
       react: fixupPluginRules(react),
       'simple-import-sort': simpleImportSort,
-      import: fixupPluginRules(_import)
+      import: fixupPluginRules(_import),
+      prettier: fixupPluginRules(prettier)
     },
     languageOptions: {
       globals: {
@@ -42,11 +43,15 @@ const patchedConfig = [
         ...globals.node
       },
       ecmaVersion: 6,
-      sourceType: 'module'
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
     },
     settings: {
       react: {
-        pragma: 'React',
         version: 'detect'
       },
       'import/resolver': {
@@ -74,6 +79,6 @@ const patchedConfig = [
   }
 ]
 
-const config = [...patchedConfig, prettierConfigRecommended, { ignores: ['.next/*'] }]
+const config = [...patchedConfig, { ignores: ['.next/*'] }]
 
 export default config
