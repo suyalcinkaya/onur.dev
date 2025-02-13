@@ -1,10 +1,6 @@
 module.exports = {
   plugins: {
-    '@tailwindcss/postcss': {
-      optimize: {
-        minify: true
-      }
-    },
+    '@tailwindcss/postcss': {},
     ...(process.env.NODE_ENV === 'production' && {
       cssnano: {
         preset: 'advanced',
