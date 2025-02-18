@@ -14,21 +14,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cn } from '@/lib/utils'
 
 export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, currentBookmark }) => {
-  const defaultValues = useMemo(
+  const memoizedFormOptions = useMemo(
     () => ({
-      url: '',
-      email: '',
-      type: currentBookmark?.title ?? ''
+      resolver: zodResolver(formSchema),
+      mode: 'onChange',
+      defaultValues: {
+        url: '',
+        email: '',
+        type: currentBookmark?.title ?? ''
+      }
     }),
     [currentBookmark]
   )
 
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    mode: 'onChange',
-    defaultValues
-  })
-
+  const form = useForm(memoizedFormOptions)
   const formState = useMemo(() => form.formState, [form.formState])
   const { isSubmitting, errors, isValid } = formState
   const hasErrors = useMemo(() => Object.keys(errors).length > 0, [errors])
@@ -43,9 +42,10 @@ export const SubmitBookmarkForm = memo(({ className, setFormOpen, bookmarks, cur
           },
           body: JSON.stringify({ ...values })
         })
+        const data = await response.json()
 
         if (!response.ok) {
-          throw new Error('Error submitting bookmark.')
+          throw new Error(data.error)
         }
 
         form.reset()

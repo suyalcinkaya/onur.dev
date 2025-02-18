@@ -66,6 +66,7 @@ const patchedConfig = [
       }
     },
     rules: {
+      'no-console': ['error', { allow: ['error', 'info'] }],
       'react/no-unescaped-entities': 0,
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 0,
