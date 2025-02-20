@@ -77,6 +77,12 @@ const patchedConfig = [
       '@next/next/no-img-element': 0,
       'import/no-named-as-default': 0
     }
+  },
+  {
+    files: ['*.mjs'],
+    rules: {
+      'import/no-anonymous-default-export': 'off'
+    }
   }
 ]
 
