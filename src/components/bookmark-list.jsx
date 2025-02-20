@@ -1,11 +1,11 @@
 'use client'
 
 import { ArrowDownIcon } from 'lucide-react'
-import { useCallback, useEffect, useMemo,useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { getBookmarkItemsByPageIndex } from '@/app/actions'
 import { BookmarkCard } from '@/components/bookmark-card'
-import { Button } from '@/components/ui/button.jsx'
+import { Button } from '@/components/ui/button'
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
@@ -43,37 +43,37 @@ export const BookmarkList = ({ initialData, id }) => {
   }, [data])
 
   const chunks = useMemo(() => getChunks(), [getChunks])
-  const isReachingEnd = data.length >= initialData?.count ?? 0
+  const isReachingEnd = data.length >= (initialData?.count ?? 0)
   const isTweetCollection = id === TWEETS_COLLECTION_ID
+
+  const memoizedBookmarks = useMemo(() => {
+    return data.map((bookmark, bookmarkIndex) => (
+      <div
+        key={`bookmark_${bookmarkIndex}`}
+        className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
+      >
+        <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
+      </div>
+    ))
+  }, [data, isTweetCollection])
+
+  const memoizedChunks = useMemo(() => {
+    return chunks.map((chunk, chunkIndex) => (
+      <div
+        key={`chunk_${chunkIndex}`}
+        className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
+      >
+        {chunk.map((bookmark, bookmarkIndex) => (
+          <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
+        ))}
+      </div>
+    ))
+  }, [chunks, isTweetCollection])
 
   return (
     <div>
-      <div className="flex flex-col gap-4 @lg:hidden">
-        {data.map((bookmark, bookmarkIndex) => {
-          return (
-            <div
-              key={`bookmark_${bookmarkIndex}`}
-              className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
-            >
-              <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
-            </div>
-          )
-        })}
-      </div>
-      <div className="hidden @lg:grid @lg:grid-cols-2 @lg:gap-4">
-        {chunks.map((chunk, chunkIndex) => {
-          return (
-            <div
-              key={`chunk_${chunkIndex}`}
-              className={cn('grid gap-4', isTweetCollection ? 'h-fit' : 'place-content-start')}
-            >
-              {chunk.map((bookmark, bookmarkIndex) => {
-                return <BookmarkCard key={bookmark._id} bookmark={bookmark} order={bookmarkIndex} />
-              })}
-            </div>
-          )
-        })}
-      </div>
+      <div className="flex flex-col gap-4 @lg:hidden">{memoizedBookmarks}</div>
+      <div className="hidden @lg:grid @lg:grid-cols-2 @lg:gap-4">{memoizedChunks}</div>
       {data.length > 0 ? (
         <div className="mt-8 flex min-h-16 items-center justify-center text-sm lg:mt-12">
           {!isReachingEnd ? (

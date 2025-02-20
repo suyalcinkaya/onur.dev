@@ -1,17 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
+@plugin '@tailwindcss/container-queries';
+@plugin 'tailwindcss-animate';
+
+@theme {
+  --sh-identifier: #171717;
+  --sh-sign: #8996a3;
+  --sh-property: hsl(278.93deg 100% 36.12%);
+  --sh-entity: hsl(210.8deg 100% 38.9%);
+  --sh-jsxliterals: #6266d1;
+  --sh-string: hsl(138.58deg 77.94% 27.65%);
+  --sh-keyword: rgb(215, 58, 73);
+  --sh-comment: #a19595;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --breakpoint-xs: 390px;
+  --breakpoint-sm: 435px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --animate-reveal: reveal 0.7s ease-in-out;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
-  :root {
-    --sh-identifier: #171717;
-    --sh-sign: #8996a3;
-    --sh-property: hsl(278.93deg 100% 36.12%);
-    --sh-entity: hsl(210.8deg 100% 38.9%);
-    --sh-jsxliterals: #6266d1;
-    --sh-string: hsl(138.58deg 77.94% 27.65%);
-    --sh-keyword: rgb(215, 58, 73);
-    --sh-comment: #a19595;
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 
   ::selection {
@@ -35,7 +63,7 @@
   }
 
   #__next {
-    @apply min-h-dynamic-screen;
+    @apply min-h-dvh;
   }
 
   article {
@@ -43,12 +71,12 @@
   }
 
   p {
-    @apply mb-6 leading-slacker;
+    @apply mb-6 leading-[1.75];
   }
 
   a,
   button {
-    @apply cursor-pointer outline-none;
+    @apply cursor-pointer outline-hidden;
   }
 
   a {
@@ -56,7 +84,7 @@
   }
 
   button:focus {
-    @apply outline-none;
+    @apply outline-hidden;
   }
 
   button:disabled,
@@ -67,7 +95,7 @@
   h1,
   h2,
   h3 {
-    @apply scroll-mt-16 font-semibold slashed-zero tracking-tighter text-black lg:scroll-mt-8;
+    @apply scroll-mt-16 font-semibold tracking-tighter text-black slashed-zero lg:scroll-mt-8;
   }
 
   h1 {
@@ -83,7 +111,7 @@
   }
 
   h2 + h3 {
-    @apply !mt-0;
+    @apply mt-0!;
   }
 
   ol {
@@ -126,14 +154,14 @@
     @apply bg-white px-0 py-5 text-[13px];
 
     code {
-      @apply grid whitespace-pre break-normal text-left font-mono text-[13px];
+      @apply grid text-left font-mono text-[13px] break-normal whitespace-pre;
       counter-reset: sh-line-number;
 
       .sh__line {
         @apply relative min-w-max px-4;
 
         &:before {
-          @apply mr-6 inline-block w-5 text-right tabular-nums text-gray-400;
+          @apply mr-6 inline-block w-5 text-right text-gray-400 tabular-nums;
           counter-increment: sh-line-number 1;
           content: counter(sh-line-number);
         }
@@ -142,65 +170,78 @@
   }
 
   lite-youtube {
-    @apply !max-w-full overflow-hidden rounded-xl;
+    @apply max-w-full! overflow-hidden rounded-xl;
   }
 }
 
-@layer components {
-  .link-card {
-    @apply -mx-1.5 -my-1 rounded bg-transparent px-1.5 py-1 transition-colors duration-300 hover:bg-gray-200;
-  }
-
-  .content-wrapper {
-    @apply z-[1] w-full px-6 pb-8 pt-8 lg:px-8 lg:pb-16 lg:pt-24;
-  }
-
-  .content {
-    @apply mx-auto w-full lg:mb-0 lg:max-w-3xl;
-  }
-
-  .link {
-    @apply text-blue-600 hover:underline hover:underline-offset-4;
-  }
-
-  .inline-code {
-    @apply inline-block rounded-md bg-gray-100 px-0.5 py-0.5 text-sm not-italic before:content-['`'] after:content-['`'];
-  }
-
-  .thumbnail-shadow {
-    box-shadow:
-      0 0 0 0.5px #e2e8f0,
-      0 0 0 1px rgba(226, 232, 240, 0.5),
-      0 0 0 3px #f8fafc,
-      0 0 0 3.5px #f1f5f9,
-      0 10px 15px -3px rgb(59 130 246/5%),
-      0 4px 6px -4px rgb(59 130 246/5%);
-  }
-
-  .scrollable-area {
-    @apply h-full max-h-dynamic-screen min-h-dynamic-screen overflow-y-auto overflow-x-hidden;
-  }
-
-  .horizontal-scroll-area {
-    @apply block w-fit min-w-full grow;
-  }
+@utility link-card {
+  @apply -mx-1.5 -my-1 rounded-sm bg-transparent px-1.5 py-1 transition-colors duration-300 hover:bg-gray-200;
 }
 
-@layer utilities {
-  .word-break-word {
-    word-break: break-word;
-  }
+@utility content-wrapper {
+  @apply z-1 w-full px-6 pt-8 pb-8 lg:px-8 lg:pt-24 lg:pb-16;
+}
 
-  .px-safe {
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
+@utility content {
+  @apply mx-auto w-full lg:mb-0 lg:max-w-3xl;
+}
 
-  .bg-dots {
-    @apply bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];
-  }
+@utility link {
+  @apply text-blue-600 hover:underline hover:underline-offset-4;
+}
 
-  .bg-grid {
-    @apply bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px];
+@utility inline-code {
+  @apply inline-block rounded-md bg-gray-100 px-0.5 py-0.5 text-sm not-italic before:content-['`'] after:content-['`'];
+}
+
+@utility thumbnail-shadow {
+  box-shadow:
+    0 0 0 0.5px #e2e8f0,
+    0 0 0 1px rgba(226, 232, 240, 0.5),
+    0 0 0 3px #f8fafc,
+    0 0 0 3.5px #f1f5f9,
+    0 10px 15px -3px rgb(59 130 246/5%),
+    0 4px 6px -4px rgb(59 130 246/5%);
+}
+
+@utility scrollable-area {
+  @apply h-full max-h-dvh min-h-dvh overflow-x-hidden overflow-y-auto;
+}
+
+@utility horizontal-scroll-area {
+  @apply block w-fit min-w-full grow;
+}
+
+@utility word-break-word {
+  word-break: break-word;
+}
+
+@utility px-safe {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+@utility bg-dots {
+  @apply bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];
+}
+
+@utility bg-grid {
+  @apply bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px];
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    filter: brightness(1) blur(15px);
+    scale: 1.0125;
+  }
+  10% {
+    opacity: 1;
+    filter: brightness(1.25) blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    scale: 1;
   }
 }

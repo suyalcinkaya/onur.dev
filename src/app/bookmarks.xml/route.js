@@ -2,6 +2,8 @@ import { Feed } from 'feed'
 
 import { getBookmarkItems, getBookmarks } from '@/lib/raindrop'
 
+export const dynamic = 'force-static'
+
 export async function GET() {
   const bookmarks = await getBookmarks()
   const date = new Date()

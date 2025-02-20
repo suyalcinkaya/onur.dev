@@ -5,7 +5,7 @@ import { GradientBg4 } from '@/components/gradient-bg'
 import { Link } from '@/components/link'
 import { PageTitle } from '@/components/page-title'
 import { ScrollArea } from '@/components/scroll-area'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.jsx'
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { WORKSPACE_ITEMS } from '@/lib/constants'
 import { getPageSeo } from '@/lib/contentful'
 import { isExternalLink } from '@/lib/utils'
@@ -22,13 +22,13 @@ export default async function Workspace() {
             <Image
               src="/assets/workspace.avif"
               alt="Workspace"
-              className="w-full object-cover"
+              className="animate-reveal w-full object-cover"
               width={766}
               height={901}
               loading="eager"
               priority
             />
-            <figcaption className="mt-2 break-all text-center text-xs font-light text-gray-500">Workspace</figcaption>
+            <figcaption className="mt-2 text-center text-xs font-light break-all text-gray-500">Workspace</figcaption>
           </figure>
           <div className="mt-2 overflow-hidden rounded-lg border bg-white md:mt-8">
             <Table>

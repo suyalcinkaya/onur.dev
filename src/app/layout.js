@@ -14,12 +14,19 @@ import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { PROFILES } from '@/lib/constants'
 import { preloadGetAllPosts } from '@/lib/contentful'
 
+export const fetchCache = 'default-cache'
+
 export default async function RootLayout({ children }) {
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   preloadGetAllPosts(isEnabled)
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body suppressHydrationWarning>
         {/* eslint-disable-next-line react/no-unknown-property */}
         <main vaul-drawer-wrapper="" className="min-h-screen bg-white">

@@ -3,13 +3,13 @@
 import { ArrowUpRightIcon, AtSignIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
 import { cn } from '@/lib/utils'
 
 export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
   const pathname = usePathname()
-  const iconCmp = icon ?? <AtSignIcon size={16} />
+  const iconCmp = useMemo(() => icon ?? <AtSignIcon size={16} />, [icon])
 
   const isInternal = href.startsWith('/')
   if (!isInternal) {
@@ -52,7 +52,7 @@ export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
       {shortcutNumber && (
         <span
           className={cn(
-            'hidden h-5 w-5 place-content-center rounded border border-gray-200 bg-gray-100 text-xs font-medium text-gray-500 transition-colors duration-200 group-hover:border-gray-300 lg:grid',
+            'hidden size-5 place-content-center rounded-sm border border-gray-200 bg-gray-100 text-xs font-medium text-gray-500 transition-colors duration-200 group-hover:border-gray-300 lg:grid',
             isActive && 'border-gray-600 bg-gray-700 text-gray-200 group-hover:border-gray-600'
           )}
           title={`Shortcut key: ${shortcutNumber}`}

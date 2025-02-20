@@ -2,7 +2,7 @@
 
 import useEmblaCarousel from 'embla-carousel-react'
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
-import { createContext, forwardRef, useCallback, useContext, useEffect, useState } from 'react'
+import { createContext, memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -19,120 +19,119 @@ function useCarousel() {
   return context
 }
 
-const Carousel = forwardRef(
-  ({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }, ref) => {
-    const [carouselRef, api] = useEmblaCarousel(
-      {
+const Carousel = memo(({ orientation = 'horizontal', opts, setApi, plugins, className, children, ...props }) => {
+  const [carouselRef, api] = useEmblaCarousel(
+    useMemo(
+      () => ({
         ...opts,
         axis: orientation === 'horizontal' ? 'x' : 'y'
-      },
-      plugins
-    )
-    const [canScrollPrev, setCanScrollPrev] = useState(false)
-    const [canScrollNext, setCanScrollNext] = useState(false)
+      }),
+      [opts, orientation]
+    ),
+    plugins
+  )
+  const [canScrollPrev, setCanScrollPrev] = useState(false)
+  const [canScrollNext, setCanScrollNext] = useState(false)
 
-    const onSelect = useCallback((api) => {
-      if (!api) {
-        return
+  const onSelect = useCallback((api) => {
+    if (!api) {
+      return
+    }
+
+    setCanScrollPrev(api.canScrollPrev())
+    setCanScrollNext(api.canScrollNext())
+  }, [])
+
+  const scrollPrev = useCallback(() => {
+    api?.scrollPrev()
+  }, [api])
+
+  const scrollNext = useCallback(() => {
+    api?.scrollNext()
+  }, [api])
+
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        scrollPrev()
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        scrollNext()
       }
+    },
+    [scrollPrev, scrollNext]
+  )
 
-      setCanScrollPrev(api.canScrollPrev())
-      setCanScrollNext(api.canScrollNext())
-    }, [])
+  useEffect(() => {
+    if (!api || !setApi) {
+      return
+    }
 
-    const scrollPrev = useCallback(() => {
-      api?.scrollPrev()
-    }, [api])
+    setApi(api)
+  }, [api, setApi])
 
-    const scrollNext = useCallback(() => {
-      api?.scrollNext()
-    }, [api])
+  useEffect(() => {
+    if (!api) {
+      return
+    }
 
-    const handleKeyDown = useCallback(
-      (event) => {
-        if (event.key === 'ArrowLeft') {
-          event.preventDefault()
-          scrollPrev()
-        } else if (event.key === 'ArrowRight') {
-          event.preventDefault()
-          scrollNext()
-        }
-      },
-      [scrollPrev, scrollNext]
-    )
+    onSelect(api)
+    api.on('reInit', onSelect)
+    api.on('select', onSelect)
 
-    useEffect(() => {
-      if (!api || !setApi) {
-        return
-      }
+    return () => {
+      api.off('reInit', onSelect)
+      api.off('select', onSelect)
+    }
+  }, [api, onSelect])
 
-      setApi(api)
-    }, [api, setApi])
+  const memoizedContextValue = useMemo(
+    () => ({
+      carouselRef,
+      api,
+      opts: opts,
+      orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+      scrollPrev,
+      scrollNext,
+      canScrollPrev,
+      canScrollNext
+    }),
+    [carouselRef, api, opts, orientation, scrollPrev, scrollNext, canScrollPrev, canScrollNext]
+  )
 
-    useEffect(() => {
-      if (!api) {
-        return
-      }
-
-      onSelect(api)
-      api.on('reInit', onSelect)
-      api.on('select', onSelect)
-
-      return () => {
-        api?.off('select', onSelect)
-      }
-    }, [api, onSelect])
-
-    return (
-      <CarouselContext.Provider
-        value={{
-          carouselRef,
-          api: api,
-          opts,
-          orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
-          scrollPrev,
-          scrollNext,
-          canScrollPrev,
-          canScrollNext
-        }}
+  return (
+    <CarouselContext.Provider value={memoizedContextValue}>
+      <div
+        onKeyDownCapture={handleKeyDown}
+        className={cn('relative', className)}
+        role="region"
+        aria-roledescription="carousel"
+        {...props}
       >
-        <div
-          ref={ref}
-          onKeyDownCapture={handleKeyDown}
-          className={cn('relative', className)}
-          role="region"
-          aria-roledescription="carousel"
-          {...props}
-        >
-          {children}
-        </div>
-      </CarouselContext.Provider>
-    )
-  }
-)
+        {children}
+      </div>
+    </CarouselContext.Provider>
+  )
+})
 Carousel.displayName = 'Carousel'
 
-const CarouselContent = forwardRef(({ className, ...props }, ref) => {
+const CarouselContent = memo(({ className, ...props }) => {
   const { carouselRef, orientation } = useCarousel()
 
   return (
     <div ref={carouselRef} className="overflow-hidden">
-      <div
-        ref={ref}
-        className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)}
-        {...props}
-      />
+      <div className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)} {...props} />
     </div>
   )
 })
 CarouselContent.displayName = 'CarouselContent'
 
-const CarouselItem = forwardRef(({ className, ...props }, ref) => {
+const CarouselItem = memo(({ className, ...props }) => {
   const { orientation } = useCarousel()
 
   return (
     <div
-      ref={ref}
       role="group"
       aria-roledescription="slide"
       className={cn('min-w-0 shrink-0 grow-0 basis-full', orientation === 'horizontal' ? 'pl-4' : 'pt-4', className)}
@@ -142,18 +141,17 @@ const CarouselItem = forwardRef(({ className, ...props }, ref) => {
 })
 CarouselItem.displayName = 'CarouselItem'
 
-const CarouselPrevious = forwardRef(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+const CarouselPrevious = memo(({ className, variant = 'outline', size = 'icon', ...props }) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
   return (
     <Button
-      ref={ref}
       variant={variant}
       size={size}
       className={cn(
         'absolute size-8 rounded-full',
         orientation === 'horizontal'
-          ? '-left-12 top-1/2 -translate-y-1/2'
+          ? 'top-1/2 -left-12 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
@@ -168,18 +166,17 @@ const CarouselPrevious = forwardRef(({ className, variant = 'outline', size = 'i
 })
 CarouselPrevious.displayName = 'CarouselPrevious'
 
-const CarouselNext = forwardRef(({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
+const CarouselNext = memo(({ className, variant = 'outline', size = 'icon', ...props }) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
 
   return (
     <Button
-      ref={ref}
       variant={variant}
       size={size}
       className={cn(
         'absolute size-8 rounded-full',
         orientation === 'horizontal'
-          ? '-right-12 top-1/2 -translate-y-1/2'
+          ? 'top-1/2 -right-12 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
         className
       )}
@@ -187,11 +184,11 @@ const CarouselNext = forwardRef(({ className, variant = 'outline', size = 'icon'
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRightIcon className="size-4" />
+      <ArrowRightIcon size={16} className="shrink-0" />
       <span className="sr-only">Next slide</span>
     </Button>
   )
 })
 CarouselNext.displayName = 'CarouselNext'
 
-export { Carousel, CarouselContent, CarouselItem, CarouselNext,CarouselPrevious }
+export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious }
