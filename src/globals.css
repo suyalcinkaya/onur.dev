@@ -3,7 +3,7 @@
 @plugin '@tailwindcss/container-queries';
 @plugin 'tailwindcss-animate';
 
-@theme {
+@theme static {
   --sh-identifier: #171717;
   --sh-sign: #8996a3;
   --sh-property: hsl(278.93deg 100% 36.12%);
@@ -12,7 +12,9 @@
   --sh-string: hsl(138.58deg 77.94% 27.65%);
   --sh-keyword: rgb(215, 58, 73);
   --sh-comment: #a19595;
+}
 
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
