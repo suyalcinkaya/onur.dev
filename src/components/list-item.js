@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
@@ -10,7 +10,7 @@ export const ListItem = ({ title, description, path }) => {
   const isActive = pathname === path
 
   return (
-    <Link
+    <NextLink
       key={path}
       href={path}
       className={cn(
@@ -20,6 +20,6 @@ export const ListItem = ({ title, description, path }) => {
     >
       <span className={cn('font-medium', isActive && 'text-white')}>{title}</span>
       {description && <span className={cn(isActive ? 'text-slate-300' : 'text-slate-500')}>{description}</span>}
-    </Link>
+    </NextLink>
   )
 }

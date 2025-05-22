@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { Suspense } from 'react'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -23,14 +23,14 @@ export default async function Writing() {
       <Suspense fallback={<ScreenLoadingSpinner />}>
         {bookmarks?.map((bookmark) => {
           return (
-            <Link
+            <NextLink
               key={bookmark._id}
               href={`/bookmarks/${bookmark.slug}`}
               className="flex flex-col gap-1 border-b px-4 py-3 text-sm hover:bg-gray-100"
             >
               <span className="font-medium">{bookmark.title}</span>
               <span className="text-slate-500">{bookmark.count} bookmarks</span>
-            </Link>
+            </NextLink>
           )
         })}
       </Suspense>

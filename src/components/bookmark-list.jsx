@@ -1,7 +1,7 @@
 'use client'
 
-import { ArrowDownIcon } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { LuArrowDown as ArrowDownIcon } from 'react-icons/lu'
 
 import { getBookmarkItemsByPageIndex } from '@/app/actions'
 import { BookmarkCard } from '@/components/bookmark-card'

@@ -1,5 +1,5 @@
-import { Link2Icon } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import { LuLink2 as Link2Icon } from 'react-icons/lu'
 
 const TweetCard = dynamic(() => import('@/components/tweet-card/tweet-card').then((mod) => mod.TweetCard))
 import { TWEETS_COLLECTION_ID } from '@/lib/constants'
@@ -11,11 +11,14 @@ export const BookmarkCard = ({ bookmark, order }) => {
     return <TweetCard id={tweetId} />
   }
 
+  const href = new URL(bookmark.link)
+  href.searchParams.set('ref', 'onur.dev')
+
   return (
     <a
       key={bookmark._id}
       className="thumbnail-shadow flex aspect-auto min-w-0 cursor-pointer flex-col gap-4 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-300 hover:bg-gray-100"
-      href={`${bookmark.link}?ref=onur.dev`}
+      href={href.toString()}
       target="_blank"
       rel="noopener noreferrer"
       data-bookmark-order={order}

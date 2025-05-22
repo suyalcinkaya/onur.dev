@@ -1,7 +1,7 @@
 'use client'
 
 import { domAnimation, LazyMotion, m } from 'framer-motion'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useMemo } from 'react'
 
 import { useViewData } from '@/hooks/useViewData'
@@ -61,7 +61,7 @@ export const WritingList = ({ items }) => {
                 >
                   {itemIndex === 0 ? year : ''}
                 </span>
-                <Link
+                <NextLink
                   href={`/writing/${slug}`}
                   className="col-span-6 group-hover/list-item:text-gray-900 md:col-span-5"
                 >
@@ -88,7 +88,7 @@ export const WritingList = ({ items }) => {
                       </span>
                     )}
                   </span>
-                </Link>
+                </NextLink>
               </li>
             )
           })}

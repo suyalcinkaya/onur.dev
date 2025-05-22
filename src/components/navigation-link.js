@@ -1,9 +1,9 @@
 'use client'
 
-import { ArrowUpRightIcon, AtSignIcon } from 'lucide-react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { memo, useMemo } from 'react'
+import { LuArrowUpRight as ArrowUpRightIcon, LuAtSign as AtSignIcon } from 'react-icons/lu'
 
 import { cn } from '@/lib/utils'
 
@@ -37,7 +37,7 @@ export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
   }
 
   return (
-    <Link
+    <NextLink
       key={href}
       href={href}
       className={cn(
@@ -60,7 +60,7 @@ export const NavigationLink = memo(({ href, label, icon, shortcutNumber }) => {
           {shortcutNumber}
         </span>
       )}
-    </Link>
+    </NextLink>
   )
 })
 NavigationLink.displayName = 'NavigationLink'

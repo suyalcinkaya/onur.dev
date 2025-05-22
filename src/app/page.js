@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { Suspense } from 'react'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -36,9 +36,9 @@ export default async function Home() {
             at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
           </p>
           <Button asChild variant="link" className="inline px-0">
-            <Link href="/writing">
+            <NextLink href="/writing">
               <h2 className="mt-8 mb-4">Writing</h2>
-            </Link>
+            </NextLink>
           </Button>
           <Suspense fallback={<ScreenLoadingSpinner />}>
             <WritingList items={items} header="Writing" />
