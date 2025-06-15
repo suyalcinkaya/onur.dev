@@ -1,5 +1,5 @@
 import { domAnimation, LazyMotion, m } from 'framer-motion'
-import Link from 'next/link'
+import NextLink from 'next/link'
 
 import { cn, getDateTimeFormat, viewCountFormatter } from '@/lib/utils'
 
@@ -10,7 +10,7 @@ export const WritingLink = ({ post, viewCount, isMobile, isActive }) => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <Link
+      <NextLink
         key={post.slug}
         href={`/writing/${post.slug}`}
         className={cn(
@@ -39,7 +39,7 @@ export const WritingLink = ({ post, viewCount, isMobile, isActive }) => {
             )}
           </span>
         </span>
-      </Link>
+      </NextLink>
     </LazyMotion>
   )
 }

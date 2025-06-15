@@ -1,9 +1,9 @@
 'use client'
 
-import { RadioIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { usePathname, useRouter } from 'next/navigation'
 import { useMemo } from 'react'
+import { LuRadio as RadioIcon } from 'react-icons/lu'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { ScrollArea } from '@/components/scroll-area'

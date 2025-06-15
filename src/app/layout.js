@@ -3,9 +3,9 @@ import '@/globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { EyeIcon } from 'lucide-react'
 import { draftMode } from 'next/headers'
 import Script from 'next/script'
+import { LuEye as EyeIcon } from 'react-icons/lu'
 
 import { sharedMetadata } from '@/app/shared-metadata'
 import { MenuContent } from '@/components/menu-content'
@@ -39,7 +39,7 @@ export default async function RootLayout({ children }) {
             </div>
           )}
           <div className="lg:flex">
-            <SideMenu className="relative hidden lg:flex">
+            <SideMenu>
               <MenuContent />
             </SideMenu>
             <div className="flex flex-1">{children}</div>

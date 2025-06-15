@@ -1,15 +1,30 @@
+// import { ImSoundcloud2 } from 'react-icons/im'
+// import { PiYoutubeLogo as YoutubeIcon } from 'react-icons/pi'
 import {
-  ArmchairIcon,
-  BookmarkIcon,
-  GithubIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  NavigationIcon,
-  PencilLineIcon,
-  SparklesIcon,
-  Wand2Icon,
-  YoutubeIcon
-} from 'lucide-react'
+  FaGithub as GithubIcon,
+  // FaInstagram as InstagramIcon,
+  FaPinterest as PinterestIcon
+} from 'react-icons/fa'
+import { FaBluesky as BlueskyIcon, FaMedium as MediumIcon } from 'react-icons/fa6'
+// import { FiYoutube as YoutubeIcon } from 'react-icons/fi'
+import { ImSoundcloud2 as SouncloudIcon } from 'react-icons/im'
+import { IoLogoYoutube as YoutubeIcon } from 'react-icons/io5'
+import {
+  LuArmchair as ArmchairIcon,
+  LuBookmark as BookmarkIcon,
+  // LuGithub as GithubIcon,
+  // LuInstagram as InstagramIcon,
+  // LuLinkedin as LinkedinIcon,
+  LuNavigation as NavigationIcon,
+  LuPencilLine as PencilLineIcon,
+  LuSparkles as SparklesIcon,
+  LuWandSparkles as WandSparklesIcon
+  // LuYoutube as YoutubeIcon
+} from 'react-icons/lu'
+import { RiInstagramFill as InstagramIcon } from 'react-icons/ri'
+import { SiLinkedin as LinkedinIcon } from 'react-icons/si'
+
+// import { TbBrandBluesky as BlueskyIcon } from 'react-icons/tb'
 
 export const PROFILES = {
   twitter: {
@@ -47,7 +62,8 @@ export const PROFILES = {
   },
   medium: {
     title: 'Medium',
-    url: 'https://suyalcinkaya.medium.com'
+    url: 'https://suyalcinkaya.medium.com',
+    icon: <MediumIcon size={16} />
   },
   instagram: {
     title: 'Instagram',
@@ -56,7 +72,8 @@ export const PROFILES = {
   },
   soundcloud: {
     title: 'Soundcloud',
-    url: 'https://soundcloud.com/jagerman'
+    url: 'https://soundcloud.com/jagerman',
+    icon: <SouncloudIcon size={16} />
   },
   youtube: {
     title: 'YouTube',
@@ -65,15 +82,13 @@ export const PROFILES = {
   },
   bluesky: {
     title: 'Bluesky',
-    url: 'https://staging.bsky.app/profile/onur.dev'
-  },
-  readcv: {
-    title: 'Read.cv',
-    url: 'https://read.cv/onur'
+    url: 'https://staging.bsky.app/profile/onur.dev',
+    icon: <BlueskyIcon size={16} />
   },
   pinterest: {
     title: 'Pinterest',
-    url: 'https://nl.pinterest.com/onurschu'
+    url: 'https://nl.pinterest.com/onurschu',
+    icon: <PinterestIcon size={16} />
   }
 }
 
@@ -114,7 +129,7 @@ export const LINKS = [
   {
     href: '/stack',
     label: 'Stack',
-    icon: <Wand2Icon size={16} />
+    icon: <WandSparklesIcon size={16} />
   },
   {
     href: '/workspace',
