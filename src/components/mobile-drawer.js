@@ -1,4 +1,4 @@
-import { CommandIcon } from 'lucide-react'
+import { LuCommand as CommandIcon } from 'react-icons/lu'
 
 import { MenuContent } from '@/components/menu-content'
 import { Button } from '@/components/ui/button'

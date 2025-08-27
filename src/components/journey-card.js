@@ -1,9 +1,11 @@
 import dynamic from 'next/dynamic'
 import { memo } from 'react'
 
+const Carousel = dynamic(() => import('@/components/contentful/carousel').then((mod) => mod.Carousel))
+
 const MarkdownRenderer = dynamic(() => import('@/components/markdown-renderer').then((mod) => mod.MarkdownRenderer))
 
-export const JourneyCard = memo(({ title, description, image, index }) => {
+export const JourneyCard = memo(({ title, description, imagesCollection }) => {
   return (
     <div className="word-break-word flex flex-col">
       <span className="mb-px font-semibold tracking-tight">{title}</span>
@@ -17,14 +19,15 @@ export const JourneyCard = memo(({ title, description, image, index }) => {
           {description}
         </MarkdownRenderer>
       )}
-      {image?.url && (
+      {imagesCollection?.items?.length > 1 && <Carousel images={imagesCollection?.items} />}
+      {imagesCollection?.items?.length === 1 && (
         <div className="mt-2.5 overflow-hidden rounded-xl bg-white">
           <img
-            src={image.url}
-            alt={image.title || image.description}
-            width={image.width}
-            height={image.height}
-            loading={index < 1 ? 'eager' : 'lazy'}
+            src={imagesCollection?.items[0]?.url}
+            alt={imagesCollection?.items[0]?.title || imagesCollection?.items[0]?.description}
+            width={imagesCollection?.items[0]?.width}
+            height={imagesCollection?.items[0]?.height}
+            loading="lazy"
             className="animate-reveal"
             // eslint-disable-next-line react/no-unknown-property
             nopin="nopin"

@@ -1,14 +1,20 @@
 'use client'
 
-import { ArrowLeftIcon, RadioIcon } from 'lucide-react'
+import throttle from 'lodash.throttle'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { memo, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { LuArrowLeft as ArrowLeftIcon, LuRadio as RadioIcon } from 'react-icons/lu'
 import Balancer from 'react-wrap-balancer'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { Button } from '@/components/ui/button'
+
+const THROTTLE_DELAY = 16 // 60fps
+const BALANCER_RATIO = 0.35
+const SCROLL_TRANSLATE_BASE = 100
+const SCROLL_OPACITY_DIVISOR = 100
 
 const MobileDrawer = dynamic(() => import('@/components/mobile-drawer').then((mod) => mod.MobileDrawer))
 const SubmitBookmarkDrawer = dynamic(
@@ -20,6 +26,19 @@ const SubmitBookmarkDrawer = dynamic(
 )
 import { MOBILE_SCROLL_THRESHOLD, SCROLL_AREA_ID } from '@/lib/constants'
 
+const calculateOpacity = (scrollY) => {
+  return Math.min(
+    Math.max(
+      (
+        (scrollY - MOBILE_SCROLL_THRESHOLD * (MOBILE_SCROLL_THRESHOLD / (scrollY ** 2 / SCROLL_OPACITY_DIVISOR))) /
+        SCROLL_OPACITY_DIVISOR
+      ).toFixed(2),
+      0
+    ),
+    1
+  )
+}
+
 export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks, currentBookmark, children }) => {
   const [transformValues, setTransformValues] = useState({ translateY: 0, opacity: scrollTitle ? 0 : 1 })
   const pathname = usePathname()
@@ -30,31 +49,28 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
 
   const memoizedMobileDrawer = useMemo(() => <MobileDrawer />, [])
 
+  const onScroll = useCallback((e) => {
+    const scrollY = e.target.scrollTop
+    const translateY = Math.max(SCROLL_TRANSLATE_BASE - scrollY, 0)
+    const opacity = calculateOpacity(scrollY)
+    setTransformValues({ translateY, opacity })
+  }, [])
+
+  const throttledOnScroll = useMemo(() => throttle(onScroll, THROTTLE_DELAY), [onScroll])
+
   useEffect(() => {
     const scrollAreaElem = document.querySelector(`#${SCROLL_AREA_ID}`)
 
-    const onScroll = (e) => {
-      const scrollY = e.target.scrollTop
-
-      const translateY = Math.max(100 - scrollY, 0)
-      const opacity = Math.min(
-        Math.max(
-          ((scrollY - MOBILE_SCROLL_THRESHOLD * (MOBILE_SCROLL_THRESHOLD / (scrollY ** 2 / 100))) / 100).toFixed(2),
-          0
-        ),
-        1
-      )
-
-      setTransformValues({ translateY, opacity })
-    }
-
     if (scrollTitle) {
-      scrollAreaElem?.addEventListener('scroll', onScroll, {
+      scrollAreaElem?.addEventListener('scroll', throttledOnScroll, {
         passive: true
       })
     }
-    return () => scrollAreaElem?.removeEventListener('scroll', onScroll)
-  }, [scrollTitle])
+    return () => {
+      scrollAreaElem?.removeEventListener('scroll', throttledOnScroll)
+      throttledOnScroll.cancel() // Clean up throttle
+    }
+  }, [scrollTitle, throttledOnScroll])
 
   const memoizedSubmitBookmarkDrawer = useMemo(
     () => <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />,
@@ -63,7 +79,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
 
   const memoizedBalancer = useMemo(
     () => (
-      <Balancer ratio={0.35}>
+      <Balancer ratio={BALANCER_RATIO}>
         <span className="line-clamp-2 font-semibold tracking-tight">{title}</span>
       </Balancer>
     ),
@@ -71,15 +87,18 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
   )
 
   return (
-    <header className="sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-white text-sm font-medium lg:hidden">
+    <header
+      className="sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-white text-sm font-medium lg:hidden"
+      role="banner"
+    >
       <div className="flex size-full items-center px-3">
         <div className="flex w-full items-center justify-between gap-2">
           <div className="flex flex-1 items-center gap-1">
             {goBackLink ? (
               <Button variant="ghost" size="icon" className="shrink-0" asChild>
-                <Link href={goBackLink} title="Go back">
+                <NextLink href={goBackLink} title="Go back">
                   <ArrowLeftIcon size={16} />
-                </Link>
+                </NextLink>
               </Button>
             ) : (
               memoizedMobileDrawer

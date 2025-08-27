@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 
 import { NavigationLink } from '@/components/navigation-link'
 import { LINKS, PROFILES } from '@/lib/constants'
@@ -6,7 +6,7 @@ import { LINKS, PROFILES } from '@/lib/constants'
 export const MenuContent = () => (
   <div className="flex w-full flex-col text-sm">
     <div className="flex flex-col gap-4">
-      <Link href="/" className="link-card inline-flex items-center gap-2 p-2">
+      <NextLink href="/" className="link-card inline-flex items-center gap-2 p-2">
         <img
           src="/assets/me.avif"
           alt="Onur Şuyalçınkaya"
@@ -21,7 +21,7 @@ export const MenuContent = () => (
           <span className="font-semibold tracking-tight">Onur Şuyalçınkaya</span>
           <span className="text-gray-600">Software Engineer</span>
         </div>
-      </Link>
+      </NextLink>
       <div className="flex flex-col gap-1">
         {LINKS.map((link, linkIndex) => (
           <NavigationLink
