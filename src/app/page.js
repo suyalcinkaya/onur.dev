@@ -31,9 +31,9 @@ export default async function Home() {
             Amsterdam, The Netherlands.
           </p>
           <p>
-            I develop things as a Senior Frontend Software Engineer at Bitvavo. Previously, I worked as a Senior
-            Frontend Software Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer
-            at Sistas, Mobile Developer at Tanbula, and Specialist at Apple.
+            I develop things as a Senior Frontend Software Engineer. Previously, I worked as a Senior Frontend Software
+            Engineer at heycar, Frontend Software Engineer at Yemeksepeti, Fullstack Software Engineer at Sistas, Mobile
+            Developer at Tanbula, and Specialist at Apple.
           </p>
           <Button asChild variant="link" className="inline px-0">
             <Link href="/writing">
