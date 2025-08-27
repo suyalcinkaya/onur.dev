@@ -302,15 +302,17 @@ export const getAllLogbook = cache(async (preview = isDevelopment) => {
             title
             date
             description
-            image {
-              url(transform: {
-                format: AVIF,
-                quality: 50
-              })
-              title
-              description
-              width
-              height
+            imagesCollection(limit: 5) {
+              items {
+                url(transform: {
+                  format: AVIF,
+                  quality: 50
+                })
+                title
+                description
+                width
+                height
+              }
             }
           }
         }

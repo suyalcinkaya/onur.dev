@@ -49,7 +49,7 @@ export default async function Journey() {
                           <div className="size-2 rounded-full bg-blue-600" />
                         </div>
                         <div className="grow pl-4 lg:pl-8">
-                          <JourneyCard {...log} index={logIndex} />
+                          <JourneyCard {...log} />
                         </div>
                       </div>
                     ))}

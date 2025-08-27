@@ -56,8 +56,12 @@ export function Carousel({ images = [] }) {
                 <img
                   src={imageItem.url}
                   alt={imageItem.title}
+                  width={imageItem.width}
+                  height={imageItem.height}
                   loading="lazy"
                   className="aspect-square border-none object-cover"
+                  // eslint-disable-next-line react/no-unknown-property
+                  nopin="nopin"
                 />
               </CardContent>
             </Card>
