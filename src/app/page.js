@@ -11,6 +11,8 @@ import { getAllPosts } from '@/lib/contentful'
 import { getItemsByYear, getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {
+  'use cache'
+
   const allPosts = await getAllPosts()
   const sortedPosts = getSortedPosts(allPosts)
   const items = getItemsByYear(sortedPosts)

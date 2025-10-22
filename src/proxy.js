@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-export function middleware(request, event) {
+export default function proxy(request, event) {
   const { pathname } = request.nextUrl
   const writingSlug = pathname.match(/\/writing\/(.*)/)?.[1]
 
@@ -45,6 +45,18 @@ export const config = {
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' }
       ]
+    },
+    {
+      source: '/writing/:path/',
+      has: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' }
+      ]
+    },
+    {
+      source: '/writing/:path/',
+      has: [{ type: 'header', key: 'x-present' }],
+      missing: [{ type: 'header', key: 'x-missing', value: 'prefetch' }]
     }
   ]
 }

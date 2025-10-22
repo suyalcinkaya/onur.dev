@@ -15,6 +15,8 @@ export async function generateStaticParams() {
 }
 
 async function fetchData(slug) {
+  'use cache'
+
   const bookmarks = await getBookmarks()
   const currentBookmark = bookmarks.find((bookmark) => bookmark.slug === slug)
   if (!currentBookmark) notFound()

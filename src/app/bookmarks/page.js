@@ -9,6 +9,8 @@ import { getBookmarks } from '@/lib/raindrop'
 import { sortByProperty } from '@/lib/utils'
 
 async function fetchData() {
+  'use cache'
+
   const bookmarks = await getBookmarks()
   const sortedBookmarks = sortByProperty(bookmarks, 'title')
   return { bookmarks: sortedBookmarks }

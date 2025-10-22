@@ -9,6 +9,8 @@ import { ScrollArea } from '@/components/scroll-area'
 import { getAllLogbook, getPageSeo } from '@/lib/contentful'
 
 async function fetchData() {
+  'use cache'
+
   const allLogbook = await getAllLogbook()
 
   const mappedLogbook = []

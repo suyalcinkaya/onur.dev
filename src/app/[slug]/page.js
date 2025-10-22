@@ -22,6 +22,8 @@ export async function generateStaticParams() {
 }
 
 async function fetchData(slug) {
+  'use cache'
+
   const { isEnabled } = await draftMode()
   const page = await getPage(slug, isDevelopment || isEnabled)
   if (!page) notFound()

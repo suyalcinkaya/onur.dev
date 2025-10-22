@@ -2,6 +2,7 @@ import { next } from '@million/lint'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  cacheComponents: true,
   logging: {
     fetches: {
       fullUrl: process.env.NODE_ENV === 'development'
@@ -98,10 +99,8 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ['framer-motion', '@supabase/supabase-js', 'react-tweet'],
+    turbopackFileSystemCacheForDev: true,
     webVitalsAttribution: ['FCP', 'LCP', 'CLS', 'FID', 'TTFB', 'INP']
-  },
-  eslint: {
-    ignoreDuringBuilds: true
   },
   transpilePackages: ['geist']
 }

@@ -1,3 +1,5 @@
+'use cache'
+
 import '@/globals.css'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -13,8 +15,6 @@ import { SideMenu } from '@/components/side-menu'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { PROFILES } from '@/lib/constants'
 import { preloadGetAllPosts } from '@/lib/contentful'
-
-export const fetchCache = 'default-cache'
 
 export default async function RootLayout({ children }) {
   const { isEnabled } = await draftMode()
