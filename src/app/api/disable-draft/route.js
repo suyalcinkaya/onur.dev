@@ -1,8 +1,6 @@
 import { draftMode } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-export const dynamic = 'force-static'
-
 export async function GET(request) {
   const searchParams = request.nextUrl.searchParams
   const secret = searchParams.get('secret')

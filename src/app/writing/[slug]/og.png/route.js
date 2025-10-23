@@ -7,8 +7,6 @@ import { getAllPostSlugs, getWritingSeo } from '@/lib/contentful'
 import { getBoldFont, getRegularFont } from '@/lib/fonts'
 import { isDevelopment } from '@/lib/utils'
 
-export const dynamic = 'force-static'
-
 export const size = {
   width: sharedMetadata.ogImage.width,
   height: sharedMetadata.ogImage.height

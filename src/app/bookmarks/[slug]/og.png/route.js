@@ -5,8 +5,6 @@ import { OpenGraphImage } from '@/components/og-image'
 import { getBoldFont, getRegularFont } from '@/lib/fonts'
 import { getBookmarks } from '@/lib/raindrop'
 
-export const dynamic = 'force-static'
-
 export const size = {
   width: sharedMetadata.ogImage.width,
   height: sharedMetadata.ogImage.height
