@@ -1,3 +1,5 @@
+'use cache'
+
 import Image from 'next/image'
 
 import { FloatingHeader } from '@/components/floating-header'

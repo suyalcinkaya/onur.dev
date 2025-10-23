@@ -1,3 +1,5 @@
+'use cache'
+
 import { Suspense } from 'react'
 
 import { ScreenLoadingSpinner } from '@/components/screen-loading-spinner'

@@ -1,3 +1,5 @@
+'use cache'
+
 import NextLink from 'next/link'
 import { Suspense } from 'react'
 

@@ -1,3 +1,5 @@
+'use cache'
+
 import { Suspense } from 'react'
 
 import { FloatingHeader } from '@/components/floating-header'

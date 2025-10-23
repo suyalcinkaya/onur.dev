@@ -1,6 +1,8 @@
 import { next } from '@million/lint'
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   cacheComponents: true,
   logging: {
