@@ -1,5 +1,6 @@
 'use cache'
 
+import { cacheLife } from 'next/cache'
 import { Suspense } from 'react'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -18,6 +19,7 @@ async function fetchData() {
 }
 
 export default async function Writing() {
+  cacheLife('max')
   const { sortedPosts } = await fetchData()
 
   return (

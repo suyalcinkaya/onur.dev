@@ -1,5 +1,6 @@
 'use cache'
 
+import { cacheLife } from 'next/cache'
 import { Suspense } from 'react'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -27,6 +28,7 @@ async function fetchData() {
 }
 
 export default async function Journey() {
+  cacheLife('max')
   const { allLogbook } = await fetchData()
 
   return (

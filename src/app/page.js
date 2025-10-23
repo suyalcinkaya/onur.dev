@@ -1,5 +1,6 @@
 'use cache'
 
+import { cacheLife } from 'next/cache'
 import NextLink from 'next/link'
 import { Suspense } from 'react'
 
@@ -22,6 +23,7 @@ async function fetchData() {
 }
 
 export default async function Home() {
+  cacheLife('max')
   const { items } = await fetchData()
 
   return (

@@ -5,6 +5,7 @@ import '@/globals.css'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import { cacheLife } from 'next/cache'
 import { draftMode } from 'next/headers'
 import Script from 'next/script'
 import { LuEye as EyeIcon } from 'react-icons/lu'
@@ -17,6 +18,7 @@ import { PROFILES } from '@/lib/constants'
 import { preloadGetAllPosts } from '@/lib/contentful'
 
 export default async function RootLayout({ children }) {
+  cacheLife('max')
   const { isEnabled } = await draftMode()
   preloadGetAllPosts(isEnabled)
 

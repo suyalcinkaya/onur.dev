@@ -1,5 +1,6 @@
 'use cache'
 
+import { cacheLife } from 'next/cache'
 import Image from 'next/image'
 
 import { FloatingHeader } from '@/components/floating-header'
@@ -13,6 +14,8 @@ import { getPageSeo } from '@/lib/contentful'
 import { isExternalLink } from '@/lib/utils'
 
 export default async function Workspace() {
+  cacheLife('max')
+
   return (
     <ScrollArea>
       <GradientBg4 />

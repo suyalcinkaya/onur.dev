@@ -1,3 +1,6 @@
+'use cache'
+
+import { cacheLife } from 'next/cache'
 import { Suspense } from 'react'
 
 import { ListItem } from '@/components/list-item'
@@ -16,6 +19,7 @@ async function fetchData() {
 }
 
 export default async function BookmarksLayout({ children }) {
+  cacheLife('max')
   const { bookmarks } = await fetchData()
 
   return (

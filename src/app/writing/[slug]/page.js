@@ -1,5 +1,6 @@
 'use cache'
 
+import { cacheLife } from 'next/cache'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
@@ -30,6 +31,7 @@ async function fetchData(slug) {
 }
 
 export default async function WritingSlug(props) {
+  cacheLife('max')
   const params = await props.params
   const { slug } = params
   const { data } = await fetchData(slug)
