@@ -31,7 +31,6 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@supabase/supabase-js": "^2.48.1",
     "@tailwindcss/container-queries": "^0.1.1",
-    "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "classix": "^2.2.2",
     "embla-carousel-react": "^8.5.2",

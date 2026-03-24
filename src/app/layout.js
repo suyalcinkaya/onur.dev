@@ -2,7 +2,6 @@
 
 import '@/globals.css'
 
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import { cacheLife } from 'next/cache'
@@ -48,7 +47,6 @@ export default async function RootLayout({ children }) {
           </div>
         </main>
         <TailwindIndicator />
-        <SpeedInsights />
         <Script
           src="https://unpkg.com/@tinybirdco/flock.js"
           data-host="https://api.tinybird.co"

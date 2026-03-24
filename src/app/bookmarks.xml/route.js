@@ -55,7 +55,8 @@ export async function GET() {
 
   return new Response(feed.rss2(), {
     headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8'
+      'Content-Type': 'application/rss+xml; charset=utf-8',
+      'Cache-Control': 'max-age=172800, stale-while-revalidate=86400'
     }
   })
 }
