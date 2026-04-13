@@ -11,6 +11,7 @@ import { getSortedPosts } from '@/lib/utils'
 
 async function fetchData() {
   'use cache'
+  cacheLife('max')
 
   const allPosts = await getAllPosts()
   const sortedPosts = getSortedPosts(allPosts)

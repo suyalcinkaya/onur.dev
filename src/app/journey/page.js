@@ -13,6 +13,7 @@ import { getAllLogbook, getPageSeo } from '@/lib/contentful'
 
 async function fetchData() {
   'use cache'
+  cacheLife('max')
 
   const allLogbook = await getAllLogbook()
 

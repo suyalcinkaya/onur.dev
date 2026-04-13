@@ -12,6 +12,7 @@ import { sortByProperty } from '@/lib/utils'
 
 async function fetchData() {
   'use cache'
+  cacheLife('max')
 
   const bookmarks = await getBookmarks()
   const sortedBookmarks = sortByProperty(bookmarks, 'title')

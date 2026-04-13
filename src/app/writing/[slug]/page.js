@@ -20,6 +20,7 @@ export async function generateStaticParams() {
 
 async function fetchData(slug) {
   'use cache'
+  cacheLife('max')
 
   const { isEnabled } = await draftMode()
   const data = await getPost(slug, isDevelopment ? true : isEnabled)
