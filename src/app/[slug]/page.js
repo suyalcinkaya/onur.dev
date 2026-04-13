@@ -59,6 +59,7 @@ export default async function PageSlug(props) {
 }
 
 export async function generateMetadata(props) {
+  cacheLife('max')
   const params = await props.params
   const { slug } = params
   const seoData = await getPageSeo(slug)

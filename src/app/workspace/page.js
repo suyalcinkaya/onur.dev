@@ -79,6 +79,7 @@ export default async function Workspace() {
 }
 
 export async function generateMetadata() {
+  cacheLife('max')
   const seoData = await getPageSeo('workspace')
   if (!seoData) return null
 

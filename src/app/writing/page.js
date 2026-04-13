@@ -34,6 +34,7 @@ export default async function Writing() {
 }
 
 export async function generateMetadata() {
+  cacheLife('max')
   const seoData = await getPageSeo('writing')
   if (!seoData) return null
 

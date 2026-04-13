@@ -46,6 +46,7 @@ export default async function Writing() {
 }
 
 export async function generateMetadata() {
+  cacheLife('max')
   const seoData = await getPageSeo('bookmarks')
   if (!seoData) return null
 

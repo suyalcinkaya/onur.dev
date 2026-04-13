@@ -93,6 +93,7 @@ export default async function WritingSlug(props) {
 }
 
 export async function generateMetadata(props) {
+  cacheLife('max')
   const params = await props.params
   const { slug } = params
   const seoData = await getWritingSeo(slug)

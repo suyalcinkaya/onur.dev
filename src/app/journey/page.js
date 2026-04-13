@@ -72,6 +72,7 @@ export default async function Journey() {
 }
 
 export async function generateMetadata() {
+  cacheLife('max')
   const seoData = await getPageSeo('journey')
   if (!seoData) return null
 

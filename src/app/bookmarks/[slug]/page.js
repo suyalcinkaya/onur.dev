@@ -62,6 +62,7 @@ export default async function CollectionPage(props) {
 }
 
 export async function generateMetadata(props) {
+  cacheLife('max')
   const params = await props.params
   const { slug } = params
   const bookmarks = await getBookmarks()
