@@ -6,12 +6,14 @@ import { getSortedPosts } from '@/lib/utils'
 export async function GET() {
   const allPosts = await getAllPosts()
   const sortedPosts = getSortedPosts(allPosts)
-  const date = new Date()
   const siteURL = 'https://onur.dev'
   const author = {
     name: 'Onur Şuyalçınkaya',
     link: 'https://onur.dev'
   }
+
+  const latestPost = sortedPosts[0]
+  const latestDate = new Date(latestPost?.sys?.publishedAt || '2025-01-01')
 
   const feed = new Feed({
     title: `Writings RSS feed by ${author.name}`,
@@ -19,7 +21,8 @@ export async function GET() {
     id: siteURL,
     link: `${siteURL}/writing`,
     language: 'en',
-    copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
+    updated: latestDate,
+    copyright: `All rights reserved ${latestDate.getFullYear()}, ${author.name}`,
     author,
     feedLinks: {
       rss2: `${siteURL}/writing/rss.xml`
@@ -42,8 +45,7 @@ export async function GET() {
   return new Response(feed.rss2(), {
     headers: {
       'Content-Type': 'application/rss+xml; charset=utf-8',
-      // Cache response for 2 days, revalidate once a day
-      'Cache-Control': 'max-age=172800, stale-while-revalidate=86400'
+      'Cache-Control': 'public, s-maxage=604800, stale-while-revalidate=86400'
     }
   })
 }

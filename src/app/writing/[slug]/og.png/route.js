@@ -1,11 +1,9 @@
-import { draftMode } from 'next/headers'
 import { ImageResponse } from 'next/og'
 
 import { sharedMetadata } from '@/app/shared-metadata'
 import { OpenGraphImage } from '@/components/og-image'
 import { getAllPostSlugs, getWritingSeo } from '@/lib/contentful'
 import { getBoldFont, getRegularFont } from '@/lib/fonts'
-import { isDevelopment } from '@/lib/utils'
 
 export const size = {
   width: sharedMetadata.ogImage.width,
@@ -19,10 +17,9 @@ export async function generateStaticParams() {
 
 export async function GET(_, props) {
   const params = await props.params
-  const { isEnabled } = await draftMode()
   const { slug } = params
   const [seoData, regularFontData, boldFontData] = await Promise.all([
-    getWritingSeo(slug, isDevelopment ? true : isEnabled),
+    getWritingSeo(slug),
     getRegularFont(),
     getBoldFont()
   ])

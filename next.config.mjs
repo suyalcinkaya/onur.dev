@@ -1,5 +1,3 @@
-import { next } from '@million/lint'
-
 /**
  * @type {import('next').NextConfig}
  */
@@ -109,6 +107,33 @@ const nextConfig = {
             value: 'public, max-age=31536000, immutable'
           }
         ]
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=604800, stale-while-revalidate=86400'
+          }
+        ]
+      },
+      {
+        source: '/:path*/og.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=604800, stale-while-revalidate=86400'
+          }
+        ]
+      },
+      {
+        source: '/:path*/opengraph-image',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=604800, stale-while-revalidate=86400'
+          }
+        ]
       }
     ]
   },
@@ -120,4 +145,4 @@ const nextConfig = {
   transpilePackages: ['geist']
 }
 
-export default next({ rsc: true })(nextConfig)
+export default nextConfig

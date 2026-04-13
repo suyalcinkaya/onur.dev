@@ -6,6 +6,8 @@ export default async function sitemap() {
   const [allPosts, bookmarks, allPages] = await Promise.all([getAllPosts(), getBookmarks(), getAllPageSlugs()])
 
   const sortedWritings = getSortedPosts(allPosts)
+  const latestPostDate = sortedWritings[0]?.sys?.publishedAt
+
   const writings = sortedWritings.map((post) => {
     return {
       url: `https://onur.dev/writing/${post.slug}`,
@@ -18,8 +20,7 @@ export default async function sitemap() {
   const mappedBookmarks = bookmarks.map((bookmark) => {
     return {
       url: `https://onur.dev/bookmarks/${bookmark.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
       priority: 1
     }
   })
@@ -27,10 +28,7 @@ export default async function sitemap() {
   const pages = allPages.map((page) => {
     let changeFrequency = 'yearly'
     if (['writing', 'journey'].includes(page.slug)) changeFrequency = 'monthly'
-    if (['bookmarks'].includes(page.slug)) changeFrequency = 'daily'
-
-    let lastModified = page.sys.publishedAt
-    if (['writing', 'journey', 'bookmarks'].includes(page.slug)) lastModified = new Date()
+    if (['bookmarks'].includes(page.slug)) changeFrequency = 'weekly'
 
     let priority = 0.5
     if (['writing', 'journey'].includes(page.slug)) priority = 0.8
@@ -38,7 +36,7 @@ export default async function sitemap() {
 
     return {
       url: `https://onur.dev/${page.slug}`,
-      lastModified,
+      lastModified: page.sys.publishedAt,
       changeFrequency,
       priority
     }
@@ -47,8 +45,8 @@ export default async function sitemap() {
   return [
     {
       url: 'https://onur.dev',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
+      lastModified: latestPostDate,
+      changeFrequency: 'weekly',
       priority: 1
     },
     ...pages,

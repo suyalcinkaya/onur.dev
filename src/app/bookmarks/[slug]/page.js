@@ -35,7 +35,7 @@ async function fetchData(slug) {
 }
 
 export default async function CollectionPage(props) {
-  cacheLife('days')
+  cacheLife('max')
   const params = await props.params
   const { slug } = params
   const { bookmarks, currentBookmark, bookmarkItems } = await fetchData(slug)

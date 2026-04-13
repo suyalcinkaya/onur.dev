@@ -35,9 +35,6 @@ export default function proxy(request, event) {
 }
 
 export const config = {
-  // matcher: '/writing/:path/'
-  // The below solution also filters out the user navigations which is not desired:
-  // See: https://github.com/vercel/next.js/discussions/37736#discussioncomment-7886601
   matcher: [
     {
       source: '/writing/:path/',
@@ -45,18 +42,6 @@ export const config = {
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' }
       ]
-    },
-    {
-      source: '/writing/:path/',
-      has: [
-        { type: 'header', key: 'next-router-prefetch' },
-        { type: 'header', key: 'purpose', value: 'prefetch' }
-      ]
-    },
-    {
-      source: '/writing/:path/',
-      has: [{ type: 'header', key: 'x-present' }],
-      missing: [{ type: 'header', key: 'x-missing', value: 'prefetch' }]
     }
   ]
 }

@@ -6,13 +6,11 @@ import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { LuArrowLeft as ArrowLeftIcon, LuRadio as RadioIcon } from 'react-icons/lu'
-import Balancer from 'react-wrap-balancer'
 
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { Button } from '@/components/ui/button'
 
 const THROTTLE_DELAY = 16 // 60fps
-const BALANCER_RATIO = 0.35
 const SCROLL_TRANSLATE_BASE = 100
 const SCROLL_OPACITY_DIVISOR = 100
 
@@ -77,12 +75,8 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
     [bookmarks, currentBookmark]
   )
 
-  const memoizedBalancer = useMemo(
-    () => (
-      <Balancer ratio={BALANCER_RATIO}>
-        <span className="line-clamp-2 font-semibold tracking-tight">{title}</span>
-      </Balancer>
-    ),
+  const memoizedTitle = useMemo(
+    () => <span className="line-clamp-2 font-semibold tracking-tight text-balance">{title}</span>,
     [title]
   )
 
@@ -115,7 +109,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                   {scrollTitle}
                 </span>
               )}
-              {title && memoizedBalancer}
+              {title && memoizedTitle}
               <div className="flex items-center gap-2">
                 {(isWritingIndexPage || isBookmarksIndexPage) && (
                   <Button variant="outline" size="xs" asChild>

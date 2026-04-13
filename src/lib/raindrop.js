@@ -10,7 +10,7 @@ const options = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_RAINDROP_ACCESS_TOKEN}`
   },
   next: {
-    revalidate: 60 * 60 * 24 * 2 // 2 days
+    revalidate: 60 * 60 * 24 * 7 // 7 days
   },
   signal: AbortSignal.timeout(10000) // 10 second timeout to prevent hanging requests
 }
