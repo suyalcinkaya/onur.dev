@@ -45,8 +45,6 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
   const isBookmarksIndexPage = pathname === '/bookmarks'
   const isBookmarkPath = pathname.startsWith('/bookmarks')
 
-  const memoizedMobileDrawer = useMemo(() => <MobileDrawer />, [])
-
   const onScroll = useCallback((e) => {
     const scrollY = e.target.scrollTop
     const translateY = Math.max(SCROLL_TRANSLATE_BASE - scrollY, 0)
@@ -70,16 +68,6 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
     }
   }, [scrollTitle, throttledOnScroll])
 
-  const memoizedSubmitBookmarkDrawer = useMemo(
-    () => <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />,
-    [bookmarks, currentBookmark]
-  )
-
-  const memoizedTitle = useMemo(
-    () => <span className="line-clamp-2 font-semibold tracking-tight text-balance">{title}</span>,
-    [title]
-  )
-
   return (
     <header
       className="sticky inset-x-0 top-0 z-10 mx-auto flex h-12 w-full shrink-0 items-center overflow-hidden border-b bg-white text-sm font-medium lg:hidden"
@@ -95,7 +83,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                 </NextLink>
               </Button>
             ) : (
-              memoizedMobileDrawer
+              <MobileDrawer />
             )}
             <div className="flex flex-1 items-center justify-between">
               {scrollTitle && (
@@ -109,7 +97,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                   {scrollTitle}
                 </span>
               )}
-              {title && memoizedTitle}
+              {title && <span className="line-clamp-2 font-semibold tracking-tight text-balance">{title}</span>}
               <div className="flex items-center gap-2">
                 {(isWritingIndexPage || isBookmarksIndexPage) && (
                   <Button variant="outline" size="xs" asChild>
@@ -124,7 +112,7 @@ export const FloatingHeader = memo(({ scrollTitle, title, goBackLink, bookmarks,
                     </a>
                   </Button>
                 )}
-                {isBookmarkPath && memoizedSubmitBookmarkDrawer}
+                {isBookmarkPath && <SubmitBookmarkDrawer bookmarks={bookmarks} currentBookmark={currentBookmark} />}
               </div>
             </div>
           </div>
