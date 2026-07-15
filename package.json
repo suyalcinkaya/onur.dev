@@ -72,7 +72,7 @@
     "next-unused": "^0.0.6",
     "postcss": "^8.5.3",
     "prettier": "^3.5.1",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4.1.7",
     "tailwindcss-animate": "^1.0.7"
   },
