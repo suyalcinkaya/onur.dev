@@ -60,7 +60,7 @@
     "@eslint/js": "^9.20.0",
     "@tailwindcss/postcss": "^4.1.7",
     "eslint": "^9.20.1",
-    "eslint-config-next": "^15.3.2",
+    "eslint-config-next": "^16.0.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.31.0",
