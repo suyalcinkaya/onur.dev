@@ -57,9 +57,9 @@
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
     "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.20.0",
+    "@eslint/js": "^10.0.0",
     "@tailwindcss/postcss": "^4.1.7",
-    "eslint": "^9.20.1",
+    "eslint": "^10.0.0",
     "eslint-config-next": "^15.3.2",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-alias": "^1.1.2",
